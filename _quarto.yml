@@ -48,15 +48,15 @@ format:
     include-in-header:
       text: |
         <script src="../solution.js"></script>
-  pdf:
-    documentclass: scrreprt
-    include-before-body:
-      text: |
-        \newcommand{\solution}[1]{
-          \begin{tcolorbox}[title=Solution]
-            #1
-          \end{tcolorbox}
-        }
+  # pdf:
+  #   documentclass: scrreprt
+  #   include-before-body:
+  #     text: |
+  #       \newcommand{\solution}[1]{
+  #         \begin{tcolorbox}[title=Solution]
+  #           #1
+  #         \end{tcolorbox}
+  #       }
 
 
 
