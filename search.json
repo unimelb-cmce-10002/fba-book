@@ -1,0 +1,89 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Foundations of Business Analytics",
+    "section": "",
+    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n1 + 1\n\n[1] 2",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "insights/data_visualisation.html",
+    "href": "insights/data_visualisation.html",
+    "title": "3  Data Visualisation for Business Intelligence",
+    "section": "",
+    "text": "3.1 Today’s Business Challenge",
+    "crumbs": [
+      "Getting Our First Insights from Data",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+    ]
+  },
+  {
+    "objectID": "insights/data_visualisation.html#todays-business-challenge",
+    "href": "insights/data_visualisation.html#todays-business-challenge",
+    "title": "3  Data Visualisation for Business Intelligence",
+    "section": "",
+    "text": "Understanding Price Sensitivity in Beer Sales\n\nAustralian retailers make thousands of pricing decisions\n1% improvement in pricing → 11% profit increase\nBeer: $16.8 billion Australian market\nOur question today: How do price changes affect sales across different beer brands?\n\n\n\nToday’s Data: Retail Scanner Data from Dominick’s Finer Foods\n\nWeekly sales for four major beer brands for a Chicago based retailer\nPrice, quantity, store location, and promotional information\nSimilar to what Woolworths and Coles analysts work with daily\nReal-world retail data to discover real-world patterns{.unnumbered}\n\n\n\nToday’s Method: Data Visualization\n\n“The greatest value of a picture is when it forces us to notice what we never expected to see.” — John Tukey\n\n\nVisual processing is 60,000× faster than text - spot patterns and outliers instantly\nBridges the gap between data scientists and business decision-makers\nReveals hidden relationships that drive consumer behavior and pricing effectiveness\nTransforms complex numerical relationships into actionable insights for category managers\n\n\n\nWhere we’re headed\nJust a few lines of R code transform numbers into business intelligence\nFrom this: (table)\nto this: Insert final plots",
+    "crumbs": [
+      "Getting Our First Insights from Data",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+    ]
+  },
+  {
+    "objectID": "insights/data_visualisation.html#the-game-plan-what-were-aiming-for",
+    "href": "insights/data_visualisation.html#the-game-plan-what-were-aiming-for",
+    "title": "3  Data Visualisation for Business Intelligence",
+    "section": "3.2 The Game Plan: What we’re aiming for",
+    "text": "3.2 The Game Plan: What we’re aiming for\nRecall our workflow:\n\nPlan and sketch an endpoint.\nSimulate and consider that simulated data.\nAcquire and prepare the actual data.\nExplore and understand the actual data.\nShare what was done and what was found.\n\nSketch the plan & “Simulated Graphs”",
+    "crumbs": [
+      "Getting Our First Insights from Data",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+    ]
+  },
+  {
+    "objectID": "insights/data_visualisation.html#loading-and-understand-the-data",
+    "href": "insights/data_visualisation.html#loading-and-understand-the-data",
+    "title": "3  Data Visualisation for Business Intelligence",
+    "section": "3.3 Loading and Understand the Data",
+    "text": "3.3 Loading and Understand the Data\n\nR pacakages for today\nAdd libraries\n\n\nLoading the Data in R\nRead csv file\n\nThe Beer Sales Dataframe\nExplore data frame, define any necessary terms",
+    "crumbs": [
+      "Getting Our First Insights from Data",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+    ]
+  },
+  {
+    "objectID": "insights/data_visualisation.html#visualizing-the-data",
+    "href": "insights/data_visualisation.html#visualizing-the-data",
+    "title": "3  Data Visualisation for Business Intelligence",
+    "section": "3.4 Visualizing the Data",
+    "text": "3.4 Visualizing the Data\nDetour: Viz principles + ggplot “building”\n\nVisualizing Price Distributions\nExercise. Box plot for Qty\n\n\n5 min\n\nCreate a boxplot comparing the quantity sold across different beer brands\n\n\nSolution\n\n\nHere’s my solution\n\n\n\nVisualizing Quantity Sold\nExercise: Distribution of Prices\n\n\n3.4.1 Detour: Adding Style to our plots\nExercise: Style up the “other plot”\n\n\nVisualizing Demand Curves\nExercise. Do this by brand rather than by import status",
+    "crumbs": [
+      "Getting Our First Insights from Data",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+    ]
+  },
+  {
+    "objectID": "insights/data_visualisation.html#putting-it-all-together-sharing-our-results",
+    "href": "insights/data_visualisation.html#putting-it-all-together-sharing-our-results",
+    "title": "3  Data Visualisation for Business Intelligence",
+    "section": "3.5 Putting it all together: Sharing Our Results",
+    "text": "3.5 Putting it all together: Sharing Our Results\nFinal plot.\nExercise. Write 2-3 sentence summary of what can be seen in the plot\nExercise. Do the same but for plots by Brand rather than import status. Write a summary.",
+    "crumbs": [
+      "Getting Our First Insights from Data",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+    ]
+  },
+  {
+    "objectID": "insights/data_visualisation.html#conclusion",
+    "href": "insights/data_visualisation.html#conclusion",
+    "title": "3  Data Visualisation for Business Intelligence",
+    "section": "3.6 Conclusion",
+    "text": "3.6 Conclusion\nWe’ve highlighted one key principle per plot:\n\nWith price boxplot: “Choose visualizations appropriate to your question”\nWith density plots: “Color enhances categorical comparison”\nWith demand curves: “Transformations (like log scales) can reveal patterns”\nWith faceting: “Small multiples help compare across groups”",
+    "crumbs": [
+      "Getting Our First Insights from Data",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+    ]
+  }
+]
