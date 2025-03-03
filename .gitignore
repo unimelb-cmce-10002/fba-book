@@ -15,3 +15,6 @@
 
 # Ignore all Quarto execution cache folders
 **/*_cache/
+
+# Ignore all Quarto execution files
+**/*_files/
