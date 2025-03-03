@@ -1,0 +1,128 @@
+# Data Visualisation for Business Intelligence
+
+::: {.callout-tip}
+## Learning Goals {.unnumbered}
+
+By the end of this lecture, you should be able to:
+
+* Explain how different visualization techniques reveal patterns in retail beer data that would be difficult to see in tables or raw numbers.
+* Implement appropriate visualizations using ggplot2 to analyze relationships between beer prices, sales volumes, and brand categories.
+* Compare price elasticity patterns between domestic and imported beer brands using log-log demand curve visualizations.
+* Assess which visualization approaches most effectively communicate specific insights about beer pricing and demand.
+* Design a visual analysis that could inform practical pricing decisions for a retail category manager.
+:::
+
+## Today's Business Challenge
+### Understanding Price Sensitivity in Beer Sales {.unnumbered}
+
+* Australian retailers make thousands of pricing decisions
+* 1% improvement in pricing → 11% profit increase
+* Beer: $16.8 billion Australian market
+* Our question today: How do price changes affect sales across different beer brands?
+
+### Today's Data: Retail Scanner Data from Dominick's Finer Foods {.unnumbered}
+
+* Weekly sales for four major beer brands for a Chicago based retailer
+* Price, quantity, store location, and promotional information
+* Similar to what Woolworths and Coles analysts work with daily
+* Real-world retail data to discover real-world patterns{.unnumbered}
+
+### Today's Method: Data Visualization {.unnumbered}
+
+> "The greatest value of a picture is when it forces us to notice what we never expected to see." — John Tukey
+
+* Visual processing is 60,000× faster than text - spot patterns and outliers instantly
+* Bridges the gap between data scientists and business decision-makers
+* Reveals hidden relationships that drive consumer behavior and pricing effectiveness
+* Transforms complex numerical relationships into actionable insights for category managers
+
+### Where we're headed {.unnumbered}
+
+Just a few lines of R code transform numbers into business intelligence
+
+From this: (table)
+
+to this: Insert final plots 
+
+
+## The Game Plan: What we're aiming for
+
+Recall our workflow:
+
+1. Plan and sketch an endpoint.
+2. Simulate and consider that simulated data.
+3. Acquire and prepare the actual data.
+4. Explore and understand the actual data.
+5. Share what was done and what was found.
+
+Sketch the plan & "Simulated Graphs"
+
+## Loading and Understand the Data
+
+### R pacakages for today {.unnumbered}
+
+Add libraries
+
+### Loading the Data in R {.unnumbered}
+
+Read csv file
+
+#### The Beer Sales Dataframe {.unnumbered}
+
+Explore data frame, define any necessary terms
+
+## Visualizing the Data
+
+Detour: Viz principles + ggplot "building"
+
+### Visualizing Price Distributions {.unnumbered}
+
+Exercise. Box plot for Qty
+
+::: {.exercise}
+::: {.exercise-time}
+5 min
+:::
+
+Create a boxplot comparing the quantity sold across different beer brands
+
+:::
+
+::: {.solution-header}
+Solution
+:::
+::: {.solution-content}
+
+Here's my solution
+
+:::
+
+### Visualizing Quantity Sold {.unnumbered}   
+
+Exercise: Distribution of Prices
+
+### Detour: Adding Style to our plots
+
+Exercise: Style up the "other plot"
+
+### Visualizing Demand Curves {.unnumbered}
+
+Exercise. Do this by brand rather than by import status
+
+## Putting it all together: Sharing Our Results 
+
+Final plot. 
+
+
+Exercise. Write 2-3 sentence summary of what can be seen in the plot 
+
+Exercise. Do the same but for plots by Brand rather than import status. Write a summary.
+
+## Conclusion 
+
+We've highlighted one key principle per plot:
+
+* With price boxplot: "Choose visualizations appropriate to your question"
+* With density plots: "Color enhances categorical comparison"
+* With demand curves: "Transformations (like log scales) can reveal patterns"
+* With faceting: "Small multiples help compare across groups"

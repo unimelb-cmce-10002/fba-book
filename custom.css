@@ -1,0 +1,67 @@
+/* Exercise styling from before */
+.exercise {
+  padding: 1em;
+  margin-bottom: 1em;
+  border-left: 5px solid #0061ad; /* University of Melbourne blue */
+  background-color: #e6f2fa; /* Lighter shade of Melbourne blue */
+  position: relative;
+}
+
+.exercise::before {
+  content: "Exercise";
+  display: block;
+  font-weight: bold;
+  color: #0061ad; /* University of Melbourne blue */
+  margin-bottom: 0.5em;
+  font-size: 1.1em;
+}
+
+.exercise-time {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  background-color: #0061ad; /* University of Melbourne blue */
+  color: white;
+  padding: 0.2em 0.5em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* Solution box styling - improved version */
+.solution-header {
+  cursor: pointer;
+  padding: 0.4em 0.8em; /* Reduced padding */
+  background-color: #0061ad; /* University of Melbourne blue */
+  color: white;
+  font-weight: bold;
+  border-radius: 6px 6px 0 0; /* More rounded top corners */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0; /* Remove any margin between header and content */
+}
+
+.solution-header::after {
+  content: "▼";
+  font-size: 0.8em; /* Slightly smaller arrow */
+  margin-left: 8px;
+  transition: transform 0.3s;
+}
+
+.solution-header.collapsed::after {
+  content: "▶";
+}
+
+.solution-content {
+  padding: 1em;
+  border: 1px solid #0061ad;
+  border-top: none;
+  border-radius: 0 0 6px 6px; /* More rounded bottom corners */
+  background-color: #f9f9f9;
+  margin-top: 0; /* Remove any margin between header and content */
+  margin-bottom: 1em;
+}
+
+.solution-content.hidden {
+  display: none;
+}

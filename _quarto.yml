@@ -1,0 +1,62 @@
+project:
+  type: book
+
+book:
+  title: "Foundations of Business Analytics"
+  author: 
+    - "Lachlan Deer"
+    - "Patrick Ferguson"
+  date: last-modified
+  chapters:
+    - index.qmd
+    - part: "Foundations"
+      chapters:
+        - foundations/what_is_business_analytics.qmd
+        - foundations/how_to_do_business_analytics.qmd
+    - part: "Getting Our First Insights from Data"
+      chapters:
+        - insights/data_visualisation.qmd
+        - insights/data_manipulation.qmd
+        - insights/data_analysis.qmd
+    - part: "Finding and Storing Data"
+      chapters:
+        - data_management/data_collection.qmd
+        - data_management/data_storage.qmd
+    - part: "Extracting Deeper Insights from Data"
+      chapters:
+        - advanced_analytics/data_variation.qmd
+        - advanced_analytics/descriptive_analytics.qmd
+        - advanced_analytics/causal_analytics.qmd
+        - advanced_analytics/predictive_analytics.qmd
+    - part: "Ethics and Privacy"
+      chapters:
+        - ethics_privacy/ethics.qmd
+        - ethics_privacy/privacy.qmd
+    - part: "Conclusion"
+      chapters:
+        - conclusion/conclusion.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - flatly
+      - brand
+    css: custom.css
+    include-in-header:
+      text: |
+        <script src="../solution.js"></script>
+  pdf:
+    documentclass: scrreprt
+    include-before-body:
+      text: |
+        \newcommand{\solution}[1]{
+          \begin{tcolorbox}[title=Solution]
+            #1
+          \end{tcolorbox}
+        }
+
+
+
