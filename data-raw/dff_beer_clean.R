@@ -43,7 +43,10 @@ beer <-
             # Remove excess whitespace
             str_trim() %>%
             # Handle any double spaces that might result from the replacements
-            str_squish()
+            str_squish() %>%
+            # Extract only the first word
+            word(1) %>%
+            str_to_title()
     )
 
 write_csv(beer, "data/beer.csv")
