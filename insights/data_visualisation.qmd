@@ -17,6 +17,7 @@ By the end of this lecture, you should be able to:
 #| warning: false
 #| echo: false
 library(tidyverse)
+library(scales)
 library(patchwork)
 library(ggokabeito)
 library(tinytable)
@@ -83,28 +84,55 @@ to this (REMARK Still need to complete the pretty-ing of plots)
 
 price_plot_final <-
     ggplot(beer) +
-    geom_boxplot(aes(y = price, x = imported, fill = imported))+
+    geom_boxplot(aes(y = price, x = imported, fill = imported)) +
+    # Natural log scale for y-axis with meaningful breaks
+    scale_y_continuous(
+        #trans = "log",
+        breaks = c(3, 4, 5, 6),
+        labels = scales::dollar
+    ) +
     scale_fill_okabe_ito() +
-     guides(fill="none")
+    labs(y = "Price", x = "Production Location") +
+    guides(fill="none")
 
 sales_plot_final <-
     ggplot(beer) +
-    geom_density(aes(x = log(qty), fill = imported), 
+    geom_density(aes(x = qty, fill = imported), 
                  alpha = 0.35
                  ) +
+      # Natural log scale for x-axis with meaningful breaks
+      scale_x_continuous(
+        trans = "log",
+        breaks = c(1, 2, 5, 10, 20, 50, 100, 200)#,
+        #labels = scales::comma
+      ) +
+    labs(y = "Density", x = "Quantity Sold") +
     scale_fill_okabe_ito() 
 
 demand_by_import_final <-
     ggplot(beer,
-           aes(y = log(price), x = log(qty))
+           aes(y = price, x = qty)
            ) +
         geom_point(aes(color = imported),
                        alpha = 0.25
                        ) +
+     # Natural log scale for x-axis with meaningful breaks
+      scale_x_continuous(
+        trans = "log",
+        breaks = c(1, 2, 5, 10, 20, 50, 100, 200)#,
+        #labels = scales::comma
+      ) + 
+          # Natural log scale for y-axis with meaningful breaks
+      scale_y_continuous(
+        trans = "log",
+        breaks = c(3, 4, 5, 6),
+        labels = scales::dollar
+      ) +
         geom_smooth(method = "lm", color = "#CC79A7") +
         facet_wrap(~ imported) +
         scale_color_okabe_ito() + 
-        guides(color = "none")
+        guides(color = "none") +
+    labs(x = "Quantity Sold", y ="Price")
 
 
 # plot it
@@ -113,7 +141,6 @@ demand_by_import_final <-
       plot_layout(guides = "collect") & 
      theme(legend.position = "bottom")
 ```
-TO DO: Add Spiel on ggplot2 as a data viz package.
 
 ## The Game Plan: What we're aiming for
 
@@ -139,14 +166,15 @@ Let's get started!
 
 ## Loading and Understand the Data
 
-### R pacakages for today {.unnumbered}
+### R packages for today {.unnumbered}
 
-Add libraries
+TO DO: Add Spiel on ggplot2 as a data viz package.
 
 ```{r}
 #| eval: false
 library(tidyverse)  # for plotting, includes ggplot
 library(patchwork)  # for combining multiple plots into subfigures
+library(scales)     # for formatting axis scales
 library(ggokabeito) # color blind friendly color palette -- this course's default
 ```
 
@@ -159,7 +187,7 @@ beer <- read_csv("https://raw.githubusercontent.com/unimelb-cmce-10002/fba-book/
 ```
 
 
-#### The Beer Sales Dataframe {.unnumbered}
+### The Beer Sales Dataframe {.unnumbered}
 
 Explore data frame, define any necessary terms
 
@@ -171,11 +199,13 @@ beer
 glimpse(beer)
 ```
 
+TODO: So what is the business question?
+
 ## Visualizing the Data
 
 Detour: Viz principles + ggplot "building"
 
-### Visualizing Price Distributions {.unnumbered}
+### Investigating Price Distributions {.unnumbered}
 
 Set the Canvas
 ```{r}
@@ -218,7 +248,9 @@ ggplot(beer) +
     geom_boxplot(aes(y = price, x = imported))
 ```
 
-Note this prints the plot, can store for later
+Describe findings. Why might prices of imported beers be higher?
+
+Note what we have done so far prints the plot, can store for later
 
 
 ```{r}
@@ -242,7 +274,8 @@ price_box
 5 min
 :::
 
-Create a boxplot comparing the prices across different beer brands
+1. Create a box plot comparing the prices across different beer brands.
+2. Summarize the main insights from the graph in 2 sentences.
 
 :::
 
@@ -262,13 +295,13 @@ ggplot(beer) +
 
 :::
 
-### Visualizing Quantity Sold {.unnumbered}   
+### Exploring Quantity Sold {.unnumbered}   
 
 #### Histogram {.unnumbered}
 
 ```{r}
-#| fig-width: 3
-#| fig-height: 3
+#| fig-width: 4
+#| fig-height: 4
 #| fig-align: center
 
 ggplot(beer) +
@@ -276,8 +309,8 @@ ggplot(beer) +
 ```
 
 ```{r}
-#| fig-width: 3
-#| fig-height: 3
+#| fig-width: 4
+#| fig-height: 4
 #| fig-align: center
 
 ggplot(beer) +
@@ -287,8 +320,8 @@ ggplot(beer) +
 OR equivalently
 
 ```{r}
-#| fig-width: 3
-#| fig-height: 3
+#| fig-width: 4
+#| fig-height: 4
 #| fig-align: center
 
 ggplot(beer) +
@@ -298,8 +331,8 @@ ggplot(beer) +
 #### Density Plot {.unnumbered}
 
 ```{r}
-#| fig-width: 3
-#| fig-height: 3
+#| fig-width: 4
+#| fig-height: 4
 #| fig-align: center
 
 ggplot(beer) +
@@ -307,13 +340,17 @@ ggplot(beer) +
 ```
 
 ```{r}
-#| fig-width: 3
-#| fig-height: 3
+#| fig-width: 4
+#| fig-height: 4
 #| fig-align: center
 
 ggplot(beer) +
     geom_density(aes(x = qty, fill = imported), alpha = 0.35)
 ```
+
+Explain the findings ...
+
+
 ::: {.exercise}
 ::: {.exercise-time}
 5 min
@@ -331,8 +368,8 @@ Solution
 1. 
 
 ```{r}
-#| fig-width: 3
-#| fig-height: 3
+#| fig-width: 4
+#| fig-height: 4
 #| fig-align: center
 ggplot(beer) +
     geom_density(aes(x = qty, fill = brand), alpha = 0.35)
@@ -341,8 +378,8 @@ ggplot(beer) +
 2. 
 
 ```{r}
-#| fig-width: 3
-#| fig-height: 3
+#| fig-width: 4
+#| fig-height: 4
 #| fig-align: center
 ggplot(beer) +
     geom_density(aes(x = price, fill = brand), alpha = 0.35)
@@ -359,10 +396,42 @@ THINGS TO CONSIDER:
 * other geom_ 's
 * titles
 * labels
+* scales
 
 REMARK: leave themes and geom_'s to homework to explore
 
+Where we end up in this section
+
 ```{r}
+#| fig-width: 4
+#| fig-height: 4
+#| fig-align: center
+price_plot <-
+    ggplot(beer) +
+    geom_boxplot(aes(y = price, x = imported, fill = imported)) +
+    scale_y_continuous(
+        breaks = c(3, 4, 5, 6),
+        labels = scales::dollar
+      ) +
+    scale_fill_okabe_ito() +
+    theme(legend.position = "none") +
+    labs(y = "Price", x = "Production Location")
+
+price_plot
+```
+
+::: {.exercise}
+::: {.exercise-time}
+5 min
+:::
+
+1. Customize the sales density plot to use the Okabe-Ito color palette and add axis labels.
+:::
+
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+#| fig-align: center
 sales_plot <-
     ggplot(beer) +
     geom_density(aes(x = qty, fill = imported), 
@@ -374,17 +443,10 @@ sales_plot <-
 sales_plot
 ```
 
-```{r}
-price_plot <-
-    ggplot(beer) +
-    geom_boxplot(aes(y = price, x = imported, fill = imported))+
-    scale_fill_okabe_ito()
-
-price_plot
-```
 
 
-### Visualizing Demand Curves {.unnumbered}
+
+### Creating Demand Curves {.unnumbered}
 
 Now, we want to move onto visualizing two dimensions of data, to explore how demand varies with price.
 
@@ -415,6 +477,34 @@ ggplot(beer) +
                )
 ```
 
+An alternative way to do this is:
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+ggplot(beer) +
+    geom_point(aes(y = price, x = qty), 
+               color = "steelblue", 
+               alpha = 0.25
+               ) +
+ # Natural log scale for x-axis with meaningful breaks
+  scale_x_continuous(
+    trans = "log",
+    breaks = c(1, 2, 5, 10, 20, 50, 100, 200),
+    #labels = scales::comma
+  ) + 
+      # Natural log scale for y-axis with meaningful breaks
+  scale_y_continuous(
+    trans = "log",
+    breaks = c(3, 4, 5, 6),
+    labels = scales::dollar
+  ) +
+    labs(x = "Quantity", y = "Price")
+```
+
+Note that this preserves the axes as linear scales, but the data is transformed to log scales.
+
 We can add a third piece of information to this plot -- whether the beer is imported or not
 
 Separate by import status
@@ -424,11 +514,25 @@ Separate by import status
 #| fig-height: 3
 #| fig-align: center
 ggplot(beer) +
-    geom_point(aes(y = log(price), x = log(qty), 
-                   color = imported
-                   ), 
-               alpha = 0.25) + 
-    scale_color_okabe_ito()
+    geom_point(aes(y = price, x = qty,
+                   color = imported), 
+               alpha = 0.25
+               ) +
+ # Natural log scale for x-axis with meaningful breaks
+  scale_x_continuous(
+    trans = "log",
+    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)#,
+    #labels = scales::comma
+  ) + 
+      # Natural log scale for y-axis with meaningful breaks
+  scale_y_continuous(
+    trans = "log",
+    breaks = c(3, 4, 5, 6),
+    labels = scales::dollar
+  ) +
+    labs(x = "Quantity", y = "Price") + 
+    scale_color_okabe_ito() +
+    theme(legend.position = "bottom")
 ```
 
 Sometimes we don't only want to color the points, but have separate plots for different groups of products ...
@@ -436,52 +540,102 @@ Sometimes we don't only want to color the points, but have separate plots for di
 Separate plots with faceting 
 
 ```{r}
-#| fig-width: 3
-#| fig-height: 3
+#| fig-width: 5
+#| fig-height: 5
 #| fig-align: center
+
 ggplot(beer) +
-    geom_point(aes(y = log(price), x = log(qty)), 
-               color = "steelblue",
-               alpha = 0.25) +
-    facet_wrap(~ imported)
+    geom_point(aes(y = price, x = qty,
+                   color = imported), 
+               alpha = 0.25
+               ) +
+ # Natural log scale for x-axis with meaningful breaks
+  scale_x_continuous(
+    trans = "log",
+    breaks = c(1, 2, 5, 10, 20, 50, 100, 200) #,
+    #labels = scales::comma
+  ) + 
+      # Natural log scale for y-axis with meaningful breaks
+  scale_y_continuous(
+    trans = "log",
+    breaks = c(3, 4, 5, 6),
+    labels = scales::dollar
+  ) +
+    labs(x = "Quantity", y = "Price") + 
+    facet_wrap(~ imported) +
+    scale_color_okabe_ito() +
+    theme(legend.position = "bottom")
 ```
+
+Now quick summary of the business insights from this plot.
 
 Until now, we've always had one layer of geom_ in our plots. ggplot allows us to add more. Let's do this by adding a demand curve to the plot ...
 
 Add a demand curve, i.e. add an extra layer
 
 ```{r}
-#| fig-width: 3
-#| fig-height: 3
+#| fig-width: 5
+#| fig-height: 5
 #| fig-align: center
 ggplot(beer) +
-    geom_point(aes(y = log(price), x = log(qty)), 
-               color = "steelblue",
+    geom_point(aes(y = price, x = qty,
+                   color = imported), 
                alpha = 0.25
                ) +
-    geom_smooth(aes(y = log(price), x = log(qty)), 
-                method = "lm", 
-                color =  "#CC79A7"
-                ) +
-    facet_wrap(~ imported)
+    geom_smooth(aes(y = price, x = qty), 
+                  method = "lm", 
+                  color = "#CC79A7",
+                  se = TRUE) +
+ # Natural log scale for x-axis with meaningful breaks
+  scale_x_continuous(
+    trans = "log",
+    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)#,
+    #labels = scales::comma
+  ) + 
+      # Natural log scale for y-axis with meaningful breaks
+  scale_y_continuous(
+    trans = "log",
+    breaks = c(3, 4, 5, 6),
+    labels = scales::dollar
+  ) +
+    labs(x = "Quantity", y = "Price") + 
+    facet_wrap(~ imported) +
+    scale_color_okabe_ito() +
+    theme(legend.position = "bottom")
 ```
 
 Note we had to write aes twice, if we are going to use the same aesthetics for multiple layers, we can put in the `ggplot()` function
 
 ```{r}
-#| fig-width: 3
-#| fig-height: 3
+#| fig-width: 5
+#| fig-height: 5
 #| fig-align: center
-demand_by_import <-
+demand_by_import <- 
     ggplot(beer,
-           aes(y = log(price), x = log(qty))
-           ) +
-        geom_point(aes(color = imported),
-                       alpha = 0.25
-                       ) +
-        geom_smooth(method = "lm", color =  "#CC79A7") +
-        facet_wrap(~ imported) +
-        scale_color_okabe_ito()
+       aes(y = price, x = qty,
+           color = imported 
+           )
+       ) +
+    geom_point(alpha = 0.25) +
+    geom_smooth(method = "lm", 
+                  color = "#CC79A7",
+                  se = TRUE) +
+ # Natural log scale for x-axis with meaningful breaks
+  scale_x_continuous(
+    trans = "log",
+    breaks = c(1, 2, 5, 10, 20, 50, 100, 200) #,
+    #labels = scales::comma
+  ) + 
+      # Natural log scale for y-axis with meaningful breaks
+  scale_y_continuous(
+    trans = "log",
+    breaks = c(3, 4, 5, 6),
+    labels = scales::dollar
+  ) +
+    labs(x = "Quantity", y = "Price") + 
+    facet_wrap(~ imported) +
+    scale_color_okabe_ito() +
+    theme(legend.position = "bottom")
 
 demand_by_import
 ```
@@ -503,8 +657,8 @@ Solution
 
 
 ```{r}
-#| fig-width: 3
-#| fig-height: 3
+#| fig-width: 5
+#| fig-height: 5
 #| fig-align: center
 demand_by_brand <-
     ggplot(beer,
