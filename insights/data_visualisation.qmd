@@ -117,23 +117,23 @@ TO DO: Add Spiel on ggplot2 as a data viz package.
 
 ## The Game Plan: What we're aiming for
 
-Recall our workflow (borrowed from Rohan Alexander for now):
+Recall our workflow:
 
-1. Plan and sketch an endpoint.
-2. ~~Simulate and consider that simulated data.~~
-3. Acquire and prepare the actual data.
-4. Explore and understand the actual data.
-5. Share what was done and what was found.
+1. Define the Business Question & Plan Outputs
+2. Acquire and Prepare Data
+3. Explore and Visualize Patterns
+4. Analyze and Interpret Findings
+5. Communicate Insights and Recommendations
 
-Remark: Perhaps we leave (2) out until we get to "Deeper Insights" or it disappears altogether
+Sketch of the plan: 1 business question & 3 plots ... 
 
-Sketch of the plan: 3 plots:
-
+- [ ] Define the Business Question
 - [ ] Load beer sales data
 - [ ] Understand data structure
 - [ ] Box plot for price by import status
 - [ ] Distribution plot of sales by import status
-- [ ] Demand curve by import status 
+- [ ] Demand curve by import status
+- [ ] Analyze, Interpret & Communicate
 
 Let's get started!
 
