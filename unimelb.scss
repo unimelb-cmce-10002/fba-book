@@ -1,0 +1,46 @@
+/*-- scss:defaults --*/
+// Define University of Melbourne colors
+$primary: #262B61; // Dark Blue (Primary)
+$secondary: #6CACE4; // Light Blue
+$success: #009A44; // Green
+$info: #6CACE4; // Light Blue (matches secondary)
+$warning: #FDB913; // Yellow
+$danger: #E8115D; // Pinkish Red
+$light: #F5F5F5; // Light Grey
+$dark: #041E42; // Deep Blue
+
+/*-- scss:rules --*/
+// Use Flatly as a base
+@import "https://bootswatch.com/5/flatly/bootstrap.min.css";
+
+// Override default Bootstrap theme colors
+:root {
+  --bs-primary: #{$primary};
+  --bs-secondary: #{$secondary};
+  --bs-success: #{$success};
+  --bs-info: #{$info};
+  --bs-warning: #{$warning};
+  --bs-danger: #{$danger};
+  --bs-light: #{$light};
+  --bs-dark: #{$dark};
+
+  // Additional customizations (optional)
+  --bs-body-bg: #ffffff;
+  --bs-body-color: #333;
+  --bs-link-color: #{$primary};
+  --bs-link-hover-color: darken($primary, 15%);
+}
+
+/*-- scss:rules --*/
+// Custom styling for navigation and headings
+.navbar {
+  background-color: $primary !important;
+}
+
+.navbar-dark .navbar-brand, .navbar-dark .navbar-nav .nav-link {
+  color: white !important;
+}
+
+h1, h2, h3, h4 {
+  color: $primary;
+}

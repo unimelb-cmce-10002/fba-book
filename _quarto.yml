@@ -45,8 +45,9 @@ bibliography: references.bib
 format:
   html:
     theme:
-      - flatly
+      #- flatly
       - brand
+      - unimelb.scss
     css: custom.css
     include-in-header:
       text: |
