@@ -84,39 +84,15 @@
   display: none;
 }
 
-/* Soft background color for code blocks */
+/* Darker grey background for all code blocks */
 pre, code {
-  background-color: #F5F7FA !important; /* Light greyish-blue */
-  border-radius: 4px; /* Slight rounding for a softer look */
-  padding: 0.4em 0.6em; /* Less padding to keep it compact */
-  font-family: "Fira Code", monospace; /* Optional: a more readable coding font */
-}
-
-/* Ensure inline code elements are also styled */
-code {
-  color: #1565C0; /* University of Melbourne bright blue */
-  font-weight: bold;
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-}
-
-/* Styling for Quarto code output */
-.output pre {
-  background-color: #E6F2FA !important; /* Light blue background */
-  border-left: 4px solid #1565C0; /* Blue border for differentiation */
-  padding: 0.6em;
-  font-size: 0.9em;
-}
-
-/* Soft background for all code blocks */
-pre, code {
-  background-color: #F5F5EB !important; /* Soft off-white */
-  border-radius: 4px; /* Subtle rounding */
+  background-color: #E0E0E0 !important; /* Medium-light grey */
+  border-radius: 4px; /* Smooth rounded edges */
   padding: 0.4em 0.6em;
-  font-family: "Fira Code", monospace; /* Optional: a clean monospace font */
+  font-family: "Fira Code", monospace; /* Clean monospace font */
 }
 
-/* Styling for inline code */
+/* Inline code styling */
 code {
   color: #7A8033; /* Mt William Greenstone */
   font-weight: bold;
@@ -124,18 +100,18 @@ code {
   border-radius: 4px;
 }
 
-/* Styling for Quarto code output */
+/* Code output background */
 .output pre {
-  background-color: #EAEAD2 !important; /* Softer green-tinted beige */
-  border-left: 4px solid #7A8033; /* Mt William Greenstone for subtle emphasis */
+  background-color: #D6D6D6 !important; /* Slightly darker grey */
+  border-left: 4px solid #7A8033; /* Mt William Greenstone border */
   padding: 0.6em;
   font-size: 0.9em;
 }
 
-/* Styling for embedded code chunks */
+/* Embedded code chunk styling */
 .sourceCode pre {
-  background-color: #F5F5EB !important; /* Consistent with code styling */
-  border-left: 4px solid #7A8033; /* Subtle border */
+  background-color: #E0E0E0 !important; /* Consistent darker grey */
+  border-left: 4px solid #7A8033; /* Consistent with output */
   padding: 0.6em;
   font-size: 0.9em;
 }
@@ -147,7 +123,7 @@ code {
 
 /* Improve spacing for inline code */
 p code {
-  background-color: #F5F5EB !important; /* Same soft background */
-  color: #7A8033; /* Mt William Greenstone */
+  background-color: #E0E0E0 !important; /* Darker grey */
+  color: #00274D; /* Deep blue for readability */
   font-size: 0.9em;
 }
