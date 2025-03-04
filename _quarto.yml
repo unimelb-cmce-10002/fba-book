@@ -10,6 +10,7 @@ book:
     - "Lachlan Deer"
     - "Patrick Ferguson"
   date: last-modified
+  cover-image: figs/fba_sticker.jpg
   chapters:
     - index.qmd
     - part: "Foundations"

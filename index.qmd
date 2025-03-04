@@ -1,9 +1,9 @@
-# Preface {.unnumbered}
+# Welcome {.unnumbered}
 
-This is a Quarto book.
+In this course, you’ll build the essential skills needed to analyze and interpret data for better business decision-making. 
+Whether you’re new to coding or looking to strengthen your analytical thinking, we'll guide you through the fundamentals of working with data in R — structuring, transforming, and visualizing information effectively.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+Business analytics is more than just working with numbers — it’s about understanding what happened, anticipating what will happen next, and uncovering why things happen. Through hands-on practice, you’ll apply these approaches to real-world business problems, learning how to extract meaningful insights that drive action.
 
-```{r}
-1 + 1
-```
+Throughout the course, you’ll develop a practical toolkit: just as a business strategist assesses market trends and customer behavior, you’ll learn how to clean, explore, and communicate data-driven insights. We’ll introduce best practices in data wrangling, visualization, analysing and interpreting data and reproducible analysis, helping you work efficiently and transparently.
+Most importantly, you’ll learn how to tell compelling stories with data, turning raw information into insights that influence business decision-making.
