@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -40,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d9e570de17d555cd0fa9ef8b59496ff8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-406f9bc18f1d6ff52236f194fb9f79ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -282,9 +316,9 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#todays-business-challenge" id="toc-todays-business-challenge" class="nav-link active" data-scroll-target="#todays-business-challenge"><span class="header-section-number">3.1</span> Today’s Business Challenge</a>
   <ul class="collapse">
-  <li><a href="#understanding-price-sensitivity-in-beer-sales" id="toc-understanding-price-sensitivity-in-beer-sales" class="nav-link" data-scroll-target="#understanding-price-sensitivity-in-beer-sales">Understanding Price Sensitivity in Beer Sales</a></li>
-  <li><a href="#todays-data-retail-scanner-data-from-dominicks-finer-foods" id="toc-todays-data-retail-scanner-data-from-dominicks-finer-foods" class="nav-link" data-scroll-target="#todays-data-retail-scanner-data-from-dominicks-finer-foods">Today’s Data: Retail Scanner Data from Dominick’s Finer Foods</a></li>
-  <li><a href="#todays-method-data-visualization" id="toc-todays-method-data-visualization" class="nav-link" data-scroll-target="#todays-method-data-visualization">Today’s Method: Data Visualization</a></li>
+  <li><a href="#the-topic-understanding-price-sensitivity-in-beer-sales" id="toc-the-topic-understanding-price-sensitivity-in-beer-sales" class="nav-link" data-scroll-target="#the-topic-understanding-price-sensitivity-in-beer-sales">The Topic: Understanding Price Sensitivity in Beer Sales</a></li>
+  <li><a href="#the-data-retail-scanner-data-from-dominicks-finer-foods" id="toc-the-data-retail-scanner-data-from-dominicks-finer-foods" class="nav-link" data-scroll-target="#the-data-retail-scanner-data-from-dominicks-finer-foods">The Data: Retail Scanner Data from Dominick’s Finer Foods</a></li>
+  <li><a href="#the-method-data-visualization" id="toc-the-method-data-visualization" class="nav-link" data-scroll-target="#the-method-data-visualization">The Method: Data Visualization</a></li>
   <li><a href="#where-were-headed" id="toc-where-were-headed" class="nav-link" data-scroll-target="#where-were-headed">Where we’re headed</a></li>
   </ul></li>
   <li><a href="#the-game-plan-what-were-aiming-for" id="toc-the-game-plan-what-were-aiming-for" class="nav-link" data-scroll-target="#the-game-plan-what-were-aiming-for"><span class="header-section-number">3.2</span> The Game Plan: What we’re aiming for</a></li>
@@ -297,11 +331,13 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#visualizing-price-distributions" id="toc-visualizing-price-distributions" class="nav-link" data-scroll-target="#visualizing-price-distributions">Visualizing Price Distributions</a></li>
   <li><a href="#visualizing-quantity-sold" id="toc-visualizing-quantity-sold" class="nav-link" data-scroll-target="#visualizing-quantity-sold">Visualizing Quantity Sold</a></li>
-  <li><a href="#detour-adding-style-to-our-plots" id="toc-detour-adding-style-to-our-plots" class="nav-link" data-scroll-target="#detour-adding-style-to-our-plots"><span class="header-section-number">3.4.1</span> Detour: Adding Style to our plots</a></li>
+  <li><a href="#detour-adding-style-to-our-plots" id="toc-detour-adding-style-to-our-plots" class="nav-link" data-scroll-target="#detour-adding-style-to-our-plots">Detour: Adding Style to our plots</a></li>
   <li><a href="#visualizing-demand-curves" id="toc-visualizing-demand-curves" class="nav-link" data-scroll-target="#visualizing-demand-curves">Visualizing Demand Curves</a></li>
   </ul></li>
-  <li><a href="#putting-it-all-together-sharing-our-results" id="toc-putting-it-all-together-sharing-our-results" class="nav-link" data-scroll-target="#putting-it-all-together-sharing-our-results"><span class="header-section-number">3.5</span> Putting it all together: Sharing Our Results</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">3.6</span> Conclusion</a></li>
+  <li><a href="#bringing-it-all-together-sharing-our-results" id="toc-bringing-it-all-together-sharing-our-results" class="nav-link" data-scroll-target="#bringing-it-all-together-sharing-our-results"><span class="header-section-number">3.5</span> Bringing it all together: Sharing Our Results</a></li>
+  <li><a href="#an-aside-always-visualize-the-data" id="toc-an-aside-always-visualize-the-data" class="nav-link" data-scroll-target="#an-aside-always-visualize-the-data"><span class="header-section-number">3.6</span> An Aside: Always visualize the data!</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">3.7</span> Conclusion</a></li>
+  <li><a href="#your-to-do-list" id="toc-your-to-do-list" class="nav-link" data-scroll-target="#your-to-do-list"><span class="header-section-number">3.8</span> Your To Do List</a></li>
   </ul>
 </nav>
     </div>
@@ -340,7 +376,7 @@ Learning Goals
 <p>By the end of this lecture, you should be able to:</p>
 <ul>
 <li>Explain how different visualization techniques reveal patterns in retail beer data that would be difficult to see in tables or raw numbers.</li>
-<li>Implement appropriate visualizations using ggplot2 to analyze relationships between beer prices, sales volumes, and brand categories.</li>
+<li>Implement appropriate visualizations using ggplot2 to analyze relationships between beer prices, sales volumes, and product characteristics.</li>
 <li>Compare price elasticity patterns between domestic and imported beer brands using log-log demand curve visualizations.</li>
 <li>Assess which visualization approaches most effectively communicate specific insights about beer pricing and demand.</li>
 <li>Design a visual analysis that could inform practical pricing decisions for a retail category manager.</li>
@@ -349,8 +385,8 @@ Learning Goals
 </div>
 <section id="todays-business-challenge" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="todays-business-challenge"><span class="header-section-number">3.1</span> Today’s Business Challenge</h2>
-<section id="understanding-price-sensitivity-in-beer-sales" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="understanding-price-sensitivity-in-beer-sales">Understanding Price Sensitivity in Beer Sales</h3>
+<section id="the-topic-understanding-price-sensitivity-in-beer-sales" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="the-topic-understanding-price-sensitivity-in-beer-sales">The Topic: Understanding Price Sensitivity in Beer Sales</h3>
 <ul>
 <li>Australian retailers make thousands of pricing decisions</li>
 <li>1% improvement in pricing → 11% profit increase</li>
@@ -358,8 +394,8 @@ Learning Goals
 <li>Our question today: How do price changes affect sales across different beer brands?</li>
 </ul>
 </section>
-<section id="todays-data-retail-scanner-data-from-dominicks-finer-foods" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="todays-data-retail-scanner-data-from-dominicks-finer-foods">Today’s Data: Retail Scanner Data from Dominick’s Finer Foods</h3>
+<section id="the-data-retail-scanner-data-from-dominicks-finer-foods" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="the-data-retail-scanner-data-from-dominicks-finer-foods">The Data: Retail Scanner Data from Dominick’s Finer Foods</h3>
 <ul>
 <li>Weekly sales for four major beer brands for a Chicago based retailer</li>
 <li>Price, quantity, store location, and promotional information</li>
@@ -367,8 +403,8 @@ Learning Goals
 <li>Real-world retail data to discover real-world patterns{.unnumbered}</li>
 </ul>
 </section>
-<section id="todays-method-data-visualization" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="todays-method-data-visualization">Today’s Method: Data Visualization</h3>
+<section id="the-method-data-visualization" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="the-method-data-visualization">The Method: Data Visualization</h3>
 <blockquote class="blockquote">
 <p>“The greatest value of a picture is when it forces us to notice what we never expected to see.” — John Tukey</p>
 </blockquote>
@@ -378,38 +414,139 @@ Learning Goals
 <li>Reveals hidden relationships that drive consumer behavior and pricing effectiveness</li>
 <li>Transforms complex numerical relationships into actionable insights for category managers</li>
 </ul>
+<p>Next speil</p>
+<ul>
+<li>Graphs are essential to data storytelling—they reveal both broad patterns and key details</li>
+<li>Seeing the data builds understanding—graphs help us engage with data in ways tables and summaries cannot.</li>
+<li>Good graphs minimize information loss—they translate data into visuals that audiences can easily interpret and act on</li>
+<li>Graphing is an encoding process—we design visuals to communicate insights, and their success depends on how well the audience decodes them.</li>
+<li>Effective graphs are audience-focused—they should clearly convey the story behind the data while preserving its context.</li>
+</ul>
 </section>
 <section id="where-were-headed" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="where-were-headed">Where we’re headed</h3>
 <p>Just a few lines of R code transform numbers into business intelligence</p>
-<p>From this: (table)</p>
-<p>to this: Insert final plots</p>
+<p>From this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+   store  week brand       qty price imported
+   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   
+ 1    86    91 Budweiser    23  3.49 domestic
+ 2    86    91 Corona       13  5.79 imported
+ 3    86    91 Lowenbrau    13  3.99 imported
+ 4    86    91 Miller       15  3.69 domestic
+ 5    86    92 Budweiser    46  3.49 domestic
+ 6    86    92 Corona       24  5.79 imported
+ 7    86    92 Lowenbrau    21  3.99 imported
+ 8    86    92 Miller      117  2.99 domestic
+ 9    86    93 Budweiser    47  3.49 domestic
+10    86    93 Corona       23  4.39 imported</code></pre>
+</div>
+</div>
+<p>to this (REMARK Still need to complete the pretty-ing of plots)</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>TO DO: Add Spiel on ggplot2 as a data viz package.</p>
 </section>
 </section>
 <section id="the-game-plan-what-were-aiming-for" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="the-game-plan-what-were-aiming-for"><span class="header-section-number">3.2</span> The Game Plan: What we’re aiming for</h2>
 <p>Recall our workflow:</p>
 <ol type="1">
-<li>Plan and sketch an endpoint.</li>
-<li>Simulate and consider that simulated data.</li>
-<li>Acquire and prepare the actual data.</li>
-<li>Explore and understand the actual data.</li>
-<li>Share what was done and what was found.</li>
+<li>Define the Business Question &amp; Plan Outputs</li>
+<li>Acquire and Prepare Data</li>
+<li>Explore and Visualize Patterns</li>
+<li>Analyze and Interpret Findings</li>
+<li>Communicate Insights and Recommendations</li>
 </ol>
-<p>Sketch the plan &amp; “Simulated Graphs”</p>
+<p>Sketch of the plan: 1 business question &amp; 3 plots …</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Define the Business Question</label></li>
+<li><label><input type="checkbox">Load beer sales data</label></li>
+<li><label><input type="checkbox">Understand data structure</label></li>
+<li><label><input type="checkbox">Box plot for price by import status</label></li>
+<li><label><input type="checkbox">Distribution plot of sales by import status</label></li>
+<li><label><input type="checkbox">Demand curve by import status</label></li>
+<li><label><input type="checkbox">Analyze, Interpret &amp; Communicate</label></li>
+</ul>
+<p>Let’s get started!</p>
 </section>
 <section id="loading-and-understand-the-data" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="loading-and-understand-the-data"><span class="header-section-number">3.3</span> Loading and Understand the Data</h2>
 <section id="r-pacakages-for-today" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="r-pacakages-for-today">R pacakages for today</h3>
 <p>Add libraries</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># for plotting, includes ggplot</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)  <span class="co"># for combining multiple plots into subfigures</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggokabeito) <span class="co"># color blind friendly color palette -- this course's default</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="loading-the-data-in-r" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="loading-the-data-in-r">Loading the Data in R</h3>
-<p>Read csv file</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>beer <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/unimelb-cmce-10002/fba-book/refs/heads/main/data/beer.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="the-beer-sales-dataframe" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="the-beer-sales-dataframe">The Beer Sales Dataframe</h4>
 <p>Explore data frame, define any necessary terms</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>beer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,033 × 17
+   store  week brand      upc   qty price sales_indicator city  price_tier  zone
+   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;           &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
+ 1    86    91 Budwei… 1.82e9    23  3.49 FALSE           Chic… medium         2
+ 2    86    91 Corona  8.07e9    13  5.79 FALSE           Chic… medium         2
+ 3    86    91 Lowenb… 3.41e9    13  3.99 FALSE           Chic… medium         2
+ 4    86    91 Miller  3.41e9    15  3.69 FALSE           Chic… medium         2
+ 5    86    92 Budwei… 1.82e9    46  3.49 FALSE           Chic… medium         2
+ 6    86    92 Corona  8.07e9    24  5.79 FALSE           Chic… medium         2
+ 7    86    92 Lowenb… 3.41e9    21  3.99 FALSE           Chic… medium         2
+ 8    86    92 Miller  3.41e9   117  2.99 FALSE           Chic… medium         2
+ 9    86    93 Budwei… 1.82e9    47  3.49 FALSE           Chic… medium         2
+10    86    93 Corona  8.07e9    23  4.39 FALSE           Chic… medium         2
+# ℹ 4,023 more rows
+# ℹ 7 more variables: zip &lt;dbl&gt;, address &lt;chr&gt;, latitude &lt;dbl&gt;,
+#   longtitude &lt;dbl&gt;, start_of_week &lt;date&gt;, is_holiday_week &lt;lgl&gt;,
+#   imported &lt;chr&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(beer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 4,033
+Columns: 17
+$ store           &lt;dbl&gt; 86, 86, 86, 86, 86, 86, 86, 86, 86, 86, 86, 86, 86, 86…
+$ week            &lt;dbl&gt; 91, 91, 91, 91, 92, 92, 92, 92, 93, 93, 93, 93, 94, 94…
+$ brand           &lt;chr&gt; "Budweiser", "Corona", "Lowenbrau", "Miller", "Budweis…
+$ upc             &lt;dbl&gt; 1820000016, 8066095605, 3410021505, 3410000554, 182000…
+$ qty             &lt;dbl&gt; 23, 13, 13, 15, 46, 24, 21, 117, 47, 23, 34, 118, 46, …
+$ price           &lt;dbl&gt; 3.49, 5.79, 3.99, 3.69, 3.49, 5.79, 3.99, 2.99, 3.49, …
+$ sales_indicator &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…
+$ city            &lt;chr&gt; "Chicago", "Chicago", "Chicago", "Chicago", "Chicago",…
+$ price_tier      &lt;chr&gt; "medium", "medium", "medium", "medium", "medium", "med…
+$ zone            &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+$ zip             &lt;dbl&gt; 60618, 60618, 60618, 60618, 60618, 60618, 60618, 60618…
+$ address         &lt;chr&gt; "3350 Western Ave", "3350 Western Ave", "3350 Western …
+$ latitude        &lt;dbl&gt; 41.94235, 41.94235, 41.94235, 41.94235, 41.94235, 41.9…
+$ longtitude      &lt;dbl&gt; -87.68999, -87.68999, -87.68999, -87.68999, -87.68999,…
+$ start_of_week   &lt;date&gt; 1991-06-06, 1991-06-06, 1991-06-06, 1991-06-06, 1991-…
+$ is_holiday_week &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…
+$ imported        &lt;chr&gt; "domestic", "imported", "imported", "domestic", "domes…</code></pre>
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -418,48 +555,675 @@ Learning Goals
 <p>Detour: Viz principles + ggplot “building”</p>
 <section id="visualizing-price-distributions" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="visualizing-price-distributions">Visualizing Price Distributions</h3>
-<p>Exercise. Box plot for Qty</p>
+<p>Set the Canvas</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Choose a geom</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Specify the aesthetic</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now do it for import/non-import (and we talk about why)</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> imported))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note this prints the plot, can store for later</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>price_box <span class="ot">&lt;-</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> imported))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then to see the output</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>price_box</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
 <div class="exercise">
 <div class="exercise-time">
 <p>5 min</p>
 </div>
-<p>Create a boxplot comparing the quantity sold across different beer brands</p>
+<p>Create a boxplot comparing the prices across different beer brands</p>
 </div>
 <div class="solution-header">
 <p>Solution</p>
 </div>
 <div class="solution-content">
-<p>Here’s my solution</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> brand))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="visualizing-quantity-sold" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="visualizing-quantity-sold">Visualizing Quantity Sold</h3>
-<p>Exercise: Distribution of Prices</p>
+<section id="histogram" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="histogram">Histogram</h4>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> qty))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> qty), <span class="at">binwidth =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>OR equivalently</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> qty), <span class="at">bins =</span> <span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="detour-adding-style-to-our-plots" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="detour-adding-style-to-our-plots"><span class="header-section-number">3.4.1</span> Detour: Adding Style to our plots</h3>
-<p>Exercise: Style up the “other plot”</p>
+<section id="density-plot" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="density-plot">Density Plot</h4>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> qty))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> qty, <span class="at">fill =</span> imported), <span class="at">alpha =</span> <span class="fl">0.35</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-time">
+<p>5 min</p>
+</div>
+<ol type="1">
+<li>Create histograms and density plots to visualize the distribution of quantity sold across different beer brands</li>
+<li>Create histograms and density plots to visualize the distribution of the prices across different beer brands</li>
+</ol>
+</div>
+<div class="solution-header">
+<p>Solution</p>
+</div>
+<div class="solution-content">
+<ol type="1">
+<li></li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> qty, <span class="at">fill =</span> brand), <span class="at">alpha =</span> <span class="fl">0.35</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li></li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">fill =</span> brand), <span class="at">alpha =</span> <span class="fl">0.35</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="detour-adding-style-to-our-plots" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="detour-adding-style-to-our-plots">Detour: Adding Style to our plots</h3>
+<p>THINGS TO CONSIDER:</p>
+<ul>
+<li>Color / fill</li>
+<li>Themes</li>
+<li>other geom_ ’s</li>
+<li>titles</li>
+<li>labels</li>
+</ul>
+<p>REMARK: leave themes and geom_’s to homework to explore</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sales_plot <span class="ot">&lt;-</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> qty, <span class="at">fill =</span> imported), </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">alpha =</span> <span class="fl">0.35</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                 ) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_okabe_ito</span>()</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>sales_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>price_plot <span class="ot">&lt;-</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> imported, <span class="at">fill =</span> imported))<span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_okabe_ito</span>()</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>price_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="visualizing-demand-curves" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="visualizing-demand-curves">Visualizing Demand Curves</h3>
+<p>Now, we want to move onto visualizing two dimensions of data, to explore how demand varies with price.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> qty), </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"steelblue"</span>, </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="fl">0.25</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>               )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Not so pretty as raw data …</p>
+<p>TODO: Now move to log-log- with explanation as to why this is useful</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">log</span>(price), <span class="at">x =</span> <span class="fu">log</span>(qty)), </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"steelblue"</span>, </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="fl">0.25</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>               )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can add a third piece of information to this plot – whether the beer is imported or not</p>
+<p>Separate by import status</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">log</span>(price), <span class="at">x =</span> <span class="fu">log</span>(qty), </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">color =</span> imported</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>                   ), </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span> </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_okabe_ito</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Sometimes we don’t only want to color the points, but have separate plots for different groups of products …</p>
+<p>Separate plots with faceting</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">log</span>(price), <span class="at">x =</span> <span class="fu">log</span>(qty)), </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"steelblue"</span>,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> imported)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Until now, we’ve always had one layer of geom_ in our plots. ggplot allows us to add more. Let’s do this by adding a demand curve to the plot …</p>
+<p>Add a demand curve, i.e.&nbsp;add an extra layer</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">log</span>(price), <span class="at">x =</span> <span class="fu">log</span>(qty)), </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"steelblue"</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="fl">0.25</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>               ) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">log</span>(price), <span class="at">x =</span> <span class="fu">log</span>(qty)), </span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">method =</span> <span class="st">"lm"</span>, </span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span>  <span class="st">"#CC79A7"</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>                ) <span class="sc">+</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> imported)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note we had to write aes twice, if we are going to use the same aesthetics for multiple layers, we can put in the <code>ggplot()</code> function</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>demand_by_import <span class="ot">&lt;-</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(beer,</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">log</span>(price), <span class="at">x =</span> <span class="fu">log</span>(qty))</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>           ) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> imported),</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">alpha =</span> <span class="fl">0.25</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>                       ) <span class="sc">+</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span>  <span class="st">"#CC79A7"</span>) <span class="sc">+</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">facet_wrap</span>(<span class="sc">~</span> imported) <span class="sc">+</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_color_okabe_ito</span>()</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>demand_by_import</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>Exercise. Do this by brand rather than by import status</p>
+<div class="exercise">
+<div class="exercise-time">
+<p>5 min</p>
+</div>
+<ol type="1">
+<li>Modify the plot above to create separate subplots for brands rather than import status.</li>
+</ol>
+</div>
+<div class="solution-header">
+<p>Solution</p>
+</div>
+<div class="solution-content">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>demand_by_brand <span class="ot">&lt;-</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(beer,</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">log</span>(price), <span class="at">x =</span> <span class="fu">log</span>(qty))</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>       ) <span class="sc">+</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="fl">0.25</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>               ) <span class="sc">+</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span>  <span class="st">"#CC79A7"</span>) <span class="sc">+</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> brand)</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>demand_by_brand</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section>
 </section>
-<section id="putting-it-all-together-sharing-our-results" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="putting-it-all-together-sharing-our-results"><span class="header-section-number">3.5</span> Putting it all together: Sharing Our Results</h2>
-<p>Final plot.</p>
-<p>Exercise. Write 2-3 sentence summary of what can be seen in the plot</p>
-<p>Exercise. Do the same but for plots by Brand rather than import status. Write a summary.</p>
+<section id="bringing-it-all-together-sharing-our-results" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="bringing-it-all-together-sharing-our-results"><span class="header-section-number">3.5</span> Bringing it all together: Sharing Our Results</h2>
+<p>Final plot. (Still needs some editing to match the first one)</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>demand_by_import <span class="sc">/</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    (price_plot <span class="sc">|</span> sales_plot) <span class="sc">+</span> </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>) <span class="sc">&amp;</span> </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-time">
+<p>5 min</p>
+</div>
+<p>Write 2-3 sentence summary of the main takeaways from the visualization that you could send to a category manager</p>
+</div>
+<div class="exercise">
+<div class="exercise-time">
+<p>10 min</p>
+</div>
+<ol type="1">
+<li>Construct a similar plot to the one we’ve constructed above, but separate the plots by brand rather than import status.</li>
+<li>Write 2-3 sentence summary of the main takeaways from the visualization that you could send to a category manager</li>
+</ol>
+</div>
 </section>
-<section id="conclusion" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">3.6</span> Conclusion</h2>
-<p>We’ve highlighted one key principle per plot:</p>
+<section id="an-aside-always-visualize-the-data" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="an-aside-always-visualize-the-data"><span class="header-section-number">3.6</span> An Aside: Always visualize the data!</h2>
+<p>Why have we started with data visualisation? It’s because we believe no matter what business analytics task you perform, you should always start with visualising the data.</p>
+<p>Why is that the case? Consider the following. We collect 13 data sets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasauRus)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> datasaurus_dozen</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we look at summary statistics about them:</p>
+<div class="cell">
+<div class="cell-output-display">
+<!-- preamble start -->
+
+    <script>
+
+      function styleCell_twbvrkdhwazvb7465fv5(i, j, css_id) {
+          var table = document.getElementById("tinytable_twbvrkdhwazvb7465fv5");
+          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+          if (cell) {
+              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
+              cell.classList.add(css_id);
+          } else {
+              console.warn(`Cell at (${i}, ${j}) not found.`);
+          }
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_twbvrkdhwazvb7465fv5');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_twbvrkdhwazvb7465fv5(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_twbvrkdhwazvb7465fv5");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: 13, j: 0 },  ], css_id: 'tinytable_css_yedduanc5smzkvw0vm5y',}, 
+          { positions: [ { i: 0, j: 1 }, { i: 0, j: 2 }, { i: 0, j: 3 }, { i: 0, j: 4 },  ], css_id: 'tinytable_css_xs1lbflzpxtbf9vyryud',}, 
+          { positions: [ { i: 13, j: 1 }, { i: 13, j: 2 }, { i: 13, j: 3 }, { i: 13, j: 4 },  ], css_id: 'tinytable_css_xguytkt1y3cb3fgpnu8p',}, 
+          { positions: [ { i: 4, j: 1 }, { i: 5, j: 1 }, { i: 6, j: 1 }, { i: 7, j: 1 }, { i: 8, j: 1 }, { i: 9, j: 1 }, { i: 10, j: 1 }, { i: 11, j: 1 }, { i: 12, j: 1 }, { i: 12, j: 2 }, { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 3, j: 2 }, { i: 4, j: 2 }, { i: 5, j: 2 }, { i: 6, j: 2 }, { i: 7, j: 2 }, { i: 8, j: 2 }, { i: 9, j: 2 }, { i: 10, j: 2 }, { i: 11, j: 2 }, { i: 11, j: 3 }, { i: 12, j: 3 }, { i: 1, j: 2 }, { i: 2, j: 2 }, { i: 2, j: 3 }, { i: 3, j: 3 }, { i: 4, j: 3 }, { i: 5, j: 3 }, { i: 6, j: 3 }, { i: 7, j: 3 }, { i: 8, j: 3 }, { i: 9, j: 3 }, { i: 10, j: 3 }, { i: 10, j: 4 }, { i: 11, j: 4 }, { i: 12, j: 4 }, { i: 1, j: 3 }, { i: 1, j: 4 }, { i: 2, j: 4 }, { i: 3, j: 4 }, { i: 4, j: 4 }, { i: 5, j: 4 }, { i: 6, j: 4 }, { i: 7, j: 4 }, { i: 8, j: 4 }, { i: 9, j: 4 },  ], css_id: 'tinytable_css_meek4c1ocgj7nibn02ar',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_goi6bzl90q7itw8ujmkz',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  styleCell_twbvrkdhwazvb7465fv5(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <style>
+      /* tinytable css entries after */
+      .table td.tinytable_css_yedduanc5smzkvw0vm5y, .table th.tinytable_css_yedduanc5smzkvw0vm5y { border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_xs1lbflzpxtbf9vyryud, .table th.tinytable_css_xs1lbflzpxtbf9vyryud { text-align: right; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_xguytkt1y3cb3fgpnu8p, .table th.tinytable_css_xguytkt1y3cb3fgpnu8p { text-align: right; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_meek4c1ocgj7nibn02ar, .table th.tinytable_css_meek4c1ocgj7nibn02ar { text-align: right; }
+      .table td.tinytable_css_goi6bzl90q7itw8ujmkz, .table th.tinytable_css_goi6bzl90q7itw8ujmkz { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_twbvrkdhwazvb7465fv5" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col">Dataset</th>
+                <th scope="col">x mean</th>
+                <th scope="col">x sd</th>
+                <th scope="col">y mean</th>
+                <th scope="col">y sd</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>dino</td>
+                  <td>54.3</td>
+                  <td>16.8</td>
+                  <td>47.8</td>
+                  <td>26.9</td>
+                </tr>
+                <tr>
+                  <td>away</td>
+                  <td>54.3</td>
+                  <td>16.8</td>
+                  <td>47.8</td>
+                  <td>26.9</td>
+                </tr>
+                <tr>
+                  <td>h_lines</td>
+                  <td>54.3</td>
+                  <td>16.8</td>
+                  <td>47.8</td>
+                  <td>26.9</td>
+                </tr>
+                <tr>
+                  <td>v_lines</td>
+                  <td>54.3</td>
+                  <td>16.8</td>
+                  <td>47.8</td>
+                  <td>26.9</td>
+                </tr>
+                <tr>
+                  <td>x_shape</td>
+                  <td>54.3</td>
+                  <td>16.8</td>
+                  <td>47.8</td>
+                  <td>26.9</td>
+                </tr>
+                <tr>
+                  <td>star</td>
+                  <td>54.3</td>
+                  <td>16.8</td>
+                  <td>47.8</td>
+                  <td>26.9</td>
+                </tr>
+                <tr>
+                  <td>high_lines</td>
+                  <td>54.3</td>
+                  <td>16.8</td>
+                  <td>47.8</td>
+                  <td>26.9</td>
+                </tr>
+                <tr>
+                  <td>dots</td>
+                  <td>54.3</td>
+                  <td>16.8</td>
+                  <td>47.8</td>
+                  <td>26.9</td>
+                </tr>
+                <tr>
+                  <td>circle</td>
+                  <td>54.3</td>
+                  <td>16.8</td>
+                  <td>47.8</td>
+                  <td>26.9</td>
+                </tr>
+                <tr>
+                  <td>bullseye</td>
+                  <td>54.3</td>
+                  <td>16.8</td>
+                  <td>47.8</td>
+                  <td>26.9</td>
+                </tr>
+                <tr>
+                  <td>slant_up</td>
+                  <td>54.3</td>
+                  <td>16.8</td>
+                  <td>47.8</td>
+                  <td>26.9</td>
+                </tr>
+                <tr>
+                  <td>slant_down</td>
+                  <td>54.3</td>
+                  <td>16.8</td>
+                  <td>47.8</td>
+                  <td>26.9</td>
+                </tr>
+                <tr>
+                  <td>wide_lines</td>
+                  <td>54.3</td>
+                  <td>16.8</td>
+                  <td>47.8</td>
+                  <td>26.9</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
+</div>
+<p>Summary statistics are identical for all datasets. But when we plot them, we see there are very different patterns in each dataset:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(my_data,</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> x,</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>dataset, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Without visualising the data, we likely would have missed these very different patterns.</p>
+</section>
+<section id="conclusion" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">3.7</span> Conclusion</h2>
+<p>We’ve covered a lot. Two main themes</p>
+<ol type="1">
+<li>The process of creating a ggplot:</li>
+</ol>
+<ul>
+<li>Initialize the Plot with ggplot() – Define the dataset and aesthetic mappings (aes()).</li>
+<li>Add Geometric Layers (geom_*) – Choose a geom function to represent the data (e.g., points, bars, lines).</li>
+<li>Customize the Appearance – Modify labels, themes, colors, and axes.</li>
+<li>(Optional) Add Statistical Transformations and Annotations – Include trend lines, facets, or text annotations.</li>
+</ul>
+<ol start="2" type="1">
+<li>We’ve highlighted one key principle of effective data visualisation per plot:</li>
+</ol>
 <ul>
 <li>With price boxplot: “Choose visualizations appropriate to your question”</li>
 <li>With density plots: “Color enhances categorical comparison”</li>
 <li>With demand curves: “Transformations (like log scales) can reveal patterns”</li>
 <li>With faceting: “Small multiples help compare across groups”</li>
+<li>With statistical transformations: “Summarizing data (like smoothing or regression) highlights trends”</li>
 </ul>
+<p>Using 1 + 2 together gave us business intelligence … and let us tell stories with data.</p>
+</section>
+<section id="your-to-do-list" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="your-to-do-list"><span class="header-section-number">3.8</span> Your To Do List</h2>
+<p>…</p>
 
 
 </section>

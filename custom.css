@@ -1,50 +1,66 @@
-/* Exercise styling from before */
-.exercise {
-  padding: 1em;
-  margin-bottom: 1em;
-  border-left: 5px solid #0061ad; /* University of Melbourne blue */
-  background-color: #e6f2fa; /* Lighter shade of Melbourne blue */
-  position: relative;
+/* University of Melbourne Color Palette */
+:root {
+  --melbourne-blue: #00274D; /* Deep Blue (Primary) */
+  --melbourne-light-blue: #1565C0; /* Bright Blue */
+  --melbourne-bg-light: #E6F2FA; /* Soft Blue Background */
+  --melbourne-gold: #F6BE00; /* Gold */
+  --melbourne-dark-grey: #4D4D4F; /* Dark Grey */
+  --melbourne-light-grey: #D6D6D6; /* Light Grey */
 }
 
+/* Exercise Styling */
+.exercise {
+  padding: 0.6em; /* Reduced padding */
+  margin-bottom: 0.8em; /* Less space between exercises */
+  border-left: 4px solid var(--melbourne-blue); /* Slightly thinner border */
+  background-color: var(--melbourne-bg-light); /* Light Blue Background */
+  position: relative;
+  border-radius: 4px; /* Softer rounded corners */
+  font-size: 0.9em; /* Smaller text */
+}
+
+/* Exercise Title */
 .exercise::before {
   content: "Exercise";
   display: block;
   font-weight: bold;
-  color: #0061ad; /* University of Melbourne blue */
-  margin-bottom: 0.5em;
-  font-size: 1.1em;
+  color: var(--melbourne-blue); /* Deep Blue */
+  margin-bottom: 0.3em; /* Reduced spacing */
+  font-size: 1em; /* Slightly smaller font */
 }
 
+/* Exercise Time Tag */
 .exercise-time {
   position: absolute;
-  top: 1em;
-  right: 1em;
-  background-color: #0061ad; /* University of Melbourne blue */
-  color: white;
-  padding: 0.2em 0.5em;
+  top: 0.5em; /* Moved closer to top */
+  right: 0.5em; /* Moved closer to right */
+  background-color: var(--melbourne-gold); /* Gold */
+  color: var(--melbourne-blue); /* Deep Blue */
+  padding: 0.1em 0.4em; /* Smaller padding */
   border-radius: 3px;
-  font-size: 0.9em;
+  font-size: 0.75em; /* Smaller font */
+  font-weight: bold;
 }
 
-/* Solution box styling - improved version */
+/* Solution Box Styling */
 .solution-header {
   cursor: pointer;
   padding: 0.4em 0.8em; /* Reduced padding */
-  background-color: #0061ad; /* University of Melbourne blue */
+  background-color: var(--melbourne-blue); /* Deep Blue */
   color: white;
   font-weight: bold;
-  border-radius: 6px 6px 0 0; /* More rounded top corners */
+  border-radius: 4px 4px 0 0; /* Less rounded */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0; /* Remove any margin between header and content */
+  margin-bottom: 0;
+  font-size: 0.9em; /* Smaller font */
 }
 
 .solution-header::after {
   content: "▼";
-  font-size: 0.8em; /* Slightly smaller arrow */
-  margin-left: 8px;
+  font-size: 0.8em;
+  margin-left: 6px;
   transition: transform 0.3s;
 }
 
@@ -52,16 +68,86 @@
   content: "▶";
 }
 
+/* Solution Content */
 .solution-content {
-  padding: 1em;
-  border: 1px solid #0061ad;
+  padding: 0.6em; /* Reduced padding */
+  border: 1px solid var(--melbourne-blue);
   border-top: none;
-  border-radius: 0 0 6px 6px; /* More rounded bottom corners */
-  background-color: #f9f9f9;
-  margin-top: 0; /* Remove any margin between header and content */
-  margin-bottom: 1em;
+  border-radius: 0 0 4px 4px; /* Softer corners */
+  background-color: var(--melbourne-light-grey); /* Light Grey */
+  margin-top: 0;
+  margin-bottom: 0.8em; /* Less space below */
+  font-size: 0.9em; /* Smaller text */
 }
 
 .solution-content.hidden {
   display: none;
+}
+
+/* Soft background color for code blocks */
+pre, code {
+  background-color: #F5F7FA !important; /* Light greyish-blue */
+  border-radius: 4px; /* Slight rounding for a softer look */
+  padding: 0.4em 0.6em; /* Less padding to keep it compact */
+  font-family: "Fira Code", monospace; /* Optional: a more readable coding font */
+}
+
+/* Ensure inline code elements are also styled */
+code {
+  color: #1565C0; /* University of Melbourne bright blue */
+  font-weight: bold;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
+/* Styling for Quarto code output */
+.output pre {
+  background-color: #E6F2FA !important; /* Light blue background */
+  border-left: 4px solid #1565C0; /* Blue border for differentiation */
+  padding: 0.6em;
+  font-size: 0.9em;
+}
+
+/* Soft background for all code blocks */
+pre, code {
+  background-color: #F5F5EB !important; /* Soft off-white */
+  border-radius: 4px; /* Subtle rounding */
+  padding: 0.4em 0.6em;
+  font-family: "Fira Code", monospace; /* Optional: a clean monospace font */
+}
+
+/* Styling for inline code */
+code {
+  color: #7A8033; /* Mt William Greenstone */
+  font-weight: bold;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
+/* Styling for Quarto code output */
+.output pre {
+  background-color: #EAEAD2 !important; /* Softer green-tinted beige */
+  border-left: 4px solid #7A8033; /* Mt William Greenstone for subtle emphasis */
+  padding: 0.6em;
+  font-size: 0.9em;
+}
+
+/* Styling for embedded code chunks */
+.sourceCode pre {
+  background-color: #F5F5EB !important; /* Consistent with code styling */
+  border-left: 4px solid #7A8033; /* Subtle border */
+  padding: 0.6em;
+  font-size: 0.9em;
+}
+
+/* Reduce spacing between code blocks and text */
+.sourceCode, .output {
+  margin-bottom: 1em;
+}
+
+/* Improve spacing for inline code */
+p code {
+  background-color: #F5F5EB !important; /* Same soft background */
+  color: #7A8033; /* Mt William Greenstone */
+  font-size: 0.9em;
 }
