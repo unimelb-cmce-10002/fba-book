@@ -6,28 +6,45 @@
 By the end of this lecture, you should be able to:
 
 * Explain how different visualization techniques reveal patterns in retail beer data that would be difficult to see in tables or raw numbers.
-* Implement appropriate visualizations using ggplot2 to analyze relationships between beer prices, sales volumes, and brand categories.
+* Implement appropriate visualizations using ggplot2 to analyze relationships between beer prices, sales volumes, and product characteristics.
 * Compare price elasticity patterns between domestic and imported beer brands using log-log demand curve visualizations.
 * Assess which visualization approaches most effectively communicate specific insights about beer pricing and demand.
 * Design a visual analysis that could inform practical pricing decisions for a retail category manager.
 :::
 
+
+```{r}
+#| warning: false
+#| echo: false
+library(tidyverse)
+library(patchwork)
+library(ggokabeito)
+library(tinytable)
+```
+
+```{r}
+#| warning: false
+#| echo: false
+beer <- read_csv("https://raw.githubusercontent.com/unimelb-cmce-10002/fba-book/refs/heads/main/data/beer.csv")
+```
+
+
 ## Today's Business Challenge
-### Understanding Price Sensitivity in Beer Sales {.unnumbered}
+### The Topic:  Understanding Price Sensitivity in Beer Sales {.unnumbered}
 
 * Australian retailers make thousands of pricing decisions
 * 1% improvement in pricing → 11% profit increase
 * Beer: $16.8 billion Australian market
 * Our question today: How do price changes affect sales across different beer brands?
 
-### Today's Data: Retail Scanner Data from Dominick's Finer Foods {.unnumbered}
+### The Data: Retail Scanner Data from Dominick's Finer Foods {.unnumbered}
 
 * Weekly sales for four major beer brands for a Chicago based retailer
 * Price, quantity, store location, and promotional information
 * Similar to what Woolworths and Coles analysts work with daily
 * Real-world retail data to discover real-world patterns{.unnumbered}
 
-### Today's Method: Data Visualization {.unnumbered}
+### The Method: Data Visualization {.unnumbered}
 
 > "The greatest value of a picture is when it forces us to notice what we never expected to see." — John Tukey
 
@@ -36,26 +53,89 @@ By the end of this lecture, you should be able to:
 * Reveals hidden relationships that drive consumer behavior and pricing effectiveness
 * Transforms complex numerical relationships into actionable insights for category managers
 
+Next speil
+
+* Graphs are essential to data storytelling—they reveal both broad patterns and key details
+* Seeing the data builds understanding—graphs help us engage with data in ways tables and summaries cannot.
+* Good graphs minimize information loss—they translate data into visuals that audiences can easily interpret and act on
+* Graphing is an encoding process—we design visuals to communicate insights, and their success depends on how well the audience decodes them.
+* Effective graphs are audience-focused—they should clearly convey the story behind the data while preserving its context.
+
 ### Where we're headed {.unnumbered}
 
 Just a few lines of R code transform numbers into business intelligence
 
-From this: (table)
+From this:
 
-to this: Insert final plots 
+```{r}
+#| echo: false 
+beer %>%
+    select(store, week, brand, qty, price, imported) %>%
+    head(10)
+```
 
+to this (REMARK Still need to complete the pretty-ing of plots)
+
+```{r}
+#| fig-width: 6
+#| fig-height: 6
+#| echo: false
+
+price_plot_final <-
+    ggplot(beer) +
+    geom_boxplot(aes(y = price, x = imported, fill = imported))+
+    scale_fill_okabe_ito() +
+     guides(fill="none")
+
+sales_plot_final <-
+    ggplot(beer) +
+    geom_density(aes(x = log(qty), fill = imported), 
+                 alpha = 0.35
+                 ) +
+    scale_fill_okabe_ito() 
+
+demand_by_import_final <-
+    ggplot(beer,
+           aes(y = log(price), x = log(qty))
+           ) +
+        geom_point(aes(color = imported),
+                       alpha = 0.25
+                       ) +
+        geom_smooth(method = "lm", color = "#CC79A7") +
+        facet_wrap(~ imported) +
+        scale_color_okabe_ito() + 
+        guides(color = "none")
+
+
+# plot it
+ demand_by_import_final/
+      (price_plot_final | sales_plot_final) + 
+      plot_layout(guides = "collect") & 
+     theme(legend.position = "bottom")
+```
+TO DO: Add Spiel on ggplot2 as a data viz package.
 
 ## The Game Plan: What we're aiming for
 
-Recall our workflow:
+Recall our workflow (borrowed from Rohan Alexander for now):
 
 1. Plan and sketch an endpoint.
-2. Simulate and consider that simulated data.
+2. ~~Simulate and consider that simulated data.~~
 3. Acquire and prepare the actual data.
 4. Explore and understand the actual data.
 5. Share what was done and what was found.
 
-Sketch the plan & "Simulated Graphs"
+Remark: Perhaps we leave (2) out until we get to "Deeper Insights" or it disappears altogether
+
+Sketch of the plan: 3 plots:
+
+- [ ] Load beer sales data
+- [ ] Understand data structure
+- [ ] Box plot for price by import status
+- [ ] Distribution plot of sales by import status
+- [ ] Demand curve by import status 
+
+Let's get started!
 
 ## Loading and Understand the Data
 
@@ -63,13 +143,33 @@ Sketch the plan & "Simulated Graphs"
 
 Add libraries
 
+```{r}
+#| eval: false
+library(tidyverse)  # for plotting, includes ggplot
+library(patchwork)  # for combining multiple plots into subfigures
+library(ggokabeito) # color blind friendly color palette -- this course's default
+```
+
 ### Loading the Data in R {.unnumbered}
 
-Read csv file
+```{r}
+#| warning: false
+#| eval: false
+beer <- read_csv("https://raw.githubusercontent.com/unimelb-cmce-10002/fba-book/refs/heads/main/data/beer.csv")
+```
+
 
 #### The Beer Sales Dataframe {.unnumbered}
 
 Explore data frame, define any necessary terms
+
+```{r}
+beer
+```
+
+```{r}
+glimpse(beer)
+```
 
 ## Visualizing the Data
 
@@ -77,14 +177,72 @@ Detour: Viz principles + ggplot "building"
 
 ### Visualizing Price Distributions {.unnumbered}
 
-Exercise. Box plot for Qty
+Set the Canvas
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+
+ggplot(beer)
+```
+
+Choose a geom
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| eval: false
+
+ggplot(beer) +
+    geom_boxplot()
+```
+
+Specify the aesthetic 
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+
+ggplot(beer) +
+    geom_boxplot(aes(y = price))
+```
+
+Now do it for import/non-import (and we talk about why)
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+
+ggplot(beer) +
+    geom_boxplot(aes(y = price, x = imported))
+```
+
+Note this prints the plot, can store for later
+
+
+```{r}
+price_box <- 
+    ggplot(beer) +
+    geom_boxplot(aes(y = price, x = imported))
+```
+
+Then to see the output 
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+
+price_box
+```
 
 ::: {.exercise}
 ::: {.exercise-time}
 5 min
 :::
 
-Create a boxplot comparing the quantity sold across different beer brands
+Create a boxplot comparing the prices across different beer brands
 
 :::
 
@@ -93,36 +251,379 @@ Solution
 :::
 ::: {.solution-content}
 
-Here's my solution
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+
+ggplot(beer) +
+    geom_boxplot(aes(y = price, x = brand))
+```
 
 :::
 
 ### Visualizing Quantity Sold {.unnumbered}   
 
-Exercise: Distribution of Prices
+#### Histogram {.unnumbered}
 
-### Detour: Adding Style to our plots
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
 
-Exercise: Style up the "other plot"
+ggplot(beer) +
+    geom_histogram(aes(x = qty))
+```
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+
+ggplot(beer) +
+    geom_histogram(aes(x = qty), binwidth = 5)
+```
+
+OR equivalently
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+
+ggplot(beer) +
+    geom_histogram(aes(x = qty), bins = 40)
+```
+
+#### Density Plot {.unnumbered}
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+
+ggplot(beer) +
+    geom_density(aes(x = qty))
+```
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+
+ggplot(beer) +
+    geom_density(aes(x = qty, fill = imported), alpha = 0.35)
+```
+::: {.exercise}
+::: {.exercise-time}
+5 min
+:::
+
+1. Create histograms and density plots to visualize the distribution of quantity sold across different beer brands
+2. Create histograms and density plots to visualize the distribution of the prices across different beer brands
+:::
+
+::: {.solution-header}
+Solution
+:::
+::: {.solution-content}
+
+1. 
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+ggplot(beer) +
+    geom_density(aes(x = qty, fill = brand), alpha = 0.35)
+```
+
+2. 
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+ggplot(beer) +
+    geom_density(aes(x = price, fill = brand), alpha = 0.35)
+```
+
+:::
+
+### Detour: Adding Style to our plots {.unnumbered}
+
+THINGS TO CONSIDER:
+
+* Color / fill
+* Themes 
+* other geom_ 's
+* titles
+* labels
+
+REMARK: leave themes and geom_'s to homework to explore
+
+```{r}
+sales_plot <-
+    ggplot(beer) +
+    geom_density(aes(x = qty, fill = imported), 
+                 alpha = 0.35
+                 ) +
+    scale_fill_okabe_ito()
+
+
+sales_plot
+```
+
+```{r}
+price_plot <-
+    ggplot(beer) +
+    geom_boxplot(aes(y = price, x = imported, fill = imported))+
+    scale_fill_okabe_ito()
+
+price_plot
+```
+
 
 ### Visualizing Demand Curves {.unnumbered}
 
+Now, we want to move onto visualizing two dimensions of data, to explore how demand varies with price.
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+ggplot(beer) +
+    geom_point(aes(y = price, x = qty), 
+               color = "steelblue", 
+               alpha = 0.25
+               )
+```
+
+Not so pretty as raw data ...
+
+TODO: Now move to log-log- with explanation as to why this is useful
+
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+ggplot(beer) +
+    geom_point(aes(y = log(price), x = log(qty)), 
+               color = "steelblue", 
+               alpha = 0.25
+               )
+```
+
+We can add a third piece of information to this plot -- whether the beer is imported or not
+
+Separate by import status
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+ggplot(beer) +
+    geom_point(aes(y = log(price), x = log(qty), 
+                   color = imported
+                   ), 
+               alpha = 0.25) + 
+    scale_color_okabe_ito()
+```
+
+Sometimes we don't only want to color the points, but have separate plots for different groups of products ...
+
+Separate plots with faceting 
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+ggplot(beer) +
+    geom_point(aes(y = log(price), x = log(qty)), 
+               color = "steelblue",
+               alpha = 0.25) +
+    facet_wrap(~ imported)
+```
+
+Until now, we've always had one layer of geom_ in our plots. ggplot allows us to add more. Let's do this by adding a demand curve to the plot ...
+
+Add a demand curve, i.e. add an extra layer
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+ggplot(beer) +
+    geom_point(aes(y = log(price), x = log(qty)), 
+               color = "steelblue",
+               alpha = 0.25
+               ) +
+    geom_smooth(aes(y = log(price), x = log(qty)), 
+                method = "lm", 
+                color =  "#CC79A7"
+                ) +
+    facet_wrap(~ imported)
+```
+
+Note we had to write aes twice, if we are going to use the same aesthetics for multiple layers, we can put in the `ggplot()` function
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+demand_by_import <-
+    ggplot(beer,
+           aes(y = log(price), x = log(qty))
+           ) +
+        geom_point(aes(color = imported),
+                       alpha = 0.25
+                       ) +
+        geom_smooth(method = "lm", color =  "#CC79A7") +
+        facet_wrap(~ imported) +
+        scale_color_okabe_ito()
+
+demand_by_import
+```
+
 Exercise. Do this by brand rather than by import status
 
-## Putting it all together: Sharing Our Results 
+::: {.exercise}
+::: {.exercise-time}
+5 min
+:::
 
-Final plot. 
+1. Modify the plot above to create separate subplots for brands rather than import status.
+:::
+
+::: {.solution-header}
+Solution
+:::
+::: {.solution-content}
 
 
-Exercise. Write 2-3 sentence summary of what can be seen in the plot 
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+#| fig-align: center
+demand_by_brand <-
+    ggplot(beer,
+        aes(y = log(price), x = log(qty))
+       ) +
+    geom_point(color = "steelblue",
+               alpha = 0.25
+               ) +
+    geom_smooth(method = "lm", color =  "#CC79A7") +
+    facet_wrap(~ brand)
 
-Exercise. Do the same but for plots by Brand rather than import status. Write a summary.
+demand_by_brand
+```
+
+:::
+
+## Bringing it all together: Sharing Our Results 
+
+Final plot. (Still needs some editing to match the first one)
+
+```{r}
+#| fig-width: 6
+#| fig-height: 6
+#| fig-align: center
+
+demand_by_import /
+    (price_plot | sales_plot) + 
+      plot_layout(guides = "collect") & 
+     theme(legend.position = "bottom")
+      
+
+```
+::: {.exercise}
+::: {.exercise-time}
+5 min
+:::
+Write 2-3 sentence summary of the main takeaways from the visualization that you could send to a category manager 
+:::
+
+
+::: {.exercise}
+::: {.exercise-time}
+10 min
+:::
+
+1. Construct a similar plot to the one we've constructed above, but separate the plots by brand rather than import status.
+2. Write 2-3 sentence summary of the main takeaways from the visualization that you could send to a category manager 
+:::
+
+
+## An Aside: Always visualize the data! 
+
+Why have we started with data visualisation? It's because we believe no matter what business analytics task you perform, you should always start with visualising the data.
+
+Why is that the case? Consider the following. We collect 13 data sets.
+
+```{r}
+library(datasauRus)
+
+my_data <- datasaurus_dozen
+
+```
+
+Now we look at summary statistics about them:
+
+```{r}
+#| echo: false
+my_data |>
+  summarise(across(c(x, y), list(mean = mean, sd = sd)),
+            .by = dataset) |>
+  tt() |> 
+  style_tt(j = 2:5, align = "r") |> 
+  format_tt(digits = 1, num_fmt = "decimal") |> 
+  setNames(c("Dataset", "x mean", "x sd", "y mean", "y sd"))
+```
+
+Summary statistics are identical for all datasets. But when we plot them, we see there are very different patterns in each dataset:
+
+```{r}
+#| fig-width: 6
+#| fig-height: 6
+#| fig-align: center
+
+ggplot(my_data,
+       aes(x = x,
+           y = y)) +
+    geom_point() +
+    facet_wrap(~dataset, ncol = 3)
+```
+
+Without visualising the data, we likely would have missed these very different patterns.
 
 ## Conclusion 
 
-We've highlighted one key principle per plot:
+We've covered a lot. Two main themes
+
+1. The process of creating a ggplot:
+
+* Initialize the Plot with ggplot() 
+    – Define the dataset and aesthetic mappings (aes()).
+* Add Geometric Layers (geom_*) 
+    – Choose a geom function to represent the data (e.g., points, bars, lines).
+* Customize the Appearance 
+    – Modify labels, themes, colors, and axes.
+* (Optional) Add Statistical Transformations and Annotations 
+    – Include trend lines, facets, or text annotations.
+
+2. We've highlighted one key principle of effective data visualisation per plot:
 
 * With price boxplot: "Choose visualizations appropriate to your question"
 * With density plots: "Color enhances categorical comparison"
 * With demand curves: "Transformations (like log scales) can reveal patterns"
 * With faceting: "Small multiples help compare across groups"
+* With statistical transformations: "Summarizing data (like smoothing or regression) highlights trends"
+
+
+Using 1 + 2 together gave us business intelligence ... and let us tell stories with data.
+
+
+## Your To Do List 
+
+...

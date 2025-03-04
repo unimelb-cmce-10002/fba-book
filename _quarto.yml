@@ -1,6 +1,9 @@
 project:
   type: book
 
+execute:
+  cache: true
+
 book:
   title: "Foundations of Business Analytics"
   author: 
