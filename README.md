@@ -27,6 +27,11 @@ This table aligns the course schedule with the corresponding parts and chapters 
 |          |                                                 | Ethics and Privacy                       | `ethics_privacy/privacy.qmd`           |
 |          |                                                 | Conclusion                               | `conclusion/conclusion.qmd`            |
 
+## Data Storage and Usage
+
+- Raw data and scripts used for preparing teaching materials are stored in the `data-raw/` directory.
+- The data used in the Quarto book is stored separately in the `data/` directory.
+
 ## Building the Quarto Book Locally
 
 ### **Prerequisites**

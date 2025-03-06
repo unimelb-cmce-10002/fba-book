@@ -6,6 +6,7 @@ execute:
 
 book:
   title: "Foundations of Business Analytics"
+  subtitle: "Analytics with Purpose: Crafting Narratives from Numbers"
   author: 
     - "Lachlan Deer"
     - "Patrick Ferguson"
