@@ -4,6 +4,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
+View the currently compiled version of the book [here](https://unimelb-cmce-10002.github.io/fba-book/).
 
 ## Course Schedule and Quarto Book Alignment
 
@@ -11,7 +12,6 @@ This table aligns the course schedule with the corresponding parts and chapters 
 
 | **Week**  | **Topic**                                           | **Quarto Book Part**                     | **QMD File**                           |
 |----------|---------------------------------------------------|-----------------------------------------|----------------------------------------|
-| Prologue | What is Business Analytics                         | Foundations                              | `foundations/what_is_business_analytics.qmd` |
 | 1        | Intro / Why Business Analytics                    | Foundations                              | `foundations/what_is_business_analytics.qmd` |
 | 2        | How to do Business Analytics                      | Foundations                              | `foundations/how_to_do_business_analytics.qmd` |
 | 3        | Importing and visualizing data                    | Getting Our First Insights from Data     | `insights/data_visualisation.qmd`     |
