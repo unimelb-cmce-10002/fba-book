@@ -304,6 +304,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">References</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_visualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 3: Data Visualisation for Business Intelligence</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">installation.html</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -314,7 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#todays-business-challenge" id="toc-todays-business-challenge" class="nav-link active" data-scroll-target="#todays-business-challenge"><span class="header-section-number">3.1</span> Today’s Business Challenge</a>
+  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge"><span class="header-section-number">3.1</span> The Business Challenge</a>
   <ul class="collapse">
   <li><a href="#the-topic-understanding-price-sensitivity-in-beer-sales" id="toc-the-topic-understanding-price-sensitivity-in-beer-sales" class="nav-link" data-scroll-target="#the-topic-understanding-price-sensitivity-in-beer-sales">The Topic: Understanding Price Sensitivity in Beer Sales</a></li>
   <li><a href="#the-data-retail-scanner-data-from-dominicks-finer-foods" id="toc-the-data-retail-scanner-data-from-dominicks-finer-foods" class="nav-link" data-scroll-target="#the-data-retail-scanner-data-from-dominicks-finer-foods">The Data: Retail Scanner Data from Dominick’s Finer Foods</a></li>
@@ -322,7 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#where-were-headed" id="toc-where-were-headed" class="nav-link" data-scroll-target="#where-were-headed">Where we’re headed</a></li>
   </ul></li>
   <li><a href="#the-game-plan-what-were-aiming-for" id="toc-the-game-plan-what-were-aiming-for" class="nav-link" data-scroll-target="#the-game-plan-what-were-aiming-for"><span class="header-section-number">3.2</span> The Game Plan: What we’re aiming for</a></li>
-  <li><a href="#loading-and-understand-the-data" id="toc-loading-and-understand-the-data" class="nav-link" data-scroll-target="#loading-and-understand-the-data"><span class="header-section-number">3.3</span> Loading and Understand the Data</a>
+  <li><a href="#loading-and-understanding-the-data" id="toc-loading-and-understanding-the-data" class="nav-link" data-scroll-target="#loading-and-understanding-the-data"><span class="header-section-number">3.3</span> Loading and Understanding the Data</a>
   <ul class="collapse">
   <li><a href="#r-packages-for-today" id="toc-r-packages-for-today" class="nav-link" data-scroll-target="#r-packages-for-today">R packages for today</a></li>
   <li><a href="#loading-the-data-in-r" id="toc-loading-the-data-in-r" class="nav-link" data-scroll-target="#loading-the-data-in-r">Loading the Data in R</a></li>
@@ -384,8 +418,8 @@ Learning Goals
 </ul>
 </div>
 </div>
-<section id="todays-business-challenge" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="todays-business-challenge"><span class="header-section-number">3.1</span> Today’s Business Challenge</h2>
+<section id="the-business-challenge" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="the-business-challenge"><span class="header-section-number">3.1</span> The Business Challenge</h2>
 <section id="the-topic-understanding-price-sensitivity-in-beer-sales" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="the-topic-understanding-price-sensitivity-in-beer-sales">The Topic: Understanding Price Sensitivity in Beer Sales</h3>
 <ul>
@@ -482,8 +516,8 @@ Learning Goals
 </ul>
 <p>Let’s get started!</p>
 </section>
-<section id="loading-and-understand-the-data" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="loading-and-understand-the-data"><span class="header-section-number">3.3</span> Loading and Understand the Data</h2>
+<section id="loading-and-understanding-the-data" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="loading-and-understanding-the-data"><span class="header-section-number">3.3</span> Loading and Understanding the Data</h2>
 <section id="r-packages-for-today" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="r-packages-for-today">R packages for today</h3>
 <p>TO DO: Add Spiel on ggplot2 as a data viz package.</p>
