@@ -30,7 +30,7 @@ beer <- read_csv("https://raw.githubusercontent.com/unimelb-cmce-10002/fba-book/
 ```
 
 
-## Today's Business Challenge
+## The Business Challenge
 ### The Topic:  Understanding Price Sensitivity in Beer Sales {.unnumbered}
 
 * Australian retailers make thousands of pricing decisions
@@ -164,7 +164,7 @@ Sketch of the plan: 1 business question & 3 plots ...
 
 Let's get started!
 
-## Loading and Understand the Data
+## Loading and Understanding the Data
 
 ### R packages for today {.unnumbered}
 

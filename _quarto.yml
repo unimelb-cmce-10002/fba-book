@@ -6,7 +6,7 @@ execute:
 
 book:
   title: "Foundations of Business Analytics"
-  subtitle: "Analytics with Purpose: Crafting Narratives from Numbers"
+  subtitle: "Crafting Narratives from Numbers"
   author: 
     - "Lachlan Deer"
     - "Patrick Ferguson"
@@ -41,6 +41,13 @@ book:
       chapters:
         - conclusion/conclusion.qmd
     - references.qmd
+    - part: "Tutorials"
+      number-depth: 0  # Restart numbering
+      chapters:
+        - tutorials/data_visualisation.qmd
+  appendices:
+    - appendices/installation.qmd
+
 
 bibliography: references.bib
 
