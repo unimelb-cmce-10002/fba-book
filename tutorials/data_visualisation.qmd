@@ -4,14 +4,14 @@
 ::: {.callout-tip}
 ## Learning Goals {.unnumbered}
 
-By the end of this tutorial, students will:
+By the end of this tutorial, you should be able to:
 
-- Understand how to visualize **categorical and numerical data** using `ggplot2`.
-- Learn to apply **log transformations** for skewed distributions.
-- Explore **housing price trends across regions and dwelling types**.
-- Use **facet grids and proportions** to improve interpretability.
-- Fit **non-linear models** to visualize relationships.
-- **Combine multiple plots** into a cohesive visualization using `patchwork`.
+* Explain how different `ggplot2` visualization techniques reveal patterns in the Melbourne housing market that would be difficult to see in tables or raw numbers.
+* Use `ggplot2` to create bar plots, histograms, and scatterplots that analyze relationships between property prices, location, and dwelling types.
+* Apply transformations such as log scales, proportions, and faceting to improve the interpretability of price distributions and spatial trends.
+* Customize `ggplot2` plots using themes, color palettes, and annotations to enhance clarity and storytelling.
+* Evaluate and compare visualization approaches, identifying which effectively communicate insights about housing price trends and spatial patterns.
+* Build and refine a visual analysis workflow that could inform practical decision-making for home buyers, investors, or urban planners
 :::
 
 ```{r}
