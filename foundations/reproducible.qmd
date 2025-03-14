@@ -1,2 +1,54 @@
 # Reproducible Workflows
 
+
+## R 
+
+
+## R Projects & File Structure
+
+Why work with projects?
+
+### Our First Project
+
+Guide through a set up from scratch
+
+### Building on an Existing Project 
+
+Guide through activating project from existing setup
+
+## Quarto 
+
+Something introducing quarto and literate programming
+
+Features of Quarto Documents:
+
+### Top Matter
+
+### Essential Syntax 
+
+### R Chunks 
+
+### Equations
+
+### Cross References 
+
+### References
+
+## Using R in Practice
+
+### Errors and Error Handling 
+
+### Reproducible Examples to seek help 
+
+### Mentality
+
+* Be Focussed
+* Be Curious
+* Be Pragmatic
+* Be Tenacious
+* Be Planned 
+* Be Done before Being perfect
+
+### Helping Future You with Code Comments
+
+## Concluding Remarks

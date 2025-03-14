@@ -18,3 +18,13 @@ You'll develop workflows that ensure accuracy, consistency, and reliability — 
 
 Data is everywhere, but enduring insights are rare. 
 This course will help you transform numbers into knowledge that informs business and society—ethically, responsibly, and effectively.
+
+## Audience and assumed knowledge {.unnumbered}
+
+## Pedagogical approach {.unnumbered}
+
+## Software Information & conventions {.unnumbered}
+
+## About the Instructors {.unnumbered}
+
+## Acknowledgements {.unnumbered}

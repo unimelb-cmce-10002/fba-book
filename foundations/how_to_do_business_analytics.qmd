@@ -1,1 +1,200 @@
-# How to do Business Analytics
+# The Core Skills of a "Business Scientist"
+
+*(Goal: Introduce the core skills needed to succeed in business analytics.)*
+
+##  Becoming a Business Scientist: A Scientific Mindset Within a Business
+
+Business analytics is more than just working with numbers—it’s about thinking like a scientist within a business environment.
+
+The Business Scientist Mindset:
+
+* Forming hypotheses about business problems.
+* Testing ideas with data instead of relying on intuition.
+* Iterating and refining solutions based on evidence.
+* Communicating findings clearly to influence decision-making.
+
+> "Think of yourself as a Business Scientist—part detective, part storyteller, part strategist. Your job is to uncover patterns, test ideas, and help businesses make smarter decisions."
+
+
+## The 8 Skills of a Business Scientist 
+
+* Briefly introduce why skills—not just tools—define success in business analytics.
+
+* Mention that some skills are universal across projects, while others depend on the analyst’s role and the company’s approach.
+
+
+### The Skills
+More broadly, here's 8 skills one needs to succeed:
+
+**1. Understand the Business World** (Institutional Detail)
+Think of businesses like ecosystems—each one has its own rules, customers, and competitors. A good data scientist needs to understand the "world" they’re working in. For example, analyzing data for a coffee shop is very different from doing it for a tech company.
+
+*Example*:
+Before analyzing sales data for Starbucks, you'd need to know about things like seasonal drinks, customer loyalty programs, and how locations affect sales.
+
+**2. Finding the Right Data** (Data Discovery)
+Data is like treasure—it’s valuable, but you have to know where to find it. This could mean collecting sales numbers, website clicks, or social media mentions. Learning how to gather and clean this information is the first step in solving real business problems.
+
+*Example*:
+Imagine you want to help a clothing brand figure out which products are popular. You’d need to collect sales data, reviews, and maybe even social media trends to understand what customers love.
+
+**3. Understanding How People and Businesses Work** (Business Theory)
+Why do people buy certain products? Why do companies offer discounts? A data scientist needs to understand basic ideas about what drives business decisions and customer behavior.
+
+*Example*:
+If a phone company offers discounts during holidays, you’d want to see if that really boosts sales—or if people would have bought the phones anyway.
+
+**4. Picking the Right Tool** (Analytical Model)
+Different problems need different tools. Just like you wouldn’t use a spoon to cut steak, you need the right model to answer different business questions. Some problems are simple and need basic math; others might need advanced computer algorithms.
+
+*Example*:
+Predicting tomorrow’s weather needs a different tool than figuring out which Netflix shows you’ll like next!
+
+5. Knowing What Could Go Wrong** (Analytical Theory)
+Data isn’t always perfect. Sometimes there are mistakes, missing information, or patterns that don’t mean what they seem to. A good data scientist knows how to spot and fix these problems.
+
+*Example*:
+If an online store has a glitch that doesn’t record weekend sales, it could look like no one shops on Saturdays—but that wouldn’t be true!
+
+**6. Coding and Tech Skills** (Computational Skills)
+
+This is where programming comes in. Data scientists use code (like Python or R) to organize data, run calculations, and create visual charts. It’s like having a toolbox full of digital gadgets to solve problems faster and smarter.
+
+*Example*:
+Think of learning Python like learning a recipe—once you know the steps, you can tweak things to cook up new results!
+
+**7. Telling the Story with Data** (Presentation & Communication)
+Even the best analysis won’t help if no one understands it. Data scientists must explain their findings clearly—usually with visuals, graphs, and simple explanations.
+
+*Example*:
+Instead of saying, “Sales grew by 15% in Q3,” you could show a simple graph that highlights how sales shot up after a new product launch.
+
+**8. Asking the Right Questions** (Creativity & Judgment)
+The hardest part of data science isn’t always finding answers—it’s asking the right questions. This skill is about being curious and thinking creatively about what problems are worth solving.
+
+*Example*:
+Instead of just asking, “How many shoes did we sell?” you might ask, “What time of day do we sell the most shoes—and why?”
+
+### Applying and Combining the Skills
+
+Essential vs. Role-Dependent Skills
+
+- Some skills are fundamental to all projects, while others depend on the analyst’s role and the company’s needs.
+
+- Universal Skills (Always Needed):
+    - Understanding the Business World
+    - Finding the Right Data
+    - Telling the Story with Data
+    - Creativity & Judgment
+
+- Role/Project Specific Skills (Vary by Context):
+    - Business Theory → Possible Example: Strategic roles, consulting
+    - Analytical Tools → Possible Example: Predictive modeling
+    - Spotting Errors → Possible Example: Compliance-heavy industries (finance, healthcare)
+    - Coding & Tech Skills → Possible Example: Data engineering, Data Scientist
+
+#### Mixing the Skills for Different Business Needs
+
+The Analyst's Role Determines the Skill Set.
+
+Every project requires a different combination of skills.
+
+For example
+
+- A Marketing Analyst relies more on storytelling, consumer behavior, and data discovery.
+- A Data Engineer prioritizes coding, automation, and infrastructure over business theory.
+- A Financial Analyst needs strong data accuracy skills and an understanding of economic principles.
+
+even then, the same project can be approached differently by different roles and skillsets.
+
+Example Case (Different Roles, Same Goal, Different Approaches):
+
+Suppose a company wants to reduce customer churn.
+
+- A Data Scientist would use predictive models, while a Marketing Analyst would analyze customer feedback.
+- Both would rely on data storytelling to explain their insights.
+
+Choosing the Right Skill Mix for a Project
+
+Every project requires a different combination of skills.
+
+
+#### Building a Versatile Skill Set
+
+ How to Identify Which Skills to Develop
+
+- Self-assessment: What skills do you already use? Where do you struggle?
+- Career aspirations: What roles interest you? What skills are essential for those?
+
+Developing Skills Over Time
+
+- Mastering core skills before specializing
+- Continuous learning through projects, courses, and collaboration
+
+### The Eight Skills and this Course 
+
+Emphasizing:
+
+- Adaptability is Key. The best business scientists balance universal and role-specific skills.
+- Learning to adapt to different business problems is more important than mastering any single tool.
+- Adopting a workflow that allows us to mix and re-mix as the project / case requires
+
+## The Business Analytics Workflow
+*(A structured approach to solving business problems with data.)*  
+
+### Define the Business Question & Plan Outputs
+
+- Identify the specific problem to solve
+- Sketch the visualizations/results that would address this question
+- Determine what success looks like
+
+### Acquire and Prepare Data
+
+- Source relevant data
+- Clean and structure the data
+- Create necessary variables for analysis
+
+### Explore and Visualize Patterns
+
+- Use visualization to understand distributions and relationships
+- Identify trends, outliers, and interesting patterns
+- Generate initial insights and hypotheses
+
+### Analyze and Interpret Findings
+
+- Apply appropriate analytical methods
+- Validate results and check assumptions
+- Translate statistical findings into business language
+
+### Communicate Insights and Recommendations
+
+- Create clear, compelling visualizations of key findings
+- Develop actionable recommendations for stakeholders
+- Present with business context and implications
+
+
+## Developing an Analytics Mindset
+
+- **Why curiosity and skepticism matter**  
+  - Good analysts don’t just accept results at face value; they challenge assumptions and seek deeper understanding.  
+  - Business decisions often rely on incomplete or imperfect data—having an analytical mindset helps navigate uncertainty.  
+- **The importance of iteration and refining insights**  
+  - The first answer isn’t always the best answer.  
+  - Analysts need to test different approaches, adjust based on new information, and refine conclusions over time.  
+  
+### Analytics in the Age of Generative AI 
+  
+- **AI and the Analytics Mindset: Why Human Judgment Still Matters**  
+  - AI can generate insights, but it doesn’t understand what’s truly important.  
+  - Think of AI like taking a photo at a museum and asking ChatGPT to describe it to your grandma—it might provide details, but it won’t capture what mattered most to you.  
+  - Analysts must decide **which insights are relevant** and apply **business intuition** to make sense of AI-generated results.  
+- **AI as a Tool, Not a Replacement**  
+  - Relying entirely on AI to analyze business data is like setting a self-driving car loose in a foreign country with no GPS—it might recognize roads, but it won’t take you where you need to go.  
+  - Analysts provide **direction, context, and business strategy** that AI alone cannot.  
+  - The best business analysts will be those who **understand AI, challenge its outputs, and refine its use for real-world decisions**.
+
+## What's Next?
+- Tease upcoming hands-on work with data  
+- Preview of how students will start applying these skills  
+
+*(This chapter is about setting up students with a mental framework, making analytics feel approachable, and preparing them for the practical aspects in later chapters.)*
