@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Causal Analytics – Foundations of Business Analytics</title>
+<title>3&nbsp; Reproducible Workflows – Foundations of Business Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../advanced_analytics/predictive_analytics.html" rel="next">
-<link href="../advanced_analytics/descriptive_analytics.html" rel="prev">
+<link href="../insights/data_visualisation.html" rel="next">
+<link href="../foundations/how_to_do_business_analytics.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../advanced_analytics/data_variation.html">Extracting Deeper Insights from Data</a></li><li class="breadcrumb-item"><a href="../advanced_analytics/causal_analytics.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Causal Analytics</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../foundations/what_is_business_analytics.html">Foundations</a></li><li class="breadcrumb-item"><a href="../foundations/reproducible.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -137,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../foundations/reproducible.html" class="sidebar-item-text sidebar-link">
+  <a href="../foundations/reproducible.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows</span></span></a>
   </div>
 </li>
@@ -218,7 +218,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/causal_analytics.html" class="sidebar-item-text sidebar-link active">
+  <a href="../advanced_analytics/causal_analytics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Causal Analytics</span></span></a>
   </div>
 </li>
@@ -315,15 +315,43 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#r" id="toc-r" class="nav-link active" data-scroll-target="#r"><span class="header-section-number">3.1</span> R</a></li>
+  <li><a href="#r-projects-file-structure" id="toc-r-projects-file-structure" class="nav-link" data-scroll-target="#r-projects-file-structure"><span class="header-section-number">3.2</span> R Projects &amp; File Structure</a>
+  <ul class="collapse">
+  <li><a href="#our-first-project" id="toc-our-first-project" class="nav-link" data-scroll-target="#our-first-project"><span class="header-section-number">3.2.1</span> Our First Project</a></li>
+  <li><a href="#building-on-an-existing-project" id="toc-building-on-an-existing-project" class="nav-link" data-scroll-target="#building-on-an-existing-project"><span class="header-section-number">3.2.2</span> Building on an Existing Project</a></li>
+  </ul></li>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto"><span class="header-section-number">3.3</span> Quarto</a>
+  <ul class="collapse">
+  <li><a href="#top-matter" id="toc-top-matter" class="nav-link" data-scroll-target="#top-matter"><span class="header-section-number">3.3.1</span> Top Matter</a></li>
+  <li><a href="#essential-syntax" id="toc-essential-syntax" class="nav-link" data-scroll-target="#essential-syntax"><span class="header-section-number">3.3.2</span> Essential Syntax</a></li>
+  <li><a href="#r-chunks" id="toc-r-chunks" class="nav-link" data-scroll-target="#r-chunks"><span class="header-section-number">3.3.3</span> R Chunks</a></li>
+  <li><a href="#equations" id="toc-equations" class="nav-link" data-scroll-target="#equations"><span class="header-section-number">3.3.4</span> Equations</a></li>
+  <li><a href="#cross-references" id="toc-cross-references" class="nav-link" data-scroll-target="#cross-references"><span class="header-section-number">3.3.5</span> Cross References</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">3.3.6</span> References</a></li>
+  </ul></li>
+  <li><a href="#using-r-in-practice" id="toc-using-r-in-practice" class="nav-link" data-scroll-target="#using-r-in-practice"><span class="header-section-number">3.4</span> Using R in Practice</a>
+  <ul class="collapse">
+  <li><a href="#errors-and-error-handling" id="toc-errors-and-error-handling" class="nav-link" data-scroll-target="#errors-and-error-handling"><span class="header-section-number">3.4.1</span> Errors and Error Handling</a></li>
+  <li><a href="#reproducible-examples-to-seek-help" id="toc-reproducible-examples-to-seek-help" class="nav-link" data-scroll-target="#reproducible-examples-to-seek-help"><span class="header-section-number">3.4.2</span> Reproducible Examples to seek help</a></li>
+  <li><a href="#mentality" id="toc-mentality" class="nav-link" data-scroll-target="#mentality"><span class="header-section-number">3.4.3</span> Mentality</a></li>
+  <li><a href="#helping-future-you-with-code-comments" id="toc-helping-future-you-with-code-comments" class="nav-link" data-scroll-target="#helping-future-you-with-code-comments"><span class="header-section-number">3.4.4</span> Helping Future You with Code Comments</a></li>
+  </ul></li>
+  <li><a href="#concluding-remarks" id="toc-concluding-remarks" class="nav-link" data-scroll-target="#concluding-remarks"><span class="header-section-number">3.5</span> Concluding Remarks</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../advanced_analytics/data_variation.html">Extracting Deeper Insights from Data</a></li><li class="breadcrumb-item"><a href="../advanced_analytics/causal_analytics.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Causal Analytics</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../foundations/what_is_business_analytics.html">Foundations</a></li><li class="breadcrumb-item"><a href="../foundations/reproducible.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Causal Analytics</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows</span></h1>
 </div>
 
 
@@ -340,8 +368,72 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="r" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="r"><span class="header-section-number">3.1</span> R</h2>
+</section>
+<section id="r-projects-file-structure" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="r-projects-file-structure"><span class="header-section-number">3.2</span> R Projects &amp; File Structure</h2>
+<p>Why work with projects?</p>
+<section id="our-first-project" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="our-first-project"><span class="header-section-number">3.2.1</span> Our First Project</h3>
+<p>Guide through a set up from scratch</p>
+</section>
+<section id="building-on-an-existing-project" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="building-on-an-existing-project"><span class="header-section-number">3.2.2</span> Building on an Existing Project</h3>
+<p>Guide through activating project from existing setup</p>
+</section>
+</section>
+<section id="quarto" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="quarto"><span class="header-section-number">3.3</span> Quarto</h2>
+<p>Something introducing quarto and literate programming</p>
+<p>Features of Quarto Documents:</p>
+<section id="top-matter" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="top-matter"><span class="header-section-number">3.3.1</span> Top Matter</h3>
+</section>
+<section id="essential-syntax" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="essential-syntax"><span class="header-section-number">3.3.2</span> Essential Syntax</h3>
+</section>
+<section id="r-chunks" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="r-chunks"><span class="header-section-number">3.3.3</span> R Chunks</h3>
+</section>
+<section id="equations" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="equations"><span class="header-section-number">3.3.4</span> Equations</h3>
+</section>
+<section id="cross-references" class="level3" data-number="3.3.5">
+<h3 data-number="3.3.5" class="anchored" data-anchor-id="cross-references"><span class="header-section-number">3.3.5</span> Cross References</h3>
+</section>
+<section id="references" class="level3" data-number="3.3.6">
+<h3 data-number="3.3.6" class="anchored" data-anchor-id="references"><span class="header-section-number">3.3.6</span> References</h3>
+</section>
+</section>
+<section id="using-r-in-practice" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="using-r-in-practice"><span class="header-section-number">3.4</span> Using R in Practice</h2>
+<section id="errors-and-error-handling" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="errors-and-error-handling"><span class="header-section-number">3.4.1</span> Errors and Error Handling</h3>
+</section>
+<section id="reproducible-examples-to-seek-help" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="reproducible-examples-to-seek-help"><span class="header-section-number">3.4.2</span> Reproducible Examples to seek help</h3>
+</section>
+<section id="mentality" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="mentality"><span class="header-section-number">3.4.3</span> Mentality</h3>
+<ul>
+<li>Be Focussed</li>
+<li>Be Curious</li>
+<li>Be Pragmatic</li>
+<li>Be Tenacious</li>
+<li>Be Planned</li>
+<li>Be Done before Being perfect</li>
+</ul>
+</section>
+<section id="helping-future-you-with-code-comments" class="level3" data-number="3.4.4">
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="helping-future-you-with-code-comments"><span class="header-section-number">3.4.4</span> Helping Future You with Code Comments</h3>
+</section>
+</section>
+<section id="concluding-remarks" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="concluding-remarks"><span class="header-section-number">3.5</span> Concluding Remarks</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -763,13 +855,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../advanced_analytics/descriptive_analytics.html" class="pagination-link" aria-label="Descriptive Analytics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive Analytics</span></span>
+      <a href="../foundations/how_to_do_business_analytics.html" class="pagination-link" aria-label="The Core Skills of a &quot;Business Scientist&quot;">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Core Skills of a “Business Scientist”</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../advanced_analytics/predictive_analytics.html" class="pagination-link" aria-label="Predictive Analytics">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Analytics</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../insights/data_visualisation.html" class="pagination-link" aria-label="Data Visualisation for Business Intelligence">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation for Business Intelligence</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

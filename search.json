@@ -10,102 +10,372 @@
     ]
   },
   {
+    "objectID": "index.html#audience-and-assumed-knowledge",
+    "href": "index.html#audience-and-assumed-knowledge",
+    "title": "Foundations of Business Analytics",
+    "section": "Audience and assumed knowledge",
+    "text": "Audience and assumed knowledge",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#pedagogical-approach",
+    "href": "index.html#pedagogical-approach",
+    "title": "Foundations of Business Analytics",
+    "section": "Pedagogical approach",
+    "text": "Pedagogical approach",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#software-information-conventions",
+    "href": "index.html#software-information-conventions",
+    "title": "Foundations of Business Analytics",
+    "section": "Software Information & conventions",
+    "text": "Software Information & conventions",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#about-the-instructors",
+    "href": "index.html#about-the-instructors",
+    "title": "Foundations of Business Analytics",
+    "section": "About the Instructors",
+    "text": "About the Instructors",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "Foundations of Business Analytics",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "foundations/what_is_business_analytics.html",
+    "href": "foundations/what_is_business_analytics.html",
+    "title": "1  What is Business Analytics?",
+    "section": "",
+    "text": "1.1 What is Business Analytics? (And Why Should You Care?)\n(Goal: Inspire students, define the roadmap, and set expectations for the course.)",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/what_is_business_analytics.html#what-is-business-analytics-and-why-should-you-care",
+    "href": "foundations/what_is_business_analytics.html#what-is-business-analytics-and-why-should-you-care",
+    "title": "1  What is Business Analytics?",
+    "section": "",
+    "text": "A simple, relatable definition\n\nA quick story/example of how analytics has changed the world (e.g., how Netflix recommends what to watch, how businesses predict demand, or how Spotify curates playlists)",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/what_is_business_analytics.html#how-data-shapes-the-world-around-us",
+    "href": "foundations/what_is_business_analytics.html#how-data-shapes-the-world-around-us",
+    "title": "1  What is Business Analytics?",
+    "section": "1.2 How Data Shapes the World Around Us",
+    "text": "1.2 How Data Shapes the World Around Us\n\nEveryday examples of data-driven decision-making (e.g., sports, healthcare, marketing, finance)\n\nHow businesses use analytics to stay competitive\n\n\n1.2.1 From Ledgers to AI: A Quick History of Analytics (Sidebar/Callout Box)\n\n1800s: Merchants track sales and inventory using handwritten ledgers.\n\n1920s–1950s: Early statisticians introduce data-driven decision-making in business.\n\n1980s: The rise of computers and Excel makes data analysis more accessible.\n\n2000s: “Big Data” emerges as businesses collect massive amounts of digital information.\n\nToday: AI and machine learning help companies predict trends, personalize experiences, and automate decision-making.\n\n💡 Now, data is everywhere, and businesses need skilled analysts to turn it into insights.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/what_is_business_analytics.html#from-data-to-narrative-the-human-role-in-analytics",
+    "href": "foundations/what_is_business_analytics.html#from-data-to-narrative-the-human-role-in-analytics",
+    "title": "1  What is Business Analytics?",
+    "section": "1.3 From Data to Narrative: The Human Role in Analytics",
+    "text": "1.3 From Data to Narrative: The Human Role in Analytics\n\nData alone doesn’t tell a story—we do.\nHumans have always created narratives from observation. (Example: early humans tracking weather patterns → today’s business forecasting.)\nWhy business decisions need storytelling, not just numbers. (Example: A CEO doesn’t want raw data; they want a clear, persuasive insight.)\nGood analysts turn complex data into clear, actionable stories.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/what_is_business_analytics.html#the-roadmap-for-this-course-what-youll-learn-and-do",
+    "href": "foundations/what_is_business_analytics.html#the-roadmap-for-this-course-what-youll-learn-and-do",
+    "title": "1  What is Business Analytics?",
+    "section": "1.4 The Roadmap for This Course: What You’ll Learn and Do",
+    "text": "1.4 The Roadmap for This Course: What You’ll Learn and Do\n\nOverview of key topics covered in the course\n\nHands-on approach: “You’ll be working with real data, solving real problems”\n\nNo prior experience needed—just a curiosity to explore\n\nHow This Book is Structured:\n\nPart 1: The Foundations of Business Analytics (Chapters 1–3)\n\n…. and so on\n\n\n“By the end of this book, you’ll be able to approach real-world business problems with confidence, using data to drive decisions.”",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/what_is_business_analytics.html#the-role-of-a-business-analyst-solving-problems-with-data-communicating-results",
+    "href": "foundations/what_is_business_analytics.html#the-role-of-a-business-analyst-solving-problems-with-data-communicating-results",
+    "title": "1  What is Business Analytics?",
+    "section": "1.5 The Role of a Business Analyst: Solving Problems with Data & Communicating results",
+    "text": "1.5 The Role of a Business Analyst: Solving Problems with Data & Communicating results\n\nWhat business analysts actually do in companies\n\nExample: A day in the life of a data-driven decision-maker",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/what_is_business_analytics.html#a-quick-demo-seeing-data-in-action-optional-but-engaging",
+    "href": "foundations/what_is_business_analytics.html#a-quick-demo-seeing-data-in-action-optional-but-engaging",
+    "title": "1  What is Business Analytics?",
+    "section": "1.6 A Quick Demo: Seeing Data in Action (Optional, but engaging!)",
+    "text": "1.6 A Quick Demo: Seeing Data in Action (Optional, but engaging!)\n\nA simple visualization or interactive example (e.g., “Let’s look at a dataset—can we spot a pattern?”)",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/what_is_business_analytics.html#how-to-approach-this-course-and-have-fun-with-it",
+    "href": "foundations/what_is_business_analytics.html#how-to-approach-this-course-and-have-fun-with-it",
+    "title": "1  What is Business Analytics?",
+    "section": "1.7 How to Approach This Course (And Have Fun with It!)",
+    "text": "1.7 How to Approach This Course (And Have Fun with It!)\n\nGrowth mindset: It’s okay to not know things at first\n\nAsk questions, experiment, and think critically",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/what_is_business_analytics.html#whats-next",
+    "href": "foundations/what_is_business_analytics.html#whats-next",
+    "title": "1  What is Business Analytics?",
+    "section": "1.8 What’s Next?",
+    "text": "1.8 What’s Next?\n\nTease Chapter 2: “Next, we’ll explore the key skills that make a great business analyst.”",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/how_to_do_business_analytics.html",
+    "href": "foundations/how_to_do_business_analytics.html",
+    "title": "2  The Core Skills of a “Business Scientist”",
+    "section": "",
+    "text": "2.1 Becoming a Business Scientist: A Scientific Mindset Within a Business\n(Goal: Introduce the core skills needed to succeed in business analytics.)\nBusiness analytics is more than just working with numbers—it’s about thinking like a scientist within a business environment.\nThe Business Scientist Mindset:",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The Core Skills of a \"Business Scientist\"</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/how_to_do_business_analytics.html#becoming-a-business-scientist-a-scientific-mindset-within-a-business",
+    "href": "foundations/how_to_do_business_analytics.html#becoming-a-business-scientist-a-scientific-mindset-within-a-business",
+    "title": "2  The Core Skills of a “Business Scientist”",
+    "section": "",
+    "text": "Forming hypotheses about business problems.\nTesting ideas with data instead of relying on intuition.\nIterating and refining solutions based on evidence.\nCommunicating findings clearly to influence decision-making.\n\n\n“Think of yourself as a Business Scientist—part detective, part storyteller, part strategist. Your job is to uncover patterns, test ideas, and help businesses make smarter decisions.”",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The Core Skills of a \"Business Scientist\"</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/how_to_do_business_analytics.html#the-8-skills-of-a-business-scientist",
+    "href": "foundations/how_to_do_business_analytics.html#the-8-skills-of-a-business-scientist",
+    "title": "2  The Core Skills of a “Business Scientist”",
+    "section": "2.2 The 8 Skills of a Business Scientist",
+    "text": "2.2 The 8 Skills of a Business Scientist\n\nBriefly introduce why skills—not just tools—define success in business analytics.\nMention that some skills are universal across projects, while others depend on the analyst’s role and the company’s approach.\n\n\n2.2.1 The Skills\nMore broadly, here’s 8 skills one needs to succeed:\n1. Understand the Business World (Institutional Detail) Think of businesses like ecosystems—each one has its own rules, customers, and competitors. A good data scientist needs to understand the “world” they’re working in. For example, analyzing data for a coffee shop is very different from doing it for a tech company.\nExample: Before analyzing sales data for Starbucks, you’d need to know about things like seasonal drinks, customer loyalty programs, and how locations affect sales.\n2. Finding the Right Data (Data Discovery) Data is like treasure—it’s valuable, but you have to know where to find it. This could mean collecting sales numbers, website clicks, or social media mentions. Learning how to gather and clean this information is the first step in solving real business problems.\nExample: Imagine you want to help a clothing brand figure out which products are popular. You’d need to collect sales data, reviews, and maybe even social media trends to understand what customers love.\n3. Understanding How People and Businesses Work (Business Theory) Why do people buy certain products? Why do companies offer discounts? A data scientist needs to understand basic ideas about what drives business decisions and customer behavior.\nExample: If a phone company offers discounts during holidays, you’d want to see if that really boosts sales—or if people would have bought the phones anyway.\n4. Picking the Right Tool (Analytical Model) Different problems need different tools. Just like you wouldn’t use a spoon to cut steak, you need the right model to answer different business questions. Some problems are simple and need basic math; others might need advanced computer algorithms.\nExample: Predicting tomorrow’s weather needs a different tool than figuring out which Netflix shows you’ll like next!\n\nKnowing What Could Go Wrong** (Analytical Theory) Data isn’t always perfect. Sometimes there are mistakes, missing information, or patterns that don’t mean what they seem to. A good data scientist knows how to spot and fix these problems.\n\nExample: If an online store has a glitch that doesn’t record weekend sales, it could look like no one shops on Saturdays—but that wouldn’t be true!\n6. Coding and Tech Skills (Computational Skills)\nThis is where programming comes in. Data scientists use code (like Python or R) to organize data, run calculations, and create visual charts. It’s like having a toolbox full of digital gadgets to solve problems faster and smarter.\nExample: Think of learning Python like learning a recipe—once you know the steps, you can tweak things to cook up new results!\n7. Telling the Story with Data (Presentation & Communication) Even the best analysis won’t help if no one understands it. Data scientists must explain their findings clearly—usually with visuals, graphs, and simple explanations.\nExample: Instead of saying, “Sales grew by 15% in Q3,” you could show a simple graph that highlights how sales shot up after a new product launch.\n8. Asking the Right Questions (Creativity & Judgment) The hardest part of data science isn’t always finding answers—it’s asking the right questions. This skill is about being curious and thinking creatively about what problems are worth solving.\nExample: Instead of just asking, “How many shoes did we sell?” you might ask, “What time of day do we sell the most shoes—and why?”\n\n\n2.2.2 Applying and Combining the Skills\nEssential vs. Role-Dependent Skills\n\nSome skills are fundamental to all projects, while others depend on the analyst’s role and the company’s needs.\nUniversal Skills (Always Needed):\n\nUnderstanding the Business World\nFinding the Right Data\nTelling the Story with Data\nCreativity & Judgment\n\nRole/Project Specific Skills (Vary by Context):\n\nBusiness Theory → Possible Example: Strategic roles, consulting\nAnalytical Tools → Possible Example: Predictive modeling\nSpotting Errors → Possible Example: Compliance-heavy industries (finance, healthcare)\nCoding & Tech Skills → Possible Example: Data engineering, Data Scientist\n\n\n\n2.2.2.1 Mixing the Skills for Different Business Needs\nThe Analyst’s Role Determines the Skill Set.\nEvery project requires a different combination of skills.\nFor example\n\nA Marketing Analyst relies more on storytelling, consumer behavior, and data discovery.\nA Data Engineer prioritizes coding, automation, and infrastructure over business theory.\nA Financial Analyst needs strong data accuracy skills and an understanding of economic principles.\n\neven then, the same project can be approached differently by different roles and skillsets.\nExample Case (Different Roles, Same Goal, Different Approaches):\nSuppose a company wants to reduce customer churn.\n\nA Data Scientist would use predictive models, while a Marketing Analyst would analyze customer feedback.\nBoth would rely on data storytelling to explain their insights.\n\nChoosing the Right Skill Mix for a Project\nEvery project requires a different combination of skills.\n\n\n2.2.2.2 Building a Versatile Skill Set\nHow to Identify Which Skills to Develop\n\nSelf-assessment: What skills do you already use? Where do you struggle?\nCareer aspirations: What roles interest you? What skills are essential for those?\n\nDeveloping Skills Over Time\n\nMastering core skills before specializing\nContinuous learning through projects, courses, and collaboration\n\n\n\n\n2.2.3 The Eight Skills and this Course\nEmphasizing:\n\nAdaptability is Key. The best business scientists balance universal and role-specific skills.\nLearning to adapt to different business problems is more important than mastering any single tool.\nAdopting a workflow that allows us to mix and re-mix as the project / case requires",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The Core Skills of a \"Business Scientist\"</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/how_to_do_business_analytics.html#the-business-analytics-workflow",
+    "href": "foundations/how_to_do_business_analytics.html#the-business-analytics-workflow",
+    "title": "2  The Core Skills of a “Business Scientist”",
+    "section": "2.3 The Business Analytics Workflow",
+    "text": "2.3 The Business Analytics Workflow\n(A structured approach to solving business problems with data.)\n\n2.3.1 Define the Business Question & Plan Outputs\n\nIdentify the specific problem to solve\nSketch the visualizations/results that would address this question\nDetermine what success looks like\n\n\n\n2.3.2 Acquire and Prepare Data\n\nSource relevant data\nClean and structure the data\nCreate necessary variables for analysis\n\n\n\n2.3.3 Explore and Visualize Patterns\n\nUse visualization to understand distributions and relationships\nIdentify trends, outliers, and interesting patterns\nGenerate initial insights and hypotheses\n\n\n\n2.3.4 Analyze and Interpret Findings\n\nApply appropriate analytical methods\nValidate results and check assumptions\nTranslate statistical findings into business language\n\n\n\n2.3.5 Communicate Insights and Recommendations\n\nCreate clear, compelling visualizations of key findings\nDevelop actionable recommendations for stakeholders\nPresent with business context and implications",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The Core Skills of a \"Business Scientist\"</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/how_to_do_business_analytics.html#developing-an-analytics-mindset",
+    "href": "foundations/how_to_do_business_analytics.html#developing-an-analytics-mindset",
+    "title": "2  The Core Skills of a “Business Scientist”",
+    "section": "2.4 Developing an Analytics Mindset",
+    "text": "2.4 Developing an Analytics Mindset\n\nWhy curiosity and skepticism matter\n\nGood analysts don’t just accept results at face value; they challenge assumptions and seek deeper understanding.\n\nBusiness decisions often rely on incomplete or imperfect data—having an analytical mindset helps navigate uncertainty.\n\n\nThe importance of iteration and refining insights\n\nThe first answer isn’t always the best answer.\n\nAnalysts need to test different approaches, adjust based on new information, and refine conclusions over time.\n\n\n\n2.4.1 Analytics in the Age of Generative AI\n\nAI and the Analytics Mindset: Why Human Judgment Still Matters\n\nAI can generate insights, but it doesn’t understand what’s truly important.\n\nThink of AI like taking a photo at a museum and asking ChatGPT to describe it to your grandma—it might provide details, but it won’t capture what mattered most to you.\n\nAnalysts must decide which insights are relevant and apply business intuition to make sense of AI-generated results.\n\n\nAI as a Tool, Not a Replacement\n\nRelying entirely on AI to analyze business data is like setting a self-driving car loose in a foreign country with no GPS—it might recognize roads, but it won’t take you where you need to go.\n\nAnalysts provide direction, context, and business strategy that AI alone cannot.\n\nThe best business analysts will be those who understand AI, challenge its outputs, and refine its use for real-world decisions.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The Core Skills of a \"Business Scientist\"</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/how_to_do_business_analytics.html#whats-next",
+    "href": "foundations/how_to_do_business_analytics.html#whats-next",
+    "title": "2  The Core Skills of a “Business Scientist”",
+    "section": "2.5 What’s Next?",
+    "text": "2.5 What’s Next?\n\nTease upcoming hands-on work with data\n\nPreview of how students will start applying these skills\n\n(This chapter is about setting up students with a mental framework, making analytics feel approachable, and preparing them for the practical aspects in later chapters.)",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The Core Skills of a \"Business Scientist\"</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/reproducible.html",
+    "href": "foundations/reproducible.html",
+    "title": "3  Reproducible Workflows",
+    "section": "",
+    "text": "3.1 R",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reproducible Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/reproducible.html#r-projects-file-structure",
+    "href": "foundations/reproducible.html#r-projects-file-structure",
+    "title": "3  Reproducible Workflows",
+    "section": "3.2 R Projects & File Structure",
+    "text": "3.2 R Projects & File Structure\nWhy work with projects?\n\n3.2.1 Our First Project\nGuide through a set up from scratch\n\n\n3.2.2 Building on an Existing Project\nGuide through activating project from existing setup",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reproducible Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/reproducible.html#quarto",
+    "href": "foundations/reproducible.html#quarto",
+    "title": "3  Reproducible Workflows",
+    "section": "3.3 Quarto",
+    "text": "3.3 Quarto\nSomething introducing quarto and literate programming\nFeatures of Quarto Documents:\n\n3.3.1 Top Matter\n\n\n3.3.2 Essential Syntax\n\n\n3.3.3 R Chunks\n\n\n3.3.4 Equations\n\n\n3.3.5 Cross References\n\n\n3.3.6 References",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reproducible Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/reproducible.html#using-r-in-practice",
+    "href": "foundations/reproducible.html#using-r-in-practice",
+    "title": "3  Reproducible Workflows",
+    "section": "3.4 Using R in Practice",
+    "text": "3.4 Using R in Practice\n\n3.4.1 Errors and Error Handling\n\n\n3.4.2 Reproducible Examples to seek help\n\n\n3.4.3 Mentality\n\nBe Focussed\nBe Curious\nBe Pragmatic\nBe Tenacious\nBe Planned\nBe Done before Being perfect\n\n\n\n3.4.4 Helping Future You with Code Comments",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reproducible Workflows</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/reproducible.html#concluding-remarks",
+    "href": "foundations/reproducible.html#concluding-remarks",
+    "title": "3  Reproducible Workflows",
+    "section": "3.5 Concluding Remarks",
+    "text": "3.5 Concluding Remarks",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reproducible Workflows</span>"
+    ]
+  },
+  {
     "objectID": "insights/data_visualisation.html",
     "href": "insights/data_visualisation.html",
-    "title": "3  Data Visualisation for Business Intelligence",
+    "title": "4  Data Visualisation for Business Intelligence",
     "section": "",
-    "text": "3.1 The Business Challenge",
+    "text": "4.1 The Business Challenge",
     "crumbs": [
       "Getting Our First Insights from Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
     ]
   },
   {
     "objectID": "insights/data_visualisation.html#the-business-challenge",
     "href": "insights/data_visualisation.html#the-business-challenge",
-    "title": "3  Data Visualisation for Business Intelligence",
+    "title": "4  Data Visualisation for Business Intelligence",
     "section": "",
     "text": "The Topic: Understanding Price Sensitivity in Beer Sales\n\nAustralian retailers make thousands of pricing decisions\n1% improvement in pricing → 11% profit increase\nBeer: $16.8 billion Australian market\nOur question today: How do price changes affect sales across different beer brands?\n\n\n\nThe Data: Retail Scanner Data from Dominick’s Finer Foods\n\nWeekly sales for four major beer brands for a Chicago based retailer\nPrice, quantity, store location, and promotional information\nSimilar to what Woolworths and Coles analysts work with daily\nReal-world retail data to discover real-world patterns{.unnumbered}\n\n\n\nThe Method: Data Visualization\n\n“The greatest value of a picture is when it forces us to notice what we never expected to see.” — John Tukey\n\n\nVisual processing is 60,000× faster than text - spot patterns and outliers instantly\nBridges the gap between data scientists and business decision-makers\nReveals hidden relationships that drive consumer behavior and pricing effectiveness\nTransforms complex numerical relationships into actionable insights for category managers\n\nNext speil\n\nGraphs are essential to data storytelling—they reveal both broad patterns and key details\nSeeing the data builds understanding—graphs help us engage with data in ways tables and summaries cannot.\nGood graphs minimize information loss—they translate data into visuals that audiences can easily interpret and act on\nGraphing is an encoding process—we design visuals to communicate insights, and their success depends on how well the audience decodes them.\nEffective graphs are audience-focused—they should clearly convey the story behind the data while preserving its context.\n\n\n\nWhere we’re headed\nJust a few lines of R code transform numbers into business intelligence\nFrom this:\n\n\n# A tibble: 10 × 6\n   store  week brand       qty price imported\n   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   \n 1    86    91 Budweiser    23  3.49 domestic\n 2    86    91 Corona       13  5.79 imported\n 3    86    91 Lowenbrau    13  3.99 imported\n 4    86    91 Miller       15  3.69 domestic\n 5    86    92 Budweiser    46  3.49 domestic\n 6    86    92 Corona       24  5.79 imported\n 7    86    92 Lowenbrau    21  3.99 imported\n 8    86    92 Miller      117  2.99 domestic\n 9    86    93 Budweiser    47  3.49 domestic\n10    86    93 Corona       23  4.39 imported\n\n\nto this (REMARK Still need to complete the pretty-ing of plots)\n\n\n`geom_smooth()` using formula = 'y ~ x'",
     "crumbs": [
       "Getting Our First Insights from Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
     ]
   },
   {
     "objectID": "insights/data_visualisation.html#the-game-plan-what-were-aiming-for",
     "href": "insights/data_visualisation.html#the-game-plan-what-were-aiming-for",
-    "title": "3  Data Visualisation for Business Intelligence",
-    "section": "3.2 The Game Plan: What we’re aiming for",
-    "text": "3.2 The Game Plan: What we’re aiming for\nRecall our workflow:\n\nDefine the Business Question & Plan Outputs\nAcquire and Prepare Data\nExplore and Visualize Patterns\nAnalyze and Interpret Findings\nCommunicate Insights and Recommendations\n\nSketch of the plan: 1 business question & 3 plots …\n\nDefine the Business Question\nLoad beer sales data\nUnderstand data structure\nBox plot for price by import status\nDistribution plot of sales by import status\nDemand curve by import status\nAnalyze, Interpret & Communicate\n\nLet’s get started!",
+    "title": "4  Data Visualisation for Business Intelligence",
+    "section": "4.2 The Game Plan: What we’re aiming for",
+    "text": "4.2 The Game Plan: What we’re aiming for\nRecall our workflow:\n\nDefine the Business Question & Plan Outputs\nAcquire and Prepare Data\nExplore and Visualize Patterns\nAnalyze and Interpret Findings\nCommunicate Insights and Recommendations\n\nSketch of the plan: 1 business question & 3 plots …\n\nDefine the Business Question\nLoad beer sales data\nUnderstand data structure\nBox plot for price by import status\nDistribution plot of sales by import status\nDemand curve by import status\nAnalyze, Interpret & Communicate\n\nLet’s get started!",
     "crumbs": [
       "Getting Our First Insights from Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
     ]
   },
   {
     "objectID": "insights/data_visualisation.html#loading-and-understanding-the-data",
     "href": "insights/data_visualisation.html#loading-and-understanding-the-data",
-    "title": "3  Data Visualisation for Business Intelligence",
-    "section": "3.3 Loading and Understanding the Data",
-    "text": "3.3 Loading and Understanding the Data\n\nR packages for today\nTO DO: Add Spiel on ggplot2 as a data viz package.\n\nlibrary(tidyverse)  # for plotting, includes ggplot\nlibrary(patchwork)  # for combining multiple plots into subfigures\nlibrary(scales)     # for formatting axis scales\nlibrary(ggokabeito) # color blind friendly color palette -- this course's default\n\n\n\nLoading the Data in R\n\nbeer &lt;- read_csv(\"https://raw.githubusercontent.com/unimelb-cmce-10002/fba-book/refs/heads/main/data/beer.csv\")\n\n\n\nThe Beer Sales Dataframe\nExplore data frame, define any necessary terms\n\nbeer\n\n# A tibble: 4,033 × 17\n   store  week brand      upc   qty price sales_indicator city  price_tier  zone\n   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;           &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;\n 1    86    91 Budwei… 1.82e9    23  3.49 FALSE           Chic… medium         2\n 2    86    91 Corona  8.07e9    13  5.79 FALSE           Chic… medium         2\n 3    86    91 Lowenb… 3.41e9    13  3.99 FALSE           Chic… medium         2\n 4    86    91 Miller  3.41e9    15  3.69 FALSE           Chic… medium         2\n 5    86    92 Budwei… 1.82e9    46  3.49 FALSE           Chic… medium         2\n 6    86    92 Corona  8.07e9    24  5.79 FALSE           Chic… medium         2\n 7    86    92 Lowenb… 3.41e9    21  3.99 FALSE           Chic… medium         2\n 8    86    92 Miller  3.41e9   117  2.99 FALSE           Chic… medium         2\n 9    86    93 Budwei… 1.82e9    47  3.49 FALSE           Chic… medium         2\n10    86    93 Corona  8.07e9    23  4.39 FALSE           Chic… medium         2\n# ℹ 4,023 more rows\n# ℹ 7 more variables: zip &lt;dbl&gt;, address &lt;chr&gt;, latitude &lt;dbl&gt;,\n#   longtitude &lt;dbl&gt;, start_of_week &lt;date&gt;, is_holiday_week &lt;lgl&gt;,\n#   imported &lt;chr&gt;\n\n\n\nglimpse(beer)\n\nRows: 4,033\nColumns: 17\n$ store           &lt;dbl&gt; 86, 86, 86, 86, 86, 86, 86, 86, 86, 86, 86, 86, 86, 86…\n$ week            &lt;dbl&gt; 91, 91, 91, 91, 92, 92, 92, 92, 93, 93, 93, 93, 94, 94…\n$ brand           &lt;chr&gt; \"Budweiser\", \"Corona\", \"Lowenbrau\", \"Miller\", \"Budweis…\n$ upc             &lt;dbl&gt; 1820000016, 8066095605, 3410021505, 3410000554, 182000…\n$ qty             &lt;dbl&gt; 23, 13, 13, 15, 46, 24, 21, 117, 47, 23, 34, 118, 46, …\n$ price           &lt;dbl&gt; 3.49, 5.79, 3.99, 3.69, 3.49, 5.79, 3.99, 2.99, 3.49, …\n$ sales_indicator &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…\n$ city            &lt;chr&gt; \"Chicago\", \"Chicago\", \"Chicago\", \"Chicago\", \"Chicago\",…\n$ price_tier      &lt;chr&gt; \"medium\", \"medium\", \"medium\", \"medium\", \"medium\", \"med…\n$ zone            &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …\n$ zip             &lt;dbl&gt; 60618, 60618, 60618, 60618, 60618, 60618, 60618, 60618…\n$ address         &lt;chr&gt; \"3350 Western Ave\", \"3350 Western Ave\", \"3350 Western …\n$ latitude        &lt;dbl&gt; 41.94235, 41.94235, 41.94235, 41.94235, 41.94235, 41.9…\n$ longtitude      &lt;dbl&gt; -87.68999, -87.68999, -87.68999, -87.68999, -87.68999,…\n$ start_of_week   &lt;date&gt; 1991-06-06, 1991-06-06, 1991-06-06, 1991-06-06, 1991-…\n$ is_holiday_week &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…\n$ imported        &lt;chr&gt; \"domestic\", \"imported\", \"imported\", \"domestic\", \"domes…\n\n\nTODO: So what is the business question?",
+    "title": "4  Data Visualisation for Business Intelligence",
+    "section": "4.3 Loading and Understanding the Data",
+    "text": "4.3 Loading and Understanding the Data\n\nR packages for today\nTO DO: Add Spiel on ggplot2 as a data viz package.\n\nlibrary(tidyverse)  # for plotting, includes ggplot\nlibrary(patchwork)  # for combining multiple plots into subfigures\nlibrary(scales)     # for formatting axis scales\nlibrary(ggokabeito) # color blind friendly color palette -- this course's default\n\n\n\nLoading the Data in R\n\nbeer &lt;- read_csv(\"https://raw.githubusercontent.com/unimelb-cmce-10002/fba-book/refs/heads/main/data/beer.csv\")\n\n\n\nThe Beer Sales Dataframe\nExplore data frame, define any necessary terms\n\nbeer\n\n# A tibble: 4,033 × 17\n   store  week brand      upc   qty price sales_indicator city  price_tier  zone\n   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;           &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;\n 1    86    91 Budwei… 1.82e9    23  3.49 FALSE           Chic… medium         2\n 2    86    91 Corona  8.07e9    13  5.79 FALSE           Chic… medium         2\n 3    86    91 Lowenb… 3.41e9    13  3.99 FALSE           Chic… medium         2\n 4    86    91 Miller  3.41e9    15  3.69 FALSE           Chic… medium         2\n 5    86    92 Budwei… 1.82e9    46  3.49 FALSE           Chic… medium         2\n 6    86    92 Corona  8.07e9    24  5.79 FALSE           Chic… medium         2\n 7    86    92 Lowenb… 3.41e9    21  3.99 FALSE           Chic… medium         2\n 8    86    92 Miller  3.41e9   117  2.99 FALSE           Chic… medium         2\n 9    86    93 Budwei… 1.82e9    47  3.49 FALSE           Chic… medium         2\n10    86    93 Corona  8.07e9    23  4.39 FALSE           Chic… medium         2\n# ℹ 4,023 more rows\n# ℹ 7 more variables: zip &lt;dbl&gt;, address &lt;chr&gt;, latitude &lt;dbl&gt;,\n#   longtitude &lt;dbl&gt;, start_of_week &lt;date&gt;, is_holiday_week &lt;lgl&gt;,\n#   imported &lt;chr&gt;\n\n\n\nglimpse(beer)\n\nRows: 4,033\nColumns: 17\n$ store           &lt;dbl&gt; 86, 86, 86, 86, 86, 86, 86, 86, 86, 86, 86, 86, 86, 86…\n$ week            &lt;dbl&gt; 91, 91, 91, 91, 92, 92, 92, 92, 93, 93, 93, 93, 94, 94…\n$ brand           &lt;chr&gt; \"Budweiser\", \"Corona\", \"Lowenbrau\", \"Miller\", \"Budweis…\n$ upc             &lt;dbl&gt; 1820000016, 8066095605, 3410021505, 3410000554, 182000…\n$ qty             &lt;dbl&gt; 23, 13, 13, 15, 46, 24, 21, 117, 47, 23, 34, 118, 46, …\n$ price           &lt;dbl&gt; 3.49, 5.79, 3.99, 3.69, 3.49, 5.79, 3.99, 2.99, 3.49, …\n$ sales_indicator &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…\n$ city            &lt;chr&gt; \"Chicago\", \"Chicago\", \"Chicago\", \"Chicago\", \"Chicago\",…\n$ price_tier      &lt;chr&gt; \"medium\", \"medium\", \"medium\", \"medium\", \"medium\", \"med…\n$ zone            &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …\n$ zip             &lt;dbl&gt; 60618, 60618, 60618, 60618, 60618, 60618, 60618, 60618…\n$ address         &lt;chr&gt; \"3350 Western Ave\", \"3350 Western Ave\", \"3350 Western …\n$ latitude        &lt;dbl&gt; 41.94235, 41.94235, 41.94235, 41.94235, 41.94235, 41.9…\n$ longtitude      &lt;dbl&gt; -87.68999, -87.68999, -87.68999, -87.68999, -87.68999,…\n$ start_of_week   &lt;date&gt; 1991-06-06, 1991-06-06, 1991-06-06, 1991-06-06, 1991-…\n$ is_holiday_week &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…\n$ imported        &lt;chr&gt; \"domestic\", \"imported\", \"imported\", \"domestic\", \"domes…\n\n\nTODO: So what is the business question?",
     "crumbs": [
       "Getting Our First Insights from Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
     ]
   },
   {
     "objectID": "insights/data_visualisation.html#visualizing-the-data",
     "href": "insights/data_visualisation.html#visualizing-the-data",
-    "title": "3  Data Visualisation for Business Intelligence",
-    "section": "3.4 Visualizing the Data",
-    "text": "3.4 Visualizing the Data\nDetour: Viz principles + ggplot “building”\n\nInvestigating Price Distributions\nSet the Canvas\n\nggplot(beer)\n\n\n\n\n\n\n\n\nChoose a geom\n\nggplot(beer) +\n    geom_boxplot()\n\nSpecify the aesthetic\n\nggplot(beer) +\n    geom_boxplot(aes(y = price))\n\n\n\n\n\n\n\n\nNow do it for import/non-import (and we talk about why)\n\nggplot(beer) +\n    geom_boxplot(aes(y = price, x = imported))\n\n\n\n\n\n\n\n\nDescribe findings. Why might prices of imported beers be higher?\nNote what we have done so far prints the plot, can store for later\n\nprice_box &lt;- \n    ggplot(beer) +\n    geom_boxplot(aes(y = price, x = imported))\n\nThen to see the output\n\nprice_box\n\n\n\n\n\n\n\n\n\n\n5 min\n\n\nCreate a box plot comparing the prices across different beer brands.\nSummarize the main insights from the graph in 2 sentences.\n\n\n\nSolution\n\n\n\nggplot(beer) +\n    geom_boxplot(aes(y = price, x = brand))\n\n\n\n\n\n\n\n\n\n\n\nExploring Quantity Sold\n\nHistogram\n\nggplot(beer) +\n    geom_histogram(aes(x = qty))\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\n\nggplot(beer) +\n    geom_histogram(aes(x = qty), binwidth = 5)\n\n\n\n\n\n\n\n\nOR equivalently\n\nggplot(beer) +\n    geom_histogram(aes(x = qty), bins = 40)\n\n\n\n\n\n\n\n\n\n\nDensity Plot\n\nggplot(beer) +\n    geom_density(aes(x = qty))\n\n\n\n\n\n\n\n\n\nggplot(beer) +\n    geom_density(aes(x = qty, fill = imported), alpha = 0.35)\n\n\n\n\n\n\n\n\nExplain the findings …\n\n\n5 min\n\n\nCreate histograms and density plots to visualize the distribution of quantity sold across different beer brands\nCreate histograms and density plots to visualize the distribution of the prices across different beer brands\n\n\n\nSolution\n\n\n\n\n\n\nggplot(beer) +\n    geom_density(aes(x = qty, fill = brand), alpha = 0.35)\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(beer) +\n    geom_density(aes(x = price, fill = brand), alpha = 0.35)\n\n\n\n\n\n\n\n\n\n\n\n\nDetour: Adding Style to our plots\nTHINGS TO CONSIDER:\n\nColor / fill\nThemes\nother geom_ ’s\ntitles\nlabels\nscales\n\nREMARK: leave themes and geom_’s to homework to explore\nWhere we end up in this section\n\nprice_plot &lt;-\n    ggplot(beer) +\n    geom_boxplot(aes(y = price, x = imported, fill = imported)) +\n    scale_y_continuous(\n        breaks = c(3, 4, 5, 6),\n        labels = scales::dollar\n      ) +\n    scale_fill_okabe_ito() +\n    theme(legend.position = \"none\") +\n    labs(y = \"Price\", x = \"Production Location\")\n\nprice_plot\n\n\n\n\n\n\n\n\n\n\n5 min\n\n\nCustomize the sales density plot to use the Okabe-Ito color palette and add axis labels.\n\n\n\nsales_plot &lt;-\n    ggplot(beer) +\n    geom_density(aes(x = qty, fill = imported), \n                 alpha = 0.35\n                 ) +\n    scale_fill_okabe_ito()\n\n\nsales_plot\n\n\n\n\n\n\n\n\n\n\nCreating Demand Curves\nNow, we want to move onto visualizing two dimensions of data, to explore how demand varies with price.\n\nggplot(beer) +\n    geom_point(aes(y = price, x = qty), \n               color = \"steelblue\", \n               alpha = 0.25\n               )\n\n\n\n\n\n\n\n\nNot so pretty as raw data …\nTODO: Now move to log-log- with explanation as to why this is useful\n\nggplot(beer) +\n    geom_point(aes(y = log(price), x = log(qty)), \n               color = \"steelblue\", \n               alpha = 0.25\n               )\n\n\n\n\n\n\n\n\nAn alternative way to do this is:\n\nggplot(beer) +\n    geom_point(aes(y = price, x = qty), \n               color = \"steelblue\", \n               alpha = 0.25\n               ) +\n # Natural log scale for x-axis with meaningful breaks\n  scale_x_continuous(\n    trans = \"log\",\n    breaks = c(1, 2, 5, 10, 20, 50, 100, 200),\n    #labels = scales::comma\n  ) + \n      # Natural log scale for y-axis with meaningful breaks\n  scale_y_continuous(\n    trans = \"log\",\n    breaks = c(3, 4, 5, 6),\n    labels = scales::dollar\n  ) +\n    labs(x = \"Quantity\", y = \"Price\")\n\n\n\n\n\n\n\n\nNote that this preserves the axes as linear scales, but the data is transformed to log scales.\nWe can add a third piece of information to this plot – whether the beer is imported or not\nSeparate by import status\n\nggplot(beer) +\n    geom_point(aes(y = price, x = qty,\n                   color = imported), \n               alpha = 0.25\n               ) +\n # Natural log scale for x-axis with meaningful breaks\n  scale_x_continuous(\n    trans = \"log\",\n    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)#,\n    #labels = scales::comma\n  ) + \n      # Natural log scale for y-axis with meaningful breaks\n  scale_y_continuous(\n    trans = \"log\",\n    breaks = c(3, 4, 5, 6),\n    labels = scales::dollar\n  ) +\n    labs(x = \"Quantity\", y = \"Price\") + \n    scale_color_okabe_ito() +\n    theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\nSometimes we don’t only want to color the points, but have separate plots for different groups of products …\nSeparate plots with faceting\n\nggplot(beer) +\n    geom_point(aes(y = price, x = qty,\n                   color = imported), \n               alpha = 0.25\n               ) +\n # Natural log scale for x-axis with meaningful breaks\n  scale_x_continuous(\n    trans = \"log\",\n    breaks = c(1, 2, 5, 10, 20, 50, 100, 200) #,\n    #labels = scales::comma\n  ) + \n      # Natural log scale for y-axis with meaningful breaks\n  scale_y_continuous(\n    trans = \"log\",\n    breaks = c(3, 4, 5, 6),\n    labels = scales::dollar\n  ) +\n    labs(x = \"Quantity\", y = \"Price\") + \n    facet_wrap(~ imported) +\n    scale_color_okabe_ito() +\n    theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\nNow quick summary of the business insights from this plot.\nUntil now, we’ve always had one layer of geom_ in our plots. ggplot allows us to add more. Let’s do this by adding a demand curve to the plot …\nAdd a demand curve, i.e. add an extra layer\n\nggplot(beer) +\n    geom_point(aes(y = price, x = qty,\n                   color = imported), \n               alpha = 0.25\n               ) +\n    geom_smooth(aes(y = price, x = qty), \n                  method = \"lm\", \n                  color = \"#CC79A7\",\n                  se = TRUE) +\n # Natural log scale for x-axis with meaningful breaks\n  scale_x_continuous(\n    trans = \"log\",\n    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)#,\n    #labels = scales::comma\n  ) + \n      # Natural log scale for y-axis with meaningful breaks\n  scale_y_continuous(\n    trans = \"log\",\n    breaks = c(3, 4, 5, 6),\n    labels = scales::dollar\n  ) +\n    labs(x = \"Quantity\", y = \"Price\") + \n    facet_wrap(~ imported) +\n    scale_color_okabe_ito() +\n    theme(legend.position = \"bottom\")\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nNote we had to write aes twice, if we are going to use the same aesthetics for multiple layers, we can put in the ggplot() function\n\ndemand_by_import &lt;- \n    ggplot(beer,\n       aes(y = price, x = qty,\n           color = imported \n           )\n       ) +\n    geom_point(alpha = 0.25) +\n    geom_smooth(method = \"lm\", \n                  color = \"#CC79A7\",\n                  se = TRUE) +\n # Natural log scale for x-axis with meaningful breaks\n  scale_x_continuous(\n    trans = \"log\",\n    breaks = c(1, 2, 5, 10, 20, 50, 100, 200) #,\n    #labels = scales::comma\n  ) + \n      # Natural log scale for y-axis with meaningful breaks\n  scale_y_continuous(\n    trans = \"log\",\n    breaks = c(3, 4, 5, 6),\n    labels = scales::dollar\n  ) +\n    labs(x = \"Quantity\", y = \"Price\") + \n    facet_wrap(~ imported) +\n    scale_color_okabe_ito() +\n    theme(legend.position = \"bottom\")\n\ndemand_by_import\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nExercise. Do this by brand rather than by import status\n\n\n5 min\n\n\nModify the plot above to create separate subplots for brands rather than import status.\n\n\n\nSolution\n\n\n\ndemand_by_brand &lt;-\n    ggplot(beer,\n        aes(y = log(price), x = log(qty))\n       ) +\n    geom_point(color = \"steelblue\",\n               alpha = 0.25\n               ) +\n    geom_smooth(method = \"lm\", color =  \"#CC79A7\") +\n    facet_wrap(~ brand)\n\ndemand_by_brand\n\n`geom_smooth()` using formula = 'y ~ x'",
+    "title": "4  Data Visualisation for Business Intelligence",
+    "section": "4.4 Visualizing the Data",
+    "text": "4.4 Visualizing the Data\nDetour: Viz principles + ggplot “building”\n\nInvestigating Price Distributions\nSet the Canvas\n\nggplot(beer)\n\n\n\n\n\n\n\n\nChoose a geom\n\nggplot(beer) +\n    geom_boxplot()\n\nSpecify the aesthetic\n\nggplot(beer) +\n    geom_boxplot(aes(y = price))\n\n\n\n\n\n\n\n\nNow do it for import/non-import (and we talk about why)\n\nggplot(beer) +\n    geom_boxplot(aes(y = price, x = imported))\n\n\n\n\n\n\n\n\nDescribe findings. Why might prices of imported beers be higher?\nNote what we have done so far prints the plot, can store for later\n\nprice_box &lt;- \n    ggplot(beer) +\n    geom_boxplot(aes(y = price, x = imported))\n\nThen to see the output\n\nprice_box\n\n\n\n\n\n\n\n\n\n\n5 min\n\n\nCreate a box plot comparing the prices across different beer brands.\nSummarize the main insights from the graph in 2 sentences.\n\n\n\nSolution\n\n\n\nggplot(beer) +\n    geom_boxplot(aes(y = price, x = brand))\n\n\n\n\n\n\n\n\n\n\n\nExploring Quantity Sold\n\nHistogram\n\nggplot(beer) +\n    geom_histogram(aes(x = qty))\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\n\nggplot(beer) +\n    geom_histogram(aes(x = qty), binwidth = 5)\n\n\n\n\n\n\n\n\nOR equivalently\n\nggplot(beer) +\n    geom_histogram(aes(x = qty), bins = 40)\n\n\n\n\n\n\n\n\n\n\nDensity Plot\n\nggplot(beer) +\n    geom_density(aes(x = qty))\n\n\n\n\n\n\n\n\n\nggplot(beer) +\n    geom_density(aes(x = qty, fill = imported), alpha = 0.35)\n\n\n\n\n\n\n\n\nExplain the findings …\n\n\n5 min\n\n\nCreate histograms and density plots to visualize the distribution of quantity sold across different beer brands\nCreate histograms and density plots to visualize the distribution of the prices across different beer brands\n\n\n\nSolution\n\n\n\n\n\n\nggplot(beer) +\n    geom_density(aes(x = qty, fill = brand), alpha = 0.35)\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(beer) +\n    geom_density(aes(x = price, fill = brand), alpha = 0.35)\n\n\n\n\n\n\n\n\n\n\n\n\nDetour: Adding Style to our plots\nTHINGS TO CONSIDER:\n\nColor / fill\nThemes\nother geom_ ’s\ntitles\nlabels\nscales\n\nREMARK: leave themes and geom_’s to homework to explore\nWhere we end up in this section\n\nprice_plot &lt;-\n    ggplot(beer) +\n    geom_boxplot(aes(y = price, x = imported, fill = imported)) +\n    scale_y_continuous(\n        breaks = c(3, 4, 5, 6),\n        labels = scales::dollar\n      ) +\n    scale_fill_okabe_ito() +\n    theme(legend.position = \"none\") +\n    labs(y = \"Price\", x = \"Production Location\")\n\nprice_plot\n\n\n\n\n\n\n\n\n\n\n5 min\n\n\nCustomize the sales density plot to use the Okabe-Ito color palette and add axis labels.\n\n\n\nsales_plot &lt;-\n    ggplot(beer) +\n    geom_density(aes(x = qty, fill = imported), \n                 alpha = 0.35\n                 ) +\n    scale_fill_okabe_ito()\n\n\nsales_plot\n\n\n\n\n\n\n\n\n\n\nCreating Demand Curves\nNow, we want to move onto visualizing two dimensions of data, to explore how demand varies with price.\n\nggplot(beer) +\n    geom_point(aes(y = price, x = qty), \n               color = \"steelblue\", \n               alpha = 0.25\n               )\n\n\n\n\n\n\n\n\nNot so pretty as raw data …\nTODO: Now move to log-log- with explanation as to why this is useful\n\nggplot(beer) +\n    geom_point(aes(y = log(price), x = log(qty)), \n               color = \"steelblue\", \n               alpha = 0.25\n               )\n\n\n\n\n\n\n\n\nAn alternative way to do this is:\n\nggplot(beer) +\n    geom_point(aes(y = price, x = qty), \n               color = \"steelblue\", \n               alpha = 0.25\n               ) +\n # Natural log scale for x-axis with meaningful breaks\n  scale_x_continuous(\n    trans = \"log\",\n    breaks = c(1, 2, 5, 10, 20, 50, 100, 200),\n    #labels = scales::comma\n  ) + \n      # Natural log scale for y-axis with meaningful breaks\n  scale_y_continuous(\n    trans = \"log\",\n    breaks = c(3, 4, 5, 6),\n    labels = scales::dollar\n  ) +\n    labs(x = \"Quantity\", y = \"Price\")\n\n\n\n\n\n\n\n\nNote that this preserves the axes as linear scales, but the data is transformed to log scales.\nWe can add a third piece of information to this plot – whether the beer is imported or not\nSeparate by import status\n\nggplot(beer) +\n    geom_point(aes(y = price, x = qty,\n                   color = imported), \n               alpha = 0.25\n               ) +\n # Natural log scale for x-axis with meaningful breaks\n  scale_x_continuous(\n    trans = \"log\",\n    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)#,\n    #labels = scales::comma\n  ) + \n      # Natural log scale for y-axis with meaningful breaks\n  scale_y_continuous(\n    trans = \"log\",\n    breaks = c(3, 4, 5, 6),\n    labels = scales::dollar\n  ) +\n    labs(x = \"Quantity\", y = \"Price\") + \n    scale_color_okabe_ito() +\n    theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\nSometimes we don’t only want to color the points, but have separate plots for different groups of products …\nSeparate plots with faceting\n\nggplot(beer) +\n    geom_point(aes(y = price, x = qty,\n                   color = imported), \n               alpha = 0.25\n               ) +\n # Natural log scale for x-axis with meaningful breaks\n  scale_x_continuous(\n    trans = \"log\",\n    breaks = c(1, 2, 5, 10, 20, 50, 100, 200) #,\n    #labels = scales::comma\n  ) + \n      # Natural log scale for y-axis with meaningful breaks\n  scale_y_continuous(\n    trans = \"log\",\n    breaks = c(3, 4, 5, 6),\n    labels = scales::dollar\n  ) +\n    labs(x = \"Quantity\", y = \"Price\") + \n    facet_wrap(~ imported) +\n    scale_color_okabe_ito() +\n    theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\nNow quick summary of the business insights from this plot.\nUntil now, we’ve always had one layer of geom_ in our plots. ggplot allows us to add more. Let’s do this by adding a demand curve to the plot …\nAdd a demand curve, i.e. add an extra layer\n\nggplot(beer) +\n    geom_point(aes(y = price, x = qty,\n                   color = imported), \n               alpha = 0.25\n               ) +\n    geom_smooth(aes(y = price, x = qty), \n                  method = \"lm\", \n                  color = \"#CC79A7\",\n                  se = TRUE) +\n # Natural log scale for x-axis with meaningful breaks\n  scale_x_continuous(\n    trans = \"log\",\n    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)#,\n    #labels = scales::comma\n  ) + \n      # Natural log scale for y-axis with meaningful breaks\n  scale_y_continuous(\n    trans = \"log\",\n    breaks = c(3, 4, 5, 6),\n    labels = scales::dollar\n  ) +\n    labs(x = \"Quantity\", y = \"Price\") + \n    facet_wrap(~ imported) +\n    scale_color_okabe_ito() +\n    theme(legend.position = \"bottom\")\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nNote we had to write aes twice, if we are going to use the same aesthetics for multiple layers, we can put in the ggplot() function\n\ndemand_by_import &lt;- \n    ggplot(beer,\n       aes(y = price, x = qty,\n           color = imported \n           )\n       ) +\n    geom_point(alpha = 0.25) +\n    geom_smooth(method = \"lm\", \n                  color = \"#CC79A7\",\n                  se = TRUE) +\n # Natural log scale for x-axis with meaningful breaks\n  scale_x_continuous(\n    trans = \"log\",\n    breaks = c(1, 2, 5, 10, 20, 50, 100, 200) #,\n    #labels = scales::comma\n  ) + \n      # Natural log scale for y-axis with meaningful breaks\n  scale_y_continuous(\n    trans = \"log\",\n    breaks = c(3, 4, 5, 6),\n    labels = scales::dollar\n  ) +\n    labs(x = \"Quantity\", y = \"Price\") + \n    facet_wrap(~ imported) +\n    scale_color_okabe_ito() +\n    theme(legend.position = \"bottom\")\n\ndemand_by_import\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nExercise. Do this by brand rather than by import status\n\n\n5 min\n\n\nModify the plot above to create separate subplots for brands rather than import status.\n\n\n\nSolution\n\n\n\ndemand_by_brand &lt;-\n    ggplot(beer,\n        aes(y = log(price), x = log(qty))\n       ) +\n    geom_point(color = \"steelblue\",\n               alpha = 0.25\n               ) +\n    geom_smooth(method = \"lm\", color =  \"#CC79A7\") +\n    facet_wrap(~ brand)\n\ndemand_by_brand\n\n`geom_smooth()` using formula = 'y ~ x'",
     "crumbs": [
       "Getting Our First Insights from Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
     ]
   },
   {
     "objectID": "insights/data_visualisation.html#bringing-it-all-together-sharing-our-results",
     "href": "insights/data_visualisation.html#bringing-it-all-together-sharing-our-results",
-    "title": "3  Data Visualisation for Business Intelligence",
-    "section": "3.5 Bringing it all together: Sharing Our Results",
-    "text": "3.5 Bringing it all together: Sharing Our Results\nFinal plot. (Still needs some editing to match the first one)\n\ndemand_by_import /\n    (price_plot | sales_plot) + \n      plot_layout(guides = \"collect\") & \n     theme(legend.position = \"bottom\")\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n5 min\n\nWrite 2-3 sentence summary of the main takeaways from the visualization that you could send to a category manager\n\n\n\n10 min\n\n\nConstruct a similar plot to the one we’ve constructed above, but separate the plots by brand rather than import status.\nWrite 2-3 sentence summary of the main takeaways from the visualization that you could send to a category manager",
+    "title": "4  Data Visualisation for Business Intelligence",
+    "section": "4.5 Bringing it all together: Sharing Our Results",
+    "text": "4.5 Bringing it all together: Sharing Our Results\nFinal plot. (Still needs some editing to match the first one)\n\ndemand_by_import /\n    (price_plot | sales_plot) + \n      plot_layout(guides = \"collect\") & \n     theme(legend.position = \"bottom\")\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n5 min\n\nWrite 2-3 sentence summary of the main takeaways from the visualization that you could send to a category manager\n\n\n\n10 min\n\n\nConstruct a similar plot to the one we’ve constructed above, but separate the plots by brand rather than import status.\nWrite 2-3 sentence summary of the main takeaways from the visualization that you could send to a category manager",
     "crumbs": [
       "Getting Our First Insights from Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
     ]
   },
   {
     "objectID": "insights/data_visualisation.html#an-aside-always-visualize-the-data",
     "href": "insights/data_visualisation.html#an-aside-always-visualize-the-data",
-    "title": "3  Data Visualisation for Business Intelligence",
-    "section": "3.6 An Aside: Always visualize the data!",
-    "text": "3.6 An Aside: Always visualize the data!\nWhy have we started with data visualisation? It’s because we believe no matter what business analytics task you perform, you should always start with visualising the data.\nWhy is that the case? Consider the following. We collect 13 data sets.\n\nlibrary(datasauRus)\n\nmy_data &lt;- datasaurus_dozen\n\nNow we look at summary statistics about them:\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Dataset\n                x mean\n                x sd\n                y mean\n                y sd\n              \n        \n        \n        \n                \n                  dino\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  away\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  h_lines\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  v_lines\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  x_shape\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  star\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  high_lines\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  dots\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  circle\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  bullseye\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  slant_up\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  slant_down\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  wide_lines\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n        \n      \n    \n\n\n\nSummary statistics are identical for all datasets. But when we plot them, we see there are very different patterns in each dataset:\n\nggplot(my_data,\n       aes(x = x,\n           y = y)) +\n    geom_point() +\n    facet_wrap(~dataset, ncol = 3)\n\n\n\n\n\n\n\n\nWithout visualising the data, we likely would have missed these very different patterns.",
+    "title": "4  Data Visualisation for Business Intelligence",
+    "section": "4.6 An Aside: Always visualize the data!",
+    "text": "4.6 An Aside: Always visualize the data!\nWhy have we started with data visualisation? It’s because we believe no matter what business analytics task you perform, you should always start with visualising the data.\nWhy is that the case? Consider the following. We collect 13 data sets.\n\nlibrary(datasauRus)\n\nmy_data &lt;- datasaurus_dozen\n\nNow we look at summary statistics about them:\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Dataset\n                x mean\n                x sd\n                y mean\n                y sd\n              \n        \n        \n        \n                \n                  dino\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  away\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  h_lines\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  v_lines\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  x_shape\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  star\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  high_lines\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  dots\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  circle\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  bullseye\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  slant_up\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  slant_down\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n                \n                  wide_lines\n                  54.3\n                  16.8\n                  47.8\n                  26.9\n                \n        \n      \n    \n\n\n\nSummary statistics are identical for all datasets. But when we plot them, we see there are very different patterns in each dataset:\n\nggplot(my_data,\n       aes(x = x,\n           y = y)) +\n    geom_point() +\n    facet_wrap(~dataset, ncol = 3)\n\n\n\n\n\n\n\n\nWithout visualising the data, we likely would have missed these very different patterns.",
     "crumbs": [
       "Getting Our First Insights from Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
     ]
   },
   {
     "objectID": "insights/data_visualisation.html#conclusion",
     "href": "insights/data_visualisation.html#conclusion",
-    "title": "3  Data Visualisation for Business Intelligence",
-    "section": "3.7 Conclusion",
-    "text": "3.7 Conclusion\nWe’ve covered a lot. Two main themes\n\nThe process of creating a ggplot:\n\n\nInitialize the Plot with ggplot() – Define the dataset and aesthetic mappings (aes()).\nAdd Geometric Layers (geom_*) – Choose a geom function to represent the data (e.g., points, bars, lines).\nCustomize the Appearance – Modify labels, themes, colors, and axes.\n(Optional) Add Statistical Transformations and Annotations – Include trend lines, facets, or text annotations.\n\n\nWe’ve highlighted one key principle of effective data visualisation per plot:\n\n\nWith price boxplot: “Choose visualizations appropriate to your question”\nWith density plots: “Color enhances categorical comparison”\nWith demand curves: “Transformations (like log scales) can reveal patterns”\nWith faceting: “Small multiples help compare across groups”\nWith statistical transformations: “Summarizing data (like smoothing or regression) highlights trends”\n\nUsing 1 + 2 together gave us business intelligence … and let us tell stories with data.",
+    "title": "4  Data Visualisation for Business Intelligence",
+    "section": "4.7 Conclusion",
+    "text": "4.7 Conclusion\nWe’ve covered a lot. Two main themes\n\nThe process of creating a ggplot:\n\n\nInitialize the Plot with ggplot() – Define the dataset and aesthetic mappings (aes()).\nAdd Geometric Layers (geom_*) – Choose a geom function to represent the data (e.g., points, bars, lines).\nCustomize the Appearance – Modify labels, themes, colors, and axes.\n(Optional) Add Statistical Transformations and Annotations – Include trend lines, facets, or text annotations.\n\n\nWe’ve highlighted one key principle of effective data visualisation per plot:\n\n\nWith price boxplot: “Choose visualizations appropriate to your question”\nWith density plots: “Color enhances categorical comparison”\nWith demand curves: “Transformations (like log scales) can reveal patterns”\nWith faceting: “Small multiples help compare across groups”\nWith statistical transformations: “Summarizing data (like smoothing or regression) highlights trends”\n\nUsing 1 + 2 together gave us business intelligence … and let us tell stories with data.",
     "crumbs": [
       "Getting Our First Insights from Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
     ]
   },
   {
     "objectID": "insights/data_visualisation.html#your-to-do-list",
     "href": "insights/data_visualisation.html#your-to-do-list",
-    "title": "3  Data Visualisation for Business Intelligence",
-    "section": "3.8 Your To Do List",
-    "text": "3.8 Your To Do List\n…",
+    "title": "4  Data Visualisation for Business Intelligence",
+    "section": "4.8 Your To Do List",
+    "text": "4.8 Your To Do List\n…",
     "crumbs": [
       "Getting Our First Insights from Data",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
     ]
   },
   {
