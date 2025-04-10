@@ -1,0 +1,151 @@
+# Tutorial 1: Business Analytics Skills for Inventory Management {.unnumbered}
+
+
+::: {.callout-tip}
+## Learning Goals {.unnumbered}
+
+By the end of this tutorial, you should be able to:
+
+- Understand how inventory decisions impact David Jones’ operations
+- Draft and critique research questions for an inventory challenge
+- Interpret sales and inventory data for two regions
+- Recognise how descriptive, predictive, and causal perspectives offer different insights
+- Practise communicating findings in a clear, manager-friendly way
+- Reflect on your skills as a business data analyst
+:::
+
+## The Business Challenge
+
+David Jones sells a wide range of seasonal products, including fashion items that see strong swings in demand around holidays like Christmas.
+
+Inventory decisions are especially challenging for seasonal products because:
+
+- Demand can spike unpredictably
+- Promotions and discounts influence customer behaviour
+- Regional preferences can differ
+- Suppliers need advance notice to adjust deliveries
+
+Right now, David Jones is using a **fixed restocking rule**:  
+
+> *Every week, 100 units are delivered to each region, no matter what.*
+
+But with the holiday season approaching, this rigid approach might not be enough.  
+You’ve been asked to review the data and advise the company on how to improve its inventory decisions.
+
+Your task is to:  
+
+- Spot patterns in demand
+- Evaluate the effectiveness of the current restocking rule
+- Recommend improvements to ensure shelves are stocked — but not overstocked
+
+## Prepare these Exercises before Class 
+
+Prepare these exercises before coming to class. Plan to spend 30 minutes on these exercises.
+
+### Exercise 1: What is Inventory Management?
+
+Watch the video "[Inventory Management in 11 minutes](https://www.youtube.com/watch?v=0NOER-Lle-0)" and a write 2–3 sentence summary of what you learned. Try to connect what you hear in the video to the challenge David Jones is facing: what makes inventory management tricky, and why is it so important?
+
+### Exercise 2: Approaches to Inventory Planning 
+
+Read the article, "[A New Approach to Production and Inventory Planning](https://hbr.org/2023/09/a-new-approach-to-production-and-inventory-planning)," and answer the following questions in  2–3 sentences:
+
+(a) What is one key challenge businesses face in managing inventory today?
+(b) How could this apply to a retailer like David Jones, especially during busy seasons like Christmas?
+
+### Exercise 3: Identifying a research question
+Write a research question that could help David Jones improve its inventory decisions.
+
+::: {.callout-tip}
+Try to make your research question clear, specific, and something that could be answered with data. 
+:::
+
+### Exercise 4: Identifying Data 
+If you were working as an analyst at David Jones, what types of data would you want to collect to help manage inventory effectively?
+List at least three kinds of data.
+
+### Exercise 5: Skill Choices 
+Which skills of a business data analyst do you think are most important for this problem?
+
+## In-Class Exercises
+
+You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.
+
+### Exercise 6: Defining a Problem and Crafting Questions
+
+(a) Share your draft research questions with your group.
+(b) Discuss which questions are clear? Which are answerable with data? Which could help David Jones make a better decision?
+(c) Which of the proposed questions is the "best". Explain why.
+
+::: {.callout-tip} 
+## Conversation prompt  
+Are your group's questions descriptive (what happened), predictive (what will happen), or causal (why did it happen)? How does that shape the analysis?
+:::
+
+
+### Exercise 7: Exploring Last Year's Data
+
+The team now wants to use **last year's data** to improve inventory decisions for the upcoming holiday season.
+
+As the new group of analysts in the company, you’ve been asked to review what happened and make recommendations for this year’s strategy.
+
+The data you have to work from are provided below:
+
+
+| Week Commencing | Region    | Starting Inventory | Units Delivered | Units Sold | Ending Inventory | Price (AUD) | Promotion (Y/N) |
+|-----------------|-----------|------------------|----------------|------------|-----------------|-------------|----------------|
+| 25 Nov          | Sydney    | 500              | 100            | 100        | 500             | 50          | N              |
+| 25 Nov          | Melbourne | 500              | 100            | 150        | 450             | 50          | N              |
+| 2 Dec           | Sydney    | 500              | 100            | 180        | 420             | 45          | Y              |
+| 2 Dec           | Melbourne | 450              | 100            | 220        | 330             | 45          | Y              |
+| 9 Dec           | Sydney    | 420              | 100            | 150        | 370             | 45          | Y              |
+| 9 Dec           | Melbourne | 330              | 100            | 100        | 330             | 45          | Y              |
+| 16 Dec          | Sydney    | 370              | 100            | 400        | 70              | 40          | Y (Christmas)  |
+| 16 Dec          | Melbourne | 330              | 100            | 400        | 30              | 40          | Y (Christmas)  |
+| 23 Dec          | Sydney    | 70               | 100            | 120        | 50              | 50          | N              |
+| 23 Dec          | Melbourne | 30               | 100            | 150        | -20 (backorder) | 50          | N              |
+
+Follow the three-step approach below to draw conclusions about what happened in the previous year.
+
+
+#### Step 1: Observe
+(a) What patterns do you notice in sales over time?
+(b) How do price changes and the Christmas promotion relate to changes in sales?
+(c) What differences stand out between Sydney and Melbourne?
+
+#### Step 2: Analyse
+(a) How well is the fixed restocking rule working in each region?
+(b) When did inventory levels become risky?
+(c) Were there signs earlier in the data that could have helped predict this?
+
+####  Step 3: Predict & Explain
+(a) If nothing changes, what do you expect to happen next week?
+(b) What factors might be driving the differences between the two regions?
+(c) What other data would help you explain or predict these patterns more confidently?
+
+### Exercise 8: Planning for This Year's Holiday Season
+
+David Jones’ supplier is asking you to confirm delivery quantities **now**, so they can prepare for the season ahead.
+
+(a) How many units should you order for Sydney and Melbourne for the first week of the holiday season?
+(b) Justify your decision based on last year's patterns and your reasoning. Consider factors like demand trends, regional differences, price effects, and promotion timing.
+(c) Suppose the supplier has limited capacity and can only supply 300 units total for the first week.  How would you allocate this stock between Sydney and Melbourne? What are the risks of your choice?
+
+
+
+### Exercise 9: Presenting to Management
+
+Imagine you are presenting your recommendation on what to order now to David Jones’ management team.
+
+Write 2–3 sentences summarising:
+
+- What you saw in the data from last year
+- What you recommend
+- Why this matters for the business
+
+### Exercise 10: Reflection
+
+(a) Which skills of a business data analyst did you use today?
+(b) Which steps of the business analytics workflow did you go through?
+(c) Did you adopt descriptive, predictive or causal perspectives in your analyses? 
+(d) How did your perspectives differ from other groups and how did this change the approach and results?
