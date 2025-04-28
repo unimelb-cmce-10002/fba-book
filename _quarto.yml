@@ -26,8 +26,8 @@ book:
         - insights/data_analysis.qmd
     - part: "Finding and Storing Data"
       chapters:
-        - data_management/data_collection.qmd
         - data_management/data_storage.qmd
+        - data_management/data_collection.qmd
     - part: "Extracting Deeper Insights from Data"
       chapters:
         - advanced_analytics/data_variation.qmd
@@ -37,7 +37,7 @@ book:
     - part: "Ethics and Privacy"
       chapters:
         - ethics_privacy/ethics.qmd
-        - ethics_privacy/privacy.qmd
+        #- ethics_privacy/privacy.qmd
     - part: "Conclusion"
       chapters:
         - conclusion/conclusion.qmd

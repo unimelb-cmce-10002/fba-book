@@ -1,1 +1,86 @@
-# Storing Data
+# Storing and Using Existing Data
+
+## Why Data Storage Matters in Business Analytics
+- Good data storage is critical for effective analysis and decision-making.
+- Poor storage leads to wasted time, errors, and missed opportunities.
+- Businesses rely on analysts who can find, access, and work with data confidently.
+
+## Best Practices for Storing and Sharing Company Data
+- **Consistency:** Use clear file and folder naming conventions.
+- **Documentation:** Create data dictionaries and basic metadata for datasets.
+- **Security and Access Control:** Protect sensitive information; use permissions wisely.
+- **Version Control and Backups:** Save versions systematically to prevent loss.
+- **Choosing Storage Formats:** Select based on size, structure, and future needs.
+
+> ### FAIR Data: A Gold Standard for Modern Businesses
+> - **Findable:** Can you easily find the data later?
+> - **Accessible:** Is the data stored where authorized users can reach it?
+> - **Interoperable:** Can it work across different software and systems?
+> - **Reusable:** Is there enough documentation for others (or future you) to reuse it?
+>
+> *Good data practices make your work more powerful and extend its impact.*
+
+> ### Privacy Matters
+> - HR, customer, and finance data often contain sensitive information.
+> - Always store data securely and limit access appropriately.
+> - Ethical data handling builds trust and protects individuals.
+
+> ### Data Silos: A Common Organizational Challenge
+> - **Data silos** happen when departments store data separately, without sharing.
+> - Silos cause duplication, inconsistencies, and missed insights.
+> - Good storage and sharing practices can break down silos and create a fuller picture of business performance.
+
+## Case Study Setup: The HR Data Example
+- We will work with a small HR dataset across multiple formats:
+  - **Employees** (e.g., name, department ID, salary ID)
+  - **Departments** (e.g., department ID, department name)
+  - **Salaries** (e.g., salary ID, annual salary amount)
+
+##  Working with Different Data Storage Formats
+
+### CSV / Flat Files
+- **What is CSV?** Plain text with comma-separated values.
+- **Strengths:** Simple, universal, human-readable.
+- **Weaknesses:** No support for nested data, can become large.
+- **How to Load:** `readr::read_csv("employees.csv")`
+- **Mini Analysis:**
+  - Join employee names with departments.
+  - Calculate average salary per department.
+
+### JSON Files
+- **What is JSON?** Structured data format often used for APIs and nested information.
+- **Strengths:** Supports complex, nested data.
+- **Weaknesses:** Can be harder to work with directly in tabular workflows.
+- **How to Load:** `jsonlite::fromJSON("departments.json")`
+- **Mini Analysis:** Same task — join and calculate average salaries.
+
+### Parquet Files
+- **What is Parquet?** A binary, columnar storage format optimized for speed and compression.
+- **Strengths:** Great for large datasets, very fast to read/write.
+- **Weaknesses:** Not human-readable without special tools.
+- **How to Load:** `arrow::read_parquet("salaries.parquet")`
+- **Mini Analysis:** Same task — join and calculate average salaries.
+
+### DuckDB and SQL Databases
+- **What is DuckDB?** An embedded SQL database designed for analytics.
+- **Strengths:** Fast, simple to set up, works well with flat files and Parquet directly.
+- **Weaknesses:** Slight learning curve for SQL basics.
+- **Working with SQL:** DuckDB uses standard SQL, meaning the skills you learn can transfer to other databases like PostgreSQL, MySQL, or SQLite.
+- **How to Connect:**
+  ```r
+  con <- DBI::dbConnect(duckdb::duckdb(), dbdir = "company.duckdb")
+  ```
+- **Query with dplyr:**
+  ```r
+  employees <- tbl(con, "employees")
+  departments <- tbl(con, "departments")
+  salaries <- tbl(con, "salaries")
+  ```
+- **Mini Analysis:** Same task — join and calculate average salaries.
+
+## 5. Summary: Choosing the Right Storage Format for Your Needs
+- CSV: Simple, good for small/medium flat data.
+- JSON: Good when working with nested data.
+- Parquet: Best for large analytical datasets.
+- DuckDB: Best when you want SQL power without server setup.
+- Think about size, structure, access needs, and future compatibility.

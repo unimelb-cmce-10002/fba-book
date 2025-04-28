@@ -1,1 +1,79 @@
 # Causal Analytics
+
+## Why Causality? (General Concepts)
+
+- Business question: *"Spend $2M on advertising, sales go up — did the ad cause it?"*
+- Maybe — but maybe something else changed (competition, seasonality, trends).
+
+### Key Concepts
+- **Omitted Variable Bias**: Other factors affect both treatment and outcome.
+- **Selection Bias**: Customers who saw the ad might already be more interested.
+
+> **Without a clean design, you can't claim causality.**
+
+## Solving the Causality Problem
+
+- **Experiments**: Randomization breaks confounding.
+- **Quasi-Experiments**: Approximate randomization when experiments aren't feasible.
+
+### Key Frameworks
+- **Experiments** (A/B Testing)
+- **Quasi-Experiments** (Difference-in-Differences)
+
+Summary visual: Comparison of Experiments vs. Quasi-Experiments.
+
+## Standard A/B Test Example - PSA Campaign
+
+### Setup
+*Placeholder to describe business context and design of the PSA A/B test.*
+
+### Conceptual Focus
+- Randomization creates comparable groups.
+- Estimate treatment effect as difference in means.
+
+### Hands-on R Exercise
+- Group by treatment.
+- Summarize mean outcomes.
+- Compute difference in means.
+- Bar plot to visualize effects.
+
+### Interpretation
+- Randomized assignment → credible causal claims.
+
+
+## Quasi-Experiment Example - Search Engine Marketing Suspension (Nosko et al.)
+
+### Setup
+*Placeholder to describe business context and design of Nosko et al.'s quasi-experiment.*
+
+### Conceptual Focus
+- Regions not randomized.
+- Pre-existing differences possible.
+- DiD compares changes over time, not levels.
+
+### Hands-on R Exercise
+- Plot trends over time by group.
+- Compute before-after differences.
+- Visualize and interpret the DiD effect.
+
+### Interpretation
+- Parallel trends assumption critical for causal claims.
+
+## Other Quasi-Experimental Approaches (Simple Overview)
+
+Students should be aware that Difference-in-Differences is not the only quasi-experimental tool. Here are a few others:
+
+- **Instrumental Variables (IV):** Use a third variable that affects treatment but not the outcome directly.
+- **Regression Discontinuity Design (RDD):** Compare observations just above and below a cutoff point.
+- **Propensity Score Matching:** Match treated and untreated units with similar observed characteristics.
+- **Synthetic Control Method:** Create a weighted combination of control units to act as a comparison group for a treated unit.
+
+Each has different assumptions and use cases but all aim to approximate experimental conditions.
+
+##  Wrap Up
+
+- Experiments provide the strongest causal claims.
+- Quasi-experiments approximate experiments under assumptions.
+- Business analytics requires causal thinking to make good decisions.
+
+> **Good business decisions aren't just based on what happened — they're based on why it happened.**

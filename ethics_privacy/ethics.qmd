@@ -1,1 +1,159 @@
-# Ethics in Business Analytics
+# Ethics & Privacy in Business Analytics
+
+## Introduction: The Hidden Power of Data
+
+- Modern business analytics can uncover powerful patterns about individuals.
+- With great analytical power comes great ethical responsibility.
+
+**Real-world Example: Target and Pregnancy Prediction (USA)**
+
+- In 2012, Target famously used purchase data (like unscented lotion and vitamins) to predict which customers were likely pregnant — often before their family knew.
+- This led to unintended emotional and privacy harms when marketing materials exposed private information.
+
+**Local Example: COVIDSafe App Privacy Concerns (Australia)**
+
+- Australia's COVIDSafe app, designed to aid contact tracing during COVID-19, faced criticism over unclear privacy protections and data handling transparency.
+- Even with good intentions, lack of trust and technical issues meant low adoption.
+
+> **Conversation Prompt #1:**
+> - *Is it ethical for companies or governments to predict or track sensitive personal information without strong transparency?*
+> - *How important is public trust when using analytics for public health?*
+
+
+## Where Ethical Risks Arise
+
+Three main sources of ethical risk:
+
+### a. Privacy Risks
+
+- Collecting more data than necessary.
+- Combining data in ways users don't expect.
+
+### b. Bias and Fairness Risks
+
+- Data reflects historical biases.
+- Algorithms can unintentionally magnify discrimination.
+
+### c. Manipulation and Trust Risks
+
+- Using knowledge of users' vulnerabilities to push sales.
+- Risk of long-term loss of consumer trust.
+
+**Local Example: TraceTogether Police Access Controversy (Singapore)**
+
+- Singapore’s TraceTogether app initially promised data would be used only for COVID-19 tracing but was later accessed by police.
+- This "scope creep" damaged trust in public institutions.
+
+> **Conversation Prompt #2:**
+> - *Is it worse to unintentionally cause harm through analytics, or to intentionally change how collected data is used?*
+> - *How should businesses and governments manage "scope creep" risks?*
+
+
+## Privacy in Business Analytics
+
+**What counts as private data?**
+
+- Personal Data: name, address.
+- Behavioral Data: search history, location tracking.
+- Inferred Data: predictions about health, finances, emotions.
+
+**Risks to privacy:**
+
+- Small harmless data points can be aggregated into invasive profiles.
+- "Anonymized" datasets are often easily re-identified.
+
+**Ethical Principles:**
+
+- Data Minimization: Collect only necessary data.
+- Transparency: Make data practices easy to understand.
+- Meaningful Consent: Ensure users knowingly agree.
+- Security: Protect against data misuse.
+
+**Local Example: Aadhaar Biometric Database Privacy Issues (India)**
+
+- India's Aadhaar system links biometric data (fingerprints, iris scans) with essential services.
+- Privacy concerns arose due to large-scale data aggregation, leaks, and limited consent for secondary uses.
+
+**Local Example: ACCC Digital Platforms Inquiry (Australia)**
+
+- Following Facebook/Cambridge Analytica, the ACCC investigated how platforms collect and use personal data.
+- Led to recommendations for stronger consumer rights and greater transparency in Australia.
+
+> **Discussion Connection:**
+> - *Massive data systems — whether public or private — demand stronger consent, control, and protections.*
+
+## Fairness, Bias, and Discrimination
+
+**Real-world Example: Amazon's Biased Hiring Algorithm (USA)**
+
+- Amazon developed a hiring algorithm trained on past successful applicants.
+- It downgraded resumes with indicators of being female because past hiring data reflected bias.
+- Amazon scrapped the system after discovering the bias.
+
+**Local Example: Alternative Credit Scoring in Southeast Asia**
+
+- Startups and fintech companies in Southeast Asia are using alternative data sources — such as phone usage, social media behavior, and e-commerce transactions — to create credit scores.
+- Ethical concerns include bias based on non-financial behaviors, lack of transparency about scoring criteria, and limited opportunities for appeal.
+
+**Sources of bias:**
+
+- Historical data.
+- Feature selection.
+- Poor generalization.
+
+**Consequences:**
+
+- Unfair exclusion.
+- Reputation and legal risks.
+
+**Responses:**
+
+- Regular audits.
+- Diverse design teams.
+- Rethink problem framing.
+
+> **Conversation Prompt #3:**
+> - *Should companies use alternative data for critical decisions like loans and hiring?*
+> - *How do we ensure fairness when traditional and alternative data both carry risks?*
+
+## Building Ethical Analytics
+
+**The 5 C's Framework:**
+
+- Consent: Is agreement informed and voluntary?
+- Clarity: Can users easily understand data practices?
+- Control: Can users access and control their data?
+- Care: Are we minimizing harm?
+- Consequences: Are we thinking long-term?
+
+**Building Better Analytics:**
+
+- Apply privacy-by-design principles.
+- Conduct bias testing.
+- Establish ethics review boards.
+- Foster a culture of shared ethical responsibility.
+
+**Local Example: TikTok Algorithm Concerns (Asia/Global)**
+
+- TikTok’s opaque algorithm raises concerns about promoting harmful content and potential political influence.
+- Highlights the importance of transparency and accountability in content recommendation systems.
+
+## The Future Is Yours to Shape
+
+- Analytics can improve lives — or magnify harm.
+- Ethical practice is essential for building trust and fairness.
+
+**Real-world Tieback: Optus and Medibank Data Breaches (Australia)**
+
+- Two major Australian companies suffered massive breaches in 2022, leaking sensitive personal and medical data.
+- These cases underline why strong security and responsible data handling are critical ethical obligations.
+
+**Reflection Questions:**
+
+- Would I feel comfortable if I were the subject?
+- Are there hidden consequences?
+- How can I design to protect dignity and fairness?
+
+**Final Thought:**
+
+> "Analytics shapes the world — and analysts shape analytics."

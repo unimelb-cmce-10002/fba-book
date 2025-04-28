@@ -19,9 +19,46 @@ You'll develop workflows that ensure accuracy, consistency, and reliability — 
 Data is everywhere, but enduring insights are rare. 
 This course will help you transform numbers into knowledge that informs business and society—ethically, responsibly, and effectively.
 
-## Audience and assumed knowledge {.unnumbered}
+## Audience and Assumed Knowledge {.unnumbered}
 
-## Pedagogical approach {.unnumbered}
+This course is designed for **first-year undergraduate students** enrolled in business, commerce, or economics degrees.
+
+We assume students:
+- Have **no prior programming experience**.
+- Have basic numeracy skills (high school level mathematics).
+- Are curious about how data and technology are changing the way businesses operate.
+- Are ready to engage in structured problem-solving and critical thinking.
+
+No specific technical prerequisites are required. Our goal is to meet students where they are and progressively build their skills, confidence, and analytic thinking.
+
+We welcome students from all backgrounds — no prior coding or analytics experience is needed, and we will build every concept step-by-step. Curiosity, patience, and a willingness to engage with new ideas are the most important starting points.
+
+## Learning Goals {.unnumbered}
+
+By the end of this course, students will be able to:
+- Define and explain key concepts in business analytics.
+- Identify different types of business problems and select appropriate analytic approaches.
+- Critically assess data sources and recognize the limitations of data-driven insights.
+- Communicate analytic findings through clear, structured narratives.
+
+## Pedagogical Approach {.unnumbered}
+
+Our teaching philosophy blends three core elements:
+
+1. **Business Challenge First**
+   - Each chapter begins with a real-world business problem or question.
+   - Readers are invited to think creatively and critically about how they would approach the challenge before technical methods are introduced.
+
+2. **Skills of a Business Scientist**
+   - We teach how to combine technical data skills, business judgment, and communication.
+   - Emphasis is placed on asking good questions, interpreting results thoughtfully, and communicating clearly.
+
+3. **Data to Narrative**
+   - Students learn how to move from raw data, through analysis, to actionable insights.
+   - Storytelling is treated as a fundamental analytic skill: interpreting patterns, understanding context, and communicating findings persuasively to decision-makers.
+
+This text is designed to serve both as a foundation for classroom discussion and as a self-contained guide for independent study. Analytics is about exploration and iteration — it is normal to encounter challenges and learn through the process. We encourage a growth mindset: thoughtful questions, careful reasoning, and creative thinking are celebrated throughout the journey into business analytics.
+
 
 ## Software Information & conventions {.unnumbered}
 
