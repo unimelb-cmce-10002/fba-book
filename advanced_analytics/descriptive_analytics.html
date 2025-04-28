@@ -183,14 +183,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Collecting Data</span></span></a>
+  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Storing Data</span></span></a>
+  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collecting Data</span></span></a>
   </div>
 </li>
       </ul>
@@ -242,13 +242,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ethics_privacy/ethics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ethics_privacy/privacy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Privacy &amp; Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics &amp; Privacy in Business Analytics</span></span></a>
   </div>
 </li>
       </ul>
@@ -265,7 +259,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../conclusion/conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
       </ul>
@@ -321,8 +315,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction-to-descriptive-analytics" id="toc-introduction-to-descriptive-analytics" class="nav-link active" data-scroll-target="#introduction-to-descriptive-analytics"><span class="header-section-number">10.1</span> Introduction to Descriptive Analytics</a></li>
+  <li><a href="#case-study-customer-segmentation-for-an-online-retailer" id="toc-case-study-customer-segmentation-for-an-online-retailer" class="nav-link" data-scroll-target="#case-study-customer-segmentation-for-an-online-retailer"><span class="header-section-number">10.2</span> Case Study: Customer Segmentation for an Online Retailer</a></li>
+  <li><a href="#k-means-clustering-grouping-similar-customers" id="toc-k-means-clustering-grouping-similar-customers" class="nav-link" data-scroll-target="#k-means-clustering-grouping-similar-customers"><span class="header-section-number">10.3</span> K-means Clustering: Grouping Similar Customers</a></li>
+  <li><a href="#naive-bayes-describing-patterns-of-response-behavior" id="toc-naive-bayes-describing-patterns-of-response-behavior" class="nav-link" data-scroll-target="#naive-bayes-describing-patterns-of-response-behavior"><span class="header-section-number">10.4</span> Naive Bayes: Describing Patterns of Response Behavior</a></li>
+  <li><a href="#limitations-of-descriptive-analytics" id="toc-limitations-of-descriptive-analytics" class="nav-link" data-scroll-target="#limitations-of-descriptive-analytics"><span class="header-section-number">10.5</span> Limitations of Descriptive Analytics</a>
+  <ul class="collapse">
+  <li><a href="#simulation-simpsons-paradox-in-marketing-campaigns" id="toc-simulation-simpsons-paradox-in-marketing-campaigns" class="nav-link" data-scroll-target="#simulation-simpsons-paradox-in-marketing-campaigns"><span class="header-section-number">10.5.1</span> Simulation: Simpson’s Paradox in Marketing Campaigns</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">10.6</span> Conclusion</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -346,8 +354,174 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><strong>Learning Goals</strong></p>
+<ul>
+<li>Understand what descriptive analytics means in a business context.</li>
+<li>Learn how clustering (K-means) and association modeling (Naive Bayes) can support business decisions.</li>
+<li>Apply both techniques to a real-world marketing case study.</li>
+<li>Practice interpreting and communicating results for business decisions.</li>
+<li>Connect analysis to core marketing concepts like Customer Lifetime Value (CLV) and RFM frameworks.</li>
+<li>Understand the limitations of descriptive analytics.</li>
+</ul>
+<section id="introduction-to-descriptive-analytics" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="introduction-to-descriptive-analytics"><span class="header-section-number">10.1</span> Introduction to Descriptive Analytics</h2>
+<p><strong>Definition:</strong> Descriptive analytics helps businesses summarize and understand what has happened in the past. It provides a foundation for further analysis by transforming raw data into meaningful information.</p>
+<p><strong>In business, descriptive analytics answers questions like:</strong> - Who are my best customers? - What products are selling well? - When do we experience peaks in demand?</p>
+<p><strong>Key Features:</strong> - Focuses on patterns and trends in historical data - Organizes and summarizes information - Supports business storytelling with data</p>
+<blockquote class="blockquote">
+<p><strong>Reminder:</strong> Descriptive analytics helps us “describe” what is happening — we are not yet making predictions or running experiments.</p>
+</blockquote>
+<hr>
+</section>
+<section id="case-study-customer-segmentation-for-an-online-retailer" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="case-study-customer-segmentation-for-an-online-retailer"><span class="header-section-number">10.2</span> Case Study: Customer Segmentation for an Online Retailer</h2>
+<p>Imagine you work for an online retailer. Management wants to: - Better understand different types of customers - Identify which customers are most likely to respond to marketing offers</p>
+<p><strong>Available Data:</strong> (based on Chapman &amp; Feit, 2019) - <strong>Recency</strong>: How recently a customer has made a purchase - <strong>Frequency</strong>: How often the customer purchases - <strong>Monetary Value</strong>: How much money the customer spends - <strong>Response</strong>: Whether the customer responded to a previous marketing offer (yes/no)</p>
+<p>These three features (Recency, Frequency, Monetary Value) together form what is called an <strong>RFM Framework</strong> in marketing.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What is Customer Lifetime Value (CLV)?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Customer Lifetime Value (CLV) estimates how much revenue a customer will bring over their relationship with a company. Customers with high RFM scores are often the most valuable.</p>
+</div>
+</div>
+<p><strong>RFM Framework:</strong> - <strong>Recency</strong>: Customers who purchased recently are more likely to buy again. - <strong>Frequency</strong>: Customers who purchase often are more engaged. - <strong>Monetary</strong>: Customers who spend more are usually more valuable.</p>
+<p>Understanding RFM helps businesses estimate a customer’s future value (CLV).</p>
+<p>This gives us an opportunity to <strong>describe customer behavior</strong>, <strong>cluster customers</strong>, and <strong>summarize patterns of campaign success</strong>!</p>
+<hr>
+</section>
+<section id="k-means-clustering-grouping-similar-customers" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="k-means-clustering-grouping-similar-customers"><span class="header-section-number">10.3</span> K-means Clustering: Grouping Similar Customers</h2>
+<p><strong>Goal:</strong> Find natural “clusters” or groups of customers who behave similarly, without knowing their group labels in advance.</p>
+<p><strong>How K-means Works:</strong> 1. Choose the number of clusters (K). 2. Randomly assign customers to clusters. 3. Calculate the “center” (mean) of each cluster. 4. Reassign customers to the nearest center. 5. Repeat until cluster assignments stop changing.</p>
+<p><strong>Hands-on Walkthrough:</strong> - Start by plotting recency and monetary value. - <strong>Question:</strong> What do you notice about where the points are concentrated? - Apply K-means with different values of K (e.g., K=2, K=3). - <strong>Question:</strong> Does one cluster seem bigger or smaller than the others? - Interpret what each cluster might represent (e.g., “Frequent Big Spenders”, “Infrequent Bargain Shoppers”).</p>
+<p><strong>Simple Analogy:</strong> Imagine you’re sorting socks by color without labels. You group similar colors together by looking at them, not by reading tags.</p>
+<p><strong>Business Use:</strong> - Design different marketing strategies for each cluster. - Identify groups based on RFM behavior linked to potential CLV.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Mini Visual:</strong> Before K-means: random points → After K-means: color-coded clusters.</p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Reminder:</strong> Clustering is descriptive. We are finding patterns, not making predictions.</p>
+</blockquote>
+</section>
+<section id="naive-bayes-describing-patterns-of-response-behavior" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="naive-bayes-describing-patterns-of-response-behavior"><span class="header-section-number">10.4</span> Naive Bayes: Describing Patterns of Response Behavior</h2>
+<p><strong>Goal:</strong> Summarize how customer behavior (recency, frequency, monetary value) is associated with marketing campaign response.</p>
+<p><strong>How Naive Bayes Works:</strong> 1. Use past data where responses are known. 2. Apply Bayes’ Theorem to estimate likelihood of response. 3. Assume features are independent given the response.</p>
+<p><strong>Hands-on Walkthrough:</strong> - Add the “Response” variable. - <strong>Question:</strong> Which features (recency, frequency, or monetary) seem to matter most for responses? - Calculate the likelihood of response based on features. - <strong>Question:</strong> Are customers who buy more frequently more likely to respond? - Summarize the key patterns you observe.</p>
+<p><strong>Simple Analogy:</strong> Imagine you’re guessing whether a customer will respond to an ad based on their past shopping habits — you use simple “rules of thumb” based on each feature separately.</p>
+<p><strong>Business Use:</strong> - Describe which types of customers tend to respond. - Guide marketing strategy based on RFM-linked behavior patterns.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Mini Visual:</strong> Features → Calculate probabilities → Highest likelihood of response.</p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Key Point:</strong> Naive Bayes here is used to describe associations in customer behavior, helping us summarize response patterns.</p>
+</blockquote>
+</section>
+<section id="limitations-of-descriptive-analytics" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="limitations-of-descriptive-analytics"><span class="header-section-number">10.5</span> Limitations of Descriptive Analytics</h2>
+<p>While descriptive analytics is powerful for organizing and summarizing information, it has important <strong>limitations</strong> to keep in mind:</p>
+<ul>
+<li><strong>Describing is not explaining:</strong> Patterns we observe (e.g., frequent buyers respond more) do not prove one thing causes another.</li>
+<li><strong>Hidden patterns:</strong> Sometimes, averages can hide differences between groups. (This is known as <strong>Simpson’s paradox</strong>.)</li>
+<li><strong>Over-simplification:</strong> Summaries and clusters simplify complex behaviors but may miss important details.</li>
+</ul>
+<section id="simulation-simpsons-paradox-in-marketing-campaigns" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="simulation-simpsons-paradox-in-marketing-campaigns"><span class="header-section-number">10.5.1</span> Simulation: Simpson’s Paradox in Marketing Campaigns</h3>
+<p>Imagine you run two marketing campaigns targeting customers based on <strong>purchase frequency</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Customer Group</th>
+<th>Campaign A Response Rate</th>
+<th>Campaign B Response Rate</th>
+<th>Number of Customers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Frequent Buyers</td>
+<td>80%</td>
+<td>70%</td>
+<td>50</td>
+</tr>
+<tr class="even">
+<td>Infrequent Buyers</td>
+<td>30%</td>
+<td>20%</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Among <strong>frequent buyers</strong>, Campaign A performs better.</li>
+<li>Among <strong>infrequent buyers</strong>, Campaign A also performs better.</li>
+</ul>
+<p>Suppose Campaign B heavily targeted frequent buyers:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Customer Group</th>
+<th>Campaign A Customers</th>
+<th>Campaign B Customers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Frequent Buyers</td>
+<td>50</td>
+<td>150</td>
+</tr>
+<tr class="even">
+<td>Infrequent Buyers</td>
+<td>200</td>
+<td>50</td>
+</tr>
+</tbody>
+</table>
+<p>In that case, Campaign B might appear better <strong>overall</strong>, even if it was worse within every segment!</p>
+<blockquote class="blockquote">
+<p><strong>Lesson:</strong> Descriptive summaries (like overall response rates) can be misleading if we don’t account for differences between customer groups. Proper segmentation based on RFM features is critical to correct interpretation.</p>
+</blockquote>
+</section>
+</section>
+<section id="conclusion" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">10.6</span> Conclusion</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

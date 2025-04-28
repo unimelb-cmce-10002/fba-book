@@ -183,14 +183,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Collecting Data</span></span></a>
+  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Storing Data</span></span></a>
+  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collecting Data</span></span></a>
   </div>
 </li>
       </ul>
@@ -242,13 +242,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ethics_privacy/ethics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ethics_privacy/privacy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Privacy &amp; Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics &amp; Privacy in Business Analytics</span></span></a>
   </div>
 </li>
       </ul>
@@ -265,7 +259,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../conclusion/conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
       </ul>
@@ -321,8 +315,37 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#why-causality-general-concepts" id="toc-why-causality-general-concepts" class="nav-link active" data-scroll-target="#why-causality-general-concepts"><span class="header-section-number">11.1</span> Why Causality? (General Concepts)</a>
+  <ul class="collapse">
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><span class="header-section-number">11.1.1</span> Key Concepts</a></li>
+  </ul></li>
+  <li><a href="#solving-the-causality-problem" id="toc-solving-the-causality-problem" class="nav-link" data-scroll-target="#solving-the-causality-problem"><span class="header-section-number">11.2</span> Solving the Causality Problem</a>
+  <ul class="collapse">
+  <li><a href="#key-frameworks" id="toc-key-frameworks" class="nav-link" data-scroll-target="#key-frameworks"><span class="header-section-number">11.2.1</span> Key Frameworks</a></li>
+  </ul></li>
+  <li><a href="#standard-ab-test-example---psa-campaign" id="toc-standard-ab-test-example---psa-campaign" class="nav-link" data-scroll-target="#standard-ab-test-example---psa-campaign"><span class="header-section-number">11.3</span> Standard A/B Test Example - PSA Campaign</a>
+  <ul class="collapse">
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">11.3.1</span> Setup</a></li>
+  <li><a href="#conceptual-focus" id="toc-conceptual-focus" class="nav-link" data-scroll-target="#conceptual-focus"><span class="header-section-number">11.3.2</span> Conceptual Focus</a></li>
+  <li><a href="#hands-on-r-exercise" id="toc-hands-on-r-exercise" class="nav-link" data-scroll-target="#hands-on-r-exercise"><span class="header-section-number">11.3.3</span> Hands-on R Exercise</a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">11.3.4</span> Interpretation</a></li>
+  </ul></li>
+  <li><a href="#quasi-experiment-example---search-engine-marketing-suspension-nosko-et-al." id="toc-quasi-experiment-example---search-engine-marketing-suspension-nosko-et-al." class="nav-link" data-scroll-target="#quasi-experiment-example---search-engine-marketing-suspension-nosko-et-al."><span class="header-section-number">11.4</span> Quasi-Experiment Example - Search Engine Marketing Suspension (Nosko et al.)</a>
+  <ul class="collapse">
+  <li><a href="#setup-1" id="toc-setup-1" class="nav-link" data-scroll-target="#setup-1"><span class="header-section-number">11.4.1</span> Setup</a></li>
+  <li><a href="#conceptual-focus-1" id="toc-conceptual-focus-1" class="nav-link" data-scroll-target="#conceptual-focus-1"><span class="header-section-number">11.4.2</span> Conceptual Focus</a></li>
+  <li><a href="#hands-on-r-exercise-1" id="toc-hands-on-r-exercise-1" class="nav-link" data-scroll-target="#hands-on-r-exercise-1"><span class="header-section-number">11.4.3</span> Hands-on R Exercise</a></li>
+  <li><a href="#interpretation-1" id="toc-interpretation-1" class="nav-link" data-scroll-target="#interpretation-1"><span class="header-section-number">11.4.4</span> Interpretation</a></li>
+  </ul></li>
+  <li><a href="#other-quasi-experimental-approaches-simple-overview" id="toc-other-quasi-experimental-approaches-simple-overview" class="nav-link" data-scroll-target="#other-quasi-experimental-approaches-simple-overview"><span class="header-section-number">11.5</span> Other Quasi-Experimental Approaches (Simple Overview)</a></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">11.6</span> Wrap Up</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -346,8 +369,120 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="why-causality-general-concepts" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="why-causality-general-concepts"><span class="header-section-number">11.1</span> Why Causality? (General Concepts)</h2>
+<ul>
+<li>Business question: <em>“Spend $2M on advertising, sales go up — did the ad cause it?”</em></li>
+<li>Maybe — but maybe something else changed (competition, seasonality, trends).</li>
+</ul>
+<section id="key-concepts" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="key-concepts"><span class="header-section-number">11.1.1</span> Key Concepts</h3>
+<ul>
+<li><strong>Omitted Variable Bias</strong>: Other factors affect both treatment and outcome.</li>
+<li><strong>Selection Bias</strong>: Customers who saw the ad might already be more interested.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Without a clean design, you can’t claim causality.</strong></p>
+</blockquote>
+</section>
+</section>
+<section id="solving-the-causality-problem" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="solving-the-causality-problem"><span class="header-section-number">11.2</span> Solving the Causality Problem</h2>
+<ul>
+<li><strong>Experiments</strong>: Randomization breaks confounding.</li>
+<li><strong>Quasi-Experiments</strong>: Approximate randomization when experiments aren’t feasible.</li>
+</ul>
+<section id="key-frameworks" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="key-frameworks"><span class="header-section-number">11.2.1</span> Key Frameworks</h3>
+<ul>
+<li><strong>Experiments</strong> (A/B Testing)</li>
+<li><strong>Quasi-Experiments</strong> (Difference-in-Differences)</li>
+</ul>
+<p>Summary visual: Comparison of Experiments vs.&nbsp;Quasi-Experiments.</p>
+</section>
+</section>
+<section id="standard-ab-test-example---psa-campaign" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="standard-ab-test-example---psa-campaign"><span class="header-section-number">11.3</span> Standard A/B Test Example - PSA Campaign</h2>
+<section id="setup" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="setup"><span class="header-section-number">11.3.1</span> Setup</h3>
+<p><em>Placeholder to describe business context and design of the PSA A/B test.</em></p>
+</section>
+<section id="conceptual-focus" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="conceptual-focus"><span class="header-section-number">11.3.2</span> Conceptual Focus</h3>
+<ul>
+<li>Randomization creates comparable groups.</li>
+<li>Estimate treatment effect as difference in means.</li>
+</ul>
+</section>
+<section id="hands-on-r-exercise" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="hands-on-r-exercise"><span class="header-section-number">11.3.3</span> Hands-on R Exercise</h3>
+<ul>
+<li>Group by treatment.</li>
+<li>Summarize mean outcomes.</li>
+<li>Compute difference in means.</li>
+<li>Bar plot to visualize effects.</li>
+</ul>
+</section>
+<section id="interpretation" class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="interpretation"><span class="header-section-number">11.3.4</span> Interpretation</h3>
+<ul>
+<li>Randomized assignment → credible causal claims.</li>
+</ul>
+</section>
+</section>
+<section id="quasi-experiment-example---search-engine-marketing-suspension-nosko-et-al." class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="quasi-experiment-example---search-engine-marketing-suspension-nosko-et-al."><span class="header-section-number">11.4</span> Quasi-Experiment Example - Search Engine Marketing Suspension (Nosko et al.)</h2>
+<section id="setup-1" class="level3" data-number="11.4.1">
+<h3 data-number="11.4.1" class="anchored" data-anchor-id="setup-1"><span class="header-section-number">11.4.1</span> Setup</h3>
+<p><em>Placeholder to describe business context and design of Nosko et al.’s quasi-experiment.</em></p>
+</section>
+<section id="conceptual-focus-1" class="level3" data-number="11.4.2">
+<h3 data-number="11.4.2" class="anchored" data-anchor-id="conceptual-focus-1"><span class="header-section-number">11.4.2</span> Conceptual Focus</h3>
+<ul>
+<li>Regions not randomized.</li>
+<li>Pre-existing differences possible.</li>
+<li>DiD compares changes over time, not levels.</li>
+</ul>
+</section>
+<section id="hands-on-r-exercise-1" class="level3" data-number="11.4.3">
+<h3 data-number="11.4.3" class="anchored" data-anchor-id="hands-on-r-exercise-1"><span class="header-section-number">11.4.3</span> Hands-on R Exercise</h3>
+<ul>
+<li>Plot trends over time by group.</li>
+<li>Compute before-after differences.</li>
+<li>Visualize and interpret the DiD effect.</li>
+</ul>
+</section>
+<section id="interpretation-1" class="level3" data-number="11.4.4">
+<h3 data-number="11.4.4" class="anchored" data-anchor-id="interpretation-1"><span class="header-section-number">11.4.4</span> Interpretation</h3>
+<ul>
+<li>Parallel trends assumption critical for causal claims.</li>
+</ul>
+</section>
+</section>
+<section id="other-quasi-experimental-approaches-simple-overview" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="other-quasi-experimental-approaches-simple-overview"><span class="header-section-number">11.5</span> Other Quasi-Experimental Approaches (Simple Overview)</h2>
+<p>Students should be aware that Difference-in-Differences is not the only quasi-experimental tool. Here are a few others:</p>
+<ul>
+<li><strong>Instrumental Variables (IV):</strong> Use a third variable that affects treatment but not the outcome directly.</li>
+<li><strong>Regression Discontinuity Design (RDD):</strong> Compare observations just above and below a cutoff point.</li>
+<li><strong>Propensity Score Matching:</strong> Match treated and untreated units with similar observed characteristics.</li>
+<li><strong>Synthetic Control Method:</strong> Create a weighted combination of control units to act as a comparison group for a treated unit.</li>
+</ul>
+<p>Each has different assumptions and use cases but all aim to approximate experimental conditions.</p>
+</section>
+<section id="wrap-up" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="wrap-up"><span class="header-section-number">11.6</span> Wrap Up</h2>
+<ul>
+<li>Experiments provide the strongest causal claims.</li>
+<li>Quasi-experiments approximate experiments under assumptions.</li>
+<li>Business analytics requires causal thinking to make good decisions.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Good business decisions aren’t just based on what happened — they’re based on why it happened.</strong></p>
+</blockquote>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

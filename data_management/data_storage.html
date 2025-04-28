@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Storing Data – Foundations of Business Analytics</title>
+<title>7&nbsp; Storing and Using Existing Data – Foundations of Business Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../advanced_analytics/data_variation.html" rel="next">
-<link href="../data_management/data_collection.html" rel="prev">
+<link href="../data_management/data_collection.html" rel="next">
+<link href="../insights/data_analysis.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -83,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data_management/data_collection.html">Finding and Storing Data</a></li><li class="breadcrumb-item"><a href="../data_management/data_storage.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Storing Data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data_management/data_storage.html">Finding and Storing Data</a></li><li class="breadcrumb-item"><a href="../data_management/data_storage.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -183,14 +217,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Collecting Data</span></span></a>
+  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Storing Data</span></span></a>
+  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collecting Data</span></span></a>
   </div>
 </li>
       </ul>
@@ -242,13 +276,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ethics_privacy/ethics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ethics_privacy/privacy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Privacy &amp; Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics &amp; Privacy in Business Analytics</span></span></a>
   </div>
 </li>
       </ul>
@@ -265,7 +293,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../conclusion/conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
       </ul>
@@ -321,15 +349,31 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#why-data-storage-matters-in-business-analytics" id="toc-why-data-storage-matters-in-business-analytics" class="nav-link active" data-scroll-target="#why-data-storage-matters-in-business-analytics"><span class="header-section-number">7.1</span> Why Data Storage Matters in Business Analytics</a></li>
+  <li><a href="#best-practices-for-storing-and-sharing-company-data" id="toc-best-practices-for-storing-and-sharing-company-data" class="nav-link" data-scroll-target="#best-practices-for-storing-and-sharing-company-data"><span class="header-section-number">7.2</span> Best Practices for Storing and Sharing Company Data</a></li>
+  <li><a href="#case-study-setup-the-hr-data-example" id="toc-case-study-setup-the-hr-data-example" class="nav-link" data-scroll-target="#case-study-setup-the-hr-data-example"><span class="header-section-number">7.3</span> Case Study Setup: The HR Data Example</a></li>
+  <li><a href="#working-with-different-data-storage-formats" id="toc-working-with-different-data-storage-formats" class="nav-link" data-scroll-target="#working-with-different-data-storage-formats"><span class="header-section-number">7.4</span> Working with Different Data Storage Formats</a>
+  <ul class="collapse">
+  <li><a href="#csv-flat-files" id="toc-csv-flat-files" class="nav-link" data-scroll-target="#csv-flat-files"><span class="header-section-number">7.4.1</span> CSV / Flat Files</a></li>
+  <li><a href="#json-files" id="toc-json-files" class="nav-link" data-scroll-target="#json-files"><span class="header-section-number">7.4.2</span> JSON Files</a></li>
+  <li><a href="#parquet-files" id="toc-parquet-files" class="nav-link" data-scroll-target="#parquet-files"><span class="header-section-number">7.4.3</span> Parquet Files</a></li>
+  <li><a href="#duckdb-and-sql-databases" id="toc-duckdb-and-sql-databases" class="nav-link" data-scroll-target="#duckdb-and-sql-databases"><span class="header-section-number">7.4.4</span> DuckDB and SQL Databases</a></li>
+  </ul></li>
+  <li><a href="#summary-choosing-the-right-storage-format-for-your-needs" id="toc-summary-choosing-the-right-storage-format-for-your-needs" class="nav-link" data-scroll-target="#summary-choosing-the-right-storage-format-for-your-needs"><span class="header-section-number">7.5</span> 5. Summary: Choosing the Right Storage Format for Your Needs</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data_management/data_collection.html">Finding and Storing Data</a></li><li class="breadcrumb-item"><a href="../data_management/data_storage.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Storing Data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data_management/data_storage.html">Finding and Storing Data</a></li><li class="breadcrumb-item"><a href="../data_management/data_storage.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Storing Data</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></h1>
 </div>
 
 
@@ -346,8 +390,126 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="why-data-storage-matters-in-business-analytics" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="why-data-storage-matters-in-business-analytics"><span class="header-section-number">7.1</span> Why Data Storage Matters in Business Analytics</h2>
+<ul>
+<li>Good data storage is critical for effective analysis and decision-making.</li>
+<li>Poor storage leads to wasted time, errors, and missed opportunities.</li>
+<li>Businesses rely on analysts who can find, access, and work with data confidently.</li>
+</ul>
+</section>
+<section id="best-practices-for-storing-and-sharing-company-data" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="best-practices-for-storing-and-sharing-company-data"><span class="header-section-number">7.2</span> Best Practices for Storing and Sharing Company Data</h2>
+<ul>
+<li><strong>Consistency:</strong> Use clear file and folder naming conventions.</li>
+<li><strong>Documentation:</strong> Create data dictionaries and basic metadata for datasets.</li>
+<li><strong>Security and Access Control:</strong> Protect sensitive information; use permissions wisely.</li>
+<li><strong>Version Control and Backups:</strong> Save versions systematically to prevent loss.</li>
+<li><strong>Choosing Storage Formats:</strong> Select based on size, structure, and future needs.</li>
+</ul>
+<blockquote class="blockquote">
+<h3 id="fair-data-a-gold-standard-for-modern-businesses" data-number="7.2.1" class="anchored"><span class="header-section-number">7.2.1</span> FAIR Data: A Gold Standard for Modern Businesses</h3>
+<ul>
+<li><strong>Findable:</strong> Can you easily find the data later?</li>
+<li><strong>Accessible:</strong> Is the data stored where authorized users can reach it?</li>
+<li><strong>Interoperable:</strong> Can it work across different software and systems?</li>
+<li><strong>Reusable:</strong> Is there enough documentation for others (or future you) to reuse it?</li>
+</ul>
+<p><em>Good data practices make your work more powerful and extend its impact.</em></p>
+</blockquote>
+<blockquote class="blockquote">
+<h3 id="privacy-matters" data-number="7.2.2" class="anchored"><span class="header-section-number">7.2.2</span> Privacy Matters</h3>
+<ul>
+<li>HR, customer, and finance data often contain sensitive information.</li>
+<li>Always store data securely and limit access appropriately.</li>
+<li>Ethical data handling builds trust and protects individuals.</li>
+</ul>
+</blockquote>
+<blockquote class="blockquote">
+<h3 id="data-silos-a-common-organizational-challenge" data-number="7.2.3" class="anchored"><span class="header-section-number">7.2.3</span> Data Silos: A Common Organizational Challenge</h3>
+<ul>
+<li><strong>Data silos</strong> happen when departments store data separately, without sharing.</li>
+<li>Silos cause duplication, inconsistencies, and missed insights.</li>
+<li>Good storage and sharing practices can break down silos and create a fuller picture of business performance.</li>
+</ul>
+</blockquote>
+</section>
+<section id="case-study-setup-the-hr-data-example" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="case-study-setup-the-hr-data-example"><span class="header-section-number">7.3</span> Case Study Setup: The HR Data Example</h2>
+<ul>
+<li>We will work with a small HR dataset across multiple formats:
+<ul>
+<li><strong>Employees</strong> (e.g., name, department ID, salary ID)</li>
+<li><strong>Departments</strong> (e.g., department ID, department name)</li>
+<li><strong>Salaries</strong> (e.g., salary ID, annual salary amount)</li>
+</ul></li>
+</ul>
+</section>
+<section id="working-with-different-data-storage-formats" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="working-with-different-data-storage-formats"><span class="header-section-number">7.4</span> Working with Different Data Storage Formats</h2>
+<section id="csv-flat-files" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="csv-flat-files"><span class="header-section-number">7.4.1</span> CSV / Flat Files</h3>
+<ul>
+<li><strong>What is CSV?</strong> Plain text with comma-separated values.</li>
+<li><strong>Strengths:</strong> Simple, universal, human-readable.</li>
+<li><strong>Weaknesses:</strong> No support for nested data, can become large.</li>
+<li><strong>How to Load:</strong> <code>readr::read_csv("employees.csv")</code></li>
+<li><strong>Mini Analysis:</strong>
+<ul>
+<li>Join employee names with departments.</li>
+<li>Calculate average salary per department.</li>
+</ul></li>
+</ul>
+</section>
+<section id="json-files" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="json-files"><span class="header-section-number">7.4.2</span> JSON Files</h3>
+<ul>
+<li><strong>What is JSON?</strong> Structured data format often used for APIs and nested information.</li>
+<li><strong>Strengths:</strong> Supports complex, nested data.</li>
+<li><strong>Weaknesses:</strong> Can be harder to work with directly in tabular workflows.</li>
+<li><strong>How to Load:</strong> <code>jsonlite::fromJSON("departments.json")</code></li>
+<li><strong>Mini Analysis:</strong> Same task — join and calculate average salaries.</li>
+</ul>
+</section>
+<section id="parquet-files" class="level3" data-number="7.4.3">
+<h3 data-number="7.4.3" class="anchored" data-anchor-id="parquet-files"><span class="header-section-number">7.4.3</span> Parquet Files</h3>
+<ul>
+<li><strong>What is Parquet?</strong> A binary, columnar storage format optimized for speed and compression.</li>
+<li><strong>Strengths:</strong> Great for large datasets, very fast to read/write.</li>
+<li><strong>Weaknesses:</strong> Not human-readable without special tools.</li>
+<li><strong>How to Load:</strong> <code>arrow::read_parquet("salaries.parquet")</code></li>
+<li><strong>Mini Analysis:</strong> Same task — join and calculate average salaries.</li>
+</ul>
+</section>
+<section id="duckdb-and-sql-databases" class="level3" data-number="7.4.4">
+<h3 data-number="7.4.4" class="anchored" data-anchor-id="duckdb-and-sql-databases"><span class="header-section-number">7.4.4</span> DuckDB and SQL Databases</h3>
+<ul>
+<li><p><strong>What is DuckDB?</strong> An embedded SQL database designed for analytics.</p></li>
+<li><p><strong>Strengths:</strong> Fast, simple to set up, works well with flat files and Parquet directly.</p></li>
+<li><p><strong>Weaknesses:</strong> Slight learning curve for SQL basics.</p></li>
+<li><p><strong>Working with SQL:</strong> DuckDB uses standard SQL, meaning the skills you learn can transfer to other databases like PostgreSQL, MySQL, or SQLite.</p></li>
+<li><p><strong>How to Connect:</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(duckdb<span class="sc">::</span><span class="fu">duckdb</span>(), <span class="at">dbdir =</span> <span class="st">"company.duckdb"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Query with dplyr:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>employees <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"employees"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>departments <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"departments"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>salaries <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"salaries"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Mini Analysis:</strong> Same task — join and calculate average salaries.</p></li>
+</ul>
+</section>
+</section>
+<section id="summary-choosing-the-right-storage-format-for-your-needs" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="summary-choosing-the-right-storage-format-for-your-needs"><span class="header-section-number">7.5</span> 5. Summary: Choosing the Right Storage Format for Your Needs</h2>
+<ul>
+<li>CSV: Simple, good for small/medium flat data.</li>
+<li>JSON: Good when working with nested data.</li>
+<li>Parquet: Best for large analytical datasets.</li>
+<li>DuckDB: Best when you want SQL power without server setup.</li>
+<li>Think about size, structure, access needs, and future compatibility.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -769,13 +931,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../data_management/data_collection.html" class="pagination-link" aria-label="Collecting Data">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Collecting Data</span></span>
+      <a href="../insights/data_analysis.html" class="pagination-link" aria-label="Analysing Data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analysing Data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../advanced_analytics/data_variation.html" class="pagination-link" aria-label="Finding Variation in Data">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Finding Variation in Data</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../data_management/data_collection.html" class="pagination-link" aria-label="Collecting Data">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collecting Data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

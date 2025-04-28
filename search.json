@@ -13,8 +13,18 @@
     "objectID": "index.html#audience-and-assumed-knowledge",
     "href": "index.html#audience-and-assumed-knowledge",
     "title": "Foundations of Business Analytics",
-    "section": "Audience and assumed knowledge",
-    "text": "Audience and assumed knowledge",
+    "section": "Audience and Assumed Knowledge",
+    "text": "Audience and Assumed Knowledge\nThis course is designed for first-year undergraduate students enrolled in business, commerce, or economics degrees.\nWe assume students: - Have no prior programming experience. - Have basic numeracy skills (high school level mathematics). - Are curious about how data and technology are changing the way businesses operate. - Are ready to engage in structured problem-solving and critical thinking.\nNo specific technical prerequisites are required. Our goal is to meet students where they are and progressively build their skills, confidence, and analytic thinking.\nWe welcome students from all backgrounds — no prior coding or analytics experience is needed, and we will build every concept step-by-step. Curiosity, patience, and a willingness to engage with new ideas are the most important starting points.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#learning-goals",
+    "href": "index.html#learning-goals",
+    "title": "Foundations of Business Analytics",
+    "section": "Learning Goals",
+    "text": "Learning Goals\nBy the end of this course, students will be able to: - Define and explain key concepts in business analytics. - Identify different types of business problems and select appropriate analytic approaches. - Critically assess data sources and recognize the limitations of data-driven insights. - Communicate analytic findings through clear, structured narratives.",
     "crumbs": [
       "Welcome"
     ]
@@ -23,8 +33,8 @@
     "objectID": "index.html#pedagogical-approach",
     "href": "index.html#pedagogical-approach",
     "title": "Foundations of Business Analytics",
-    "section": "Pedagogical approach",
-    "text": "Pedagogical approach",
+    "section": "Pedagogical Approach",
+    "text": "Pedagogical Approach\nOur teaching philosophy blends three core elements:\n\nBusiness Challenge First\n\nEach chapter begins with a real-world business problem or question.\nReaders are invited to think creatively and critically about how they would approach the challenge before technical methods are introduced.\n\nSkills of a Business Scientist\n\nWe teach how to combine technical data skills, business judgment, and communication.\nEmphasis is placed on asking good questions, interpreting results thoughtfully, and communicating clearly.\n\nData to Narrative\n\nStudents learn how to move from raw data, through analysis, to actionable insights.\nStorytelling is treated as a fundamental analytic skill: interpreting patterns, understanding context, and communicating findings persuasively to decision-makers.\n\n\nThis text is designed to serve both as a foundation for classroom discussion and as a self-contained guide for independent study. Analytics is about exploration and iteration — it is normal to encounter challenges and learn through the process. We encourage a growth mindset: thoughtful questions, careful reasoning, and creative thinking are celebrated throughout the journey into business analytics.",
     "crumbs": [
       "Welcome"
     ]
@@ -64,73 +74,95 @@
     "href": "foundations/what_is_business_analytics.html",
     "title": "1  What is Business Analytics?",
     "section": "",
-    "text": "1.1 What is Business Analytics? (And Why Should You Care?)\n(Goal: Inspire students, define the roadmap, and set expectations for the course.)",
+    "text": "1.1 Introduction: Business Decisions in a Changing World",
     "crumbs": [
       "Foundations",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
     ]
   },
   {
-    "objectID": "foundations/what_is_business_analytics.html#what-is-business-analytics-and-why-should-you-care",
-    "href": "foundations/what_is_business_analytics.html#what-is-business-analytics-and-why-should-you-care",
+    "objectID": "foundations/what_is_business_analytics.html#introduction-business-decisions-in-a-changing-world",
+    "href": "foundations/what_is_business_analytics.html#introduction-business-decisions-in-a-changing-world",
     "title": "1  What is Business Analytics?",
     "section": "",
-    "text": "A simple, relatable definition\n\nA quick story/example of how analytics has changed the world (e.g., how Netflix recommends what to watch, how businesses predict demand, or how Spotify curates playlists)",
+    "text": "Businesses have always faced important decisions: hiring, investing, advertising.\nTraditionally, decisions were based on experience or instinct (the “HIPPO” — Highest Paid Person’s Opinion).\nToday, businesses increasingly use data to inform and improve decisions.\nYet, the essence of decision-making — telling a compelling story about what to do next — remains as old as humanity itself.\n\nQuote: “Let the data tell its story.” — Gregory Crawford",
     "crumbs": [
       "Foundations",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
     ]
   },
   {
-    "objectID": "foundations/what_is_business_analytics.html#how-data-shapes-the-world-around-us",
-    "href": "foundations/what_is_business_analytics.html#how-data-shapes-the-world-around-us",
+    "objectID": "foundations/what_is_business_analytics.html#how-business-decision-making-has-evolved",
+    "href": "foundations/what_is_business_analytics.html#how-business-decision-making-has-evolved",
     "title": "1  What is Business Analytics?",
-    "section": "1.2 How Data Shapes the World Around Us",
-    "text": "1.2 How Data Shapes the World Around Us\n\nEveryday examples of data-driven decision-making (e.g., sports, healthcare, marketing, finance)\n\nHow businesses use analytics to stay competitive\n\n\n1.2.1 From Ledgers to AI: A Quick History of Analytics (Sidebar/Callout Box)\n\n1800s: Merchants track sales and inventory using handwritten ledgers.\n\n1920s–1950s: Early statisticians introduce data-driven decision-making in business.\n\n1980s: The rise of computers and Excel makes data analysis more accessible.\n\n2000s: “Big Data” emerges as businesses collect massive amounts of digital information.\n\nToday: AI and machine learning help companies predict trends, personalize experiences, and automate decision-making.\n\n💡 Now, data is everywhere, and businesses need skilled analysts to turn it into insights.",
+    "section": "1.2 How Business Decision-Making Has Evolved",
+    "text": "1.2 How Business Decision-Making Has Evolved\n\nStage 1: Gut Instinct (HIPPO) — Experience, intuition dominate.\nStage 2: Simple Data Support — Basic reports, forecasts support decisions.\nStage 3: Advanced Analytics — Predictive modeling (e.g., machine learning).\nStage 4: Experimentation and Causal Learning — A/B tests, causal analysis guide strategy.\nOptional callout:\n\n\nQuote: “At Netflix, every decision is backed by an experiment.”\n\n\nQuote: “Our success at Amazon is a function of how many experiments we do per year, per month, per week, per day.” — Jeff Bezos",
     "crumbs": [
       "Foundations",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
     ]
   },
   {
-    "objectID": "foundations/what_is_business_analytics.html#from-data-to-narrative-the-human-role-in-analytics",
-    "href": "foundations/what_is_business_analytics.html#from-data-to-narrative-the-human-role-in-analytics",
+    "objectID": "foundations/what_is_business_analytics.html#what-is-business-analytics",
+    "href": "foundations/what_is_business_analytics.html#what-is-business-analytics",
     "title": "1  What is Business Analytics?",
-    "section": "1.3 From Data to Narrative: The Human Role in Analytics",
-    "text": "1.3 From Data to Narrative: The Human Role in Analytics\n\nData alone doesn’t tell a story—we do.\nHumans have always created narratives from observation. (Example: early humans tracking weather patterns → today’s business forecasting.)\nWhy business decisions need storytelling, not just numbers. (Example: A CEO doesn’t want raw data; they want a clear, persuasive insight.)\nGood analysts turn complex data into clear, actionable stories.",
+    "section": "1.3 What is Business Analytics?",
+    "text": "1.3 What is Business Analytics?\n\nDefinition: Using data and models to solve business problems and improve decision-making.\nInvolves:\n\nDefining problems\nCollecting and cleaning data\nAnalyzing data appropriately\nCommunicating insights through persuasive, relatable stories\nActing to create value\n\n\nQuote: “Data are widely available; what is scarce is the ability to extract wisdom from them.” — Hal Varian",
     "crumbs": [
       "Foundations",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
     ]
   },
   {
-    "objectID": "foundations/what_is_business_analytics.html#the-roadmap-for-this-course-what-youll-learn-and-do",
-    "href": "foundations/what_is_business_analytics.html#the-roadmap-for-this-course-what-youll-learn-and-do",
+    "objectID": "foundations/what_is_business_analytics.html#the-three-types-of-business-analytics",
+    "href": "foundations/what_is_business_analytics.html#the-three-types-of-business-analytics",
     "title": "1  What is Business Analytics?",
-    "section": "1.4 The Roadmap for This Course: What You’ll Learn and Do",
-    "text": "1.4 The Roadmap for This Course: What You’ll Learn and Do\n\nOverview of key topics covered in the course\n\nHands-on approach: “You’ll be working with real data, solving real problems”\n\nNo prior experience needed—just a curiosity to explore\n\nHow This Book is Structured:\n\nPart 1: The Foundations of Business Analytics (Chapters 1–3)\n\n…. and so on\n\n\n“By the end of this book, you’ll be able to approach real-world business problems with confidence, using data to drive decisions.”",
+    "section": "1.4 The Three Types of Business Analytics",
+    "text": "1.4 The Three Types of Business Analytics\n\nDescriptive Analytics: What happened? (e.g., sales reports)\nPredictive Analytics: What might happen? (e.g., forecasting next quarter)\nCausal (Prescriptive) Analytics: What will happen if we act? (e.g., pricing experiments)\nKey Insight: Different problems (prediction vs causal) require different tools.",
     "crumbs": [
       "Foundations",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
     ]
   },
   {
-    "objectID": "foundations/what_is_business_analytics.html#the-role-of-a-business-analyst-solving-problems-with-data-communicating-results",
-    "href": "foundations/what_is_business_analytics.html#the-role-of-a-business-analyst-solving-problems-with-data-communicating-results",
+    "objectID": "foundations/what_is_business_analytics.html#the-power-and-limits-of-analytics",
+    "href": "foundations/what_is_business_analytics.html#the-power-and-limits-of-analytics",
     "title": "1  What is Business Analytics?",
-    "section": "1.5 The Role of a Business Analyst: Solving Problems with Data & Communicating results",
-    "text": "1.5 The Role of a Business Analyst: Solving Problems with Data & Communicating results\n\nWhat business analysts actually do in companies\n\nExample: A day in the life of a data-driven decision-maker",
+    "section": "1.5 The Power and Limits of Analytics",
+    "text": "1.5 The Power and Limits of Analytics\n\nGood decisions depend on good data.\n\n\nPrinciple: Garbage in, garbage out.\n\n\nAnalytics cannot eliminate uncertainty or judgment:\n\nModels simplify reality.\nTrade-offs (e.g., short-term vs long-term, efficiency vs innovation) must be managed.\n\nAnalysts must think critically, tell coherent stories from data, and question results.",
     "crumbs": [
       "Foundations",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
     ]
   },
   {
-    "objectID": "foundations/what_is_business_analytics.html#a-quick-demo-seeing-data-in-action-optional-but-engaging",
-    "href": "foundations/what_is_business_analytics.html#a-quick-demo-seeing-data-in-action-optional-but-engaging",
+    "objectID": "foundations/what_is_business_analytics.html#ethics-in-business-analytics",
+    "href": "foundations/what_is_business_analytics.html#ethics-in-business-analytics",
     "title": "1  What is Business Analytics?",
-    "section": "1.6 A Quick Demo: Seeing Data in Action (Optional, but engaging!)",
-    "text": "1.6 A Quick Demo: Seeing Data in Action (Optional, but engaging!)\n\nA simple visualization or interactive example (e.g., “Let’s look at a dataset—can we spot a pattern?”)",
+    "section": "1.6 Ethics in Business Analytics",
+    "text": "1.6 Ethics in Business Analytics\n\nData use raises ethical responsibilities:\n\nAvoid bias.\nProtect privacy.\nPromote fairness.\n\nEthical analytics supports sustainable and responsible business.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/what_is_business_analytics.html#examples-of-business-analytics-in-action",
+    "href": "foundations/what_is_business_analytics.html#examples-of-business-analytics-in-action",
+    "title": "1  What is Business Analytics?",
+    "section": "1.7 Examples of Business Analytics in Action",
+    "text": "1.7 Examples of Business Analytics in Action\n\n\n\n\n\n\n\n\n\nBusiness Area\nDescriptive\nPredictive\nCausal\n\n\n\n\nSales\nHow much did we sell last quarter?\nWhat will sales be next quarter?\nWhat if we change pricing?\n\n\nMarketing\nWho clicked our ads?\nWho will buy next?\nWhat if we target a different segment?\n\n\nHiring\nHow many applicants applied?\nWho will accept our offer?\nWhat if we change recruitment practices?\n\n\nFinance\nWhat was our cash flow last quarter?\nWill we meet next quarter’s revenue goals?\nWhat happens if we change credit policies?\n\n\nAccounting\nWhat were our expenses last month?\nWhat costs will rise next year?\nWhat happens if we automate reporting?\n\n\nSupply Chain\nHow many units were delivered on time?\nWhere will delays occur next month?\nWhat if we switch suppliers?",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
+    ]
+  },
+  {
+    "objectID": "foundations/what_is_business_analytics.html#becoming-a-business-analyst-the-interpreter-role",
+    "href": "foundations/what_is_business_analytics.html#becoming-a-business-analyst-the-interpreter-role",
+    "title": "1  What is Business Analytics?",
+    "section": "1.8 Becoming a Business Analyst: The Interpreter Role",
+    "text": "1.8 Becoming a Business Analyst: The Interpreter Role\n\nBusiness analysts are “interpreters” between data and decision-makers.\nHumans are natural storytellers — since ancient times, stories have been how we made sense of the world.\nToday’s analysts continue this tradition: using data to tell clear, truthful, and compelling stories to guide action.\nKey skills:\n\nBusiness understanding\nData analysis\nCommunication and storytelling\n\n\nQuote: “MBAs who have good business intuition but also speak the language of statisticians are rock stars.” — Susan Athey\n\nTeamwork is essential — collaboration across data engineers, analysts, business owners.\nThe goal: help businesses understand their world and act wisely.",
     "crumbs": [
       "Foundations",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
@@ -140,8 +172,8 @@
     "objectID": "foundations/what_is_business_analytics.html#how-to-approach-this-course-and-have-fun-with-it",
     "href": "foundations/what_is_business_analytics.html#how-to-approach-this-course-and-have-fun-with-it",
     "title": "1  What is Business Analytics?",
-    "section": "1.7 How to Approach This Course (And Have Fun with It!)",
-    "text": "1.7 How to Approach This Course (And Have Fun with It!)\n\nGrowth mindset: It’s okay to not know things at first\n\nAsk questions, experiment, and think critically",
+    "section": "1.9 How to Approach This Course (And Have Fun with It!)",
+    "text": "1.9 How to Approach This Course (And Have Fun with It!)\n\nIn this course, we move from data to narrative.\nWe focus not only on analyzing data but also on telling stories that help businesses make better decisions.\nWe blend technical skills, business thinking, and communication.\nOur goal: to help you think like a “business scientist” — curious, critical, and action-oriented.\nGrowth mindset: It’s okay to not know things at first\n\nAsk questions, experiment, and think critically",
     "crumbs": [
       "Foundations",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
@@ -151,8 +183,8 @@
     "objectID": "foundations/what_is_business_analytics.html#whats-next",
     "href": "foundations/what_is_business_analytics.html#whats-next",
     "title": "1  What is Business Analytics?",
-    "section": "1.8 What’s Next?",
-    "text": "1.8 What’s Next?\n\nTease Chapter 2: “Next, we’ll explore the key skills that make a great business analyst.”",
+    "section": "1.10 What’s Next?",
+    "text": "1.10 What’s Next?\n\nTease Chapter 2: “Next, we’ll explore the key skills that make a great business analyst.”",
     "crumbs": [
       "Foundations",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>What is Business Analytics?</span>"
@@ -376,6 +408,303 @@
     "crumbs": [
       "Getting Our First Insights from Data",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Visualisation for Business Intelligence</span>"
+    ]
+  },
+  {
+    "objectID": "data_management/data_storage.html",
+    "href": "data_management/data_storage.html",
+    "title": "7  Storing and Using Existing Data",
+    "section": "",
+    "text": "7.1 Why Data Storage Matters in Business Analytics",
+    "crumbs": [
+      "Finding and Storing Data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Storing and Using Existing Data</span>"
+    ]
+  },
+  {
+    "objectID": "data_management/data_storage.html#why-data-storage-matters-in-business-analytics",
+    "href": "data_management/data_storage.html#why-data-storage-matters-in-business-analytics",
+    "title": "7  Storing and Using Existing Data",
+    "section": "",
+    "text": "Good data storage is critical for effective analysis and decision-making.\nPoor storage leads to wasted time, errors, and missed opportunities.\nBusinesses rely on analysts who can find, access, and work with data confidently.",
+    "crumbs": [
+      "Finding and Storing Data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Storing and Using Existing Data</span>"
+    ]
+  },
+  {
+    "objectID": "data_management/data_storage.html#best-practices-for-storing-and-sharing-company-data",
+    "href": "data_management/data_storage.html#best-practices-for-storing-and-sharing-company-data",
+    "title": "7  Storing and Using Existing Data",
+    "section": "7.2 Best Practices for Storing and Sharing Company Data",
+    "text": "7.2 Best Practices for Storing and Sharing Company Data\n\nConsistency: Use clear file and folder naming conventions.\nDocumentation: Create data dictionaries and basic metadata for datasets.\nSecurity and Access Control: Protect sensitive information; use permissions wisely.\nVersion Control and Backups: Save versions systematically to prevent loss.\nChoosing Storage Formats: Select based on size, structure, and future needs.\n\n\n7.2.1 FAIR Data: A Gold Standard for Modern Businesses\n\nFindable: Can you easily find the data later?\nAccessible: Is the data stored where authorized users can reach it?\nInteroperable: Can it work across different software and systems?\nReusable: Is there enough documentation for others (or future you) to reuse it?\n\nGood data practices make your work more powerful and extend its impact.\n\n\n7.2.2 Privacy Matters\n\nHR, customer, and finance data often contain sensitive information.\nAlways store data securely and limit access appropriately.\nEthical data handling builds trust and protects individuals.\n\n\n\n7.2.3 Data Silos: A Common Organizational Challenge\n\nData silos happen when departments store data separately, without sharing.\nSilos cause duplication, inconsistencies, and missed insights.\nGood storage and sharing practices can break down silos and create a fuller picture of business performance.",
+    "crumbs": [
+      "Finding and Storing Data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Storing and Using Existing Data</span>"
+    ]
+  },
+  {
+    "objectID": "data_management/data_storage.html#case-study-setup-the-hr-data-example",
+    "href": "data_management/data_storage.html#case-study-setup-the-hr-data-example",
+    "title": "7  Storing and Using Existing Data",
+    "section": "7.3 Case Study Setup: The HR Data Example",
+    "text": "7.3 Case Study Setup: The HR Data Example\n\nWe will work with a small HR dataset across multiple formats:\n\nEmployees (e.g., name, department ID, salary ID)\nDepartments (e.g., department ID, department name)\nSalaries (e.g., salary ID, annual salary amount)",
+    "crumbs": [
+      "Finding and Storing Data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Storing and Using Existing Data</span>"
+    ]
+  },
+  {
+    "objectID": "data_management/data_storage.html#working-with-different-data-storage-formats",
+    "href": "data_management/data_storage.html#working-with-different-data-storage-formats",
+    "title": "7  Storing and Using Existing Data",
+    "section": "7.4 Working with Different Data Storage Formats",
+    "text": "7.4 Working with Different Data Storage Formats\n\n7.4.1 CSV / Flat Files\n\nWhat is CSV? Plain text with comma-separated values.\nStrengths: Simple, universal, human-readable.\nWeaknesses: No support for nested data, can become large.\nHow to Load: readr::read_csv(\"employees.csv\")\nMini Analysis:\n\nJoin employee names with departments.\nCalculate average salary per department.\n\n\n\n\n7.4.2 JSON Files\n\nWhat is JSON? Structured data format often used for APIs and nested information.\nStrengths: Supports complex, nested data.\nWeaknesses: Can be harder to work with directly in tabular workflows.\nHow to Load: jsonlite::fromJSON(\"departments.json\")\nMini Analysis: Same task — join and calculate average salaries.\n\n\n\n7.4.3 Parquet Files\n\nWhat is Parquet? A binary, columnar storage format optimized for speed and compression.\nStrengths: Great for large datasets, very fast to read/write.\nWeaknesses: Not human-readable without special tools.\nHow to Load: arrow::read_parquet(\"salaries.parquet\")\nMini Analysis: Same task — join and calculate average salaries.\n\n\n\n7.4.4 DuckDB and SQL Databases\n\nWhat is DuckDB? An embedded SQL database designed for analytics.\nStrengths: Fast, simple to set up, works well with flat files and Parquet directly.\nWeaknesses: Slight learning curve for SQL basics.\nWorking with SQL: DuckDB uses standard SQL, meaning the skills you learn can transfer to other databases like PostgreSQL, MySQL, or SQLite.\nHow to Connect:\ncon &lt;- DBI::dbConnect(duckdb::duckdb(), dbdir = \"company.duckdb\")\nQuery with dplyr:\nemployees &lt;- tbl(con, \"employees\")\ndepartments &lt;- tbl(con, \"departments\")\nsalaries &lt;- tbl(con, \"salaries\")\nMini Analysis: Same task — join and calculate average salaries.",
+    "crumbs": [
+      "Finding and Storing Data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Storing and Using Existing Data</span>"
+    ]
+  },
+  {
+    "objectID": "data_management/data_storage.html#summary-choosing-the-right-storage-format-for-your-needs",
+    "href": "data_management/data_storage.html#summary-choosing-the-right-storage-format-for-your-needs",
+    "title": "7  Storing and Using Existing Data",
+    "section": "7.5 5. Summary: Choosing the Right Storage Format for Your Needs",
+    "text": "7.5 5. Summary: Choosing the Right Storage Format for Your Needs\n\nCSV: Simple, good for small/medium flat data.\nJSON: Good when working with nested data.\nParquet: Best for large analytical datasets.\nDuckDB: Best when you want SQL power without server setup.\nThink about size, structure, access needs, and future compatibility.",
+    "crumbs": [
+      "Finding and Storing Data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Storing and Using Existing Data</span>"
+    ]
+  },
+  {
+    "objectID": "advanced_analytics/descriptive_analytics.html",
+    "href": "advanced_analytics/descriptive_analytics.html",
+    "title": "10  Descriptive Analytics",
+    "section": "",
+    "text": "10.1 Introduction to Descriptive Analytics\nLearning Goals\nDefinition: Descriptive analytics helps businesses summarize and understand what has happened in the past. It provides a foundation for further analysis by transforming raw data into meaningful information.\nIn business, descriptive analytics answers questions like: - Who are my best customers? - What products are selling well? - When do we experience peaks in demand?\nKey Features: - Focuses on patterns and trends in historical data - Organizes and summarizes information - Supports business storytelling with data",
+    "crumbs": [
+      "Extracting Deeper Insights from Data",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Descriptive Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "advanced_analytics/descriptive_analytics.html#introduction-to-descriptive-analytics",
+    "href": "advanced_analytics/descriptive_analytics.html#introduction-to-descriptive-analytics",
+    "title": "10  Descriptive Analytics",
+    "section": "",
+    "text": "Reminder: Descriptive analytics helps us “describe” what is happening — we are not yet making predictions or running experiments.",
+    "crumbs": [
+      "Extracting Deeper Insights from Data",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Descriptive Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "advanced_analytics/descriptive_analytics.html#case-study-customer-segmentation-for-an-online-retailer",
+    "href": "advanced_analytics/descriptive_analytics.html#case-study-customer-segmentation-for-an-online-retailer",
+    "title": "10  Descriptive Analytics",
+    "section": "10.2 Case Study: Customer Segmentation for an Online Retailer",
+    "text": "10.2 Case Study: Customer Segmentation for an Online Retailer\nImagine you work for an online retailer. Management wants to: - Better understand different types of customers - Identify which customers are most likely to respond to marketing offers\nAvailable Data: (based on Chapman & Feit, 2019) - Recency: How recently a customer has made a purchase - Frequency: How often the customer purchases - Monetary Value: How much money the customer spends - Response: Whether the customer responded to a previous marketing offer (yes/no)\nThese three features (Recency, Frequency, Monetary Value) together form what is called an RFM Framework in marketing.\n\n\n\n\n\n\nWhat is Customer Lifetime Value (CLV)?\n\n\n\nCustomer Lifetime Value (CLV) estimates how much revenue a customer will bring over their relationship with a company. Customers with high RFM scores are often the most valuable.\n\n\nRFM Framework: - Recency: Customers who purchased recently are more likely to buy again. - Frequency: Customers who purchase often are more engaged. - Monetary: Customers who spend more are usually more valuable.\nUnderstanding RFM helps businesses estimate a customer’s future value (CLV).\nThis gives us an opportunity to describe customer behavior, cluster customers, and summarize patterns of campaign success!",
+    "crumbs": [
+      "Extracting Deeper Insights from Data",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Descriptive Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "advanced_analytics/descriptive_analytics.html#k-means-clustering-grouping-similar-customers",
+    "href": "advanced_analytics/descriptive_analytics.html#k-means-clustering-grouping-similar-customers",
+    "title": "10  Descriptive Analytics",
+    "section": "10.3 K-means Clustering: Grouping Similar Customers",
+    "text": "10.3 K-means Clustering: Grouping Similar Customers\nGoal: Find natural “clusters” or groups of customers who behave similarly, without knowing their group labels in advance.\nHow K-means Works: 1. Choose the number of clusters (K). 2. Randomly assign customers to clusters. 3. Calculate the “center” (mean) of each cluster. 4. Reassign customers to the nearest center. 5. Repeat until cluster assignments stop changing.\nHands-on Walkthrough: - Start by plotting recency and monetary value. - Question: What do you notice about where the points are concentrated? - Apply K-means with different values of K (e.g., K=2, K=3). - Question: Does one cluster seem bigger or smaller than the others? - Interpret what each cluster might represent (e.g., “Frequent Big Spenders”, “Infrequent Bargain Shoppers”).\nSimple Analogy: Imagine you’re sorting socks by color without labels. You group similar colors together by looking at them, not by reading tags.\nBusiness Use: - Design different marketing strategies for each cluster. - Identify groups based on RFM behavior linked to potential CLV.\n\n\n\n\n\n\nTip\n\n\n\nMini Visual: Before K-means: random points → After K-means: color-coded clusters.\n\n\n\nReminder: Clustering is descriptive. We are finding patterns, not making predictions.",
+    "crumbs": [
+      "Extracting Deeper Insights from Data",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Descriptive Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "advanced_analytics/descriptive_analytics.html#naive-bayes-describing-patterns-of-response-behavior",
+    "href": "advanced_analytics/descriptive_analytics.html#naive-bayes-describing-patterns-of-response-behavior",
+    "title": "10  Descriptive Analytics",
+    "section": "10.4 Naive Bayes: Describing Patterns of Response Behavior",
+    "text": "10.4 Naive Bayes: Describing Patterns of Response Behavior\nGoal: Summarize how customer behavior (recency, frequency, monetary value) is associated with marketing campaign response.\nHow Naive Bayes Works: 1. Use past data where responses are known. 2. Apply Bayes’ Theorem to estimate likelihood of response. 3. Assume features are independent given the response.\nHands-on Walkthrough: - Add the “Response” variable. - Question: Which features (recency, frequency, or monetary) seem to matter most for responses? - Calculate the likelihood of response based on features. - Question: Are customers who buy more frequently more likely to respond? - Summarize the key patterns you observe.\nSimple Analogy: Imagine you’re guessing whether a customer will respond to an ad based on their past shopping habits — you use simple “rules of thumb” based on each feature separately.\nBusiness Use: - Describe which types of customers tend to respond. - Guide marketing strategy based on RFM-linked behavior patterns.\n\n\n\n\n\n\nTip\n\n\n\nMini Visual: Features → Calculate probabilities → Highest likelihood of response.\n\n\n\nKey Point: Naive Bayes here is used to describe associations in customer behavior, helping us summarize response patterns.",
+    "crumbs": [
+      "Extracting Deeper Insights from Data",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Descriptive Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "advanced_analytics/descriptive_analytics.html#limitations-of-descriptive-analytics",
+    "href": "advanced_analytics/descriptive_analytics.html#limitations-of-descriptive-analytics",
+    "title": "10  Descriptive Analytics",
+    "section": "10.5 Limitations of Descriptive Analytics",
+    "text": "10.5 Limitations of Descriptive Analytics\nWhile descriptive analytics is powerful for organizing and summarizing information, it has important limitations to keep in mind:\n\nDescribing is not explaining: Patterns we observe (e.g., frequent buyers respond more) do not prove one thing causes another.\nHidden patterns: Sometimes, averages can hide differences between groups. (This is known as Simpson’s paradox.)\nOver-simplification: Summaries and clusters simplify complex behaviors but may miss important details.\n\n\n10.5.1 Simulation: Simpson’s Paradox in Marketing Campaigns\nImagine you run two marketing campaigns targeting customers based on purchase frequency:\n\n\n\n\n\n\n\n\n\nCustomer Group\nCampaign A Response Rate\nCampaign B Response Rate\nNumber of Customers\n\n\n\n\nFrequent Buyers\n80%\n70%\n50\n\n\nInfrequent Buyers\n30%\n20%\n200\n\n\n\n\nAmong frequent buyers, Campaign A performs better.\nAmong infrequent buyers, Campaign A also performs better.\n\nSuppose Campaign B heavily targeted frequent buyers:\n\n\n\nCustomer Group\nCampaign A Customers\nCampaign B Customers\n\n\n\n\nFrequent Buyers\n50\n150\n\n\nInfrequent Buyers\n200\n50\n\n\n\nIn that case, Campaign B might appear better overall, even if it was worse within every segment!\n\nLesson: Descriptive summaries (like overall response rates) can be misleading if we don’t account for differences between customer groups. Proper segmentation based on RFM features is critical to correct interpretation.",
+    "crumbs": [
+      "Extracting Deeper Insights from Data",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Descriptive Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "advanced_analytics/descriptive_analytics.html#conclusion",
+    "href": "advanced_analytics/descriptive_analytics.html#conclusion",
+    "title": "10  Descriptive Analytics",
+    "section": "10.6 Conclusion",
+    "text": "10.6 Conclusion",
+    "crumbs": [
+      "Extracting Deeper Insights from Data",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Descriptive Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "advanced_analytics/causal_analytics.html",
+    "href": "advanced_analytics/causal_analytics.html",
+    "title": "11  Causal Analytics",
+    "section": "",
+    "text": "11.1 Why Causality? (General Concepts)",
+    "crumbs": [
+      "Extracting Deeper Insights from Data",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Causal Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "advanced_analytics/causal_analytics.html#why-causality-general-concepts",
+    "href": "advanced_analytics/causal_analytics.html#why-causality-general-concepts",
+    "title": "11  Causal Analytics",
+    "section": "",
+    "text": "Business question: “Spend $2M on advertising, sales go up — did the ad cause it?”\nMaybe — but maybe something else changed (competition, seasonality, trends).\n\n\n11.1.1 Key Concepts\n\nOmitted Variable Bias: Other factors affect both treatment and outcome.\nSelection Bias: Customers who saw the ad might already be more interested.\n\n\nWithout a clean design, you can’t claim causality.",
+    "crumbs": [
+      "Extracting Deeper Insights from Data",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Causal Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "advanced_analytics/causal_analytics.html#solving-the-causality-problem",
+    "href": "advanced_analytics/causal_analytics.html#solving-the-causality-problem",
+    "title": "11  Causal Analytics",
+    "section": "11.2 Solving the Causality Problem",
+    "text": "11.2 Solving the Causality Problem\n\nExperiments: Randomization breaks confounding.\nQuasi-Experiments: Approximate randomization when experiments aren’t feasible.\n\n\n11.2.1 Key Frameworks\n\nExperiments (A/B Testing)\nQuasi-Experiments (Difference-in-Differences)\n\nSummary visual: Comparison of Experiments vs. Quasi-Experiments.",
+    "crumbs": [
+      "Extracting Deeper Insights from Data",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Causal Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "advanced_analytics/causal_analytics.html#standard-ab-test-example---psa-campaign",
+    "href": "advanced_analytics/causal_analytics.html#standard-ab-test-example---psa-campaign",
+    "title": "11  Causal Analytics",
+    "section": "11.3 Standard A/B Test Example - PSA Campaign",
+    "text": "11.3 Standard A/B Test Example - PSA Campaign\n\n11.3.1 Setup\nPlaceholder to describe business context and design of the PSA A/B test.\n\n\n11.3.2 Conceptual Focus\n\nRandomization creates comparable groups.\nEstimate treatment effect as difference in means.\n\n\n\n11.3.3 Hands-on R Exercise\n\nGroup by treatment.\nSummarize mean outcomes.\nCompute difference in means.\nBar plot to visualize effects.\n\n\n\n11.3.4 Interpretation\n\nRandomized assignment → credible causal claims.",
+    "crumbs": [
+      "Extracting Deeper Insights from Data",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Causal Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "advanced_analytics/causal_analytics.html#quasi-experiment-example---search-engine-marketing-suspension-nosko-et-al.",
+    "href": "advanced_analytics/causal_analytics.html#quasi-experiment-example---search-engine-marketing-suspension-nosko-et-al.",
+    "title": "11  Causal Analytics",
+    "section": "11.4 Quasi-Experiment Example - Search Engine Marketing Suspension (Nosko et al.)",
+    "text": "11.4 Quasi-Experiment Example - Search Engine Marketing Suspension (Nosko et al.)\n\n11.4.1 Setup\nPlaceholder to describe business context and design of Nosko et al.’s quasi-experiment.\n\n\n11.4.2 Conceptual Focus\n\nRegions not randomized.\nPre-existing differences possible.\nDiD compares changes over time, not levels.\n\n\n\n11.4.3 Hands-on R Exercise\n\nPlot trends over time by group.\nCompute before-after differences.\nVisualize and interpret the DiD effect.\n\n\n\n11.4.4 Interpretation\n\nParallel trends assumption critical for causal claims.",
+    "crumbs": [
+      "Extracting Deeper Insights from Data",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Causal Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "advanced_analytics/causal_analytics.html#other-quasi-experimental-approaches-simple-overview",
+    "href": "advanced_analytics/causal_analytics.html#other-quasi-experimental-approaches-simple-overview",
+    "title": "11  Causal Analytics",
+    "section": "11.5 Other Quasi-Experimental Approaches (Simple Overview)",
+    "text": "11.5 Other Quasi-Experimental Approaches (Simple Overview)\nStudents should be aware that Difference-in-Differences is not the only quasi-experimental tool. Here are a few others:\n\nInstrumental Variables (IV): Use a third variable that affects treatment but not the outcome directly.\nRegression Discontinuity Design (RDD): Compare observations just above and below a cutoff point.\nPropensity Score Matching: Match treated and untreated units with similar observed characteristics.\nSynthetic Control Method: Create a weighted combination of control units to act as a comparison group for a treated unit.\n\nEach has different assumptions and use cases but all aim to approximate experimental conditions.",
+    "crumbs": [
+      "Extracting Deeper Insights from Data",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Causal Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "advanced_analytics/causal_analytics.html#wrap-up",
+    "href": "advanced_analytics/causal_analytics.html#wrap-up",
+    "title": "11  Causal Analytics",
+    "section": "11.6 Wrap Up",
+    "text": "11.6 Wrap Up\n\nExperiments provide the strongest causal claims.\nQuasi-experiments approximate experiments under assumptions.\nBusiness analytics requires causal thinking to make good decisions.\n\n\nGood business decisions aren’t just based on what happened — they’re based on why it happened.",
+    "crumbs": [
+      "Extracting Deeper Insights from Data",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Causal Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "ethics_privacy/ethics.html",
+    "href": "ethics_privacy/ethics.html",
+    "title": "13  Ethics & Privacy in Business Analytics",
+    "section": "",
+    "text": "13.1 Introduction: The Hidden Power of Data\nReal-world Example: Target and Pregnancy Prediction (USA)\nLocal Example: COVIDSafe App Privacy Concerns (Australia)",
+    "crumbs": [
+      "Ethics and Privacy",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ethics & Privacy in Business Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "ethics_privacy/ethics.html#introduction-the-hidden-power-of-data",
+    "href": "ethics_privacy/ethics.html#introduction-the-hidden-power-of-data",
+    "title": "13  Ethics & Privacy in Business Analytics",
+    "section": "",
+    "text": "Modern business analytics can uncover powerful patterns about individuals.\nWith great analytical power comes great ethical responsibility.\n\n\n\nIn 2012, Target famously used purchase data (like unscented lotion and vitamins) to predict which customers were likely pregnant — often before their family knew.\nThis led to unintended emotional and privacy harms when marketing materials exposed private information.\n\n\n\nAustralia’s COVIDSafe app, designed to aid contact tracing during COVID-19, faced criticism over unclear privacy protections and data handling transparency.\nEven with good intentions, lack of trust and technical issues meant low adoption.\n\n\nConversation Prompt #1: - Is it ethical for companies or governments to predict or track sensitive personal information without strong transparency? - How important is public trust when using analytics for public health?",
+    "crumbs": [
+      "Ethics and Privacy",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ethics & Privacy in Business Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "ethics_privacy/ethics.html#where-ethical-risks-arise",
+    "href": "ethics_privacy/ethics.html#where-ethical-risks-arise",
+    "title": "13  Ethics & Privacy in Business Analytics",
+    "section": "13.2 Where Ethical Risks Arise",
+    "text": "13.2 Where Ethical Risks Arise\nThree main sources of ethical risk:\n\n13.2.1 a. Privacy Risks\n\nCollecting more data than necessary.\nCombining data in ways users don’t expect.\n\n\n\n13.2.2 b. Bias and Fairness Risks\n\nData reflects historical biases.\nAlgorithms can unintentionally magnify discrimination.\n\n\n\n13.2.3 c. Manipulation and Trust Risks\n\nUsing knowledge of users’ vulnerabilities to push sales.\nRisk of long-term loss of consumer trust.\n\nLocal Example: TraceTogether Police Access Controversy (Singapore)\n\nSingapore’s TraceTogether app initially promised data would be used only for COVID-19 tracing but was later accessed by police.\nThis “scope creep” damaged trust in public institutions.\n\n\nConversation Prompt #2: - Is it worse to unintentionally cause harm through analytics, or to intentionally change how collected data is used? - How should businesses and governments manage “scope creep” risks?",
+    "crumbs": [
+      "Ethics and Privacy",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ethics & Privacy in Business Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "ethics_privacy/ethics.html#privacy-in-business-analytics",
+    "href": "ethics_privacy/ethics.html#privacy-in-business-analytics",
+    "title": "13  Ethics & Privacy in Business Analytics",
+    "section": "13.3 Privacy in Business Analytics",
+    "text": "13.3 Privacy in Business Analytics\nWhat counts as private data?\n\nPersonal Data: name, address.\nBehavioral Data: search history, location tracking.\nInferred Data: predictions about health, finances, emotions.\n\nRisks to privacy:\n\nSmall harmless data points can be aggregated into invasive profiles.\n“Anonymized” datasets are often easily re-identified.\n\nEthical Principles:\n\nData Minimization: Collect only necessary data.\nTransparency: Make data practices easy to understand.\nMeaningful Consent: Ensure users knowingly agree.\nSecurity: Protect against data misuse.\n\nLocal Example: Aadhaar Biometric Database Privacy Issues (India)\n\nIndia’s Aadhaar system links biometric data (fingerprints, iris scans) with essential services.\nPrivacy concerns arose due to large-scale data aggregation, leaks, and limited consent for secondary uses.\n\nLocal Example: ACCC Digital Platforms Inquiry (Australia)\n\nFollowing Facebook/Cambridge Analytica, the ACCC investigated how platforms collect and use personal data.\nLed to recommendations for stronger consumer rights and greater transparency in Australia.\n\n\nDiscussion Connection: - Massive data systems — whether public or private — demand stronger consent, control, and protections.",
+    "crumbs": [
+      "Ethics and Privacy",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ethics & Privacy in Business Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "ethics_privacy/ethics.html#fairness-bias-and-discrimination",
+    "href": "ethics_privacy/ethics.html#fairness-bias-and-discrimination",
+    "title": "13  Ethics & Privacy in Business Analytics",
+    "section": "13.4 Fairness, Bias, and Discrimination",
+    "text": "13.4 Fairness, Bias, and Discrimination\nReal-world Example: Amazon’s Biased Hiring Algorithm (USA)\n\nAmazon developed a hiring algorithm trained on past successful applicants.\nIt downgraded resumes with indicators of being female because past hiring data reflected bias.\nAmazon scrapped the system after discovering the bias.\n\nLocal Example: Alternative Credit Scoring in Southeast Asia\n\nStartups and fintech companies in Southeast Asia are using alternative data sources — such as phone usage, social media behavior, and e-commerce transactions — to create credit scores.\nEthical concerns include bias based on non-financial behaviors, lack of transparency about scoring criteria, and limited opportunities for appeal.\n\nSources of bias:\n\nHistorical data.\nFeature selection.\nPoor generalization.\n\nConsequences:\n\nUnfair exclusion.\nReputation and legal risks.\n\nResponses:\n\nRegular audits.\nDiverse design teams.\nRethink problem framing.\n\n\nConversation Prompt #3: - Should companies use alternative data for critical decisions like loans and hiring? - How do we ensure fairness when traditional and alternative data both carry risks?",
+    "crumbs": [
+      "Ethics and Privacy",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ethics & Privacy in Business Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "ethics_privacy/ethics.html#building-ethical-analytics",
+    "href": "ethics_privacy/ethics.html#building-ethical-analytics",
+    "title": "13  Ethics & Privacy in Business Analytics",
+    "section": "13.5 Building Ethical Analytics",
+    "text": "13.5 Building Ethical Analytics\nThe 5 C’s Framework:\n\nConsent: Is agreement informed and voluntary?\nClarity: Can users easily understand data practices?\nControl: Can users access and control their data?\nCare: Are we minimizing harm?\nConsequences: Are we thinking long-term?\n\nBuilding Better Analytics:\n\nApply privacy-by-design principles.\nConduct bias testing.\nEstablish ethics review boards.\nFoster a culture of shared ethical responsibility.\n\nLocal Example: TikTok Algorithm Concerns (Asia/Global)\n\nTikTok’s opaque algorithm raises concerns about promoting harmful content and potential political influence.\nHighlights the importance of transparency and accountability in content recommendation systems.",
+    "crumbs": [
+      "Ethics and Privacy",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ethics & Privacy in Business Analytics</span>"
+    ]
+  },
+  {
+    "objectID": "ethics_privacy/ethics.html#the-future-is-yours-to-shape",
+    "href": "ethics_privacy/ethics.html#the-future-is-yours-to-shape",
+    "title": "13  Ethics & Privacy in Business Analytics",
+    "section": "13.6 The Future Is Yours to Shape",
+    "text": "13.6 The Future Is Yours to Shape\n\nAnalytics can improve lives — or magnify harm.\nEthical practice is essential for building trust and fairness.\n\nReal-world Tieback: Optus and Medibank Data Breaches (Australia)\n\nTwo major Australian companies suffered massive breaches in 2022, leaking sensitive personal and medical data.\nThese cases underline why strong security and responsible data handling are critical ethical obligations.\n\nReflection Questions:\n\nWould I feel comfortable if I were the subject?\nAre there hidden consequences?\nHow can I design to protect dignity and fairness?\n\nFinal Thought:\n\n“Analytics shapes the world — and analysts shape analytics.”",
+    "crumbs": [
+      "Ethics and Privacy",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ethics & Privacy in Business Analytics</span>"
     ]
   },
   {
