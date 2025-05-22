@@ -336,9 +336,6 @@ Business analysts don't work alone. They collaborate with **data engineers**, wh
 
 The analyst is the glue—the person who keeps the analytical process connected to business goals, ethical standards, and practical decisions.
 
-
-## 1.9 How to Approach This Course (And Have Fun with It!)
-
 ## How to Approach This Course (And Have Fun with It!)
 
 By now, you’ve seen what business analytics is really about: using data to make better decisions, combining technical tools with human insight, and communicating clearly to create value. You’ve also seen that becoming a business analyst means developing a wide-ranging skillset—one that draws on statistics, strategy, storytelling, and judgment.
