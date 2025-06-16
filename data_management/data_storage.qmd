@@ -1,86 +1,456 @@
-# Storing and Using Existing Data
+---
+title: "Storing and Using Existing Data"
+execute:
+  eval: false
+---
 
-## Why Data Storage Matters in Business Analytics
-- Good data storage is critical for effective analysis and decision-making.
-- Poor storage leads to wasted time, errors, and missed opportunities.
-- Businesses rely on analysts who can find, access, and work with data confidently.
+::: {.callout-tip}
+## Learning Goals {.unnumbered}
 
-## Best Practices for Storing and Sharing Company Data
-- **Consistency:** Use clear file and folder naming conventions.
-- **Documentation:** Create data dictionaries and basic metadata for datasets.
-- **Security and Access Control:** Protect sensitive information; use permissions wisely.
-- **Version Control and Backups:** Save versions systematically to prevent loss.
-- **Choosing Storage Formats:** Select based on size, structure, and future needs.
+By the end of this lecture, you should be able to:
 
-> ### FAIR Data: A Gold Standard for Modern Businesses
-> - **Findable:** Can you easily find the data later?
-> - **Accessible:** Is the data stored where authorized users can reach it?
-> - **Interoperable:** Can it work across different software and systems?
-> - **Reusable:** Is there enough documentation for others (or future you) to reuse it?
+* Identify common data storage formats (CSV, JSON, SQL, Parquet) and explain when each is appropriate for business use.
+* Load, explore, and manipulate datasets stored in flat files and nested JSON using R.
+* Use unnesting and reshaping techniques to convert nested or redundant data structures into tidy formats.
+* Read and query data stored in DuckDB and Parquet formats using `dbplyr` and `arrow`.
+* Evaluate trade-offs between different storage formats in terms of scalability, structure, and analytical convenience.
+* Apply best practices for storing, documenting, and sharing data within an organization.
+:::
+
+
+## The Business Challenge
+
+Online marketplaces like eBay host millions of auctions each year, connecting buyers and sellers across countless product categories. Behind the scenes, this generates complex, nested, and high-volume data. For a business analyst, turning this raw data into useful insights—and storing it in a way that's efficient, accessible, and reusable—is a foundational challenge.
+
+You've just joined the data team at a fast-growing online marketplace. Right now, every team — from marketing to data engineering and customer support — is handling auction data in different ways: some use Excel sheets, others parse logs from an API that stores information in a format called JSON, and a few engineers keep things in a different format known as Parquet (but no one else knows how to read them!).
+
+This chaos is slowing everyone down. Your first task as a new analyst is to propose a better data storage solution that balances usability, scalability, and efficiency for teams across the business.
+
+But how do you choose the right format? Should you push everyone to use Excel spreadsheets? Convince IT to move everything into a database? Or are columnar formats like Parquet worth the learning curve?
+
+Before you decide, you'll need to understand the strengths and trade-offs of each major data storage format. That is what we will cover in this lecture
+
+### About the Data {.unnumbered}
+
+To guide your decision, we'll work with a sample dataset of online auctions. Each auction record includes:
+
+* Item metadata: ID, title, category, seller info
+* Seller details: user ID, rating
+* Bidding history: a nested list of bids, each with a bidder ID, amount, and timestamp
+
+We have stored and structured the dataset in multiple formats — Excel, flat files (CSV), JSON, DuckDB, and Parquet—so you can compare how different formats impact usability and performance. Along the way, you’ll learn not just how to load data, but how to think about storing and transforming it for long-term use in a business setting.
+
+> **Poll**: Which of these data formats have you heard of?
+> - Excel
+> - CSV files
+> - A database
+> - JSON
+> - Parquet
+
+## Spreadsheets (Excel, Google Sheets & Friends)
+
+For many of us, spreadsheets like Microsoft Excel or Google Sheets are the default way we have worked with data until now. They're widely used in business and education, and offer an approachable interface for organizing tables, applying formulas, and making quick charts. This makes spreadsheets a great entry point into the world of data—but also a format with serious limitations when it comes to analytics at scale.
+
+Spreadsheets don’t record your steps, meaning you can’t always retrace how a figure was calculated. There’s no built-in version history (at least not one that’s easy to audit), and formulas often vary invisibly from cell to cell—especially if you’ve copied or dragged them across a range. This makes it difficult to ensure consistency and nearly impossible to reproduce or validate your results.
+
+Even small errors—like accidentally referencing the wrong column—can go unnoticed. A single cell with a broken formula can distort an entire analysis. These issues are especially problematic when figures or charts are being used for decisions or presentations.
+
+To make matters worse, analysts often inherit spreadsheets from others—colleagues, clients, or external partners. These files might contain:
+
+* inconsistent naming conventions
+* manual totals
+* hidden formatting or comments
+* merged cells
+* duplicated values across tabs
+
+Despite these flaws, spreadsheets remain a powerful tool for quick exploration and lightweight collaboration. They’re useful for small teams, early prototyping, or downloading data from platforms like Shopify, Facebook Ads, or Google Analytics. But when your work moves toward reproducibility, scalability, or automation, it’s time to adopt formats designed for analysis.
+
+### Reading Spreadsheets in R
+
+To load spreadsheet data into R, we use the `readxl` package, which allows us to read .xlsx files directly without requiring Excel to be installed.
+
+Here’s a simple example:
+
+```r
+library(readxl)
+
+# Read a spreadsheet file
+auctions_excel <- read_excel("data/ebay_auctions.xlsx")
+
+# Peek at the first few rows
+head(auctions_excel)
+```
+
+You can also specify a sheet name or index:
+
+```r
+# Read a specific sheet
+read_excel("data/ebay_auctions.xlsx", sheet = "bids")
+
+# Or use sheet number
+read_excel("data/ebay_auctions.xlsx", sheet = 2)
+```
+
+By default, `read_excel()` will guess the column types from the first 1000 rows.
+
+## Flat Files (CSV, TSV and other delimited files)
+
+when it comes to storing and sharing structured data reliably, especially in a way that can be reproduced by code, an alternative format often works better: flat files.
+
+Flat files look similar to spreadsheets on the surface—just rows and columns of data—but under the hood they behave very differently.
+
+A flat file is stored as plain text. Each line represents a row of data, and the values are separated by a special character like a comma or tab. There are no formulas, no styling, no hidden cells—just the raw information.
+
+One of the most common flat file types is the CSV, which stands for Comma-Separated Values. You might have encountered files with a .csv extension when exporting data from online dashboards or business tools.
+
+Here’s what a CSV might look like when opened in a text editor:
+
+``` out
+item_id,bidder_id,amount,time
+a001,u07,45.00,2023-08-21 10:13
+a001,u12,47.50,2023-08-21 10:30
+```
+
+This format is:
+
+* Easy to inspect and edit
+* Supported by nearly every tool
+* A common default for data exports
+
+### Reading Flat Files in R
+In R, we can use the readr package to import flat files quickly and reliably:
+
+``` r
+library(readr)
+
+# Read a CSV file into a tibble
+auctions_flat <- read_csv("data/bids_flat.csv")
+```
+
+This loads your flat file into a tidy tibble for further analysis. You can also read tab-separated files (read_tsv()) or files with other delimiters (read_delim()).
+
+::: {.callout-tip}
+
+Delimiters and File Extensions
+The character that separates columns in a flat file is called a delimiter. Common ones include:
+
+* Comma (,) — for .csv files
+* Tab (\t) — for .tsv files
+* Pipe (|) — occasionally used for exports from databases
+
+Also note that not all .csv files use commas! Always double-check if your data loads incorrectly. You can adjust the delimiter using the `delim` argument in `read_csv()`
+:::
+
+
+::: {.exercise}
+::: {.exercise-time}
+5 min
+:::
+
+**Exercise: One Auction, Many Rows**
+
+Let’s investigate how data is stored in a flat file format by looking at all the bids placed on a single auction.
+
+```r
+library(dplyr)
+
+# Step 1: Filter to a single auction with multiple bids
+a1_bids <- auctions_flat %>%
+  filter(item_id == "a001")
+
+# Step 2: View the result
+a1_bids
+```
+
+
+(a) How many rows are returned? What does each row represent?
+(b) Look at the title, category, and seller_id columns — what do you notice?
+(c) What are some potential challenges that could arise from this repetition, especially as the dataset grows or changes over time?
+
+:::
+
+### Why are the same values repeated?
+
+When you look at the bids for one auction, you might notice that the item title, category, and seller name appear again and again in every row. That might seem strange—why repeat the same information?
+
+This happens because of the way flat files are designed. In a flat file, each row represents one observation—in this case, one bid. That means every row needs to include not just the bid amount and time, but also the details of the auction it belongs to. Even if those auction details don’t change, they’re still copied into every row.
+
+This approach is useful for analysis, but it can also lead to large files and repeated information. In more advanced systems, like databases, we might store the auction information just once and link each bid to it. But flat files keep everything together in one place, which makes them easy to share and work with.
+
+Later in this chapter, we’ll see how other formats (like JSON and SQL) handle this differently—and how that affects the way we store and analyze data.
+
+> 💡 **Tip:** Use flat files for medium-sized, flat data when simplicity trumps scale
+
+## JSON Files: When one row might not be enough
+
+Flat files are great when every observation fits neatly into one row. But what if each item in your dataset comes with its own mini-dataset inside—like multiple bids per auction?
+
+Trying to represent that in a flat file leads to a lot of repetition. Every bid needs to repeat the same auction information—item title, seller name, category—even if it doesn’t change. This design follows the tidy data principle, where each row is a single observation and each column is a variable. It’s ideal for analysis, but not always the most efficient way to store structured or repeated data.
+
+To better handle these cases, we can use nested data formats—and one of the most popular is JSON.
+
+JSON (JavaScript Object Notation) is a format designed to store structured data. It’s especially useful when one record contains multiple layers of information—for example, an auction that has several bids attached to it.
+
+Why JSON?
+
+* Captures nested structures, such as multiple bids grouped within a single auction
+* Common in APIs, log files, and web applications
+* More compact and organized for data with repeating elements
+
+Unlike flat files, JSON allows us to store all related data in one object, without repeating fields. It’s human-readable, flexible, and widely used in real-world business data systems. 
+
+JSON (short for JavaScript Object Notation) stores data as a set of key-value pairs. Think of it like a list of labeled boxes—each label is the name of a variable, and inside each box is the value.
+
+In the context of our auction dataset, one auction might look like this in JSON format:
+
+```json
+{
+  "item_id": "a001",
+  "title": "Vintage Coffee Table",
+  "category": "Furniture",
+  "seller": {
+    "user_id": "seller42",
+    "rating": 4.8
+  },
+  "bids": [
+    { "bidder_id": "user123", "amount": 120, "time": "2023-01-01 10:05" },
+    { "bidder_id": "user456", "amount": 130, "time": "2023-01-01 11:20" }
+  ]
+}
+```
+
+Let’s break it down:
+
+* The top-level keys (item_id, title, category) describe the auction itself.
+* The seller key contains a nested object with seller details.
+* The bids key holds a list of bid objects, each with its own bidder, amount, and time.
+
+This structure keeps all related information grouped together—no need to repeat the title or seller info for every bid like we did in the CSV file. That's (one of) the power(s) of JSON: it stores complex relationships without flattening the data.
+
+ADD callout: JSON does not have to be nested!
+
+### Working with Nested JSON Auction Data in R
+
+In this section, we’ll learn how to work with nested JSON data in R using a simulated dataset of eBay-style auctions. Each auction record includes top-level information (like item title and category), seller information, and a **nested list of bids** placed by users. This structure is very common in the real world—especially when dealing with data from APIs or web applications.
+
+Our goal is to explore how to load and manipulate this nested structure using tidyverse tools. We'll move step by step, from raw JSON to a tidy tibble.
+
+---
+
+### Step 1: Load the JSON File
+We’ll start by reading in the data using the `read_json()` function from the `jsonlite` package. This preserves the nested list structure exactly as it appears in the JSON file.
+
+```r
+library(jsonlite)
+library(tibble)
+library(dplyr)
+library(tidyr)
+
+auctions_nested <- read_json("_extras/code/data_storage/output/ebay_auctions_large.json")
+```
+
+The object `auctions_nested` is a list of auction records. Each element in the list is a nested list with keys like `item_id`, `title`, `seller`, and `bids`.
+
+
+### Step 2: Peek Inside a Single Record
+Let’s take a closer look at the structure of the first auction.
+
+```r
+str(auctions_nested[[1]])
+```
+
+Try also inspecting individual components:
+```r
+auctions_nested[[1]]$item_id
+auctions_nested[[1]]$seller$user_id
+auctions_nested[[1]]$bids[[1]]$amount
+```
+
+This is a good way to understand the JSON hierarchy before jumping into manipulation.
+
+### Step 3: Wrap the List into a Tibble
+To start working with this in tidyverse pipelines, we’ll wrap the list of auctions into a tibble with one column:
+
+```r
+auctions_tbl <- tibble(record = auctions_nested)
+```
+
+Each row of `auctions_tbl` now contains one full auction record.
+
+### Step 4: Unnest the Top-Level Fields
+We can begin flattening the nested structure one layer at a time using `unnest_wider()`:
+
+```r
+auctions_tbl <- auctions_tbl %>%
+  unnest_wider(record)
+```
+
+Now we have columns like `item_id`, `title`, `category`, `seller`, and `bids`. Both `seller` and `bids` are still lists.
+
+We can go further:
+```r
+auctions_tbl <- auctions_tbl %>%
+  unnest_wider(seller, names_sep = "_")
+```
+
+Now seller information like `user_id` and `rating` is available as separate columns.
+
+
+### Step 5: Flattening the Bid Lists (Wide Format)
+What about the `bids` column? Each auction has its own list of bids, and each bid is a small list too. First, we can break it out into wide format:
+
+```r
+auctions_tbl_wide <- auctions_tbl %>%
+  unnest_wider(bids, names_sep = "_")
+```
+
+This gives us one column for each bid: `bids_1`, `bids_2`, etc.—but these are still lists. We can unnest them as well:
+
+```r
+auctions_tbl_wide <- auctions_tbl_wide %>%
+  unnest_wider(bids_1, names_sep = "_", names_repair = "unique") %>%
+  unnest_wider(bids_2, names_sep = "_", names_repair = "unique")
+```
+
+This gets tedious if there are many bids. So let’s automate it.
+
+
+### Step 6: Automate the Unnesting of All Bid Columns
+Use this if you don’t know how many bids there will be ahead of time:
+
+```r
+library(purrr)
+
+bid_cols <- auctions_tbl_wide %>%
+  select(starts_with("bids_")) %>%
+  select(where(is.list)) %>%
+  names()
+
+auctions_tbl_wide <- reduce(
+  bid_cols,
+  .init = auctions_tbl_wide,
+  .f = function(df, col) {
+    unnest_wider(df, !!sym(col), names_sep = "_", names_repair = "unique")
+  }
+)
+```
+
+
+### Step 7: Unnesting to Long Format
+Instead of going wider, we can go longer. This means one row per bid:
+
+```r
+bids_long <- auctions_tbl %>%
+  unnest_longer(bids) %>%
+  unnest_wider(bids)
+```
+
+Now we have a tidy table where each row is a bid, including the item ID and other metadata. This is often easier to work with for analysis and looks very much like the CSV format!.
+
+### Bonus: Nesting Back Again
+
+Let’s reverse the process and group the bids back into a nested column:
+
+```r
+bids_renested <- bids_long %>%
+  select(item_id, bidder_id, amount, time) %>%
+  group_by(item_id) %>%
+  summarise(bids = list(cur_data()), .groups = "drop")
+```
+
+> 💡 **Extension:** Compare `unnest_wider()` vs `unnest_longer()` strategies
+
+
+> 💬 JSON teaches data structure thinking — objects, lists, hierarchies
+
+---
+
+## 🗄️ 3. Databases (DuckDB)
+
+### Why databases?
+- Efficient for large structured data
+- Use SQL to join/filter/aggregate
+
+### DuckDB + `dbplyr`:
+
+```r
+library(DBI)
+library(duckdb)
+con <- dbConnect(duckdb(), "bids.duckdb")
+dbWriteTable(con, "bids", bids_long)
+```
+
+```r
+library(dplyr)
+bids_db <- tbl(con, "bids") %>% filter(category == "Books") %>% collect()
+```
+
+> 💡 **Tip:** DuckDB works with flat files *and* Parquet — great for teaching SQL locally
+
+---
+
+## 📦 4. Parquet (Columnar Format)
+
+### Why Parquet?
+- Compressed, fast, and scalable
+- Ideal for analytics
+
+### Partitioning example:
+```r
+library(arrow)
+write_dataset(bids_long, path = "bids_by_category", format = "parquet", partitioning = "category")
+```
+
+### Reading it efficiently:
+```r
+ds <- open_dataset("bids_by_category")
+books_bids <- ds %>% filter(category == "Books") %>% collect()
+```
+
+> 💡 **Extension:** Explain partition pruning and how it speeds up queries
+
+---
+
+## 📊 5. Format Comparison
+
+| Format     | Structure      | Scale       | Best For                        | Limitation                    |
+|------------|----------------|-------------|----------------------------------|-------------------------------|
+| CSV        | Flat           | Medium      | Simple, readable data            | No types, no nesting          |
+| JSON       | Nested         | Small–Med   | APIs, logs, config               | Harder to analyze in R        |
+| SQL (DuckDB)| Relational    | Large       | Queries, joining datasets        | Needs setup or SQL            |
+| Parquet    | Columnar       | Huge        | Analytics, filtering             | Not human-readable            |
+| Excel      | Manual         | Small       | Fast edits and charts            | Not scalable or reproducible  |
+
+---
+
+## 🔐 6. Best Practices for Storing & Sharing Data
+
+### ✅ Golden Rules
+- Use clear file/folder names
+- Document variables (data dictionary)
+- Secure access and backup regularly
+
+### 🧭 FAIR Principles (Tip Box)
+> **Findable**: Clear names and locations  
+> **Accessible**: Stored where people can get it  
+> **Interoperable**: Works in Excel, R, Python  
+> **Reusable**: Well-documented, no guesswork
+
+### 🔐 Privacy
+- HR and customer data require secure handling
+- Never leave sensitive data in shared drives
+
+### 🧱 Breaking Down Silos
+- Departments often keep separate versions of the truth
+- Well-organized, central storage enables business-wide insights
+
+---
+
+## 🧠 Wrap-up Activity: Which Format Would You Use?
+
+> Choose one scenario:
+> - A retail dataset with 10M rows
+> - A survey with branching responses
+> - A time-stamped log from a website
 >
-> *Good data practices make your work more powerful and extend its impact.*
-
-> ### Privacy Matters
-> - HR, customer, and finance data often contain sensitive information.
-> - Always store data securely and limit access appropriately.
-> - Ethical data handling builds trust and protects individuals.
-
-> ### Data Silos: A Common Organizational Challenge
-> - **Data silos** happen when departments store data separately, without sharing.
-> - Silos cause duplication, inconsistencies, and missed insights.
-> - Good storage and sharing practices can break down silos and create a fuller picture of business performance.
-
-## Case Study Setup: The HR Data Example
-- We will work with a small HR dataset across multiple formats:
-  - **Employees** (e.g., name, department ID, salary ID)
-  - **Departments** (e.g., department ID, department name)
-  - **Salaries** (e.g., salary ID, annual salary amount)
-
-##  Working with Different Data Storage Formats
-
-### CSV / Flat Files
-- **What is CSV?** Plain text with comma-separated values.
-- **Strengths:** Simple, universal, human-readable.
-- **Weaknesses:** No support for nested data, can become large.
-- **How to Load:** `readr::read_csv("employees.csv")`
-- **Mini Analysis:**
-  - Join employee names with departments.
-  - Calculate average salary per department.
-
-### JSON Files
-- **What is JSON?** Structured data format often used for APIs and nested information.
-- **Strengths:** Supports complex, nested data.
-- **Weaknesses:** Can be harder to work with directly in tabular workflows.
-- **How to Load:** `jsonlite::fromJSON("departments.json")`
-- **Mini Analysis:** Same task — join and calculate average salaries.
-
-### Parquet Files
-- **What is Parquet?** A binary, columnar storage format optimized for speed and compression.
-- **Strengths:** Great for large datasets, very fast to read/write.
-- **Weaknesses:** Not human-readable without special tools.
-- **How to Load:** `arrow::read_parquet("salaries.parquet")`
-- **Mini Analysis:** Same task — join and calculate average salaries.
-
-### DuckDB and SQL Databases
-- **What is DuckDB?** An embedded SQL database designed for analytics.
-- **Strengths:** Fast, simple to set up, works well with flat files and Parquet directly.
-- **Weaknesses:** Slight learning curve for SQL basics.
-- **Working with SQL:** DuckDB uses standard SQL, meaning the skills you learn can transfer to other databases like PostgreSQL, MySQL, or SQLite.
-- **How to Connect:**
-  ```r
-  con <- DBI::dbConnect(duckdb::duckdb(), dbdir = "company.duckdb")
-  ```
-- **Query with dplyr:**
-  ```r
-  employees <- tbl(con, "employees")
-  departments <- tbl(con, "departments")
-  salaries <- tbl(con, "salaries")
-  ```
-- **Mini Analysis:** Same task — join and calculate average salaries.
-
-## 5. Summary: Choosing the Right Storage Format for Your Needs
-- CSV: Simple, good for small/medium flat data.
-- JSON: Good when working with nested data.
-- Parquet: Best for large analytical datasets.
-- DuckDB: Best when you want SQL power without server setup.
-- Think about size, structure, access needs, and future compatibility.
+> Discuss which format fits and why.
