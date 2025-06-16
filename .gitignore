@@ -12,6 +12,7 @@
 *.pdf
 *.tex
 *.toc
+*.html
 
 # Ignore all Quarto execution cache folders
 **/*_cache/
