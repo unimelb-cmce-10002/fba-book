@@ -18,3 +18,4 @@
 
 # Ignore all Quarto execution files
 **/*_files/
+**/output/
