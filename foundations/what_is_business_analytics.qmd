@@ -253,8 +253,6 @@ In short, analytics gives us leverage—but it doesn't replace leadership. The b
 
 ## Ethics in Business Analytics
 
-## 1.6 Ethics in Business Analytics
-
 Business analytics is not just a technical activity—it is also a human one. Every decision about what data to collect, how to analyze it, and how to act on it involves ethical considerations.
 
 ### Data use raises ethical responsibilities
@@ -297,8 +295,6 @@ Done well, business analytics can help firms grow in ways that are not only effi
 
 ## Becoming a Business Analyst: The Interpreter Role
 
-## 1.8 Becoming a Business Analyst: The Interpreter Role
-
 By now, we've seen that analytics is not just about algorithms and datasets—it's about **decisions**. And good decisions need more than numbers. They need interpretation, judgment, and communication. This is where the **business analyst** comes in.
 
 Business analysts sit at the intersection of data and decision-making. They are not just technicians or model-builders—they are **interpreters**. Their job is to make data meaningful to the people who need to act on it.
@@ -328,7 +324,7 @@ To succeed in this role, analysts need a blend of skills:
 - **Communication and storytelling**  
   You must craft narratives that are not only statistically sound, but also *understandable*, *relevant*, and *actionable*.
 
-These skills don't develop overnight. They grow through practice—through working on real problems, engaging with real data, and reflecting on how analysis shapes action.
+These skills don't develop overnight. They grow through practice—through working on real problems, engaging with real data, and reflecting on how analysis shapes action. In the next chapter we will devote more time to to thinking about the skill set of a modern business analyst.
 
 ### Collaboration is essential
 
@@ -350,7 +346,9 @@ You won’t just learn how to analyze data. You’ll learn how to **think like a
 
 Our goal is to help you develop the mindset of someone who is curious about the world, rigorous with evidence, and focused on impact. Someone who doesn’t just look at data, but learns from it—and helps others do the same.
 
-### What if I don’t know how to do all of that yet?
+
+::: {.callout-note}
+## What if I don’t know how to do all of that yet?
 
 That’s the point. **You’re not expected to know everything now.**
 
@@ -364,8 +362,8 @@ What we ask of you:
 - Ask questions—lots of them  
 - And support each other as we learn
 
+:::
+
 This course will give you a solid foundation in the skills of a business analyst. But more than that, we hope it gives you a **new way of seeing the world**: as a place full of data, decisions, and opportunities to think better.
 
 Next, we’ll explore the key skills that make a great business analyst—and begin to develop the mindset of someone who approaches business problems like a scientist.
-
-Let’s get started.
