@@ -82,4 +82,8 @@ To publish the book on GitHub Pages:
 ```sh
 quarto publish gh-pages
 ```
+Because doing so pushes many files, you may first need to increase Git's buffer size before publishing the book on Github pages:
 
+```sh
+git config --global http.postBuffer 524288000
+```
