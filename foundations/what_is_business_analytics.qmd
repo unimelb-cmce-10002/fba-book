@@ -18,7 +18,7 @@ By the end of this chapter, you should be able to:
 
 Businesses have always had to make important decisions: *Who should we hire? Where should we invest? How much should we spend on advertising?* In the past, these decisions were often made based on experience, intuition, or the authority of senior leadership—a dynamic sometimes known as the "HIPPO" effect: **Highest Paid Person's Opinion**.
 
-That's no longer enough. Today's businesses operate in faster, more complex environments. Fortunately, they also have access to something that previous generations did not: **data**. From customer transactions to website clicks, social media posts to supply chain records, nearly every part of a business now generates data. A single online purchase creates dozens of data points: what the customer viewed, how long they hesitated, which payment method they chose, even how they arrived at the site. The challenge isn't collecting it—it's knowing what to do with it.
+That's no longer enough. Today's businesses operate in faster, more complex environments. Fortunately, they also have access to something that previous generations did not: **data**. From customer transactions to website clicks, microsecond stock price information to supply chain records, nearly every part of a business now generates data. A single online purchase creates dozens of data points: what the customer viewed, how long they hesitated, which payment method they chose, even how they arrived at the site. The challenge isn't collecting it—it's knowing what to do with it.
 
 This is where **business analytics** comes in.
 
@@ -26,7 +26,7 @@ Business analytics is the use of data and analytical tools to support better dec
 
 > "Let the data tell its story." — *Gregory Crawford, Chief Economist at Zalando*
 
-That story is ultimately what business analytics is trying to uncover. Analysts help businesses listen to what the data is saying—about customer needs, competitive dynamics, operational bottlenecks, or emerging opportunities—and translate that into actions.
+That story is ultimately what business analytics is trying to uncover. Analysts help businesses listen to what the data is saying—about customer needs, regulatory risks, investor sentiment, competitive dynamics, or operational bottlenecks—and translate that into actions.
 
 But the essence of decision-making remains what it has always been: reasoning through uncertainty, weighing trade-offs, and telling a compelling story about what to do. The difference today is that we can do it *better*—with data as our guide, structure as our method, and analytical tools that help us move beyond educated guesswork toward informed action.
 
@@ -52,7 +52,7 @@ With the rise of digital systems, businesses began generating and storing data�
 
 **Stage 3: Advanced Analytics**
 
-As computing power increased, so did analytical ambition. Businesses began using predictive models and machine learning to forecast future outcomes and identify hidden patterns. This allowed for more proactive decisions—anticipating which customers might leave, segmenting markets more precisely, or optimizing prices dynamically. Yet even the most sophisticated model is only as useful as the decision it ultimately supports.
+As computing power increased, so did analytical ambition. Businesses began using predictive models and machine learning to forecast future outcomes and identify hidden patterns. This allowed for more proactive decisions—anticipating which customers might leave, deciding when to issue stock to raise capital, or optimizing prices dynamically. Yet even the most sophisticated model is only as useful as the decision it ultimately supports.
 
 **Stage 4: Experimentation and Causal Learning** 
 
@@ -82,7 +82,7 @@ The process usually involves five key steps:
 2. **Collecting and Cleaning Data** — Data is rarely ready to use out of the box. Analysts spend significant time gathering relevant data sources and ensuring they're accurate, complete, and reliable.
 3. **Analyzing Data Appropriately** — With the right tools—from simple summaries to predictive models—analysts identify patterns, test hypotheses, and quantify trade-offs.
 4. **Communicating Insights** — Even the best analysis fails if no one understands it. Analysts must tell persuasive, relatable stories with data—stories that clarify the decision at hand and guide action.
-5. **Acting to Create Value** — Ultimately, analytics only matters if it leads to better decisions. The goal is not analysis for its own sake, but to generate insights that drive strategy, improve operations, or better serve customers.
+5. **Acting to Create Value** — Ultimately, analytics only matters if it leads to better decisions. The goal is not analysis for its own sake, but to generate insights that drive strategy, improve operations, control costs, better serve customers, or deliver stronger returns to shareholders.
 
 Business analytics is more than a technical field—it's a way of thinking. It reflects a broader evolution in business: away from gut instinct alone, and toward evidence-based decision-making. But even as the tools evolve—from dashboards to machine learning to experimentation—the fundamental goal remains the same: to make smarter, more confident choices in an uncertain world.
 
@@ -96,7 +96,7 @@ Descriptive analytics focuses on summarizing and reporting what has already occu
 
 - What were our total sales last quarter?
 - Which products had the highest return rates?
-- How many website visitors came from paid ads?
+- What were the top 10 ASX-listed companies by shareholder return last year?
 
 Tools used here include summary statistics, tables, visualizations, and dashboards. These methods don't make predictions or test strategies—they organize past data in a way that helps managers understand performance, spot trends, or identify anomalies.
 
@@ -107,8 +107,8 @@ Think of this as the **rearview mirror** of analytics. It helps you see where yo
 Predictive analytics goes a step further: it uses past data to forecast future outcomes. This includes questions like:
 
 - How many customers are likely to churn next month?
-- What sales should we expect in the holiday season?
-- Which leads are most likely to convert?
+- How are annual depreciation expenses likely to change over the next three years?
+- Will the RBA cut interest rates next month, and if so by how many basis points?
 
 Methods here often involve statistical models and machine learning techniques that identify patterns and extrapolate them forward. These models don't guarantee what *will* happen, but they give decision-makers a probabilistic view of likely outcomes.
 
@@ -125,7 +125,7 @@ Causal analytics (sometimes called **prescriptive analytics**) tries to answer c
 Examples include:
 
 - What impact will a 10% price increase have on demand?
-- Does showing product reviews increase conversion rates?
+- How will merging with another firm affect our share price?
 - Would switching to a new supplier improve delivery times?
 
 These questions can't be answered by simply observing correlations or running a predictive model. They require methods designed to isolate **cause and effect**—such as randomized experiments (A/B testing), instrumental variables, difference-in-differences, or other econometric techniques.
@@ -142,7 +142,7 @@ Each type of analytics serves a different purpose:
 | Predictive            | What might happen?          | Forecasting, classification      | Anticipating future trends  |
 | Causal (Prescriptive) | What will happen if we act? | Experiments, causal inference    | Strategy and decision-making|
 
-Choosing the wrong tool for the question can lead to misleading conclusions. For example, a model that predicts which customers will churn is not the same as identifying **why** they churn—or what intervention would change that behavior.
+Choosing the wrong tool for the question can lead to misleading conclusions. For example, a model that predicts which companies are likely to identify and correct mistakes in their previously published financial statements is not the same as understanding **why** those mistakes occurred—or what internal controls or governance changes might have prevented them.
 
 To be a great business analyst, it's not enough to know how to use the tools. You need to know **which tool matches which question**.
 
@@ -180,19 +180,19 @@ For each question below, identify whether it requires **Descriptive**, **Predict
 1. "Which marketing channels generated the most leads last month?"
    - Type: _______________
 
-2. "How would our customer satisfaction change if we reduced response times by 50%?"
+2. "How will our share price change if we replace our CEO with our current COO?"
    - Type: _______________
 
 3. "Which customers are most likely to upgrade to our premium service?"
    - Type: _______________
 
-4. "What was our employee turnover rate in Q3?"
+4. "Which of our product lines account for the largest share of corporate overhead expenses?"
    - Type: _______________
 
 5. "Would offering free shipping increase our conversion rate?"
    - Type: _______________
 
-6. "How many support tickets should we expect next week?"
+6. "Will analysts issue a buy/hold/sell recommendation for our stock next week?"
    - Type: _______________
 :::
 
@@ -313,7 +313,7 @@ Humans are natural storytellers. For thousands of years, stories have helped us 
 
 Today's business analysts continue this tradition. But instead of myth or anecdote, they use **data**. The tools may be newer, but the mission is timeless: to tell **clear, truthful, and compelling stories** that help others see what is happening—and decide what to do next.
 
-That story might be about why sales are falling, how a customer segment is evolving, or what might happen if the firm raises prices or changes strategy. But in every case, the analyst's role is the same: to build a bridge between the data and the decision.
+That story might be about why sales are falling, how investor sentiment is improving, or what might happen if the firm raises prices or changes strategy. But in every case, the analyst's role is the same: to build a bridge between the data and the decision.
 
 ### Core skills of the business analyst
 
