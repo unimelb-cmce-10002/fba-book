@@ -49,27 +49,13 @@ We have stored and structured the dataset in multiple formats — Excel, flat fi
 
 ## Spreadsheets (Excel, Google Sheets & Friends)
 
-For many of us, spreadsheets like Microsoft Excel or Google Sheets are the default way we have worked with data until now. They're widely used in business and education, and offer an approachable interface for organizing tables, applying formulas, and making quick charts. This makes spreadsheets a great entry point into the world of data—but also a format with serious limitations when it comes to analytics at scale.
-
-Spreadsheets don’t record your steps, meaning you can’t always retrace how a figure was calculated. There’s no built-in version history (at least not one that’s easy to audit), and formulas often vary invisibly from cell to cell—especially if you’ve copied or dragged them across a range. This makes it difficult to ensure consistency and nearly impossible to reproduce or validate your results.
-
-Even small errors—like accidentally referencing the wrong column—can go unnoticed. A single cell with a broken formula can distort an entire analysis. These issues are especially problematic when figures or charts are being used for decisions or presentations.
-
-To make matters worse, analysts often inherit spreadsheets from others—colleagues, clients, or external partners. These files might contain:
-
-* inconsistent naming conventions
-* manual totals
-* hidden formatting or comments
-* merged cells
-* duplicated values across tabs
-
-Despite these flaws, spreadsheets remain a powerful tool for quick exploration and lightweight collaboration. They’re useful for small teams, early prototyping, or downloading data from platforms like Shopify, Facebook Ads, or Google Analytics. But when your work moves toward reproducibility, scalability, or automation, it’s time to adopt formats designed for analysis.
+For many of us, spreadsheets like Microsoft Excel or Google Sheets are the default way we have worked with data until taking this course. 
 
 ### Reading Spreadsheets in R
 
-To load spreadsheet data into R, we use the `readxl` package, which allows us to read .xlsx files directly without requiring Excel to be installed.
+Figure XX shows what the spreadsheet we’re going to read into R looks like in Excel. This spreadsheet can be downloaded as an Excel file from ...
 
-Here’s a simple example:
+To load spreadsheet data into R, we use the `readxl` package, which allows us to read .xlsx files directly without requiring Excel to be installed.
 
 ```r
 library(readxl)
@@ -92,6 +78,57 @@ read_excel("data/ebay_auctions.xlsx", sheet = 2)
 ```
 
 By default, `read_excel()` will guess the column types from the first 1000 rows.
+
+### Writing to Excel
+Let’s create a small data frame that we can then write out.
+
+### Issues with Spreadsheets
+
+They're widely used in business and education, and offer an approachable interface for organizing tables, applying formulas, and making quick charts. This makes spreadsheets a great entry point into the world of data—but also a format with serious limitations when it comes to analytics at scale.
+
+Spreadsheets don’t record your steps, meaning you can’t always retrace how a figure was calculated. There’s no built-in version history (at least not one that’s easy to audit), and formulas often vary invisibly from cell to cell—especially if you’ve copied or dragged them across a range. This makes it difficult to ensure consistency and nearly impossible to reproduce or validate your results.
+
+Even small errors—like accidentally referencing the wrong column—can go unnoticed. A single cell with a broken formula can distort an entire analysis. These issues are especially problematic when figures or charts are being used for decisions or presentations.
+
+To make matters worse, analysts often inherit spreadsheets from others—colleagues, clients, or external partners. These files might contain:
+
+* inconsistent naming conventions
+* manual totals
+* hidden formatting or comments
+* merged cells
+* duplicated values across tabs
+
+Despite these flaws, spreadsheets remain a powerful tool for quick exploration and lightweight collaboration. They’re useful for small teams, early prototyping, or downloading data from platforms like Shopify, Facebook Ads, or Google Analytics. But when your work moves toward reproducibility, scalability, or automation, it’s time to adopt formats designed for analysis.
+
+TIP: Googlesheets
+Google Sheets is another widely used spreadsheet program. It’s free and web-based. Just like with Excel, in Google Sheets data are organized in worksheets (also called sheets) inside of spreadsheet files.
+
+Prerequisites
+This section will also focus on spreadsheets, but this time you’ll be loading data from a Google Sheet with the googlesheets4 package. This package is non-core tidyverse as well, you need to load it explicitly.
+
+The first argument to read_sheet() is the URL of the file to read, and it returns a tibble:
+https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w. These URLs are not pleasant to work with, so you’ll often want to identify a sheet by its ID.
+
+```r
+gs4_deauth()
+
+students_sheet_id <- "1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w"
+students <- read_sheet(students_sheet_id)
+```
+
+#### Writing to Google Sheets
+You can write from R to Google Sheets with write_sheet(). The first argument is the data frame to write, and the second argument is the name (or other identifier) of the Google Sheet to write to:
+
+write_sheet(bake_sale, ss = "bake-sale")
+
+If you’d like to write your data to a specific (work)sheet inside a Google Sheet, you can specify that with the sheet argument as well.
+
+write_sheet(bake_sale, ss = "bake-sale", sheet = "Sales")
+
+#### Authentication
+While you can read from a public Google Sheet without authenticating with your Google account and with gs4_deauth(), reading a private sheet or writing to a sheet requires authentication so that googlesheets4 can view and manage your Google Sheets.
+
+When you attempt to read in a sheet that requires authentication, googlesheets4 will direct you to a web browser with a prompt to sign in to your Google account and grant permission to operate on your behalf with Google Sheets. However, if you want to specify a specific Google account, authentication scope, etc. you can do so with gs4_auth(), e.g., gs4_auth(email = "mine@example.com"), which will force the use of a token associated with a specific email. For further authentication details, we recommend reading the documentation googlesheets4 auth vignette: https://googlesheets4.tidyverse.org/articles/auth.html.
 
 ## Flat Files (CSV, TSV and other delimited files)
 
@@ -118,7 +155,12 @@ This format is:
 * A common default for data exports
 
 ### Reading Flat Files in R
-In R, we can use the readr package to import flat files quickly and reliably:
+
+will focus on reading plain-text rectangular files. WHAT IS rectangular data?
+
+To begin, we’ll focus on the most common rectangular data file type: CSV, which is short for comma-separated values. Here is what a simple CSV file looks like. The first row, commonly called the header row, gives the column names, and the following six rows provide the data. The columns are separated, aka delimited, by commas.
+
+In R, we can use the `readr` package to import flat files quickly and reliably. We can read this file into R using `read_csv()`. The first argument is the most important: the path to the file. You can think about the path as the address of the file: the file is called XXX.csv and it lives in the data folder.
 
 ``` r
 library(readr)
@@ -127,11 +169,12 @@ library(readr)
 auctions_flat <- read_csv("data/bids_flat.csv")
 ```
 
+When you run read_csv(), it prints out a message telling you the number of rows and columns of data, the delimiter that was used, and the column specifications (names of columns organized by the type of data the column contains). It also prints out some information about retrieving the full column specification and how to quiet this message. This message is an integral part of readr, and we’ll return to it in XXX
+
 This loads your flat file into a tidy tibble for further analysis. You can also read tab-separated files (read_tsv()) or files with other delimiters (read_delim()).
 
 ::: {.callout-tip}
-
-Delimiters and File Extensions
+ Delimiters and File Extensions
 The character that separates columns in a flat file is called a delimiter. Common ones include:
 
 * Comma (,) — for .csv files
@@ -181,7 +224,19 @@ Later in this chapter, we’ll see how other formats (like JSON and SQL) handle 
 
 > 💡 **Tip:** Use flat files for medium-sized, flat data when simplicity trumps scale
 
-## JSON Files: When one row might not be enough
+### Writing to a file
+
+readr also comes with two useful functions for writing data back to disk: write_csv() and write_tsv(). The most important arguments to these functions are x (the data frame to save) and file (the location to save it). You can also specify how missing values are written with na, and if you want to append to an existing file.
+
+```r
+write_csv(students, "students.csv")
+```
+
+Now let’s read that csv file back in. Note that the variable type information that you just set up is lost when you save to CSV because you’re starting over with reading from a plain text file again:
+
+This makes CSVs a little unreliable for caching interim results—you need to recreate the column specification every time you load in. 
+
+## JSON Files: When rectangular data might not be enough
 
 Flat files are great when every observation fits neatly into one row. But what if each item in your dataset comes with its own mini-dataset inside—like multiple bids per auction?
 
@@ -231,11 +286,9 @@ ADD callout: JSON does not have to be nested!
 
 ### Working with Nested JSON Auction Data in R
 
-In this section, we’ll learn how to work with nested JSON data in R using a simulated dataset of eBay-style auctions. Each auction record includes top-level information (like item title and category), seller information, and a **nested list of bids** placed by users. This structure is very common in the real world—especially when dealing with data from APIs or web applications.
+In this section, we’ll learn how to work with nested JSON data. Each auction record includes top-level information (like item title and category), seller information, and a **nested list of bids** placed by users. This structure is very common in the real world—especially when dealing with data from APIs or web applications.
 
 Our goal is to explore how to load and manipulate this nested structure using tidyverse tools. We'll move step by step, from raw JSON to a tidy tibble.
-
----
 
 ### Step 1: Load the JSON File
 We’ll start by reading in the data using the `read_json()` function from the `jsonlite` package. This preserves the nested list structure exactly as it appears in the JSON file.
@@ -277,7 +330,16 @@ auctions_tbl <- tibble(record = auctions_nested)
 
 Each row of `auctions_tbl` now contains one full auction record.
 
+### Rectangling non-rectangular data
+
+you’ll learn the art of data rectangling: taking data that is fundamentally hierarchical, or tree-like, and converting it into a rectangular data frame made up of rows and columns. This is important because hierarchical data is surprisingly common, especially when working with data that comes from the web.
+
+CALLOUT ON R lists
+
 ### Step 4: Unnest the Top-Level Fields
+
+
+
 We can begin flattening the nested structure one layer at a time using `unnest_wider()`:
 
 ```r
@@ -287,7 +349,8 @@ auctions_tbl <- auctions_tbl %>%
 
 Now we have columns like `item_id`, `title`, `category`, `seller`, and `bids`. Both `seller` and `bids` are still lists.
 
-We can go further:
+When each row has the same number of elements with the same names, like XXX, it’s natural to put each component into its own column with unnest_wider():
+
 ```r
 auctions_tbl <- auctions_tbl %>%
   unnest_wider(seller, names_sep = "_")
@@ -337,6 +400,8 @@ auctions_tbl_wide <- reduce(
 
 
 ### Step 7: Unnesting to Long Format
+Discuss why the wider might not be what we wanted ...
+
 Instead of going wider, we can go longer. This means one row per bid:
 
 ```r
@@ -368,10 +433,57 @@ bids_renested <- bids_long %>%
 ## 🗄️ 3. Databases (DuckDB)
 
 ### Why databases?
+
+A huge amount of data lives in databases, so it’s essential that you know how to access it.
+
 - Efficient for large structured data
 - Use SQL to join/filter/aggregate
 
-### DuckDB + `dbplyr`:
+TIP BOX
+
+Databases are run by database management systems (DBMS’s for short), which come in three basic forms:
+
+ - Client-server DBMS’s run on a powerful central server, which you connect to from your computer (the client). They are great for sharing data with multiple people in an organization. Popular client-server DBMS’s include PostgreSQL, MariaDB, SQL Server, and Oracle.
+- Cloud DBMS’s, like Snowflake, Amazon’s RedShift, and Google’s BigQuery, are similar to client server DBMS’s, but they run in the cloud. This means that they can easily handle extremely large datasets and can automatically provide more compute resources as needed.
+- In-process DBMS’s, like SQLite or duckdb, run entirely on your computer. They’re great for working with large datasets where you’re the primary user.
+
+Our to dos:
+
+how to use it to connect to a database and then retrieve data 
+
+### Connecting to a database
+To connect to the database from R, you’ll use a pair of packages:
+
+You’ll always use DBI (database interface) because it provides a set of generic functions that connect to the database, upload data, run SQL queries, etc.
+
+You’ll also use a package tailored for the DBMS you’re connecting to. This package translates the generic DBI commands into the specifics needed for a given DBMS.
+
+we’ll instead use an in-process DBMS that lives entirely in an R package: duckdb. Thanks to the magic of DBI, the only difference between using duckdb and any other DBMS is how you’ll connect to the database. This makes it great to teach with because you can easily run this code as well as easily take what you learn and apply it elsewhere.
+
+Connecting to duckdb is particularly simple because the defaults create a temporary database that is deleted when you quit R. That’s great for learning because it guarantees that you’ll start from a clean slate every time you restart R:
+
+```r
+con <- DBI::dbConnect(duckdb::duckdb())
+```
+
+duckdb is a high-performance database that’s designed very much for the needs of a data scientist. We use it here because it’s very easy to get started with, but it’s also capable of handling gigabytes of data with great speed. 
+
+TIP 
+If you want to use duckdb for a real data analysis project, you’ll also need to supply the dbdir argument to make a persistent database and tell duckdb where to save it
+
+### DuckDB:
+
+#### DBI basics
+You can check that the data is loaded correctly by using a couple of other DBI functions: dbListTables() lists all tables in the database3 and dbReadTable() retrieves the contents of a table.
+
+```e
+dbListTables(con)
+#> [1] "diamonds" "mpg"
+
+con |> 
+  dbReadTable("diamonds") |> 
+  as_tibble()
+```
 
 ```r
 library(DBI)
@@ -380,12 +492,48 @@ con <- dbConnect(duckdb(), "bids.duckdb")
 dbWriteTable(con, "bids", bids_long)
 ```
 
-```r
+### `dbplyr`
+
+Now that we’ve connected to a database and loaded up some data, we can start to learn about dbplyr. dbplyr is a dplyr backend, which means that you keep writing dplyr code but the backend executes it differently. In this, dbplyr translates to SQL;
+
+To use dbplyr, you must first use tbl() to create an object that represents a database table:
+
+```
+diamonds_db <- tbl(con, "diamonds")
+diamonds_db
+```
+
+This object is lazy; when you use dplyr verbs on it, dplyr doesn’t do any work: it just records the sequence of operations that you want to perform and only performs them when needed. For example, take the following pipeline:
+
+```
+big_diamonds_db <- diamonds_db |> 
+  filter(price > 15000) |> 
+  select(carat:clarity, price)
+```
+
+You can tell this object represents a database query because it prints the DBMS name at the top, and while it tells you the number of columns, it typically doesn’t know the number of rows. This is because finding the total number of rows usually requires executing the complete query, something we’re trying to avoid.
+
+To get all the data back into R, you call collect(). Behind the scenes, this generates the SQL, calls dbGetQuery() to get the data, then turns the result into a tibble:
+
+``` r
 library(dplyr)
 bids_db <- tbl(con, "bids") %>% filter(category == "Books") %>% collect()
 ```
 
+How did that work? You can see the SQL code generated by the dplyr function show_query(). If you know dplyr, this is a great way to learn SQL! Write some dplyr code, get dbplyr to translate it to SQL, and then try to figure out how the two languages match up.
+
+Typically, you’ll use dbplyr to select the data you want from the database, performing basic filtering and aggregation using the translations described below. Then, once you’re ready to analyse the data with functions that are unique to R, you’ll collect() the data to get an in-memory tibble, and continue your work with pure R code.
+
+Now run some dplyr code including joins. Do exercises.
+
 > 💡 **Tip:** DuckDB works with flat files *and* Parquet — great for teaching SQL locally
+
+TIP
+
+If you’ve finished this chapter and would like to learn more about SQL, we have two recommendations:
+
+SQL for Data Scientists by Renée M. P. Teate is an introduction to SQL designed specifically for the needs of data scientists, and includes examples of the sort of highly interconnected data you’re likely to encounter in real organizations.
+Practical SQL by Anthony DeBarros is written from the perspective of a data journalist (a data scientist specialized in telling compelling stories) and goes into more detail about getting your data into a database and running your own DBMS.
 
 ---
 
@@ -394,6 +542,189 @@ bids_db <- tbl(con, "bids") %>% filter(category == "Books") %>% collect()
 ### Why Parquet?
 - Compressed, fast, and scalable
 - Ideal for analytics
+
+the parquet format, an open standards-based format widely used by big data systems.
+
+We’ll pair parquet files with Apache Arrow, a multi-language toolbox designed for efficient analysis and transport of large datasets. We’ll use Apache Arrow via the arrow package, which provides a dplyr backend allowing you to analyze larger-than-memory datasets using familiar dplyr syntax. As an additional benefit, arrow is extremely fast: you’ll see some examples later in the chapter.
+
+Opening a dataset
+Let’s start by taking a look at the data. At 9 GB, this file is large enough that we probably don’t want to load the whole thing into memory. A good rule of thumb is that you usually want at least twice as much memory as the size of the data, and many laptops top out at 16 GB. This means we want to avoid read_csv() and instead use the arrow::open_dataset():
+
+```r
+seattle_csv <- open_dataset(
+  sources = "data/seattle-library-checkouts.csv", 
+  col_types = schema(ISBN = string()),
+  format = "csv"
+)
+```
+
+What happens when this code is run? open_dataset() will scan a few thousand rows to figure out the structure of the dataset. The ISBN column contains blank values for the first 80,000 rows, so we have to specify the column type to help arrow work out the data structure. Once the data has been scanned by open_dataset(), it records what it’s found and stops; it will only read further rows as you specifically request them. This metadata is what we see if we print seattle_csv:
+
+```r
+seattle_csv
+#> FileSystemDataset with 1 csv file
+#> UsageClass: string
+#> CheckoutType: string
+#> MaterialType: string
+#> CheckoutYear: int64
+#> CheckoutMonth: int64
+#> Checkouts: int64
+#> Title: string
+#> ISBN: string
+#> Creator: string
+#> Subjects: string
+#> Publisher: string
+#> PublicationYear: string
+```
+
+The first line in the output tells you that seattle_csv is stored locally on-disk as a single CSV file; it will only be loaded into memory as needed. The remainder of the output tells you the column type that arrow has imputed for each column.
+
+We can see what’s actually in with glimpse(). This reveals that there are ~41 million rows and 12 columns, and shows us a few values.
+
+```r
+seattle_csv |> glimpse()
+```
+
+We can see what’s actually in with glimpse(). This reveals that there are ~41 million rows and 12 columns, and shows us a few values.
+
+```r
+seattle_csv |> glimpse()
+```
+
+#### The parquet format
+To make this data easier to work with, let’s switch to the parquet file format and split it up into multiple files. The following sections will first introduce you to parquet and partitioning, and then apply what we learned to the Seattle library data.
+
+Advantages of parquet
+Like CSV, parquet is used for rectangular data, but instead of being a text format that you can read with any file editor, it’s a custom binary format designed specifically for the needs of big data. This means that:
+
+Parquet files are usually smaller than the equivalent CSV file. Parquet relies on efficient encodings to keep file size down, and supports file compression. This helps make parquet files fast because there’s less data to move from disk to memory.
+
+Parquet files have a rich type system. As we talked about in Section 7.3, a CSV file does not provide any information about column types. For example, a CSV reader has to guess whether "08-10-2022" should be parsed as a string or a date. In contrast, parquet files store data in a way that records the type along with the data.
+
+Parquet files are “column-oriented”. This means that they’re organized column-by-column, much like R’s data frame. This typically leads to better performance for data analysis tasks compared to CSV files, which are organized row-by-row.
+
+Parquet files are “chunked”, which makes it possible to work on different parts of the file at the same time, and, if you’re lucky, to skip some chunks altogether.
+
+There’s one primary disadvantage to parquet files: they are no longer “human readable”, i.e. if you look at a parquet file using readr::read_file(), you’ll just see a bunch of gibberish.
+
+22.4.2 Partitioning
+As datasets get larger and larger, storing all the data in a single file gets increasingly painful and it’s often useful to split large datasets across many files. When this structuring is done intelligently, this strategy can lead to significant improvements in performance because many analyses will only require a subset of the files.
+
+There are no hard and fast rules about how to partition your dataset: the results will depend on your data, access patterns, and the systems that read the data. You’re likely to need to do some experimentation before you find the ideal partitioning for your situation. As a rough guide, arrow suggests that you avoid files smaller than 20MB and larger than 2GB and avoid partitions that produce more than 10,000 files. You should also try to partition by variables that you filter by; as you’ll see shortly, that allows arrow to skip a lot of work by reading only the relevant files.
+
+Let’s take a look at what we just produced:
+
+```r
+tibble(
+  files = list.files(pq_path, recursive = TRUE),
+  size_MB = file.size(file.path(pq_path, files)) / 1024^2
+)
+#> # A tibble: 18 × 2
+#>   files                            size_MB
+#>   <chr>                              <dbl>
+#> 1 CheckoutYear=2005/part-0.parquet    109.
+#> 2 CheckoutYear=2006/part-0.parquet    164.
+#> 3 CheckoutYear=2007/part-0.parquet    178.
+#> 4 CheckoutYear=2008/part-0.parquet    195.
+#> 5 CheckoutYear=2009/part-0.parquet    214.
+#> 6 CheckoutYear=2010/part-0.parquet    222.
+#> # ℹ 12 more rows
+```
+
+Our single 9GB CSV file has been rewritten into 18 parquet files. The file names use a “self-describing” convention used by the Apache Hive project. Hive-style partitions name folders with a “key=value” convention, so as you might guess, the CheckoutYear=2005 directory contains all the data where CheckoutYear is 2005. Each file is between 100 and 300 MB and the total size is now around 4 GB, a little over half the size of the original CSV file. This is as we expect since parquet is a much more efficient format.
+
+Using dplyr with arrow
+Now we’ve created these parquet files, we’ll need to read them in again. We use open_dataset() again, but this time we give it a directory:
+
+seattle_pq <- open_dataset(pq_path)
+
+Now we can write our dplyr pipeline. For example, we could count the total number of books checked out in each month for the last five years:
+
+query <- seattle_pq |> 
+  filter(CheckoutYear >= 2018, MaterialType == "BOOK") |>
+  group_by(CheckoutYear, CheckoutMonth) |>
+  summarize(TotalCheckouts = sum(Checkouts)) |>
+  arrange(CheckoutYear, CheckoutMonth)
+
+Writing dplyr code for arrow data is conceptually similar to dbplyr, Chapter 21: you write dplyr code, which is automatically transformed into a query that the Apache Arrow C++ library understands, which is then executed when you call collect(). If we print out the query object we can see a little information about what we expect Arrow to return when the execution takes place:
+
+```r
+query
+#> FileSystemDataset (query)
+#> CheckoutYear: int32
+#> CheckoutMonth: int64
+#> TotalCheckouts: int64
+#> 
+#> * Grouped by CheckoutYear
+#> * Sorted by CheckoutYear [asc], CheckoutMonth [asc]
+#> See $.data for the source Arrow object
+```
+And we can get the results by calling collect():
+
+```r
+query |> collect()
+#> # A tibble: 58 × 3
+#> # Groups:   CheckoutYear [5]
+#>   CheckoutYear CheckoutMonth TotalCheckouts
+#>          <int>         <int>          <int>
+#> 1         2018             1         355101
+#> 2         2018             2         309813
+#> 3         2018             3         344487
+#> 4         2018             4         330988
+#> 5         2018             5         318049
+#> 6         2018             6         341825
+#> # ℹ 52 more rows
+```
+
+Like dbplyr, arrow only understands some R expressions, so you may not be able to write exactly the same code you usually would. However, the list of operations and functions supported is fairly extensive and continues to grow; find a complete list of currently supported functions in ?acero.
+
+Performance
+Let’s take a quick look at the performance impact of switching from CSV to parquet. First, let’s time how long it takes to calculate the number of books checked out in each month of 2021, when the data is stored as a single large csv:
+
+```r
+seattle_csv |> 
+  filter(CheckoutYear == 2021, MaterialType == "BOOK") |>
+  group_by(CheckoutMonth) |>
+  summarize(TotalCheckouts = sum(Checkouts)) |>
+  arrange(desc(CheckoutMonth)) |>
+  collect() |> 
+  system.time()
+#>    user  system elapsed 
+#>  11.951   1.297  11.387
+```
+
+Now let’s use our new version of the dataset in which the Seattle library checkout data has been partitioned into 18 smaller parquet files:
+
+```r
+seattle_pq |> 
+  filter(CheckoutYear == 2021, MaterialType == "BOOK") |>
+  group_by(CheckoutMonth) |>
+  summarize(TotalCheckouts = sum(Checkouts)) |>
+  arrange(desc(CheckoutMonth)) |>
+  collect() |> 
+  system.time()
+#>    user  system elapsed 
+#>   0.263   0.058   0.063
+```
+
+The ~100x speedup in performance is attributable to two factors: the multi-file partitioning, and the format of individual files:
+
+Partitioning improves performance because this query uses CheckoutYear == 2021 to filter the data, and arrow is smart enough to recognize that it only needs to read 1 of the 18 parquet files.
+The parquet format improves performance by storing data in a binary format that can be read more directly into memory. The column-wise format and rich metadata means that arrow only needs to read the four columns actually used in the query (CheckoutYear, MaterialType, CheckoutMonth, and Checkouts).
+This massive difference in performance is why it pays off to convert large CSVs to parquet!
+
+####  Using duckdb with arrow
+There’s one last advantage of parquet and arrow — it’s very easy to turn an arrow dataset into a DuckDB database (Chapter 21) by calling arrow::to_duckdb():
+
+```r
+seattle_pq |> 
+  to_duckdb() |>
+  filter(CheckoutYear >= 2018, MaterialType == "BOOK") |>
+  group_by(CheckoutYear) |>
+  summarize(TotalCheckouts = sum(Checkouts)) |>
+  arrange(desc(CheckoutYear)) |>
+  collect()
+```
 
 ### Partitioning example:
 ```r
@@ -421,7 +752,6 @@ books_bids <- ds %>% filter(category == "Books") %>% collect()
 | Parquet    | Columnar       | Huge        | Analytics, filtering             | Not human-readable            |
 | Excel      | Manual         | Small       | Fast edits and charts            | Not scalable or reproducible  |
 
----
 
 ## 🔐 6. Best Practices for Storing & Sharing Data
 
@@ -444,7 +774,6 @@ books_bids <- ds %>% filter(category == "Books") %>% collect()
 - Departments often keep separate versions of the truth
 - Well-organized, central storage enables business-wide insights
 
----
 
 ## 🧠 Wrap-up Activity: Which Format Would You Use?
 
