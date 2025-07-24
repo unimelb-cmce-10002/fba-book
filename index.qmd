@@ -24,6 +24,7 @@ This course will help you transform numbers into knowledge that informs business
 This course is designed for **first-year undergraduate students** enrolled in business, commerce, or economics degrees.
 
 We assume students:
+
 - Have **no prior programming experience**.
 - Have basic numeracy skills (high school level mathematics).
 - Are curious about how data and technology are changing the way businesses operate.
@@ -36,6 +37,7 @@ We welcome students from all backgrounds — no prior coding or analytics experi
 ## Learning Goals {.unnumbered}
 
 By the end of this course, students will be able to:
+
 - Define and explain key concepts in business analytics.
 - Identify different types of business problems and select appropriate analytic approaches.
 - Critically assess data sources and recognize the limitations of data-driven insights.
@@ -60,8 +62,23 @@ Our teaching philosophy blends three core elements:
 This text is designed to serve both as a foundation for classroom discussion and as a self-contained guide for independent study. Analytics is about exploration and iteration — it is normal to encounter challenges and learn through the process. We encourage a growth mindset: thoughtful questions, careful reasoning, and creative thinking are celebrated throughout the journey into business analytics.
 
 
-## Software Information & conventions {.unnumbered}
+<!-- ## Software Information & conventions {.unnumbered} -->
 
 ## About the Instructors {.unnumbered}
 
-## Acknowledgements {.unnumbered}
+**Lachlan** Deer is a Lecturer in the Management & Marketing Group at the University of Melbourne. 
+His research interests lie in quantitative marketing, digital markets and public policy. 
+Lachlan has spent the last decade introducing computing and data science skills into business, economics and social science curriculums, adopting a hands-on and learner focussed practical training, enabling learners to become more efficient and productive in their work by bridging the gap between the increasing reliance on computational skills demanded by employers and the limited training many learners receive in these areas in traditional courses in these areas.
+Prior to joining University of Melbourne, Lachlan has worked at Tilburg University and the University of Chicago Booth School of Business. 
+Lachlan earned his PhD in Economics from the University of Zurich.
+
+**Patrick** Ferguson is a Senior Lecturer in the Accounting Group at the University of Melbourne and a Research Affiliate at the Laboratory for Innovation Science at Harvard University. 
+In his research, Patrick uses observational data and field experiments to study how organizations measure, reward, and report on worker performance. 
+He is also interested in contest design and sports economics.
+He received a PhD in Business Administration from Harvard University.
+
+**Junhao Liu** is a Senior Lecturer in the Accounting Group at the University of Melbourne.
+Junhao's research interests broadly pertain to archival research in financial accounting, and he is particularly interested in accounting intangibles, financial reporting and disclosure, financial analysts, and valuation.
+Junhao obtained my Ph.D. degree in accounting from Rotman School of Management at University of Toronto.
+
+<!-- ## Acknowledgements {.unnumbered} -->
