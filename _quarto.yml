@@ -47,7 +47,7 @@ book:
       chapters:
         - tutorials/what_is_business_analytics.qmd
         # - tutorials/data_visualisation.qmd
-  appendices:
+  # appendices:
     # - appendices/installation.qmd
 
 
