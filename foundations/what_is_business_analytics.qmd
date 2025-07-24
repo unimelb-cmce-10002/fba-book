@@ -18,7 +18,7 @@ By the end of this chapter, you should be able to:
 
 Businesses have always had to make important decisions: *Who should we hire? Where should we invest? How much should we spend on advertising?* In the past, these decisions were often made based on experience, intuition, or the authority of senior leadership—a dynamic sometimes known as the "HIPPO" effect: **Highest Paid Person's Opinion**.
 
-That's no longer enough. Today's businesses operate in faster, more complex environments. Fortunately, they also have access to something that previous generations did not: **data**. From customer transactions to website clicks, microsecond stock price information to supply chain records, nearly every part of a business now generates data. A single online purchase creates dozens of data points: what the customer viewed, how long they hesitated, which payment method they chose, even how they arrived at the site. The challenge isn't collecting it—it's knowing what to do with it.
+That's no longer enough. Today's businesses operate in faster, more complex environments. Fortunately, they also have access to something that previous generations did not: **data**. From customer transactions to social media posts, microsecond stock price information to supply chain records, nearly every part of a business now generates data. A single online purchase creates dozens of data points: what the customer viewed, how long they hesitated, which payment method they chose, even how they arrived at the site. The challenge isn't collecting it—it's knowing what to do with it.
 
 This is where **business analytics** comes in.
 
