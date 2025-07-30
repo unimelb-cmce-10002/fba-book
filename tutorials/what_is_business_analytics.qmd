@@ -65,7 +65,7 @@ If you were working as an analyst at David Jones, what types of data would you w
 List at least three kinds of data.
 
 ### Exercise 5: Skill Choices 
-Which skills of a business data analyst do you think are most important for this problem?
+What skills do you think does a business data analyst needs to solve this problem? Justify your answer.
 
 ## In-Class Exercises
 
@@ -129,7 +129,7 @@ David Jones’ supplier is asking you to confirm delivery quantities **now**, so
 
 (a) How many units should you order for Sydney and Melbourne for the first week of the holiday season?
 (b) Justify your decision based on last year's patterns and your reasoning. Consider factors like demand trends, regional differences, price effects, and promotion timing.
-(c) Suppose the supplier has limited capacity and can only supply 300 units total for the first week.  How would you allocate this stock between Sydney and Melbourne? What are the risks of your choice?
+(c) Suppose the supplier has limited capacity and can only supply 200 units total for the first week.  How would you allocate this stock between Sydney and Melbourne? What are the risks of your choice?
 
 
 
