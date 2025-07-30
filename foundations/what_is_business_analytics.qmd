@@ -58,7 +58,7 @@ As computing power increased, so did analytical ambition. Businesses began using
 
 The frontier today is not just prediction—it's learning what actually works. Companies now use A/B testing, field experiments, and causal inference to evaluate strategies and understand the true impact of different choices. This lets firms go beyond correlation and ask the crucial question: What happens if we actually do X instead of Y?
 
-> "At Netflix, every decision is backed by an experiment." — *Track down who*
+> "Nearly every decision we make about our product and business is guided by member behavior observed in test" (i.e. an experiment). — *Netflix Tech Blog*
 
 > "Our success at Amazon is a function of how many experiments we do per year, per month, per week, per day." — *Jeff Bezos*
 
