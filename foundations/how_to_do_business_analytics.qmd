@@ -1,156 +1,394 @@
 # The Core Skills of a "Business Scientist"
 
-*(Goal: Introduce the core skills needed to succeed in business analytics.)*
+::: {.callout-tip}
+## Learning Goals {.unnumbered}
+
+By the end of this chapter, you should be able to:
+
+- Identify the eight core skills that underpin effective business analytics. 
+- Explain how each skill helps analysts tackle business problems using data.
+- Distinguish between different types of skills (e.g., technical, strategic, communicative) and their roles.
+- Reflect on how your individual strengths align with different analytics skill areas, and how diverse skill sets contribute to effective teams.
+
+:::
 
 ##  Becoming a Business Scientist: A Scientific Mindset Within a Business
 
-Business analytics is often mistaken for a purely technical role. People imagine spreadsheets, dashboards, and endless charts. But the heart of analytics isn't technical—it's **conceptual**.
+Many students begin a business analytics course expecting to learn tools—how to write some code, build some charts, maybe even fit a model or two. 
+And those *are* important outcomes. 
+But learning the foundations of business analytics means more than just acquiring technical capabilities. 
+It's about becoming someone who can use data to tackle messy, ambiguous, and important business problems. 
+That’s a different kind of challenge. It requires not just tools, but judgement. 
+Not just answers, but knowing how to formulate better questions and how to choose the right tools to answer them.
 
-To do business analytics well, you need to think like a scientist. But not a lab-coat-in-a-lab kind of scientist. A **business scientist**.
+This means being able to think conceptually about a problem before diving into data or code.
+That includes understanding the context, identifying what matters, and knowing how different kinds of questions—descriptive, predictive, or causal—can shape the analysis. 
+It means treating analysis not just as a task, but as a form of problem-solving. 
+This is the mindset of a **business scientist**: someone who combines data, domain knowledge, and structured reasoning to help businesses make better decisions.
+This is the identity we'll use throughout the rest of the book. 
+It’s an opinionated choice, but a deliberate one. 
+We believe "business scientist" captures the blend of analytical skill, conceptual thinking, and real-world impact that defines the kind of analyst we're shaping you to become. 
+It reflects not just what you do, but how you think—and the value you bring to the organisations you can aspire to work with in the future.
 
-This chapter introduces you to that mindset.
+This chapter introduces the foundational skills that support that kind of thinking and working. These skills aren't tied to any one analytics tool, task or business discipline. 
+Instead, they shape how you approach problems, how you engage with data, and how you turn analysis into insight and action. 
+Some of them are technical—like transforming and modelling data. 
+Others are strategic—like understanding the business context or framing a problem in the right way. Still others are communicative—like helping a team of non-technical experts see the story behind the numbers. 
+All of these skills are part of doing **good** business analytics.
 
-### What Does It Mean to Think Like a Scientist?
+::: {.callout-note title="Thinking Like a Business Scientist"}
 
-Science is about **systematically learning from the world**. Scientists don't just collect data—they start with questions, form hypotheses, and test them. They let evidence shape their beliefs. And when new evidence emerges, they adjust their thinking accordingly.
+Science is about **systematically learning from the world**. Scientists don't just collect data for the sake of it—they begin with questions, develop hypotheses, and design ways to test them. They use evidence to update their beliefs and remain open to the possibility that they might be wrong. Thinking like a scientist means embracing uncertainty, asking sharp questions, and letting the data guide you—rather than simply confirming what you already believe.
 
-Business scientists do the same thing, just in a commercial setting.
+Business scientists do the same thing, but in a commercial setting. The tools might look different, and the decisions might need to move faster, but the mindset is the same: stay curious, stay structured, and stay open to what the data is telling you.
 
-You might find yourself investigating:
+In business contexts, the questions are often practical—and the stakes are real. You might find yourself investigating:
 
-* Why a product isn't selling as expected
-* Whether a loyalty program actually increased retention
-* How to segment your customer base more effectively
+- Why a product isn't selling as expected  
+- Whether a loyalty program actually increased retention  
+- How to segment your customer base more effectively  
 
-In each case, you're not just reporting numbers. You're **solving a puzzle**. You're building a case. You're making it easier for someone—your manager, your client, your team—to make a better decision.
+In each case, you're not just reporting numbers. 
+You're **solving a puzzle**. You're forming hypotheses and testing them against available data. You're navigating messy constraints, incomplete information, and real-world pressure. 
+And you're building a case that helps someone else—your manager, your client, your team—make a better decision.
 
-### The Business Scientist Mindset
+That’s what it means to think like a business scientist: to combine data and discipline with creativity and judgment, all in service of making sense of the world and creating value from that understanding.
 
-Here's how a business scientist approaches problems:
+:::
 
-**🧠 Forming hypotheses** You don't dive into data blindly. You start by thinking: *What might be driving this outcome? What would I expect to see if that explanation were true?*
+## From Mindset to Method
 
-**📊 Testing ideas with data** You treat data as evidence. Your ideas aren't valid because you believe them—they're supported because the evidence suggests they hold up.
+![The Business Scientist — part detective, part strategist, part storyteller](../figs/the_business_scientist.png){fig-align="center" width="50%" fig-alt="Illustration showing that a business scientist is part detective, part strategist, part storyteller"}
 
-**🔁 Iterating and refining** You rarely get everything right on the first attempt. You explore, learn, revise, and improve. That's not a weakness—it's how good analytics works.
+So what does this mindset actually look like in practice? Here's how a business scientist approaches problems—not with a fixed recipe, but with a way of thinking that guides every step of the analysis.
 
-**🗣️ Communicating clearly** You translate complexity into clarity. You don't just present findings—you tell a story that helps people act on what you've discovered.
+- **Forming hypotheses**
+You don't dive into data blindly. You start by thinking: What might be driving this outcome? What would I expect to see if that explanation were true?
 
-Think of yourself as a business scientist—part detective, part strategist, part storyteller. Your role is to uncover patterns, test explanations, and help businesses make smarter, evidence-based decisions.
+- **Testing ideas with data**
+You treat data as evidence. Your ideas aren't valid because you believe them—they're supported because the evidence suggests they hold up.
 
-### Why This Matters
+- **Iterating and refining**
+You rarely get everything right on the first attempt. You explore, learn, revise, and improve. That's not a weakness—it's how good analytics works.
 
-Companies today sit on mountains of data. But data alone doesn't create value. **Thinking well with data**—asking good questions, finding the right evidence, drawing clear conclusions—is what transforms information into insight.
+- **Communicating clearly**. You translate complexity into clarity. You don't just present findings—you tell a story that helps people act on what you've discovered.
 
-That's what you'll learn in this course: not just how to run an analysis, but how to **think like a business scientist**, from initial problem to actionable insight.
+
+Think of the business scientist as a motley mix of three personalities — part detective, part strategist, part storyteller. 
+Their role, which will be yours in time,  is to uncover patterns, test explanations, and help businesses make smarter, evidence-based decisions.
+Companies today sit on mountains of data. 
+But data alone doesn't create value. 
+Thinking well with data—asking good questions, finding the right evidence, drawing clear conclusions—is what transforms information into insight.
 
 ## The 8 Skills of a Business Scientist
 
-Business analytics isn't just about knowing which buttons to press. It's about how you think.
+As we've discussed so far, doing business analytics isn't just about knowing which buttons to press.
+It’s about how you think—and how you apply that thinking to solve real problems.
+This emphasis on thinking clearly with data is what sets great business scientists apart.
 
-Some analysts focus heavily on tools—what software they can use, how many models they know. But the best business analysts succeed because of their **skills**. Skills help you adapt to new problems, collaborate with teams, and communicate with clarity. Tools come and go. Skills stick with you.
-
-Some of these skills you'll use in every project. Others will depend on your role, your industry, or your team. What we offer here is a starting point—a map of what it means to be a business scientist.
-
-### The Skills
+In many workplaces, the focus of those working in business analytics roles often drifts toward tools—what software someone can use, how many models they’ve memorised.
+But tools are only part of the picture.
+The best business scientists succeed because of their skillset: the habits of mind, ways of working, and communicative strengths that help them adapt to new problems, collaborate with others, and turn analysis into action.
+The tools everyone wants to talk about tend to come and go — often too fast for you to reach true proficiency before newer ones take over.
+Skills, by contrast, stick with you.
+In what follows, we’ll outline what we believe are the eight essential skills that form the foundation of thinking and working like a business scientist.
 
 Here are 8 essential skills that make up the foundation of great business analytics:
 
-#### 1. Understand the Business World
+#### 1. Institutional Detail: Understanding the Business World {.unnumbered}
 
-**🧭 Skill: Institutional Detail**
+Businesses don't operate in a vacuum. Each one exists within a broader ecosystem—shaped by its customers, competitors, suppliers, regulations, the wider industry it operates within and traditions. 
+Great business scientists take the time to understand how their organization works from the inside out.
+Just like a biologist wouldn’t study an animal without first understanding its habitat, a business scientist doesn’t analyze data without grasping the environment the business operates in. 
+Context isn’t background noise—it’s the terrain in which every decision plays out.
 
-Businesses don't operate in a vacuum. Each one exists within a broader ecosystem—shaped by its customers, competitors, suppliers, regulations, and traditions. Great analysts take the time to understand how their organization works from the inside out.
+This means learning about pricing structures, seasonality, logistics, marketing strategies, regulatory constraints, and competitive dynamics. 
+It means understanding the industry’s rhythms: when do customers typically buy? What external factors drive demand? How does the sales process actually work? 
+Without this context, it’s easy to misinterpret what the data is telling you.
 
-This means learning about pricing structures, seasonality, logistics, marketing strategies, regulatory constraints, and competitive dynamics. It means understanding the industry's rhythms: when do customers typically buy? What external factors drive demand? How does the sales process actually work? Without this context, it's easy to misinterpret what the data is telling you.
+We think of learning institutional details as becoming fluent in your company’s language. 
+Every business has its own vocabulary, its own calendar of important events, and its own unwritten rules about how things get done. 
+The more you understand these local dynamics, the better you'll be at spotting meaningful patterns in the data—and avoiding misleading ones.
 
-Think of this as becoming fluent in your company's language. Every business has its own vocabulary, its own calendar of important events, and its own unwritten rules about how things get done. The more you understand these institutional details, the better you'll be at spotting meaningful patterns in the data—and avoiding false conclusions.
+While this step can feel dry or peripheral at first, it’s anything but. 
+The deeper you go, the more you’ll find that institutional knowledge doesn’t slow analysis down—it sharpens it. It’s what lets you ask smarter questions, rule out bad explanations, and bring a level of insight that purely technical analysts often miss.
 
-**🛍️ Example:** Before analyzing Starbucks sales, you'd want to understand seasonal drinks (pumpkin spice latte season), loyalty programs (how stars and rewards work), the role of store location (airport vs. neighborhood), and operational details (morning rush patterns). Without that context, even the cleanest sales data won't help you make useful recommendations.
+::: {.callout-tip title="Example: Thinking with Context at Starbucks"}
 
-#### 2. Find the Right Data
+Before diving into Starbucks sales data, a business scientist would first step back and learn how the business actually works. That means understanding:
 
-**🔎 Skill: Data Discovery**
+- **Seasonal patterns**, like when the Pumpkin Spice Latte appears—and how limited-time drinks create predictable spikes in demand  
+- **Loyalty mechanics**, such as how stars are earned and redeemed, and how that influences purchasing behaviour  
+- **Store types**, since an airport kiosk has very different dynamics than a suburban drive-thru or university campus location  
+- **Operational rhythms**, like the intensity of the morning rush, how new drinks are rolled out, or how promotions vary across regions  
 
-Data discovery is the art of figuring out what information exists—and what's actually useful. Real-world data is messy and scattered. It lives in spreadsheets, dashboards, PDFs, databases, cloud tools, and even emails. Analysts must be part detective, knowing where to look and who to ask.
+All of these shape what success looks like—and what patterns in the data might actually mean.
 
-This skill involves both technical knowledge (understanding different data formats and storage systems) and social intelligence (knowing which colleagues have access to what information). You need to map the data landscape: What gets measured? What doesn't? Who owns which datasets? How frequently is information updated?
+*What could go wrong?*
 
-Just as importantly, you must assess quality and completeness: Is this data reliable? Are there systematic gaps? Does it actually capture what we care about? Sometimes the data you want doesn't exist—and you need to figure out how to create it or find reasonable proxies.
+Suppose you notice a sharp drop in cold brew sales during one week of the quarter. Without context, it’s tempting to infer a shift in customer preferences or the failure of a promotion. But a closer look might reveal something entirely different: a temporary supply chain issue that led to the coffee beans used to make cold brew being unavailable in many stores, or a change in the loyalty program that nudged customers toward redeeming rewards for other products. The data didn’t lie—but interpreting it without understanding the business can lead to the wrong story.
 
-**👗 Example:** To help a fashion brand identify trending products, you might combine sales figures from the point-of-sale system, customer reviews from the website, social media mentions from marketing tools, and return data from customer service. Each source adds a piece to the puzzle, but you need to know where each piece lives and how to access it.
+:::
 
-#### 3. Understand People and Firms
+#### 2. Data Discovery: Finding the Right Data {.unnumbered}
 
-**💡 Skill: Business Theory**
+Data discovery is the art of figuring out what information exists—and what’s actually useful. Real-world data is messy and scattered. 
+It lives in spreadsheets, dashboards, PDFs, databases, websites, cloud tools, and even emails. 
+Analysts must be part detective, knowing where to look and who to ask.
+This involves both technical knowledge, understanding different data formats and storage systems, and social intelligence, knowing which colleagues or third-party data providers have access to what information. But finding the data is only the beginning.
 
-Behind every data point is a human decision. Understanding what motivates people—whether they're customers, employees, or executives—is crucial for meaningful analysis. Business theory gives you the frameworks to make sense of behavior: pricing strategy, supply and demand, consumer psychology, organizational incentives, and market dynamics.
+Once you've tracked it down, you need to map the data landscape: What gets measured? What doesn’t—and why? Who owns which datasets? How frequently is information updated? Just as importantly, you need to assess quality and completeness. Is this data reliable? Are there systematic gaps? Does it actually capture what we care about?
 
-This isn't about memorizing textbook theories—it's about having mental models that help you interpret patterns. Why might sales spike on certain days? What drives customer loyalty? How do competitors respond to new products? Theory helps you move from *what happened* to *why it happened*—and more importantly, *what might happen next*.
+Sometimes, the data you want doesn’t exist at all. 
+In those cases, the your job is to get creative: 
+to find proxies, build new measures, find ways to actively collect the data you need, or rethink the question in a way that makes progress possible.
 
-Good business analysts think like economists and psychologists. They understand that people respond to incentives, that markets have predictable patterns, and that organizational structures shape behavior in systematic ways.
+::: {.callout-tip title="Example: Estimating Profit Margins When You Don’t Have Cost Data"}
 
-**📱 Example:** If a telecom company offers holiday discounts, do sales rise because of the discount itself—or because people were planning to upgrade their phones anyway during the holiday season? Understanding consumer behavior theory (timing of purchases, price sensitivity, seasonal patterns) helps you think beyond the surface correlation.
+Imagine you're working with sales data from a multinational retailer. 
+The dataset includes product-level revenue, discounting, and returns—but there’s no reliable cost data. 
+You’ve been asked to estimate profit margins across product categories.
 
-#### 4. Choose the Right Tool
+At first, it seems impossible. But a business scientist doesn't stop there.
 
-**🛠️ Skill: Analytical Models**
+You start by mapping what *is* available: supplier codes, shipping methods, inventory turnover, and some high-level financial statements. Then you talk to colleagues in finance and procurement. Eventually, you piece together a working solution: 
 
-Different questions require different methods. Sometimes a simple average is all you need. Other times, the problem calls for predictive algorithms, statistical modeling, or machine learning techniques. Good analysts know how to match the complexity of the tool to the complexity of the task.
+- You estimate average unit costs using inventory and COGS figures from quarterly reports.  
+- You use product weight and supplier codes to model shipping costs.  
+- You apply assumptions based on margin benchmarks in similar categories.
 
-This skill involves understanding the assumptions behind different analytical approaches. When is a correlation meaningful? When do you need a more sophisticated causal inference method? How do you balance model complexity with interpretability? The goal isn't to use the fanciest method available—it's to use the *right* method for the question at hand.
+Is it perfect? No. But it’s documented, grounded, and far better than guessing—or giving up. That’s what good data discovery looks like in practice: not just finding data, but building a defensible understanding of what the data can and *cannot* tell you.
 
-Great analysts also know when *not* to model. Sometimes the answer is sitting right there in a simple table or chart. Sometimes you need to gather more data before any analysis makes sense. Knowing when to keep it simple—and when a more sophisticated method will yield deeper insights—is a crucial judgment call.
+:::
 
-**🌦️ Example:** Predicting tomorrow's weather and recommending a new Netflix show both require data analysis—but they need very different approaches. Weather prediction relies on physical models and time series analysis. Content recommendation depends on collaborative filtering and preference learning. The underlying data science principles overlap, but the specific tools are quite different.
 
-#### 5. Know What Can Go Wrong
+#### 3. Business Theory: Understand People and Firms {.unnumbered}
 
-**⚠️ Skill: Analytical Theory**
+Behind every data point is a decision. 
+Whether it's made by a customer, an employee, or an executive, that decision reflects goals, trade-offs, habits, and constraints. 
+If we want to interpret data meaningfully, we need to understand what motivates the people and organisations behind it.
 
-Data is powerful, but it can also mislead. Bad analysis leads to bad decisions—sometimes expensive ones. Analysts must be skeptical and methodical, aware of potential pitfalls like selection bias, confounding variables, data leakage, overfitting, and missing information.
+That’s where business theory comes in. 
+Theory gives you mental models—ways of thinking—that help you make sense of patterns. 
+You’re not just memorizing textbook definitions of "demand" or "utility." 
+You’re using concepts like pricing strategy, consumer psychology, supply and demand, and organizational incentives to interpret what you're seeing in the data.
 
-This skill is about developing what statisticians call "statistical thinking"—the ability to reason about uncertainty, causation, and the limitations of your analysis. It means asking hard questions: Could this correlation be spurious? Are we measuring what we think we're measuring? What assumptions are we making, and how would our conclusions change if those assumptions were wrong?
+Why might sales spike on certain days? 
+What drives customer loyalty? 
+How do competitors respond to a new product launch? 
+These aren’t just descriptive questions we answer with data —they’re behavioural ones. Theory helps you move from what happened, to why it happened, to what might happen next.
+In that sense, theory helps you uncover the mechanism—or more informally, the “why”—behind the patterns the data reveal.
 
-The best analysts are constructively paranoid. They stress-test their findings, look for alternative explanations, and clearly communicate the boundaries of what their analysis can and cannot tell you. This isn't about being negative—it's about being honest about what the evidence actually supports.
+Good business scientists borrow the tools of economists and psychologists among others. 
+They think in incentives, trade-offs, and feedback loops. 
+They understand that behaviour is often predictable—and that understanding those patterns is key to turning data into insight.
 
-**🛒 Example:** If weekend sales are missing from an online store's records, your analysis might suggest that no one shops on Saturdays and Sundays. But that's a data quality issue, not a customer behavior pattern. Learning to spot these kinds of problems—and knowing how to investigate them—prevents you from drawing false conclusions.
+::: {.callout-tip title="Example: Why Are the Employees Quitting?"}
 
-#### 6. Work with Code and Technology
+Imagine you're analyzing employee turnover at a large firm. One team has unusually high resignation rates, and leadership wants answers. You start by examining basic patterns—tenure, role, compensation, manager—but nothing obvious jumps out.
 
-**💻 Skill: Computational Skills**
+A surface-level analysis might stop there. But a great business scientist brings theory to the table.
 
-Today's business analysts work with code. Languages like R, Python, or SQL let you clean data, test models, automate analyses, and produce reproducible results. Knowing how to code makes your work faster, more transparent, and easier to scale. It also makes you more independent—you're not waiting for someone else to pull the data or run the analysis.
+You recall models of **motivation and incentives**: Is the bonus structure rewarding the right behaviours? Are promotion paths clear? You consider **organizational dynamics**: Has there been a change in leadership or reporting lines? Are people leaving for competitors with a more flexible culture?
 
-But this isn't about becoming a software engineer. It's about being comfortable enough with technology to solve data problems efficiently. You need to understand how to import data, manipulate it, create visualizations, and document your work so others can follow your logic.
+You dig deeper and discover that while pay is competitive, the team’s recent restructuring removed autonomy from senior staff—shifting decision-making to HQ. That’s not in the spreadsheet, but it explains the exits.
 
-Modern analytics also involves working with various platforms: databases, cloud services, business intelligence tools, and collaboration software. The specific technologies change, but the underlying computational thinking—breaking problems into steps, debugging when things go wrong, automating repetitive tasks—remains constant.
+Theory didn’t just help you describe what was happening—it helped you understand *why* it was happening, and what might happen next if the structure doesn't change.
 
-**🍳 Example:** Learning R or Python is like learning to cook. At first, you follow recipes exactly (copying code from tutorials). Gradually, you understand the ingredients and techniques well enough to start experimenting and adapting recipes to your own needs.
+:::
 
-#### 7. Communicate What You Find
 
-**📊 Skill: Presentation & Communication**
+#### 4. Analytical Modelling: Choose the Right Tool {.unnumbered}
 
-Great insights don't speak for themselves. You need to help them speak to others. Whether it's through a visualization, a dashboard, or a brief presentation, good analysts craft narratives that make results clear and actionable. This means understanding your audience and choosing the right level of detail to tell the story your data wants to tell.
+Different business problems require different methods. 
+Sometimes a simple average is all you need. Other times, the problem calls for predictive algorithms, statistical models, or machine learning techniques. 
+Great business scientists know how to match the complexity of the tool to the complexity of the task.
 
-Communication in analytics is both an art and a science. You need to understand principles of visual design (what makes charts clear vs. confusing), storytelling (how to structure findings for maximum impact), and persuasion (how to connect insights to business decisions). Different audiences need different approaches: executives want high-level implications, while your analyst colleagues might want methodological details.
+That means more than just knowing how to run a model—it means understanding the assumptions behind different approaches. 
+When is a correlation meaningful? 
+When do you need a more rigorous method to support a causal claim? 
+How do you trade off accuracy against interpretability? 
+The goal isn't to reach for the fanciest method — it’s to choose the one that fits the question, the data, and the decision context.
 
-The goal isn't just to report what you found—it's to change how people think or act. That requires understanding not just the data, but the people who will use your analysis to make decisions.
+And just as importantly, good analysts know when not to model. 
+Sometimes the clearest and most compelling answer comes from a simple table or visualisation. Sometimes the question isn’t answerable—yet—because the right data doesn’t exist. 
+Exercising judgment about when to model, how to model, and when to hold back is what separates technically competent business scientists from strategic, decision-focused ones.
 
-**📈 Example:** Rather than saying "Sales rose 15% in Q3," you might create a simple line graph that highlights exactly when sales jumped after a new marketing campaign launched. The visual makes the timing clear, and the context helps viewers understand what drove the change.
+::: {.callout-tip title="Example: Planning Fresh Produce Orders at Coles"}
 
-#### 8. Ask the Right Questions
+Imagine you're helping Coles figure out how much fruit and vegetables to order each week. The goal is to keep the shelves stocked—but not waste food.
 
-**🎯 Skill: Creativity & Judgment**
+You start with something simple: looking at the average sales from past weeks. It works okay—until a public holiday or heatwave throws things off.
 
-Business analytics starts with curiosity. Before you can run any analysis, you need a question worth answering. This skill is about identifying problems, noticing patterns, and reframing vague business goals into focused, answerable questions.
+Next, you try a more advanced method that also considers the season, day of the week, and weather. It works better, but someone suggests using a really complex model that nobody on the store team understands. You push back—because if the store managers don’t trust the numbers, they won’t use them.
 
-This requires both creativity (seeing problems from new angles) and business judgment (knowing what matters to the organization). It means distinguishing between questions that are interesting and questions that are actionable. It also means knowing when to dig deeper into an unexpected finding and when to move on.
+And for rare items with very little data, you decide not to build a model at all. You just show the trends in a simple chart.
 
-The best analysts are natural investigators. They notice when something doesn't make sense, they wonder about cause-and-effect relationships, and they're always asking "what if?" This curiosity, combined with strong business judgment, helps them identify the questions that will have the biggest impact on decisions.
+*The skill:* A good business scientist knows when a simple method is enough, when a more advanced one helps, and when to just keep it clear and practical. It's not about the flashiest tool—it’s about using the right tool for the problem.
 
-**👟 Example:** Don't just ask, "How many shoes did we sell?" Ask, "What time of day do we sell the most shoes—and why might that pattern exist?" The second question opens up possibilities for better staffing, targeted promotions, and deeper customer insights.
+:::
+
+
+#### 5.  Analytical Theory: Know What Can Go Wrong {.unnumbered}
+
+Working with data and analytical models is powerful—but it can also be risky. A misleading analysis can lead to the wrong decision, and in a business setting, that can be costly. Great business scientists are curious, but also careful. They think critically about whether the data and the method are really giving them the full picture.
+
+This skill is closely connected to what you might hear in your statistics or quantitative methods classes: statistical thinking. It’s the habit of reasoning about data in a structured, careful way. It means questioning your results, spotting weak points in your reasoning, and understanding what your analysis can (and can’t) actually say.
+
+That includes asking tough but important questions:
+
+* Are we sure we’re measuring what we think we’re measuring?
+* Could something else be causing this pattern?
+* Would our conclusions change if we looked at different data—or looked at it a different way?
+* What assumptions are we making—and are they reasonable for this situation?
+
+You don’t need to know all the technical terms yet. 
+What matters is developing the habit of looking under the hood. 
+Sometimes your data leaves out important groups of people. 
+Sometimes two things move together just by coincidence. 
+Sometimes your analysis works well on past data but falls apart in the real world.
+The key idea is to always ask: What might I be missing, and how could that change the story the data appears to tell?
+
+The best business scientists aren’t afraid to poke holes in their own work.
+They look for alternative explanations, check their assumptions, and clearly explain what their results do—and don’t—mean. 
+That’s not being negative. 
+That’s being honest about what the evidence actually supports. 
+It’s what makes your work trustworthy—and it’s one of the most valuable habits you can develop.
+Some might say business scientists *get a little too good at this—always finding what could go wrong*. 
+But don’t worry, it’s what makes your insights dependable, not just impressive.
+
+::: {.callout-tip title="Example: Did the Loyalty Program Really Work?"}
+
+Suppose a retailer launches a new loyalty program, and soon after, analysts notice that members are spending more than non-members. The initial report celebrates the program’s success.
+
+But one analyst pauses: were customers spending more *because* of the program, or were the high spenders just more likely to sign up?
+
+There was no clear before-and-after comparison. No comparison group who weren't offered the option to sign-up. No test of whether the program caused the change. The team had found a pattern—but assumed it meant impact.
+
+*Analytical thinking in action:* Good analysts don’t just spot patterns—they ask what explains them. Correlation alone isn’t enough. Without the right comparisons and reasoning, your analysis might be telling the wrong story.
+
+:::
+
+
+#### 6. Computational Skills: Work with Code and Technology {.unnumbered}
+
+Today’s business scientists work with code. 
+Languages like R allow you to clean data, test models, automate your workflow, and produce results that others can reproduce and build on. 
+Knowing how to code doesn’t just make you faster—it makes your work clearer, more flexible, and more independent. 
+You’re not waiting around for someone else to pull the data or run the analysis—you can do it yourself.
+
+But this isn’t about becoming a software engineer. 
+It’s about being comfortable enough with technology to solve data problems efficiently. 
+That means knowing how to load data, reshape it, create useful visualisations, implement an analytical model, and document your process so that others can follow what you did.
+
+It also means working across tools and platforms. 
+Modern analytics happens in spreadsheets, databases, dashboards, cloud services, and version-controlled files. 
+The specific tools will change over time—but the underlying mindset stays the same. 
+Business scientists learn to break problems into steps, fix things when they break, and automate repetitive tasks so they can focus on the thinking.
+
+::: {.callout-tip title="Tip: Learning to Code Is Like Learning to Cook"}
+
+Think of coding like learning to cook. At first, it can feel daunting—just like the first time you turn on the gas stove and see real flames and worry you might burn down the house. But once you get used to it, the heat becomes something you learn to control and use.
+
+Early on, you follow recipes—step-by-step instructions written by others. You might not fully understand *why* something works, but you can still get a decent result.
+
+Over time, you start to improvise. You recognise patterns, adapt techniques, and build your own workflows. You learn to debug when something “burns,” and eventually, you create your own reusable recipes for solving data problems.
+
+You don’t need to become a professional chef—or a software engineer. But having basic coding skills gives you independence, creativity, and confidence in the analytics kitchen.
+
+:::
+
+
+#### 7. Presentation & Communication: Communicating what you find to non-specialists {.unnumbered}
+
+Great insights don’t speak for themselves. 
+You need to help them speak to others. Whether it’s through a graph, a dashboard, slide deck or a short written brief, business scientists shape their findings into clear, purposeful stories that help others understand what the data shows—and what to do about it.
+
+Good communication starts with your audience. 
+What decisions are they trying to make? 
+What do they need to know to move forward? 
+Different audiences need different approaches.
+Executives often want clarity: What’s happening, and what should we do about it? 
+Your fellow analysts might care more about the method, the data sources, or the assumptions you made.
+A great business scientist can move between both—zooming out to frame the big picture, or zooming in when detail matters.
+
+This kind of communication isn’t about flashy visuals or technical jargon. It’s about structured thinking, clean presentation, and sharp writing. That means:
+
+* Designing graphs, tables and slides that show exactly what matters—no more, no less
+* Telling a story with a beginning, middle, and end
+* Anticipating questions before they’re asked
+* Highlighting the recommendation, not just the result
+
+The goal isn’t to impress people with how much you know. 
+It’s to make it easier for them to think clearly, decide confidently, and take the next step.
+
+
+::: {.callout-tip title="Example: The Executive Slide That Looked Like a Stats Exam"}
+
+A team prepares a presentation for senior leadership to explain the results of an A/B test. They include p-values, confidence intervals, model coefficients, and three dense charts about statistical assumptions.
+
+When they present, the executives skim the slide and ask, *“So… should we roll out the new version or not?”*
+
+The analysis was solid—but the message didn’t land.
+
+*The lesson:* Even the best results can fall flat if the audience can’t see the relevance. For decision-makers, lead with the insight—not the math.
+
+:::
+
+
+::: {.callout-tip title="📊 Example: The Analyst Who Got the 'So What?' Question"}
+
+An analyst builds a clean, interactive dashboard showing churn rates across products and regions. They walk through the filters and visual options, confident in the design.
+
+But when they present to a room of non-technical managers, someone interrupts: *“This looks great—but what are we supposed to do with it?”*
+
+There’s no interpretation. No recommendation. Just data.
+
+*The lesson:* A beautiful dashboard might not be enough for analytics focused audiences. If your audience can’t see what matters—or what to do—it won’t drive action.
+
+:::
+
+
+#### 8. Creativity & Judgment: Asking the Right Questions {.unnumbered}
+
+Business analytics starts with curiosity. 
+Before you can run any analysis, you need a question worth answering. 
+Great business scientists don’t just respond to requests—they help shape them. 
+They turn vague goals like “improve customer experience” or “reduce churn” into specific, testable questions that data can help resolve.
+Framing the problem is the first step toward solving it.
+
+This takes both creativity and judgment. 
+Creativity helps you see problems from new angles, reframe challenges, and imagine what might be possible. 
+Judgment helps you filter: Which questions are actually worth answering? 
+Which ones tie to real business decisions? 
+The best questions are those that are both interesting and useful—they push thinking forward and point toward action.
+
+This skill also involves timing. 
+You won’t always be given a clean, well-defined problem to solve. 
+Sometimes, the brief is too broad. 
+Other times, the data reveals something surprising, and you have to decide whether it's a meaningful lead or just noise. 
+Knowing when to dig deeper and when to move on is part of the craft.
+
+The best business scientists act like investigators. 
+They notice when something doesn’t add up. They wonder about cause-and-effect relationships. 
+They play out “what if” scenarios in their head before opening the dataset. 
+This kind of curiosity—anchored by a strong sense of business relevance—is what helps them identify the questions that will lead to insights, and the insights that will lead to better decisions.
+
+::: {.callout-tip title="Tip: A Good Question Is Half the Work"}
+
+When you're stuck in an analysis, take a step back and ask yourself:  
+*What exactly am I trying to learn—and why does it matter?*
+
+Good business scientists don’t just dive into data—they pause to clarify the question. They ask things like:
+
+- Is this question specific enough to answer?
+- What would a useful answer look like?
+- Who needs to make a decision based on this?
+
+Framing a question well often makes the rest of the analysis easier. It tells you what data to look for, what methods to use, and when you’re done.
+
+:::
+
 
 ::: {.exercise}
 ::: {.exercise-time}
@@ -172,46 +410,73 @@ Take a moment to reflect. Which of the 8 skills below do you feel most confident
 | Asking good questions | ☐ 1 ☐ 2 ☐ 3 ☐ 4 ☐ 5 |
 
 **Reflection questions:**
+
 - Which skill are you most excited to build?
 - Which skill do you think businesses value most? Why?
 
 We'll revisit these questions throughout the course. For now, share your thoughts with a classmate—or drop your top skill in the class poll.
-
 :::
-
-### Applying and Combining the Skills
 
 ## Applying and Combining the Skills
 
-Not every project calls for every skill. Some are universal—you'll use them no matter what kind of data you're working with. Others depend on your specific role, the nature of the business, or the kind of question you're trying to answer.
+Not every business scientist uses every skill in equal measure. Some of the skills you've just seen—like communicating clearly, thinking critically with data, or understanding the business context—will show up in nearly every project you work on. Others—like predictive modelling or building dashboards—depend more on your specific role, your team, or the kinds of problems you're tackling.
 
-Understanding this distinction helps you prioritize your development and recognize what makes different analytics roles unique. It also explains why some analysts gravitate toward certain types of projects—their skill sets naturally align with particular kinds of business problems.
+What we’ve offered so far is a starting point: a map of what it means to think and work like a business scientist. You won’t need to master all these skills overnight. But recognising which ones are foundational versus role- or project-specific can help you focus your development—and understand what makes different paths within analytics both challenging and rewarding.
 
-### Universal Skills: Always Needed
+Some of these differences also help explain why people are drawn to different types of analytics work. If you enjoy testing ideas and running experiments, you might be interested in projects that compare what happens when a business changes something—like a website layout or a pricing offer. If you like explaining things and helping others make sense of data, you might prefer working on reports, dashboards, or presentations. And if you enjoy solving puzzles behind the scenes, you might gravitate toward tasks like cleaning data, building models, or improving how information flows through a system.
 
-Some skills form the foundation of good analytics practice. They show up in nearly every project and across all industries. Think of these as the core competencies that every business scientist needs, regardless of their specific role or the complexity of their technical toolkit.
+In what follows, we'll explore how these skills show up across different kinds of analytics roles and how they come together in practice.
 
-**Understand the Business World** is perhaps the most universal skill of all. No analysis happens in a vacuum. Whether you're working on a simple sales report or building a complex predictive model, you need to understand the business context to interpret patterns and generate useful insights. Without this foundation, even the most sophisticated analysis can lead to irrelevant or misleading conclusions.
+### Universal Skills: Always Needed {.unnumbered}
 
-**Find the Right Data** is equally essential. Good decisions require good inputs. Whether you're scraping websites, querying databases, conducting surveys, or pulling data from APIs, this skill shows up in every project. It's not just about technical data extraction—it's about knowing what information you need and where to find it.
+Some skills form the foundation of good analytics practice. 
+They willshow up in nearly every project, across all industries, and regardless of what tools or techniques you use. 
+Think of these as the *core muscles* of a business scientist—skills that support everything else.
 
-**Communicate What You Find** is the bridge between analysis and action. You must always be able to translate your findings into clear, compelling narratives that help people make better decisions. This skill determines whether your insights actually get used or just sit in a report somewhere.
+**Understanding the Business World** is perhaps the most universal skill of all.
+No analysis happens in a vacuum. 
+Whether you're writing a simple sales summary or building a complex model, you need to understand how the business works in order to interpret patterns and give your results meaning. 
+Without this context, even technically correct analysis can lead to irrelevant—or misleading—conclusions.
 
-**Ask the Right Questions** drives everything else. Even in highly structured environments, the ability to think beyond the obvious and identify questions worth answering is what separates good analysts from great ones. Every project starts with curiosity and judgment about what's worth investigating.
+**Finding** the Right Data is just as essential. 
+Good decisions require good inputs. 
+Whether you're scraping a website, querying a database, conducting a survey, or combining messy spreadsheets, the challenge is the same: figure out what information matters, and track it down. 
+It's not just about technical skills—it’s about knowing what to look for and why it matters.
 
-### Role- or Project-Specific Skills: Context-Dependent
+**Communicating What You Find** is the bridge between analysis and action. 
+If you can’t explain your findings in a clear and compelling way, your work won’t get used—no matter how insightful it is. 
+Whether through graphs, slides, dashboards, or short write-ups, you need to help others understand what the data shows and what it means for them.
 
-The remaining skills become more or less important depending on your role, industry, or the specific challenges you're trying to solve. This is where specialization begins to matter.
+**Asking the Right Questions** is what sets great analysts apart, and arguably the most useful of the universal skills. 
+Every project begins with curiosity: 
+Why is this happening? 
+What should we try next? 
+What don’t we know yet? 
+Knowing how to frame a focused, answerable, and relevant question is a skill in itself—and one that applies to every kind of analytics work.
 
-**Understand People and Firms** becomes particularly crucial in strategic roles, consulting positions, or customer insights work where understanding incentives and behavior is key. If you're trying to explain why customers churn, how employees respond to new policies, or how competitors might react to your pricing strategy, this skill moves from helpful to essential.
+Together, these four skills show up again and again. They’re not tied to any one job title or toolset—they’re what make you effective, no matter where you apply them.
 
-**Choose the Right Tool** is vital in roles that involve predictive modeling, optimization, or simulation—such as pricing analysts, demand forecasters, risk managers, or algorithm designers. If your job involves building models that directly drive business decisions, you need deep expertise in matching analytical methods to business problems.
+### Role- or Project-Specific Skills: Context-Dependent {.unnumbered}
 
-**Know What Can Go Wrong** becomes especially important in high-stakes or regulated industries like finance, healthcare, insurance, or pharmaceuticals, where analytical errors can have serious consequences. When precision is critical and the cost of being wrong is high, this skill moves from good practice to professional requirement.
+The remaining skills become more or less important depending on your role, your industry, or the kind of problems you're solving. 
+This is where specialization begins—where business scientists develop deeper strengths based on what they do and where they work.
 
-**Work with Code and Technology** varies dramatically by role. It's vital for data engineers, machine learning practitioners, and analysts working with large or complex data pipelines. But it's less essential if your role emphasizes interpretation over data transformation, or if you work primarily with pre-built dashboards and business intelligence tools.
+**Understanding People and Firms** becomes especially important in roles focused on strategy, consulting, or customer insights—anywhere human behavior and incentives drive outcomes. If you're investigating why customers leave, how employees react to policy changes, or how a competitor might respond to a price cut, this skill goes from helpful to essential.
 
-### How Skills Combine in Practice
+**Choosing the Right Tool** is crucial for roles that involve forecasting, optimization, or experimentation—like pricing analysts, risk managers, or product data scientists. 
+In these roles, you’re not just analyzing past patterns—you’re building models that inform real decisions. 
+That means knowing which method fits the question, the data, and the stakes.
+
+**Knowing What Can Go Wrong** becomes especially important when the decisions being made based on your analysis carry significant risk—whether that's financial, reputational, or strategic. 
+If your findings influence pricing changes, hiring decisions, product launches, or policy shifts, mistakes can be costly. 
+In these situations, being able to identify assumptions, check for errors, and communicate uncertainty clearly isn't just a bonus—it's part of being a responsible business scientist.
+
+**Working with Code and Technology** varies the most across roles. 
+If you’re building data pipelines, automating reports, or working with big datasets, this skill is essential. 
+But in roles focused more on communication or insight interpretation, you might rely more on pre-built dashboards or visual tools. 
+Either way, having some comfort with code gives you flexibility and independence.
+
+### How Skills Combine in Practice {.unnumbered}
 
 The real power comes from combining these skills thoughtfully. A customer insights analyst might lean heavily on business theory and communication skills while using relatively simple analytical methods. A pricing analyst might focus on advanced modeling techniques while working closely with economists to understand market dynamics. A data engineer might prioritize computational skills and analytical theory to build reliable data pipelines.
 
@@ -225,7 +490,7 @@ Consider how different roles emphasize different skill combinations:
 
 **Operations Analyst**: Balances institutional knowledge, data discovery, and practical modeling to optimize day-to-day business processes.
 
-### Key Takeaway
+### Key Takeaway {.unnumbered}
 
 While every business scientist needs a broad foundation across all eight skills, your role and interests will naturally shape which ones you develop most deeply. One size doesn't fit all—but every project needs strong fundamentals.
 
