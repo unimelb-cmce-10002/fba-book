@@ -712,7 +712,7 @@ So you should only use level 2 headings or below.
 
 #### Ordered and Unordered Lists {.unnumbered}
 
-##### Unordered List (with `-` or `*`):
+##### Unordered List (with `-` or `*`) {.unnumbered}
 
 ```markdown
 - Apples
@@ -726,7 +726,7 @@ Produces:
 - Bananas  
 - Oranges
 
-#### Ordered List (with numbers) {.unnumbered}
+##### Ordered List (with numbers) {.unnumbered}
 
 ```markdown
 1. First item  
