@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Reproducible Workflows – Foundations of Business Analytics</title>
+<title>3&nbsp; Reproducible Workflows with R &amp; Posit Cloud – Foundations of Business Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../insights/data_visualisation.html" rel="next">
+<link href="../tutorials/what_is_business_analytics.html" rel="next">
 <link href="../foundations/how_to_do_business_analytics.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -71,6 +106,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="../solution.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../custom.css">
 </head>
@@ -84,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../foundations/what_is_business_analytics.html">Foundations</a></li><li class="breadcrumb-item"><a href="../foundations/reproducible.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../foundations/what_is_business_analytics.html">Foundations</a></li><li class="breadcrumb-item"><a href="../foundations/reproducible.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows with R &amp; Posit Cloud</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -139,7 +203,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../foundations/reproducible.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows with R &amp; Posit Cloud</span></span></a>
   </div>
 </li>
       </ul>
@@ -147,139 +211,12 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Getting Our First Insights from Data</span></a>
+ <span class="menu-text">Tutorials</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../insights/data_visualisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation for Business Intelligence</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../insights/data_manipulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../insights/data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analysing Data</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Finding and Storing Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collecting Data</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Extracting Deeper Insights from Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/data_variation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Finding Variation in Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive Analytics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/causal_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Causal Analytics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/predictive_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Analytics</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Ethics and Privacy</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ethics_privacy/ethics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics &amp; Privacy in Business Analytics</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Conclusion</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../conclusion/conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">Tutorials</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
@@ -288,25 +225,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_visualisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 3: Data Visualisation for Business Intelligence</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../appendices/installation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">installation.html</span></span></a>
+  <a href="../tutorials/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 2: Core Skills of a Business Scientist &amp; Introduction to Posit Cloud</span></a>
   </div>
 </li>
       </ul>
@@ -321,38 +241,47 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#r" id="toc-r" class="nav-link active" data-scroll-target="#r"><span class="header-section-number">3.1</span> R</a></li>
-  <li><a href="#r-projects-file-structure" id="toc-r-projects-file-structure" class="nav-link" data-scroll-target="#r-projects-file-structure"><span class="header-section-number">3.2</span> R Projects &amp; File Structure</a>
+  <li><a href="#getting-started-with-posit-cloud" id="toc-getting-started-with-posit-cloud" class="nav-link active" data-scroll-target="#getting-started-with-posit-cloud"><span class="header-section-number">3.1</span> Getting Started with Posit Cloud</a>
   <ul class="collapse">
-  <li><a href="#our-first-project" id="toc-our-first-project" class="nav-link" data-scroll-target="#our-first-project"><span class="header-section-number">3.2.1</span> Our First Project</a></li>
-  <li><a href="#building-on-an-existing-project" id="toc-building-on-an-existing-project" class="nav-link" data-scroll-target="#building-on-an-existing-project"><span class="header-section-number">3.2.2</span> Building on an Existing Project</a></li>
+  <li><a href="#why-we-use-posit-cloud" id="toc-why-we-use-posit-cloud" class="nav-link" data-scroll-target="#why-we-use-posit-cloud">Why We Use Posit Cloud</a></li>
+  <li><a href="#logging-into-posit-cloud" id="toc-logging-into-posit-cloud" class="nav-link" data-scroll-target="#logging-into-posit-cloud">Logging Into Posit Cloud</a></li>
+  <li><a href="#making-your-own-copy-of-a-project" id="toc-making-your-own-copy-of-a-project" class="nav-link" data-scroll-target="#making-your-own-copy-of-a-project">Making Your Own Copy of a Project</a></li>
   </ul></li>
-  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto"><span class="header-section-number">3.3</span> Quarto</a>
+  <li><a href="#what-is-rstudio" id="toc-what-is-rstudio" class="nav-link" data-scroll-target="#what-is-rstudio"><span class="header-section-number">3.2</span> What is RStudio?</a>
   <ul class="collapse">
-  <li><a href="#top-matter" id="toc-top-matter" class="nav-link" data-scroll-target="#top-matter"><span class="header-section-number">3.3.1</span> Top Matter</a></li>
-  <li><a href="#essential-syntax" id="toc-essential-syntax" class="nav-link" data-scroll-target="#essential-syntax"><span class="header-section-number">3.3.2</span> Essential Syntax</a></li>
-  <li><a href="#r-chunks" id="toc-r-chunks" class="nav-link" data-scroll-target="#r-chunks"><span class="header-section-number">3.3.3</span> R Chunks</a></li>
-  <li><a href="#equations" id="toc-equations" class="nav-link" data-scroll-target="#equations"><span class="header-section-number">3.3.4</span> Equations</a></li>
-  <li><a href="#cross-references" id="toc-cross-references" class="nav-link" data-scroll-target="#cross-references"><span class="header-section-number">3.3.5</span> Cross References</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">3.3.6</span> References</a></li>
+  <li><a href="#understanding-paths-even-if-you-never-type-one" id="toc-understanding-paths-even-if-you-never-type-one" class="nav-link" data-scroll-target="#understanding-paths-even-if-you-never-type-one">Understanding Paths (Even If You Never Type One)</a></li>
   </ul></li>
-  <li><a href="#using-r-in-practice" id="toc-using-r-in-practice" class="nav-link" data-scroll-target="#using-r-in-practice"><span class="header-section-number">3.4</span> Using R in Practice</a>
+  <li><a href="#our-first-steps-with-r" id="toc-our-first-steps-with-r" class="nav-link" data-scroll-target="#our-first-steps-with-r"><span class="header-section-number">3.3</span> Our First Steps with R</a>
   <ul class="collapse">
-  <li><a href="#errors-and-error-handling" id="toc-errors-and-error-handling" class="nav-link" data-scroll-target="#errors-and-error-handling"><span class="header-section-number">3.4.1</span> Errors and Error Handling</a></li>
-  <li><a href="#reproducible-examples-to-seek-help" id="toc-reproducible-examples-to-seek-help" class="nav-link" data-scroll-target="#reproducible-examples-to-seek-help"><span class="header-section-number">3.4.2</span> Reproducible Examples to seek help</a></li>
-  <li><a href="#mentality" id="toc-mentality" class="nav-link" data-scroll-target="#mentality"><span class="header-section-number">3.4.3</span> Mentality</a></li>
-  <li><a href="#helping-future-you-with-code-comments" id="toc-helping-future-you-with-code-comments" class="nav-link" data-scroll-target="#helping-future-you-with-code-comments"><span class="header-section-number">3.4.4</span> Helping Future You with Code Comments</a></li>
+  <li><a href="#another-example-the-afl-ladder" id="toc-another-example-the-afl-ladder" class="nav-link" data-scroll-target="#another-example-the-afl-ladder">Another Example: The AFL Ladder</a></li>
+  <li><a href="#from-vectors-to-datasets" id="toc-from-vectors-to-datasets" class="nav-link" data-scroll-target="#from-vectors-to-datasets">From Vectors to Datasets</a></li>
+  <li><a href="#from-console-to-script-why-save-your-code" id="toc-from-console-to-script-why-save-your-code" class="nav-link" data-scroll-target="#from-console-to-script-why-save-your-code">From Console to Script: Why Save Your Code?</a></li>
+  <li><a href="#commenting-your-code" id="toc-commenting-your-code" class="nav-link" data-scroll-target="#commenting-your-code">Commenting Your Code</a></li>
+  <li><a href="#getting-help-in-r" id="toc-getting-help-in-r" class="nav-link" data-scroll-target="#getting-help-in-r">Getting Help in R</a></li>
   </ul></li>
-  <li><a href="#concluding-remarks" id="toc-concluding-remarks" class="nav-link" data-scroll-target="#concluding-remarks"><span class="header-section-number">3.5</span> Concluding Remarks</a></li>
+  <li><a href="#from-script-to-story-writing-with-quarto" id="toc-from-script-to-story-writing-with-quarto" class="nav-link" data-scroll-target="#from-script-to-story-writing-with-quarto"><span class="header-section-number">3.4</span> From Script to Story: Writing with Quarto</a>
+  <ul class="collapse">
+  <li><a href="#creating-your-first-quarto-document" id="toc-creating-your-first-quarto-document" class="nav-link" data-scroll-target="#creating-your-first-quarto-document">Creating Your First Quarto Document</a></li>
+  <li><a href="#top-matter" id="toc-top-matter" class="nav-link" data-scroll-target="#top-matter">Top Matter</a></li>
+  <li><a href="#essential-syntax-for-quarto" id="toc-essential-syntax-for-quarto" class="nav-link" data-scroll-target="#essential-syntax-for-quarto">Essential Syntax for Quarto</a></li>
+  <li><a href="#working-with-r-code-chunks" id="toc-working-with-r-code-chunks" class="nav-link" data-scroll-target="#working-with-r-code-chunks">Working with R Code Chunks</a></li>
+  <li><a href="#writing-equations-in-quarto" id="toc-writing-equations-in-quarto" class="nav-link" data-scroll-target="#writing-equations-in-quarto">Writing Equations in Quarto</a></li>
+  </ul></li>
+  <li><a href="#using-r-in-practice" id="toc-using-r-in-practice" class="nav-link" data-scroll-target="#using-r-in-practice"><span class="header-section-number">3.5</span> Using R in Practice</a>
+  <ul class="collapse">
+  <li><a href="#what-to-do-when-your-code-doesnt-work" id="toc-what-to-do-when-your-code-doesnt-work" class="nav-link" data-scroll-target="#what-to-do-when-your-code-doesnt-work">What to Do When Your Code Doesn’t Work</a></li>
+  <li><a href="#mentality" id="toc-mentality" class="nav-link" data-scroll-target="#mentality">Mentality</a></li>
+  </ul></li>
+  <li><a href="#concluding-remarks" id="toc-concluding-remarks" class="nav-link" data-scroll-target="#concluding-remarks"><span class="header-section-number">3.6</span> Concluding Remarks</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../foundations/what_is_business_analytics.html">Foundations</a></li><li class="breadcrumb-item"><a href="../foundations/reproducible.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../foundations/what_is_business_analytics.html">Foundations</a></li><li class="breadcrumb-item"><a href="../foundations/reproducible.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows with R &amp; Posit Cloud</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows with R &amp; Posit Cloud</span></h1>
 </div>
 
 
@@ -369,69 +298,1021 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="r" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="r"><span class="header-section-number">3.1</span> R</h2>
-</section>
-<section id="r-projects-file-structure" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="r-projects-file-structure"><span class="header-section-number">3.2</span> R Projects &amp; File Structure</h2>
-<p>Why work with projects?</p>
-<section id="our-first-project" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="our-first-project"><span class="header-section-number">3.2.1</span> Our First Project</h3>
-<p>Guide through a set up from scratch</p>
-</section>
-<section id="building-on-an-existing-project" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="building-on-an-existing-project"><span class="header-section-number">3.2.2</span> Building on an Existing Project</h3>
-<p>Guide through activating project from existing setup</p>
-</section>
-</section>
-<section id="quarto" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="quarto"><span class="header-section-number">3.3</span> Quarto</h2>
-<p>Something introducing quarto and literate programming</p>
-<p>Features of Quarto Documents:</p>
-<section id="top-matter" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="top-matter"><span class="header-section-number">3.3.1</span> Top Matter</h3>
-</section>
-<section id="essential-syntax" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="essential-syntax"><span class="header-section-number">3.3.2</span> Essential Syntax</h3>
-</section>
-<section id="r-chunks" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="r-chunks"><span class="header-section-number">3.3.3</span> R Chunks</h3>
-</section>
-<section id="equations" class="level3" data-number="3.3.4">
-<h3 data-number="3.3.4" class="anchored" data-anchor-id="equations"><span class="header-section-number">3.3.4</span> Equations</h3>
-</section>
-<section id="cross-references" class="level3" data-number="3.3.5">
-<h3 data-number="3.3.5" class="anchored" data-anchor-id="cross-references"><span class="header-section-number">3.3.5</span> Cross References</h3>
-</section>
-<section id="references" class="level3" data-number="3.3.6">
-<h3 data-number="3.3.6" class="anchored" data-anchor-id="references"><span class="header-section-number">3.3.6</span> References</h3>
-</section>
-</section>
-<section id="using-r-in-practice" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="using-r-in-practice"><span class="header-section-number">3.4</span> Using R in Practice</h2>
-<section id="errors-and-error-handling" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="errors-and-error-handling"><span class="header-section-number">3.4.1</span> Errors and Error Handling</h3>
-</section>
-<section id="reproducible-examples-to-seek-help" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="reproducible-examples-to-seek-help"><span class="header-section-number">3.4.2</span> Reproducible Examples to seek help</h3>
-</section>
-<section id="mentality" class="level3" data-number="3.4.3">
-<h3 data-number="3.4.3" class="anchored" data-anchor-id="mentality"><span class="header-section-number">3.4.3</span> Mentality</h3>
+<p>If science is about systematically building and organizing knowledge in the form of testable explanations and predictions, then business science applies this mindset to the world of data-driven business decision-making. A business scientist doesn’t just crunch numbers—they seek to generate insights that are reliable, testable, and useful to others.</p>
+<p>This means we don’t just ask questions and analyze data. We build knowledge that others can follow, test, and build upon. It’s not enough to reach the right conclusion once, in a way that only you understand. True business science requires reproducible workflows—ways of working with data that are clear, transparent, and repeatable.</p>
+<p>This chapter introduces the tools we’ll use to begin doing just that: R, a language designed for data analysis, and Posit Cloud, a cloud-based environment for running R code. Together, they’ll help us learn how to think and work like business scientists from day one.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Why Not Excel?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why Not Excel?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Spreadsheets like Excel or Google Sheets are familiar—and for many tasks, they work just fine. But they don’t scale well when you’re doing real analysis.</p>
+<p>Here’s why we don’t use spreadsheets for this course:</p>
 <ul>
-<li>Be Focussed</li>
-<li>Be Curious</li>
-<li>Be Pragmatic</li>
-<li>Be Tenacious</li>
-<li>Be Planned</li>
-<li>Be Done before Being perfect</li>
+<li><p><strong>No clear record of what you did</strong><br>
+In Excel, it’s easy to lose track of which formulas you changed or which filters you applied. With code, every step is written down.</p></li>
+<li><p><strong>Easy to make silent errors</strong><br>
+One wrong cell reference can quietly mess up your whole analysis. In R, mistakes are more visible—and easier to fix.</p></li>
+<li><p><strong>Hard to repeat or update</strong><br>
+If you need to run the same analysis again with new data, you’ll likely have to repeat every step by hand. With code, one click reruns the whole process.</p></li>
+<li><p><strong>Not designed for teamwork</strong><br>
+It’s difficult to collaborate on a spreadsheet without overwriting someone else’s work. With code-based tools, versioning and sharing are built in.</p></li>
+</ul>
+<p>We’re not anti-Excel. But to become a <strong>business scientist</strong>, you need tools that are transparent, reproducible, and powerful. That’s why we start with R.</p>
+</div>
+</div>
+<section id="getting-started-with-posit-cloud" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="getting-started-with-posit-cloud"><span class="header-section-number">3.1</span> Getting Started with Posit Cloud</h2>
+<section id="why-we-use-posit-cloud" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="why-we-use-posit-cloud">Why We Use Posit Cloud</h3>
+<p>To begin working with data, you’ll need a place to write code to analyse the data and then run the code. Normally, this would mean downloading and installing software—something that can be messy, especially if things go wrong or if you’re using a shared computer.</p>
+<p>Instead, we’ll use a tool called Posit Cloud.</p>
+<p><a href="https://posit.cloud/"><strong>Posit Cloud</strong></a> is a website that gives you access to a full data science workspace right in your web browser. It’s like opening a notebook for coding—but online. There’s nothing to install, and your work is saved automatically. You can log in from any computer, at home or on campus, and pick up right where you left off.</p>
+<p>Here’s why we’ve chosen it for this course:</p>
+<ul>
+<li><p><strong>No setup stress</strong> You don’t need to download or install anything. You just log in and get started.</p></li>
+<li><p><strong>Everyone sees the same thing</strong> Because we’re all working in the same environment, it’s easier to follow along in class—and much easier to get help when you’re stuck.</p></li>
+<li><p><strong>Your work is always saved</strong> Posit Cloud automatically saves your work, so you won’t lose progress if your internet drops or your battery dies.</p></li>
+<li><p><strong>It helps us build good habits</strong> Later in the course, we’ll talk about how professional data scientists work in teams, share code, and keep track of their analyses. Posit Cloud helps us start working that way from day one.</p></li>
+</ul>
+<p>Think of Posit Cloud as your online lab bench for doing business analytics.</p>
+</section>
+<section id="logging-into-posit-cloud" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="logging-into-posit-cloud">Logging Into Posit Cloud</h3>
+<p>To start using R, you’ll first need to log in to Posit Cloud—our online workspace for coding and analysis.</p>
+<p>Here’s the steps you need to take to log into Posit Cloud</p>
+<ol type="1">
+<li><strong>Click on the Link in Email Invite.</strong> You will have received an email inviting you to join Posit Cloud. Click the link. Posit Cloud works best in Chrome or Firefox, but any modern browser should be fine.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figs/foundations/reproducible/invite.png" class="img-fluid figure-img" style="width:85.0%" alt="Email Invitation for Posit Cloud"></p>
+<figcaption>Course Invite</figcaption>
+</figure>
+</div>
+<ol start="2" type="1">
+<li><strong>Create a free account</strong>. A page will open in your browser asking you to sign up to Posit Cloud. Create a free account using your <strong>university email address</strong>.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figs/foundations/reproducible/signup.png" class="img-fluid figure-img" style="width:85.0%" alt="Sign Up for a Posit Cloud Account"></p>
+<figcaption>Sign In</figcaption>
+</figure>
+</div>
+<ol start="3" type="1">
+<li><strong>Verify your Account &amp; Access the Main Page </strong>. You may be asked verify your account via your email. Do this verification step if needed, and then you will be taken to the main page of Posit Cloud.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figs/foundations/reproducible/posit_main.png" class="img-fluid figure-img" style="width:85.0%" alt="Main Page For Posit Cloud Workspaces"></p>
+<figcaption>Main Page</figcaption>
+</figure>
+</div>
+<ol start="4" type="1">
+<li><strong>Access the Course Workspace</strong>. From the left panel, click on the subject’s shared workspace, ‘CMCE10002 – 2025 Semester 2.’</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figs/foundations/reproducible/posit_fba_workspace.png" class="img-fluid figure-img" style="width:85.0%" alt="Main Page For Posit Cloud Workspaces"></p>
+<figcaption>Foundations of Business Analytics Workspace</figcaption>
+</figure>
+</div>
+</section>
+<section id="making-your-own-copy-of-a-project" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="making-your-own-copy-of-a-project">Making Your Own Copy of a Project</h3>
+<p>When you first enter the workspace, you’ll see shared projects. In the figure above you see two shared projects:</p>
+<ul>
+<li>Lecture 2</li>
+<li>Tutorial 2</li>
+</ul>
+<p>Before you can work on a project, you need to make your own copy. That way, you can save your progress and safely make changes.</p>
+<p>Here’s the steps to follow to to make your own copy:</p>
+<ul>
+<li>Find the Project you want to work on. In this case, let’s work on “Lecture 2”</li>
+<li>Click the <code>+</code> icon on the right hand side to “Make a Copy”.</li>
+<li>Click “OK” on the pop out, and the project will be copied to your account.</li>
+</ul>
+<p>After you project has successfully been copied, it will automatically launch the project. When a project is launched an <strong>RStudio</strong> instance will be ready for you to start work. The Figure below shows you what this looks like:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figs/foundations/reproducible/posit_rstudio.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption>Launching an RStudio Project</figcaption>
+</figure>
+</div>
+<p>When the project first launches you may see a “Temporary Copy” message flashing at the top of your window. Click the “Save Permanent Copy” button next to this message to make a permanent copy of the project.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Making Your Own Copy Creates Your Personal Version">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Making Your Own Copy Creates Your Personal Version
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>When you <strong>copy a project</strong>, you’re creating your <strong>own personal version</strong> of the files.</p>
+<p>This means:</p>
+<ul>
+<li>You can write code, make mistakes, and experiment without affecting the original.</li>
+<li>Your work is <strong>saved automatically</strong>—even if you close your browser or your internet drops.</li>
+<li>You can come back to it later, pick up where you left off, and keep building from there.</li>
+</ul>
+<p>Think of it like making a photocopy of the class worksheet—you get your own copy to write on, while the original stays clean for everyone else.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Where to Find Your Work">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Where to Find Your Work
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Once you’ve made a copy of a project, it’s saved <strong>just for you</strong> inside the course workspace.</p>
+<p>To come back to it later:</p>
+<ul>
+<li>Go to <a href="https://posit.cloud">posit.cloud</a></li>
+<li>Click on the <strong>“Workspaces”</strong> tab in the top menu</li>
+<li>Choose our course workspace</li>
+<li>Look for the project with <strong>your name on it</strong> (e.g., <em>Test Student</em> in the figure below)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figs/foundations/reproducible/posit_student_after_copy.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption>Your Own Project Copy is Stored in Our Environment</figcaption>
+</figure>
+</div>
+<p>Click on the project’s title to re-launch the project, and you’ll be right back where you left off.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Finding Projects by Week">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Finding Projects by Week
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>As the course goes on, your workspace will fill up with more projects. To keep things tidy, use the <strong>navigation bar</strong> at the top of the course workspace.</p>
+<p>Click on tabs like <strong>“Week 2”</strong>, <strong>“Week 3”</strong>, etc., to see only the projects for that specific week. This helps you:</p>
+<ul>
+<li>Focus on the material you need right now</li>
+<li>Avoid getting overwhelmed by everything at once</li>
+<li>Quickly jump to the right week or task</li>
+</ul>
+<p><strong>Assignments</strong> will also appear in their own tabs (like <em>Assignment 1</em>) so you can easily find and return to your work without digging through the full list.</p>
+<p>Use the tabs to stay organized—it’s how we’ve designed the workspace to grow with you.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Made a Mess? No Problem.">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Made a Mess? No Problem.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If your project gets completely tangled—broken code, missing files, or just too messy to fix—don’t stress.</p>
+<p>You can always:</p>
+<ol type="1">
+<li><strong>Delete your copy</strong>, and then</li>
+<li><strong>Make a fresh copy</strong> from the original project in the course workspace.</li>
+</ol>
+<p>It’s a clean slate. No harm done.</p>
+<p>Everyone experiments. Everyone breaks things. That’s part of learning.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="what-is-rstudio" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="what-is-rstudio"><span class="header-section-number">3.2</span> What is RStudio?</h2>
+<p>When you open your project in Posit Cloud, you’ll land in a tool called RStudio.</p>
+<p>RStudio is an IDE—short for Integrated Development Environment. That just means it’s a workspace designed to help you write, run, and manage code, all in one place.</p>
+<p>When you first open RStudio, you’ll see three panels:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figs/foundations/reproducible/posit_rstudio.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>RStudio</figcaption>
+</figure>
+</div>
+<ol type="1">
+<li><p><strong>Console and Terminal</strong> (left side). This is where R runs your code and shows the output—results, messages, and errors. You might also see a Terminal tab—feel free to ignore that for now.</p></li>
+<li><p><strong>Environment / History</strong> (upper right). This panel shows what R currently “knows.”</p>
+<ul>
+<li>Environment: a list of all the objects (like data sets or variables) in your current session</li>
+<li>History: a record of the commands you’ve run</li>
+<li>You won’t need to manage these tabs actively, but they’re useful for checking what’s going on.</li>
+</ul></li>
+<li><p><strong>Files / Plots / Packages / Help / Viewer</strong> (lower right). This panel contains several tabs:</p>
+<ul>
+<li>Files shows the files in your project</li>
+<li>Plots displays any charts you generate</li>
+<li>Packages helps you manage extra tools for R</li>
+<li>Help is your built-in reference guide</li>
+<li>Viewer lets you preview interactive content later on</li>
+</ul></li>
+</ol>
+<p>That’s a lot of tabs and panes. We’ll introduce each tab as we need it — no need to memorize them all now.</p>
+<section id="understanding-paths-even-if-you-never-type-one" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="understanding-paths-even-if-you-never-type-one">Understanding Paths (Even If You Never Type One)</h3>
+<p>As you progress this course, you’ll work with data files, save your results, and generate visualisations. All of that happens inside a project—a self-contained folder that holds everything you need.</p>
+<p>When you open a project in Posit Cloud, something helpful happens behind the scenes: Posit Cloud automatically sets your working directory to the root of your project. That’s a fancy way of saying: “When R looks for a file (like a dataset), it starts looking inside this project and its sub-folders.” A project, in this case, just means a folder that contains everything related to a piece of work—your data, code, results, and notes. Think of it like a digital binder that keeps all the pieces of an assignment in one place. When you open a project, R knows to look for files inside that folder—and nowhere else.</p>
+<div class="callout callout-style-default callout-caution callout-titled" title="The Headache You Never Knew You Avoided">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The Headache You Never Knew You Avoided
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If you’ve never written code before, you might not realise this—but finding and loading files is one of the biggest early frustrations in data analysis.</p>
+<p>In most setups, you have to:</p>
+<ul>
+<li>Figure out where your files are on your computer,</li>
+<li>Type out long, exact folder paths,</li>
+<li>And debug mysterious “file not found” errors when something goes wrong.</li>
+</ul>
+<p>Posit Cloud takes care of all of that for you. By opening a project, you’ve already told R where to look—and everything just works.</p>
+<p>You won’t need to think about file paths much in this course. But you will be quietly doing things the right way.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Working with Files: Keep It Simple">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Working with Files: Keep It Simple
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>💡 As a rule: <strong>Keep all your data files inside your project folder.</strong> That way, R always knows where to find them.</p>
+<p>You can refer to files by name (like <code>"sales_data.csv"</code>), or by their path <em>within</em> the project if they’re in a subfolder (e.g., <code>"data/sales_data.csv"</code>).</p>
+<p>No need to write long file paths like <code>C:/Users/YourName/Desktop/...</code> — those won’t work for others and break the idea of reproducibility.</p>
+<p>Stick to filenames and project-relative paths, and everything will stay clean, portable, and easy to run on any computer.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="our-first-steps-with-r" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="our-first-steps-with-r"><span class="header-section-number">3.3</span> Our First Steps with R</h2>
+<p>We’ve learned where your projects live, how Posit Cloud helps manage your files, and how RStudio is set up. Now it’s time to try writing some actual R code.</p>
+<p>So what is R?</p>
+<p>R is a programming language built for working with data. You can use it to calculate values, summarise information, create visuals, or build statistical models. And just like a calculator, it can respond immediately when you ask it to do something.</p>
+<p>Let’s start by using R like a calculator. In the Console, you can type code and press Enter to run it. You’ll see the result appear immediately below.</p>
+<p>Try typing this in the Console:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And after pressing Enter, you should see the following returned to screen:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p>The <code>[1]</code> just means “this is the first item in the result.” You can ignore it for now.</p>
+<p>So far, we’ve just typed code and seen the answer appear in the Console. That’s useful for quick calculation—but what if you want to use that result again later?</p>
+<p>In R, you can assign a value to a variable using the arrow operator <code>&lt;-</code>. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This stores the result of 2 + 2 in a variable called result.</p>
+<p>Now if you type:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>you’ll see:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p>Why is this useful?</p>
+<ul>
+<li>You don’t have to repeat calculations</li>
+<li>You can build more complex code step by step</li>
+<li>It makes your work easier to read and modify</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="Variables as Labelled containers">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Variables as Labelled containers
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Think of a variable as a labelled container: you give something a name so you can refer to it later.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Shortcut Key: The Assignment Operator">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Shortcut Key: The Assignment Operator
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can type the assignment arrow <code>&lt;-</code> manually, but there’s also a handy shortcut:</p>
+<ul>
+<li>Windows: <code>Alt + -</code></li>
+<li>Mac: <code>Option + -</code></li>
+<li>Linux: <code>Alt + -</code>.</li>
+</ul>
+<p>Try using it as you type to save time!</p>
+</div>
+</div>
+<section id="another-example-the-afl-ladder" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="another-example-the-afl-ladder">Another Example: The AFL Ladder</h3>
+<p>Let’s imagine you’re looking at a simplified version of the AFL ladder in 2025. Suppose these four teams have the following points:</p>
+<ul>
+<li>Collingwood Magpies: 60</li>
+<li>Adelaide Crows: 60</li>
+<li>Brisbane Lions: 58</li>
+<li>Western Bulldogs: 48</li>
+</ul>
+<p>You can store these numbers in R as a vector—a collection of values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ladder_points <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">46</span>, <span class="dv">58</span>, <span class="dv">48</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now type:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ladder_points</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You should see:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 48 40 52 36</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="`c()` combines elements">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>c()</code> combines elements
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>c()</code> stands for combine. It creates a vector by combining values into one object.</p>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-time">
+<p>5 min</p>
+</div>
+<ol type="1">
+<li>Create a new vector <code>team_names</code> that contains the four team names in points order. To type a string of text in R, wrap the text in parentheses like <code>"this"</code>.</li>
+<li>Print the result in the console.</li>
+</ol>
+</div>
+<div class="solution-header">
+<p>Solution</p>
+</div>
+<div class="solution-content">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>team_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Collingwood Magpies"</span>, <span class="st">"Adelaide Crows"</span>, </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Brisbane Lions"</span>, <span class="st">"Western Bulldogs"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>team_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Collingwood Magpies" "Adelaide Crows"      "Brisbane Lions"     
+[4] "Western Bulldogs"   </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="from-vectors-to-datasets" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="from-vectors-to-datasets">From Vectors to Datasets</h3>
+<p>So far, we’ve worked with a single vector—just the ladder points. But most real-world data comes in tables, where each row represents an observation (like a team), and each column represents a variable (like their points).</p>
+<p>Let’s turn our two vectors—team names and ladder points—into a mini dataset.</p>
+<p>To turn this into a proper table, we’ll use a tool from the tidyverse—a collection of R packages that make data analysis more consistent and readable. We’ll need to first load the <code>tidyverse</code> package and then use a function provided by the tidyverse called <code>tibble</code> which combines R objects into datasets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ladder <span class="ot">&lt;-</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(<span class="at">team =</span> team_names, </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">points =</span> ladder_points</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>           )</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>ladder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  team                points
+  &lt;chr&gt;                &lt;dbl&gt;
+1 Collingwood Magpies     60
+2 Adelaide Crows          46
+3 Brisbane Lions          58
+4 Western Bulldogs        48</code></pre>
+</div>
+</div>
+<p>What is a tibble? That seems like a fair question to as. In short, A tibble is a modern, tidy version of a data frame. It looks like a spreadsheet but works in a more predictable way. You will use tibbles throughout this course.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="What's a Package?">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What’s a Package?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In R, a package is a bundle of code, functions, and data designed to make your life easier. Instead of writing everything from scratch, you can load a package and get access to pre-built tools.</p>
+<p>To use a package, you first install it (which we’ve done for you), and then load it with <code>library(package_name)</code>. After that, you can start using the functions it provides.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="What is the tidyverse?">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What is the tidyverse?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The tidyverse is a collection of R packages designed to work together seamlessly for data heavy tasks. These packages share a common philosophy:</p>
+<ul>
+<li>Use clear, readable code</li>
+<li>Handle data in a consistent and predictable way</li>
+<li>Encourage best practices for reproducibility</li>
+</ul>
+<p>You don’t need to learn all of the functions now — we’ll introduce them bit by bit as the course progresses.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="from-console-to-script-why-save-your-code" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="from-console-to-script-why-save-your-code">From Console to Script: Why Save Your Code?</h3>
+<p>So far, you’ve been writing code directly into the Console. That’s a great way to experiment and test things quickly. But there’s one big problem: <em>When you close your session, everything you typed into the Console disappears.</em></p>
+<p>That means:</p>
+<ol type="1">
+<li>Your code isn’t saved</li>
+<li>You can’t easily reuse or edit it later</li>
+<li>It’s harder to share or get help</li>
+</ol>
+<p>That’s why the next step is to start using <strong>R scripts</strong> — files where you can write and save your code. Scripts help you:</p>
+<ol type="1">
+<li>Keep a clean, editable history of your work</li>
+<li>Break your work into reusable steps</li>
+<li>Make your work reproducible for others (and your future self!)</li>
+</ol>
+<p>Now that we know why it’s better to save your code, let’s learn how to do it.</p>
+<p>How to Open a New R Script</p>
+<ul>
+<li>In RStudio, go to the File menu</li>
+<li>Choose New File &gt; R Script</li>
+<li>A blank window will open in the top-left panel — this is your script editor</li>
+</ul>
+<p>You can now type your code here instead of the Console.</p>
+<p>Let’s copy some of the code we used earlier into the script:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>team_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Collingwood Magpies"</span>, <span class="st">"Adelaide Crows"</span>, </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Brisbane Lions"</span>, <span class="st">"Western Bulldogs"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>ladder_points <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">46</span>, <span class="dv">58</span>, <span class="dv">48</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>ladder <span class="ot">&lt;-</span> </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(<span class="at">team =</span> team_names, </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">points =</span> ladder_points</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>           )</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>ladder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  team                points
+  &lt;chr&gt;                &lt;dbl&gt;
+1 Collingwood Magpies     60
+2 Adelaide Crows          46
+3 Brisbane Lions          58
+4 Western Bulldogs        48</code></pre>
+</div>
+</div>
+<p>To run a line (or selection of lines), you can:</p>
+<ul>
+<li>Highlight it and click Run in the top right of the script panel, or</li>
+<li>Use the shortcut: <code>Ctrl + Enter</code> (Windows/Linux) or <code>Cmd + Enter</code> (Mac)</li>
+</ul>
+<p>This sends the code to the Console and runs it as before — but now your code is saved.</p>
+<p>Don’t forget to save your script, with a name like <code>ladder_analysis.R</code> using <code>File &gt; Save As</code>. You can reopen it anytime to continue working.</p>
+</section>
+<section id="commenting-your-code" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="commenting-your-code">Commenting Your Code</h3>
+<p>As your code grows longer, it’s helpful to leave notes for yourself (or others) explaining what each part does.</p>
+<p>In R, you can add a comment using the <code>#</code> symbol. Anything after the <code>#</code> on a line will be ignored by R when the code runs.</p>
+<p>For example</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This creates a vector of team names</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>team_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Collingwood Magpies"</span>, <span class="st">"Adelaide Crows"</span>, </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Brisbane Lions"</span>, <span class="st">"Western Bulldogs"</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>ladder_points <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">46</span>, <span class="dv">58</span>, <span class="dv">48</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>ladder <span class="ot">&lt;-</span> </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(<span class="at">team =</span> team_names, </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">points =</span> ladder_points</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>           )</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>ladder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  team                points
+  &lt;chr&gt;                &lt;dbl&gt;
+1 Collingwood Magpies     60
+2 Adelaide Crows          46
+3 Brisbane Lions          58
+4 Western Bulldogs        48</code></pre>
+</div>
+</div>
+<p>Comments are a simple but powerful habit—they help keep your work readable and easier to debug.</p>
+</section>
+<section id="getting-help-in-r" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="getting-help-in-r">Getting Help in R</h3>
+<p>R has built-in documentation for almost every function. If you want to learn how a function works (or what arguments it takes), you can use the <code>?</code> symbol followed by the function name. For example, suppose we want to find the minimum number of points in the dataset we have created. If we know the function to do this is <code>min()</code> but we dont know how to use it we can type the following into the Console:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>?min</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This opens the help page for the <code>min()</code> function, which finds the minimum value in a vector. We can use it as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(ladder_points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 46</code></pre>
+</div>
+</div>
+<p>on the vector <code>ladder_points</code>. If we needed to use it on the dataset <code>ladder</code>, then we need to access the column of <code>points</code> in the dataset. You can do that as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(ladder<span class="sc">$</span>points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 46</code></pre>
+</div>
+</div>
+<p>where the <code>$</code> operator lets you extract a specific column from a dataset.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="What if I don't know the function name?">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What if I don’t know the function name?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Sometimes you know what you want to do, but you don’t know the name of the function.</p>
+<p>Here are a few ways to figure it out:</p>
+<ul>
+<li>Use the Help panel (lower right in RStudio) and type keywords into the search bar.</li>
+<li>Try the ?? operator to search function names and help pages in the Console. For example:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>??minimum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This shows help files related to the word “minimum.”</p>
+<ul>
+<li>Use Google or search “R how to [do the thing]”</li>
+</ul>
+<p>Over time, you’ll learn common function names. But it’s totally normal to look them up — everyone does, even the experts.</p>
+</div>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-time">
+<p>10 min</p>
+</div>
+<ol type="1">
+<li>Add comments to the code in the script to explain what each line of code is doing</li>
+<li>Find the maximum number of points in the <code>ladder_points</code> vector. Repeat for the <code>ladder</code> dataset.</li>
+<li>Find the mean number of points in the <code>ladder_points</code> vector. Repeat for the <code>ladder</code> dataset.</li>
+<li>Find the minimum of the <code>team</code> column inside the <code>ladder_points</code> data.</li>
+<li>Can you explain the result from Q4?</li>
+</ol>
+</div>
+</section>
+</section>
+<section id="from-script-to-story-writing-with-quarto" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="from-script-to-story-writing-with-quarto"><span class="header-section-number">3.4</span> From Script to Story: Writing with Quarto</h2>
+<p>You’ve seen how scripts help you save and structure your code. But what if you want to share your analysis—complete with notes, explanations, and results—all in one place?</p>
+<p>That’s where Quarto comes in.</p>
+<p>Quarto lets you combine code, output, and written explanation in a single document. It’s like a notebook that tells the full story—not just what you did, but why it matters.</p>
+<p>A Quarto document is a special kind of file (with a .qmd extension) that:</p>
+<ul>
+<li>Lets you write regular text using Markdown</li>
+<li>Lets you include code chunks that run in R</li>
+<li>Shows both the code and the results/output</li>
+</ul>
+<p>We’ll use Quarto documents to write up your work, show your results, and explain your reasoning.</p>
+<p>Why would we want to use Quarto. There’s at least 3 good reasons why we might prefer Quarto to scripts:</p>
+<ol type="1">
+<li><strong>Documentation + Analysis</strong>: Keep your code and your thinking in one place.</li>
+<li><strong>Reproducibility</strong>: Anyone can re-run your analysis and get the same results.</li>
+<li><strong>Communication</strong>: Great for assignments, reports, and portfolios.</li>
+</ol>
+<section id="creating-your-first-quarto-document" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="creating-your-first-quarto-document">Creating Your First Quarto Document</h3>
+<p>Creating a Quarto document in RStudio is simple. Here’s how to get started:</p>
+<ul>
+<li>In the RStudio menu, go to File &gt; New File &gt; Quarto Document…</li>
+</ul>
+<p>A dialog box will appear. You can:</p>
+<ul>
+<li>Give your file a Title (e.g.&nbsp;“AFL Ladder Summary”)</li>
+<li>Leave the Author field blank or enter your name</li>
+<li>Leave Format as HTML for now</li>
+<li>Deselect the “Use visual markdown editor”</li>
+<li>Click Create</li>
+</ul>
+<p>You’ll see a new file appear in the top-left pane with some example text included.<br>
+This is your Quarto source file, and it will have a .qmd extension (short for Quarto Markdown).</p>
+<p>This is where you’ll write your analysis: both the R code and the explanation that goes with it.</p>
+<p>We’ll now walk through the key elements of a Quarto document.</p>
+</section>
+<section id="top-matter" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="top-matter">Top Matter</h3>
+<p>At the very top of the Quarto document, we can see a small block that looks like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"AFL Ladder Summary"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This section is called the YAML front matter (or just “top matter”). It tells Quarto how to render your document — like the title, output format, and other settings.</p>
+<p>It always starts and ends with three dashes (<code>---</code>), and everything inside follows a key: value format.</p>
+<p>We can add some key-value pairs to the top matter. Let’s add the date as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"AFL Ladder Summary"</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that we have some content inside our Quarto document, we want to view the output. Click the Render button at the top of the script panel. Quarto will run the code, insert the results into your document, and generate a clean HTML page. In Posit Cloud, the rendered HTML will open in a new browser tab. You can scroll through it to check that everything looks as expected—text, code, and results all in one place. If something doesn’t look right, just go back to your .qmd file, make changes, and click Render again. It’s like refreshing your work after an update.</p>
+<div class="exercise">
+<div class="exercise-time">
+<p>5 min</p>
+</div>
+<p>Suppose we wanted to change the date format to read “August, 2025”. We can change this using the <code>date-format</code> key and using the value <code>MMMM, YYYY</code>.</p>
+<ol type="1">
+<li>Add the date-format key value pair to the top matter and render the edited document.</li>
+<li>Try a different date format by choosing one from <a href="https://quarto.org/docs/reference/dates.html">here</a> and inserting it into the document.</li>
+</ol>
+</div>
+</section>
+<section id="essential-syntax-for-quarto" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="essential-syntax-for-quarto">Essential Syntax for Quarto</h3>
+<p>When writing in Quarto, you’ll use a format known as <strong>Markdown</strong> to format your text. Here are the essentials you’ll need throughout this course:</p>
+<section id="emphasis-in-text" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="emphasis-in-text">Emphasis in text</h4>
+<p>Use <code>*</code> or <code>_</code> for emphasis:</p>
+<ul>
+<li><p><strong>Bold</strong>:<br>
+<code>**This is bold**</code> → <strong>This is bold</strong></p></li>
+<li><p><em>Italics</em>:<br>
+<code>*This is italic*</code> → <em>This is italic</em></p></li>
+</ul>
+<p>You can even combine them:<br>
+<code>***Bold and italic***</code> → <strong><em>Bold and italic</em></strong></p>
+</section>
+<section id="headers" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="headers">Headers</h4>
+<p>Headers help structure your document. Use <code>#</code> symbols:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># This is a level 1 heading</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## This is a level 2 heading</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">### This is a level 3 heading</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that a level 1 heading is a title in Quarto. So you should only use level 2 headings or below.</p>
+</section>
+<section id="ordered-and-unordered-lists" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="ordered-and-unordered-lists">Ordered and Unordered Lists</h4>
+<section id="unordered-list-with---or" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="unordered-list-with---or">Unordered List (with <code>-</code> or <code>*</code>)</h5>
+<div class="sourceCode" id="cb26"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Apples</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Bananas</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Oranges</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Produces:</p>
+<ul>
+<li>Apples<br>
+</li>
+<li>Bananas<br>
+</li>
+<li>Oranges</li>
 </ul>
 </section>
-<section id="helping-future-you-with-code-comments" class="level3" data-number="3.4.4">
-<h3 data-number="3.4.4" class="anchored" data-anchor-id="helping-future-you-with-code-comments"><span class="header-section-number">3.4.4</span> Helping Future You with Code Comments</h3>
+<section id="ordered-list-with-numbers" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="ordered-list-with-numbers">Ordered List (with numbers)</h5>
+<div class="sourceCode" id="cb27"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>First item  </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Second item  </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Third item</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Leads to:</p>
+<ol type="1">
+<li>First item<br>
+</li>
+<li>Second item<br>
+</li>
+<li>Third item</li>
+</ol>
+</section>
+<section id="nested-sublists" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="nested-sublists">Nested (Sublists)</h5>
+<div class="sourceCode" id="cb28"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Fruits</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Apples</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Oranges</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Vegetables</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Carrots</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Spinach</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Yields:</p>
+<ul>
+<li>Fruits
+<ul>
+<li>Apples<br>
+</li>
+<li>Oranges<br>
+</li>
+</ul></li>
+<li>Vegetables
+<ul>
+<li>Carrots<br>
+</li>
+<li>Spinach</li>
+</ul></li>
+</ul>
+<p>Use two or four spaces to indent sub-items.</p>
 </section>
 </section>
-<section id="concluding-remarks" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="concluding-remarks"><span class="header-section-number">3.5</span> Concluding Remarks</h2>
+<section id="links-urls" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="links-urls">Links (URLs)</h4>
+<p>To include a link, use square brackets for the text and parentheses for the URL:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Visit the AFL website</span><span class="co">](https://www.afl.com.au)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Produces:</p>
+<p><a href="https://www.afl.com.au">Visit the AFL website</a></p>
+</section>
+<section id="paragraphs" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="paragraphs">Paragraphs</h4>
+<p>Just leave a blank line between paragraphs:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>This is the first paragraph.</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>This is the second paragraph.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Quarto will automatically format this with proper spacing in your final document:</p>
+<p>This is the first paragraph.</p>
+<p>This is the second paragraph.</p>
+</section>
+</section>
+<section id="working-with-r-code-chunks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="working-with-r-code-chunks">Working with R Code Chunks</h3>
+<p>In a Quarto document, code lives inside <strong>chunks</strong>. These are special blocks that run R code and display the results right alongside your writing.</p>
+<p>Here’s what a basic chunk looks like:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>mean(c(1, 2, 3, 4, 5))</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This chunk will:</p>
+<ul>
+<li>Run the code</li>
+<li>Show the code</li>
+<li>Show the result (which is 3)</li>
+</ul>
+<p>i.e.&nbsp;we get the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<p>By default, both the code and the result will appear in the final document.</p>
+<section id="customising-code-chunks" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="customising-code-chunks">Customising Code Chunks</h4>
+<p>Sometimes, you don’t want everything to be shown. Maybe you want to hide the code, or skip running it entirely. That’s where <strong>chunk options</strong> come in.</p>
+<p>Chunk options start with <code>#|</code> and go <em>inside</em> the chunk, like this:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>#| eval: false</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>mean(c(1, 2, 3, 4, 5))</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When we include that chunk in our document:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Notice how now the code was shown, but there was no output printed afterwards? That’s because the <code>#| eval: false</code> instructs Quarto not to run the code inside this chunk.</p>
+</section>
+<section id="echo-show-or-hide-the-code" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="echo-show-or-hide-the-code"><code>echo</code>: Show or hide the code</h4>
+<p>We can do the opposite to displaying code and no output. Using:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>leads to:</p>
+<ul>
+<li>The code <strong>will run</strong><br>
+</li>
+<li>The result <strong>will appear</strong><br>
+</li>
+<li>But the code <strong>won’t be shown</strong></li>
+</ul>
+<p>This is useful when you want the results to appear, but don’t want to show the underlying code.</p>
+</section>
+<section id="warning-suppress-warning-messages" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="warning-suppress-warning-messages"><code>warning</code>: Suppress warning messages</h4>
+<p>When we add:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>The code will run normally<br>
+</li>
+<li>Any warnings will be <strong>hidden</strong> in the output</li>
+</ul>
+<p>This keeps your output clean when R gives non-critical warnings that you want to suppress. We haven’t come across any of these yet, but when we do we will come back to this option.</p>
+<p>We might stumble across other chunk options as well as we progress through the class:</p>
+<ul>
+<li><code>message: false</code> — hides startup or package-loading messages<br>
+</li>
+<li><code>include: false</code> — runs the code, but hides both the code and the output (great for setup chunks)</li>
+</ul>
+<p>You don’t need to memorize all of these now — we’ll remind you when they come up.</p>
+</section>
+</section>
+<section id="writing-equations-in-quarto" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="writing-equations-in-quarto">Writing Equations in Quarto</h3>
+<p>In Quarto, you can write <strong>mathematical equations</strong> using the same syntax used in LaTeX. There are two main ways to do this.</p>
+<section id="inline-math" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="inline-math">Inline Math</h4>
+<p>Use single dollar signs <code>$...$</code> to include math inside a sentence:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>The average is given by $\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This renders as:</p>
+<p>The average is given by <span class="math inline">\(\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i\)</span>.</p>
+</section>
+<section id="display-math" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="display-math">Display Math</h4>
+<p>Use double dollar signs <code>$$...$$</code> to write standalone equations on their own line:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>$$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will render as:</p>
+<p><span class="math display">\[
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+\]</span></p>
+<p>Math is kept to a minimum in this book. As a result you won’t need to learn the too much of these details. Think of this as a reference in case at some point in your study you want to write equation in a Quarto document.</p>
+</section>
+</section>
+</section>
+<section id="using-r-in-practice" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="using-r-in-practice"><span class="header-section-number">3.5</span> Using R in Practice</h2>
+<section id="what-to-do-when-your-code-doesnt-work" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="what-to-do-when-your-code-doesnt-work">What to Do When Your Code Doesn’t Work</h3>
+<p>Let’s be real: at some point, your code <strong>will</strong> break.</p>
+<p>It might throw an error. It might do something weird. Or it might not run at all.</p>
+<p>This is <strong>completely normal</strong>—it happens to everyone, even professionals. The authors of this book spend many hours per day trying to fix their own broken code. Learning to fix things when they go wrong is a big part of learning to code.</p>
+<p>Here are some strategies that can help when you hit a roadblock:</p>
+<section id="read-the-error-message" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="read-the-error-message">1. Read the error message</h4>
+<p>We know they’re not always friendly. But sometimes, error messages give useful clues. Try to read them carefully and spot:</p>
+<ul>
+<li>What function is causing the problem?</li>
+<li>Is it missing something? (like a dataset or a column name)</li>
+<li>Does it mention a type of object you didn’t expect?</li>
+</ul>
+</section>
+<section id="google-the-error-add-in-r-or-tidyverse" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="google-the-error-add-in-r-or-tidyverse">2. Google the error (add “in R” or “tidyverse”)</h4>
+<p>You’re not the first person to hit this problem.</p>
+<p>Try copying part of the error message into Google. Add words like <strong>“in R”</strong> or <strong>“tidyverse”</strong> to get better results.<br>
+Look for answers on <strong>Stack Overflow</strong>, <strong>RStudio Community</strong>, or helpful blog posts.</p>
+</section>
+<section id="use-the-help-system" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="use-the-help-system">3. Use the help system</h4>
+<p>If you’re not sure how a function works, try this:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>?some_function</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As we discussed above that opens the <strong>help file</strong> for the function. It shows:</p>
+<ul>
+<li>What the function does</li>
+<li>What arguments it needs</li>
+<li>Examples of how to use it</li>
+</ul>
+<p>Check that you’ve spelled the function and its arguments correctly. A common mistake is using quotes when you shouldn’t (or vice versa).</p>
+</section>
+<section id="comment-out-chunks-of-code-to-isolate-the-issue" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="comment-out-chunks-of-code-to-isolate-the-issue">4. Comment out chunks of code to isolate the issue</h4>
+<p>If your document won’t render, try <em>removing</em> or <em>commenting out</em> code until it works again. Then slowly add pieces back one at a time.</p>
+<p>This helps you figure out <strong>where</strong> the problem is happening.</p>
+</section>
+<section id="check-the-type-of-your-data" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="check-the-type-of-your-data">5. Check the type of your data</h4>
+<p>Sometimes things break because R is treating your data differently than you expect.</p>
+<p>Try this:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">type</span>(data_set<span class="sc">$</span>column)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This tells you if it’s a number, character, factor, etc. Some functions need one type and won’t work with another.</p>
+</section>
+<section id="restart-your-r-session" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="restart-your-r-session">6. Restart your R session</h4>
+<p>Sometimes R just gets confused. You can give it a clean start by going to:</p>
+<pre><code>Session &gt; Restart R and Clear Output</code></pre>
+<p>This reloads your project and starts fresh.</p>
+</section>
+<section id="restart-your-computer" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="restart-your-computer">7. Restart your computer</h4>
+<p>Yes, seriously. It sometimes works.</p>
+</section>
+<section id="search-for-what-youre-trying-to-donot-just-the-error" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="search-for-what-youre-trying-to-donot-just-the-error">8. Search for what you’re trying to do—not just the error</h4>
+<p>Instead of Googling the exact error, try searching your goal, like:</p>
+<blockquote class="blockquote">
+<p>’save PDF of ggplot in R”<br>
+’how to rename a column with dplyr”</p>
+</blockquote>
+<p>This often leads to clearer answers or helpful examples.</p>
+</section>
+</section>
+<section id="mentality" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="mentality">Mentality</h3>
+<p>You don’t need to be a ’tech person” or have all the answers to be a programmer. If you write code—even one line—<em>you’re already doing it</em>. There’s no special badge you need.</p>
+<p>Over time, great coders tend to share a few habits—not because they’re geniuses, but because they’ve learned what works. And so can you.</p>
+<section id="be-focused" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="be-focused">1. Be Focused</h4>
+<p>Saying ’I want to learn R” is a nice thought, but it’s kind of like saying ’I want to learn everything.” There’s no finish line. It’s easy to get lost or feel stuck.</p>
+<p>A better approach? Pick something small and specific, like:</p>
+<blockquote class="blockquote">
+<p>’I want to make a histogram of AFL ladder points using ggplot2.”</p>
+</blockquote>
+<p>Now you have something to aim for. It’s focused. It’s achievable. You can ask for help if you need it. And when you’re done—you’ve learned something real.</p>
+</section>
+<section id="be-curious" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="be-curious">2. Be Curious</h4>
+<p>If you’re not sure what a function does, or how something works — <em>try it and see</em>.</p>
+<p>What happens if you give <code>ggplot()</code> a vector instead of a data frame? Try it.<br>
+What does <code>summary()</code> do on a tibble? Try it.<br>
+Will this code break your computer? (Nope. Not unless you’re really trying.)</p>
+<p>Coding is about experimenting. You’ll learn more by doing than by reading alone.</p>
+</section>
+<section id="be-pragmatic" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="be-pragmatic">3. Be Pragmatic</h4>
+<p>Curiosity is great—but don’t change everything at once. Small steps are key.</p>
+<p>Let’s say you want to use a new package like <code>data.table</code> instead of <code>dplyr</code> for a regression. Rather than rewriting your whole pipeline, try swapping out just one function. Get that working. Then move to the next step.</p>
+<p>It’s not about being fancy—it’s about making progress.</p>
+</section>
+<section id="be-tenacious-but-know-when-to-pause" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="be-tenacious-but-know-when-to-pause">4. Be Tenacious (But Know When to Pause)</h4>
+<p>Code will break. Unexpected things will happen. This is normal.</p>
+<p>Keep going. Try a different angle. Ask someone. Take a walk. Come back later.</p>
+<p>But also: know when to let go. If you’ve spent hours chasing one bug, and it’s stopping your progress, it’s okay to set it aside and try a new approach. Asking for help doesn’t mean giving up—it means you’re working smart.</p>
+</section>
+<section id="be-planned" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="be-planned">5. Be Planned</h4>
+<p>Before you dive into code, pause and sketch out what you want to do.</p>
+<p>Want to make a graph? Think:</p>
+<ul>
+<li>Where is the data coming from?</li>
+<li>What packages will I use?</li>
+<li>What will I do if I can’t find the data I need?</li>
+</ul>
+<p>Even five minutes of planning can save you hours of frustration.</p>
+</section>
+<section id="done-is-better-than-perfect" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="done-is-better-than-perfect">6. Done is Better Than Perfect</h4>
+<p>Your first code doesn’t need to be elegant. Or tidy. Or clever.</p>
+<p>It just needs to <strong>work</strong>.</p>
+<p>You can always come back and clean it up later. But the most important thing is to finish something, no matter how small. Ugly, working code is better than perfect code that never gets used.</p>
+<p>You’re already a coder. Keep going.</p>
+</section>
+</section>
+</section>
+<section id="concluding-remarks" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="concluding-remarks"><span class="header-section-number">3.6</span> Concluding Remarks</h2>
+<p>In this chapter we have considered much and it is normal to be overwhelmed. Come back to the Quarto section as needed. Let’s now get our hands dirty with some data!</p>
 
 
 </section>
@@ -843,8 +1724,8 @@ ul.task-list li input[type="checkbox"] {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../insights/data_visualisation.html" class="pagination-link" aria-label="Data Visualisation for Business Intelligence">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation for Business Intelligence</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tutorials/what_is_business_analytics.html" class="pagination-link" aria-label="Tutorial 1: Business Analytics Skills for Inventory Management">
+        <span class="nav-page-text">Tutorial 1: Business Analytics Skills for Inventory Management</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
