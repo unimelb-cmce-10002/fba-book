@@ -6,12 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Lachlan Deer">
-<meta name="author" content="Patrick Ferguson">
-<meta name="author" content="Junhao Liu">
-<meta name="dcterms.date" content="2025-08-04">
 
-<title>Foundations of Business Analytics</title>
+<title>Tutorial 2: Core Skills of a Business Scientist &amp; Introduction to Posit Cloud – Foundations of Business Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -27,24 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./foundations/what_is_business_analytics.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6f77e067621728e8e5d8b75f5607b6c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../tutorials/what_is_business_analytics.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6f77e067621728e8e5d8b75f5607b6c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -75,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../solution.js"></script>
 
 
-<link rel="stylesheet" href="custom.css">
+<link rel="stylesheet" href="../custom.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -87,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Welcome</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/what_is_business_analytics.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/how_to_do_business_analytics.html">Tutorial 2: Core Skills of a Business Scientist &amp; Introduction to Posit Cloud</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -102,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Foundations of Business Analytics</a> 
+      <a href="../">Foundations of Business Analytics</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -114,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
@@ -129,13 +125,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./foundations/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
+  <a href="../foundations/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What is Business Analytics?</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./foundations/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
+  <a href="../foundations/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Core Skills of a “Business Scientist”</span></span></a>
   </div>
 </li>
@@ -152,13 +148,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
+  <a href="../tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorial 1: Business Analytics Skills for Inventory Management</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
+  <a href="../tutorials/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Tutorial 2: Core Skills of a Business Scientist &amp; Introduction to Posit Cloud</span></a>
   </div>
 </li>
@@ -174,12 +170,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a>
+  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge">The Business Challenge</a></li>
+  <li><a href="#prepare-these-exercises-before-class" id="toc-prepare-these-exercises-before-class" class="nav-link" data-scroll-target="#prepare-these-exercises-before-class">Prepare these Exercises before Class</a>
   <ul class="collapse">
-  <li><a href="#audience-and-assumed-knowledge" id="toc-audience-and-assumed-knowledge" class="nav-link" data-scroll-target="#audience-and-assumed-knowledge">Audience and Assumed Knowledge</a></li>
-  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link" data-scroll-target="#learning-goals">Learning Goals</a></li>
-  <li><a href="#pedagogical-approach" id="toc-pedagogical-approach" class="nav-link" data-scroll-target="#pedagogical-approach">Pedagogical Approach</a></li>
-  <li><a href="#about-the-instructors" id="toc-about-the-instructors" class="nav-link" data-scroll-target="#about-the-instructors">About the Instructors</a></li>
+  <li><a href="#exercise-1-identifying-the-key-concepts" id="toc-exercise-1-identifying-the-key-concepts" class="nav-link" data-scroll-target="#exercise-1-identifying-the-key-concepts">Exercise 1: Identifying the key concepts</a></li>
+  <li><a href="#exercise-2-explaining-context-and-identifying-a-research-question" id="toc-exercise-2-explaining-context-and-identifying-a-research-question" class="nav-link" data-scroll-target="#exercise-2-explaining-context-and-identifying-a-research-question">Exercise 2: Explaining Context and Identifying a Research Question</a></li>
+  <li><a href="#exercise-3-how-to-answer-the-question" id="toc-exercise-3-how-to-answer-the-question" class="nav-link" data-scroll-target="#exercise-3-how-to-answer-the-question">Exercise 3: How to answer the question?</a></li>
+  </ul></li>
+  <li><a href="#in-class-exercises" id="toc-in-class-exercises" class="nav-link" data-scroll-target="#in-class-exercises">In-Class Exercises</a>
+  <ul class="collapse">
+  <li><a href="#exercise-4-defining-a-problem-and-crafting-questions" id="toc-exercise-4-defining-a-problem-and-crafting-questions" class="nav-link" data-scroll-target="#exercise-4-defining-a-problem-and-crafting-questions">Exercise 4: Defining a Problem and Crafting Questions</a></li>
+  <li><a href="#exercise-5-sketching-out-the-way-forward" id="toc-exercise-5-sketching-out-the-way-forward" class="nav-link" data-scroll-target="#exercise-5-sketching-out-the-way-forward">Exercise 5: Sketching Out the Way Forward</a></li>
+  <li><a href="#exercise-6-logging-into-positcloud" id="toc-exercise-6-logging-into-positcloud" class="nav-link" data-scroll-target="#exercise-6-logging-into-positcloud">Exercise 6: Logging into PositCloud</a></li>
+  <li><a href="#exercise-7-make-some-edits-to-your-quarto-document" id="toc-exercise-7-make-some-edits-to-your-quarto-document" class="nav-link" data-scroll-target="#exercise-7-make-some-edits-to-your-quarto-document">Exercise 7: Make Some Edits to Your Quarto Document</a></li>
+  <li><a href="#exercise-8-write-your-own-code" id="toc-exercise-8-write-your-own-code" class="nav-link" data-scroll-target="#exercise-8-write-your-own-code">Exercise 8: Write Your Own Code</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -187,31 +191,16 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/what_is_business_analytics.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/how_to_do_business_analytics.html">Tutorial 2: Core Skills of a Business Scientist &amp; Introduction to Posit Cloud</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Foundations of Business Analytics</h1>
-<p class="subtitle lead">Crafting Narratives from Numbers</p>
+<h1 class="title">Tutorial 2: Core Skills of a Business Scientist &amp; Introduction to Posit Cloud</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-contents">
-             <p>Lachlan Deer </p>
-             <p>Patrick Ferguson </p>
-             <p>Junhao Liu </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">August 4, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -221,65 +210,209 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="welcome" class="level1 unnumbered">
-<h1 class="unnumbered">Welcome</h1>
-<p>In this course, you’ll develop the essential skills to analyze and interpret data for better business decision-making. Whether you’re new to coding or looking to strengthen your analytical thinking, we’ll guide you through the fundamentals of working with data in R — structuring, transforming, visualizing, analyzing, and interpreting information effectively.</p>
-<p>Business analytics spans three critical dimensions: understanding what happened in the past, anticipating what will happen next, and uncovering why things happen through causal analysis. Through hands-on case studies, you’ll apply these approaches to real-world business problems, extracting meaningful insights that drive action. The power of data lies in the stories it tells. From ancient oral traditions to modern visualizations, effectively communicated insights create impact. You’ll learn to transform raw data into compelling narratives that enhance clarity and directly influence business decisions.</p>
-<p>Your approach will mirror that of a scientist: observing carefully, experimenting methodically, and making evidence-based predictions about firm and consumer behavior. This systematic framework provides a practical toolkit for addressing complex business challenges. With this analytical power comes significant responsibility. We’ll explore ethical dimensions of working with sensitive information, recognizing and mitigating bias, balancing analytical insight with individual rights, and ensuring transparent communication of findings.</p>
-<p>For knowledge to create value, it must be communicated clearly and transparently. You’ll develop workflows that ensure accuracy, consistency, and reliability — critical skills for building trust in your analysis.</p>
-<p>Data is everywhere, but enduring insights are rare. This course will help you transform numbers into knowledge that informs business and society—ethically, responsibly, and effectively.</p>
-<section id="audience-and-assumed-knowledge" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="audience-and-assumed-knowledge">Audience and Assumed Knowledge</h2>
-<p>This course is designed for <strong>first-year undergraduate students</strong> enrolled in business, commerce, or economics degrees.</p>
-<p>We assume students:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Learning Goals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>By the end of this tutorial, you should be able to:</p>
 <ul>
-<li>Have <strong>no prior programming experience</strong>.</li>
-<li>Have basic numeracy skills (high school level mathematics).</li>
-<li>Are curious about how data and technology are changing the way businesses operate.</li>
-<li>Are ready to engage in structured problem-solving and critical thinking.</li>
+<li>Apply the core skills of a business scientist to analyze a real-world operational challenge.</li>
+<li>Evaluate the clarity, feasibility, and business relevance of peer-generated research questions and analytical plans.</li>
+<li>Create a structured approach to an open-ended business problem that integrates the necessary core skills of a business scientist</li>
+<li>Apply basic R and Quarto skills to edit and execute code in PositCloud.</li>
+<li>Interpret and modify simple R code.</li>
 </ul>
-<p>No specific technical prerequisites are required. Our goal is to meet students where they are and progressively build their skills, confidence, and analytic thinking.</p>
-<p>We welcome students from all backgrounds — no prior coding or analytics experience is needed, and we will build every concept step-by-step. Curiosity, patience, and a willingness to engage with new ideas are the most important starting points.</p>
+</div>
+</div>
+<section id="the-business-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="the-business-challenge">The Business Challenge</h2>
+<p>Uber is facing a new challenge in cities like Sydney and Melbourne. Some drivers have found a way to game the surge pricing system by temporarily logging off in groups to reduce supply. This triggers a surge in prices—and when they log back in, they benefit from higher fares.</p>
+<p>While this behavior doesn’t technically break any rules, it raises serious concerns. Should Uber treat it as clever strategy or as manipulation? Should it intervene—and if so, how? Cracking down too hard could upset drivers and hurt morale. Doing nothing might damage rider trust and public perception.</p>
+<p>Uber’s analytics and operations teams need to investigate what’s really going on, what’s driving this behavior, and whether (and how) to respond in a way that balances fairness, incentives, and platform health.</p>
 </section>
-<section id="learning-goals" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="learning-goals">Learning Goals</h2>
-<p>By the end of this course, students will be able to:</p>
+<section id="prepare-these-exercises-before-class" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-these-exercises-before-class">Prepare these Exercises before Class</h2>
+<p>Prepare these exercises before coming to class. Plan to spend 30 minutes on these exercises.</p>
+<section id="exercise-1-identifying-the-key-concepts" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1-identifying-the-key-concepts">Exercise 1: Identifying the key concepts</h3>
+<p>Watch this short news story: “<a href="https://www.abc.net.au/news/2025-07-29/uber-drivers-creating-artificial-surge-prices/105582350">Uber drivers creating artificial surge prices</a>” (ABC News, 29 July 2025).</p>
+<p>In your own words, define the following key terms or ideas mentioned in the article:</p>
 <ul>
-<li>Define and explain key concepts in business analytics.</li>
-<li>Identify different types of business problems and select appropriate analytic approaches.</li>
-<li>Critically assess data sources and recognize the limitations of data-driven insights.</li>
-<li>Communicate analytic findings through clear, structured narratives.</li>
+<li>Surge pricing</li>
+<li>Algorithmic pricing</li>
+<li>Platform manipulation</li>
+<li>Driver incentives</li>
 </ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You don’t need to provide formal or technical definitions. Focus on explaining each concept in your own words, based on how it was used in the video.</p>
+</div>
+</div>
+<p><em>Write your answer here</em></p>
 </section>
-<section id="pedagogical-approach" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="pedagogical-approach">Pedagogical Approach</h2>
-<p>Our teaching philosophy blends three core elements:</p>
-<ol type="1">
-<li><strong>Business Challenge First</strong>
+<section id="exercise-2-explaining-context-and-identifying-a-research-question" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-explaining-context-and-identifying-a-research-question">Exercise 2: Explaining Context and Identifying a Research Question</h3>
+<p>Uber’s pricing system is designed to respond to real-time supply and demand. But as the video shows, driver behavior can complicate this—sometimes in ways the algorithm wasn’t built to anticipate.</p>
+<p>Imagine you’re part of a team investigating the situation in Sydney and Melbourne.</p>
+<p>In 3–4 sentences, explain how you would define the problem for Uber. Then, write one clear research question that your team could use to guide further analysis.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To help you think through this, you might want to consider the following:</p>
 <ul>
-<li>Each chapter begins with a real-world business problem or question.</li>
-<li>Readers are invited to think creatively and critically about how they would approach the challenge before technical methods are introduced.</li>
-</ul></li>
-<li><strong>Skills of a Business Scientist</strong>
+<li>What’s really going wrong here?</li>
+<li>Why does it matter to the business?</li>
+<li>What kind of evidence or data would help clarify the situation?</li>
+</ul>
+</div>
+</div>
+<p><em>Write your answer here</em></p>
+</section>
+<section id="exercise-3-how-to-answer-the-question" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3-how-to-answer-the-question">Exercise 3: How to answer the question?</h3>
+<p>Your manager turns to you and says:</p>
+<blockquote class="blockquote">
+<p>“Where should we start?”</p>
+</blockquote>
+<p>In 3–5 bullet points, outline how you would approach the problem as a business scientist.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To help you think through this, you may want to integrate answers from the following questions:</p>
 <ul>
-<li>We teach how to combine technical data skills, business judgment, and communication.</li>
-<li>Emphasis is placed on asking good questions, interpreting results thoughtfully, and communicating clearly.</li>
-</ul></li>
-<li><strong>Data to Narrative</strong>
-<ul>
-<li>Students learn how to move from raw data, through analysis, to actionable insights.</li>
-<li>Storytelling is treated as a fundamental analytic skill: interpreting patterns, understanding context, and communicating findings persuasively to decision-makers.</li>
-</ul></li>
+<li>What business or consumer theories might help you?</li>
+<li>What data would you want?</li>
+<li>What kind of methods might be useful?</li>
+</ul>
+</div>
+</div>
+<p><em>Write your answer here</em></p>
+</section>
+</section>
+<section id="in-class-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-exercises">In-Class Exercises</h2>
+<p>You will discuss these exercises in class with your peers in small groups and with your tutor. The first few exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class. The latter exercises are designed to help you get more comfortable using PositCloud.</p>
+<section id="exercise-4-defining-a-problem-and-crafting-questions" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4-defining-a-problem-and-crafting-questions">Exercise 4: Defining a Problem and Crafting Questions</h3>
+<ol type="a">
+<li><p>Share your business context descriptions and research questions (from Question 2) with your group.</p></li>
+<li><p>As a group, discuss:</p></li>
 </ol>
-<p>This text is designed to serve both as a foundation for classroom discussion and as a self-contained guide for independent study. Analytics is about exploration and iteration — it is normal to encounter challenges and learn through the process. We encourage a growth mindset: thoughtful questions, careful reasoning, and creative thinking are celebrated throughout the journey into business analytics.</p>
-<!-- ## Software Information & conventions {.unnumbered} -->
+<ul>
+<li>Which context descriptions are clear and well-framed?</li>
+<li>Which research questions are answerable using data?</li>
+<li>Which questions are most likely to help Uber make a better decision?</li>
+</ul>
+<ol start="3" type="a">
+<li>Choose the best research question your group came up with. Write down the question and explain why you chose it. What makes it clear, useful, or powerful?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Conversation prompt
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Are your group’s questions descriptive (what happened), predictive (what will happen), or causal (why did it happen)? How does that shape the analysis?</p>
+</div>
+</div>
+<p><em>Write your answer here</em></p>
 </section>
-<section id="about-the-instructors" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="about-the-instructors">About the Instructors</h2>
-<p><strong>Lachlan</strong> Deer is a Lecturer in the Management &amp; Marketing Group at the University of Melbourne. His research interests lie in quantitative marketing, digital markets and public policy. Lachlan has spent the last decade introducing computing and data science skills into business, economics and social science curriculums, adopting a hands-on and learner focussed practical training, enabling learners to become more efficient and productive in their work by bridging the gap between the increasing reliance on computational skills demanded by employers and the limited training many learners receive in these areas in traditional courses in these areas. Prior to joining University of Melbourne, Lachlan has worked at Tilburg University and the University of Chicago Booth School of Business. Lachlan earned his PhD in Economics from the University of Zurich.</p>
-<p><strong>Patrick</strong> Ferguson is a Senior Lecturer in the Accounting Group at the University of Melbourne and a Research Affiliate at the Laboratory for Innovation Science at Harvard University. In his research, Patrick uses observational data and field experiments to study how organizations measure, reward, and report on worker performance. He is also interested in contest design and sports economics. He received a PhD in Business Administration from Harvard University.</p>
-<p><strong>Junhao Liu</strong> is a Senior Lecturer in the Accounting Group at the University of Melbourne. Junhao’s research interests broadly pertain to archival research in financial accounting, and he is particularly interested in accounting intangibles, financial reporting and disclosure, financial analysts, and valuation. Junhao obtained my Ph.D.&nbsp;degree in accounting from Rotman School of Management at University of Toronto.</p>
-<!-- ## Acknowledgements {.unnumbered} -->
+<section id="exercise-5-sketching-out-the-way-forward" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-5-sketching-out-the-way-forward">Exercise 5: Sketching Out the Way Forward</h3>
+<ol type="a">
+<li><p>Share your bullet point responses to Question 3 (“Where should we start?”) with your group.</p></li>
+<li><p>As a group, discuss:</p></li>
+</ol>
+<ul>
+<li>Which responses feel realistic and well thought-through?</li>
+<li>Which ones show a good understanding of how business context and data interact?</li>
+<li>Which approaches would be easiest to communicate to a stakeholder who doesn’t know the data?</li>
+</ul>
+<ol start="3" type="a">
+<li>Choose the group member’s response that you think offers the strongest starting point. Write it down and explain why—what makes it practical, well-reasoned, or insightful?</li>
+</ol>
+<p><em>Write your answer here</em></p>
+</section>
+<section id="exercise-6-logging-into-positcloud" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-6-logging-into-positcloud">Exercise 6: Logging into PositCloud</h3>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Content Pivot
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In this week’s Workshop we are pivoting midway through to give you more time to get comfortable with the computing environment for this class, PositCloud.</p>
+<p>We know this is a sudden pivot in content. In future weeks, we don’t anticipate sudden jumps in content in the middle of a session.</p>
+</div>
+</div>
+<p>Log in to Posit Cloud and launch your project.</p>
+<ol type="a">
+<li>Go to https://posit.cloud and log in using your university credentials.</li>
+<li>Navigate to the “CMCE 10002 - 2025 Semester 2” Space on the left sidebar.</li>
+<li>Find the project titled “Tutorial 2”.</li>
+<li>Click “Make a Copy”.</li>
+<li>Wait for the RStudio session to finish loading — you should see the Console, Files, and Environment panes.</li>
+</ol>
+</section>
+<section id="exercise-7-make-some-edits-to-your-quarto-document" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-7-make-some-edits-to-your-quarto-document">Exercise 7: Make Some Edits to Your Quarto Document</h3>
+<ol type="a">
+<li>At the top of the document, in the YAML header, change the <code>author</code> field to your full name.</li>
+<li>Edit the sentence below sentence so:
+<ul>
+<li>One word is bold by wrapping it in double asterisks: <code>**like this**</code></li>
+<li>Another word italic by wrapping it in single asterisks: <code>*like this*</code></li>
+</ul></li>
+<li>Add a new R code chunk that computes the answer to 2+2 and returns the answer:</li>
+<li>Add another R code chunk that stores the answer to 2+2 a variable called <code>my_answer</code> and prints it.</li>
+<li>Render the document and see the changes you have made.</li>
+</ol>
+<p>EDIT THIS: The quick brown fox jumps over the lazy dog</p>
+</section>
+<section id="exercise-8-write-your-own-code" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-8-write-your-own-code">Exercise 8: Write Your Own Code</h3>
+<ol type="a">
+<li>Add new code chunk to store a vector, called <code>my_vector</code> that contains each of the numbers 1 through 5. You can produce that vector using <code>c(1,2,3,4,5)</code></li>
+<li>Calculate the mean of <code>my_vector</code> by applying the <code>mean()</code> function.</li>
+<li>Add a comment above your code that computes the mean to describe what it does. You can add a comment using the hashtag to start a line inside an R chunk like this <code># This is a comment</code></li>
+<li>Now use the Console to search for help on the function that returns the median value in a numeric vector, <code>?median</code>.</li>
+</ol>
 
 
 </section>
@@ -687,11 +820,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../tutorials/what_is_business_analytics.html" class="pagination-link" aria-label="Tutorial 1: Business Analytics Skills for Inventory Management">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tutorial 1: Business Analytics Skills for Inventory Management</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./foundations/what_is_business_analytics.html" class="pagination-link" aria-label="What is Business Analytics?">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What is Business Analytics?</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
