@@ -6,12 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Lachlan Deer">
-<meta name="author" content="Patrick Ferguson">
-<meta name="author" content="Junhao Liu">
-<meta name="dcterms.date" content="2025-08-04">
 
-<title>Foundations of Business Analytics</title>
+<title>3&nbsp; Reproducible Workflows – Foundations of Business Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -27,24 +23,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./foundations/what_is_business_analytics.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6f77e067621728e8e5d8b75f5607b6c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../insights/data_visualisation.html" rel="next">
+<link href="../foundations/how_to_do_business_analytics.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6f77e067621728e8e5d8b75f5607b6c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -75,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../solution.js"></script>
 
 
-<link rel="stylesheet" href="custom.css">
+<link rel="stylesheet" href="../custom.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -87,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Welcome</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../foundations/what_is_business_analytics.html">Foundations</a></li><li class="breadcrumb-item"><a href="../foundations/reproducible.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -102,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Foundations of Business Analytics</a> 
+      <a href="../">Foundations of Business Analytics</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -114,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
@@ -129,8 +126,20 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./foundations/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
+  <a href="../foundations/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What is Business Analytics?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Core Skills of a “Business Scientist”</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/reproducible.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows</span></span></a>
   </div>
 </li>
       </ul>
@@ -138,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Tutorials</span></a>
+ <span class="menu-text">Getting Our First Insights from Data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -146,8 +155,158 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
+  <a href="../insights/data_visualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation for Business Intelligence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../insights/data_manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../insights/data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analysing Data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Finding and Storing Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collecting Data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Extracting Deeper Insights from Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/data_variation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Finding Variation in Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive Analytics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/causal_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Causal Analytics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/predictive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Analytics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Ethics and Privacy</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ethics_privacy/ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics &amp; Privacy in Business Analytics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Conclusion</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../conclusion/conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorial 1: Business Analytics Skills for Inventory Management</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_visualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 3: Data Visualisation for Business Intelligence</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">installation.html</span></span></a>
   </div>
 </li>
       </ul>
@@ -162,44 +321,45 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a>
+  <li><a href="#r" id="toc-r" class="nav-link active" data-scroll-target="#r"><span class="header-section-number">3.1</span> R</a></li>
+  <li><a href="#r-projects-file-structure" id="toc-r-projects-file-structure" class="nav-link" data-scroll-target="#r-projects-file-structure"><span class="header-section-number">3.2</span> R Projects &amp; File Structure</a>
   <ul class="collapse">
-  <li><a href="#audience-and-assumed-knowledge" id="toc-audience-and-assumed-knowledge" class="nav-link" data-scroll-target="#audience-and-assumed-knowledge">Audience and Assumed Knowledge</a></li>
-  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link" data-scroll-target="#learning-goals">Learning Goals</a></li>
-  <li><a href="#pedagogical-approach" id="toc-pedagogical-approach" class="nav-link" data-scroll-target="#pedagogical-approach">Pedagogical Approach</a></li>
-  <li><a href="#about-the-instructors" id="toc-about-the-instructors" class="nav-link" data-scroll-target="#about-the-instructors">About the Instructors</a></li>
+  <li><a href="#our-first-project" id="toc-our-first-project" class="nav-link" data-scroll-target="#our-first-project"><span class="header-section-number">3.2.1</span> Our First Project</a></li>
+  <li><a href="#building-on-an-existing-project" id="toc-building-on-an-existing-project" class="nav-link" data-scroll-target="#building-on-an-existing-project"><span class="header-section-number">3.2.2</span> Building on an Existing Project</a></li>
   </ul></li>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto"><span class="header-section-number">3.3</span> Quarto</a>
+  <ul class="collapse">
+  <li><a href="#top-matter" id="toc-top-matter" class="nav-link" data-scroll-target="#top-matter"><span class="header-section-number">3.3.1</span> Top Matter</a></li>
+  <li><a href="#essential-syntax" id="toc-essential-syntax" class="nav-link" data-scroll-target="#essential-syntax"><span class="header-section-number">3.3.2</span> Essential Syntax</a></li>
+  <li><a href="#r-chunks" id="toc-r-chunks" class="nav-link" data-scroll-target="#r-chunks"><span class="header-section-number">3.3.3</span> R Chunks</a></li>
+  <li><a href="#equations" id="toc-equations" class="nav-link" data-scroll-target="#equations"><span class="header-section-number">3.3.4</span> Equations</a></li>
+  <li><a href="#cross-references" id="toc-cross-references" class="nav-link" data-scroll-target="#cross-references"><span class="header-section-number">3.3.5</span> Cross References</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">3.3.6</span> References</a></li>
+  </ul></li>
+  <li><a href="#using-r-in-practice" id="toc-using-r-in-practice" class="nav-link" data-scroll-target="#using-r-in-practice"><span class="header-section-number">3.4</span> Using R in Practice</a>
+  <ul class="collapse">
+  <li><a href="#errors-and-error-handling" id="toc-errors-and-error-handling" class="nav-link" data-scroll-target="#errors-and-error-handling"><span class="header-section-number">3.4.1</span> Errors and Error Handling</a></li>
+  <li><a href="#reproducible-examples-to-seek-help" id="toc-reproducible-examples-to-seek-help" class="nav-link" data-scroll-target="#reproducible-examples-to-seek-help"><span class="header-section-number">3.4.2</span> Reproducible Examples to seek help</a></li>
+  <li><a href="#mentality" id="toc-mentality" class="nav-link" data-scroll-target="#mentality"><span class="header-section-number">3.4.3</span> Mentality</a></li>
+  <li><a href="#helping-future-you-with-code-comments" id="toc-helping-future-you-with-code-comments" class="nav-link" data-scroll-target="#helping-future-you-with-code-comments"><span class="header-section-number">3.4.4</span> Helping Future You with Code Comments</a></li>
+  </ul></li>
+  <li><a href="#concluding-remarks" id="toc-concluding-remarks" class="nav-link" data-scroll-target="#concluding-remarks"><span class="header-section-number">3.5</span> Concluding Remarks</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../foundations/what_is_business_analytics.html">Foundations</a></li><li class="breadcrumb-item"><a href="../foundations/reproducible.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Foundations of Business Analytics</h1>
-<p class="subtitle lead">Crafting Narratives from Numbers</p>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-contents">
-             <p>Lachlan Deer </p>
-             <p>Patrick Ferguson </p>
-             <p>Junhao Liu </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">August 4, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -209,68 +369,71 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="welcome" class="level1 unnumbered">
-<h1 class="unnumbered">Welcome</h1>
-<p>In this course, you’ll develop the essential skills to analyze and interpret data for better business decision-making. Whether you’re new to coding or looking to strengthen your analytical thinking, we’ll guide you through the fundamentals of working with data in R — structuring, transforming, visualizing, analyzing, and interpreting information effectively.</p>
-<p>Business analytics spans three critical dimensions: understanding what happened in the past, anticipating what will happen next, and uncovering why things happen through causal analysis. Through hands-on case studies, you’ll apply these approaches to real-world business problems, extracting meaningful insights that drive action. The power of data lies in the stories it tells. From ancient oral traditions to modern visualizations, effectively communicated insights create impact. You’ll learn to transform raw data into compelling narratives that enhance clarity and directly influence business decisions.</p>
-<p>Your approach will mirror that of a scientist: observing carefully, experimenting methodically, and making evidence-based predictions about firm and consumer behavior. This systematic framework provides a practical toolkit for addressing complex business challenges. With this analytical power comes significant responsibility. We’ll explore ethical dimensions of working with sensitive information, recognizing and mitigating bias, balancing analytical insight with individual rights, and ensuring transparent communication of findings.</p>
-<p>For knowledge to create value, it must be communicated clearly and transparently. You’ll develop workflows that ensure accuracy, consistency, and reliability — critical skills for building trust in your analysis.</p>
-<p>Data is everywhere, but enduring insights are rare. This course will help you transform numbers into knowledge that informs business and society—ethically, responsibly, and effectively.</p>
-<section id="audience-and-assumed-knowledge" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="audience-and-assumed-knowledge">Audience and Assumed Knowledge</h2>
-<p>This course is designed for <strong>first-year undergraduate students</strong> enrolled in business, commerce, or economics degrees.</p>
-<p>We assume students:</p>
+<section id="r" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="r"><span class="header-section-number">3.1</span> R</h2>
+</section>
+<section id="r-projects-file-structure" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="r-projects-file-structure"><span class="header-section-number">3.2</span> R Projects &amp; File Structure</h2>
+<p>Why work with projects?</p>
+<section id="our-first-project" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="our-first-project"><span class="header-section-number">3.2.1</span> Our First Project</h3>
+<p>Guide through a set up from scratch</p>
+</section>
+<section id="building-on-an-existing-project" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="building-on-an-existing-project"><span class="header-section-number">3.2.2</span> Building on an Existing Project</h3>
+<p>Guide through activating project from existing setup</p>
+</section>
+</section>
+<section id="quarto" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="quarto"><span class="header-section-number">3.3</span> Quarto</h2>
+<p>Something introducing quarto and literate programming</p>
+<p>Features of Quarto Documents:</p>
+<section id="top-matter" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="top-matter"><span class="header-section-number">3.3.1</span> Top Matter</h3>
+</section>
+<section id="essential-syntax" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="essential-syntax"><span class="header-section-number">3.3.2</span> Essential Syntax</h3>
+</section>
+<section id="r-chunks" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="r-chunks"><span class="header-section-number">3.3.3</span> R Chunks</h3>
+</section>
+<section id="equations" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="equations"><span class="header-section-number">3.3.4</span> Equations</h3>
+</section>
+<section id="cross-references" class="level3" data-number="3.3.5">
+<h3 data-number="3.3.5" class="anchored" data-anchor-id="cross-references"><span class="header-section-number">3.3.5</span> Cross References</h3>
+</section>
+<section id="references" class="level3" data-number="3.3.6">
+<h3 data-number="3.3.6" class="anchored" data-anchor-id="references"><span class="header-section-number">3.3.6</span> References</h3>
+</section>
+</section>
+<section id="using-r-in-practice" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="using-r-in-practice"><span class="header-section-number">3.4</span> Using R in Practice</h2>
+<section id="errors-and-error-handling" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="errors-and-error-handling"><span class="header-section-number">3.4.1</span> Errors and Error Handling</h3>
+</section>
+<section id="reproducible-examples-to-seek-help" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="reproducible-examples-to-seek-help"><span class="header-section-number">3.4.2</span> Reproducible Examples to seek help</h3>
+</section>
+<section id="mentality" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="mentality"><span class="header-section-number">3.4.3</span> Mentality</h3>
 <ul>
-<li>Have <strong>no prior programming experience</strong>.</li>
-<li>Have basic numeracy skills (high school level mathematics).</li>
-<li>Are curious about how data and technology are changing the way businesses operate.</li>
-<li>Are ready to engage in structured problem-solving and critical thinking.</li>
+<li>Be Focussed</li>
+<li>Be Curious</li>
+<li>Be Pragmatic</li>
+<li>Be Tenacious</li>
+<li>Be Planned</li>
+<li>Be Done before Being perfect</li>
 </ul>
-<p>No specific technical prerequisites are required. Our goal is to meet students where they are and progressively build their skills, confidence, and analytic thinking.</p>
-<p>We welcome students from all backgrounds — no prior coding or analytics experience is needed, and we will build every concept step-by-step. Curiosity, patience, and a willingness to engage with new ideas are the most important starting points.</p>
 </section>
-<section id="learning-goals" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="learning-goals">Learning Goals</h2>
-<p>By the end of this course, students will be able to:</p>
-<ul>
-<li>Define and explain key concepts in business analytics.</li>
-<li>Identify different types of business problems and select appropriate analytic approaches.</li>
-<li>Critically assess data sources and recognize the limitations of data-driven insights.</li>
-<li>Communicate analytic findings through clear, structured narratives.</li>
-</ul>
+<section id="helping-future-you-with-code-comments" class="level3" data-number="3.4.4">
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="helping-future-you-with-code-comments"><span class="header-section-number">3.4.4</span> Helping Future You with Code Comments</h3>
 </section>
-<section id="pedagogical-approach" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="pedagogical-approach">Pedagogical Approach</h2>
-<p>Our teaching philosophy blends three core elements:</p>
-<ol type="1">
-<li><strong>Business Challenge First</strong>
-<ul>
-<li>Each chapter begins with a real-world business problem or question.</li>
-<li>Readers are invited to think creatively and critically about how they would approach the challenge before technical methods are introduced.</li>
-</ul></li>
-<li><strong>Skills of a Business Scientist</strong>
-<ul>
-<li>We teach how to combine technical data skills, business judgment, and communication.</li>
-<li>Emphasis is placed on asking good questions, interpreting results thoughtfully, and communicating clearly.</li>
-</ul></li>
-<li><strong>Data to Narrative</strong>
-<ul>
-<li>Students learn how to move from raw data, through analysis, to actionable insights.</li>
-<li>Storytelling is treated as a fundamental analytic skill: interpreting patterns, understanding context, and communicating findings persuasively to decision-makers.</li>
-</ul></li>
-</ol>
-<p>This text is designed to serve both as a foundation for classroom discussion and as a self-contained guide for independent study. Analytics is about exploration and iteration — it is normal to encounter challenges and learn through the process. We encourage a growth mindset: thoughtful questions, careful reasoning, and creative thinking are celebrated throughout the journey into business analytics.</p>
-<!-- ## Software Information & conventions {.unnumbered} -->
 </section>
-<section id="about-the-instructors" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="about-the-instructors">About the Instructors</h2>
-<p><strong>Lachlan</strong> Deer is a Lecturer in the Management &amp; Marketing Group at the University of Melbourne. His research interests lie in quantitative marketing, digital markets and public policy. Lachlan has spent the last decade introducing computing and data science skills into business, economics and social science curriculums, adopting a hands-on and learner focussed practical training, enabling learners to become more efficient and productive in their work by bridging the gap between the increasing reliance on computational skills demanded by employers and the limited training many learners receive in these areas in traditional courses in these areas. Prior to joining University of Melbourne, Lachlan has worked at Tilburg University and the University of Chicago Booth School of Business. Lachlan earned his PhD in Economics from the University of Zurich.</p>
-<p><strong>Patrick</strong> Ferguson is a Senior Lecturer in the Accounting Group at the University of Melbourne and a Research Affiliate at the Laboratory for Innovation Science at Harvard University. In his research, Patrick uses observational data and field experiments to study how organizations measure, reward, and report on worker performance. He is also interested in contest design and sports economics. He received a PhD in Business Administration from Harvard University.</p>
-<p><strong>Junhao Liu</strong> is a Senior Lecturer in the Accounting Group at the University of Melbourne. Junhao’s research interests broadly pertain to archival research in financial accounting, and he is particularly interested in accounting intangibles, financial reporting and disclosure, financial analysts, and valuation. Junhao obtained my Ph.D.&nbsp;degree in accounting from Rotman School of Management at University of Toronto.</p>
-<!-- ## Acknowledgements {.unnumbered} -->
+<section id="concluding-remarks" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="concluding-remarks"><span class="header-section-number">3.5</span> Concluding Remarks</h2>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -675,10 +838,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../foundations/how_to_do_business_analytics.html" class="pagination-link" aria-label="The Core Skills of a &quot;Business Scientist&quot;">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Core Skills of a “Business Scientist”</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./foundations/what_is_business_analytics.html" class="pagination-link" aria-label="What is Business Analytics?">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What is Business Analytics?</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../insights/data_visualisation.html" class="pagination-link" aria-label="Data Visualisation for Business Intelligence">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation for Business Intelligence</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
