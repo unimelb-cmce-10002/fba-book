@@ -1,0 +1,161 @@
+# Tutorial 2: Core Skills of a Business Scientist & Introduction to Posit Cloud {.unnumbered}
+
+
+::: {.callout-tip}
+## Learning Goals {.unnumbered}
+
+By the end of this tutorial, you should be able to:
+
+- Apply the core skills of a business scientist to analyze a real-world operational challenge.
+- Evaluate the clarity, feasibility, and business relevance of peer-generated research questions and analytical plans.
+- Create a structured approach to an open-ended business problem that integrates the necessary core skills of a business scientist
+- Apply basic R and Quarto skills to edit and execute code in PositCloud.
+- Interpret and modify simple R code.
+:::
+
+## The Business Challenge
+
+Uber is facing a new challenge in cities like Sydney and Melbourne. Some drivers have found a way to game the surge pricing system by temporarily logging off in groups to reduce supply. This triggers a surge in prices—and when they log back in, they benefit from higher fares.
+
+While this behavior doesn’t technically break any rules, it raises serious concerns. Should Uber treat it as clever strategy or as manipulation? Should it intervene—and if so, how? Cracking down too hard could upset drivers and hurt morale. Doing nothing might damage rider trust and public perception.
+
+Uber’s analytics and operations teams need to investigate what’s really going on, what’s driving this behavior, and whether (and how) to respond in a way that balances fairness, incentives, and platform health.
+
+## Prepare these Exercises before Class 
+
+Prepare these exercises before coming to class. Plan to spend 30 minutes on these exercises.
+
+### Exercise 1: Identifying the key concepts
+
+Watch this short news story:
+"[Uber drivers creating artificial surge prices](https://www.abc.net.au/news/2025-07-29/uber-drivers-creating-artificial-surge-prices/105582350)" (ABC News, 29 July 2025).
+
+In your own words, define the following key terms or ideas mentioned in the article:
+
+- Surge pricing
+- Algorithmic pricing
+- Platform manipulation
+- Driver incentives
+
+::: {.callout-tip}
+You don’t need to provide formal or technical definitions. Focus on explaining each concept in your own words, based on how it was used in the video.
+:::
+
+*Write your answer here*
+
+### Exercise 2: Explaining Context and Identifying a Research Question 
+
+Uber’s pricing system is designed to respond to real-time supply and demand. But as the video shows, driver behavior can complicate this—sometimes in ways the algorithm wasn’t built to anticipate.
+
+Imagine you’re part of a team investigating the situation in Sydney and Melbourne.
+
+In 3–4 sentences, explain how you would define the problem for Uber. Then, write one clear research question that your team could use to guide further analysis.
+
+::: {.callout-tip}
+To help you think through this, you might want to consider the following:
+
+- What’s really going wrong here? 
+- Why does it matter to the business? 
+- What kind of evidence or data would help clarify the situation?
+:::
+
+*Write your answer here*
+
+### Exercise 3: How to answer the question?
+Your manager turns to you and says:
+
+> “Where should we start?”
+
+In 3–5 bullet points, outline how you would approach the problem as a business scientist.
+
+::: {.callout-tip}
+To help you think through this, you may want to integrate answers from the following questions:
+
+- What business or consumer theories might help you? 
+- What data would you want? 
+- What kind of methods might be useful?
+:::
+
+*Write your answer here*
+
+## In-Class Exercises
+
+You will discuss these exercises in class with your peers in small groups and with your tutor. The first few exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class. The latter exercises are designed to help you get more comfortable using PositCloud.
+
+### Exercise 4: Defining a Problem and Crafting Questions
+
+(a) Share your business context descriptions and research questions (from Question 2) with your group.
+
+(b) As a group, discuss:
+
+- Which context descriptions are clear and well-framed?
+- Which research questions are answerable using data?
+- Which questions are most likely to help Uber make a better decision?
+
+(c) Choose the best research question your group came up with.
+Write down the question and explain why you chose it. What makes it clear, useful, or powerful?
+
+::: {.callout-tip} 
+## Conversation prompt  
+Are your group's questions descriptive (what happened), predictive (what will happen), or causal (why did it happen)? How does that shape the analysis?
+:::
+
+*Write your answer here*
+
+### Exercise 5: Sketching Out the Way Forward 
+
+(a) Share your bullet point responses to Question 3 (“Where should we start?”) with your group.
+
+(b) As a group, discuss:
+
+- Which responses feel realistic and well thought-through?
+- Which ones show a good understanding of how business context and data interact?
+- Which approaches would be easiest to communicate to a stakeholder who doesn't know the data?
+
+(c) Choose the group member’s response that you think offers the strongest starting point.
+Write it down and explain why—what makes it practical, well-reasoned, or insightful?
+
+*Write your answer here*
+
+### Exercise 6: Logging into PositCloud 
+
+::: {.callout-caution}
+## Content Pivot
+
+In this week's Workshop we are pivoting midway through to give you more time to get comfortable with the computing environment for this class, PositCloud. 
+
+We know this is a sudden pivot in content. 
+In future weeks, we don't anticipate sudden jumps in content in the middle of a session.
+:::
+
+Log in to Posit Cloud and launch your project.
+
+a. Go to https://posit.cloud and log in using your university credentials.
+b. Navigate to the “CMCE 10002 - 2025 Semester 2” Space on the left sidebar.
+c. Find the project titled "Tutorial 2".
+d. Click "Make a Copy".
+e. Wait for the RStudio session to finish loading — you should see the Console, Files, and Environment panes.
+
+### Exercise 7: Make Some Edits to Your Quarto Document
+
+a. At the top of the document, in the YAML header, change the `author` field to your full name.
+b.  Edit the sentence below sentence so:
+    - One word is bold by wrapping it in double asterisks: `**like this**`
+    - Another word italic by wrapping it in single asterisks: `*like this*`
+c. Add a new R code chunk that computes the answer to 2+2 and returns the answer:
+d. Add another R code chunk that stores the answer to 2+2 a variable called `my_answer` and prints it.
+e. Render the document and see the changes you have made.
+
+EDIT THIS: The quick brown fox jumps over the lazy dog
+
+
+
+### Exercise 8: Write Your Own Code
+
+a. Add new code chunk to store a vector, called `my_vector` that contains each of the numbers 1 through 5. You can produce that vector using `c(1,2,3,4,5)`
+b. Calculate the mean of `my_vector` by applying the `mean()` function.
+c. Add a comment above your code that computes the mean to describe what it does. You can add a comment using the hashtag to start a line inside an R chunk like this `# This is a comment`
+d. Now use the Console to search for help on the function that returns the median value in a numeric vector, `?median`.
+
+
+
