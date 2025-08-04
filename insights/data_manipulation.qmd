@@ -1,1 +1,70 @@
 # Manipulating Data
+
+::: {.callout-tip}
+## Learning Goals {.unnumbered}
+
+By the end of this lecture, you should be able to:
+
+* ...
+* ...
+:::
+
+```{r}
+#| warning: false
+#| echo: false
+library(tidyverse)
+library(ggplot2)
+library(scales) 
+library(ggokabeito)
+library(ggthemes) 
+library(patchwork) 
+library(stringr)
+```
+
+```{r}
+#| warning: false
+#| echo: false
+asx_200_2024 <- read_csv("/Users/pfer/Library/CloudStorage/Dropbox/Work/Teaching/Classes/FBA/fba-book/data/asx_200_2024.csv")
+```
+
+## The Business Challenge
+### The Topic:  Understanding the level and composition of firm profits in the Australian economy {.unnumbered}
+
+* In 2024, Australia’s nominal gross domestic product was approximately USD 1.75 trillion, equivalent to around 2% of global GDP.
+* In 2024, approximately 2,100 firms were listed on the Australian Securities Exchange (ASX).
+* The ASX averaged about 1.7 million trades per day in 2024, with a total daily traded value of around AUD 6.5 billion.
+* These trades represent retail and institutional investors buying or selling shares in listed firms (or, ultimately, these firms' profit).
+* Investors, in turn, provide firms with capital to acquire and manage assets in pursuit of those profits.
+* Our questions today: Which public firms produced the most profit in 2024? How did profit levels vary by industry? Which industries delivered the best returns for investors?
+
+### The Data: Financial Statements Data from Yahoo Finance {.unnumbered}
+
+* 2024 annual income and balance sheet information as per firms' audited financial statements (i.e., annual reports)
+* Assets, liabilities, equity, revenue, profit, etc
+* Sample is composed of the 200-largest ASX-listed firms as measured by assets
+* Real-world retail data that 'fundamental' investors use as inputs into valuation models{.unnumbered}
+
+### The Method: Using `dplyr` Transformations to Wrangle Data{.unnumbered}
+
+> "The hardest part of data science isn’t building the model, it’s getting the data ready for the model." — D.J. Patel (former US Chief Data Scientist)
+
+* Data cleaning and manipulation with `dplyr` involves transforming raw or messy datasets into clean, structured forms using a consistent set of grammar-like verbs in R.
+* Using verbs like `filter()` to subset rows, `mutate()` to create or modify columns, `select()` to pick variables, `arrange()` to sort data, `summarise()` to aggregate, and `join()` functions to combine datasets.
+* `dplyr` pipelines (using `%>%` or `|>`) allow you to chain multiple operations clearly and efficiently, making transformations readable, reusable, and easier to debug.
+* Clean, well-structured data is essential for reliable analysis and visualization. `dplyr` helps reduce errors and manual work while improving transparency and reproducibility in your data workflows.
+* Many data analyses begin with a `dplyr` pipeline — transforming raw inputs into tidy datasets ready for modeling, plotting with `ggplot2`, or reporting with tools like `quarto` or `shiny`.
+
+### Where we're headed {.unnumbered}
+
+Just a few lines of R code can get data in the right form you need to generate interesting, important and actionable insights.
+
+From this:
+
+```{r}
+#| echo: false 
+asx_200_2024 |>
+    head(10)
+```
+
+To this: ...box plot of distribution of ROIC (cleaned up)
+
