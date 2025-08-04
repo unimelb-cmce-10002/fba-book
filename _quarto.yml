@@ -18,7 +18,7 @@ book:
     - part: "Foundations"
       chapters:
         - foundations/what_is_business_analytics.qmd
-    #     - foundations/how_to_do_business_analytics.qmd
+        - foundations/how_to_do_business_analytics.qmd
     #     - foundations/reproducible.qmd
     # - part: "Getting Our First Insights from Data"
     #   chapters:
