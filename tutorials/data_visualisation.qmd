@@ -48,7 +48,7 @@ Similar datasets are widely used by real estate analysts, banks, and property in
 
 ### Where we're headed {.unnumbered}
 
-With just a few lines of R code transform numbers to data visualizations.
+Just a few lines of R code transform numbers to data visualizations.
 
 From this:
 
