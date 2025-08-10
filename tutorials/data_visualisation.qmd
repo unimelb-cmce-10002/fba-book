@@ -54,7 +54,7 @@ From this:
 
 ```{r}
 #| echo: false 
-housing %>%
+housing |>  
     select(type, address, postcode, price, distance, regionname) %>%
     head(10)
 ```
@@ -69,7 +69,7 @@ to this:
 
 ## FINAL Histogram
 price_hist <-
-    housing %>%
+    housing |> 
     ggplot(aes(x = price, fill = type)) +
   # Show proportions instead of raw counts (within each facet)
   geom_histogram(
@@ -104,8 +104,8 @@ price_hist <-
   )
 
 price_dist <-
-  housing %>%
-  filter(type == "House") %>%
+  housing |> 
+  filter(type == "House") |> 
   ggplot(aes(x = distance, y = price)) +
   # Scatter plot with reduced alpha to handle overplotting
   geom_point(alpha = 0.05, color = palette_okabe_ito()[2]) +
@@ -131,9 +131,9 @@ price_dist <-
 
 # region update only houses
 region_bar <- 
-  housing %>%
+  housing |> 
   # 1. Filter to only include "House" listings
-  filter(type == "House") %>%
+  filter(type == "House") |> 
   # 2. Create the plot
   ggplot(
     # 2a. Reorder the region names based on frequency
@@ -268,7 +268,7 @@ By the end of this exercise, your plot should look similar to this one:
 #| fig-align: "center"
 #| echo: false
 
-housing %>%
+housing |> 
     ggplot(aes(x = price, 
                fill = type)
            ) +
