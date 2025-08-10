@@ -1098,7 +1098,6 @@ sales_plot
 #| fig-width: 4
 #| fig-height: 4
 #| fig-align: center
-#| echo: false
 price_plot <- ggplot(beer) +
     geom_boxplot(aes(y = price, x = imported, fill = imported)) +
     scale_y_continuous(
@@ -1443,7 +1442,6 @@ We store each of these as their own R objects.
 #| fig-width: 4
 #| fig-height: 4
 #| fig-align: center
-#| echo: false
 price_plot <- 
     ggplot(beer) +
     geom_boxplot(aes(y = price, x = imported, fill = imported)) +
