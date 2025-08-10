@@ -20,9 +20,9 @@ book:
         - foundations/what_is_business_analytics.qmd
         - foundations/how_to_do_business_analytics.qmd
         - foundations/reproducible.qmd
-    # - part: "Getting Our First Insights from Data"
-    #   chapters:
-    #     - insights/data_visualisation.qmd
+    - part: "Getting Our First Insights from Data"
+      chapters:
+        - insights/data_visualisation.qmd
     #     - insights/data_manipulation.qmd
     #     - insights/data_analysis.qmd
     # - part: "Finding and Storing Data"
