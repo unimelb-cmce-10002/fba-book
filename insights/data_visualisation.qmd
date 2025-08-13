@@ -208,7 +208,7 @@ In R, this is done using a **function**.
 Think of a function is just a named action — something R knows how to do. 
 Most functions take **arguments** — extra pieces of information that tell the function how to behave.
 
-We’ll use the `read_csv()` function to load our beer sales data from an online CSV file:
+We’ll use the `read_csv()` function to load our beer sales data from a CSV file:
 ```{r}
 #| warning: false
 #| eval: false
