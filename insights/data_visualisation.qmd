@@ -214,7 +214,7 @@ We’ll use the `read_csv()` function to load our beer sales data from an online
 ```{r}
 #| warning: false
 #| eval: false
-beer <- read_csv("/data/beer.csv")
+beer <- read_csv("data/beer.csv")
 ```
 
 This loads a dataset called `beer` from a file that contains weekly price and sales data for four brands across multiple stores.
