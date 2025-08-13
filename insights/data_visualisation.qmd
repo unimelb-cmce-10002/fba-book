@@ -136,8 +136,7 @@ sales_plot_final <-
       # Natural log scale for x-axis with meaningful breaks
       scale_x_continuous(
         trans = "log",
-        breaks = c(1, 2, 5, 10, 20, 50, 100, 200)#,
-        #labels = scales::comma
+        breaks = c(1, 2, 5, 10, 20, 50, 100, 200)
       ) +
     labs(y = "Density", x = "Quantity Sold") +
     scale_fill_okabe_ito() + 
@@ -154,8 +153,7 @@ demand_by_import_final <-
      # Natural log scale for x-axis with meaningful breaks
       scale_x_continuous(
         trans = "log",
-        breaks = c(1, 2, 5, 10, 20, 50, 100, 200)#,
-        #labels = scales::comma
+        breaks = c(1, 2, 5, 10, 20, 50, 100, 200)
       ) + 
           # Natural log scale for y-axis with meaningful breaks
       scale_y_continuous(
@@ -1208,8 +1206,7 @@ ggplot(beer) +
  # Natural log scale for x-axis with meaningful breaks
   scale_x_continuous(
     trans = "log",
-    breaks = c(1, 2, 5, 10, 20, 50, 100, 200),
-    #labels = scales::comma
+    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)
   ) + 
       # Natural log scale for y-axis with meaningful breaks
   scale_y_continuous(
@@ -1250,8 +1247,7 @@ ggplot(beer) +
  # Natural log scale for x-axis with meaningful breaks
   scale_x_continuous(
     trans = "log",
-    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)#,
-    #labels = scales::comma
+    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)
   ) + 
       # Natural log scale for y-axis with meaningful breaks
   scale_y_continuous(
@@ -1310,8 +1306,7 @@ ggplot(beer) +
  # Natural log scale for x-axis with meaningful breaks
   scale_x_continuous(
     trans = "log",
-    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)#,
-    #labels = scales::comma
+    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)
   ) + 
       # Natural log scale for y-axis with meaningful breaks
   scale_y_continuous(
@@ -1361,8 +1356,7 @@ ggplot(beer,
  # Natural log scale for x-axis with meaningful breaks
   scale_x_continuous(
     trans = "log",
-    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)#,
-    #labels = scales::comma
+    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)
   ) + 
       # Natural log scale for y-axis with meaningful breaks
   scale_y_continuous(
@@ -1413,8 +1407,7 @@ ggplot(beer,
  # Natural log scale for x-axis with meaningful breaks
   scale_x_continuous(
     trans = "log",
-    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)#,
-    #labels = scales::comma
+    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)
   ) + 
       # Natural log scale for y-axis with meaningful breaks
   scale_y_continuous(
@@ -1468,8 +1461,7 @@ sales_plot <-
       # Natural log scale for x-axis with meaningful breaks
       scale_x_continuous(
         trans = "log",
-        breaks = c(1, 2, 5, 10, 20, 50, 100, 200)#,
-        #labels = scales::comma
+        breaks = c(1, 2, 5, 10, 20, 50, 100, 200)
       ) +
     labs(y = "Density", x = "Quantity Sold") +
     scale_fill_okabe_ito() +
@@ -1495,8 +1487,7 @@ price_qty <-
  # Natural log scale for x-axis with meaningful breaks
   scale_x_continuous(
     trans = "log",
-    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)#,
-    #labels = scales::comma
+    breaks = c(1, 2, 5, 10, 20, 50, 100, 200)
   ) + 
       # Natural log scale for y-axis with meaningful breaks
   scale_y_continuous(
