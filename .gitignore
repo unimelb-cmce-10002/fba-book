@@ -2,21 +2,18 @@
 .Rhistory
 .RData
 .Ruserdata
-
 /.quarto/
 /_site/
 /_book/
-
 *.aux
 *.log
 *.pdf
 *.tex
 *.toc
 *.html
-
 # Ignore all Quarto execution cache folders
 **/*_cache/
-
 # Ignore all Quarto execution files
 **/*_files/
 **/output/
+.DS_Store
