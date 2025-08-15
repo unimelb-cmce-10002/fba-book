@@ -20,11 +20,11 @@ book:
         - foundations/what_is_business_analytics.qmd
         - foundations/how_to_do_business_analytics.qmd
         - foundations/reproducible.qmd
-    # - part: "Getting Our First Insights from Data"
-    #   chapters:
-    #     - insights/data_visualisation.qmd
-    #     - insights/data_manipulation.qmd
-    #     - insights/data_analysis.qmd
+    - part: "Getting Our First Insights from Data"
+      chapters:
+        - insights/data_visualisation.qmd
+        - insights/data_manipulation.qmd
+        # - insights/data_analysis.qmd
     # - part: "Finding and Storing Data"
     #   chapters:
     #     - data_management/data_storage.qmd
@@ -50,15 +50,14 @@ book:
         - tutorials/how_to_do_business_analytics.qmd
         # - tutorials/data_visualisation.qmd
   # appendices:
-    # - appendices/installation.qmd
-
+  #   - appendices/installation.qmd
 
 bibliography: references.bib
 
 format:
   html:
     theme:
-      #- flatly
+      # - flatly
       - brand
       - unimelb.scss
     css: custom.css
@@ -74,6 +73,4 @@ format:
   #           #1
   #         \end{tcolorbox}
   #       }
-
-
 
