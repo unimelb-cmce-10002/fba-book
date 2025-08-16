@@ -23,7 +23,7 @@ book:
     - part: "Getting Our First Insights from Data"
       chapters:
         - insights/data_visualisation.qmd
-    #     - insights/data_manipulation.qmd
+        - insights/data_manipulation.qmd
     #     - insights/data_analysis.qmd
     # - part: "Finding and Storing Data"
     #   chapters:
@@ -49,6 +49,7 @@ book:
         - tutorials/what_is_business_analytics.qmd
         - tutorials/how_to_do_business_analytics.qmd
         - tutorials/data_visualisation.qmd
+        - tutorials/data_wrangling.qmd
   # appendices:
     # - appendices/installation.qmd
 
