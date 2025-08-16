@@ -35,25 +35,37 @@ asx_200_2024 <- read_csv("https://raw.githubusercontent.com/unimelb-cmce-10002/f
 ```{r}
 #| warning: false
 #| echo: false
-# Extract all unique industries from the data frame and sort them alphabetically
-industry_levels <- sort(unique(asx_200_2024$industry))
 
-# Assign a color to each industry using the Set2 palette (repeated or interpolated if needed)
+# Extract all unique industries and sort alphabetically
+industry_levels <- asx_200_2024$industry |>
+  unique() |>
+  sort()
+
+# Assign a colour to each industry using the Set2 palette
 industry_colors <- setNames(
-  colorRampPalette(brewer.pal(8, "Set2"))(length(industry_levels)),  # Generate as many colors as there are industries
-  industry_levels                                                    # Name each color with the corresponding industry
+  # Generate as many colours as there are industries
+  colorRampPalette(RColorBrewer::brewer.pal(8, "Set2"))(length(industry_levels)),
+  # Name each colour with the corresponding industry
+  industry_levels
 )
 
-big_industries <- c("Metals & Mining", "Specialty Retail", "Construction & Engineering",  # Vector of industry names to focus on
-                    "Hotels, Restaurants & Leisure", "Oil, Gas & Consumable Fuels", 
-                    "Commercial Services & Supplies", "Food Products")
+# Define vector of 'big' industries for focused analysis
+big_industries <- c(
+  "Metals & Mining",
+  "Specialty Retail",
+  "Construction & Engineering",
+  "Hotels, Restaurants & Leisure",
+  "Oil, Gas & Consumable Fuels",
+  "Commercial Services & Supplies",
+  "Food Products"
+)
 ```
 
 
 ## The Business Challenge
 ### The Topic: Understanding the Level and Composition of Firm Profits in the Australian Economy{.unnumbered}  
 
-On any given trading day, about 1.7 million transactions took place on the Australian Securities Exchange (ASX), moving approximately AUD 6.5 billion in value. Behind these trades are investors buying and selling claims on firms’ profits, and firms deploying that capital to acquire and manage assets in the pursuit of profitability.  
+On any given trading day, about 1.7 million transactions took place on the Australian Securities Exchange (ASX), moving approximately AUD 6.5 billion in value. Behind these trades are investors buying and selling claims on firms’ profits, and firms deploying that capital to acquire and manage assets in the pursuit of profit.  
 
 In this environment, the stakes are high: firms aim to maximise profit, while investors aim to maximise return on capital. Understanding which firms and industries excel in generating profits — and delivering returns — is not just an academic exercise; it’s a question that shapes investment strategies, market confidence, and economic growth.  
 
@@ -78,9 +90,9 @@ Financial statements provide a standardised snapshot of a company’s performanc
   - Interest-bearing debt (`dlc`, `dltt`, `dvp`) – loans and borrowings the company uses for financing
 
 
-This is real-world, retail-accessible data that fundamental investors—those who evaluate companies based on underlying business performance—use to identify firms whose market price is lower than their “intrinsic value”. In other words, they look for undervalued firms with strong growth potential.  
+This is real-world data that fundamental investors—those who evaluate companies based on underlying business performance—use to identify firms whose market price is lower than their “intrinsic value”. In other words, they look for undervalued firms with strong growth potential.  
 
-By working with these statements and variables, we can replicate the kind of assessments that professional analysts and fund managers use to guide billion-dollar investment decisions.   
+By working with this data, we can replicate the kind of assessments that professional analysts and fund managers use to guide billion-dollar investment decisions.   
 
 ---
 
@@ -103,7 +115,7 @@ Key `dplyr` verbs include:
 
 Using `dplyr` pipelines with the native pipe operator (`|>`) or the magrittr pipe (`%>%`) allows chaining multiple operations into a clear, readable sequence. This approach improves code clarity, reusability, and ease of debugging.
 
-Clean, well-structured data is essential for reliable analysis and visualization. `dplyr` helps reduce manual errors, speeds up workflows, and ensures transparency and reproducibility — vital aspects in any data science project.
+Clean, well-structured data is essential for reliable analysis and visualization. `dplyr` helps reduce manual errors, speeds up workflows, and ensures transparency and reproducibility — vital aspects in any business analytics project.
 
 Most data analysis workflows begin with a `dplyr` pipeline that prepares raw data into a tidy format, ready for modeling, visualization with `ggplot2`, or reporting and interactive dashboards using tools such as `quarto` and `shiny`.
 
@@ -128,76 +140,110 @@ To this:
 #| warning: false
 #| echo: false
 
+# Select the top 10 companies by EBIT
 t10_all_profits <- asx_200_2024 |>
   arrange(desc(ebit)) |>
-  head(10)
+  slice_head(n = 10)
 
-# Reorder company names (conml) so bars appear in descending order of EBIT in the plot
-t10_all_profits$conml <- reorder(t10_all_profits$conml, -t10_all_profits$ebit)
+# Reorder company names so bars appear in descending EBIT order
+t10_all_profits <- t10_all_profits |>
+  mutate(conml = reorder(conml, -ebit))
 
 # Create a bar chart of the top 10 most profitable companies
-bar_plot <- ggplot(t10_all_profits, aes(x = conml, y = ebit, fill = industry)) +
-  geom_bar(stat = "identity") +                    # Draw bars with heights equal to EBIT values
-  ylab("EBIT (Millions AUD)") +                         # Add y-axis label with units in millions
-  scale_y_continuous(labels = comma) +                  # Format y-axis numbers with comma separators (e.g., 10,000)
-  theme_minimal(base_size = 14) +                  # Use a clean minimal theme with slightly larger text
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1),     # Rotate x-axis labels for readability
-    legend.position = c(0.98, 0.98),                        # Position legend inside top-right of plot area
-    legend.justification = c("right", "top"),              # Anchor legend to the top-right corner
-    legend.title = element_blank(),                        # Remove legend title for a cleaner look
-    legend.text = element_text(size = 10),                 # Set smaller font size for legend entries
-    legend.background = element_rect(
-      fill = alpha("white", 0.7), color = NA               # Add a semi-transparent background to the legend
-    ),
-    legend.key.size = unit(0.4, "cm"),                     # Reduce size of color swatches
-    legend.spacing.y = unit(0.1, "cm")                     # Tighten vertical spacing between legend items
-  ) +
+bar_plot <- t10_all_profits |>
+  ggplot(aes(x = conml, y = ebit, fill = industry)) +
+  # Draw bars with heights equal to EBIT values
+  geom_bar(stat = "identity") +
+  # Use clear, title-cased labels; no x-axis label
   labs(
-    title = "ASX-listed Companies",                        # Plot title
-    subtitle = "Largest Profits in 2024",                  # Plot subtitle
-    x = NULL                                               # Omit x-axis label
+    x = NULL,
+    y = "EBIT (Million AUD)",
+    title = "Top 10 Most Profitable ASX-Listed Companies, 2024",
+    subtitle = "Ranked by EBIT"
   ) +
-  scale_fill_manual(values = industry_colors)              # Use consistent industry colors across plots
+  # Format y-axis numbers with comma separators
+  scale_y_continuous(labels = scales::comma) +
+  # Wrap long company names for readability
+  scale_x_discrete(labels = \(x) stringr::str_wrap(x, width = 15)) +
+  # Use a clean minimal theme and place legend inside the plot
+  theme_minimal(base_size = 14) +
+  theme(
+    # Rotate x-axis labels for readability
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    # Position legend inside top-right of plot area
+    legend.position = c(0.98, 0.98),
+    legend.justification = c("right", "top"),
+    # Remove legend title for a cleaner look
+    legend.title = element_blank(),
+    # Set smaller font size for legend entries
+    legend.text = element_text(size = 10),
+    # Add a semi-transparent background to the legend
+    legend.background = element_rect(fill = scales::alpha("white", 0.7), color = NA),
+    # Reduce size of colour swatches
+    legend.key.size = grid::unit(0.4, "cm"),
+    # Tighten vertical spacing between legend items
+    legend.spacing.y = grid::unit(0.1, "cm")
+  ) +
+  # Use the provided industry palette
+  scale_fill_manual(values = industry_colors)
 
+# Keep firms with positive invested capital and compute ROIC
 returns <- asx_200_2024 |>
   filter(invested_capital > 0) |>
-  mutate(roic = ebit/invested_capital)
+  mutate(roic = ebit / invested_capital)
 
-histogram <- ggplot(returns, aes(x = roic)) +                     # Create ggplot using 'returns' data, mapping ROIC to x-axis
-  geom_histogram(fill = "skyblue", color = "black",  
-                 alpha = 0.7, bins = 30) +           # Add histogram with 30 bins, blue fill, black border, semi-transparent
-  labs(title = "Distribution of Operating Returns",
-       subtitle = "Large Australian Public Companies in 2024", # Set chart title and subtitle
-       x = "Return on Invested Capital",  
-       y = "Frequency") +                            # Set chart title and axis labels
-  theme_minimal() +                                  # Apply clean, minimal theme
-  coord_cartesian(ylim = c(0, 50))                   # Limit y-axis range to 0–50 without removing data outside range
+# Plot the distribution of ROIC
+histogram <- returns |>
+  ggplot(aes(x = roic)) +
+  # Add histogram with 30 bins, blue fill, and black border
+  geom_histogram(fill = "skyblue", color = "black", alpha = 0.7, bins = 30) +
+  # Use clear labels and title case
+  labs(
+    title = "Distribution of Operating Returns",
+    subtitle = "Large Australian Public Companies in 2024",
+    x = "Return on Invested Capital",
+    y = "Frequency"
+  ) +
+  # Apply a clean minimal theme
+  theme_minimal() +
+  # Limit y-axis range without removing data
+  coord_cartesian(ylim = c(0, 50))
 
+# Rank industries by mean ROIC and draw boxplots for the big industries
 box_plot <- returns |>
+  # Focus on the predefined set of big industries
   filter(industry %in% big_industries) |>
+  # Compute mean ROIC per industry for ordering
   group_by(industry) |>
   mutate(mean_roic = mean(roic, na.rm = TRUE)) |>
   ungroup() |>
+  # Reorder industries by mean ROIC (high to low)
   mutate(industry = reorder(industry, mean_roic, FUN = mean, decreasing = TRUE)) |>
-  ggplot() +
-  geom_boxplot(aes(y = roic, x = industry, fill = industry)) +
-  scale_fill_manual(values = industry_colors) + 
+  # Map variables to aesthetics
+  ggplot(aes(x = industry, y = roic, fill = industry)) +
+  # Draw boxplots by industry
+  geom_boxplot() +
+  # Use the provided industry palette
+  scale_fill_manual(values = industry_colors) +
+  # Apply a minimal theme and rotate x-axis labels
+  theme_minimal() +
   theme(
     legend.position = "none",
     axis.text.x = element_text(angle = 45, hjust = 1)
   ) +
+  # Wrap long industry labels to width 15 characters
+  scale_x_discrete(labels = \(x) stringr::str_wrap(x, width = 15)) +
+  # Use clear labels and title case
   labs(
-    y = "ROIC",
     x = NULL,
+    y = "ROIC",
     title = "Return Distributions Across Major Industries",
     subtitle = "200 Largest ASX Companies in 2024"
-  ) +
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 15))
+  )
 
-(bar_plot) / #bar_plot on top
-  histogram | box_plot # histogram on bottom left, box plot on right
-
+# Assemble the panel: bar chart on top; histogram (left) and boxplot (right) on bottom
+(bar_plot) /
+  (histogram | box_plot)
 ```
 
 ## The Game Plan: What we're aiming for
@@ -234,13 +280,27 @@ And so to begin, we need to load the packages that we will use for this chapter.
 
 ```{r}
 #| eval: false
-library(tidyverse)     # collection of packages for data manipulation and visualization
-library(scales)        # for formatting and transforming axis scales
-library(ggokabeito)    # color blind friendly color palette — this course's default
-library(ggthemes)      # additional ggplot themes for polished, publication-ready plots
-library(patchwork)     # for combining multiple ggplots into one figure
-library(stringr)       # for working with strings using consistent functions
-library(RColorBrewer) # for color palette 
+
+# Load the tidyverse for data manipulation and visualisation
+library(tidyverse)
+
+# Load scales for axis formatting and transformations
+library(scales)
+
+# Load ggokabeito for a colour-blind-friendly palette (available if you choose to use it)
+library(ggokabeito)
+
+# Load ggthemes for additional polished ggplot themes
+library(ggthemes)
+
+# Load patchwork to combine multiple ggplots into one figure
+library(patchwork)
+
+# Load stringr for consistent string manipulation helpers
+library(stringr)
+
+# Load RColorBrewer for qualitative and sequential colour palettes
+library(RColorBrewer)
 ```
 
 :::{.callout-tip title="What is `stringr`?" collapse=true}
@@ -254,7 +314,9 @@ We now import the financial statements data set, which covers the 200-largest AS
 ```{r}
 #| warning: false
 #| eval: false
-asx_200_2024 <- read_csv("https://raw.githubusercontent.com/unimelb-cmce-10002/fba-book/refs/heads/main/data/asx_200_2024.csv")
+
+# Read in the 2024 ASX 200 data set
+asx_200_2024 <- read_csv("data/asx_200_2024.csv")
 ```
 
 So, how is this data frame structured and what information does it contain?
@@ -286,7 +348,7 @@ Because EBIT can be used to compare companies without worrying about differences
 
 :::
 
-Putting EBIT as measure of firm profits to one side, we will define and interpret the other financial variables in our data frame as they arise during the data wrangling process.
+Putting EBIT as a measure of firm profits to one side, we will define and interpret the other financial variables in our data frame as they arise during the data wrangling process.
 
 
 ## Using transformations to wrangle data
@@ -309,36 +371,46 @@ And so, to begin our analysis of firm profits, it makes sense to start off by co
 We can use `filter()` to identify and separately store the mining companies that appear in our data frame:
 
 ```{r}
-big_mining_2024 <- asx_200_2024 |> # Start with the ASX 200 dataset for 2024 
-  filter(industry == 'Metals & Mining') # Keep only the rows where the industry is 'Metals & Mining'
+# Keep only the 'Metals & Mining' firms from the ASX 200 dataset for 2024
+big_mining_2024 <- asx_200_2024 |>
+  filter(industry == "Metals & Mining")
 ```
 
 We use `arrange()` to list these mining companies in descending order so that those mining companies that have the largest profits appear first and those that have the the largest losses (i.e., negative profits) appear last:
 
 ```{r}
-big_mining_2024 <- big_mining_2024 |> # Take the filtered Metals & Mining data set that we just created
-  arrange(desc(ebit)) # Sort the firms in this data set in descending order of EBIT (highest profit first)
+# Sort Metals & Mining firms in descending order of EBIT (highest profit first)
+big_mining_2024 <- big_mining_2024 |>
+  arrange(desc(ebit))
 ```
 
-And now, with this new, shorter data frame, we can easily show the 10 mining companies from the ASX that produced the largest profits. We can do so using a simple table:
+We can now easily show the 10 mining companies from the ASX that produced the largest profits using a simple table:
 
 ```{r}
-t10_mining_profits <- big_mining_2024 |> # Take the sorted mining data set that we just created
-  head(10) # Keep only the top 10 rows (the ten mining compaies with the highest EBIT)
+# Keep only the top 10 most profitable mining firms (by EBIT)
+t10_mining_profits <- big_mining_2024 |>
+  slice_head(n = 10)
 
-t10_mining_profits # Display the data set that we just created, which shows the top 10 most profitable mining firms
+# Display the resulting data set
+t10_mining_profits
 ```
 
-The above doesn't quite work how we want it to because it cuts off the company’s EBIT and name (to view a wide data frame such as ours we need to open it in the dedicated viewer using `View()`). As an alternative, @fig-mining-profits concisely and effectively conveys which Australian mining firms have the largest profits (much of the code below will look familiar from last week's module on using `ggplot` for data visualization). Before producing this plot, we first want to fix our color scheme so that across plots the same industry is always the same color (even though for the time being we are only looking at one industry-i.e., mining-and so only need one color at this stage, later we will look at other industries, and so need to map different industries to different colors). 
+The above doesn't quite work how we want it to because it cuts off the company’s EBIT and name (to view a wide data frame such as ours we need to open it in the dedicated viewer using `View()`). 
+
+As an alternative, @fig-mining-profits concisely and effectively conveys which Australian mining firms have the largest profits (much of the code below will look familiar from last week's module on using `ggplot` for data visualization). Before producing this plot, we first want to fix our color scheme so that across plots the same industry is always the same color (even though for the time being we are only looking at one industry-i.e., mining-and so only need one color at this stage, later we will look at other industries, and so need to map different industries to different colors). 
 
 ```{r}
-# Extract all unique industries from the data frame and sort them alphabetically
-industry_levels <- sort(unique(asx_200_2024$industry))
+# Extract all unique industries and sort them alphabetically
+industry_levels <- asx_200_2024$industry |>
+  unique() |>
+  sort()
 
-# Assign a color to each industry using the Set2 palette (repeated or interpolated if needed)
+# Assign a colour to each industry using the Set2 palette
 industry_colors <- setNames(
-  colorRampPalette(brewer.pal(8, "Set2"))(length(industry_levels)),  # Generate as many colors as there are industries
-  industry_levels                                                    # Name each color with the corresponding industry
+  # Generate as many colours as there are industries
+  colorRampPalette(RColorBrewer::brewer.pal(8, "Set2"))(length(industry_levels)),
+  # Name each colour with the corresponding industry
+  industry_levels
 )
 ```
 
@@ -348,27 +420,36 @@ industry_colors <- setNames(
 #| fig-width: 5
 #| fig-height: 5
 #| fig-align: center
+#| fig-cap: BHP's profit dwarfs those of other large Australian companies.
 
-# Reorder the company names (conml) by descending EBIT so that the plot reads from left to right as highest to lowest
-t10_mining_profits$conml <- reorder(t10_mining_profits$conml, -t10_mining_profits$ebit)
+# Reorder company names so bars appear in descending EBIT order
+t10_mining_profits <- t10_mining_profits |>
+  mutate(conml = reorder(conml, -ebit))
 
 # Create a bar chart showing EBIT by company
-ggplot(t10_mining_profits, aes(x = conml, y = ebit, fill = industry)) +  # Map company names to x-axis, EBIT to y-axis, and industry to fill color
-  geom_bar(stat = "identity") +                                          # Draw bars with actual EBIT values
-  scale_fill_manual(values = industry_colors) +                          # Use custom Set2-based color palette for industries
-  ylab("EBIT (Millions AUD)") +                                          # Add y-axis label with units in millions
-  scale_y_continuous(labels = comma) +                                   # Format y-axis numbers with comma separators (e.g., 10,000)
-  theme_minimal(base_size = 14) +                                        # Apply a clean theme with larger base text size
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +              # Rotate x-axis labels for readability
+t10_mining_profits |>
+  ggplot(aes(x = conml, y = ebit, fill = industry)) +
+  # Draw bars with heights equal to EBIT values
+  geom_bar(stat = "identity") +
+  # Use the custom Set2-based industry palette
+  scale_fill_manual(values = industry_colors) +
+  # Add a y-axis label with units in millions
   labs(
-    title = "ASX-listed Mining Companies",                               # Main plot title
-    subtitle = "Largest Profits in 2024",                                # Subtitle for context
-    x = NULL                                                             # Remove x-axis label (company names are self-explanatory)
-  )
+    x = NULL,
+    y = "EBIT (Million AUD)",
+    title = "ASX-Listed Mining Companies",
+    subtitle = "Top 10 by EBIT in 2024"
+  ) +
+  # Format y-axis numbers with comma separators
+  scale_y_continuous(labels = scales::comma) +
+  # Apply a clean minimal theme with larger base text size
+  theme_minimal(base_size = 14) +
+  # Rotate x-axis labels for readability
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 ::: {.callout-note}
 ## Discussion: BHP - Australia's mining giant
-BHP is one of the world's largest diversified mining companies, headquartered in Melbourne, Australia. Founded in 1885 as Broken Hill Proprietary Company Limited, its name reflects its origins in the Broken Hill mining region. It produces a wide range of commodities including iron ore, copper, coal, and petroleum. BHP is known for its scale, operational efficiency, and global footprint, competing closely with other mining giants like Rio Tinto and Vale. The company plays a crucial role in supplying raw materials for industries worldwide and is a key player in the global mining sector.
+Headquartered in Melbourne, BHP is one of the world's largest diversified mining companies. Founded in 1885 as Broken Hill Proprietary Company Limited, its name reflects its origins in the Broken Hill mining region. It produces a wide range of commodities including iron ore, copper, coal, and petroleum. BHP is known for its scale, operational efficiency, and global footprint, competing closely with other mining giants like Rio Tinto and Vale. The company plays a crucial role in supplying raw materials for industries worldwide and is a key player in the global mining sector.
 :::
 
 ::: {.exercise}
@@ -380,7 +461,7 @@ Modify the code above to produce an equivalent plot but for the **non-mining com
 
 1. Use `filter()` to create a new data frame that contains only the non-mining companies in our data set (`!=` means 'does not' equal in a conditional statement). Use `arrange()` to sort these companies in descending order of EBIT. Keep the first ten observations in a new data frame named `t10_other_profits`.
 
-2. Use `ggplot()` to create a bar chart that shows the EBIT of the ten non-mining companies with the largest profits. Use the colour `#E69F00`, and ensure that the company names are readable.
+2. Use `ggplot()` to create a bar chart that shows the EBIT of the ten non-mining companies with the largest profits.
 
 :::
 
@@ -390,55 +471,64 @@ Solution
 ::: {.solution-content}
 Step 1:
 ```{r}
-# Create a new data frame of the top 10 most profitable non-mining companies
-t10_other_profits <- asx_200_2024 |>                  # Start with the full ASX 200 dataset
-    filter(industry != 'Metals & Mining') |>          # Exclude companies in the Metals & Mining industry
-    arrange(desc(ebit)) |>                            # Sort remaining companies by descending EBIT (i.e., most profitable first)
-    head(10)                                          # Keep only the top 10 entries
-
+# Create a data frame of the top 10 most profitable non-mining companies
+t10_other_profits <- asx_200_2024 |>
+  # Exclude Metals & Mining companies
+  filter(industry != "Metals & Mining") |>
+  # Sort by EBIT in descending order
+  arrange(desc(ebit)) |>
+  # Keep only the top 10 rows
+  slice_head(n = 10)
 ```
 
 
 Step 2:
 ```{r}
 #| label: fig-non-mining-profits
-#| fig-width: 5
-#| fig-height: 5
+#| fig-width: 7
+#| fig-height: 7
 #| fig-align: center
+#| fig-cap: CSL's headquarters is across the road from FBE's The Spot
 
-# Reorder company name based on highest to lowest EBIT
-t10_other_profits$conml <- reorder(t10_other_profits$conml, -t10_other_profits$ebit)
+# Reorder company names so bars appear in descending EBIT order
+t10_other_profits <- t10_other_profits |>
+  mutate(conml = reorder(conml, -ebit))
 
-# Create barplot that shows the ten non-mining companies in our sample that have the largest profits
-ggplot(t10_other_profits, aes(x = conml, y = ebit, fill = industry)) +    # Map company names to x-axis, EBIT to y-axis, and industry to fill color
-  geom_bar(stat = "identity") +                                           # Draw bars with actual EBIT values
-  ylab("EBIT (Millions AUD)") +                                           # Add y-axis label with units in millions
-  scale_y_continuous(labels = comma) +                                    # Format y-axis numbers with comma separators (e.g., 10,000)
-  theme_minimal(base_size = 14) +                                         # Apply a clean theme with larger base text size
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1),                    # Rotate x-axis labels for readability
-    legend.position = c(0.98, 0.98),                                      # Position legend inside top-right of plot area
-    legend.justification = c("right", "top"),                             # Anchor legend to the top-right corner
-    legend.title = element_blank(),                                       # Remove legend title for a cleaner look
-    legend.text = element_text(size = 10),                                # Set smaller font size for legend entries
-    legend.background = element_rect(
-      fill = alpha("white", 0.7), color = NA                              # Add a semi-transparent background to the legend
-    ),
-    legend.key.size = unit(0.4, "cm"),                                    # Reduce size of color swatches
-    legend.spacing.y = unit(0.1, "cm")                                    # Tighten vertical spacing between legend items
-  ) +
+# Create a bar chart of the ten most profitable non-mining companies
+t10_other_profits |>
+  ggplot(aes(x = conml, y = ebit, fill = industry)) +
+  # Draw bars with heights equal to EBIT values
+  geom_bar(stat = "identity") +
+  # Use the Set2-based industry palette
+  scale_fill_manual(values = industry_colors) +
+  # Add labels in clear, title case
   labs(
-    title = "ASX-listed Non-Mining Companies",                            # Main title
-    subtitle = "Largest Profits in 2024",                                 # Subtitle
-    x = NULL                                                              # Remove the x-axis label (company names are self-explanatory)
+    x = NULL,
+    y = "EBIT (Million AUD)",
+    title = "ASX-Listed Non-Mining Companies",
+    subtitle = "Top 10 by EBIT in 2024"
   ) +
-  scale_fill_manual(values = industry_colors)  
+  # Format y-axis numbers with comma separators
+  scale_y_continuous(labels = scales::comma) +
+  # Apply a clean minimal theme with larger text
+  theme_minimal(base_size = 14) +
+  # Rotate x-axis labels and style legend
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = c(0.98, 0.98),
+    legend.justification = c("right", "top"),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 10),
+    legend.background = element_rect(fill = scales::alpha("white", 0.7), color = NA),
+    legend.key.size = grid::unit(0.4, "cm"),
+    legend.spacing.y = grid::unit(0.1, "cm")
+  )  
 ```
 :::
 
 ---
 
-Comparing @fig-non-mining-profits to @fig-mining-profits reveals that mining companies dominate the Australian economy in the sense that the profits of the mining companies with the largest profits are much larger than those of the non-mining companies with the largest profits. However, to get the complete picture in a single plot, let’s take a step back, look at our full sample again, and plot the ten firms across all industries that have the largest profits in 2024:
+Comparing @fig-non-mining-profits to @fig-mining-profits reveals that mining companies dominate the Australian economy: the profits of the mining companies with the largest profits are much larger than those of the non-mining companies with the largest profits. However, to get the complete picture in a single plot, let’s take a step back, look at our full sample again, and plot the ten firms across all industries that have the largest profits in 2024:
 
 ```{r}
 #| warning: false
@@ -446,40 +536,48 @@ Comparing @fig-non-mining-profits to @fig-mining-profits reveals that mining com
 #| fig-width: 6
 #| fig-height: 6
 #| fig-align: center
+#| fig-cap: The top mining companies are staggeringly profitable 
 
-# Filter the top 10 most profitable companies based on EBIT
+# Select the top 10 companies by EBIT
 t10_all_profits <- asx_200_2024 |>
   arrange(desc(ebit)) |>
-  head(10)
+  slice_head(n = 10)
 
-# Reorder company names (conml) so bars appear in descending order of EBIT in the plot
-t10_all_profits$conml <- reorder(t10_all_profits$conml, -t10_all_profits$ebit)
+# Reorder company names so bars appear in descending EBIT order
+t10_all_profits <- t10_all_profits |>
+  mutate(conml = reorder(conml, -ebit))
 
 # Create a bar chart of the top 10 most profitable companies
-bar_plot <- ggplot(t10_all_profits, aes(x = conml, y = ebit, fill = industry)) +
-  geom_bar(stat = "identity") +                    # Draw bars with heights equal to EBIT values
-  ylab("EBIT (Millions AUD)") +                         # Add y-axis label with units in millions
-  scale_y_continuous(labels = comma) +                  # Format y-axis numbers with comma separators (e.g., 10,000)
-  theme_minimal(base_size = 14) +                  # Use a clean minimal theme with slightly larger text
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1),     # Rotate x-axis labels for readability
-    legend.position = c(0.98, 0.98),                        # Position legend inside top-right of plot area
-    legend.justification = c("right", "top"),              # Anchor legend to the top-right corner
-    legend.title = element_blank(),                        # Remove legend title for a cleaner look
-    legend.text = element_text(size = 10),                 # Set smaller font size for legend entries
-    legend.background = element_rect(
-      fill = alpha("white", 0.7), color = NA               # Add a semi-transparent background to the legend
-    ),
-    legend.key.size = unit(0.4, "cm"),                     # Reduce size of color swatches
-    legend.spacing.y = unit(0.1, "cm")                     # Tighten vertical spacing between legend items
-  ) +
+bar_plot <- t10_all_profits |>
+  ggplot(aes(x = conml, y = ebit, fill = industry)) +
+  # Draw bars with heights equal to EBIT values
+  geom_bar(stat = "identity") +
+  # Use clear, title-cased labels; no x-axis label
   labs(
-    title = "ASX-listed Companies",                        # Plot title
-    subtitle = "Largest Profits in 2024",                  # Plot subtitle
-    x = NULL                                               # Omit x-axis label
+    x = NULL,
+    y = "EBIT (Million AUD)",
+    title = "Top 10 Most Profitable ASX-Listed Companies, 2024",
+    subtitle = "Ranked by EBIT"
   ) +
-  scale_fill_manual(values = industry_colors)              # Use consistent industry colors across plots
+  # Format y-axis numbers with comma separators
+  scale_y_continuous(labels = scales::comma) +
+  # Apply the provided industry palette
+  scale_fill_manual(values = industry_colors) +
+  # Use a clean minimal theme with slightly larger text
+  theme_minimal(base_size = 14) +
+  # Rotate x-axis labels and style legend
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = c(0.98, 0.98),
+    legend.justification = c("right", "top"),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 10),
+    legend.background = element_rect(fill = scales::alpha("white", 0.7), color = NA),
+    legend.key.size = grid::unit(0.4, "cm"),
+    legend.spacing.y = grid::unit(0.1, "cm")
+  )
 
+# Display the plot
 bar_plot
 ```
 @fig-all-profits shows that although non-mining companies outnumber mining companies in our top ten (two to eight), the combined profits of the latter are larger than the combined profits of the former. And so, at least on the basis of profits, mining companies really do dominate the Australian economy.
@@ -503,11 +601,12 @@ Solution
 ::: {.solution-content}
 Step 1:
 ```{r}
-# Select the 10 companies with the worst losses (i.e., the lowest EBIT values)
+# Select the 10 companies with the largest losses (lowest EBIT values)
 t10_all_losses <- asx_200_2024 |>
-  arrange(ebit) |>   # Sort data in ascending order of EBIT (losses appear first)
-  head(10)           # Keep only the first 10 rows (i.e., 10 biggest loss-makers)
-
+  # Sort by EBIT in ascending order so loss-makers appear first
+  arrange(ebit) |>
+  # Keep only the first 10 rows
+  slice_head(n = 10)
 ```
 
 
@@ -518,44 +617,53 @@ Step 2:
 #| fig-width: 6
 #| fig-height: 6
 #| fig-align: center
+#| fig-cap: Plenty of mining companies also make bad losses
 
-# Reorder company names based on EBIT so bars are ordered from largest to smallest loss (left to right)
-t10_all_losses$conml <- reorder(t10_all_losses$conml, t10_all_losses$ebit)
+# Reorder company names so bars appear from largest to smallest loss
+t10_all_losses <- t10_all_losses |>
+  mutate(conml = reorder(conml, ebit))
 
 # Create a bar chart of the 10 companies with the largest losses
-ggplot(t10_all_losses, aes(x = conml, y = ebit, fill = industry)) +
-  geom_bar(stat = "identity") +                     # Use actual EBIT values to create bars
-  ylab("EBIT (Millions AUD)") +                         # Add y-axis label with units in millions
-  scale_y_continuous(labels = comma) +                  # Format y-axis numbers with comma separators (e.g., 10,000)
-  theme_minimal(base_size = 14) +                   # Use a clean, minimal theme with larger base font
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1),     # Rotate x-axis labels for readability
-    legend.position = c(0.98, 0.02),                       # Place legend in bottom-right inside the plot
-    legend.justification = c("right", "bottom"),           # Anchor legend to bottom-right corner
-    legend.title = element_blank(),                        # Remove legend title
-    legend.text = element_text(size = 10),                 # Slightly smaller legend text
-    legend.background = element_rect(fill = alpha("white", 0.7), color = NA),  # Semi-transparent legend background
-    legend.key.size = unit(0.4, "cm"),                     # Shrink legend color boxes
-    legend.spacing.y = unit(0.1, "cm")                     # Tighten vertical space between legend items
-  ) +
+t10_all_losses |>
+  ggplot(aes(x = conml, y = ebit, fill = industry)) +
+  # Draw bars with heights equal to EBIT values
+  geom_bar(stat = "identity") +
+  # Add labels in clear, title case
   labs(
-    title = "ASX-listed Companies",                        # Chart title
-    subtitle = "Largest Losses in 2024",                   # Chart subtitle
-    x = NULL                                               # Remove x-axis label (company names are self-explanatory)
+    x = NULL,
+    y = "EBIT (Million AUD)",
+    title = "Top 10 ASX-Listed Companies by Losses",
+    subtitle = "Largest Loss-Makers in 2024"
   ) +
-  scale_fill_manual(values = industry_colors)              # Use manually assigned industry colors for consistency
+  # Format y-axis numbers with comma separators
+  scale_y_continuous(labels = scales::comma) +
+  # Apply the provided industry palette
+  scale_fill_manual(values = industry_colors) +
+  # Use a clean minimal theme with larger base font
+  theme_minimal(base_size = 14) +
+  # Rotate x-axis labels and position legend bottom-right
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = c(0.98, 0.02),
+    legend.justification = c("right", "bottom"),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 10),
+    legend.background = element_rect(fill = scales::alpha("white", 0.7), color = NA),
+    legend.key.size = grid::unit(0.4, "cm"),
+    legend.spacing.y = grid::unit(0.1, "cm")
+  )
 ```
 :::
 
 ---
 
-Interestingly, seven of the ten companies that produced the worst losses in 2024 are mining companies. Taken together, @fig-all-profits and @fig-all-losses reveal a key feature of the Australian economy: Mining is a capital-intensive, boom-or-bust business. 
+Interestingly, seven of the ten companies that produced the worst losses in 2024 are mining companies. Taken together, @fig-all-profits and @fig-all-losses reveal a key feature of the Australian economy: Mining is a boom-or-bust business. 
 
 ::: {.callout-note}
 ## Discussion: Mining and the 'Wild West'
 Mining has long been a cornerstone of the Australian economy, especially in the vast and remote regions of Western Australia. This frontier-style industry is marked by bold ventures, high risks, and the promise of enormous rewards — a dynamic that continues to shape the business landscape today.
 
-Banks and other small lenders typically lack both the risk appetite and the capital base needed to fund mining ventures. As a result, mining companies must turn to the stock market to raise the substantial funds required for land acquisition, plant, property, and heavy equipment — none of which come cheaply. Consequently, mining companies dominate the ASX, both in terms of listings (as we will show later) and in representing the firms that generate the largest profits *and* the largest losses.
+Banks and other small lenders typically lack both the risk appetite and the capital base needed to fund mining ventures. As a result, mining companies must turn to the stock market to raise the substantial funds required for land acquisition and leases, and plant, property, and heavy equipment — none of which come cheaply. Consequently, mining companies dominate the ASX, both in terms of listings (as we will show later) and in representing the firms that generate the largest profits *and* the largest losses.
 
 This extreme variation in EBIT reflects the high operating risk inherent in mining — it is, quite literally, a boom-or-bust business. The volatility arises from several sources: the speculative nature of prospecting (it’s difficult to predict where and how much resource will be found), the cyclical fluctuations in global commodity prices, and the immense costs associated with exploration and extraction.
 :::
@@ -563,7 +671,7 @@ This extreme variation in EBIT reflects the high operating risk inherent in mini
 
 ### Operating on columns with `mutate()` and `select()` {.unnumbered}
 
-We need to keep in mind that profit is a dollar-dominated measure of operating performance, and so it may be the case that those firms that produce the largest profits or the largest losses are simply the largest firms in our sample (i.e., undertake the most economic activity and so by function of their size make or lose lots of money). This distinction matters because investors ultimately want to allocate their capital to companies that generate the best returns (i.e., the most profit per dollar of investment), which may not necessarily be the firms that produce the most profit.
+We need to keep in mind that profit is a dollar-dominated measure of operating performance, and so it may be the case that those firms that produce the largest profits or the largest losses are simply the largest firms in our sample (i.e., undertake the most economic activity and so by function of their size make or lose lots of money). This distinction matters because investors ultimately want to allocate their capital to companies that generate the best returns (i.e., the most profit per dollar of investment), which may not necessarily be the firms that produce the most profit in absolute terms.
 
 Let's observe how returns vary within the Australian economy across industries, and within industries across firms. For this analysis, we must first calculate each company’s return on investment in our sample and then focus in on this measure of operating performance. To do so, we will make use of two `dplyr` verbs that operate on columns: `mutate()` and `select()`. 
 
@@ -572,7 +680,16 @@ Let's observe how returns vary within the Australian economy across industries, 
 `mutate()` allows you to add new columns that are created from values in existing columns, and so ‘widens’ your data frame. In contrast, `select()` allows you to isolate specific columns and drop others, and so ‘narrows’ your data frame. Neither function affects the rows in the data frame.
 :::
 
-We will use `mutate()` to create our measure of firm profitability, **Return on Invested Capital** (ROIC).
+We will use `mutate()` to create our measure of firm profitability, **Return on Invested Capital** (ROIC):
+
+```{r}
+# Calculate Return on Invested Capital (ROIC) for firms with valid invested capital
+returns <- asx_200_2024 |>
+  # Exclude firms with zero or negative invested capital
+  filter(invested_capital > 0) |>
+  # Create new ROIC variable: EBIT divided by invested capital
+  mutate(roic = ebit / invested_capital)
+```
 
 ::: {.callout-note}
 ## Definition: Profit vs Profitability - Why ROIC?
@@ -584,38 +701,36 @@ Consider Company A, which receives \$10 in investment and produces \$100 in prof
 
 :::
 
-```{r}
-# Calculate Return on Invested Capital (ROIC) for firms with valid invested capital
-returns <- asx_200_2024 |>
-  filter(invested_capital > 0) |>              # Exclude firms with zero or negative invested capital to avoid division errors
-  mutate(roic = ebit / invested_capital)       # Create a new column 'roic' as EBIT divided by invested capital
-```
-
 You should notice that in the above chunk of code before creating our ROIC variable and assigning this to our returns data frame we drop observations from our sample where invested capital is missing or equal to zero. We do so to avoid creating a variable where we may for some observations need to divide by zero (which of course cannot be done).
 
 So, which ten Australian companies produced the best operating returns in 2024?
 
 ```{r}
 # Return the 10 companies with the highest ROIC
-returns |> # Start with our new data frame that contains the ROIC variable that we just created
-    arrange(desc(roic)) |> # Sort the data frame in descending order of ROIC (highest to lowest)
-    head(10) # Keep only the first 10 rows (i.e., the 10 companies with the highest ROIC)
+returns |>
+  # Sort in descending order of ROIC
+  arrange(desc(roic)) |>
+  # Keep the top 10 rows
+  slice_head(n = 10)
 ```
 
-As we discussed briefly already, tables such as the one above are too wide for our purposes. `mutate()` adds columns to the right-hand side of your data frame, where information is often cutoff from view in dynamic documents such as this one. Given that our focus is on identifying the companies in our top ten and these companies’ returns, we can use `select()` to ‘narrow’ our data frame, and so produce a table that only reports the columns that we care about in this instance.
+As we discussed briefly already, tables such as the one above are too wide for our purposes. `mutate()` adds columns to the right-hand side of your data frame, where information is often cutoff from view in dynamic documents such as this one. Given that our focus is on identifying the companies in our top ten and these companies’ returns, we can use `select()` to ‘narrow’ our data frame, and so produce a table that only reports the columns that we currently interested in.
 
 ```{r}
 # Return the 10 companies with the highest ROIC
-returns |> # Start with our new data frame that contains the ROIC variable that we just created
-    arrange(desc(roic)) |> # Sort the data frame in descending order of ROIC (highest to lowest)
-    head(10) |> # Keep only the first 10 rows (i.e., the 10 companies with the highest ROIC)
-    select(fyear, conml, roic, ebit, invested_capital) # Keep those columns most relevant to our research question (i.e., which companies produced the best operating returns in 2024?)
+returns |>
+  # Sort in descending order of ROIC
+  arrange(desc(roic)) |>
+  # Keep the top 10 rows
+  slice_head(n = 10) |>
+  # Select only columns relevant to operating returns in 2024
+  select(fyear, conml, roic, ebit, invested_capital)
 ```
 
 This table is much better as it focuses on reporting the information that is most relevant to our current research question. You may notice two interesting takeaways from this table. 
 
 1. While Data3’s profit is relatively small as a dollar amount, it generates this profit using a very small amount of invested capital such that the company produces the best return for all ASX-listed firms in our sample. 
-2. BHP’s profit is very large as a dollar amount, but it generates this profit using a very large amount of invested capital. As such, BHP produces a strong but not the strongest return. 
+2. BHP’s profit is very large as a dollar amount, but it generates this profit using a very large amount of invested capital. As such, BHP produces a strong return but not the strongest. 
 
 Comparing these two companies makes clear the distinction between measures of operating performance that capture profit vs profitability.
 
@@ -670,17 +785,20 @@ Solution
 ::: {.solution-content}
 Step 1:
 ```{r}
-# Select the 10 companies with the worst returns (i.e., the lowest ROIC values)
+# Select the 10 companies with the lowest ROIC values
 b10_returns <- returns |>
-  arrange(roic) |>   # Sort data in ascending order of ROIC (lowest return first)   
-  head(10)           # Keep only the first 10 rows (i.e., 10 worst returns)
+  # Sort in ascending order of ROIC (worst performers first)
+  arrange(roic) |>
+  # Keep only the first 10 rows
+  slice_head(n = 10)
 ```
 
 
 Step 2:
 ```{r}
-b10_returns |> # Start with the data frame that we just created
-    select(fyear, conml, roic, ebit, invested_capital) # Keep only the columns that we care about
+# Show the 10 companies with the lowest ROIC, keeping only relevant columns
+b10_returns |>
+  select(fyear, conml, roic, ebit, invested_capital)
 ```
 :::
 
@@ -692,12 +810,12 @@ One name from this list-Star Entertainment Group-should immediately jump out if 
 
 The Star Entertainment Group is one of Australia’s largest casino operators, running major venues in Sydney, Brisbane, and the Gold Coast. For years, it relied heavily on high-roller gambling and large-scale property developments to drive profits. The company’s fortunes have deteriorated sharply over the past few years, initially due to the pandemic’s hit to tourism, then more severely from a series of damaging regulatory inquiries into money laundering and governance failures. These have resulted in costly compliance measures, reduced high-roller business, and reputational damage.
 
-In 2024, Star Entertainment remains in a precarious position — it has bought some time through emergency funding, but without new asset sales, debt relief, or a regulatory settlement, the risk of collapse is still on the table.
+In 2025, Star Entertainment remains in a precarious position — it has bought some time through emergency funding, but without new asset sales, debt relief, or a regulatory settlement, the risk of collapse is still on the table.
 :::
 
 While short, narrow tables such as the above are useful for identify and describing limited features of a small subset of a longer, wider data frame, often we want to more fully describe and summarize these longer, wider data frames, and so we are better off relying on visualizations and/or descriptive statistics such as measures of central tendency and dispersion.
 
-For example, what return did the typical large Australian public company produce in 2024? How commonly did firms produce returns in excess of 40%? And losses worse than -20%? To illustrate the benefits of visualization for generating insight, we can use a histogram to examine the distribution of firm profitability for all firms in our sample (i.e., the largest 200 companies on the ASX in 2024) and so answer these questions:
+For example, what return did the typical large Australian public company produce in 2024? How commonly did firms produce returns in excess of 40%? And returns worse than -20%? To illustrate the benefits of visualization for generating insight, we can use a histogram to examine the distribution of firm profitability for all firms in our sample (i.e., the largest 200 companies on the ASX in 2024) and so answer these questions:
 
 ```{r}
 #| warning: false
@@ -705,24 +823,33 @@ For example, what return did the typical large Australian public company produce
 #| fig-width: 6
 #| fig-height: 6
 #| fig-align: center
+#| fig-cap: Is this distribution one you would expect in an open market economy such Australia's?
 
-histogram <- ggplot(returns, aes(x = roic)) +                     # Create ggplot using 'returns' data, mapping ROIC to x-axis
-  geom_histogram(fill = "skyblue", color = "black",  
-                 alpha = 0.7, bins = 30) +           # Add histogram with 30 bins, blue fill, black border, semi-transparent
-  labs(title = "Distribution of Operating Returns",
-       subtitle = "Large Australian Public Companies in 2024", # Set chart title and subtitle
-       x = "Return on Invested Capital",  
-       y = "Frequency") +                            # Set chart title and axis labels
-  theme_minimal() +                                  # Apply clean, minimal theme
-  coord_cartesian(ylim = c(0, 50))                   # Limit y-axis range to 0–50 without removing data outside range
+# Create a histogram of ROIC across firms
+histogram <- returns |>
+  ggplot(aes(x = roic)) +
+  # Draw histogram with 30 bins, semi-transparent blue fill, and black border
+  geom_histogram(fill = "skyblue", color = "black", alpha = 0.7, bins = 30) +
+  # Add clear labels and title case
+  labs(
+    x = "Return on Invested Capital",
+    y = "Frequency",
+    title = "Distribution of Operating Returns",
+    subtitle = "Large Australian Public Companies in 2024"
+  ) +
+  # Apply a clean minimal theme
+  theme_minimal() +
+  # Limit y-axis range to 0–50 without dropping data
+  coord_cartesian(ylim = c(0, 50))
 
-histogram # Display the histogram
+# Display the histogram
+histogram
 ```
-@fig-returns-histogram reveals several important insights. First, the typical large Australian public company in 2024 achieved returns for investors of approximately 10%. Second, the vast majority of large Australian public companies in 2024 achieved returns of between 0-15%. Third, very few (< 4) large Australian public companies in 2024 achieved returns worse than -20%, and very few large Australian companies achieved returns better than 40% (< 1).
+@fig-returns-histogram reveals several important insights. First, the typical large Australian public company in 2024 achieved returns for investors of approximately 10%. Second, the vast majority of large Australian public companies in 2024 achieved returns of between 0-15%. Third, very few (< 4) large Australian public companies in 2024 achieved returns worse than -20%, and only one large Australian companies achieved returns better than 40%.
 
 ### Operating on groups with `group_by()` and `summarise()` {.unnumbered}
 
-Earlier, we said that mining companies are subject to greater operating risk than firms in other industries (mining is highly speculative and prospectors cannot perfectly predict sites that contain resources; extracting those resources can be very challenging and costly, and commodity prices are very volatile). A key insight in finance is that investors in order to take on greater risk expected to be compensated with higher returns. And so, we should observe that mining companies returns, while more dispersed, are on average higher than non-mining companies returns, which are less dispersed.
+Earlier, we said that mining companies are subject to greater operating risk than firms in other industries (mining is highly speculative and prospectors cannot perfectly predict sites that contain resources; extracting those resources can be very challenging and costly, and commodity prices are very volatile). A key insight in finance is that investors in order to take on greater risk expect to be compensated with higher returns. And so, we should observe that mining companies returns, while more dispersed, are on average higher than non-mining companies returns, which are less dispersed.
 
 To establish whether this is the case, we need to examine how returns vary across industries for our sample of large Australian public companies. To do so, we will make use of two dplyr functions that operate on groups within our data frame: `group_by()` and `summarize()`.
 
@@ -734,34 +861,50 @@ To establish whether this is the case, we need to examine how returns vary acros
 Before examining how returns vary across industries, we should first get a sense of the composition of the largest 200 Australian public companies in 2024. Which industry is most represented in our sample? Which is least represented? Did a small number of industries make up most of the Australian stock market in 2024? To answer these questions, we use `group_by()` to group our data frame by industry, and then summarize to count the number of observations associated with each industry in this group:
 
 ```{r}
-returns |>                           # Start with the returns data frame
-    group_by(industry) |>            # Group rows by industry
-    summarize(obs = n()) |>          # Count observations in each industry, store as 'obs'
-    arrange(desc(obs))                # Sort industries from most to fewest observations
+returns |>
+  # Group firms by industry
+  group_by(industry) |>
+  # Count the number of observations in each industry
+  summarise(obs = n()) |>
+  # Sort industries from most to fewest observations
+  arrange(desc(obs))
 ```
-The above table shows that while we observe `r dplyr::n_distinct(returns$industry)` distinct industries in our sample, seven industries account for more than half of the 200 largest Australian public companies (and mining alone accounts for almost one quarter of these companies). Given the importance of these seven industries to the Australian economy-Metals & Mining; Specialty Retail; Construction & Engineering; Hotels, Restaurants, & Leisure; Oil, Gas, & Consumable Fuels; Commercial Services & Supplies; and, Food Products-let’s focus on them for the remainder of our industry-level analyses.
+
+The above table shows that while we observe `r dplyr::n_distinct(returns$industry)` distinct industries in our sample, seven industries account for more than half of the 200 largest Australian public companies (and mining alone accounts for almost one quarter of these companies). Given the importance of these seven 'big' industries to the Australian economy-Metals & Mining; Specialty Retail; Construction & Engineering; Hotels, Restaurants, & Leisure; Oil, Gas, & Consumable Fuels; Commercial Services & Supplies; and, Food Products-let’s focus on them for the remainder of our industry-level analyses.
 
 We use `filter()` to isolate observations from this sub-set of industries, and then use `group_by()` to group our data frame by industry. After this, we then use `summarize()` to calculate each industry’s average returns and standard deviation of returns for our sub sample of firms drawn from the 200 largest Australian public companies in 2024:
 
 ```{r}
-big_industries <- c("Metals & Mining", "Specialty Retail", "Construction & Engineering",  # Vector of industry names to focus on
-                    "Hotels, Restaurants & Leisure", "Oil, Gas & Consumable Fuels", 
-                    "Commercial Services & Supplies", "Food Products")
+# Define the set of 'big' industries to focus on
+big_industries <- c(
+  "Metals & Mining",
+  "Specialty Retail",
+  "Construction & Engineering",
+  "Hotels, Restaurants & Leisure",
+  "Oil, Gas & Consumable Fuels",
+  "Commercial Services & Supplies",
+  "Food Products"
+)
 
-returns |>                     # Start with the returns dataset
-  filter(industry %in% big_industries) |>           # Keep only rows from selected industries
-  group_by(industry) |>                             # Group remaining rows by industry
-  summarize(
-    ave_roic = mean(roic, na.rm = TRUE),             # Calculate average ROIC, ignoring missing values
-    sd_roic = sd(roic, na.rm = TRUE)                 # Calculate standard deviation of ROIC, ignoring missing values
-  ) |>                                              
-  arrange(desc(ave_roic))                            # Sort industries from highest to lowest average ROIC
+# Calculate mean and standard deviation of ROIC for the big industries
+returns |>
+  # Keep only rows from the selected industries
+  filter(industry %in% big_industries) |>
+  # Group by industry
+  group_by(industry) |>
+  # Compute average and standard deviation of ROIC
+  summarise(
+    ave_roic = mean(roic, na.rm = TRUE),
+    sd_roic = sd(roic, na.rm = TRUE)
+  ) |>
+  # Sort from highest to lowest average ROIC
+  arrange(desc(ave_roic))
 ```
 
-We can use a box plot to provide a visualization that more richly describes how returns are distributed within industries, and how these distributions differ across industries.
+This table is useful, but we can use a box plot to provide a visualization that more richly describes how returns are distributed within industries, and how these distributions differ across industries.
 
 :::{.callout-tip title="What is a box plot?" collapse=true}
-A box plot is a statistical chart that summarises the distribution of a numeric variable using five key values: the minimum, first quartile (Q1), median, third quartile (Q3), and maximum. The “box” shows the middle 50% of the data, with a line inside marking the median. The “whiskers” extend to the smallest and largest values within a set range, and points outside are plotted individually as outliers. Box plots are useful for quickly comparing distributions, spotting skewness, and identifying extreme values across different groups.
+A box plot is a statistical chart that summarizes the distribution of a numeric variable using five key values: the minimum, first quartile (Q1), median, third quartile (Q3), and maximum. The “box” shows the middle 50% of the data, with a line inside marking the median. The “whiskers” extend to the smallest and largest values within a set range, and points outside are plotted individually as outliers. Box plots are useful for quickly comparing distributions, spotting skewness, and identifying extreme values across different groups.
 :::
 
 ```{r}
@@ -770,49 +913,64 @@ A box plot is a statistical chart that summarises the distribution of a numeric 
 #| label: fig-returns-box
 #| echo: false
 #| fig-align: center
+#| fig-cap: Mining has the most extreme outliers in either tail
 #| warning: false
 
+# Create a box plot of ROIC distributions across major industries
 box_plot <- returns |>
+  # Focus on the predefined set of big industries
   filter(industry %in% big_industries) |>
+  # Compute mean ROIC per industry for ordering
   group_by(industry) |>
   mutate(mean_roic = mean(roic, na.rm = TRUE)) |>
   ungroup() |>
+  # Reorder industries by mean ROIC (high to low)
   mutate(industry = reorder(industry, mean_roic, FUN = mean, decreasing = TRUE)) |>
-  ggplot() +
-  geom_boxplot(aes(y = roic, x = industry, fill = industry)) +
-  scale_fill_manual(values = industry_colors) + 
+  # Map variables to aesthetics
+  ggplot(aes(x = industry, y = roic, fill = industry)) +
+  # Draw boxplots by industry
+  geom_boxplot() +
+  # Use the custom Set2-based industry palette
+  scale_fill_manual(values = industry_colors) +
+  # Apply a minimal theme and rotate x-axis labels
+  theme_minimal() +
   theme(
     legend.position = "none",
     axis.text.x = element_text(angle = 45, hjust = 1)
   ) +
+  # Wrap long industry labels for readability
+  scale_x_discrete(labels = \(x) stringr::str_wrap(x, width = 15)) +
+  # Add labels in clear, title case
   labs(
-    y = "ROIC",
     x = NULL,
+    y = "ROIC",
     title = "Return Distributions Across Major Industries",
     subtitle = "200 Largest ASX Companies in 2024"
-  ) +
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 15))
+  )
 
+# Display the box plot
 box_plot
 ```
 
-Hmm, this plot presents results that are only partially consistent with the story we have been telling ourselves so far. Returns in mining are very highly dispersed compared to other industries, but expected returns in mining are lower than those in many other industries. And so, it seems that while mining companies do face heightened operating risk, investors in mining companies do not appear to achieve returns commensurate with this level of risk. In fact, if anything, the plot as a whole suggests an inverted relationship between expected returns and risk-i.e., those industries that produce the best returns on average also produce returns that are less dispersed. One reason for why this is the case is that in sectors like mining, high volatility in ROIC often stems from cyclical demand, volatile input prices, and the heavy fixed costs associated with capital-intensive operations. These factors amplify losses in bad years but place natural limits on upside in good years, pulling down the long-run average ROIC.
+Hmm, this plot presents results that are only partially consistent with the story we have been telling ourselves so far. Returns in mining are very highly dispersed compared to other industries, but expected returns in mining are lower than those in many other industries. And so, it seems that while mining companies do face heightened operating risk, investors in mining companies do not appear to achieve returns commensurate with this level of risk. 
+
+In fact, if anything, the plot as a whole suggests an inverted relationship between expected returns and risk-i.e., those industries that produce the best returns on average also produce returns that are less dispersed. One reason for why this is the case is that in sectors like mining, high volatility in ROIC often stems from cyclical demand, volatile input prices, and the heavy fixed costs associated with capital-intensive operations. These factors amplify losses in bad years but place natural limits on upside in good years, pulling down the long-run average ROIC.
 
 ::: {.callout-note}
 ## Discussion: Construction & Engineering – Profits in a High-Pressure Industry
-The Construction & Engineering sector in Australia is currently enjoying strong operating returns, reflecting a combination of sustained infrastructure investment, private development activity, and the ability of firms to maintain healthy margins. Major public transport upgrades, renewable energy projects, and resource-related construction have kept order books full, while the limited number of large-scale contractors capable of delivering such projects has given established players considerable pricing power.
+The Construction & Engineering sector in Australia is currently enjoying strong operating returns, reflecting a combination of sustained infrastructure investment, private development activity, and the ability of firms to maintain healthy margins. Major public transport upgrades (including the soon-to-open Parkville train station), renewable energy projects, and resource-related construction have kept order books full, while the limited number of large-scale contractors capable of delivering such projects has given established players considerable pricing power.
 
 Several structural factors help keep margins elevated. A limited supply of skilled labour from engineers to specialist trades — allows firms to bid at higher prices, confident that competitors face similar cost pressures. The complexity and scale of many projects also create high barriers to entry, reducing competition. Additionally, the prevalence of long-term government contracts often locks in profit margins and shifts some risk to the client, particularly in cost-plus or staged-delivery arrangements.
 
 That said, these strong returns are not without risk. Supply chain disruptions, industrial relations disputes, and changes in government spending priorities can still impact profitability. Nonetheless, for now, the sector’s combination of robust demand and constrained supply continues to underpin its strong operating performance.
 :::
 
-Before we conclude that our plot provides suﬀicient evidence to refute the idea of the risk- return trade-off that lies at the heart of modern financial theory and practice, we need to think careful about limitations in our data and analyses. First, our dataframe only contains observations from 2024, and so perhaps our analysis is simply noisy (for example, commodity prices in 2024 may have been especially low). One way to address this issue is to broaden our sample to include observations from earlier years, and average out noise that affects specific industries in certain years. Second, our data frame only contains observations from the largest 200 Australian public companies, and so our results do not reflect the performance of small mining companies, which may generate very high returns given their lower levels of investment. We could address this issue in our analysis by broadening our sample to include observations from all ASX-listed firms in a given year.
+Before we conclude that our plot provides suﬀicient evidence to refute the idea of the risk- return trade-off that lies at the heart of modern financial theory and practice, we need to think careful about limitations in our data and analyses. First, our dataframe only contains observations from 2024, and so perhaps our analysis is simply noisy (for example, commodity prices in 2024 may have been unexpectedly low). One way to address this issue is to broaden our sample to include observations from earlier years, and average out noise that affects specific industries in certain years. Second, our data frame only contains observations from the largest 200 Australian public companies, and so our results do not reflect the performance of small mining companies, which may generate very high returns given their lower levels of investment. We could address this issue in our analysis by broadening our sample to include observations from all ASX-listed firms in a given year.
 
 
 ## Bringing it all together: Summarizing our findings
 
-We have applied the core `dpylr` verbs-`filter()`, `arrange()`, `mutate()`, `select()`, `group_by()`, and `summarize()`-to wrangle financial statements data for the 200 largest Australian public companies in 2024. In doing so, we have extract several insights that shed light on the level and composition of firm profits and investor returns in the Australian economy.
+We have applied the core `dpylr` verbs-`filter()`, `arrange()`, `mutate()`, `select()`, `group_by()`, and `summarize()`-to wrangle financial statements data for the 200 largest Australian public companies in 2024. In doing so, we have generated several insights that shed light on the level and composition of firm profits and investor returns in the Australian economy.
 
 First, we showed that in 2024, the two most profitable mining companies together earned more than the eight most profitable non-mining companies combined. Second, in terms of frequency, we showed that a broad cross-section of industries make up the most profitable companies in our sample, and that we do not see a single industry dominate the top ten most profitable companies in 2024. 
 
@@ -872,8 +1030,7 @@ Solution
 
 # Combine the plots into patchwork
 (bar_plot) / #bar_plot on top
-  histogram | box_plot # histogram on bottom left, box plot on right
-
+  (histogram | box_plot) # histogram on bottom left, box plot on right
 ```
 :::
 
@@ -884,8 +1041,6 @@ Solution
 In this chapter, we have explored how to use the `dplyr` package to manipulate financial data in R. We have learned how to filter, arrange, mutate, select, group, and summarize data to extract meaningful insights from financial statements. By applying these techniques to the 200 largest Australian public companies in 2024, we have gained a deeper understanding of the level and composition of firm profits and investor returns in the Australian economy. We have also built on last chapter's material and seen how to visualize these insights using histograms and box plots, which can help us better understand the distribution of returns across industries and firms.
 
 In the next chapter, we will we will explore how to use tidyr and dplyr to reshape and combine financial data in R. We will learn how to pivot data between wide and long formats, and how to join data frames using keys to integrate information from multiple sources. By applying these techniques to the 200 largest Australian public companies in 2024, we will merge financial statements with industry classifications and market performance data, creating richer datasets for analysis. Building on the previous chapter’s work, we will also see how these reshaped datasets can serve as the foundation for deeper comparisons across industries and firms, enabling more flexible and targeted visualizations.
-
-
 
 
 
