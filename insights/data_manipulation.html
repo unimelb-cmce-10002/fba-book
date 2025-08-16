@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Manipulating Data – Foundations of Business Analytics</title>
+<title>Foundations of Business Analytics - 5&nbsp; Data Wrangling for Business Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,31 +64,24 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../insights/data_analysis.html" rel="next">
+<link href="../tutorials/what_is_business_analytics.html" rel="next">
 <link href="../insights/data_visualisation.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6f77e067621728e8e5d8b75f5607b6c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -63,30 +90,30 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 <script src="../solution.js"></script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../custom.css">
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../insights/data_visualisation.html">Getting Our First Insights from Data</a></li><li class="breadcrumb-item"><a href="../insights/data_manipulation.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../insights/data_visualisation.html">Getting Our First Insights from Data</a></li><li class="breadcrumb-item"><a href="../insights/data_manipulation.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Wrangling for Business Analytics</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -96,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Foundations of Business Analytics</a> 
@@ -117,9 +144,9 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">Foundations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -139,16 +166,16 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../foundations/reproducible.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows with R &amp; Posit Cloud</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
  <span class="menu-text">Getting Our First Insights from Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -162,124 +189,20 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../insights/data_manipulation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../insights/data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analysing Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Wrangling for Business Analytics</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Finding and Storing Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collecting Data</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Extracting Deeper Insights from Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/data_variation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Finding Variation in Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive Analytics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/causal_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Causal Analytics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/predictive_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Analytics</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Ethics and Privacy</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ethics_privacy/ethics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics &amp; Privacy in Business Analytics</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Conclusion</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../conclusion/conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">Tutorials</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
@@ -288,25 +211,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../tutorials/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 2: Core Skills of a Business Scientist &amp; Introduction to Posit Cloud</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../tutorials/data_visualisation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorial 3: Data Visualisation for Business Intelligence</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendices/installation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">installation.html</span></span></a>
+  <a href="../tutorials/data_wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 4: Data Wrangling for Business Analytics</span></a>
   </div>
 </li>
       </ul>
@@ -314,17 +232,45 @@ ul.task-list li input[type="checkbox"] {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge"><span class="header-section-number">5.1</span> The Business Challenge</a>
+  <ul class="collapse">
+  <li><a href="#the-topic-understanding-the-level-and-composition-of-firm-profits-in-the-australian-economy" id="toc-the-topic-understanding-the-level-and-composition-of-firm-profits-in-the-australian-economy" class="nav-link" data-scroll-target="#the-topic-understanding-the-level-and-composition-of-firm-profits-in-the-australian-economy">The Topic: Understanding the Level and Composition of Firm Profits in the Australian Economy</a></li>
+  </ul></li>
+  <li><a href="#the-data-financial-statements-from-yahoo-finance" id="toc-the-data-financial-statements-from-yahoo-finance" class="nav-link" data-scroll-target="#the-data-financial-statements-from-yahoo-finance">The Data: Financial Statements from Yahoo Finance</a>
+  <ul class="collapse">
+  <li><a href="#the-method-using-dplyr-transformations-to-wrangle-data" id="toc-the-method-using-dplyr-transformations-to-wrangle-data" class="nav-link" data-scroll-target="#the-method-using-dplyr-transformations-to-wrangle-data">The Method: Using <code>dplyr</code> Transformations to Wrangle Data</a></li>
+  <li><a href="#where-were-headed" id="toc-where-were-headed" class="nav-link" data-scroll-target="#where-were-headed">Where we’re headed</a></li>
+  </ul></li>
+  <li><a href="#the-game-plan-what-were-aiming-for" id="toc-the-game-plan-what-were-aiming-for" class="nav-link" data-scroll-target="#the-game-plan-what-were-aiming-for"><span class="header-section-number">5.2</span> The Game Plan: What we’re aiming for</a></li>
+  <li><a href="#loading-and-understanding-the-data" id="toc-loading-and-understanding-the-data" class="nav-link" data-scroll-target="#loading-and-understanding-the-data"><span class="header-section-number">5.3</span> Loading and understanding the data</a>
+  <ul class="collapse">
+  <li><a href="#r-packages-for-today" id="toc-r-packages-for-today" class="nav-link" data-scroll-target="#r-packages-for-today">R packages for today</a></li>
+  <li><a href="#loading-the-asx-financial-statements-data" id="toc-loading-the-asx-financial-statements-data" class="nav-link" data-scroll-target="#loading-the-asx-financial-statements-data">Loading the ASX financial statements data</a></li>
+  </ul></li>
+  <li><a href="#using-transformations-to-wrangle-data" id="toc-using-transformations-to-wrangle-data" class="nav-link" data-scroll-target="#using-transformations-to-wrangle-data"><span class="header-section-number">5.4</span> Using transformations to wrangle data</a>
+  <ul class="collapse">
+  <li><a href="#operating-on-rows-with-filter-and-arrange" id="toc-operating-on-rows-with-filter-and-arrange" class="nav-link" data-scroll-target="#operating-on-rows-with-filter-and-arrange">Operating on rows with <code>filter()</code> and <code>arrange()</code></a></li>
+  <li><a href="#operating-on-columns-with-mutate-and-select" id="toc-operating-on-columns-with-mutate-and-select" class="nav-link" data-scroll-target="#operating-on-columns-with-mutate-and-select">Operating on columns with <code>mutate()</code> and <code>select()</code></a></li>
+  <li><a href="#operating-on-groups-with-group_by-and-summarise" id="toc-operating-on-groups-with-group_by-and-summarise" class="nav-link" data-scroll-target="#operating-on-groups-with-group_by-and-summarise">Operating on groups with <code>group_by()</code> and <code>summarise()</code></a></li>
+  </ul></li>
+  <li><a href="#bringing-it-all-together-summarizing-our-findings" id="toc-bringing-it-all-together-summarizing-our-findings" class="nav-link" data-scroll-target="#bringing-it-all-together-summarizing-our-findings"><span class="header-section-number">5.5</span> Bringing it all together: Summarizing our findings</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.6</span> Conclusion</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../insights/data_visualisation.html">Getting Our First Insights from Data</a></li><li class="breadcrumb-item"><a href="../insights/data_manipulation.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Wrangling for Business Analytics</span></h1>
 </div>
 
 
@@ -337,427 +283,1282 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
-
 </header>
 
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Learning Goals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>By the end of this lecture, you should be able to:</p>
+<ul>
+<li>Explain how data transformation techniques can simplify and clarify firm-level data, enabling focused analysis of industry-specific patterns.</li>
+<li>Use <code>filter( )</code> and <code>arrange( )</code> to narrow data sets and rank firms by profitability, revealing the most and least profitable sectors in the Australian economy.</li>
+<li>Apply <code>mutate( )</code> to create new variables—such as return on invested capital—and interpret what these metrics reveal about firm performance.</li>
+<li>Use <code>select( )</code> to isolate relevant variables, making data frames more manageable and analysis more targeted.</li>
+<li>Group data by industry using <code>group_by( )</code>, and then summarize each group using <code>summarize( )</code> to uncover differences in profit distribution across sectors.</li>
+<li>Compare summary statistics across industries to evaluate variation in returns and identify sectors with exceptional or underwhelming performance.</li>
+<li>Design a wrangling pipeline that prepares data for strategic insights—such as identifying high-return industries—for use by analysts or investment decision-makers.</li>
+</ul>
+</div>
+</div>
+<section id="the-business-challenge" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="the-business-challenge"><span class="header-section-number">5.1</span> The Business Challenge</h2>
+<section id="the-topic-understanding-the-level-and-composition-of-firm-profits-in-the-australian-economy" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="the-topic-understanding-the-level-and-composition-of-firm-profits-in-the-australian-economy">The Topic: Understanding the Level and Composition of Firm Profits in the Australian Economy</h3>
+<p>On any given trading day, about 1.7 million transactions took place on the Australian Securities Exchange (ASX), moving approximately AUD 6.5 billion in value. Behind these trades are investors buying and selling claims on firms’ profits, and firms deploying that capital to acquire and manage assets in the pursuit of profit.</p>
+<p>In this environment, the stakes are high: firms aim to maximise profit, while investors aim to maximise return on capital. Understanding which firms and industries excel in generating profits — and delivering returns — is not just an academic exercise; it’s a question that shapes investment strategies, market confidence, and economic growth.</p>
+<p>Key questions we will explore are: <strong>Which public firms produced the most profit in 2024? How did profit levels vary by industry? Which industries delivered the best returns for investors?</strong></p>
+<p>By analysing firm-level financial data, we can uncover patterns in profitability and capital efficiency that help explain the performance of Australia’s largest publicly listed companies.</p>
+<hr>
+</section>
+</section>
+<section id="the-data-financial-statements-from-yahoo-finance" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-data-financial-statements-from-yahoo-finance">The Data: Financial Statements from Yahoo Finance</h2>
+<p>To answer these questions, we draw on audited 2024 financial statements for the 200 largest ASX-listed firms (measured by assets).</p>
+<p>Financial statements provide a standardised snapshot of a company’s performance and financial health. In our data set, the key variables are:</p>
+<ul>
+<li>Company name (<code>conml</code>) – the name of the firm as listed on the ASX<br>
+</li>
+<li>Industry (<code>industry</code>) – the industry classification, allowing comparison across sectors such as mining, banking, or healthcare<br>
+</li>
+<li>Profit (<code>ebit</code>) – earnings before interest and taxes, representing core business profitability after expenses (from the income statement)<br>
+</li>
+<li>Assets (<code>at</code>) – the total resources the company owns that have economic value (from the balance sheet)<br>
+</li>
+<li>Invested Capital (<code>invested_capital</code>) – the total capital invested in the company by both shareholders and debt holders to fund operations and growth. It generally includes:
+<ul>
+<li>Equity (<code>shareequity</code>) – the funds contributed by shareholders plus retained earnings<br>
+</li>
+<li>Interest-bearing debt (<code>dlc</code>, <code>dltt</code>, <code>dvp</code>) – loans and borrowings the company uses for financing</li>
+</ul></li>
+</ul>
+<p>This is real-world data that fundamental investors—those who evaluate companies based on underlying business performance—use to identify firms whose market price is lower than their “intrinsic value”. In other words, they look for undervalued firms with strong growth potential.</p>
+<p>By working with this data, we can replicate the kind of assessments that professional analysts and fund managers use to guide billion-dollar investment decisions.</p>
+<hr>
+<p>Let’s dig into the numbers and see which firms — and which industries — were the real winners in 2024.</p>
+<section id="the-method-using-dplyr-transformations-to-wrangle-data" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="the-method-using-dplyr-transformations-to-wrangle-data">The Method: Using <code>dplyr</code> Transformations to Wrangle Data</h3>
+<blockquote class="blockquote">
+<p>“The hardest part of data science isn’t building the model, it’s getting the data ready for the model.” — D.J. Patel (former US Chief Data Scientist)</p>
+</blockquote>
+<p>Data cleaning and manipulation with the <code>dplyr</code> package involves transforming raw or messy datasets into clean, well-structured forms using a consistent set of grammar-like verbs in R.</p>
+<p>Key <code>dplyr</code> verbs include:<br>
+- <code>filter()</code> to subset rows based on conditions,<br>
+- <code>mutate()</code> to create new variables or modify existing ones,<br>
+- <code>select()</code> to choose relevant columns,<br>
+- <code>arrange()</code> to reorder rows,<br>
+- <code>summarise()</code> to aggregate data, and<br>
+- <code>group_by()</code> to split data into groups for grouped operations.</p>
+<p>Using <code>dplyr</code> pipelines with the native pipe operator (<code>|&gt;</code>) or the magrittr pipe (<code>%&gt;%</code>) allows chaining multiple operations into a clear, readable sequence. This approach improves code clarity, reusability, and ease of debugging.</p>
+<p>Clean, well-structured data is essential for reliable analysis and visualization. <code>dplyr</code> helps reduce manual errors, speeds up workflows, and ensures transparency and reproducibility — vital aspects in any business analytics project.</p>
+<p>Most data analysis workflows begin with a <code>dplyr</code> pipeline that prepares raw data into a tidy format, ready for modeling, visualization with <code>ggplot2</code>, or reporting and interactive dashboards using tools such as <code>quarto</code> and <code>shiny</code>.</p>
+</section>
+<section id="where-were-headed" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="where-were-headed">Where we’re headed</h3>
+<p>Just a few lines of R code can get data in the right form you need to generate interesting, important and actionable insights.</p>
+<p>From this:</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-4_0377dcd731204e6754f95e2f829d0c71">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 30
+   gvkey  curcd fyear   fyr datadate     at  capx shareequity   dlc   dltt   dvp
+   &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+ 1 013312 USD    2024     6 6/30/20… 102362 9273       49120  2084  18634     NA
+ 2 210216 AUD    2024     6 6/30/20…  45550 2288       17352  4228  12740     NA
+ 3 223003 USD    2024     6 6/30/20…  38022  849       19401   944  11239     NA
+ 4 212650 AUD    2024     6 6/30/20…  36694  104       11678  1590  18596     NA
+ 5 100894 AUD    2024     6 6/30/20…  33936 2548        5570  2311  14411     NA
+ 6 212427 USD    2024     6 6/30/20…  30060 2834       19531   192   5208     NA
+ 7 101601 AUD    2024     6 6/30/20…  27309  923        8585  1165  10113     NA
+ 8 226744 AUD    2024     6 6/30/20…  20894  754.       5275.  606. 10332.    NA
+ 9 220244 AUD    2024     6 6/30/20…  20564 2761         294   600   5991     NA
+10 017525 AUD    2024     6 6/30/20…  20454  608        9489    68   3310     NA
+# ℹ 19 more variables: ebit &lt;dbl&gt;, netprofit &lt;dbl&gt;, pstk &lt;dbl&gt;, sale &lt;dbl&gt;,
+#   epsexcon &lt;dbl&gt;, nicon &lt;dbl&gt;, conm &lt;chr&gt;, fic &lt;chr&gt;, conml &lt;chr&gt;,
+#   ggroup &lt;dbl&gt;, gind &lt;dbl&gt;, gsector &lt;dbl&gt;, gsubind &lt;dbl&gt;, sector &lt;chr&gt;,
+#   indgroup &lt;chr&gt;, industry &lt;chr&gt;, subind &lt;chr&gt;, debt &lt;dbl&gt;,
+#   invested_capital &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>To this:</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-5_01164b64c62ae9a4b0fc23c67a80ea80">
+<div class="cell-output-display">
+<p><img src="data_manipulation_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="the-game-plan-what-were-aiming-for" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="the-game-plan-what-were-aiming-for"><span class="header-section-number">5.2</span> The Game Plan: What we’re aiming for</h2>
+<p>Recall our workflow:</p>
+<ol type="1">
+<li>Define the Business Question(s) &amp; Plan Outputs</li>
+<li><strong>Acquire and Prepare Data</strong></li>
+<li>Explore and Visualize Patterns</li>
+<li>Analyze and Interpret Findings</li>
+<li>Communicate Insights and Recommendations</li>
+</ol>
+<p>Sketch of the plan:</p>
+<ul class="task-list">
+<li><input type="checkbox">Define the Business Questions</li>
+<li><input type="checkbox">Load financial statements data</li>
+<li><input type="checkbox">Wrangle data by operating on rows to isolate and order a subset of observations</li>
+<li><input type="checkbox">Use bar plot to identify the firms that produce the largest profits and the largest losses</li>
+<li><input type="checkbox">Wrangle data by operating on columns to widen or narrow data frame</li>
+<li><input type="checkbox">Use histogram to plot the distribution of returns to investors</li>
+<li><input type="checkbox">Wrangle data by operating on groups to summarise and compare subsets of observations</li>
+<li><input type="checkbox">Use box plot to describe return distributions across industries</li>
+<li><input type="checkbox">Analyze, Interpret &amp; Communicate</li>
+</ul>
+<p>Let’s get started!</p>
+</section>
+<section id="loading-and-understanding-the-data" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="loading-and-understanding-the-data"><span class="header-section-number">5.3</span> Loading and understanding the data</h2>
+<section id="r-packages-for-today" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="r-packages-for-today">R packages for today</h3>
+<p>Much of this week’s material will involve our using the <code>dplyr</code> package, which is one of the core packages in the <code>tidyverse</code> (one nice feature of <code>dplyr</code> is that it behaves nicely with <code>ggplot</code>, <code>tidyr</code>, <code>stringr</code>, and other data wrangling and visualization packages). The <code>dpylr</code> package is designed specifically for data wrangling. We will use <code>dplyr</code>’s core manipulation functions-<code>filter()</code>, <code>select()</code>, <code>arrange()</code>, <code>mutate()</code>, <code>summarise()</code>, and <code>group_by()</code>-to clean our data frames and make them more readable.</p>
+<p>And so to begin, we need to load the packages that we will use for this chapter.</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-6_3bb61446f7fb3c6c7f1a5886ea89fa02">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the tidyverse for data manipulation and visualisation</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load scales for axis formatting and transformations</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Load ggokabeito for a colour-blind-friendly palette (available if you choose to use it)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggokabeito)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Load ggthemes for additional polished ggplot themes</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load patchwork to combine multiple ggplots into one figure</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Load stringr for consistent string manipulation helpers</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Load RColorBrewer for qualitative and sequential colour palettes</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="What is `stringr`?">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What is <code>stringr</code>?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You may notice that we load many of the packages that you used for data visualization in last week’s lecture and tutorial. While the focus of this week’s material is data wrangling, we will do so with a clear goal toward producing insightful plots. You may also notice an unfamiliar package, <code>stringr</code>. This package is a useful tool for working with strings (i.e., text data). It provides a set of functions that simplify common string manipulation tasks, some of which we will use in this week’s lecture and tutorial to create labels and titles for our plots from the text data in our dataframes.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="loading-the-asx-financial-statements-data" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="loading-the-asx-financial-statements-data">Loading the ASX financial statements data</h3>
+<p>We now import the financial statements data set, which covers the 200-largest ASX-listed firms in 2024. The data is from Yahoo Finance, a public website that collects and disseminates information that it gathers from firms’ audited financial statements (i.e., annual reports) and capital markets (i.e., stock prices and volumes).</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-7_1ac16c1b02070e61da07ba0ef636efb1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the 2024 ASX 200 data set</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>asx_200_2024 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/asx_200_2024.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>So, how is this data frame structured and what information does it contain?</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-8_286a9cc2bab73c2bb0cdb1c2539c23de">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>asx_200_2024 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 200 × 30
+   gvkey  curcd fyear   fyr datadate     at  capx shareequity   dlc   dltt   dvp
+   &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+ 1 013312 USD    2024     6 6/30/20… 102362 9273       49120  2084  18634     NA
+ 2 210216 AUD    2024     6 6/30/20…  45550 2288       17352  4228  12740     NA
+ 3 223003 USD    2024     6 6/30/20…  38022  849       19401   944  11239     NA
+ 4 212650 AUD    2024     6 6/30/20…  36694  104       11678  1590  18596     NA
+ 5 100894 AUD    2024     6 6/30/20…  33936 2548        5570  2311  14411     NA
+ 6 212427 USD    2024     6 6/30/20…  30060 2834       19531   192   5208     NA
+ 7 101601 AUD    2024     6 6/30/20…  27309  923        8585  1165  10113     NA
+ 8 226744 AUD    2024     6 6/30/20…  20894  754.       5275.  606. 10332.    NA
+ 9 220244 AUD    2024     6 6/30/20…  20564 2761         294   600   5991     NA
+10 017525 AUD    2024     6 6/30/20…  20454  608        9489    68   3310     NA
+# ℹ 190 more rows
+# ℹ 19 more variables: ebit &lt;dbl&gt;, netprofit &lt;dbl&gt;, pstk &lt;dbl&gt;, sale &lt;dbl&gt;,
+#   epsexcon &lt;dbl&gt;, nicon &lt;dbl&gt;, conm &lt;chr&gt;, fic &lt;chr&gt;, conml &lt;chr&gt;,
+#   ggroup &lt;dbl&gt;, gind &lt;dbl&gt;, gsector &lt;dbl&gt;, gsubind &lt;dbl&gt;, sector &lt;chr&gt;,
+#   indgroup &lt;chr&gt;, industry &lt;chr&gt;, subind &lt;chr&gt;, debt &lt;dbl&gt;,
+#   invested_capital &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Our data frame is a <code>tibble</code> that has 200 rows (one for each of the 200-largest companies on the ASX in 2024) and 30 columns (each of which is a variable or identifier that contains information on that row’s company). Most of these columns contain financial statement information that describe the companies’ operations (i.e., the core economic activities that companies undertake to generate profits) and capital structure (i.e., how companies use debt and equity to fund their operations). Because our data frame is wide, many of these columns are ‘cut off’ and so cannot be viewed in our simple HTML table.</p>
+<p>Let’s view our tibble another way to shed light on each column and its contents:</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-9_62e8c7224aba5f869d766626704b1470">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(asx_200_2024)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 200
+Columns: 30
+$ gvkey            &lt;chr&gt; "013312", "210216", "223003", "212650", "100894", "21…
+$ curcd            &lt;chr&gt; "USD", "AUD", "USD", "AUD", "AUD", "USD", "AUD", "AUD…
+$ fyear            &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024,…
+$ fyr              &lt;dbl&gt; 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,…
+$ datadate         &lt;chr&gt; "6/30/2024", "6/30/2024", "6/30/2024", "6/30/2024", "…
+$ at               &lt;dbl&gt; 102362.00, 45550.00, 38022.00, 36694.00, 33936.00, 30…
+$ capx             &lt;dbl&gt; 9273.000, 2288.000, 849.000, 104.000, 2548.000, 2834.…
+$ shareequity      &lt;dbl&gt; 49120.000, 17352.000, 19401.000, 11678.000, 5570.000,…
+$ dlc              &lt;dbl&gt; 2084.000, 4228.000, 944.000, 1590.000, 2311.000, 192.…
+$ dltt             &lt;dbl&gt; 18634.000, 12740.000, 11239.000, 18596.000, 14411.000…
+$ dvp              &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ ebit             &lt;dbl&gt; 22771.000, 3712.000, 3896.000, 1132.000, 3100.000, 85…
+$ netprofit        &lt;dbl&gt; 9601.000, 1788.000, 2714.000, 376.000, 117.000, 5664.…
+$ pstk             &lt;dbl&gt; 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 252.2, 0.0, 0.0, 0…
+$ sale             &lt;dbl&gt; 55658.000, 22928.000, 14690.000, 4119.000, 67922.000,…
+$ epsexcon         &lt;dbl&gt; 1.5582, 0.1405, 5.4699, 0.1055, 0.0885, 1.8476, 2.256…
+$ nicon            &lt;dbl&gt; 7897.000, 1622.000, 2642.000, 326.000, 108.000, 5683.…
+$ conm             &lt;chr&gt; "BHP GROUP LTD", "TELSTRA GROUP LIMITED", "CSL LTD", …
+$ fic              &lt;chr&gt; "AUS", "AUS", "AUS", "AUS", "AUS", "AUS", "AUS", "AUS…
+$ conml            &lt;chr&gt; "BHP Group Ltd", "Telstra Group Limited", "CSL Ltd", …
+$ ggroup           &lt;dbl&gt; 1510, 5010, 3520, 2030, 3010, 1510, 2550, 3510, 2030,…
+$ gind             &lt;dbl&gt; 151040, 501010, 352010, 203050, 301010, 151040, 25503…
+$ gsector          &lt;dbl&gt; 15, 50, 35, 20, 30, 15, 25, 35, 20, 55, 30, 55, 15, 5…
+$ gsubind          &lt;dbl&gt; 15104020, 50101020, 35201010, 20305020, 30101030, 151…
+$ sector           &lt;chr&gt; "Materials", "Communication Services", "Health Care",…
+$ indgroup         &lt;chr&gt; "Materials", "Telecommunication Services", "Pharmaceu…
+$ industry         &lt;chr&gt; "Metals &amp; Mining", "Diversified Telecommunication Ser…
+$ subind           &lt;chr&gt; "Diversified Metals &amp; Mining", "Integrated Telecommun…
+$ debt             &lt;dbl&gt; 20718.000, 16968.000, 12183.000, 20186.000, 16722.000…
+$ invested_capital &lt;dbl&gt; 69838.00, 34320.00, 31584.00, 31864.00, 22292.00, 249…</code></pre>
+</div>
+</div>
+<p>Given this week’s topic, much of our analysis will focus on <code>ebit</code>. This variable is our profit measure, <strong>Earnings Before Interest and Taxes</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition: EBIT
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In accounting and finance, we refer to profit as the ‘bottom line’ because it is the money left over after the business has covered its expenses and which in turn can then be paid out to the business’ owners (i.e., shareholders). EBIT tells us how much profit a company makes from its core business activities <em>before</em> it pays interest (on debt) and taxes.</p>
+<p><span class="math display">\[
+EBIT = \text{Revenue} - \text{Cost of Goods Sold} - \text{Operating Expenses}
+\]</span></p>
+<p>Because EBIT can be used to compare companies without worrying about differences in tax strategies or capital structure, investors and analysts commonly use EBIT for valuation purposes (without getting into the details of discounted cash flow models, investors pay more for companies that they expect will produce greater profits in the future, and current profits are often a good, but not perfect, indicator of future profits).</p>
+</div>
+</div>
+<p>Putting EBIT as a measure of firm profits to one side, we will define and interpret the other financial variables in our data frame as they arise during the data wrangling process.</p>
+</section>
+</section>
+<section id="using-transformations-to-wrangle-data" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="using-transformations-to-wrangle-data"><span class="header-section-number">5.4</span> Using transformations to wrangle data</h2>
+<p>For this week’s material, you will learn to use the primary <code>dplyr</code> verbs to manipulate our data frame in some basic, but useful ways. <code>dpylr</code> verbs operate on data frames in one of four ways: on rows, on columns, on groups, and on tables. We can use pipes (<code>|&gt;</code>) to combine multiple <code>dplyr</code> verbs, and so perform more complex data manipulations.</p>
+<section id="operating-on-rows-with-filter-and-arrange" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="operating-on-rows-with-filter-and-arrange">Operating on rows with <code>filter()</code> and <code>arrange()</code></h3>
+<p>You only need to skim the business section of any broadsheet newspaper to observe that the mining sector dominates the Australian economy.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figs/afr_mining.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">The Australian Financial Review has a dedicated mining section</figcaption>
+</figure>
+</div>
+<p>And so, to begin our analysis of firm profits, it makes sense to start off by comparing the operating performance of mining companies and non-mining companies for our sample of the 200-largest ASX-listed firms. To do so, we will make use of two dplyr verbs that operate on rows: <code>filter()</code> and <code>arrange()</code>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What do <code>filter()</code> and <code>arrange()</code> ‘do’?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>filter()</code> allows you to keep rows based on the values of the columns, and so changes which rows are present without changing their order. In contrast, <code>arrange()</code> changes the order of rows without changing which are present. Neither function affects the columns in the data frame.</p>
+</div>
+</div>
+<p>We can use <code>filter()</code> to identify and separately store the mining companies that appear in our data frame:</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-10_b6aa9b9e6ea76a2a0676213b9d7330b8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the 'Metals &amp; Mining' firms from the ASX 200 dataset for 2024</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>big_mining_2024 <span class="ot">&lt;-</span> asx_200_2024 <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(industry <span class="sc">==</span> <span class="st">"Metals &amp; Mining"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We use <code>arrange()</code> to list these mining companies in descending order so that those mining companies that have the largest profits appear first and those that have the the largest losses (i.e., negative profits) appear last:</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-11_d1b40204e5038dc0041e2f81c7e938e0">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort Metals &amp; Mining firms in descending order of EBIT (highest profit first)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>big_mining_2024 <span class="ot">&lt;-</span> big_mining_2024 <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ebit))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can now easily show the 10 mining companies from the ASX that produced the largest profits using a simple table:</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-12_680af294f1099a9c5be07346fa2c34af">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the top 10 most profitable mining firms (by EBIT)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>t10_mining_profits <span class="ot">&lt;-</span> big_mining_2024 <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the resulting data set</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>t10_mining_profits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 30
+   gvkey curcd fyear   fyr datadate     at  capx shareequity    dlc   dltt   dvp
+   &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+ 1 0133… USD    2024     6 6/30/20… 1.02e5 9273       49120  2.08e3 1.86e4    NA
+ 2 2124… USD    2024     6 6/30/20… 3.01e4 2834       19531  1.92e2 5.21e3    NA
+ 3 2522… AUD    2024     6 6/30/20… 1.57e4  963.      11286. 1.91e2 5.31e2    NA
+ 4 2596… AUD    2024     6 6/30/20… 1.31e4 1440        8791. 1.52e2 1.19e3    NA
+ 5 2533… AUD    2024     6 6/30/20… 8.82e3  918.       4142. 1.27e2 1.89e3    NA
+ 6 2713… USD    2024     6 6/30/20… 1.99e3  121.       1780. 1.70e0 1.52e0    NA
+ 7 2869… AUD    2024     6 6/30/20… 4.31e3  810.       3244. 1.36e2 4.20e2    NA
+ 8 2051… AUD    2024     6 6/30/20… 1.22e4 4133        3584  2.55e2 5.08e3    NA
+ 9 2564… AUD    2024     6 6/30/20… 1.59e3  123.       1329. 9.08e0 1.39e0    NA
+10 2108… AUD    2024     6 6/30/20… 3.36e3  335.       1788. 1.71e1 9.11e2    NA
+# ℹ 19 more variables: ebit &lt;dbl&gt;, netprofit &lt;dbl&gt;, pstk &lt;dbl&gt;, sale &lt;dbl&gt;,
+#   epsexcon &lt;dbl&gt;, nicon &lt;dbl&gt;, conm &lt;chr&gt;, fic &lt;chr&gt;, conml &lt;chr&gt;,
+#   ggroup &lt;dbl&gt;, gind &lt;dbl&gt;, gsector &lt;dbl&gt;, gsubind &lt;dbl&gt;, sector &lt;chr&gt;,
+#   indgroup &lt;chr&gt;, industry &lt;chr&gt;, subind &lt;chr&gt;, debt &lt;dbl&gt;,
+#   invested_capital &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>The above doesn’t quite work how we want it to because it cuts off the company’s EBIT and name (to view a wide data frame such as ours we need to open it in the dedicated viewer using <code>View()</code>).</p>
+<p>As an alternative, <a href="#fig-mining-profits">Figure&nbsp;<span>5.1</span></a> concisely and effectively conveys which Australian mining firms have the largest profits (much of the code below will look familiar from last week’s module on using <code>ggplot</code> for data visualization). Before producing this plot, we first want to fix our color scheme so that across plots the same industry is always the same color (even though for the time being we are only looking at one industry-i.e., mining-and so only need one color at this stage, later we will look at other industries, and so need to map different industries to different colors).</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-13_83e669c50cda9af8149a3acf2ec8c9a7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract all unique industries and sort them alphabetically</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>industry_levels <span class="ot">&lt;-</span> asx_200_2024<span class="sc">$</span>industry <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sort</span>()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign a colour to each industry using the Set2 palette</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>industry_colors <span class="ot">&lt;-</span> <span class="fu">setNames</span>(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Generate as many colours as there are industries</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colorRampPalette</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">"Set2"</span>))(<span class="fu">length</span>(industry_levels)),</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Name each colour with the corresponding industry</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  industry_levels</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center" data-hash="data_manipulation_cache/html/fig-mining-profits_a6ad2780b3f46aa1dc5c616b05ca7a70">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorder company names so bars appear in descending EBIT order</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>t10_mining_profits <span class="ot">&lt;-</span> t10_mining_profits <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">conml =</span> <span class="fu">reorder</span>(conml, <span class="sc">-</span>ebit))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar chart showing EBIT by company</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>t10_mining_profits <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> conml, <span class="at">y =</span> ebit, <span class="at">fill =</span> industry)) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Draw bars with heights equal to EBIT values</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use the custom Set2-based industry palette</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> industry_colors) <span class="sc">+</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a y-axis label with units in millions</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"EBIT (Million AUD)"</span>,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"ASX-Listed Mining Companies"</span>,</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Top 10 by EBIT in 2024"</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Format y-axis numbers with comma separators</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply a clean minimal theme with larger base text size</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Rotate x-axis labels for readability</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-mining-profits" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="data_manipulation_files/figure-html/fig-mining-profits-1.png" class="img-fluid figure-img" width="480"></p>
+<figcaption class="figure-caption">Figure&nbsp;5.1: BHP’s profit dwarfs those of other large Australian companies.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Discussion: BHP - Australia’s mining giant
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Headquartered in Melbourne, BHP is one of the world’s largest diversified mining companies. Founded in 1885 as Broken Hill Proprietary Company Limited, its name reflects its origins in the Broken Hill mining region. It produces a wide range of commodities including iron ore, copper, coal, and petroleum. BHP is known for its scale, operational efficiency, and global footprint, competing closely with other mining giants like Rio Tinto and Vale. The company plays a crucial role in supplying raw materials for industries worldwide and is a key player in the global mining sector.</p>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-time">
+<p>10 min</p>
+</div>
+<p>Modify the code above to produce an equivalent plot but for the <strong>non-mining companies</strong> in our data set. To do so, take the following steps:</p>
+<ol type="1">
+<li><p>Use <code>filter()</code> to create a new data frame that contains only the non-mining companies in our data set (<code>!=</code> means ‘does not’ equal in a conditional statement). Use <code>arrange()</code> to sort these companies in descending order of EBIT. Keep the first ten observations in a new data frame named <code>t10_other_profits</code>.</p></li>
+<li><p>Use <code>ggplot()</code> to create a bar chart that shows the EBIT of the ten non-mining companies with the largest profits.</p></li>
+</ol>
+</div>
+<div class="solution-header">
+<p>Solution</p>
+</div>
+<div class="solution-content">
+<p>Step 1:</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-14_713d8204b59ad6d23b1b5c731d6e788d">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame of the top 10 most profitable non-mining companies</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>t10_other_profits <span class="ot">&lt;-</span> asx_200_2024 <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Exclude Metals &amp; Mining companies</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(industry <span class="sc">!=</span> <span class="st">"Metals &amp; Mining"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sort by EBIT in descending order</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ebit)) <span class="sc">|&gt;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep only the top 10 rows</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Step 2:</p>
+<div class="cell" data-layout-align="center" data-hash="data_manipulation_cache/html/fig-non-mining-profits_817aeab1397430dc8a64c03b67372403">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorder company names so bars appear in descending EBIT order</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>t10_other_profits <span class="ot">&lt;-</span> t10_other_profits <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">conml =</span> <span class="fu">reorder</span>(conml, <span class="sc">-</span>ebit))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar chart of the ten most profitable non-mining companies</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>t10_other_profits <span class="sc">|&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> conml, <span class="at">y =</span> ebit, <span class="at">fill =</span> industry)) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Draw bars with heights equal to EBIT values</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use the Set2-based industry palette</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> industry_colors) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add labels in clear, title case</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"EBIT (Million AUD)"</span>,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"ASX-Listed Non-Mining Companies"</span>,</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Top 10 by EBIT in 2024"</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Format y-axis numbers with comma separators</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply a clean minimal theme with larger text</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Rotate x-axis labels and style legend</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.98</span>, <span class="fl">0.98</span>),</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>),</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> scales<span class="sc">::</span><span class="fu">alpha</span>(<span class="st">"white"</span>, <span class="fl">0.7</span>), <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key.size =</span> grid<span class="sc">::</span><span class="fu">unit</span>(<span class="fl">0.4</span>, <span class="st">"cm"</span>),</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.spacing.y =</span> grid<span class="sc">::</span><span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">"cm"</span>)</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>  )  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
+3.5.0.
+ℹ Please use the `legend.position.inside` argument of `theme()` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-non-mining-profits" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="data_manipulation_files/figure-html/fig-non-mining-profits-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;5.2: CSL’s headquarters is across the road from FBE’s The Spot</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<p>Comparing <a href="#fig-non-mining-profits">Figure&nbsp;<span>5.2</span></a> to <a href="#fig-mining-profits">Figure&nbsp;<span>5.1</span></a> reveals that mining companies dominate the Australian economy: the profits of the mining companies with the largest profits are much larger than those of the non-mining companies with the largest profits. However, to get the complete picture in a single plot, let’s take a step back, look at our full sample again, and plot the ten firms across all industries that have the largest profits in 2024:</p>
+<div class="cell" data-layout-align="center" data-hash="data_manipulation_cache/html/fig-all-profits_a040d6ab2754e399ad5c7e79bf00953e">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the top 10 companies by EBIT</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>t10_all_profits <span class="ot">&lt;-</span> asx_200_2024 <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ebit)) <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorder company names so bars appear in descending EBIT order</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>t10_all_profits <span class="ot">&lt;-</span> t10_all_profits <span class="sc">|&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">conml =</span> <span class="fu">reorder</span>(conml, <span class="sc">-</span>ebit))</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar chart of the top 10 most profitable companies</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>bar_plot <span class="ot">&lt;-</span> t10_all_profits <span class="sc">|&gt;</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> conml, <span class="at">y =</span> ebit, <span class="at">fill =</span> industry)) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Draw bars with heights equal to EBIT values</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use clear, title-cased labels; no x-axis label</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"EBIT (Million AUD)"</span>,</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Top 10 Most Profitable ASX-Listed Companies, 2024"</span>,</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Ranked by EBIT"</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Format y-axis numbers with comma separators</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply the provided industry palette</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> industry_colors) <span class="sc">+</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use a clean minimal theme with slightly larger text</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Rotate x-axis labels and style legend</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.98</span>, <span class="fl">0.98</span>),</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>),</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> scales<span class="sc">::</span><span class="fu">alpha</span>(<span class="st">"white"</span>, <span class="fl">0.7</span>), <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key.size =</span> grid<span class="sc">::</span><span class="fu">unit</span>(<span class="fl">0.4</span>, <span class="st">"cm"</span>),</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.spacing.y =</span> grid<span class="sc">::</span><span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">"cm"</span>)</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the plot</span></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>bar_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-all-profits" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="data_manipulation_files/figure-html/fig-all-profits-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption class="figure-caption">Figure&nbsp;5.3: The top mining companies are staggeringly profitable</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-all-profits">Figure&nbsp;<span>5.3</span></a> shows that although non-mining companies outnumber mining companies in our top ten (two to eight), the combined profits of the latter are larger than the combined profits of the former. And so, at least on the basis of profits, mining companies really do dominate the Australian economy.</p>
+<div class="exercise">
+<div class="exercise-time">
+<p>10 min</p>
+</div>
+<p>Modify the code above to produce an equivalent plot but for the ten companies that produced the <strong>worst losses</strong> in 2024. To do so, take the following steps:</p>
+<ol type="1">
+<li><p>Use <code>arrange()</code> to place in ascending order by profits all companies in our data frame. Keep the first ten observations in a new data frame named <code>t10_all_losses</code>.</p></li>
+<li><p>Use <code>ggplot()</code> to create a bar plot that shows the EBIT of the ten companies with the worst losses. Use <code>fill = industry</code> to color firms by their industry.</p></li>
+</ol>
+</div>
+<div class="solution-header">
+<p>Solution</p>
+</div>
+<div class="solution-content">
+<p>Step 1:</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-15_52ef0be6ff30d2cd174c209cd79d4643">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the 10 companies with the largest losses (lowest EBIT values)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>t10_all_losses <span class="ot">&lt;-</span> asx_200_2024 <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sort by EBIT in ascending order so loss-makers appear first</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(ebit) <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep only the first 10 rows</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Step 2:</p>
+<div class="cell" data-layout-align="center" data-hash="data_manipulation_cache/html/fig-all-losses_034842babf0afdc389cff11b503a419a">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorder company names so bars appear from largest to smallest loss</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>t10_all_losses <span class="ot">&lt;-</span> t10_all_losses <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">conml =</span> <span class="fu">reorder</span>(conml, ebit))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar chart of the 10 companies with the largest losses</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>t10_all_losses <span class="sc">|&gt;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> conml, <span class="at">y =</span> ebit, <span class="at">fill =</span> industry)) <span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Draw bars with heights equal to EBIT values</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add labels in clear, title case</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"EBIT (Million AUD)"</span>,</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Top 10 ASX-Listed Companies by Losses"</span>,</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Largest Loss-Makers in 2024"</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Format y-axis numbers with comma separators</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply the provided industry palette</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> industry_colors) <span class="sc">+</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use a clean minimal theme with larger base font</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Rotate x-axis labels and position legend bottom-right</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.98</span>, <span class="fl">0.02</span>),</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"bottom"</span>),</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> scales<span class="sc">::</span><span class="fu">alpha</span>(<span class="st">"white"</span>, <span class="fl">0.7</span>), <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key.size =</span> grid<span class="sc">::</span><span class="fu">unit</span>(<span class="fl">0.4</span>, <span class="st">"cm"</span>),</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.spacing.y =</span> grid<span class="sc">::</span><span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">"cm"</span>)</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-all-losses" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="data_manipulation_files/figure-html/fig-all-losses-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption class="figure-caption">Figure&nbsp;5.4: Plenty of mining companies also make bad losses</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<p>Interestingly, seven of the ten companies that produced the worst losses in 2024 are mining companies. Taken together, <a href="#fig-all-profits">Figure&nbsp;<span>5.3</span></a> and <a href="#fig-all-losses">Figure&nbsp;<span>5.4</span></a> reveal a key feature of the Australian economy: Mining is a boom-or-bust business.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Discussion: Mining and the ‘Wild West’
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mining has long been a cornerstone of the Australian economy, especially in the vast and remote regions of Western Australia. This frontier-style industry is marked by bold ventures, high risks, and the promise of enormous rewards — a dynamic that continues to shape the business landscape today.</p>
+<p>Banks and other small lenders typically lack both the risk appetite and the capital base needed to fund mining ventures. As a result, mining companies must turn to the stock market to raise the substantial funds required for land acquisition and leases, and plant, property, and heavy equipment — none of which come cheaply. Consequently, mining companies dominate the ASX, both in terms of listings (as we will show later) and in representing the firms that generate the largest profits <em>and</em> the largest losses.</p>
+<p>This extreme variation in EBIT reflects the high operating risk inherent in mining — it is, quite literally, a boom-or-bust business. The volatility arises from several sources: the speculative nature of prospecting (it’s difficult to predict where and how much resource will be found), the cyclical fluctuations in global commodity prices, and the immense costs associated with exploration and extraction.</p>
+</div>
+</div>
+</section>
+<section id="operating-on-columns-with-mutate-and-select" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="operating-on-columns-with-mutate-and-select">Operating on columns with <code>mutate()</code> and <code>select()</code></h3>
+<p>We need to keep in mind that profit is a dollar-dominated measure of operating performance, and so it may be the case that those firms that produce the largest profits or the largest losses are simply the largest firms in our sample (i.e., undertake the most economic activity and so by function of their size make or lose lots of money). This distinction matters because investors ultimately want to allocate their capital to companies that generate the best returns (i.e., the most profit per dollar of investment), which may not necessarily be the firms that produce the most profit in absolute terms.</p>
+<p>Let’s observe how returns vary within the Australian economy across industries, and within industries across firms. For this analysis, we must first calculate each company’s return on investment in our sample and then focus in on this measure of operating performance. To do so, we will make use of two <code>dplyr</code> verbs that operate on columns: <code>mutate()</code> and <code>select()</code>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What do <code>mutate()</code> and <code>select()</code> ‘do’?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>mutate()</code> allows you to add new columns that are created from values in existing columns, and so ‘widens’ your data frame. In contrast, <code>select()</code> allows you to isolate specific columns and drop others, and so ‘narrows’ your data frame. Neither function affects the rows in the data frame.</p>
+</div>
+</div>
+<p>We will use <code>mutate()</code> to create our measure of firm profitability, <strong>Return on Invested Capital</strong> (ROIC):</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-16_7612ff7acd19040ed0a25e9061966285">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Return on Invested Capital (ROIC) for firms with valid invested capital</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>returns <span class="ot">&lt;-</span> asx_200_2024 <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Exclude firms with zero or negative invested capital</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(invested_capital <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create new ROIC variable: EBIT divided by invested capital</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">roic =</span> ebit <span class="sc">/</span> invested_capital)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition: Profit vs Profitability - Why ROIC?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>ROIC captures how effectively a company is using the funds invested by its shareholders <em>and</em> debt holders to generate profits. We calculate ROIC as follows, where Invested Capital is defined as debt plus equity as per the book values in the firm’s balance sheet: <span class="math display">\[
+ROIC = \frac{EBIT}{\text{Invested Capital}}
+\]</span> Consider Company A, which receives $10 in investment and produces $100 in profit. Consider Company B, which receives $100 in investment and produces $101 in profit. While company B produces a larger profit, Company A is a much better investment because it generates much more profit per dollar of investment - i.e., it provides investors with a much higher return on their capital. ROIC makes this clear: Company A’s ROIC is 10, while Company B’s ROIC is 1.01.</p>
+</div>
+</div>
+<p>You should notice that in the above chunk of code before creating our ROIC variable and assigning this to our returns data frame we drop observations from our sample where invested capital is missing or equal to zero. We do so to avoid creating a variable where we may for some observations need to divide by zero (which of course cannot be done).</p>
+<p>So, which ten Australian companies produced the best operating returns in 2024?</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-17_eb2c44a5e6f92cb682dac25707b0e346">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Return the 10 companies with the highest ROIC</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>returns <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sort in descending order of ROIC</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(roic)) <span class="sc">|&gt;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep the top 10 rows</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 31
+   gvkey  curcd fyear   fyr datadate       at     capx shareequity    dlc   dltt
+   &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1 242679 AUD    2024     6 6/30/2024    866.    0.607        74.9 3.99e0 1.66e1
+ 2 248015 AUD    2024     6 6/30/2024   2655     4.2        1579.  8.8 e0 2.72e2
+ 3 212427 USD    2024     6 6/30/2024  30060  2834         19531   1.92e2 5.21e3
+ 4 241419 AUD    2024     9 9/30/2024    757.    6.32        379.  7.10e0 5.26e1
+ 5 013312 USD    2024     6 6/30/2024 102362  9273         49120   2.08e3 1.86e4
+ 6 289353 AUD    2024     6 6/30/2024    624.   65.6         309.  6.03e1 2.38e1
+ 7 220244 AUD    2024     6 6/30/2024  20564  2761           294   6   e2 5.99e3
+ 8 333913 AUD    2024     6 6/30/2024    338.   40.7         160.  1.88e1 5.09e1
+ 9 318878 AUD    2024     6 6/30/2024    533.   38.5          80.3 5.84e1 3.01e2
+10 364417 AUD    2024     6 6/30/2024    362.    3.92         82.9 3.73e1 6.91e1
+# ℹ 21 more variables: dvp &lt;dbl&gt;, ebit &lt;dbl&gt;, netprofit &lt;dbl&gt;, pstk &lt;dbl&gt;,
+#   sale &lt;dbl&gt;, epsexcon &lt;dbl&gt;, nicon &lt;dbl&gt;, conm &lt;chr&gt;, fic &lt;chr&gt;,
+#   conml &lt;chr&gt;, ggroup &lt;dbl&gt;, gind &lt;dbl&gt;, gsector &lt;dbl&gt;, gsubind &lt;dbl&gt;,
+#   sector &lt;chr&gt;, indgroup &lt;chr&gt;, industry &lt;chr&gt;, subind &lt;chr&gt;, debt &lt;dbl&gt;,
+#   invested_capital &lt;dbl&gt;, roic &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>As we discussed briefly already, tables such as the one above are too wide for our purposes. <code>mutate()</code> adds columns to the right-hand side of your data frame, where information is often cutoff from view in dynamic documents such as this one. Given that our focus is on identifying the companies in our top ten and these companies’ returns, we can use <code>select()</code> to ‘narrow’ our data frame, and so produce a table that only reports the columns that we currently interested in.</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-18_064720ad31ad20f07ed7360d6aa505e5">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Return the 10 companies with the highest ROIC</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>returns <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sort in descending order of ROIC</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(roic)) <span class="sc">|&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep the top 10 rows</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Select only columns relevant to operating returns in 2024</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(fyear, conml, roic, ebit, invested_capital)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 5
+   fyear conml                 roic    ebit invested_capital
+   &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+ 1  2024 Data3 Ltd            0.558    53.2             95.5
+ 2  2024 REA Group Ltd        0.382   711.            1860  
+ 3  2024 Fortescue Ltd        0.342  8520            24931  
+ 4  2024 Technology One Ltd   0.334   147.             439. 
+ 5  2024 BHP Group Ltd        0.326 22771            69838  
+ 6  2024 Capricorn Metals Ltd 0.322   127.             393. 
+ 7  2024 Qantas Airways Ltd   0.319  2198             6885  
+ 8  2024 Mader Group Ltd      0.313    72.0            230. 
+ 9  2024 Lovisa Holdings Ltd  0.297   131.             439. 
+10  2024 Symal Group Limited  0.292    55.3            189. </code></pre>
+</div>
+</div>
+<p>This table is much better as it focuses on reporting the information that is most relevant to our current research question. You may notice two interesting takeaways from this table.</p>
+<ol type="1">
+<li>While Data3’s profit is relatively small as a dollar amount, it generates this profit using a very small amount of invested capital such that the company produces the best return for all ASX-listed firms in our sample.</li>
+<li>BHP’s profit is very large as a dollar amount, but it generates this profit using a very large amount of invested capital. As such, BHP produces a strong return but not the strongest.</li>
+</ol>
+<p>Comparing these two companies makes clear the distinction between measures of operating performance that capture profit vs profitability.</p>
+<div class="exercise">
+<div class="exercise-time">
+<p>5 min</p>
+</div>
+<p><strong>Question:</strong><br>
+What features of Data#3’s business model and the broader economics of the IT and cloud services industry help explain its high ROIC?</p>
+<p>In your answer, consider:</p>
+<ul>
+<li>How much capital (land, plant, equipment) a company like Data#3 needs to operate</li>
+<li>The role of intangible assets, such as software, service contracts, and technical know-how</li>
+<li>How cloud-based business models affect scalability and margins</li>
+<li>Why return on capital might be high even if margins are not extreme</li>
+</ul>
+<p>Write a few sentences explaining how these factors contribute to Data#3’s strong performance.</p>
+<div class="solution-header">
+<p>Solution</p>
+</div>
+<div class="solution-content">
+<p>Data#3’s high ROIC reflects the economics of the IT and cloud services industry. Unlike mining or manufacturing firms, Data#3 does not need to invest heavily in physical assets—its operations rely on skilled labor, software systems, and cloud infrastructure managed by third parties. This means low invested capital.</p>
+<p>At the same time, cloud-based services and IT solutions can scale efficiently, allowing the firm to serve many clients without a matching increase in costs. As a result, Data#3 generates high earnings from a relatively small capital base, which drives up ROIC even if profit margins are moderate.</p>
+</div>
+</div>
+<hr>
+<div class="exercise">
+<div class="exercise-time">
+<p>10 min</p>
+</div>
+<p>Modify the code above to produce an equivalent table but for the ten companies that achieved the <strong>worst returns</strong> in 2024. To do so, take the following steps:</p>
+<ol type="1">
+<li><p>Use <code>arrange()</code> to place in ascending order by returns all companies in our data frame. Use <code>head()</code> to keep the first ten observations in a new data frame named <code>b10_returns</code>.</p></li>
+<li><p>Use <code>select()</code> to extract and store from this new, shorter data frame the following columns: <code>fyear</code>, <code>conml</code>, <code>roic</code>, <code>ebit</code>, and <code>invested_capital</code>.</p></li>
+</ol>
+</div>
+<div class="solution-header">
+<p>Solution</p>
+</div>
+<div class="solution-content">
+<p>Step 1:</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-19_48637afc591e8ee51856c0dd17b29097">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the 10 companies with the lowest ROIC values</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>b10_returns <span class="ot">&lt;-</span> returns <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sort in ascending order of ROIC (worst performers first)</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(roic) <span class="sc">|&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep only the first 10 rows</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Step 2:</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-20_e49e951c784af5a7c16cd24e38d8a99d">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the 10 companies with the lowest ROIC, keeping only relevant columns</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>b10_returns <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(fyear, conml, roic, ebit, invested_capital)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 5
+   fyear conml                               roic   ebit invested_capital
+   &lt;dbl&gt; &lt;chr&gt;                              &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;
+ 1  2024 Strandline Resources Ltd         -0.705  -193.              273.
+ 2  2024 The Star Entertainment Group Ltd -0.515  -584.             1135.
+ 3  2024 St Barbara Ltd                   -0.224   -80.0             357.
+ 4  2024 IGO Limited                      -0.182  -593.             3258 
+ 5  2024 Amplitude Energy Limited         -0.166  -112.              673.
+ 6  2024 Beach Energy Ltd                 -0.145  -594              4107.
+ 7  2024 Sayona Mining Ltd                -0.139  -115.              826.
+ 8  2024 Pantoro Ltd                      -0.130   -60.9             469.
+ 9  2024 Western Areas Ltd                -0.121  -394.             3258 
+10  2024 Mesoblast Ltd                    -0.0967  -58.0             599.</code></pre>
+</div>
+</div>
+</div>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Discussion: Star Entertainment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>One name from this list-Star Entertainment Group-should immediately jump out if you regularly read the Australian Financial Review. Much has been written in the Australian business press about the poor operating performance of Star Entertainment, a gambling and entertainment company that operates several high-profile casinos.</p>
+<p>The Star Entertainment Group is one of Australia’s largest casino operators, running major venues in Sydney, Brisbane, and the Gold Coast. For years, it relied heavily on high-roller gambling and large-scale property developments to drive profits. The company’s fortunes have deteriorated sharply over the past few years, initially due to the pandemic’s hit to tourism, then more severely from a series of damaging regulatory inquiries into money laundering and governance failures. These have resulted in costly compliance measures, reduced high-roller business, and reputational damage.</p>
+<p>In 2025, Star Entertainment remains in a precarious position — it has bought some time through emergency funding, but without new asset sales, debt relief, or a regulatory settlement, the risk of collapse is still on the table.</p>
+</div>
+</div>
+<p>While short, narrow tables such as the above are useful for identify and describing limited features of a small subset of a longer, wider data frame, often we want to more fully describe and summarize these longer, wider data frames, and so we are better off relying on visualizations and/or descriptive statistics such as measures of central tendency and dispersion.</p>
+<p>For example, what return did the typical large Australian public company produce in 2024? How commonly did firms produce returns in excess of 40%? And returns worse than -20%? To illustrate the benefits of visualization for generating insight, we can use a histogram to examine the distribution of firm profitability for all firms in our sample (i.e., the largest 200 companies on the ASX in 2024) and so answer these questions:</p>
+<div class="cell" data-layout-align="center" data-hash="data_manipulation_cache/html/fig-returns-histogram_f448a8823a4132957413c1590328cc3d">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of ROIC across firms</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">&lt;-</span> returns <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> roic)) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Draw histogram with 30 bins, semi-transparent blue fill, and black border</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add clear labels and title case</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Return on Invested Capital"</span>,</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Operating Returns"</span>,</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Large Australian Public Companies in 2024"</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply a clean minimal theme</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Limit y-axis range to 0–50 without dropping data</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">50</span>))</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the histogram</span></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>histogram</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-returns-histogram" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="data_manipulation_files/figure-html/fig-returns-histogram-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption class="figure-caption">Figure&nbsp;5.5: Is this distribution one you would expect in an open market economy such Australia’s?</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-returns-histogram">Figure&nbsp;<span>5.5</span></a> reveals several important insights. First, the typical large Australian public company in 2024 achieved returns for investors of approximately 10%. Second, the vast majority of large Australian public companies in 2024 achieved returns of between 0-15%. Third, very few (&lt; 4) large Australian public companies in 2024 achieved returns worse than -20%, and only one large Australian companies achieved returns better than 40%.</p>
+</section>
+<section id="operating-on-groups-with-group_by-and-summarise" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="operating-on-groups-with-group_by-and-summarise">Operating on groups with <code>group_by()</code> and <code>summarise()</code></h3>
+<p>Earlier, we said that mining companies are subject to greater operating risk than firms in other industries (mining is highly speculative and prospectors cannot perfectly predict sites that contain resources; extracting those resources can be very challenging and costly, and commodity prices are very volatile). A key insight in finance is that investors in order to take on greater risk expect to be compensated with higher returns. And so, we should observe that mining companies returns, while more dispersed, are on average higher than non-mining companies returns, which are less dispersed.</p>
+<p>To establish whether this is the case, we need to examine how returns vary across industries for our sample of large Australian public companies. To do so, we will make use of two dplyr functions that operate on groups within our data frame: <code>group_by()</code> and <code>summarize()</code>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What do <code>group_by()</code> and <code>summarize()</code> ‘do’?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>group_by()</code> divides our data frame into groups on which we can then perform subsequent operations. One such operation is <code>summarize()</code>, which reduces the data frame to have a single row for each group, where each row contains summary statistics for that group. This is useful for aggregating data and calculating statistics such as means, medians, or counts. Another useful summary is <code>n()</code>, which returns the number of rows in each group. These functions affect the rows and columns in a data frame - e.g., <code>group_by()</code> then <code>summarize()</code> ‘shortens’ <em>and</em> ‘narrows’.</p>
+</div>
+</div>
+<p>Before examining how returns vary across industries, we should first get a sense of the composition of the largest 200 Australian public companies in 2024. Which industry is most represented in our sample? Which is least represented? Did a small number of industries make up most of the Australian stock market in 2024? To answer these questions, we use <code>group_by()</code> to group our data frame by industry, and then summarize to count the number of observations associated with each industry in this group:</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-21_899e611bf3adaec95d91c72887ca0bee">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>returns <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Group firms by industry</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(industry) <span class="sc">|&gt;</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Count the number of observations in each industry</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">obs =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sort industries from most to fewest observations</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(obs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 45 × 2
+   industry                           obs
+   &lt;chr&gt;                            &lt;int&gt;
+ 1 Metals &amp; Mining                     42
+ 2 Specialty Retail                    14
+ 3 Construction &amp; Engineering          11
+ 4 Hotels, Restaurants &amp; Leisure       11
+ 5 Oil, Gas &amp; Consumable Fuels          9
+ 6 Commercial Services &amp; Supplies       7
+ 7 Food Products                        7
+ 8 Health Care Providers &amp; Services     6
+ 9 Trading Companies &amp; Distributors     5
+10 Broadline Retail (New Name)          4
+# ℹ 35 more rows</code></pre>
+</div>
+</div>
+<p>The above table shows that while we observe 45 distinct industries in our sample, seven industries account for more than half of the 200 largest Australian public companies (and mining alone accounts for almost one quarter of these companies). Given the importance of these seven ‘big’ industries to the Australian economy-Metals &amp; Mining; Specialty Retail; Construction &amp; Engineering; Hotels, Restaurants, &amp; Leisure; Oil, Gas, &amp; Consumable Fuels; Commercial Services &amp; Supplies; and, Food Products-let’s focus on them for the remainder of our industry-level analyses.</p>
+<p>We use <code>filter()</code> to isolate observations from this sub-set of industries, and then use <code>group_by()</code> to group our data frame by industry. After this, we then use <code>summarize()</code> to calculate each industry’s average returns and standard deviation of returns for our sub sample of firms drawn from the 200 largest Australian public companies in 2024:</p>
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-22_00ceffb5e354921548ee145449419950">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the set of 'big' industries to focus on</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>big_industries <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Metals &amp; Mining"</span>,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Specialty Retail"</span>,</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Construction &amp; Engineering"</span>,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Hotels, Restaurants &amp; Leisure"</span>,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Oil, Gas &amp; Consumable Fuels"</span>,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Commercial Services &amp; Supplies"</span>,</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Food Products"</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean and standard deviation of ROIC for the big industries</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>returns <span class="sc">|&gt;</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep only rows from the selected industries</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(industry <span class="sc">%in%</span> big_industries) <span class="sc">|&gt;</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Group by industry</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(industry) <span class="sc">|&gt;</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Compute average and standard deviation of ROIC</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">ave_roic =</span> <span class="fu">mean</span>(roic, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_roic =</span> <span class="fu">sd</span>(roic, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sort from highest to lowest average ROIC</span></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ave_roic))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 3
+  industry                       ave_roic sd_roic
+  &lt;chr&gt;                             &lt;dbl&gt;   &lt;dbl&gt;
+1 Construction &amp; Engineering      0.144    0.0597
+2 Specialty Retail                0.140    0.0810
+3 Commercial Services &amp; Supplies  0.133    0.0950
+4 Food Products                   0.0714   0.0413
+5 Metals &amp; Mining                 0.0357   0.177 
+6 Hotels, Restaurants &amp; Leisure   0.0349   0.201 
+7 Oil, Gas &amp; Consumable Fuels    -0.00279  0.127 </code></pre>
+</div>
+</div>
+<p>This table is useful, but we can use a box plot to provide a visualization that more richly describes how returns are distributed within industries, and how these distributions differ across industries.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="What is a box plot?">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What is a box plot?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A box plot is a statistical chart that summarizes the distribution of a numeric variable using five key values: the minimum, first quartile (Q1), median, third quartile (Q3), and maximum. The “box” shows the middle 50% of the data, with a line inside marking the median. The “whiskers” extend to the smallest and largest values within a set range, and points outside are plotted individually as outliers. Box plots are useful for quickly comparing distributions, spotting skewness, and identifying extreme values across different groups.</p>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center" data-hash="data_manipulation_cache/html/fig-returns-box_13f9b2cb43550a12cef159499c3de27f">
+<div class="cell-output-display">
+<div id="fig-returns-box" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="data_manipulation_files/figure-html/fig-returns-box-1.png" class="img-fluid figure-img" width="480"></p>
+<figcaption class="figure-caption">Figure&nbsp;5.6: Mining has the most extreme outliers in either tail</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Hmm, this plot presents results that are only partially consistent with the story we have been telling ourselves so far. Returns in mining are very highly dispersed compared to other industries, but expected returns in mining are lower than those in many other industries. And so, it seems that while mining companies do face heightened operating risk, investors in mining companies do not appear to achieve returns commensurate with this level of risk.</p>
+<p>In fact, if anything, the plot as a whole suggests an inverted relationship between expected returns and risk-i.e., those industries that produce the best returns on average also produce returns that are less dispersed. One reason for why this is the case is that in sectors like mining, high volatility in ROIC often stems from cyclical demand, volatile input prices, and the heavy fixed costs associated with capital-intensive operations. These factors amplify losses in bad years but place natural limits on upside in good years, pulling down the long-run average ROIC.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Discussion: Construction &amp; Engineering – Profits in a High-Pressure Industry
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Construction &amp; Engineering sector in Australia is currently enjoying strong operating returns, reflecting a combination of sustained infrastructure investment, private development activity, and the ability of firms to maintain healthy margins. Major public transport upgrades (including the soon-to-open Parkville train station), renewable energy projects, and resource-related construction have kept order books full, while the limited number of large-scale contractors capable of delivering such projects has given established players considerable pricing power.</p>
+<p>Several structural factors help keep margins elevated. A limited supply of skilled labour from engineers to specialist trades — allows firms to bid at higher prices, confident that competitors face similar cost pressures. The complexity and scale of many projects also create high barriers to entry, reducing competition. Additionally, the prevalence of long-term government contracts often locks in profit margins and shifts some risk to the client, particularly in cost-plus or staged-delivery arrangements.</p>
+<p>That said, these strong returns are not without risk. Supply chain disruptions, industrial relations disputes, and changes in government spending priorities can still impact profitability. Nonetheless, for now, the sector’s combination of robust demand and constrained supply continues to underpin its strong operating performance.</p>
+</div>
+</div>
+<p>Before we conclude that our plot provides suﬀicient evidence to refute the idea of the risk- return trade-off that lies at the heart of modern financial theory and practice, we need to think careful about limitations in our data and analyses. First, our dataframe only contains observations from 2024, and so perhaps our analysis is simply noisy (for example, commodity prices in 2024 may have been unexpectedly low). One way to address this issue is to broaden our sample to include observations from earlier years, and average out noise that affects specific industries in certain years. Second, our data frame only contains observations from the largest 200 Australian public companies, and so our results do not reflect the performance of small mining companies, which may generate very high returns given their lower levels of investment. We could address this issue in our analysis by broadening our sample to include observations from all ASX-listed firms in a given year.</p>
+</section>
+</section>
+<section id="bringing-it-all-together-summarizing-our-findings" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="bringing-it-all-together-summarizing-our-findings"><span class="header-section-number">5.5</span> Bringing it all together: Summarizing our findings</h2>
+<p>We have applied the core <code>dpylr</code> verbs-<code>filter()</code>, <code>arrange()</code>, <code>mutate()</code>, <code>select()</code>, <code>group_by()</code>, and <code>summarize()</code>-to wrangle financial statements data for the 200 largest Australian public companies in 2024. In doing so, we have generated several insights that shed light on the level and composition of firm profits and investor returns in the Australian economy.</p>
+<p>First, we showed that in 2024, the two most profitable mining companies together earned more than the eight most profitable non-mining companies combined. Second, in terms of frequency, we showed that a broad cross-section of industries make up the most profitable companies in our sample, and that we do not see a single industry dominate the top ten most profitable companies in 2024.</p>
+<div class="cell" data-layout-align="center" data-hash="data_manipulation_cache/html/unnamed-chunk-23_71841f52761d5db005fb230f808947f8">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_manipulation_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Third, we showed that the typical large Australian public company in 2024 achieved returns for investors of approximately 10%, and that the vast majority of large Australian public companies in 2024 achieved returns of between 0-15%. In our sample, the companies with the highest profitability produced returns of approximately 40%, while the companies with the worst profitability produced returns of approximately -20%.</p>
+<div class="cell" data-layout-align="center" data-hash="data_manipulation_cache/html/unnamed-chunk-24_7e4a0daed200cd89f2dfe6f45d4cae18">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_manipulation_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Fourth, we showed that while mining companies are subject to greater operating risk than firms in other industries, they do not appear to produce returns commensurate with this level of risk. In fact, if anything, the plot as a whole suggests an inverted relationship between expected returns and risk-i.e., those industries such as Construction &amp; Engineering that produce the best returns on average also produce returns that are less dispersed.</p>
+<div class="cell" data-layout-align="center" data-hash="data_manipulation_cache/html/unnamed-chunk-25_cf942896aa6013d90524cf98852fc700">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_manipulation_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<div class="exercise">
+<div class="exercise-time">
+<p>3 min</p>
+</div>
+<p>Use the patchwork package to combine <a href="#fig-all-profits">Figure&nbsp;<span>5.3</span></a>, <a href="#fig-returns-histogram">Figure&nbsp;<span>5.5</span></a>, and <a href="#fig-returns-box">Figure&nbsp;<span>5.6</span></a> into a single figure that shows all three plots. Do so such that the bar plot is on top, the histogram is on the bottom left, and the box plot is on the right.</p>
+</div>
+<div class="solution-header">
+<p>Solution</p>
+</div>
+<div class="solution-content">
+<div class="cell" data-hash="data_manipulation_cache/html/unnamed-chunk-26_c94c0d49b345f4e6df3d4b18c5e2daf6">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the plots into patchwork</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>(bar_plot) <span class="sc">/</span> <span class="co">#bar_plot on top</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  (histogram <span class="sc">|</span> box_plot) <span class="co"># histogram on bottom left, box plot on right</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="data_manipulation_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="conclusion" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.6</span> Conclusion</h2>
+<p>In this chapter, we have explored how to use the <code>dplyr</code> package to manipulate financial data in R. We have learned how to filter, arrange, mutate, select, group, and summarize data to extract meaningful insights from financial statements. By applying these techniques to the 200 largest Australian public companies in 2024, we have gained a deeper understanding of the level and composition of firm profits and investor returns in the Australian economy. We have also built on last chapter’s material and seen how to visualize these insights using histograms and box plots, which can help us better understand the distribution of returns across industries and firms.</p>
+<p>In the next chapter, we will we will explore how to use tidyr and dplyr to reshape and combine financial data in R. We will learn how to pivot data between wide and long formats, and how to join data frames using keys to integrate information from multiple sources. By applying these techniques to the 200 largest Australian public companies in 2024, we will merge financial statements with industry classifications and market performance data, creating richer datasets for analysis. Building on the previous chapter’s work, we will also see how these reshaped datasets can serve as the foundation for deeper comparisons across industries and firms, enabling more flexible and targeted visualizations.</p>
 
 
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
-    const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
-        }
-        return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
-        }
-      }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
-    }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
-    }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
-        }
-      } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
-          }
-        } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
-            if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
       }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
-      } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
-        });
-      }
+      return codeEl.innerText;
     }
   });
-  </script>
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../insights/data_visualisation.html" class="pagination-link" aria-label="Data Visualisation for Business Intelligence">
+      <a href="../insights/data_visualisation.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation for Business Intelligence</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../insights/data_analysis.html" class="pagination-link" aria-label="Analysing Data">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analysing Data</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tutorials/what_is_business_analytics.html" class="pagination-link">
+        <span class="nav-page-text">Tutorial 1: Business Analytics Skills for Inventory Management</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 

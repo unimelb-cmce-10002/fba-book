@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Foundations of Business Analytics - Tutorial 4: Data Wrangling for Business Analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../tutorials/data_visualisation.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="../solution.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../custom.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/what_is_business_analytics.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/data_wrangling.html">Tutorial 4: Data Wrangling for Business Analytics</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Foundations of Business Analytics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What is Business Analytics?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Core Skills of a “Business Scientist”</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/reproducible.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows with R &amp; Posit Cloud</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Getting Our First Insights from Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../insights/data_visualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation for Business Intelligence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../insights/data_manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Wrangling for Business Analytics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 1: Business Analytics Skills for Inventory Management</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 2: Core Skills of a Business Scientist &amp; Introduction to Posit Cloud</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_visualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 3: Data Visualisation for Business Intelligence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_wrangling.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Tutorial 4: Data Wrangling for Business Analytics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge">The Business Challenge</a>
+  <ul class="collapse">
+  <li><a href="#the-topic-understanding-firm-strategy-in-the-australian-economy" id="toc-the-topic-understanding-firm-strategy-in-the-australian-economy" class="nav-link" data-scroll-target="#the-topic-understanding-firm-strategy-in-the-australian-economy">The Topic: Understanding firm strategy in the Australian economy</a></li>
+  <li><a href="#the-data-financial-statement-observations-from-yahoo-finance" id="toc-the-data-financial-statement-observations-from-yahoo-finance" class="nav-link" data-scroll-target="#the-data-financial-statement-observations-from-yahoo-finance">The Data: Financial Statement Observations from Yahoo Finance</a></li>
+  </ul></li>
+  <li><a href="#loading-the-data" id="toc-loading-the-data" class="nav-link" data-scroll-target="#loading-the-data">Loading the Data</a>
+  <ul class="collapse">
+  <li><a href="#r-packages-for-today" id="toc-r-packages-for-today" class="nav-link" data-scroll-target="#r-packages-for-today">R packages for today</a></li>
+  <li><a href="#loading-the-data-in-r" id="toc-loading-the-data-in-r" class="nav-link" data-scroll-target="#loading-the-data-in-r">Loading the Data in R</a></li>
+  <li><a href="#exercise-1-visualizing-the-distributions-of-profit-margin-and-asset-turnover" id="toc-exercise-1-visualizing-the-distributions-of-profit-margin-and-asset-turnover" class="nav-link" data-scroll-target="#exercise-1-visualizing-the-distributions-of-profit-margin-and-asset-turnover">Exercise 1: Visualizing the distributions of profit margin and asset turnover</a></li>
+  <li><a href="#exercise-2-firm-strategy-and-the-profit-margin---asset-turnover-relationship" id="toc-exercise-2-firm-strategy-and-the-profit-margin---asset-turnover-relationship" class="nav-link" data-scroll-target="#exercise-2-firm-strategy-and-the-profit-margin---asset-turnover-relationship">Exercise 2: Firm Strategy and The Profit Margin - Asset Turnover Relationship</a></li>
+  <li><a href="#exercise-3-firm-strategy-industry-size-and-profitability" id="toc-exercise-3-firm-strategy-industry-size-and-profitability" class="nav-link" data-scroll-target="#exercise-3-firm-strategy-industry-size-and-profitability">Exercise 3: Firm Strategy: Industry, Size, and Profitability</a></li>
+  <li><a href="#exercise-4-identifying-and-removing-outliers-to-improve-the-profit-margin-histogram" id="toc-exercise-4-identifying-and-removing-outliers-to-improve-the-profit-margin-histogram" class="nav-link" data-scroll-target="#exercise-4-identifying-and-removing-outliers-to-improve-the-profit-margin-histogram">Exercise 4: Identifying and removing outliers to improve the profit margin histogram</a></li>
+  <li><a href="#exercise-5-unpacking-the-profit-margin-asset-turnover-scatterplot" id="toc-exercise-5-unpacking-the-profit-margin-asset-turnover-scatterplot" class="nav-link" data-scroll-target="#exercise-5-unpacking-the-profit-margin-asset-turnover-scatterplot">Exercise 5: Unpacking the Profit Margin-Asset Turnover Scatterplot</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tutorial 4: Data Wrangling for Business Analytics</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Learning Goals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>By the end of this tutorial, you should be able to:</p>
+<ul>
+<li>Calculate and interpret key financial metrics – Use <code>mutate()</code> to create measures such as profit margin, asset turnover, and ROIC, and explain what these reveal about a firm’s strategic approach.<br>
+</li>
+<li>Visualise variable distributions – Use <code>ggplot2</code> to produce and interpret histograms for financial ratios, identify issues such as outliers, and explain how data pruning affects interpretation.<br>
+</li>
+<li>Explore relationships between firm strategy variables – Create scatterplots to examine how profit margin and asset turnover interact, and classify firms into strategy types (e.g., high margin, high volume, superstar, sinking ship).<br>
+</li>
+<li>Identify and profile firms at distribution extremes – Use <code>filter()</code>, <code>arrange()</code>, <code>select()</code>, and <code>slice_max()</code> to locate firms with exceptional margins, volumes, or profitability, and interpret these outliers in context.<br>
+</li>
+<li>Analyse strategy by grouping variables – Apply <code>group_by()</code> and <code>summarise()</code> to compare strategy types across industries, firm sizes, and profitability tiers.<br>
+</li>
+<li>Present comparative visualisations – Use faceted scatterplots, size/colour encodings, and stacked bar charts to reveal variation in firm strategy across sectors and performance categories.<br>
+</li>
+</ul>
+</div>
+</div>
+<section id="the-business-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="the-business-challenge">The Business Challenge</h2>
+<section id="the-topic-understanding-firm-strategy-in-the-australian-economy" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="the-topic-understanding-firm-strategy-in-the-australian-economy">The Topic: Understanding firm strategy in the Australian economy</h3>
+<p>In the lecture, we examined the level of firms’ profits and the efficiency with which firms use investors’ capital to produce these profits (i.e., returns as a measure of profitability). However, we have yet to examine variation in ‘how’ firms produce profits. Broadly speaking, firms can pursue one of two strategies. Firms can employ a high-margin, low-volume strategy, or a low-margin, high-volume strategy. The former rely on pricing power or operational efficiencies that drive down costs in order to produce more profit per unit of good or services sold. The latter rely on scaling up operations and distribution in order to sell at very high volumes goods or services that provide much less profit per unit.</p>
+<p>We calculate a firm’s profit margin as follows:</p>
+<p><span class="math display">\[
+\mathrm{Profit\ Margin} = \frac{\mathrm{EBIT}}{\mathrm{Sales}}
+\]</span></p>
+<p>Firms that effectively employ a high-margin, low-volume strategy have high profit margins (i.e., these firms generate more profit from each dollar of sales).</p>
+<p>We calculate a firm’s asset turnover as follows:</p>
+<p><span class="math display">\[
+\mathrm{Asset\ Turnover} = \frac{\mathrm{Sales}}{\mathrm{Assets}}
+\]</span></p>
+<p>Firms that effectively employ a low-margin, high-volume strategy have high asset turnover (i.e., these firms generate more sales from a given asset base).</p>
+<p>In the following exercises we will explore research questions such as the following:</p>
+<ul>
+<li>How does firm strategy vary by firm size and industry?</li>
+<li>Do we observe companies that successfully maintain high margins and high volumes, and if so, which types of companies fall into this category?</li>
+<li>Do we observe the inverse-i.e., companies that suffer from low margins and low volume?</li>
+<li>And, perhaps most importantly, how does firm strategy relate to profitability?</li>
+</ul>
+</section>
+<section id="the-data-financial-statement-observations-from-yahoo-finance" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="the-data-financial-statement-observations-from-yahoo-finance">The Data: Financial Statement Observations from Yahoo Finance</h3>
+<p>To answer these questions, we draw on audited 2024 financial statements for the 200 largest ASX-listed firms (as measured by assets). This data set should be familiar to you from the lecture.</p>
+<p>Financial statements provide a standardised snapshot of a company’s performance and financial health. In our data set, the key variables are:</p>
+<ul>
+<li>Company name (<code>conml</code>) – the name of the firm as listed on the ASX<br>
+</li>
+<li>Industry (<code>industry</code>) – the industry classification, allowing comparison across sectors such as mining, banking, or healthcare<br>
+</li>
+<li>Profit (<code>ebit</code>) – earnings before interest and taxes, representing core business profit after expenses (from the income statement)<br>
+</li>
+<li>Assets (<code>at</code>) – the total resources the company owns that have economic value (from the balance sheet)<br>
+</li>
+<li>Invested Capital (<code>invested_capital</code>) – the total capital invested in the company by both shareholders and debt holders to fund operations and growth. It generally includes:
+<ul>
+<li>Equity (<code>shareequity</code>) – the funds contributed by shareholders plus retained earnings<br>
+</li>
+<li>Interest-bearing debt (<code>dlc</code>, <code>dltt</code>, <code>dvp</code>) – loans and borrowings the company uses for financing</li>
+</ul></li>
+</ul>
+<p>By working with these statements and variables, we can replicate the kind of assessments that professional analysts and fund managers use to guide billion-dollar investment decisions.</p>
+<p>As you will see, just a few lines of R code can wrangle raw financial statements information into orderly data that we can effectively visualize.</p>
+<p><strong>From this:</strong></p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-3_62723ed84d60ecf20d7ca357472fae1d">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 30
+   gvkey  curcd fyear   fyr datadate     at  capx shareequity   dlc   dltt   dvp
+   &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+ 1 013312 USD    2024     6 6/30/20… 102362 9273       49120  2084  18634     NA
+ 2 210216 AUD    2024     6 6/30/20…  45550 2288       17352  4228  12740     NA
+ 3 223003 USD    2024     6 6/30/20…  38022  849       19401   944  11239     NA
+ 4 212650 AUD    2024     6 6/30/20…  36694  104       11678  1590  18596     NA
+ 5 100894 AUD    2024     6 6/30/20…  33936 2548        5570  2311  14411     NA
+ 6 212427 USD    2024     6 6/30/20…  30060 2834       19531   192   5208     NA
+ 7 101601 AUD    2024     6 6/30/20…  27309  923        8585  1165  10113     NA
+ 8 226744 AUD    2024     6 6/30/20…  20894  754.       5275.  606. 10332.    NA
+ 9 220244 AUD    2024     6 6/30/20…  20564 2761         294   600   5991     NA
+10 017525 AUD    2024     6 6/30/20…  20454  608        9489    68   3310     NA
+# ℹ 19 more variables: ebit &lt;dbl&gt;, netprofit &lt;dbl&gt;, pstk &lt;dbl&gt;, sale &lt;dbl&gt;,
+#   epsexcon &lt;dbl&gt;, nicon &lt;dbl&gt;, conm &lt;chr&gt;, fic &lt;chr&gt;, conml &lt;chr&gt;,
+#   ggroup &lt;dbl&gt;, gind &lt;dbl&gt;, gsector &lt;dbl&gt;, gsubind &lt;dbl&gt;, sector &lt;chr&gt;,
+#   indgroup &lt;chr&gt;, industry &lt;chr&gt;, subind &lt;chr&gt;, debt &lt;dbl&gt;,
+#   invested_capital &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><strong>To this:</strong></p>
+<div class="cell" data-layout-align="center" data-hash="data_wrangling_cache/html/unnamed-chunk-4_8b1fd74ea4d18d121e9a9e3432e5d1ed">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_wrangling_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="loading-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="loading-the-data">Loading the Data</h2>
+<section id="r-packages-for-today" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="r-packages-for-today">R packages for today</h3>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-5_8d8000b8bf3e01afe82cd1be69c57ebc">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)     <span class="co"># collection of packages for data manipulation and visualization</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)        <span class="co"># for formatting and transforming axis scales</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggokabeito)    <span class="co"># color blind friendly color palette — this course's default</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)      <span class="co"># additional ggplot themes for polished, publication-ready plots</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)     <span class="co"># for combining multiple ggplots into one figure</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)       <span class="co"># for working with strings using consistent functions</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer) <span class="co"># color palette</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="loading-the-data-in-r" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="loading-the-data-in-r">Loading the Data in R</h3>
+<div class="cell" data-hash="data_wrangling_cache/html/load-asx-data_5463dfccbe8813fd9c5a88a963557982">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>asx_200_2024 <span class="ot">&lt;-</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_csv</span>(<span class="st">"data/asx_200_2024.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-1-visualizing-the-distributions-of-profit-margin-and-asset-turnover" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1-visualizing-the-distributions-of-profit-margin-and-asset-turnover">Exercise 1: Visualizing the distributions of profit margin and asset turnover</h3>
+<p>Our objective is to create the following plots:</p>
+<div class="cell" data-layout-align="center" data-hash="data_wrangling_cache/html/unnamed-chunk-6_4cf4d0181e16079a16121626fad5f047">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_wrangling_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>(a).</strong> Before creating these plots yourself, let’s think about what we can learn from them. Based on the figure above, what is the profit margin of the typical firm in our sample? How about asset turnover? Given what you know about the types of firm strategy, how do you expect a firm’s position in profit margin distribution to relate to its position in the asset turnover distribution?</p>
+<p><strong>(b).</strong> Let’s get started on building these plots. First, we need to create two new variables-<code>profit_margin</code>, and <code>asset_turnover</code>-and store these in a new data frame (which we will use for the rest of this week’s exercises). As we did in the lecture, we will also create our measure of firm profitability-<code>roic</code>-so that we can study returns in subsequent exercises. Use the starter code below to create these variables. Replace <code>FUNCTION_NAME</code> and <code>YOUR_VARIABLE_NAME</code> with the appropriate function and variable names.</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-7_d857a0210eb3d9c4e5a4d2ca23b67058">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>firm_strategy <span class="ot">&lt;-</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    asx_200_2024 <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Drop observations where we would have to divide by zero when calculating our new variables</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">FUNCTION_NAME</span>(invested_capital <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> at <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> sale <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create new variables</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">FUNCTION_NAME</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">roic =</span> YOUR_VARIABLE_NAME <span class="sc">/</span> YOUR_VARIABLE_NAME,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">profit_margin =</span> YOUR_VARIABLE_NAME <span class="sc">/</span> YOUR_VARIABLE_NAME,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">asset_turnover =</span> YOUR_VARIABLE_NAME <span class="sc">/</span> YOUR_VARIABLE_NAME</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>(c).</strong> Next, we want to check that we have correctly created these new variables, <code>profit_margin</code>, and <code>asset_turnover</code>. To do so, create a short, narrow table that focuses on these variables and their components for a small subset of firms in our sample (in this case, the first 10 observations). Using this table, we can then visually check that each variable is calculated as per the formula above. Use the starter code below to create and display such a table. Replace <code>YOUR_DATAFRAME_NAME</code> and <code>YOUR_FUNCTION_NAME</code> with the appropriate data frame and function names.</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-8_52b93a25014fc301996ea6800ea00e2a">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>YOUR_DATAFRAME_NAME <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(conml, ebit, at, sale, profit_margin, asset_turnover) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(<span class="dv">10</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Your table should look like this:</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-9_81b87db80f6e3c69785ba701a9161c43">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+   conml                    ebit     at   sale profit_margin asset_turnover
+   &lt;chr&gt;                   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt;          &lt;dbl&gt;
+ 1 BHP Group Ltd          22771  102362 55658         0.409           0.544
+ 2 Telstra Group Limited   3712   45550 22928         0.162           0.503
+ 3 CSL Ltd                 3896   38022 14690         0.265           0.386
+ 4 Transurban Group        1132   36694  4119         0.275           0.112
+ 5 Woolworths Group Ltd    3100   33936 67922         0.0456          2.00 
+ 6 Fortescue Ltd           8520   30060 18220         0.468           0.606
+ 7 Wesfarmers Ltd          3849   27309 44189         0.0871          1.62 
+ 8 Ramsay Health Care Ltd   939.  20894 16660.        0.0563          0.797
+ 9 Qantas Airways Ltd      2198   20564 20114         0.109           0.978
+10 Origin Energy Ltd        952   20454 16138         0.0590          0.789</code></pre>
+</div>
+</div>
+<p><strong>(d).</strong> Now, we can plot <code>profit_margin</code>, and <code>asset_turnover</code> and see how they behave for our sample of firms. To do so, we will first create a basic histogram that visualizes the distribution of <code>profit_margin</code>. Use the starter code below to produce this plot. Replace <code>YOUR_DATAFRAME_NAME</code>, <code>YOUR_FUNCTION_NAME</code> and <code>YOUR_VARIABLE</code> with the appropriate data frame, function, and variable names.</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-10_5d6c8e3807b0194205d7185bdb922e0b">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>YOUR_DATAFRAME_NAME <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(<span class="fu">aes</span>(<span class="at">x =</span> YOUR_VARIABLE)) <span class="sc">+</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(<span class="at">fill =</span> <span class="st">"darkorange"</span>, <span class="at">color =</span> <span class="st">"black"</span>, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">bins =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Profit Margin for Sample of Large ASX Companies in 2024"</span>,  </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> YOUR_LABEL,  </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> YOUR_LABEL</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">+</span>  </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Your plot should look like this:</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-11_c7e98251f467e56f210d0f5d2dd77bae">
+<div class="cell-output-display">
+<p><img src="data_wrangling_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>(e).</strong> Oops! Examining this histogram plot, what issue do you notice with the data that complicates plotting the distribution of <code>profit_margin</code>? How do you suggest we address this issue in the data, and what do we gain and lose by doing so?</p>
+<p><strong>(f).</strong> Now, let’s move on to our other new variable. Let’s create a basic histogram that visualizes the distribution of <code>asset_turnover</code>. Use the starter code below to produce this plot. Replace <code>YOUR_DATAFRAME_NAME</code>, <code>YOUR_FUNCTION_NAME</code> and <code>YOUR_VARIABLE</code> with the appropriate data frame, function, and variable names.</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-12_234be6054199d0467672bb2f86e12129">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>YOUR_DATAFRAME_NAME <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(<span class="fu">aes</span>(<span class="at">x =</span> YOUR_VARIABLE)) <span class="sc">+</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">bins =</span> <span class="dv">100</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                       ) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Asset Turnover for Sample of Large ASX Companies in 2024"</span>, </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> YOUR_LABEL,  </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> YOUR_LABEL</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">+</span>  </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Your plot should look like this:</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-13_8a5410e9d5fcc1e5ddc97bdc7651a026">
+<div class="cell-output-display">
+<p><img src="data_wrangling_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>(g).</strong> This looks better! Examining the plot above, explain why we don’t have the issue that complicated plotting the distribution of profit margin.</p>
+</section>
+<section id="exercise-2-firm-strategy-and-the-profit-margin---asset-turnover-relationship" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-firm-strategy-and-the-profit-margin---asset-turnover-relationship">Exercise 2: Firm Strategy and The Profit Margin - Asset Turnover Relationship</h3>
+<p>Our objective is to create the following plot:</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-14_970bd62f0019ad1f86b95660b616f473">
+<div class="cell-output-display">
+<p><img src="data_wrangling_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>(a).</strong> In exercise 1, you used histograms to show the distributions of <code>profit_margin</code> and <code>asset_turnover</code>. Use the starter code below to identify the five firms in the right tail of each of these distributions-i.e., those firms that have the highest profit margins, and those firms that have the highest asset turnover.</p>
+<p>To help, we have included the table that your code should output for <code>profit_margin</code>:</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-15_8c52baa3c9e8a879a7783e07397cbb36">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 8
+  conml        industry   ebit     at   sale profit_margin asset_turnover   roic
+  &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt;          &lt;dbl&gt;  &lt;dbl&gt;
+1 Aft Corpora… Buildin…   28.8   585. 3.04e1         0.945         0.0520 0.0494
+2 APA Group    Gas Uti… 1850   19563  3.04e3         0.609         0.155  0.114 
+3 Fortescue L… Metals … 8520   30060  1.82e4         0.468         0.606  0.342 
+4 Perseus Min… Metals …  462.   1986. 1.03e3         0.451         0.517  0.259 
+5 Emerald Res… Metals …  159.    712. 3.71e2         0.428         0.521  0.262 </code></pre>
+</div>
+</div>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-16_ddb7bd2f00c00d2f63f8eb2799a5727b">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replicate the profit margin table</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>firm_strategy <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># slice_max is a concise alternative to using arrange() then head()</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice_max</span>(YOUR_VARIABLE_NAME, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(YOUR_VARIABLE_NAME, ..., YOUR_VARIABLE_NAME)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-17_c7d31a8efa9d67137c29838fde87fde1">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Produce the equivalent table for asset turnover</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>firm_strategy <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># slice_max is a concise alternative to using arrange() then head()</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice_max</span>(YOUR_VARIABLE_NAME, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(YOUR_VARIABLE_NAME, ..., YOUR_VARIABLE_NAME)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>(b).</strong> Do we observe differences in industries or firm size across these tables? Are the same or different firms present across these tables? How do profit margin and asset turnover appear to be related and what does this reveal about firm strategy?</p>
+<p><strong>(c).</strong> Next, we want to create a new variable that classifies each firm in our sample as one of the following strategy types:</p>
+<ul>
+<li>IF above median profit margin AND below median asset turnover THEN, strategy type = ‘High margin’</li>
+<li>IF below median profit margin AND above median asset turnover THEN, strategy type = ‘High volume’</li>
+</ul>
+<p>Some firms may fail to meet the conditions for either of these categories. Classify these firms as follows:</p>
+<ul>
+<li>IF below median profit margin AND below median asset turnover THEN, strategy type = ‘Sinking ship’</li>
+<li>IF above median profit margin AND above median asset turnover THEN, strategy type = ‘Superstar’</li>
+</ul>
+<p>Use the starter code below to create the variable <code>strategy_type</code> and so classify each firm’s strategy type. Replace <code>YOUR_DATAFRAME</code>, <code>YOUR_FUNCTION_NAME</code> and <code>YOUR_VARIABLE_NAME</code> as appropriate.</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-18_35c70546d6124fc9965e141b18f9818e">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>YOUR_DATAFRAME <span class="ot">&lt;-</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    firm_strategy <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">strategy_type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Case 1: High Margin</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            profit_margin <span class="sc">&gt;=</span> <span class="fu">median</span>(profit_margin, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            asset_turnover <span class="sc">&lt;</span> <span class="fu">median</span>(asset_turnover, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"High margin"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Case 2: High Volume      </span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>            YOUR_VARIABLE_NAME <span class="sc">&lt;</span> <span class="fu">median</span>(YOUR_VARIABLE_NAME, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>            YOUR_VARIABLE_NAME <span class="sc">&gt;=</span> <span class="fu">median</span>(YOUR_VARIABLE_NAME, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"High volume"</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Case 3: Sinking Ship</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>            YOUR_VARIABLE_NAME <span class="sc">&lt;</span> <span class="fu">median</span>(YOUR_VARIABLE_NAME, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>            YOUR_VARIABLE_NAME <span class="sc">&lt;</span> <span class="fu">median</span>(YOUR_VARIABLE_NAME, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"Sinking ship"</span>,</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Case 4: Superstar</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>            YOUR_VARIABLE_NAME <span class="sc">&gt;=</span> <span class="fu">median</span>(YOUR_VARIABLE_NAME, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>            YOUR_VARIABLE_NAME <span class="sc">&gt;=</span> <span class="fu">median</span>(YOUR_VARIABLE_NAME, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"Superstar"</span>,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Default : catch any unmatched cases</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">.default =</span> <span class="cn">NA_character_</span>  </span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>(d).</strong> To shed light on how the above ‘works’, run the code below and explain what each part of the code ‘does’ to the output. What must be the case for a firm’s strategy type to be classified as ‘High margin’? How is a firm’s strategy type classified if this is not the case? What value does strategy type take if only one of these conditions holds?</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-20_c30586390cd3ac64263d243f4a9ffd36">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>firm_strategy <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">strategy_type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Case 1: </span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>            profit_margin <span class="sc">&gt;=</span> <span class="fu">median</span>(profit_margin, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                asset_turnover <span class="sc">&lt;</span> <span class="fu">median</span>(asset_turnover, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"High margin"</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Case 2:</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">is.na</span>(profit_margin) <span class="sc">|</span> <span class="fu">is.na</span>(asset_turnover) <span class="sc">~</span> <span class="cn">NA_character_</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Other cases -- the default:</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">.default =</span> <span class="st">"Other"</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(conml, profit_margin, asset_turnover, strategy_type) <span class="sc">|&gt;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>(e).</strong> Now, we can examine the relationship between profit margin, asset turnover, and firm strategy. Use the starter code below to create a basic scatterplot of profit margin vs asset turnover. Replace the placeholder code (e.g., <code>YOUR_DATAFRAME</code>) as appropriate.</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-21_05ae410b3facb3bec6074a2747dcfe62">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>YOUR_DATAFRAME <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># To improve our visualization, we need to focus on representative </span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># firms and drop outliers (see exercises 1 &amp; 4 for more)</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(profit_margin <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>() <span class="sc">+</span> </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">y =</span> YOUR_VARIABLE_NAME, <span class="at">x =</span> YOUR_VARIABLE_NAME), </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.3</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Add a vertical line to show median value</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(YOUR_DATAFRAME<span class="sc">$</span>YOUR_VARIABLE_NAME, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">1</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Add a horizontal line to show median value</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">median</span>(YOUR_DATAFRAME<span class="sc">$</span>YOUR_VARIABLE_NAME, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">1</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span> </span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Variation in Firm Strategy Across A Sample of Large ASX Companies in 2024"</span>, </span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> YOUR_LABEL, </span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> YOUR_LABEL</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">+</span> </span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="cn">NULL</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You plot should look like this:</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-22_799ec5a5071a84e98050c30f0b4dd9e1">
+<div class="cell-output-display">
+<p><img src="data_wrangling_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>(f).</strong> Nice! We can learn a lot from this plot, but to start let’s return to an earlier question we considered: How do profit margin and asset turnover appear to be related and what does this reveal about firm strategy? Explain why we have few firms in the top right? And why we have few firms in the bottom left?</p>
+</section>
+<section id="exercise-3-firm-strategy-industry-size-and-profitability" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3-firm-strategy-industry-size-and-profitability">Exercise 3: Firm Strategy: Industry, Size, and Profitability</h3>
+<p>Our objective is to create the following plots:</p>
+<div class="cell" data-layout-align="center" data-hash="data_wrangling_cache/html/unnamed-chunk-23_b5942edd797fa82477b3a74d612f6845">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_wrangling_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>(a).</strong> Examine the plot below that captures how the relationship between profit margin and asset turnover varies with industry (as the code shows, this plot focuses on the ‘big’ industries that we covered in the lecture material). Explain how this plot is consistent with your findings in the last part of the previous question.</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-24_f72971de0d15d1e8467416eb13d3d8ec">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>big_industries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Metals &amp; Mining"</span>, <span class="st">"Specialty Retail"</span>, <span class="st">"Construction &amp; Engineering"</span>, </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Hotels, Restaurants &amp; Leisure"</span>, <span class="st">"Oil, Gas &amp; Consumable Fuels"</span>, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Commercial Services &amp; Supplies"</span>, <span class="st">"Food Products"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>scatter_ind <span class="ot">&lt;-</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    firm_strategy <span class="sc">|&gt;</span> </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(profit_margin <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">&amp;</span> industry <span class="sc">%in%</span> big_industries) <span class="sc">|&gt;</span> </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> asset_turnover, <span class="at">y =</span> profit_margin, <span class="at">fill =</span> industry), </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>               ) <span class="sc">+</span> <span class="co"># shape = 21 allows filling</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(firm_strategy<span class="sc">$</span>asset_turnover, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">1</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>               ) <span class="sc">+</span> </span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">median</span>(firm_strategy<span class="sc">$</span>profit_margin, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">1</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>               ) <span class="sc">+</span> </span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_okabe_ito</span>() <span class="sc">+</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Firm Strategy"</span>, </span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Asset Turnover"</span>, </span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Profit Margin"</span>) <span class="sc">+</span> </span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="cn">NULL</span>), </span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Industry"</span>))</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>scatter_ind</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="data_wrangling_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>(b).</strong> Use the starter code provided below to produce a scatter plot that captures how the relationship between profit margin and asset turnover <strong>varies with firm size</strong> (<code>at</code>). How does this plot show differences in firm size? Explain what this plot reveals about the relationship between firm size and strategy.</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-25_09c39f94907ee0df2668397f19a0c6fb">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>scatter_size <span class="ot">&lt;-</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    YOUR_DATAFRAME <span class="sc">|&gt;</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(profit_margin <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(<span class="fu">aes</span>(<span class="at">x =</span> asset_turnover, <span class="at">y =</span> profit_margin, </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">size =</span> YOUR_VARIABLE_NAME</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                           ),  </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"black"</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>                       ) <span class="sc">+</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(firm_strategy<span class="sc">$</span>asset_turnover, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">1</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>               ) <span class="sc">+</span> </span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">median</span>(firm_strategy<span class="sc">$</span>profit_margin, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">1</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>               ) <span class="sc">+</span> </span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Firm Strategy"</span>, </span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Asset Turnover"</span>, </span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Profit Margin"</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">+</span> </span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="cn">NULL</span>), </span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">size =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"YOUR_VARIABLE_NAME"</span>)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>           )</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>scatter_size</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>(c).</strong> Use the starter code below to produce a scatter plot that captures how the relationship between profit margin and asset turnover <strong>varies with firm profitability</strong> (<code>roic</code>). Explain what this plot reveals about the relationship between firm strategy and profitability. What seems to ‘hurt’ firm performance more: weak margins, or weak volume?</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-26_ee747eff53e4ce33aeabf9bef7cf22dc">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>scatter_return <span class="ot">&lt;-</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    YOUR_DATAFRAME <span class="sc">|&gt;</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(profit_margin <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(<span class="fu">aes</span>(<span class="at">x =</span> asset_turnover, <span class="at">y =</span> profit_margin, </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">fill =</span> <span class="fu">cut</span>(YOUR_VARIABLE_NAME, </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">breaks =</span> <span class="dv">3</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                                      )</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>                           ), </span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>                       <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">4</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>                       ) <span class="sc">+</span> </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(firm_strategy<span class="sc">$</span>asset_turnover, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">1</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>               ) <span class="sc">+</span> </span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">median</span>(firm_strategy<span class="sc">$</span>profit_margin, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">1</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>               ) <span class="sc">+</span> </span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_okabe_ito</span>() <span class="sc">+</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Firm Strategy: Large Australian Public Companies (2024)"</span>, </span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Asset Turnover"</span>, </span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Profit Margin"</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">+</span> </span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="cn">NULL</span>), </span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"ROIC"</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>           )</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>scatter_return</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>(d).</strong> Write a short chunk of code that integrates the three plots you created above into a single figure. Use the <code>patchwork</code> package to do this.</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-27_a5b22d2099981482ef0aeb4e3dfa16f1">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-4-identifying-and-removing-outliers-to-improve-the-profit-margin-histogram" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4-identifying-and-removing-outliers-to-improve-the-profit-margin-histogram">Exercise 4: Identifying and removing outliers to improve the profit margin histogram</h3>
+<p>In exercise 1, we created the following plot:</p>
+<div class="cell" data-layout-align="center" data-hash="data_wrangling_cache/html/unnamed-chunk-28_6b9f40def8929ca4ff4dc7a9e95d2956">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_wrangling_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>(a).</strong> We have two extreme observations in the left tail of our distribution. Create a short, narrow table that isolates these observations and shows only the sub-set of variables that relate to profit margin and asset turnover. Using this table, explains why these firms have such extreme (negative) profit margins. Use the starter code below to create and display such a table.</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-29_9c186b9f3467303064e95b4890518298">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>YOUR_DATAFRAME <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(YOUR_VARIABLE_NAME) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(<span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(conml, industry, ebit, at, sale, profit_margin, asset_turnover)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>(b).</strong> These extreme observations badly drag out our distribution’s left tail, and so compress our visualization of the rest of the distribution (i.e., the vast majority of firms in our sample are pushed into a single column even though there is much variation in these firms’ profit margins). Use the starter code below to remove these outliers from our sample and then create a basic histogram that visualizes the distribution of profit for our ‘pruned’ sample.</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-30_313556a309a3a625c92aef5e6aef44c6">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>YOUR_DATAFRAME <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(YOUR_VARIABLE_NAME <span class="sc">&gt;</span> YOUR_LOWER_BOUND_VALUE) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(<span class="fu">aes</span>(<span class="at">x =</span> YOUR_VARIABLE_NAME)) <span class="sc">+</span> </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(<span class="at">fill =</span> <span class="st">"darkorange"</span>, <span class="at">color =</span> <span class="st">"black"</span>, </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">bins =</span> <span class="dv">100</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                       ) <span class="sc">+</span>  </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Profit Margin for Sample of Large ASX Companies in 2024"</span>, </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> YOUR_LABEL, </span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> YOUR_LABEL</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">+</span> </span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>(c).</strong> Hmm! Explain whether you think the plot above effectively visualizes the distribution of profit margin for large Australian public companies. Do we still have extreme observations in our left tail? How do these affect what we can learn about the majority of firms, which exhibit profit margins &gt;= 0?</p>
+<p><strong>(d).</strong> Use the starter code below to further ‘prune’ our sample and so again visualize the distribution of profit margin for large Australian public companies. Do we now get a better sense of our how profit margin is distributed across large Australian companies?</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-31_176cb2bc0c24d74d5c70f7f4028f4ffd">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>YOUR_DATAFRAME <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(YOUR_VARIABLE_NAME <span class="sc">&gt;</span> YOUR_HIGHER_LOWER_BOUND_VALUE) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(<span class="fu">aes</span>(<span class="at">x =</span> YOUR_VARIABLE_NAME)) <span class="sc">+</span> </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(<span class="at">fill =</span> <span class="st">"darkorange"</span>, <span class="at">color =</span> <span class="st">"black"</span>, </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">bins =</span> <span class="dv">100</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                       ) <span class="sc">+</span>  </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Profit Margin for Sample of Large ASX Companies in 2024"</span>, </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> YOUR_LABEL, </span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> YOUR_LABEL</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">+</span> </span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>(e).</strong> Using the plot produced above, what would you consider to be the typical large Australian company’s profit margin? What would you consider a high-margin firm to be? Explain why it is not possible for the distribution of profit margin to have a very long right tail (i.e., firms that enjoy extremely large profit margins)?</p>
+</section>
+<section id="exercise-5-unpacking-the-profit-margin-asset-turnover-scatterplot" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-5-unpacking-the-profit-margin-asset-turnover-scatterplot">Exercise 5: Unpacking the Profit Margin-Asset Turnover Scatterplot</h3>
+<p>In exercise 2, we created the following plot:</p>
+<div class="cell" data-layout-align="center" data-hash="data_wrangling_cache/html/unnamed-chunk-32_cd805b6923446a2f10757c5bc8e74707">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_wrangling_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>(a).</strong> Refer to the above plot. Firms that employ a ‘high margin’ strategy are located in which quadrant? Firms that employ which strategy are located in the bottom-right quadrant?</p>
+<p><strong>(b).</strong> One way to ‘check’ your answers to the above question is to use color to identify each firm’s strategy type. Use the starter code below and explain what the plot reveals.</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-33_6fc6a2e950d240b683f3c466ec349ad3">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>YOUR_DATAFRAME <span class="sc">|&gt;</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(profit_margin <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>() <span class="sc">+</span> </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(<span class="fu">aes</span>(<span class="at">x =</span> YOUR_VARIABLE_NAME, <span class="at">y =</span> YOUR_VARIABLE_NAME, </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">fill =</span> YOUR_VARIABLE_NAME</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                           ), </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"black"</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                      ) <span class="sc">+</span> </span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(YOUR_DATAFRAME<span class="sc">$</span>YOUR_VARIABLE_NAME, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">1</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>               ) <span class="sc">+</span> </span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">median</span>(YOUR_DATAFRAME<span class="sc">$</span>YOUR_VARIABLE_NAME, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">1</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>               ) <span class="sc">+</span> </span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_okabe_ito</span>() <span class="sc">+</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Variation in Firm Strategy Across A Sample of Large ASX Companies in 2024"</span>, </span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">x =</span> YOUR_LABEL, </span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> YOUR_LABEL</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">+</span> </span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="cn">NULL</span>), </span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> YOUR_LABEL))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>(c).</strong> Run the first block of code provided below. Which firm from the plot above does this code identify? Run the second block of code provided below. And, which firm from the plot above does this code identify?</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-34_fb6ebb6b47b1d15c9bb7d15b8d16321e">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>firm_strategy <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(strategy_type <span class="sc">==</span> <span class="st">'High volume'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(profit_margin) <span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(conml, industry, ebit, at, sale, profit_margin, asset_turnover, roic) <span class="sc">|&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-35_9b4f1fbc73bc047c42bdf8c5a1de795c">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>firm_strategy <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(strategy_type <span class="sc">==</span> <span class="st">'High margin'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">arrange</span>(asset_turnover) <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(conml, industry, ebit, at, sale, profit_margin, asset_turnover, roic) <span class="sc">|&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">head</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>(d).</strong> The plots above show that some strategy types are more common than others among our sample of large ASX companies in 2024. Use the starter code below that provides the count of observations for each strategy type in our sample. Which strategy type is more common, high margin or high volume?</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-36_91ff42293d74e46d784dd2d113614652">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>YOUR_DATAFRAME <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(profit_margin <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(YOUR_VARIABLE_NAME) <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(<span class="at">obs =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>(e).</strong> Let’s dig down into one of these firm strategy types, High margin. Write and run a chunk of code that counts the number of firms from each industry that employ a high-margin strategy. Write your code such that it outputs a table that shows the five industries with the highest counts. Which industry accounts for the most high-margin firms in our sample?</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-37_f7f9cffc2a9f717899f53534f6d2b263">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>(f).</strong> Now, write and run a chunk of code that produces the equivalent table but for firms that employ a high-volume strategy. Compare this table to the one you produced in the previous question.</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-38_2fc2594c5abb71d893d8ef246614ad2f">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>(g).</strong> In the lecture, we examined firms from the ASX’s ‘big industries’ (i.e., the seven industries that account from more than half of all large listed firms in Australia). Let’s gain some insight into how strategy type varies within each of these big industries. Use the starter code below to produce a stacked bar plot that shows the share of each industry’s firms that employ a given strategy type. What are the main insights that this plot reveals? Which industries have the most variation in strategy type? The least?</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-39_a4e2e67a4ef0f21679db27bf292491e6">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>YOUR_DATAFRAME <span class="sc">|&gt;</span>  </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use %in% for filtering industries</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION</span>(profit_margin <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">&amp;</span> industry <span class="sc">%in%</span> big_industries) <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Group by both industry and strategy_type</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(YOUR_VARIABLE_NAME, YOUR_VARIABLE_NAME) <span class="sc">|&gt;</span>  </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Count the number of occurrences for each strategy_type within each industry</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_FUNCTION_NAME</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">'drop'</span>) <span class="sc">|&gt;</span>  </span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Map 'industry' to x-axis and 'strategy_type' to fill</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> YOUR_VARIABLE_NAME, <span class="at">y =</span> YOUR_VARIABLE_NAME, <span class="at">fill =</span> YOUR_VARIABLE_NAME)) <span class="sc">+</span>  </span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span>  </span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rotate and align x-axis labels</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="dv">1</span>),  </span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Remove the legend title</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>          ) <span class="sc">+</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Wrap x-axis labels at width 10 characters</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">str_wrap</span>(x, <span class="at">width =</span> <span class="dv">10</span>)) <span class="sc">+</span>  </span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use color palette for filling</span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_okabe_ito</span>() <span class="sc">+</span>  </span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="co">#No label for x-axis</span></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"No. of Firms"</span>,</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Strategy Type Across Large Australia Comapnies in 2024: The 'Big' Industries"</span></span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>         )  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Your plot should look like this:</p>
+<div class="cell" data-hash="data_wrangling_cache/html/unnamed-chunk-40_cf8ea6ebe7bb894ac34a56e6d83a2d1a">
+<div class="cell-output-display">
+<p><img src="data_wrangling_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../tutorials/data_visualisation.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tutorial 3: Data Visualisation for Business Intelligence</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
