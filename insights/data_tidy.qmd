@@ -1,0 +1,864 @@
+# Shaping and Combining Data for Business Analytics
+
+::: {.callout-tip}  
+## Learning Goals {.unnumbered}  
+
+By the end of this lecture, you should be able to:  
+
+* Distinguish between tidy and messy data structures, and explain why tidy data makes manipulation and analysis more efficient.  
+* Use `pivot_longer()` to tidy “short and wide” data sets by stacking year or variable columns into a single long format.  
+* Use `pivot_wider()` to tidy “long and narrow” data sets by spreading variable names stored in rows into their own columns.  
+* Use mutating joins (`left_join()`, `right_join()`, `full_join()`, `inner_join()`) to combine data sets by adding columns from one table to another.  
+* Use filtering joins (`semi_join()`, `anti_join()`) to identify overlap or gaps between data sets, and to detect implicit missing observations.  
+* Explain the role of primary keys and foreign keys in linking data frames, including the use of compound keys.  
+* Evaluate how different join types affect the number of rows and the presence of missing values in the resulting data set.  
+:::  
+
+
+```{r}
+#| warning: false
+#| echo: false
+
+library(tidyverse)
+library(scales) 
+library(ggokabeito)
+library(ggthemes) 
+library(patchwork) 
+library(stringr)
+```
+
+```{r}
+#| warning: false
+#| echo: false
+
+asx_200_2024 <- 
+    read_csv("https://raw.githubusercontent.com/unimelb-cmce-10002/fba-book/refs/heads/main/data/asx_200_2024.csv") |>
+    mutate(fyear = as.character(fyear)) #code our new variable fyear as a character type
+
+prices_wide <- read_csv("https://raw.githubusercontent.com/unimelb-cmce-10002/fba-book/refs/heads/main/data/prices_wide.csv")
+
+prices_messy <- read_csv("https://raw.githubusercontent.com/unimelb-cmce-10002/fba-book/refs/heads/main/data/prices_messy.csv")
+
+financials_messy <- read_csv("https://raw.githubusercontent.com/unimelb-cmce-10002/fba-book/refs/heads/main/data/financials_messy.csv")
+
+gics_industry <- read_csv("https://raw.githubusercontent.com/unimelb-cmce-10002/fba-book/refs/heads/main/data/GICS_industry.csv")
+```
+
+## The Business Challenge  
+### The Topic: How Well Do Earnings Explain What Investors Pay for Firms? {.unnumbered}  
+When investors buy shares, they are not just purchasing a slice of today’s profits — they are buying into expectations of future earnings. A company’s reported earnings per share (EPS) and the multiple of those earnings that investors are willing to pay, the price-to-earnings (P/E) ratio, are two of the most widely used measures in equity markets. Together, they capture the link between operating performance and market valuation.  
+
+Yet these measures are rarely straightforward to analyze. Financial data is often recorded in messy, inconsistent formats, and the information we need is usually spread across multiple data sets. To understand how investors value Australian firms, we need to tidy and combine stock price data, earnings data, and industry classifications into a single, coherent data set.  
+
+The business questions we focus on are: **How closely do earnings per share align with stock prices? How do P/E ratios differ across industries? What patterns emerge when we track these measures over time?**  
+
+By reshaping messy data sets with pivots and merging them with joins, we can create a tidy, integrated data set that allows us to explore how investors interpret earnings and how valuations vary across the Australian economy.  
+ 
+## The Data: Stock Prices and Market Performance from Yahoo Finance {.unnumbered}  
+
+To answer the questions in this chapter, we draw on firm-year ASX stock price data from Yahoo Finance. We will also examine the ASX financial statements data set that we explored in last week's lecture and tutorial. Unlike this data set, the ASX stock price data set that we introduce this week captures market-based measures of firm performance over *multiple years* (i.e., not just 2024).  
+
+Stock prices in our data set are recorded as the closing price at the end of each firm’s fiscal year. This allows us to align market performance with the accounting data reported in annual financial statements. Our data set contains the following variables:  
+
+- Company name (`conm`) – the firm’s name as listed on the ASX  
+- Firm identifier (`gvkey`) – a unique numeric code that tracks companies over time  
+- Fiscal year (`fyear`) – the accounting year associated with the stock price and earnings  
+
+In addition to raw prices, our data set also contains two derived financial measures that are widely applied by analysts and investors:
+
+- Stock price (`price`) – the firm’s share price at fiscal year-end, measured in Australian dollars  
+- Earnings per share (`eps`) – net earnings available to common shareholders divided by the number of shares outstanding:  
+  $$
+  EPS = \frac{\text{Earnings}}{\text{Shares Outstanding}}
+  $$  
+- Price-to-earnings ratio (`pe`) – the ratio of the firm’s stock price to its earnings per share:  
+  $$
+  P/E = \frac{\text{Price}}{EPS}
+  $$  
+
+These variables allow us to link operating performance with market performance, and to investigate the relationship between what firms earn and what investors are willing to pay. By working with these data, we can replicate the kinds of comparisons analysts use to value companies and industries.
+
+### The Method: Using Pivots and Joins to Reshape and Combine Data {.unnumbered}  
+
+> "Data that is loved tends to survive." — Kurt Bollacker (computer scientist and digital archivist)  
+
+While tidy data makes analysis straightforward, most real-world data arrives messy, spread across multiple files, or structured in ways that do not align with analytical needs. To work effectively, we need tools that can both reshape individual datasets and combine information across multiple sources.  
+
+In R, the `tidyr` package provides functions for reshaping data:
+
+- `pivot_longer()` to lengthen “short and wide” datasets by stacking values into a single column,  
+- `pivot_wider()` to shorten “long and narrow” datasets by spreading values into multiple columns.  
+
+These pivots allow us to convert messy structures into tidy data, where variables are columns, observations are rows, and values are cells.  
+
+The `dplyr` package complements this by providing join functions that merge datasets:
+
+- Mutating joins (`left_join()`, `right_join()`, `inner_join()`, `full_join()`) add variables from one table to another,  
+- Filtering joins (`semi_join()`, `anti_join()`) filter observations based on whether they appear in another table.  
+
+All joins rely on keys — primary keys that uniquely identify observations in one dataset, and foreign keys that reference those identifiers in another. Understanding and using keys correctly is critical for combining information without introducing errors or duplicates.  
+
+Together, pivots and joins form the backbone of data wrangling workflows. They allow us to take messy, fragmented business data — such as financial statements, stock prices, and industry classifications — and transform it into a single tidy data set that supports reliable analysis, clear visualization, and sound decision-making.  
+
+:::{.callout-note title="Beyond R"}  
+Pivoting and joining are not unique to R. The same concepts appear in other tools:  
+- SQL provides `PIVOT`/`UNPIVOT` clauses and join operations,  
+- Excel offers PivotTables and lookup functions,  
+- Python (pandas) implements `.pivot()`, `.melt()`, and `.merge()`.  
+
+Mastering these techniques in R builds transferable skills that apply across the full range of data analysis environments.  
+:::
+
+## The Game Plan: What we're aiming for  
+
+Recall our workflow:  
+
+1. Define the Business Question(s) & Plan Outputs  
+2. **Acquire and Prepare Data**  
+3. Explore and Visualize Patterns  
+4. Analyze and Interpret Findings  
+5. Communicate Insights and Recommendations  
+
+Sketch of the plan:  
+
+- [ ] Define the Business Questions: How do earnings explain stock prices? How do P/E ratios vary across industries and over time?  
+- [ ] Load stock price, earnings, and sub-industry lookup data from Yahoo Finance  
+- [ ] Wrangle data by reshaping with `pivot_longer()` and `pivot_wider()` to ensure tidy structure  
+- [ ] Combine data frames using joins (`left_join()`, `inner_join()`, `anti_join()`) to link financials, stock prices, and industry codes  
+- [ ] Diagnose missing values (explicit and implicit) and assess data coverage  
+- [ ] Visualize P/E ratios and price–earnings patterns across firms, years, and industries (we will tackle in the tutorial) 
+- [ ] Interpret what these patterns reveal about firm performance and investor expectations (we will tackle in the tutorial) 
+
+---
+
+Let's get started!
+
+## Getting Set Up and Loading the Data
+
+### R packages for today {.unnumbered}
+
+Much of this week’s material will involve our using the `tidyr` and `dplyr` packages, which are core parts of the `tidyverse.` These two packages work seamlessly together, as well as with others such as `ggplot2` and `stringr`, making them essential tools for data wrangling and visualization.
+
+And so to begin, we need to load these packages and others that we will use for this chapter.
+
+```{r}
+#| eval: false
+
+# Load the tidyverse for data manipulation and visualization
+library(tidyverse)
+
+# Load scales for axis formatting and transformations
+library(scales)
+
+# Load ggokabeito for a colour-blind-friendly palette (available if you choose to use it)
+library(ggokabeito)
+
+# Load ggthemes for additional polished ggplot themes
+library(ggthemes)
+
+# Load patchwork to combine multiple ggplots into one figure
+library(patchwork)
+
+# Load stringr for consistent string manipulation helpers
+library(stringr)
+```
+
+:::{.callout-tip title="What is `scales`?" collapse=true}
+You may notice that we continue to use many of the visualization tools introduced earlier in the course. One additional package that appears this week is `scales`. This package provides a consistent set of functions for formatting numbers, dates, and other values in plots. For example, it can transform raw dollar amounts into currency labels, percentages into readable strings, or continuous variables into log-scaled axes.  
+
+In this week’s lecture and tutorial, we will use `scales` to format axes and labels in our plots, ensuring that visualizations are clear, professional, and easy to interpret.  
+
+Some examples include:  
+- `label_percent()` – convert proportions like `0.25` into `"25%"`  
+- `label_dollar()` – format numbers like `1000000` into `"$1,000,000"`  
+- `label_comma()` – add thousands separators for readability (e.g., `10000` → `"10,000"`)  
+- `label_date()` – format dates consistently for time series plots  
+
+These functions help ensure our plots communicate results in a way that is accessible and professional.
+:::
+
+### Loading the financial statements and price data
+
+We now import the data sets that we will use in this week's lecture. The first is the ASX financial statements data set we examined last week, which should be familiar to you by now:
+
+```{r}
+#| warning: false
+#| eval: false
+
+# Read in the 2024 ASX 200 data set
+asx_200_2024 <- 
+    read_csv("data/asx_200_2024.csv") |>
+    # Code our new variable fyear as a character type for subsequent joins
+    mutate(fyear = as.character(fyear)) 
+```
+
+We also import a 'messy' snapshot of this data set, which we will tidy as part of this module:
+
+```{r}
+#| warning: false
+#| eval: false
+
+# Read in the wide version of the 2024 ASX 200 data set
+financials_messy <- 
+    read_csv("data/financials_messy.csv")
+```
+
+We next import the ASX price data in two forms, a 'wide' snapshot and a 'messy' snapshot, both of which we will tidy as part of this module:
+
+```{r}
+#| warning: false
+#| eval: false
+
+# Read in the wide version of the ASX price data
+prices_wide <- 
+    read_csv("data/prices_wide.csv")
+```
+
+```{r}
+#| warning: false
+#| eval: false
+
+# Read in the messy version of the ASX price data
+prices_messy <- 
+    read_csv("data/prices_messy.csv")
+```
+
+Finally, we import a look-up table that links industry codes to industry names. We will use this identify each firm's industry in our sample:
+
+```{r}
+#| warning: false
+#| eval: false
+
+# Read in the GICS industry look-up file
+gics_industry <- read_csv("data/GICS_industry.csv")
+```
+
+## Using pivots to tidy messy data frames
+
+### Tidy Data
+
+:::{.callout-important title="What is Tidy Data?"}
+A tidy data set has the following properties:
+
+- Each variable is a column; each column is a variable.  
+- Each observation is a row; each row is an observation.  
+- Each value is a cell; each cell is a single value.  
+:::
+
+We can see that our ASX financial statements data set, the one we examined in the last module, is tidy. Here's a snapshot of a few rows and columns:
+
+```{r}
+# Select a few key variables: company name, year, EBIT, and industry
+asx_200_2024 |> 
+  select(conm, fyear, ebit, industry) |> 
+
+  # Preview the first 10 rows of the data
+  head(10)
+```
+
+Each variable is a column; each column is a variable (e.g., firm name, year, EBIT, etc). Each observation is a row; each row is an observation (e.g., BHP's financials in 2024, etc). And, each value is a cell; each cell is a single value (BHP's EBIT in 2024 was \$22,771 million).
+
+Storing data using this tidy structure makes it easier to manipulate and examine the data because it has an underlying uniformity. Such a structure also takes advantage of R's vectorized nature - i.e., most R functions work with vectors of values (e.g., columns and rows). In fact, `dplyr`, `ggplot`, and all the packages in the `tidyverse` are explicitly designed to work with tidy data (hence the name...).
+
+Unfortunately, however, most real data is untidy (often because people who collect and store data are not the ones who analyse and use the data for decision making). And so, we often need to tidy a data set before we can start using the data to answer empirical questions and solve business problems. 
+
+Pivoting is the primary tool that we will use for tidying messy data. Pivoting allows you to change the form of your data without changing any of its values-you pivot your data so that variables are structured as columns, and observations as rows.
+
+:::{.callout-important title="What are Pivots?"}
+A pivot reshapes data by turning rows into columns or columns into rows, depending on the question you want to answer.
+
+In R, we use the tidyr functions:
+
+- `pivot_longer()` – stack columns into rows (e.g., years across columns → one "year" column).  
+- `pivot_wider()` – spread rows into columns (e.g., turn a key-value pair into new columns).
+
+The same concept exists in other tools:
+
+- SQL: `PIVOT` and `UNPIVOT` clauses reshape data in queries.  
+- Excel: PivotTables reorganize and summarize data.  
+- Python (pandas): `.pivot()`, `.pivot_table()`, and `.melt()` work like R’s pivots.
+
+Applications include converting messy wide data into tidy long form for analysis, or producing summary tables by category and time.  
+
+In short, pivoting is a universal wrangling skill: learning it in R helps you apply it in SQL, Excel, and beyond.
+:::
+
+### 'Gathering': Lengthening short data frames
+
+In practice, we often need to work with data that is 'short and wide'-i.e., where observations are stretched across rather than down columns. To tidy such data, we can use `pivot_longer()`, which folds observations down columns.
+
+If we open and examine our 'wide' ASX price data, we can see that this data set is short and wide:
+
+```{r}
+prices_wide |>
+    head(10)
+```
+
+Instead of structuring each firm-year observation as a row, this data set stretches firm-year observations across the data frame, so that each row is a firm and the columns store the corresponding values for that year (e.g., BHP's closing stock price  at fiscal year-end in 2021, in 2022, etc). 
+
+An issue with this data structure is that we have data in the column names (i.e., the year of the observation), rather than in the cells. To more easily apply the tidyverse functions to this data and so better facilitate analyses, we need to lengthen and narrow this data frame so that we store all the data in our data frame in cells rather than column names (i.e., we have a column for identifying the year of observation and a single column for stock price, and so that the cells under each column contain data, and no data is contained in the column names themselves).
+
+We can use `pivot_longer()` function to lengthen and narrow our stock price data in this manner:
+
+```{r}
+prices_tidy <- prices_wide |>
+  pivot_longer(
+    # Select the year columns we want to reshape from wide to long
+    cols = c("2021", "2022", "2023", "2024"),
+    # Name of the new column that will store the former column names (years)
+    names_to = "fyear",
+    # Name of the new column that will store the values (prices)
+    values_to = "price"
+  )
+
+# Preview the first 10 rows of the reshaped (tidy) data
+prices_tidy |>
+  head(10)
+```
+
+Great. Our ASX price data is now tidy - each column is a variable (e.g., price), each row an observation (e.g., BHP's stock price in 2021), and each cell a value (e.g., BHP's closing stock price at year-end 2021 is \$37.61).
+
+::: {.exercise}
+::: {.exercise-time}
+10 min
+:::
+
+You’re given a messy ASX prices data frame, `prices_messy`, where firm-year information is spread across columns (e.g., `price_2023`, `eps_2024`):
+
+```{r}
+prices_messy |>
+    head(10)
+```
+
+Your goal is to lengthen and narrow this data so that:
+
+- Each row is a firm–year observation.  
+- Column names are variables (e.g., `price`, `eps`, `year`), and no data is stored in column names.  
+- Missing year-specific values are dropped.
+
+Using `pivot_longer()`, reshape `prices_messy` into a tidy data frame named `prices_tidier` with columns:  `gvkey`, `conm`, `year`, `price`, and `eps`.  
+
+Finally, show the first 10 rows.
+
+:::
+
+::: {.solution-header}
+Solution
+:::
+
+::: {.solution-content}
+```{r}
+# Tidy the wide, mixed-name columns (e.g., price_2023, eps_2024) into long form
+prices_tidier <-
+  prices_messy |>
+  tidyr::pivot_longer(
+    # Select all columns that start with "price" or "eps"
+    cols = c(dplyr::starts_with("price"), dplyr::starts_with("eps")),
+    # Split column names into two parts:
+    #  - ".value" maps to new column names (price, eps)
+    #  - "year" captures the year suffix
+    names_to   = c(".value", "year"),
+    names_sep  = "_",
+    # Drop rows where either price or eps is missing
+    values_drop_na = TRUE
+  ) |>
+  dplyr::mutate(year = as.integer(year))
+
+# Preview the first 10 rows
+prices_tidier |>
+  dplyr::slice_head(n = 10)
+```
+:::
+
+### 'Spreading': Widening narrow data frames
+
+Messy data can also occur in practice in the form of data frames that store individual observations across multiple rows. In order to tidy these, we use `pivot_wider()` to collapse multiple rows into a single row that stretches across additional columns (i.e., we take our messy data frame that is too 'long' and too 'narrow' and 'shorten' and 'widen' to tidy it).
+
+Let's move away from our ASX price data back to our financial statements data. The following is a messy snapshot of our ASX financial statements data, messy in the sense that it is too long and narrow:
+
+```{r}
+financials_messy |>
+    head(10)
+```
+
+Immediately, we can see that we have firm-year observations showing up across multiple rows (e.g., BHP in 2024 is represented three times, one for each financial measure). We can also see that we have variable names as values in a single column (i.e., the column `measure_name` stores the variables names `at`, `sales`, and `ebit`. 
+
+As we explain above, to tidy this data frame, we need to collapse our firm-year observations into a single row, and then widen our data frame so that the variables stored in the column 'measure_name' each become their own columns. These new columns can then store the values that these measures take.
+
+We use `pivot_wider()` to transform our data frame's structure in this manner. As we see in the code below, `pivot_wider()` uses the argument `names_from` to take the new column names from the pre-existing `measure_name` column, and then uses the `values_from` argument to take the values for each observation for these new columns from the pre-existing `measure_value` column:
+
+```{r}
+financials_tidy <- financials_messy |>
+  pivot_wider(
+    # Column names will be taken from the values in 'measure_name'
+    names_from = measure_name,
+    # Cell values will be filled from 'measure_value'
+    values_from = measure_value
+  )
+
+# Preview the first 10 rows of the tidied financials
+financials_tidy |>
+  head(10)
+```
+
+Great. Look at BHP: the mining company is now represented as a single row, and we have columns for assets, sales, and ebit that store BHP's values for those financial measures in 2024. As such, we can see that we have successfully shortened and widened our financial statements data frame-i.e., each firm-year observation shows up as a single row in our data frame, and each financial measure is stored in its own column and each of these columns takes this measure's value for a given firm-year observation.
+
+In summary, we have used two core `tidyr` functions, `pivot_longer()` and `pivot_wider()`-to tidy messy data sets and so ensure that our data has variables in columns and observations in rows (and so values in cells). While tidying data in this manner may not seem especially interesting or exciting, it is hugely important because tidy data makes cleaning, combining, and analysing data to extract insights much more efficient, straight forward, and robust.
+
+## Using joins to make one data frame from many
+
+So far we have been working with individual data frames, but in practice single data frames rarely contain all the information necessary for the analyses that we would like to conduct in order to answer important, interesting and timely business questions. Instead, we commonly need to use multiple data frames to answer these questions, and so we must join these data frames together before we can manipulate and analyze their (combined) contents. 
+
+:::{.callout-important title="Mutating vs Filtering Joins"}
+For the remainder of this module, we will introduce and explore two important types of joins: 
+
+- Mutating joins add new variables to one data frame from matching observations in another.  
+- Filtering joins filter observations from one data frame based on whether or not they match an observation in another.  
+
+The former adds columns, while the latter removes rows.  
+
+Joins use a pair of keys—a primary key and a foreign key—to combine tables.  
+A primary key is a variable (or set of variables) that uniquely identifies each observation, while a foreign key links back to that identifier in another data frame.  
+
+Before we can understand and employ joins, we need to understand how keys connect data frames.
+:::
+
+### Understanding how keys connect data frames
+
+Let's grab a snapshot of the now familiar data frame that contains financials for the 200-largest firms in the ASX in 2024. In this data, the **primary key** is the `gvkey`, a six-digit code that uniquely identifies each firm in the data frame (note, `gvkey` in our data is a character type, not a numeric type).
+
+```{r}
+# Select only the key identifiers and industry columns from the ASX 200 financials
+firms <- 
+  asx_200_2024 |> 
+  select(gvkey, conm, fyear, gind)
+
+# Preview the first 10 rows of the reduced firms data frame
+firms |> 
+  head(10)
+```
+
+Now, let's compare the above to `gics_industry`, a look-up table of six-digit industry codes, `gind`, each of which uniquely identifies an industry in the economy. This six-digit code, `gind`, is the primary key for our industry look-up table:
+
+```{r}
+gics_industry |>
+    head(10)
+```
+
+As we defined it above, a **foreign key** is a variable (or set of variables) that corresponds to a **primary key** in another table or data frame. Staying with our examples above, `gind` is the foreign key for `firms` in that it corresponds to `gind`, the primary key of `gics_industry`. 
+
+Before using our primary and foreign keys to join tables, we first should verify that our primary keys uniquely identify observations in their associated data frames:
+
+```{r}
+# Count how many times each gvkey appears in firms
+firms |>
+  count(gvkey) |>
+  # Keep only gvkeys that appear more than once
+  filter(n > 1)
+```
+
+And, for our gics industry data frame:
+
+```{r}
+# Count how many times each gind appears in gics_industry
+gics_industry |>
+  count(gind) |>
+  # Keep only ginds that appear more than once
+  filter(n > 1)
+```
+
+Great. We have confirmed that our primary keys uniquely identify each observation in these data frames. It is worth noting here that while `gind` is the primary key for `gics_industry` (and so uniquely identifies observations in this data frame), it does not uniquely identify observations in `firms`, where (as we mentioned above) `gind` serves as the foreign key. We can easily show this:
+
+```{r}
+# Count the number of times each gind appears in firms
+firms |>
+  count(gind) |>
+  # Arrange in descending order to check whether gind uniquely identifies observations
+  arrange(desc(n))
+```
+
+::: {.exercise}
+
+::: {.exercise-time}
+2 min
+:::
+
+Before using our keys to join data sets, confirm there are no missing values in the primary key columns. Otherwise, those observations can’t be identified. Do so for `gvkey` in `firms` and for `gind` in `gics_industry`.
+
+:::
+
+::: {.solution-header}
+Solution
+:::
+
+::: {.solution-content}
+```{r}
+# Check whether any observations in firms have a missing gvkey (should be none)
+firms |>
+  dplyr::filter(is.na(gvkey))
+
+# Check whether any observations in gics_industry have a missing gind (should be none)
+gics_industry |>
+  dplyr::filter(is.na(gind))
+```
+:::
+
+### Combining variables from two data frames with mutating joins
+
+:::{.callout-important title="Mutating Joins: The `left_join()`"}
+In `dplyr`, join functions share a common interface: they take a pair of data frames `(x, y)` and return a data frame.
+
+We begin with `left_join()`, a mutating join that combines variables from two data frames.
+
+- Mutating joins first match observations by keys, then copy columns from one table to the other.  
+- `left_join(x, y, by = ...)` adds columns from `y` to `x` and guarantees the output has the same number of rows as `x` (the “left” table).
+:::
+ 
+Let's return to our examples from above, and see how we can use `left_join()` to add a column that identifies the industry in which each firm operates in our firm names data frame:
+
+```{r}
+# Join the firms data with the GICS industry lookup table
+# Match on gind (the foreign key in firms, primary key in gics_industry)
+firms |> 
+  left_join(
+    gics_industry, 
+    by = join_by(gind)
+  )
+```
+
+Surprisingly straight forward, right? As the above output shows, `left_join() ` has used `gics_industry` to add a new variable, `industry`, to the right-hand end of `firms`. No other columns have been added, and all existing columns are as they were before the join. Furthermore, we have the same number of rows in our firms name data frame post-join as we had pre-join.
+
+:::{.callout-note title="Defaults in `left_join()`"}
+`left_join(x, y)` does several things by default:
+
+1. It uses all variables that appear in **both** data frames as the join key.  
+   - You can override this by explicitly specifying the variable(s) to use as the join key.  
+
+2. It adds all columns from data frame `y` that do not already appear in data frame `x`.  
+   - You can override this by specifying exactly which columns from `y` should be joined to `x`.  
+:::
+
+Let's try something more ambitious: using a join to add our price data to our financial statements data for the 200-largest ASX-listed firms in 2024. First, let's again pull up and examine our financial statements data frame:
+
+```{r}
+asx_200_2024 |>
+    head(10)
+```
+
+As we discussed above, `gvkey` appears in `asx_200_2024`. Now, let's pull up and examine our stock price data frame:
+
+```{r}
+prices_tidy |>
+    head(10)
+```
+
+We also see `gvkey` in our stock price data frame. So, why don't we examine whether `gvkey` uniquely identifies the observations in `prices_tidy`, in which case we can use `gvkey` for our join.
+
+```{r}
+# Count how many times each gvkey appears in prices_tidy
+# Filter for gvkeys that appear more than once (i.e., not unique)
+prices_tidy |> 
+  count(gvkey) |> 
+  filter(n > 1)
+```
+
+Lucky we checked because `gvkey` does not uniquely identify each observation in `prices_tidy`. Instead, we observe in many cases four instances of each gvkey value in our data frame. This occurs because while our financial statements data, `asx_200_2024`, covers a single firm-year (2024), our stock price data, `prices_tidy`, covers four firm-years (2021-2024). And so, we must use `gvkey` *and* `fyear` to join our data frames. 
+
+Before making this join, let's confirm that for each data frame, this compound key (`gvkey` *and* `fyear`) uniquely identifies each observation (we refer to a primary key that uses a set of variables as a compound key):
+
+```{r}
+# Count how many times each gvkey–fyear pair appears in asx_200_2024
+# If the compound key is unique, all counts should equal 1
+asx_200_2024 |> 
+  count(gvkey, fyear) |> 
+  arrange(desc(n))
+```
+
+```{r}
+# Count how many times each gvkey–fyear pair appears in prices_tidy
+# If the compound key is unique, all counts should equal 1
+prices_tidy |> 
+  count(gvkey, fyear) |> 
+  arrange(desc(n))
+```
+
+Great. We can use the compound key `gvkey` *and* `fyear` to join our data frames.
+
+```{r}
+# Join the financial statements data (asx_200_2024) with stock prices (prices_tidy)
+# Use gvkey and fyear together as the compound key
+# Keep all rows from asx_200_2024 and add matching price column from prices_tidy
+financials_prices_lj <- 
+  asx_200_2024 |> 
+  left_join(
+    prices_tidy |> select(gvkey, fyear, price),
+    by = join_by(gvkey, fyear)
+  )
+
+# Reorder columns so price appears first, followed by the rest of the data
+financials_prices_lj |> 
+  select(price, everything())
+```
+
+Great. Now we have financial and stock price data, and so we can examine questions about the relationship between firms' operating performance and capital market performance - e.g., do investors pay more for firms that generate higher earnings? We will leave questions like this one to this week's tutorial exercises.
+
+Before moving on, one thing you might have noticed, however, is that in combining our financial and stock price data frames `left_join()` keeps all the rows in the financial statements data frame and only those rows; that is, it does not combine stock price data for firms that appear in our stock price data frame but that do not appear in our financial statements data frame (if you look closely at the output above, you can see that while `asx_200_2024` contains 200 rows-one for each of the 200-largest ASX firms in 2024-`prices_tidy` contains 7,340 rows-one for each firm-year for all ASX listed firms for the period 2021-2024). While all other mutating joins employ the same interface as `left_join()`, they differ in terms of which rows they keep.
+
+For example, we can run the code below to see which rows `right_join()`, another type of mutating join, keeps:
+
+```{r}
+# Join the financial statements data (asx_200_2024) with stock prices (prices_tidy)
+# Use gvkey and fyear as the compound key
+# Keep all rows from prices_tidy (the "right" table), adding financials where available
+financials_prices_rj <- 
+  asx_200_2024 |> 
+  right_join(
+    prices_tidy |> select(gvkey, fyear, price),
+    by = join_by(gvkey, fyear)
+  )
+
+# Reorder columns so price appears first, followed by the rest of the data
+financials_prices_rj |> 
+  select(price, everything())
+```
+
+So, on face value the output looks much like that which we got from `left_join()`, but on closer inspection we now have 7,340 rows-the same as we have in `prices_tidy`. 
+
+We can see that `right_join(x, y)` keeps all rows in the `y` data frame. As such, our output from `right_join()` has many, many rows where we have missing values for the columns from `asx_200_2024` and only values for the price column (i.e., firms for which we have stock price data but not financial statements data). 
+
+We can observe this by counting the number of missing values in `financials_prices_rj` for any of columns from `asx_200_2024`. For example, we expect (and do find) that we have many missing values for `ebit`:
+
+```{r}
+sum(is.na(financials_prices_rj$ebit))
+```
+
+::: {.exercise}
+::: {.exercise-time}
+10 min
+:::
+
+As the name suggests, `full_join()` keeps all rows in either `x` or `y`. That is, the output contains all observations from `x` (even if no match in `y`) and all observations from `y` (even if no match in `x`).  
+
+Using `gvkey` *and* `fyear` as a compound key, join financial statements data (`asx_200_2024`) with stock prices (`prices_tidy`), then reorder columns so `price` appears first.  
+
+Finally, report the number of rows produced and explain why it can exceed the row count from `right_join()`.
+:::
+
+::: {.solution-header}
+Solution
+:::
+
+::: {.solution-content}
+```{r}
+# Full join on compound key (gvkey, fyear)
+financials_prices_fj <-
+  asx_200_2024 |>
+  full_join(
+    prices_tidy |> select(gvkey, fyear, price),
+    by = join_by(gvkey, fyear)
+  )
+
+# Reorder columns so price is first
+financials_prices_fj |>
+  select(price, everything())
+```
+
+Using `full_join()`, our output contains 7,343 rows - three more than in `financials_prices_fj`, the output that `right_join()` created.
+
+`full_join()` returns every key that appears in either table. That means it keeps:
+
+- all matched firm–years (where both financials and prices exist),
+
+- plus firm–years that appear only in prices,
+
+- plus firm–years that appear only in financials.
+
+Because it retains both sets of unmatched keys, the row count can be larger than what you get from `right_join()` (which only guarantees all rows from the right-hand table).
+
+:::
+
+
+:::{.callout-note title="Identifying Non-Matching Observations"}
+These three additional rows are observations from `asx_200_2024`, our financial statements data frame, that do not have a match in `prices_tidy`, the stock price data frame. In other words, they are `gvkey`–year combinations that appear in the financial statements but not in the stock price data.
+
+To identify these cases, we use a specific type of join: `anti_join()`. Unlike the mutating joins we have used so far, `anti_join()` is a filtering join. It removes matching rows and keeps only the non-matching ones — more on this distinction later.
+:::
+
+We can use `anti_join(x, y)` to identify and keep only those observations that appear in `asx_200_2024` (i.e., `x`) but that do not appear in `prices_tidy` (i.e., `y`):
+
+```{r}
+# Use anti_join() to keep only rows from asx_200_2024 
+# that do NOT have a matching gvkey–fyear in prices_tidy
+# This helps identify implicit missing values (observations present in x but absent in y)
+financials_prices_aj <- 
+  asx_200_2024 |> 
+  anti_join(
+    prices_tidy,
+    by = join_by(gvkey, fyear)
+  )
+
+# Display the unmatched observations
+financials_prices_aj
+```
+
+We see that our output from using `anti_join()` contains three rows, exactly the number we expected given the difference in the number of rows found in the output from when we used `right_join()` and when we used `full_join()`. 
+
+To confirm that these observations are in fact those from `x` that have no match in `y`, we can examine whether these gvkey-year combinations from our financial statements data frame appear in our stock price data frame:
+
+```{r}
+# Check whether gvkey 267188 in year 2024 appears in prices_tidy
+prices_tidy |> 
+  filter(gvkey == "267188", fyear == "2024")
+
+# Check whether gvkey 270244 in year 2024 appears in prices_tidy
+prices_tidy |> 
+  filter(gvkey == "270244", fyear == "2024")
+
+# Check whether gvkey 364417 in year 2024 appears in prices_tidy
+prices_tidy |> 
+  filter(gvkey == "364417", fyear == "2024")
+```
+
+Great. Those observations from `asx_200_2024` that `anti_join()` showed us to be missing from `prices_tidy` are in fact missing when we manually search for these observations using their unique gvkey-year combination.
+
+The final mutating join that we consider is the `inner_join()`, which is effectively the inverse of `anti_join()`-that is, `inner_join(x, y)` only keeps rows that appear in both `x` and `y` and then adds columns from `y` to `x`. Let's examine our output when we use `inner_join()` to combine our financial statements data and our stock price data:
+
+```{r}
+# Use inner_join() to keep only rows where gvkey–fyear combinations 
+# appear in BOTH asx_200_2024 (financials) and prices_tidy (stock prices).
+# This is effectively the inverse of anti_join().
+financials_prices_ij <- 
+  asx_200_2024 |> 
+  # Join with prices_tidy to add the stock price column
+  inner_join(
+    # Select only the join keys and the price variable
+    prices_tidy |> 
+      select(gvkey, fyear, price),
+    # Match on the compound key (gvkey + fyear)
+    by = join_by(gvkey, fyear)
+  )
+
+# Display the resulting joined data
+financials_prices_ij
+```
+
+Interesting! The output from the inner join contains 197 observations, three fewer than we find in `asx_200_2024`, our financial statements data frame. You guessed it: these 'missing' observations from our financial statements data frame are those and only those that appear in our output when we use `anti_join()`. Neat, now we have shown how the different mutating joins work to combine data from a pair of data frames into a single data frame.
+
+### Selecting rows from a data frame with filtering joins
+
+:::{.callout-important title="What are Filtering Joins?"}
+As the name suggests, filtering joins work by filtering rows, and unlike mutating joins they do not add columns to a data frame. Instead, they determine which observations to keep or drop based on whether matches exist between two data frames.
+
+The function `anti_join(x, y)` is a type of filtering join. It returns all rows in `x` that do not have a match in `y`. Filtering joins also include `semi_join(x, y)`, which works in the opposite way: it keeps rows in `x` only if they have a match in `y`. Together, `semi_join()` and `anti_join()` provide powerful tools for examining overlap between data sets and identifying gaps in coverage.
+:::
+
+::: {.exercise}
+::: {.exercise-time}
+3 min
+:::
+
+Use `colnames()` to compare the variables in the data frame created with `anti_join()` (`financials_prices_aj`) to those in the original `asx_200_2024` data frame.  
+
+- What do you observe about the column sets?  
+- What does this imply about how filtering joins like `anti_join()` work compared to mutating joins such as `inner_join()` or `full_join()`?  
+
+:::
+
+::: {.solution-header}
+Solution
+:::
+
+::: {.solution-content}
+```{r}
+# Column names in the anti_join result
+financials_prices_aj |>
+  colnames()
+
+# Column names in the original financial statements data
+asx_200_2024 |>
+  colnames()
+```
+
+The two sets of column names are identical. This occurs because filtering joins (`anti_join()`, `semi_join()`) only filter rows of the `x` data frame using `y`; they do not add variables from `y`.
+
+By contrast, mutating joins (`inner_join()`, `left_join()`, `right_join()`, `full_join()`) combine columns from both data frames when keys match.
+
+This comparison makes clear that filtering joins are useful when the goal is to select or exclude observations, while mutating joins are used to add new information from another data frame.
+:::
+
+:::{.callout-note title="Missing values and `anti_join()`?"}
+At first glance, `anti_join()` may not seem especially useful. However, it is a powerful tool for solving a common problem when working with real data: identifying implicit missing values.  
+
+Most of the time, missing values show up explicitly as `NA` in a data frame. But sometimes the issue is more subtle: an observation is missing entirely and therefore leaves no trace in the data. These gaps are often just as important as the data that is present.  
+
+By comparing two related data frames, `anti_join()` lets us find these implicit missing values. This makes `anti_join()` particularly valuable for:
+
+- Diagnosing incomplete data coverage  
+- Checking for firms, years, or categories that should appear but don’t  
+- Ensuring consistency when merging multiple sources of information  
+
+In practice, `anti_join(x, y)` returns rows in `x` that have no match in `y`—exactly the kind of check you need when searching for hidden gaps.
+:::
+
+Let's look at an example of implicit missing values in `asx_200_2024`, our stock price data frame. We identified these when we used anti_join() earlier to create the following data frame:
+
+```{r}
+financials_prices_aj
+```
+
+Now, if we look at our stock price data frame, we have many rows that contain missing values, but these observations do not include those that we identified by using `anti_join()`:
+
+```{r}
+prices_tidy |>
+  filter(is.na(price))
+```
+
+The gvkeys in `financials_prices_aj` do not appear in the above, not even as `NA` (check for using `filter()`).
+
+Comparing these two data frames should make clear that we have two types of missing data: missing values that are explicitly recorded as such in a data frame, and so are directly observable-i.e., those above; and implicit missing values that we identify by their absence-i.e., those that we identify above using `anti_join()`.
+
+We now consider our final join for this week's topic, `semi_join()`, which is a filtering join that keeps all rows in `x` that have a match in `y`. Let's see it in action:
+
+```{r}
+# Use semi_join() to keep only those rows in asx_200_2024 (x)
+# that also have a matching gvkey–fyear combination in prices_tidy (y)
+financials_prices_sj <- 
+  asx_200_2024 |> 
+  semi_join(
+    prices_tidy,
+    by = join_by(gvkey, fyear)
+  )
+
+# Display the resulting data frame
+# This shows the subset of financial statements that also have matching stock price data
+financials_prices_sj
+```
+
+This subset of observations from our financial statements data frame should look familiar because these 197 observations are the same that we outputted when we used inner_join`()`, except the difference here is that `semi_join()` does not add any columns to these observations (whereas when we used `inner_join()` we added the column `price` to `asx_200_2024` for these observations).
+
+## Bringing it all together: Reshaping and Combining Data  
+
+:::{.callout-note title="Why reshaping and joining matter"}
+In practice, no single dataset ever contains all the information needed to answer a business question.  Some data arrives in messy, inconvenient formats that must be reshaped before analysis, while other data needs to be linked across multiple sources. Mastering pivots and joins ensures that analysts can prepare clean, consistent data sets ready for deeper analysis and visualization.  
+:::
+
+In this module, we have introduced two essential families of tools for working with business data: pivots for reshaping messy data into tidy form, and joins for combining multiple data frames into one.  
+
+First, we showed how `pivot_longer()` can be used to tidy “short and wide” stock price data by stacking year columns into a single year variable, with prices stored in one column. We also extended this to more complex messy data where column names contained both variable names and values (e.g., `price_2023`, `eps_2023`), demonstrating how the `.value` argument helps split these into tidy variables.  
+
+Second, we showed how `pivot_wider()` can tidy “long and narrow” financials data by collapsing repeated firm-year rows into a single row with columns for each financial measure. This ensured that each observation (a firm-year) was represented once, with measures like assets, sales, and EBIT stored as variables in their own columns.  
+
+Third, we turned to joins. We used `left_join()` to enrich a data frame of firms with information from a lookup table of industries, illustrating how primary keys and foreign keys connect observations across data frames. We then joined financial statement data with stock price data, showing how compound keys (`gvkey` and `fyear`) are often necessary when a single variable does not uniquely identify observations.  
+
+Fourth, we explored how different joins handle matching and non-matching observations. `left_join()` kept all rows from the financial statements; `right_join()` kept all rows from the stock prices; and `full_join()` kept rows from both. To dig deeper into non-matching cases, we used `anti_join()` to identify gvkey–year combinations present in one data frame but absent in another, demonstrating how anti-joins help reveal implicit missing values. Conversely, `inner_join()` and `semi_join()` kept only matching rows, letting us focus on overlap between datasets.  
+
+:::{.callout-important title="Key Takeaway"}
+Pivots allow us to reshape messy data into a tidy, consistent structure that the tidyverse is built to handle, while joins allow us to combine information from multiple sources into a single analytic data set. These two skills — tidying with pivots and joining with keys — form the foundation for reliable, transparent, and efficient business analytics.  
+:::
+
+## Conclusion
+
+In this chapter, we have explored how to use the `tidyr` and `dplyr` packages to reshape and combine financial data in R. We learned how to tidy messy datasets using `pivot_longer()` and `pivot_wider()`, ensuring that variables are stored in columns and observations in rows. We then turned to joins, using keys to link together information from multiple sources. Through `left_join()`, `right_join()`, `full_join()`, and `inner_join()`, as well as filtering joins like `semi_join()` and `anti_join()`, we saw how different types of joins either add variables or filter rows, depending on the analytical task. By applying these techniques to data on the 200 largest Australian public companies in 2024, we created richer datasets that combined firm financials, industry classifications, and stock market performance.  
+
+In the next chapter, we will shift our focus to the formats in which data is stored and exchanged. We will identify common formats such as CSV, JSON, SQL, and Parquet, and consider when each is most appropriate for business use. We will practice loading, exploring, and manipulating data from flat files and nested JSON, and use tools like `dbplyr` and `arrow` to query data in DuckDB and Parquet.
+
