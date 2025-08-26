@@ -253,12 +253,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge">The Business Challenge</a>
   <ul class="collapse">
   <li><a href="#the-topic-how-well-do-australian-firms-earnings-explain-what-investors-are-willing-to-pay-for-these-companies" id="toc-the-topic-how-well-do-australian-firms-earnings-explain-what-investors-are-willing-to-pay-for-these-companies" class="nav-link" data-scroll-target="#the-topic-how-well-do-australian-firms-earnings-explain-what-investors-are-willing-to-pay-for-these-companies">The Topic: How well do Australian firms’ earnings explain what investors are willing to pay for these companies?</a></li>
-  <li><a href="#the-data-stock-price-data-from-yahoo-finance" id="toc-the-data-stock-price-data-from-yahoo-finance" class="nav-link" data-scroll-target="#the-data-stock-price-data-from-yahoo-finance">The Data: Stock Price Data from Yahoo Finance</a></li>
   <li><a href="#the-data-share-prices-and-earnings" id="toc-the-data-share-prices-and-earnings" class="nav-link" data-scroll-target="#the-data-share-prices-and-earnings">The Data: Share Prices and Earnings</a></li>
   <li><a href="#the-method-shaping-and-combining-data-with-tidyr-and-dplyr" id="toc-the-method-shaping-and-combining-data-with-tidyr-and-dplyr" class="nav-link" data-scroll-target="#the-method-shaping-and-combining-data-with-tidyr-and-dplyr">The Method: Shaping and Combining Data with <code>tidyr</code> and <code>dplyr</code></a></li>
-  <li><a href="#getting-set-up-and-loading-the-data" id="toc-getting-set-up-and-loading-the-data" class="nav-link" data-scroll-target="#getting-set-up-and-loading-the-data">Getting set up and loading the data</a></li>
   </ul></li>
-  <li><a href="#loading-the-data" id="toc-loading-the-data" class="nav-link" data-scroll-target="#loading-the-data">Loading the Data</a>
+  <li><a href="#getting-set-up-and-loading-the-data" id="toc-getting-set-up-and-loading-the-data" class="nav-link" data-scroll-target="#getting-set-up-and-loading-the-data">Getting set up and loading the data</a>
   <ul class="collapse">
   <li><a href="#r-packages-for-today" id="toc-r-packages-for-today" class="nav-link" data-scroll-target="#r-packages-for-today">R packages for today</a></li>
   </ul></li>
@@ -266,6 +264,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#exercise-1-identifying-issues-with-un-tidy-data" id="toc-exercise-1-identifying-issues-with-un-tidy-data" class="nav-link" data-scroll-target="#exercise-1-identifying-issues-with-un-tidy-data">Exercise 1: Identifying Issues with Un-tidy Data</a></li>
   <li><a href="#exercise-2-combining-datasets" id="toc-exercise-2-combining-datasets" class="nav-link" data-scroll-target="#exercise-2-combining-datasets">Exercise 2: Combining Datasets</a></li>
+  </ul></li>
+  <li><a href="#in-class-exercises" id="toc-in-class-exercises" class="nav-link" data-scroll-target="#in-class-exercises">In-Class Exercises</a>
+  <ul class="collapse">
   <li><a href="#exercise-3-tidying-and-unlocking-scalable-insights" id="toc-exercise-3-tidying-and-unlocking-scalable-insights" class="nav-link" data-scroll-target="#exercise-3-tidying-and-unlocking-scalable-insights">Exercise 3: Tidying and Unlocking Scalable Insights</a></li>
   <li><a href="#exercise-4-whats-missing-understanding-joins-by-seeing-what-they-drop" id="toc-exercise-4-whats-missing-understanding-joins-by-seeing-what-they-drop" class="nav-link" data-scroll-target="#exercise-4-whats-missing-understanding-joins-by-seeing-what-they-drop">Exercise 4: What’s Missing? Understanding Joins by Seeing What They Drop</a></li>
   </ul></li>
@@ -334,10 +335,6 @@ Learning Goals
 <li>Tidy messy financial data</li>
 <li>Join multiple datasets together</li>
 </ul>
-</section>
-<section id="the-data-stock-price-data-from-yahoo-finance" class="level3">
-<h3 class="anchored" data-anchor-id="the-data-stock-price-data-from-yahoo-finance">The Data: Stock Price Data from Yahoo Finance</h3>
-<p>Here’s a simplified and more student-friendly version:</p>
 <hr>
 </section>
 <section id="the-data-share-prices-and-earnings" class="level3">
@@ -370,12 +367,9 @@ Learning Goals
 <li>Combine company data with industry labels</li>
 </ul>
 </section>
-<section id="getting-set-up-and-loading-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="getting-set-up-and-loading-the-data">Getting set up and loading the data</h3>
 </section>
-</section>
-<section id="loading-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="loading-the-data">Loading the Data</h2>
+<section id="getting-set-up-and-loading-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="getting-set-up-and-loading-the-data">Getting set up and loading the data</h2>
 <section id="r-packages-for-today" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="r-packages-for-today">R packages for today</h3>
 <div class="cell" data-hash="data_tidy_cache/html/unnamed-chunk-3_840c49e9d0d357b8174eef8511e0a7fe">
@@ -386,8 +380,6 @@ Learning Goals
 <section id="prepare-these-exercises-before-class" class="level2">
 <h2 class="anchored" data-anchor-id="prepare-these-exercises-before-class">Prepare these Exercises before Class</h2>
 <p>Prepare these exercises before coming to class. Plan to spend 45 minutes on these exercises.</p>
-<p>::: {.callout-important title = “Switch on the <code>eval</code> flag when you want to evaluate code!”} In the R code chunks below we have provided starter code for you to work from. We have set the key <code>eval</code> to the value <code>false</code> so that they are not run because they have syntax such as <code>YOUR_VALUE_HERE</code> which would generate errors.</p>
-<p>Switch the <code>eval</code> value to <code>true</code> when you want the R code within a chunk to be run when you compile your document. :::</p>
 <section id="exercise-1-identifying-issues-with-un-tidy-data" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-1-identifying-issues-with-un-tidy-data">Exercise 1: Identifying Issues with Un-tidy Data</h3>
 <p>We’ll start with a deliberately messy version of the ASX stock price data. Run the following code to load and implement some preliminary manipulations to this dataset.</p>
@@ -583,6 +575,10 @@ Learning Goals
 <li>Does this kind of join have a name? If so, what is it?</li>
 </ul>
 </section>
+</section>
+<section id="in-class-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-exercises">In-Class Exercises</h2>
+<p>You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.</p>
 <section id="exercise-3-tidying-and-unlocking-scalable-insights" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-3-tidying-and-unlocking-scalable-insights">Exercise 3: Tidying and Unlocking Scalable Insights</h3>
 <p><strong>(a)</strong>. We’ll now tidy the messy stock price dataset from Exercise 1 so we can more easily analyse and visualise it. Use the starter code below to turn your wide-format data back into a tidy format using <code>pivot_longer()</code>.</p>
