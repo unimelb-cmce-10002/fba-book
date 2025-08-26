@@ -50,6 +50,7 @@ book:
         - tutorials/how_to_do_business_analytics.qmd
         - tutorials/data_visualisation.qmd
         - tutorials/data_wrangling.qmd
+        - tutorials/data_tidy.qmd
   # appendices:
     # - appendices/installation.qmd
 

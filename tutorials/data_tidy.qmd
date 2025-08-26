@@ -1,0 +1,407 @@
+# Tutorial 5: Shaping and Joining Data for Business Analytics {.unnumbered}
+
+::: {.callout-tip}
+## Learning Goals {.unnumbered}
+
+By the end of this tutorial, you should be able to:
+
+- Recognize the difference between tidy and messy data, and use `pivot_longer()` to tidy up wide data.
+- Summarize and visualise financial data, and explain why tidy formats make analysis easier.
+- Plot and interpret relationships between share price and earnings per share (EPS).
+- Combine data from multiple tables using joins (`left_join()`, `inner_join()`, `anti_join()`), and understand what each join includes or excludes.
+:::
+
+## The Business Challenge
+
+```{r}
+#| warning: false
+#| echo: false
+library(tidyverse)
+library(ggplot2)
+library(scales) 
+library(ggokabeito)
+library(ggthemes) 
+library(patchwork) 
+library(stringr)
+library(knitr)
+```
+
+
+```{r}
+#| warning: false
+#| echo: false
+# Load the data
+
+asx_prices_messy <- 
+    read_csv("../data/prices_messy.csv")
+
+firm_codes <- 
+    read_csv("../data/asx_200_2024.csv") |>
+    select(gvkey, conm, gsubind)
+
+subindustry_names <- 
+    read_csv("../data/GICS_subindustry.csv")
+
+# Load the data
+pe_data <- 
+    read_csv("../data/pe.csv") |>
+    select(gvkey, fyear, pe) |>
+    filter(!is.na(pe)) |> 
+    arrange(gvkey, fyear)
+    
+```
+
+### The Topic: How well do Australian firms' earnings explain what investors are willing to pay for these companies? {.unnumbered}
+
+Share prices of Australia’s biggest companies go up and down every day. These changes reflect how investors feel about the company’s future earnings — based on news, forecasts, and the broader economy.
+
+Two key numbers help us understand this:
+
+Earnings per share (EPS), tells us how much profit a company earns for each share:
+
+$$
+\text{EPS} = \frac{\text{Profit}}{\text{Shares Outstanding}}
+$$
+
+The Price-to-Earnings (P/E) Ratio shows how much investors are willing to pay for \$1 of earnings:
+
+$$
+\text{P/E} = \frac{\text{Share Price}}{\text{EPS}}
+$$
+
+To tie these measures back to our earlier material on firm's Earnings Before Interest and Taxes (EBIT), we can define firm's earnings that are ultimately paid out to shareholders as follows:
+
+$$
+\text{Earnings} = \text{EBIT} - \text{Interest} - \text{Taxes}
+$$
+
+We'll use real data from major Australian companies listed on the ASX to practise cleaning, combining, and analysing financial variables like EPS and the P/E ratio. In particular we will:
+
+-   Tidy messy financial data
+-   Join multiple datasets together
+
+------------------------------------------------------------------------
+
+### The Data: Share Prices and Earnings
+
+We'll be using real data on Australian companies from Yahoo Finance. It includes key financial info:
+
+-   `gvkey`: a unique company ID we can use to match data across files
+-   `price`: each company’s share price at the end of the year
+-   `eps`: earnings per share – how much profit each share earns
+-   `pe`: price-to-earnings ratio – how much investors are paying per dollar of earnings
+
+We also have a separate file with industry details:
+
+-   `gsubind`: a code showing what industry a company is in
+-   `subind`: the name of that industry (like "Gold" or "Construction & Engineering")
+
+Together, these files let us compare company valuations and see how they differ across industries.
+
+### The Method: Shaping and Combining Data with `tidyr` and `dplyr`
+
+Data often needs cleaning before it's ready to analyse. It might be too wide (with different years in separate columns), too long, or split across multiple files.
+
+In this tutorial, we’ll use two tidyverse tools to fix that:
+
+-   **`tidyr`**: to reshape messy data using functions like `pivot_longer()`
+-   **`dplyr`**: to join different datasets together and spot what's missing
+
+These tools will help us:
+
+-   Make messy data easier to work with
+-   Combine company data with industry labels
+
+## Getting set up and loading the data
+
+### R packages for today {.unnumbered}
+
+```{r}
+#| eval: false
+library(tidyverse)     # collection of packages for data manipulation and visualization
+```
+
+## Prepare these Exercises before Class 
+
+Prepare these exercises before coming to class. Plan to spend 45 minutes on these exercises.
+
+### Exercise 1: Identifying Issues with Un-tidy Data
+
+We'll start with a deliberately messy version of the ASX stock price data. Run the following code to load and implement some preliminary manipulations to this dataset.
+
+```{r}
+#| eval: false
+asx_prices_messy <- 
+    read_csv("data/asx_prices_messy.csv")
+```
+
+```{r}
+asx_prices_messy |> 
+    select(gvkey, conm, price_2023, price_2024, 
+           eps_2023, eps_2024) |>
+    head(10)
+```
+
+**(a).** In what ways is this data frame not tidy? Be specific: which tidy‑data principles are violated?
+
+**(b).** Suppose we want the average share price across all firms for the period 2023–2024. With this messy layout you will need to compute sum and counts across columns (i.e., sum prices for 2023, for 2024; then, count non-missing observations in these columns for 2023, 2024, etc). Use the starter code below to compute the average share price across all firms for the period 2023-2024.
+
+```{r}
+#| eval: false
+
+asx_prices_messy |>
+    summarise(
+        # Sum the prices from the 2023 year
+        sum_prices_2023   = sum(YOUR_CODE_HERE, na.rm = TRUE),
+        # Sum the prices from the 2024 year
+        sum_prices_2024   = sum(YOUR_CODE_HERE, na.rm = TRUE),
+        # Count the number of firms with non-missing
+        # prices in 2023
+        count_firms_2023 = sum(!is.na(price_2023)),
+        # Count the number of firms with non-missing
+        # prices in 2024
+        count_firms_2024 = sum(!is.na(price_2024))
+    ) |>
+    mutate(
+        # Compute the total sum of prices across both years
+        total_sum   = YOUR_CODE_HERE + YOUR_CODE_HERE,
+        # Compute the total count of firms across both years
+        total_count = count_firms_2023 + count_firms_2024
+    ) |>
+    mutate(
+        # Manually compute the average
+        avg_price_23_24 = YOUR_CODE_HERE / YOUR_CODE_HERE
+    ) |> 
+    select(avg_price_23_24)
+```
+
+**(c)** Explain why the approach we took in (b) doesn't scale well as more years of data are added.
+
+**(d)** Examining relationships between variables in a messy data frame can be especially tricky. Suppose we want to see whether share price and earnings per share are correlated in 2024. With this messy structure we must hard-code the year's columns:
+
+```{r}
+#| warning: false
+
+asx_prices_messy |>
+    filter(eps_2024 > -5) |>
+    ggplot(aes(x = eps_2024, y = price_2024)) +
+    geom_point(alpha = 0.4) +
+    geom_smooth(method = "lm", se = TRUE, color = "blue") +
+    labs(
+        title = "Share Price vs EPS (2024)",
+        x = "Earnings per Share (EPS, 2024)",
+        y = "Share Price (2024)"
+    ) +
+    theme_minimal()
+```
+
+Based on this plot, what relationship do you see in 2024?
+Why does this make sense economically (what are investors "buying" when they invest)?
+
+**(e)**. Now imagine you also wanted to include 2023 in the same analysis. You do not need to implement code to add these data points to the plot above — just explain the steps you'd need to take.
+
+* Which additional columns would you need to reference in the data?
+* How would your plotting code change?
+* What problems do you foresee if you wanted to extend this further to 2019–2024?
+
+
+### Exercise 2: Combining Datasets
+
+In this exercise, we'll combine two or more data frames using joins. Sometimes, joining adds columns. Other times, it can add rows when duplicate keys exist.
+
+Let's walk through both situations.
+
+To start, let's load the necessary data for this exercise - for two of these datasets, the code below also does some 'light' wrangling (similar to what we did to our datasets in last week's tutorial):
+
+```{r}
+#| eval: false
+
+firm_codes <- 
+    read_csv("data/asx_200_2024.csv") |> 
+    select(gvkey, conm, gsubind)
+
+subindustry_names <-
+    read_csv("data/GICS_subindustry.csv")
+
+pe_data <- 
+    read_csv("data/pe.csv") |> 
+    select(gvkey, fyear, pe) |>
+    filter(!is.na(pe)) |> 
+    arrange(gvkey, fyear)
+```
+
+**(a)**. 
+We start with a data frame that lists each firm's subindustry code (`gsubind`), using the largest 200 firms on the ASX in 2024:
+
+```{r}
+firm_codes |> 
+    head(10)
+```
+
+We also have a lookup table that tells us the name of each subindustry:
+
+```{r}
+subindustry_names |> 
+    head(10)
+```
+
+Use a left join to add the subindustry name to each firm in the `firm_codes` dataset using the variable `gsubind` as the join key. The code below gets you started:
+
+```{r}
+#| eval: false
+firm_info <- 
+    YOUR_DATASET_NAME |>
+    left_join(YOUR_DATASET_NAME, by = "YOUR_VARIABLE_NAME")
+
+firm_info |> 
+    head(10)
+```
+
+**(b).** What kind of join did we just perform? To help answer this question, consider the following:
+
+* What kind of thing are we adding: columns or rows?
+* Did each `gsubind` only appear once in the dataset `subindustry_names`?
+* Does this kind of join have a name? If so, what is it?
+
+**(c)**.
+
+Now let's bring in PE ratio data, which has multiple years per firm:
+
+```{r}
+pe_data |> 
+    head(10)
+```
+
+Use a left join to add the P/E data to each firm in the `firm_info` dataset using the variable `gvkey` as the join key. Use the starter code below to implement this join:
+
+```{r}
+#| eval: false
+firm_pe_data <- 
+    YOUR_DATASET_NAME |>
+    YOUR_JOIN_TYPE(YOUR_DATASET_NAME, by = "YOUR_VARIABLE_NAME")
+
+firm_pe_data |>
+  head(10) |>
+  select(pe, everything())
+```
+
+**(d).** What kind of join did we just perform? To help answer this question, consider the following:
+
+* What kind of thing are we adding: columns or rows?
+* How many rows are in the dataset `firm_pe_data`? How about `firm_info`?
+* Does each `gvkey` in the original table (`firm_info`) now appear once or multiple times in the 'joined' data frame (`firm_pe_data`)? Why?
+* Does this kind of join have a name? If so, what is it?
+
+
+## In-Class Exercises
+
+You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.
+
+### Exercise 3: Tidying and Unlocking Scalable Insights
+
+**(a)**. We'll now tidy the messy stock price dataset from Exercise 1 so we can more easily analyse and visualise it. Use the starter code below to turn your wide-format data back into a tidy format using `pivot_longer()`.
+
+```{r}
+#| eval: false
+asx_prices_tidy <- 
+    asx_prices_messy |>
+    pivot_longer(
+        cols = YOUR_CODE_HERE,
+        names_to = c(".value", "fyear"),
+        names_sep = YOUR_CODE_HERE,
+        values_drop_na = TRUE
+    ) |>
+    mutate(fyear = as.numeric(fyear))
+
+asx_prices_tidy |> 
+    head(10)
+```
+
+**(b)**. Why is this structure better for analysis?
+Why might calculations or visualisations now be easier?
+
+**(c)**. Let's re-do a simple tasks from Exercise 1, that was quite complicated to implement — and see how much easier it is now that our data is tidy. What's the average share price for all firms across 2023 and 2024?
+
+```{r}
+#| eval: false
+asx_prices_tidy |>
+    YOUR_CODE(fyear %in% c(YOUR_YEARS)) |>
+    YOUR_CODE(avg_price = mean(YOUR_VARIABLE, na.rm = TRUE))
+```
+
+**(d)**. Let's re-do our plot from Exercise 1 too. Plot price vs EPS over the full sample (2019–2024). 
+
+**(e)**. Suppose we wanted to modify the plot in (d) to only include the years 2023 and 2024. Modify the code you just wrote to make this change by adding one new line of code.
+
+**(f)**. What kind of relationship do you observe in the plot in (d)?
+What might explain firms that lie above or below the fitted line? For EPS < 0, does our line-of-best-fit 'make sense'?
+
+
+### Exercise 4: What's Missing? Understanding Joins by Seeing What They Drop
+
+In Exercise 2, we used `left_join()` to combine data from different tables — like firm details, subindustry names, and P/E ratios. That helped us build one data frame with all the information in one place. Now, we'll go a step further and explore what different kinds of joins keep and drop. This can help us spot missing or underrepresented data — and understand our dataset more deeply.
+
+**(a)**.
+Let's start by counting how many firms in the ASX200 belong to each subindustry. Use the starter code below to return the three most common industries: 
+
+```{r}
+#| eval: false
+
+firm_info |> 
+    YOUR_CODE(subind) |> 
+    YOUR_CODE(desc(n)) |> 
+    YOUR_CODE(3)
+```
+
+And, now the three least common:
+
+```{r}
+#| eval: false
+
+firm_info |> 
+    YOUR_CODE(subind) |> 
+    YOUR_CODE((n)) |> 
+    YOUR_CODE(3)
+```
+
+**(b)**. Are there any subindustries that don’t appear in the ASX200 sample-and so are even less common those that we identify in (a)?
+
+We can use `anti_join()` to find subindustries listed in `subindustry_names` but missing from our firms data. How many subindustries are not included in the ASX200?
+
+```{r}
+#| eval: false
+
+YOUR_CODE |> 
+    YOUR_CODE(firm_info, by = "subind") |> 
+    nrow()
+```
+
+**(c)**. What kinds of industries are missing? Why might they be underrepresented in the ASX200?
+
+**(d)**. An `inner_join()` keeps only the firms that have a matching subindustry in the lookup table. Recreate the join you did in Exercise 2(a), but this time use `inner_join()` instead of `left_join()`.
+
+```{r}
+#| eval: false
+
+firm_info_inner <- 
+    firm_codes |>
+    YOUR_CODE(subindustry_names, by = "gsubind")
+```
+
+**(e)** Are there any differences in the data frame in (d) to the one you constructed in 2 (a)? Explain your answer.
+
+**(f)**. Over this exercise and Exercise 2, you've used three different types of joins:
+
+* `left_join()`
+* `anti_join()`
+* `inner_join()`
+
+Each one gives you a slightly different view of how your data frames relate to each other.
+
+In your own words, answer the following:
+
+1. What does each join keep and what does it drop?
+2. Which join is most useful when you want to preserve all rows from one table, even if they don’t match?
+3. Which join is best for finding mismatches between two tables?
+4. Which join only keeps perfect matches between the two tables?
+
