@@ -25,9 +25,9 @@ book:
         - insights/data_visualisation.qmd
         - insights/data_manipulation.qmd
         - insights/data_tidy.qmd
-    # - part: "Finding and Storing Data"
-    #   chapters:
-    #     - data_management/data_storage.qmd
+    - part: "Finding and Storing Data"
+      chapters:
+        - data_management/data_storage.qmd
     #     - data_management/data_collection.qmd
     # - part: "Extracting Deeper Insights from Data"
     #   chapters:

@@ -1,0 +1,1001 @@
+item_id|title|category|start_time|end_time|seller_user_id|final_price|winner_id
+AUC00000|Samsung Galaxy S22|Electronics|2025-07-19T00:00:00Z|2025-07-20T00:00:00Z|pray|161.57|smithkayla
+AUC00001|Casio G-Shock Watch|Fashion|2025-04-24T00:00:00Z|2025-04-27T00:00:00Z|vgomez|135.53|mayercheyenne
+AUC00002|Louis Vuitton Neverfull Bag (Like New)|Fashion|2025-03-20T00:00:00Z|2025-03-22T00:00:00Z|rodrigueznicholas|37.19|jessica58
+AUC00003|The Great Gatsby (Rare)|Books|2025-03-24T00:00:00Z|2025-03-26T00:00:00Z|tylercook|218.83|richardsonronald
+AUC00004|Monopoly Classic Edition (2022 Model)|Toys & Games|2025-08-14T00:00:00Z|2025-08-15T00:00:00Z|benjamin55|91.82|thomassheri
+AUC00005|Dyson V11 Vacuum Cleaner (2022 Model)|Home & Garden|2025-06-25T00:00:00Z|2025-06-28T00:00:00Z|khuff|107.92|daniel73
+AUC00006|LEGO Star Wars Millennium Falcon (2022 Model)|Toys & Games|2025-08-15T00:00:00Z|2025-08-18T00:00:00Z|cespinoza|120.55|bradleycarol
+AUC00007|LEGO Star Wars Millennium Falcon (2022 Model)|Toys & Games|2025-03-18T00:00:00Z|2025-03-19T00:00:00Z|jameslane|70.93|lopezchristine
+AUC00008|Vintage Concert Poster|Collectibles|2025-04-01T00:00:00Z|2025-04-04T00:00:00Z|pthomas|114.59|russell88
+AUC00009|Apple Watch Series 8 (Used)|Electronics|2025-08-05T00:00:00Z|2025-08-07T00:00:00Z|iwilkerson|105.63|xcarson
+AUC00010|Harry Potter and the Philosopher's Stone (1st Ed.)|Books|2025-04-14T00:00:00Z|2025-04-16T00:00:00Z|lisasanders|133.6|karen97
+AUC00011|Sapiens: A Brief History of Humankind (Like New)|Books|2025-06-03T00:00:00Z|2025-06-05T00:00:00Z|fishertracy|97.27|haleyaustin
+AUC00012|Rare Pokémon Charizard Card (2022 Model)|Collectibles|2025-03-01T00:00:00Z|2025-03-04T00:00:00Z|robertswendy|261.98|osmith
+AUC00013|Nespresso Vertuo Coffee Machine|Home & Garden|2025-07-14T00:00:00Z|2025-07-16T00:00:00Z|steventhomas|141.33|joelutz
+AUC00014|Monopoly Classic Edition (2022 Model)|Toys & Games|2025-05-07T00:00:00Z|2025-05-10T00:00:00Z|brandirobertson|78.64|erica30
+AUC00015|To Kill a Mockingbird (Rare)|Books|2025-05-23T00:00:00Z|2025-05-26T00:00:00Z|martin69|126.77|mward
+AUC00016|Zara Wool Coat (Used)|Fashion|2025-03-26T00:00:00Z|2025-03-27T00:00:00Z|jbuckley|177.46|allenbrittany
+AUC00017|Nespresso Vertuo Coffee Machine (Used)|Home & Garden|2025-06-28T00:00:00Z|2025-06-29T00:00:00Z|pmoore|188.71|carlos56
+AUC00018|GoPro Hero 10 (2022 Model)|Electronics|2025-08-02T00:00:00Z|2025-08-03T00:00:00Z|juliayates|210.24|qbanks
+AUC00019|Michael Jordan Rookie Card (Rare)|Collectibles|2025-04-29T00:00:00Z|2025-05-02T00:00:00Z|derrickross|49.15|dsantiago
+AUC00020|Dell XPS 13 Laptop|Electronics|2025-03-02T00:00:00Z|2025-03-04T00:00:00Z|thomasfrost|38.6|jennifer46
+AUC00021|Louis Vuitton Neverfull Bag (Rare)|Fashion|2025-02-14T00:00:00Z|2025-02-16T00:00:00Z|michellethomas|82.11|richardmccarthy
+AUC00022|To Kill a Mockingbird|Books|2025-07-23T00:00:00Z|2025-07-24T00:00:00Z|belljeffrey|143.81|fgarcia
+AUC00023|Apple iPhone 13 Pro (Rare)|Electronics|2025-03-25T00:00:00Z|2025-03-27T00:00:00Z|paulbarnett|211.5|rodriguezkimberly
+AUC00024|Sapiens: A Brief History of Humankind|Books|2025-01-24T00:00:00Z|2025-01-26T00:00:00Z|zsimon|141.46|hjohnson
+AUC00025|Monopoly Classic Edition|Toys & Games|2025-02-01T00:00:00Z|2025-02-04T00:00:00Z|leblancchristine|267.58|jallen
+AUC00026|Nintendo Switch (Used)|Toys & Games|2025-05-31T00:00:00Z|2025-06-03T00:00:00Z|melissa83|98.92|josephbush
+AUC00027|Apple Watch Series 8|Electronics|2025-06-18T00:00:00Z|2025-06-21T00:00:00Z|riverajacob|228.23|joshua38
+AUC00028|IKEA LINNMON Desk (2022 Model)|Home & Garden|2025-03-31T00:00:00Z|2025-04-03T00:00:00Z|donaldpoole|43.02|kevingarcia
+AUC00029|Sapiens: A Brief History of Humankind|Books|2025-08-07T00:00:00Z|2025-08-08T00:00:00Z|sarah44|122.6|crystal19
+AUC00030|Nike Air Force 1 (Used)|Fashion|2025-05-01T00:00:00Z|2025-05-02T00:00:00Z|kylecoleman|155.18|joselewis
+AUC00031|Apple iPhone 13 Pro (Like New)|Electronics|2025-08-10T00:00:00Z|2025-08-11T00:00:00Z|donald79|150.75|efisher
+AUC00032|The Lean Startup (Used)|Books|2025-07-04T00:00:00Z|2025-07-07T00:00:00Z|franciscoschmidt|262.72|cynthiagregory
+AUC00033|IKEA LINNMON Desk (2022 Model)|Home & Garden|2025-08-09T00:00:00Z|2025-08-12T00:00:00Z|pwhitney|160.03|ltaylor
+AUC00034|LEGO Star Wars Millennium Falcon (Like New)|Toys & Games|2025-07-01T00:00:00Z|2025-07-04T00:00:00Z|smithtimothy|61.66|keith35
+AUC00035|Apple iPhone 13 Pro (Like New)|Electronics|2025-08-02T00:00:00Z|2025-08-03T00:00:00Z|ntaylor|118.33|scortez
+AUC00036|Uno Card Game (2022 Model)|Toys & Games|2025-04-18T00:00:00Z|2025-04-19T00:00:00Z|ricky79|116.89|kevin50
+AUC00037|The Lean Startup (Rare)|Books|2025-02-10T00:00:00Z|2025-02-11T00:00:00Z|oking|136.26|jason29
+AUC00038|The Great Gatsby (Like New)|Books|2025-02-27T00:00:00Z|2025-03-02T00:00:00Z|wwelch|29.94|brocktimothy
+AUC00039|Samsung Galaxy S22|Electronics|2025-04-09T00:00:00Z|2025-04-10T00:00:00Z|vargasrebecca|114.18|crossjenna
+AUC00040|Apple Watch Series 8 (2022 Model)|Electronics|2025-02-11T00:00:00Z|2025-02-12T00:00:00Z|jhudson|130.08|theresa29
+AUC00041|Sony WH-1000XM4 (2022 Model)|Electronics|2025-07-11T00:00:00Z|2025-07-14T00:00:00Z|xking|75.54|jose27
+AUC00042|Hot Wheels Mega Garage|Toys & Games|2025-08-03T00:00:00Z|2025-08-04T00:00:00Z|woodsmonique|180.29|donnawhite
+AUC00043|Apple Watch Series 8 (Rare)|Electronics|2025-03-30T00:00:00Z|2025-03-31T00:00:00Z|bowersjamie|62.98|qward
+AUC00044|Rare Pokémon Charizard Card|Collectibles|2025-06-17T00:00:00Z|2025-06-18T00:00:00Z|dominiquerogers|116.51|chase07
+AUC00045|To Kill a Mockingbird (Used)|Books|2025-07-23T00:00:00Z|2025-07-25T00:00:00Z|imurphy|138.87|tstevenson
+AUC00046|Monopoly Classic Edition (2022 Model)|Toys & Games|2025-02-16T00:00:00Z|2025-02-19T00:00:00Z|roberthaas|88.36|kennethgonzalez
+AUC00047|Apple Watch Series 8 (Rare)|Electronics|2025-02-22T00:00:00Z|2025-02-24T00:00:00Z|robertlong|77.91|evansmichele
+AUC00048|Casio G-Shock Watch (2022 Model)|Fashion|2025-03-22T00:00:00Z|2025-03-25T00:00:00Z|mary48|257.75|kellyhawkins
+AUC00049|Nintendo Switch (Used)|Toys & Games|2025-03-27T00:00:00Z|2025-03-30T00:00:00Z|seth88|103.94|nguyenjennifer
+AUC00050|Dell XPS 13 Laptop|Electronics|2025-01-11T00:00:00Z|2025-01-12T00:00:00Z|kjohnson|144.53|christopher66
+AUC00051|Levi's 501 Jeans|Fashion|2025-07-30T00:00:00Z|2025-08-01T00:00:00Z|xperry|104.94|whitejasmin
+AUC00052|Rare Pokémon Charizard Card (Like New)|Collectibles|2025-05-06T00:00:00Z|2025-05-08T00:00:00Z|kevinford|99.67|ucampos
+AUC00053|Sapiens: A Brief History of Humankind (Rare)|Books|2025-01-09T00:00:00Z|2025-01-11T00:00:00Z|christophersmith|101.58|gonzalesmatthew
+AUC00054|To Kill a Mockingbird|Books|2025-05-11T00:00:00Z|2025-05-13T00:00:00Z|peter89|104.93|alicianorman
+AUC00055|Sony WH-1000XM4|Electronics|2025-02-28T00:00:00Z|2025-03-01T00:00:00Z|chambersroger|159.25|farrellpamela
+AUC00056|Harry Potter and the Philosopher's Stone (1st Ed.) (Used)|Books|2025-06-20T00:00:00Z|2025-06-23T00:00:00Z|jasonmyers|56.55|haroldmcclure
+AUC00057|LEGO Star Wars Millennium Falcon (2022 Model)|Toys & Games|2025-06-12T00:00:00Z|2025-06-15T00:00:00Z|ftapia|21.78|ymorales
+AUC00058|Funko Pop Marvel Collection|Collectibles|2025-01-07T00:00:00Z|2025-01-08T00:00:00Z|jerryphillips|49.95|zmcmillan
+AUC00059|Nintendo Switch (Rare)|Toys & Games|2025-08-13T00:00:00Z|2025-08-14T00:00:00Z|josephsanders|266.96|wellsdonald
+AUC00060|1980s Comic Book Set (Like New)|Collectibles|2025-08-13T00:00:00Z|2025-08-16T00:00:00Z|samueljohnston|82.83|erincross
+AUC00061|GoPro Hero 10|Electronics|2025-03-01T00:00:00Z|2025-03-04T00:00:00Z|averylinda|136.43|steven97
+AUC00062|Samsung Galaxy S22 (2022 Model)|Electronics|2025-05-18T00:00:00Z|2025-05-19T00:00:00Z|kosborn|82.06|rallen
+AUC00063|Dell XPS 13 Laptop (Like New)|Electronics|2025-02-16T00:00:00Z|2025-02-18T00:00:00Z|masseynatasha|127.02|aaron46
+AUC00064|1980s Comic Book Set|Collectibles|2025-03-23T00:00:00Z|2025-03-24T00:00:00Z|hortonmatthew|251.72|brittany74
+AUC00065|GoPro Hero 10 (2022 Model)|Electronics|2025-03-29T00:00:00Z|2025-03-31T00:00:00Z|roselucas|252.93|johnmcdonald
+AUC00066|Harry Potter and the Philosopher's Stone (1st Ed.) (2022 Model)|Books|2025-05-13T00:00:00Z|2025-05-16T00:00:00Z|jeffreycooper|106.51|lroberts
+AUC00067|The Lean Startup (Used)|Books|2025-03-31T00:00:00Z|2025-04-02T00:00:00Z|richjames|31.88|llamb
+AUC00068|Barbie Dreamhouse|Toys & Games|2025-05-15T00:00:00Z|2025-05-18T00:00:00Z|mweber|137.77|tammyhernandez
+AUC00069|Dyson V11 Vacuum Cleaner (Rare)|Home & Garden|2025-07-20T00:00:00Z|2025-07-23T00:00:00Z|garyalexander|154.12|wduncan
+AUC00070|GoPro Hero 10 (Used)|Electronics|2025-05-25T00:00:00Z|2025-05-26T00:00:00Z|grahamryan|115.62|melissa22
+AUC00071|Zara Wool Coat (Like New)|Fashion|2025-06-17T00:00:00Z|2025-06-19T00:00:00Z|coxanthony|60.17|jeffreyramos
+AUC00072|Bosch Cordless Drill (2022 Model)|Home & Garden|2025-06-11T00:00:00Z|2025-06-13T00:00:00Z|nicholsonjillian|37.46|jacksonmary
+AUC00073|Sony WH-1000XM4 (2022 Model)|Electronics|2025-08-02T00:00:00Z|2025-08-04T00:00:00Z|davenportsteven|53.54|savila
+AUC00074|IKEA LINNMON Desk (Like New)|Home & Garden|2025-06-05T00:00:00Z|2025-06-06T00:00:00Z|aguilardonald|193.36|ahuber
+AUC00075|Sony WH-1000XM4 (Rare)|Electronics|2025-04-07T00:00:00Z|2025-04-10T00:00:00Z|hillrachel|160.44|wmurphy
+AUC00076|To Kill a Mockingbird|Books|2025-01-09T00:00:00Z|2025-01-11T00:00:00Z|michaelrodriguez|55.11|mitchelljeffrey
+AUC00077|To Kill a Mockingbird (Like New)|Books|2025-07-26T00:00:00Z|2025-07-29T00:00:00Z|patricia77|62.27|adrianaweaver
+AUC00078|Atomic Habits (Used)|Books|2025-03-09T00:00:00Z|2025-03-10T00:00:00Z|awells|50.12|charleszavala
+AUC00079|Nintendo Switch (Like New)|Toys & Games|2025-01-27T00:00:00Z|2025-01-29T00:00:00Z|acollins|270.69|cochranmartin
+AUC00080|Dell XPS 13 Laptop (Rare)|Electronics|2025-07-23T00:00:00Z|2025-07-25T00:00:00Z|lthomas|41.49|christopher84
+AUC00081|Philips Hue Starter Kit (Rare)|Home & Garden|2025-07-28T00:00:00Z|2025-07-31T00:00:00Z|burnettjohn|72.92|susanhenry
+AUC00082|Uno Card Game (2022 Model)|Toys & Games|2025-05-07T00:00:00Z|2025-05-10T00:00:00Z|justin23|317.81|larsonamanda
+AUC00083|Harry Potter and the Philosopher's Stone (1st Ed.) (Used)|Books|2025-08-14T00:00:00Z|2025-08-15T00:00:00Z|obauer|37.03|matthew17
+AUC00084|Rare Pokémon Charizard Card (Rare)|Collectibles|2025-08-22T00:00:00Z|2025-08-24T00:00:00Z|ramirezmargaret|226.46|mitchellnicole
+AUC00085|Atomic Habits (Rare)|Books|2025-07-19T00:00:00Z|2025-07-22T00:00:00Z|annaberg|117.82|deniselowe
+AUC00086|Louis Vuitton Neverfull Bag (2022 Model)|Fashion|2025-06-17T00:00:00Z|2025-06-20T00:00:00Z|alexis07|117.5|robert17
+AUC00087|Antique Pocket Watch (2022 Model)|Collectibles|2025-02-24T00:00:00Z|2025-02-26T00:00:00Z|josephcrane|147.75|arthurbuck
+AUC00088|Funko Pop Marvel Collection (Used)|Collectibles|2025-05-01T00:00:00Z|2025-05-03T00:00:00Z|jean13|189.62|dunnpatrick
+AUC00089|GoPro Hero 10|Electronics|2025-06-26T00:00:00Z|2025-06-27T00:00:00Z|edward34|227.27|tiffanyvalencia
+AUC00090|Monopoly Classic Edition (Rare)|Toys & Games|2025-08-04T00:00:00Z|2025-08-07T00:00:00Z|johnstonaaron|160.7|davisamanda
+AUC00091|Rare Pokémon Charizard Card|Collectibles|2025-08-25T00:00:00Z|2025-08-28T00:00:00Z|lewishannah|76.7|davidsilva
+AUC00092|Nintendo Switch (Like New)|Toys & Games|2025-01-26T00:00:00Z|2025-01-28T00:00:00Z|debbie45|55.62|micheallarson
+AUC00093|Louis Vuitton Neverfull Bag (Rare)|Fashion|2025-04-12T00:00:00Z|2025-04-13T00:00:00Z|wcollins|129.96|gjohnson
+AUC00094|Philips Hue Starter Kit (2022 Model)|Home & Garden|2025-08-28T00:00:00Z|2025-08-29T00:00:00Z|cuevasjoyce|51.92|christinasmith
+AUC00095|Antique Pocket Watch (Like New)|Collectibles|2025-02-04T00:00:00Z|2025-02-07T00:00:00Z|cathymata|159.91|christianmolina
+AUC00096|Apple iPhone 13 Pro (2022 Model)|Electronics|2025-08-05T00:00:00Z|2025-08-08T00:00:00Z|dunnmichelle|174.46|sandovaltyler
+AUC00097|Monopoly Classic Edition (Used)|Toys & Games|2025-05-11T00:00:00Z|2025-05-14T00:00:00Z|nathan44|223.16|tracy91
+AUC00098|Samsung Galaxy S22 (Like New)|Electronics|2025-08-07T00:00:00Z|2025-08-08T00:00:00Z|bookernathan|110.21|banksruben
+AUC00099|Apple iPhone 13 Pro|Electronics|2025-08-18T00:00:00Z|2025-08-21T00:00:00Z|luis11|142.26|estradayolanda
+AUC00100|Weber Spirit II Gas Grill (Used)|Home & Garden|2025-03-19T00:00:00Z|2025-03-20T00:00:00Z|cjones|102.82|brooksmary
+AUC00101|Bosch Cordless Drill (Rare)|Home & Garden|2025-07-17T00:00:00Z|2025-07-20T00:00:00Z|yfernandez|84.01|johnscarla
+AUC00102|LEGO Star Wars Millennium Falcon (2022 Model)|Toys & Games|2025-07-20T00:00:00Z|2025-07-22T00:00:00Z|lwatts|95.62|amanda32
+AUC00103|The Great Gatsby (Rare)|Books|2025-01-21T00:00:00Z|2025-01-24T00:00:00Z|nathanmiller|34.5|xhughes
+AUC00104|Nike Air Force 1|Fashion|2025-03-16T00:00:00Z|2025-03-17T00:00:00Z|jorgerodriguez|85.63|murrayhailey
+AUC00105|Uno Card Game|Toys & Games|2025-05-11T00:00:00Z|2025-05-12T00:00:00Z|brett54|116|parsonslaura
+AUC00106|GoPro Hero 10 (Rare)|Electronics|2025-03-07T00:00:00Z|2025-03-10T00:00:00Z|garyaustin|84.98|johnsonluke
+AUC00107|The Lean Startup (Used)|Books|2025-04-25T00:00:00Z|2025-04-26T00:00:00Z|joshualopez|156.49|devinjohnson
+AUC00108|Zara Wool Coat (2022 Model)|Fashion|2025-03-16T00:00:00Z|2025-03-17T00:00:00Z|saraspencer|36.89|anthony96
+AUC00109|Louis Vuitton Neverfull Bag (Like New)|Fashion|2025-03-31T00:00:00Z|2025-04-03T00:00:00Z|nathan66|62.27|linda57
+AUC00110|IKEA LINNMON Desk (Rare)|Home & Garden|2025-01-29T00:00:00Z|2025-02-01T00:00:00Z|adammoreno|93.77|ericarodriguez
+AUC00111|Rare Pokémon Charizard Card (Like New)|Collectibles|2025-08-11T00:00:00Z|2025-08-12T00:00:00Z|cshaw|211.49|kirbykimberly
+AUC00112|Nike Air Force 1|Fashion|2025-06-01T00:00:00Z|2025-06-02T00:00:00Z|leeanita|99.8|charles48
+AUC00113|Samsung Galaxy S22|Electronics|2025-08-08T00:00:00Z|2025-08-10T00:00:00Z|paul53|63.24|leah10
+AUC00114|Dyson V11 Vacuum Cleaner (Like New)|Home & Garden|2025-01-22T00:00:00Z|2025-01-23T00:00:00Z|yanganthony|60.17|jesse86
+AUC00115|Nespresso Vertuo Coffee Machine|Home & Garden|2025-06-07T00:00:00Z|2025-06-08T00:00:00Z|sheilataylor|142.23|bbrennan
+AUC00116|Samsung Galaxy S22 (Like New)|Electronics|2025-07-06T00:00:00Z|2025-07-09T00:00:00Z|stewarttodd|92.08|browningmatthew
+AUC00117|Apple Watch Series 8 (Like New)|Electronics|2025-01-05T00:00:00Z|2025-01-07T00:00:00Z|thomasgibson|166.44|matthew74
+AUC00118|Hot Wheels Mega Garage (Used)|Toys & Games|2025-07-06T00:00:00Z|2025-07-09T00:00:00Z|hpeterson|270.34|frice
+AUC00119|Apple iPhone 13 Pro (Like New)|Electronics|2025-03-25T00:00:00Z|2025-03-27T00:00:00Z|robert09|53.22|gmorgan
+AUC00120|Apple Watch Series 8 (2022 Model)|Electronics|2025-03-03T00:00:00Z|2025-03-05T00:00:00Z|krista44|143.78|collinsstephanie
+AUC00121|Nike Air Force 1 (2022 Model)|Fashion|2025-07-05T00:00:00Z|2025-07-06T00:00:00Z|destiny02|176|kylestone
+AUC00122|Nike Air Force 1 (Rare)|Fashion|2025-03-24T00:00:00Z|2025-03-27T00:00:00Z|lisa36|112.45|xtorres
+AUC00123|The Great Gatsby (Used)|Books|2025-08-10T00:00:00Z|2025-08-13T00:00:00Z|briggsjohn|79.47|kevinwilson
+AUC00124|Apple Watch Series 8|Electronics|2025-02-07T00:00:00Z|2025-02-09T00:00:00Z|kcarroll|64.83|vfranklin
+AUC00125|IKEA LINNMON Desk (Like New)|Home & Garden|2025-04-27T00:00:00Z|2025-04-29T00:00:00Z|nortonricardo|183.59|mwright
+AUC00126|Sapiens: A Brief History of Humankind (Used)|Books|2025-01-29T00:00:00Z|2025-01-31T00:00:00Z|christopher47|67.99|qgibson
+AUC00127|Sapiens: A Brief History of Humankind (Rare)|Books|2025-08-20T00:00:00Z|2025-08-22T00:00:00Z|jameslambert|131.15|brittany07
+AUC00128|Vintage Concert Poster (Like New)|Collectibles|2025-01-19T00:00:00Z|2025-01-20T00:00:00Z|wendyburns|174.96|joann03
+AUC00129|Dyson V11 Vacuum Cleaner (Like New)|Home & Garden|2025-07-05T00:00:00Z|2025-07-07T00:00:00Z|ebaker|233.05|pricedouglas
+AUC00130|To Kill a Mockingbird (Used)|Books|2025-07-12T00:00:00Z|2025-07-14T00:00:00Z|patricia11|218.96|phansen
+AUC00131|The Great Gatsby (Used)|Books|2025-05-01T00:00:00Z|2025-05-03T00:00:00Z|antonioramirez|105.7|amanda24
+AUC00132|Dell XPS 13 Laptop|Electronics|2025-06-02T00:00:00Z|2025-06-05T00:00:00Z|haydendominguez|104.38|gregoryhayes
+AUC00133|Weber Spirit II Gas Grill (Used)|Home & Garden|2025-04-23T00:00:00Z|2025-04-24T00:00:00Z|ugeorge|176|alexander91
+AUC00134|Sony WH-1000XM4 (Rare)|Electronics|2025-06-16T00:00:00Z|2025-06-17T00:00:00Z|jonathanwilliams|130.15|allenbrett
+AUC00135|To Kill a Mockingbird (2022 Model)|Books|2025-05-27T00:00:00Z|2025-05-29T00:00:00Z|greenvalerie|87.68|emahoney
+AUC00136|LEGO Star Wars Millennium Falcon (2022 Model)|Toys & Games|2025-02-15T00:00:00Z|2025-02-16T00:00:00Z|dtaylor|79.38|caldwelllinda
+AUC00137|Bosch Cordless Drill (Like New)|Home & Garden|2025-01-13T00:00:00Z|2025-01-16T00:00:00Z|lauraweaver|73.75|kingcarol
+AUC00138|Nespresso Vertuo Coffee Machine|Home & Garden|2025-01-12T00:00:00Z|2025-01-14T00:00:00Z|joneslisa|54.54|ggreen
+AUC00139|The Great Gatsby (Rare)|Books|2025-04-14T00:00:00Z|2025-04-16T00:00:00Z|louistucker|161.23|kimberly04
+AUC00140|Barbie Dreamhouse (2022 Model)|Toys & Games|2025-01-05T00:00:00Z|2025-01-07T00:00:00Z|george68|36.61|donald91
+AUC00141|GoPro Hero 10 (Used)|Electronics|2025-08-26T00:00:00Z|2025-08-29T00:00:00Z|samanthapark|76.11|christopherguzman
+AUC00142|Philips Hue Starter Kit (Like New)|Home & Garden|2025-05-01T00:00:00Z|2025-05-02T00:00:00Z|jamessweeney|207.91|sparker
+AUC00143|To Kill a Mockingbird (Rare)|Books|2025-05-25T00:00:00Z|2025-05-26T00:00:00Z|brendahodge|278.36|stevendavis
+AUC00144|Michael Jordan Rookie Card|Collectibles|2025-03-11T00:00:00Z|2025-03-12T00:00:00Z|johnnyfrancis|108.03|davidhall
+AUC00145|Apple Watch Series 8 (2022 Model)|Electronics|2025-01-01T00:00:00Z|2025-01-02T00:00:00Z|keith34|59.33|natalie03
+AUC00146|Nintendo Switch (Like New)|Toys & Games|2025-07-06T00:00:00Z|2025-07-09T00:00:00Z|oburke|36.42|bankslisa
+AUC00147|Sapiens: A Brief History of Humankind (Like New)|Books|2025-07-05T00:00:00Z|2025-07-08T00:00:00Z|lauren29|264.34|lflowers
+AUC00148|GoPro Hero 10 (Like New)|Electronics|2025-08-20T00:00:00Z|2025-08-22T00:00:00Z|urogers|253.96|tamara96
+AUC00149|GoPro Hero 10 (Like New)|Electronics|2025-02-21T00:00:00Z|2025-02-24T00:00:00Z|simpsonjames|172.18|floresearl
+AUC00150|Apple Watch Series 8 (Used)|Electronics|2025-05-21T00:00:00Z|2025-05-23T00:00:00Z|edward22|70.66|valvarez
+AUC00151|IKEA LINNMON Desk (Rare)|Home & Garden|2025-01-02T00:00:00Z|2025-01-03T00:00:00Z|gravesbrett|108.75|stephanie46
+AUC00152|GoPro Hero 10 (Like New)|Electronics|2025-06-25T00:00:00Z|2025-06-28T00:00:00Z|clarkpeter|87.2|elizabethmiller
+AUC00153|Weber Spirit II Gas Grill (Like New)|Home & Garden|2025-01-17T00:00:00Z|2025-01-19T00:00:00Z|iandavis|60.83|terryjohn
+AUC00154|Adidas Ultraboost (Like New)|Fashion|2025-03-11T00:00:00Z|2025-03-12T00:00:00Z|njordan|111.28|justin79
+AUC00155|GoPro Hero 10 (Like New)|Electronics|2025-05-09T00:00:00Z|2025-05-10T00:00:00Z|david92|98.95|william97
+AUC00156|Louis Vuitton Neverfull Bag (Used)|Fashion|2025-03-30T00:00:00Z|2025-03-31T00:00:00Z|award|213.94|robin35
+AUC00157|Atomic Habits (Used)|Books|2025-08-11T00:00:00Z|2025-08-13T00:00:00Z|johnsonmichelle|48.3|jason65
+AUC00158|Hot Wheels Mega Garage (Rare)|Toys & Games|2025-02-21T00:00:00Z|2025-02-22T00:00:00Z|loweryscott|40.31|eric68
+AUC00159|IKEA LINNMON Desk (Like New)|Home & Garden|2025-08-28T00:00:00Z|2025-08-29T00:00:00Z|harrisonjennifer|63.38|maryhays
+AUC00160|Funko Pop Marvel Collection (Used)|Collectibles|2025-08-11T00:00:00Z|2025-08-13T00:00:00Z|rebeccawilliams|117.09|robertharris
+AUC00161|Atomic Habits (Like New)|Books|2025-06-25T00:00:00Z|2025-06-28T00:00:00Z|christopherguerra|118.13|william37
+AUC00162|Apple Watch Series 8 (Used)|Electronics|2025-08-07T00:00:00Z|2025-08-08T00:00:00Z|qlane|174.66|gatesjason
+AUC00163|Apple Watch Series 8 (Like New)|Electronics|2025-06-13T00:00:00Z|2025-06-14T00:00:00Z|michael07|90.95|wilsonmitchell
+AUC00164|Hot Wheels Mega Garage (Used)|Toys & Games|2025-07-05T00:00:00Z|2025-07-07T00:00:00Z|dhowe|38.39|colemanzachary
+AUC00165|Sony WH-1000XM4 (Used)|Electronics|2025-02-28T00:00:00Z|2025-03-01T00:00:00Z|robert06|70.91|jwilliams
+AUC00166|Antique Pocket Watch|Collectibles|2025-03-28T00:00:00Z|2025-03-31T00:00:00Z|floreslisa|78.08|ldiaz
+AUC00167|Michael Jordan Rookie Card (Used)|Collectibles|2025-08-08T00:00:00Z|2025-08-09T00:00:00Z|wilkinsonamy|239.26|matthewrangel
+AUC00168|Sony WH-1000XM4 (Like New)|Electronics|2025-05-02T00:00:00Z|2025-05-03T00:00:00Z|perryandrea|105.59|joshuasmith
+AUC00169|Adidas Ultraboost (Like New)|Fashion|2025-08-20T00:00:00Z|2025-08-21T00:00:00Z|vgray|221.89|weberamber
+AUC00170|Vintage Concert Poster (2022 Model)|Collectibles|2025-03-28T00:00:00Z|2025-03-29T00:00:00Z|adamssarah|222.95|osanford
+AUC00171|Bosch Cordless Drill (Rare)|Home & Garden|2025-06-04T00:00:00Z|2025-06-06T00:00:00Z|james65|92.58|goodwinkeith
+AUC00172|Barbie Dreamhouse (Used)|Toys & Games|2025-07-04T00:00:00Z|2025-07-05T00:00:00Z|john16|78.15|andre88
+AUC00173|IKEA LINNMON Desk (Used)|Home & Garden|2025-04-29T00:00:00Z|2025-05-01T00:00:00Z|ashleymontoya|162.33|albertclark
+AUC00174|Adidas Ultraboost (Rare)|Fashion|2025-01-30T00:00:00Z|2025-01-31T00:00:00Z|isaiahhall|186.76|perezdawn
+AUC00175|Dell XPS 13 Laptop (Used)|Electronics|2025-04-06T00:00:00Z|2025-04-08T00:00:00Z|qharris|173.37|wilsonbradley
+AUC00176|The Great Gatsby (2022 Model)|Books|2025-03-08T00:00:00Z|2025-03-09T00:00:00Z|larry85|87.63|matthew89
+AUC00177|Weber Spirit II Gas Grill (Rare)|Home & Garden|2025-02-19T00:00:00Z|2025-02-22T00:00:00Z|brenda48|206.87|underwoodmatthew
+AUC00178|Antique Pocket Watch (Used)|Collectibles|2025-08-25T00:00:00Z|2025-08-27T00:00:00Z|bgraham|91.44|browncole
+AUC00179|Levi's 501 Jeans (2022 Model)|Fashion|2025-02-25T00:00:00Z|2025-02-26T00:00:00Z|fjohnson|83.76|bakerkaren
+AUC00180|Adidas Ultraboost|Fashion|2025-08-25T00:00:00Z|2025-08-26T00:00:00Z|kellyjohnson|95.17|sarah04
+AUC00181|Dell XPS 13 Laptop (Used)|Electronics|2025-03-19T00:00:00Z|2025-03-22T00:00:00Z|scottjonathan|111.05|bmitchell
+AUC00182|GoPro Hero 10 (Rare)|Electronics|2025-07-14T00:00:00Z|2025-07-17T00:00:00Z|smithjennifer|212.31|amber14
+AUC00183|Dyson V11 Vacuum Cleaner|Home & Garden|2025-05-02T00:00:00Z|2025-05-05T00:00:00Z|lisa13|88.58|jonathan94
+AUC00184|The Great Gatsby|Books|2025-07-23T00:00:00Z|2025-07-26T00:00:00Z|wtran|281.33|pwolfe
+AUC00185|Louis Vuitton Neverfull Bag (Like New)|Fashion|2025-07-01T00:00:00Z|2025-07-04T00:00:00Z|bharvey|99.39|zcordova
+AUC00186|Dyson V11 Vacuum Cleaner (Used)|Home & Garden|2025-02-17T00:00:00Z|2025-02-18T00:00:00Z|hinesstephanie|80.49|matthewgomez
+AUC00187|Zara Wool Coat (Like New)|Fashion|2025-04-24T00:00:00Z|2025-04-25T00:00:00Z|cohenroger|99.95|brettberger
+AUC00188|Weber Spirit II Gas Grill (2022 Model)|Home & Garden|2025-03-29T00:00:00Z|2025-03-31T00:00:00Z|alexander28|90.3|barranita
+AUC00189|Barbie Dreamhouse (Like New)|Toys & Games|2025-02-04T00:00:00Z|2025-02-06T00:00:00Z|xallen|225.43|nelsonjohn
+AUC00190|Levi's 501 Jeans (Rare)|Fashion|2025-01-11T00:00:00Z|2025-01-13T00:00:00Z|michaelbarber|142.59|nwallace
+AUC00191|Dyson V11 Vacuum Cleaner (Used)|Home & Garden|2025-05-11T00:00:00Z|2025-05-12T00:00:00Z|walkerdaniel|161.38|angelicaporter
+AUC00192|Sapiens: A Brief History of Humankind (Like New)|Books|2025-06-06T00:00:00Z|2025-06-08T00:00:00Z|danielcook|45.94|cdickson
+AUC00193|Weber Spirit II Gas Grill (Rare)|Home & Garden|2025-08-18T00:00:00Z|2025-08-21T00:00:00Z|wellsjordan|119.73|ehunter
+AUC00194|Casio G-Shock Watch|Fashion|2025-04-20T00:00:00Z|2025-04-22T00:00:00Z|smithelizabeth|178.64|msosa
+AUC00195|Sapiens: A Brief History of Humankind (Rare)|Books|2025-06-05T00:00:00Z|2025-06-07T00:00:00Z|gabriela80|112.11|johnsoncaitlin
+AUC00196|Philips Hue Starter Kit (Used)|Home & Garden|2025-04-30T00:00:00Z|2025-05-02T00:00:00Z|michaelpierce|83.49|fevans
+AUC00197|Sapiens: A Brief History of Humankind|Books|2025-01-22T00:00:00Z|2025-01-25T00:00:00Z|hterry|191.85|neiljennings
+AUC00198|Sony WH-1000XM4 (Used)|Electronics|2025-04-14T00:00:00Z|2025-04-16T00:00:00Z|taylorkari|132.65|cindyhansen
+AUC00199|Uno Card Game (2022 Model)|Toys & Games|2025-01-14T00:00:00Z|2025-01-15T00:00:00Z|briana14|103.6|joseph22
+AUC00200|Bosch Cordless Drill (Like New)|Home & Garden|2025-02-01T00:00:00Z|2025-02-03T00:00:00Z|adam30|107.6|robertjones
+AUC00201|Hot Wheels Mega Garage (Like New)|Toys & Games|2025-08-12T00:00:00Z|2025-08-14T00:00:00Z|aaron77|191.21|brettvargas
+AUC00202|The Great Gatsby|Books|2025-08-16T00:00:00Z|2025-08-17T00:00:00Z|chadgonzales|149.65|delgadojoshua
+AUC00203|Nespresso Vertuo Coffee Machine (Like New)|Home & Garden|2025-04-28T00:00:00Z|2025-04-30T00:00:00Z|michaeljohnson|88.29|rosssara
+AUC00204|Dyson V11 Vacuum Cleaner (Rare)|Home & Garden|2025-03-03T00:00:00Z|2025-03-06T00:00:00Z|eatonshari|77.98|mcdanieljohn
+AUC00205|Apple Watch Series 8 (Like New)|Electronics|2025-05-29T00:00:00Z|2025-05-31T00:00:00Z|xdiaz|33.33|avasquez
+AUC00206|Weber Spirit II Gas Grill (2022 Model)|Home & Garden|2025-07-07T00:00:00Z|2025-07-09T00:00:00Z|usmith|115.42|joshua75
+AUC00207|Sony WH-1000XM4 (Like New)|Electronics|2025-02-08T00:00:00Z|2025-02-09T00:00:00Z|mathewsjennifer|74.3|gvance
+AUC00208|Samsung Galaxy S22 (Like New)|Electronics|2025-08-15T00:00:00Z|2025-08-17T00:00:00Z|djones|190.65|patricia34
+AUC00209|Sapiens: A Brief History of Humankind (Like New)|Books|2025-03-20T00:00:00Z|2025-03-23T00:00:00Z|nperkins|183.8|david51
+AUC00210|Vintage Concert Poster (Rare)|Collectibles|2025-08-02T00:00:00Z|2025-08-03T00:00:00Z|samanthajoseph|169.64|kcollins
+AUC00211|Michael Jordan Rookie Card (Rare)|Collectibles|2025-04-11T00:00:00Z|2025-04-12T00:00:00Z|rodriguezalec|91.3|lhowell
+AUC00212|Antique Pocket Watch (Used)|Collectibles|2025-04-01T00:00:00Z|2025-04-04T00:00:00Z|wbarron|170.4|joyceclark
+AUC00213|The Great Gatsby (Used)|Books|2025-04-06T00:00:00Z|2025-04-09T00:00:00Z|joselane|93.68|nfuller
+AUC00214|The Great Gatsby (Like New)|Books|2025-08-28T00:00:00Z|2025-08-30T00:00:00Z|timothy41|48.54|matthew89
+AUC00215|Monopoly Classic Edition|Toys & Games|2025-04-28T00:00:00Z|2025-04-29T00:00:00Z|lopezmegan|137.25|tbarrett
+AUC00216|Sapiens: A Brief History of Humankind|Books|2025-04-03T00:00:00Z|2025-04-06T00:00:00Z|pbarrett|181.12|hunterlori
+AUC00217|Philips Hue Starter Kit (Used)|Home & Garden|2025-03-22T00:00:00Z|2025-03-24T00:00:00Z|hkrueger|138.27|weaverkimberly
+AUC00218|Sony WH-1000XM4 (Rare)|Electronics|2025-06-22T00:00:00Z|2025-06-25T00:00:00Z|blackanna|61.68|torresjeremy
+AUC00219|Apple iPhone 13 Pro (Like New)|Electronics|2025-03-09T00:00:00Z|2025-03-12T00:00:00Z|barbara65|94.07|dunntiffany
+AUC00220|LEGO Star Wars Millennium Falcon (Used)|Toys & Games|2025-03-14T00:00:00Z|2025-03-16T00:00:00Z|kempjacob|105.45|andersondanielle
+AUC00221|Philips Hue Starter Kit (2022 Model)|Home & Garden|2025-01-11T00:00:00Z|2025-01-12T00:00:00Z|james48|59|susanhicks
+AUC00222|Antique Pocket Watch (Rare)|Collectibles|2025-04-23T00:00:00Z|2025-04-26T00:00:00Z|ronald40|125.99|erin72
+AUC00223|Samsung Galaxy S22 (Rare)|Electronics|2025-02-27T00:00:00Z|2025-02-28T00:00:00Z|smithkristopher|197.28|wellsderek
+AUC00224|The Great Gatsby (Rare)|Books|2025-04-12T00:00:00Z|2025-04-13T00:00:00Z|johnsonalexander|205.6|susan02
+AUC00225|Samsung Galaxy S22|Electronics|2025-04-07T00:00:00Z|2025-04-09T00:00:00Z|jessereeves|53.13|joshuarussell
+AUC00226|Sony WH-1000XM4 (Like New)|Electronics|2025-03-30T00:00:00Z|2025-04-01T00:00:00Z|rjohnston|119.75|pherring
+AUC00227|Samsung Galaxy S22 (2022 Model)|Electronics|2025-05-11T00:00:00Z|2025-05-14T00:00:00Z|tyler36|223.81|alejandrahoward
+AUC00228|Apple iPhone 13 Pro (Rare)|Electronics|2025-03-18T00:00:00Z|2025-03-20T00:00:00Z|perezandrew|79.83|melissa36
+AUC00229|Apple Watch Series 8 (2022 Model)|Electronics|2025-06-01T00:00:00Z|2025-06-03T00:00:00Z|harrisjasmine|64.4|csmith
+AUC00230|Harry Potter and the Philosopher's Stone (1st Ed.) (Used)|Books|2025-08-20T00:00:00Z|2025-08-23T00:00:00Z|lnguyen|39.78|rachaelcobb
+AUC00231|IKEA LINNMON Desk (Used)|Home & Garden|2025-06-03T00:00:00Z|2025-06-05T00:00:00Z|krichards|102.73|ylong
+AUC00232|Dell XPS 13 Laptop (Like New)|Electronics|2025-07-10T00:00:00Z|2025-07-13T00:00:00Z|wdavis|33.9|garyjackson
+AUC00233|Bosch Cordless Drill (Rare)|Home & Garden|2025-08-23T00:00:00Z|2025-08-24T00:00:00Z|mark31|86.95|matthewmckenzie
+AUC00234|The Great Gatsby (Rare)|Books|2025-02-28T00:00:00Z|2025-03-01T00:00:00Z|oscarclark|179.11|robertsmicheal
+AUC00235|Atomic Habits (2022 Model)|Books|2025-03-17T00:00:00Z|2025-03-20T00:00:00Z|sullivangeorge|153.33|hhall
+AUC00236|Barbie Dreamhouse (Used)|Toys & Games|2025-07-30T00:00:00Z|2025-08-01T00:00:00Z|lisa96|208.72|lisa74
+AUC00237|Uno Card Game|Toys & Games|2025-07-23T00:00:00Z|2025-07-26T00:00:00Z|connie07|43.39|gpittman
+AUC00238|Apple Watch Series 8 (2022 Model)|Electronics|2025-07-07T00:00:00Z|2025-07-08T00:00:00Z|teresa21|91.9|beckjeffrey
+AUC00239|The Lean Startup (Like New)|Books|2025-03-21T00:00:00Z|2025-03-24T00:00:00Z|mmitchell|185.33|allentodd
+AUC00240|Atomic Habits (Like New)|Books|2025-07-26T00:00:00Z|2025-07-27T00:00:00Z|kellyalexander|151.96|zacharyclarke
+AUC00241|Louis Vuitton Neverfull Bag (Used)|Fashion|2025-07-08T00:00:00Z|2025-07-09T00:00:00Z|tblackwell|99.77|efoster
+AUC00242|Hot Wheels Mega Garage (Rare)|Toys & Games|2025-07-26T00:00:00Z|2025-07-29T00:00:00Z|johnsonmelissa|162.07|pittseric
+AUC00243|Dyson V11 Vacuum Cleaner (2022 Model)|Home & Garden|2025-07-16T00:00:00Z|2025-07-19T00:00:00Z|joseph90|101.17|danielowens
+AUC00244|Casio G-Shock Watch (Rare)|Fashion|2025-02-16T00:00:00Z|2025-02-17T00:00:00Z|jasmine88|87.59|dporter
+AUC00245|Adidas Ultraboost|Fashion|2025-01-05T00:00:00Z|2025-01-08T00:00:00Z|donna66|159.26|jamescrane
+AUC00246|Uno Card Game (Rare)|Toys & Games|2025-07-03T00:00:00Z|2025-07-06T00:00:00Z|thomaskathleen|43.72|denise02
+AUC00247|Harry Potter and the Philosopher's Stone (1st Ed.) (Rare)|Books|2025-04-24T00:00:00Z|2025-04-26T00:00:00Z|vbrown|98.65|scottquinn
+AUC00248|Hot Wheels Mega Garage (2022 Model)|Toys & Games|2025-08-03T00:00:00Z|2025-08-05T00:00:00Z|gsnow|137.5|wesley27
+AUC00249|Sony WH-1000XM4 (Rare)|Electronics|2025-07-01T00:00:00Z|2025-07-03T00:00:00Z|murphyrachel|110.99|craigbailey
+AUC00250|Philips Hue Starter Kit (2022 Model)|Home & Garden|2025-03-27T00:00:00Z|2025-03-30T00:00:00Z|ebrown|100.24|gonzalezmartha
+AUC00251|Michael Jordan Rookie Card (Like New)|Collectibles|2025-03-07T00:00:00Z|2025-03-09T00:00:00Z|pughjoshua|144.46|sylviarobinson
+AUC00252|LEGO Star Wars Millennium Falcon (Rare)|Toys & Games|2025-05-30T00:00:00Z|2025-06-01T00:00:00Z|dwarner|106.22|kenneth70
+AUC00253|Harry Potter and the Philosopher's Stone (1st Ed.) (Used)|Books|2025-08-14T00:00:00Z|2025-08-17T00:00:00Z|allenmiguel|72.07|chandlerlaura
+AUC00254|Sapiens: A Brief History of Humankind (2022 Model)|Books|2025-05-07T00:00:00Z|2025-05-10T00:00:00Z|elliottsarah|159.21|ashley82
+AUC00255|Harry Potter and the Philosopher's Stone (1st Ed.) (Like New)|Books|2025-01-02T00:00:00Z|2025-01-04T00:00:00Z|bruceyoung|80.13|kaylaharper
+AUC00256|IKEA LINNMON Desk (Used)|Home & Garden|2025-02-18T00:00:00Z|2025-02-20T00:00:00Z|michellebrown|49.76|johnwilliamson
+AUC00257|LEGO Star Wars Millennium Falcon (Like New)|Toys & Games|2025-02-01T00:00:00Z|2025-02-04T00:00:00Z|savannahmartinez|142.86|gutierrezsamantha
+AUC00258|The Lean Startup (2022 Model)|Books|2025-07-31T00:00:00Z|2025-08-01T00:00:00Z|aaronthompson|236.96|dbarron
+AUC00259|Casio G-Shock Watch (Used)|Fashion|2025-03-31T00:00:00Z|2025-04-02T00:00:00Z|jamesbush|74.31|ramseyalisha
+AUC00260|Antique Pocket Watch (Rare)|Collectibles|2025-02-11T00:00:00Z|2025-02-13T00:00:00Z|jeremiah93|130.17|guerreromelissa
+AUC00261|Levi's 501 Jeans (Like New)|Fashion|2025-01-20T00:00:00Z|2025-01-21T00:00:00Z|jacksoncaitlin|83.17|jeffrey52
+AUC00262|The Lean Startup (Like New)|Books|2025-06-18T00:00:00Z|2025-06-21T00:00:00Z|brownkim|66.69|beckersusan
+AUC00263|Casio G-Shock Watch (Like New)|Fashion|2025-05-28T00:00:00Z|2025-05-31T00:00:00Z|vincentjohnson|46.68|rthompson
+AUC00264|1980s Comic Book Set (Rare)|Collectibles|2025-05-12T00:00:00Z|2025-05-15T00:00:00Z|richardgreen|135.91|ryanmunoz
+AUC00265|Nespresso Vertuo Coffee Machine (Rare)|Home & Garden|2025-07-15T00:00:00Z|2025-07-18T00:00:00Z|rebeccahensley|154.67|danieltorres
+AUC00266|The Great Gatsby (Rare)|Books|2025-01-04T00:00:00Z|2025-01-06T00:00:00Z|renee41|168.83|hbuck
+AUC00267|Harry Potter and the Philosopher's Stone (1st Ed.) (Rare)|Books|2025-03-08T00:00:00Z|2025-03-09T00:00:00Z|dunnmarco|58.8|nsavage
+AUC00268|Nike Air Force 1 (2022 Model)|Fashion|2025-01-28T00:00:00Z|2025-01-31T00:00:00Z|ginarobinson|86.18|kwyatt
+AUC00269|Dyson V11 Vacuum Cleaner (Like New)|Home & Garden|2025-03-21T00:00:00Z|2025-03-24T00:00:00Z|katherine66|73.81|raymond14
+AUC00270|Dyson V11 Vacuum Cleaner (Used)|Home & Garden|2025-08-13T00:00:00Z|2025-08-14T00:00:00Z|fhanson|71.76|whitney92
+AUC00271|Philips Hue Starter Kit (Like New)|Home & Garden|2025-06-21T00:00:00Z|2025-06-22T00:00:00Z|brianmiranda|188.83|justin18
+AUC00272|Louis Vuitton Neverfull Bag (2022 Model)|Fashion|2025-05-01T00:00:00Z|2025-05-04T00:00:00Z|kevinlopez|161.49|juliepowell
+AUC00273|Philips Hue Starter Kit (2022 Model)|Home & Garden|2025-02-27T00:00:00Z|2025-03-01T00:00:00Z|uescobar|26.79|wagnermichael
+AUC00274|Barbie Dreamhouse (Like New)|Toys & Games|2025-08-03T00:00:00Z|2025-08-04T00:00:00Z|jacqueline74|80.48|moorepatricia
+AUC00275|Atomic Habits|Books|2025-06-25T00:00:00Z|2025-06-28T00:00:00Z|aaron84|209.11|srogers
+AUC00276|1980s Comic Book Set|Collectibles|2025-05-31T00:00:00Z|2025-06-01T00:00:00Z|tylerharrison|136.25|powerssusan
+AUC00277|To Kill a Mockingbird (2022 Model)|Books|2025-04-08T00:00:00Z|2025-04-10T00:00:00Z|fjohnson|75.36|zwalker
+AUC00278|Apple Watch Series 8|Electronics|2025-07-16T00:00:00Z|2025-07-18T00:00:00Z|pgarrett|100.7|mali
+AUC00279|Adidas Ultraboost|Fashion|2025-04-11T00:00:00Z|2025-04-13T00:00:00Z|darrell65|107.76|uwheeler
+AUC00280|Nespresso Vertuo Coffee Machine (2022 Model)|Home & Garden|2025-03-30T00:00:00Z|2025-03-31T00:00:00Z|hooverchristopher|138.3|angelalucero
+AUC00281|Casio G-Shock Watch (Like New)|Fashion|2025-01-07T00:00:00Z|2025-01-10T00:00:00Z|robertpaul|49.46|hernandezregina
+AUC00282|Nintendo Switch (Used)|Toys & Games|2025-03-14T00:00:00Z|2025-03-15T00:00:00Z|alexandra06|92.21|gjackson
+AUC00283|Dell XPS 13 Laptop|Electronics|2025-04-07T00:00:00Z|2025-04-08T00:00:00Z|eanderson|161.54|ayersmichael
+AUC00284|Dell XPS 13 Laptop (Like New)|Electronics|2025-01-19T00:00:00Z|2025-01-21T00:00:00Z|david25|110.34|barry95
+AUC00285|Bosch Cordless Drill (Like New)|Home & Garden|2025-06-27T00:00:00Z|2025-06-30T00:00:00Z|lisa61|25.55|vickieking
+AUC00286|GoPro Hero 10 (Like New)|Electronics|2025-04-03T00:00:00Z|2025-04-05T00:00:00Z|megan34|204.3|gina24
+AUC00287|IKEA LINNMON Desk (2022 Model)|Home & Garden|2025-07-18T00:00:00Z|2025-07-19T00:00:00Z|jeffrey01|91.24|michael03
+AUC00288|IKEA LINNMON Desk|Home & Garden|2025-02-01T00:00:00Z|2025-02-03T00:00:00Z|aaron81|109.82|watsonmichael
+AUC00289|Apple Watch Series 8|Electronics|2025-08-19T00:00:00Z|2025-08-22T00:00:00Z|jonesrachel|233.99|shawn32
+AUC00290|Dyson V11 Vacuum Cleaner (Used)|Home & Garden|2025-08-22T00:00:00Z|2025-08-23T00:00:00Z|woodscaroline|157.26|ramireztyler
+AUC00291|Apple iPhone 13 Pro (Used)|Electronics|2025-07-30T00:00:00Z|2025-08-02T00:00:00Z|amandavaughn|121.51|brittanygutierrez
+AUC00292|Nike Air Force 1 (2022 Model)|Fashion|2025-01-09T00:00:00Z|2025-01-11T00:00:00Z|jacquelinemoody|24.92|andrew94
+AUC00293|Nike Air Force 1 (Used)|Fashion|2025-03-20T00:00:00Z|2025-03-22T00:00:00Z|raymondrobbins|55.79|eric22
+AUC00294|Nike Air Force 1 (Like New)|Fashion|2025-06-25T00:00:00Z|2025-06-27T00:00:00Z|dennis57|120.65|yrivera
+AUC00295|The Lean Startup (Rare)|Books|2025-07-04T00:00:00Z|2025-07-05T00:00:00Z|brittany68|173.15|mooremelinda
+AUC00296|Sony WH-1000XM4|Electronics|2025-02-27T00:00:00Z|2025-03-01T00:00:00Z|karmstrong|152.06|juan55
+AUC00297|Nintendo Switch (Like New)|Toys & Games|2025-01-01T00:00:00Z|2025-01-04T00:00:00Z|berrykatie|83.61|huffjuan
+AUC00298|Apple iPhone 13 Pro (2022 Model)|Electronics|2025-05-18T00:00:00Z|2025-05-19T00:00:00Z|freemanwilliam|105.28|mike48
+AUC00299|Sapiens: A Brief History of Humankind (Rare)|Books|2025-07-09T00:00:00Z|2025-07-11T00:00:00Z|john10|218.37|nguyenlindsey
+AUC00300|Antique Pocket Watch (Used)|Collectibles|2025-02-02T00:00:00Z|2025-02-05T00:00:00Z|ivargas|44.56|gomezmallory
+AUC00301|Vintage Concert Poster (Rare)|Collectibles|2025-07-17T00:00:00Z|2025-07-19T00:00:00Z|hendersonronald|187.56|mgarcia
+AUC00302|LEGO Star Wars Millennium Falcon (Used)|Toys & Games|2025-07-21T00:00:00Z|2025-07-23T00:00:00Z|plewis|117.24|butlerjohn
+AUC00303|Nike Air Force 1 (2022 Model)|Fashion|2025-06-19T00:00:00Z|2025-06-21T00:00:00Z|heatherhoward|117.91|brendareese
+AUC00304|Sapiens: A Brief History of Humankind (Like New)|Books|2025-08-15T00:00:00Z|2025-08-16T00:00:00Z|corey76|167.16|wuamy
+AUC00305|Philips Hue Starter Kit (Used)|Home & Garden|2025-07-29T00:00:00Z|2025-08-01T00:00:00Z|linda48|255.94|kim86
+AUC00306|Atomic Habits (Rare)|Books|2025-02-19T00:00:00Z|2025-02-21T00:00:00Z|pking|70.07|susanalvarez
+AUC00307|Nintendo Switch (Rare)|Toys & Games|2025-06-16T00:00:00Z|2025-06-17T00:00:00Z|omoore|113.89|wwhite
+AUC00308|Samsung Galaxy S22|Electronics|2025-07-14T00:00:00Z|2025-07-16T00:00:00Z|edwardwalton|108.79|charlesmartin
+AUC00309|Philips Hue Starter Kit (2022 Model)|Home & Garden|2025-07-18T00:00:00Z|2025-07-21T00:00:00Z|mrhodes|262.08|nicole08
+AUC00310|Atomic Habits (Rare)|Books|2025-06-20T00:00:00Z|2025-06-23T00:00:00Z|qyoung|39.1|floreswilliam
+AUC00311|Philips Hue Starter Kit (Used)|Home & Garden|2025-02-05T00:00:00Z|2025-02-06T00:00:00Z|danielyates|246.9|leonard70
+AUC00312|Bosch Cordless Drill|Home & Garden|2025-05-29T00:00:00Z|2025-05-30T00:00:00Z|kgonzalez|107.03|ryanreynolds
+AUC00313|Hot Wheels Mega Garage (Like New)|Toys & Games|2025-07-28T00:00:00Z|2025-07-31T00:00:00Z|gfry|103.61|zwilliams
+AUC00314|Michael Jordan Rookie Card (2022 Model)|Collectibles|2025-03-02T00:00:00Z|2025-03-04T00:00:00Z|taylormichael|74.61|ajones
+AUC00315|Uno Card Game (Like New)|Toys & Games|2025-02-07T00:00:00Z|2025-02-09T00:00:00Z|jamesgolden|207.5|roconnor
+AUC00316|Apple Watch Series 8 (Used)|Electronics|2025-04-11T00:00:00Z|2025-04-13T00:00:00Z|annamcclain|50.19|paulmcdaniel
+AUC00317|Sapiens: A Brief History of Humankind (2022 Model)|Books|2025-07-01T00:00:00Z|2025-07-03T00:00:00Z|kara40|46.04|casey72
+AUC00318|Levi's 501 Jeans (Used)|Fashion|2025-03-03T00:00:00Z|2025-03-04T00:00:00Z|hward|197.5|thompsondavid
+AUC00319|Funko Pop Marvel Collection (Like New)|Collectibles|2025-06-14T00:00:00Z|2025-06-16T00:00:00Z|traviscampbell|49.92|ortegajohn
+AUC00320|Apple iPhone 13 Pro (2022 Model)|Electronics|2025-02-07T00:00:00Z|2025-02-10T00:00:00Z|hendersondonna|138.94|anthonywilson
+AUC00321|Nike Air Force 1|Fashion|2025-04-04T00:00:00Z|2025-04-07T00:00:00Z|richardbooth|85.12|ymiller
+AUC00322|The Lean Startup (Used)|Books|2025-06-19T00:00:00Z|2025-06-21T00:00:00Z|dsmith|137.29|stoneanthony
+AUC00323|GoPro Hero 10 (Rare)|Electronics|2025-08-16T00:00:00Z|2025-08-17T00:00:00Z|georgejoshua|109.75|margaretjackson
+AUC00324|GoPro Hero 10 (2022 Model)|Electronics|2025-04-01T00:00:00Z|2025-04-02T00:00:00Z|ptaylor|154.99|milleralexandra
+AUC00325|Michael Jordan Rookie Card (Rare)|Collectibles|2025-08-12T00:00:00Z|2025-08-13T00:00:00Z|singletonanne|24.43|bradley86
+AUC00326|Dell XPS 13 Laptop|Electronics|2025-06-11T00:00:00Z|2025-06-14T00:00:00Z|sara03|135.5|vclark
+AUC00327|Dell XPS 13 Laptop (Like New)|Electronics|2025-08-15T00:00:00Z|2025-08-17T00:00:00Z|bjohnson|97.14|raymond57
+AUC00328|Zara Wool Coat (2022 Model)|Fashion|2025-07-26T00:00:00Z|2025-07-29T00:00:00Z|simmonsrandall|215.74|rgarcia
+AUC00329|Adidas Ultraboost (2022 Model)|Fashion|2025-06-05T00:00:00Z|2025-06-06T00:00:00Z|srivas|72.05|vincent36
+AUC00330|Dell XPS 13 Laptop (2022 Model)|Electronics|2025-02-28T00:00:00Z|2025-03-03T00:00:00Z|deborahporter|231.96|heather75
+AUC00331|Monopoly Classic Edition (Rare)|Toys & Games|2025-05-26T00:00:00Z|2025-05-28T00:00:00Z|mackbradley|140.84|jayjackson
+AUC00332|GoPro Hero 10|Electronics|2025-06-15T00:00:00Z|2025-06-18T00:00:00Z|kyle05|142.42|lynchkimberly
+AUC00333|Nespresso Vertuo Coffee Machine (Like New)|Home & Garden|2025-05-13T00:00:00Z|2025-05-16T00:00:00Z|whitejim|163.08|zsweeney
+AUC00334|Nike Air Force 1|Fashion|2025-07-21T00:00:00Z|2025-07-24T00:00:00Z|cynthiaclark|39.55|lshaw
+AUC00335|Atomic Habits|Books|2025-07-23T00:00:00Z|2025-07-25T00:00:00Z|scottbrock|194.69|turneralexandria
+AUC00336|Michael Jordan Rookie Card (Like New)|Collectibles|2025-02-23T00:00:00Z|2025-02-26T00:00:00Z|katie13|71.13|pamelagordon
+AUC00337|The Great Gatsby|Books|2025-02-20T00:00:00Z|2025-02-22T00:00:00Z|mary85|117.54|jacob55
+AUC00338|Dyson V11 Vacuum Cleaner (Rare)|Home & Garden|2025-06-11T00:00:00Z|2025-06-14T00:00:00Z|brian69|83.44|courtney44
+AUC00339|Dell XPS 13 Laptop (2022 Model)|Electronics|2025-01-31T00:00:00Z|2025-02-01T00:00:00Z|williamsjennifer|84.33|jensenjames
+AUC00340|Uno Card Game (2022 Model)|Toys & Games|2025-04-08T00:00:00Z|2025-04-11T00:00:00Z|sean33|240.28|escobarbrian
+AUC00341|Levi's 501 Jeans (Like New)|Fashion|2025-07-25T00:00:00Z|2025-07-28T00:00:00Z|colemanregina|111.48|tdickerson
+AUC00342|Barbie Dreamhouse (Used)|Toys & Games|2025-03-24T00:00:00Z|2025-03-25T00:00:00Z|meyerjohn|95.44|jamesshaffer
+AUC00343|Nespresso Vertuo Coffee Machine (Like New)|Home & Garden|2025-07-24T00:00:00Z|2025-07-26T00:00:00Z|turnerelizabeth|147.31|hcaldwell
+AUC00344|Nike Air Force 1|Fashion|2025-03-08T00:00:00Z|2025-03-10T00:00:00Z|ubarrett|121.13|udean
+AUC00345|Dell XPS 13 Laptop|Electronics|2025-06-09T00:00:00Z|2025-06-11T00:00:00Z|cruzjason|74.61|matthewmiller
+AUC00346|Philips Hue Starter Kit (2022 Model)|Home & Garden|2025-08-09T00:00:00Z|2025-08-11T00:00:00Z|kphillips|121.74|barberjoshua
+AUC00347|Nespresso Vertuo Coffee Machine (Rare)|Home & Garden|2025-05-21T00:00:00Z|2025-05-23T00:00:00Z|kathleen76|72.48|nicolelong
+AUC00348|Antique Pocket Watch (Used)|Collectibles|2025-02-05T00:00:00Z|2025-02-08T00:00:00Z|gilbertjesse|113.1|gary06
+AUC00349|To Kill a Mockingbird (2022 Model)|Books|2025-05-24T00:00:00Z|2025-05-26T00:00:00Z|rdavies|152.17|allen06
+AUC00350|Sapiens: A Brief History of Humankind (Used)|Books|2025-05-01T00:00:00Z|2025-05-02T00:00:00Z|nicole93|139.49|brianprice
+AUC00351|Samsung Galaxy S22|Electronics|2025-01-23T00:00:00Z|2025-01-24T00:00:00Z|gallegosbarbara|156.98|julia64
+AUC00352|Antique Pocket Watch (Like New)|Collectibles|2025-06-09T00:00:00Z|2025-06-12T00:00:00Z|middletonashlee|251.32|elizabethgarcia
+AUC00353|Zara Wool Coat (Rare)|Fashion|2025-04-15T00:00:00Z|2025-04-16T00:00:00Z|lisawilson|104.74|stanleymarie
+AUC00354|Dyson V11 Vacuum Cleaner (Like New)|Home & Garden|2025-05-10T00:00:00Z|2025-05-12T00:00:00Z|rhayes|105.72|connor96
+AUC00355|Louis Vuitton Neverfull Bag|Fashion|2025-06-12T00:00:00Z|2025-06-15T00:00:00Z|josephflores|86.55|roger69
+AUC00356|Zara Wool Coat (2022 Model)|Fashion|2025-06-21T00:00:00Z|2025-06-24T00:00:00Z|howardpamela|210.65|twalker
+AUC00357|Dell XPS 13 Laptop (Rare)|Electronics|2025-03-21T00:00:00Z|2025-03-22T00:00:00Z|brianlee|214.99|courtney84
+AUC00358|IKEA LINNMON Desk (Used)|Home & Garden|2025-03-16T00:00:00Z|2025-03-19T00:00:00Z|wendyrussell|78.26|stephaniebeard
+AUC00359|To Kill a Mockingbird (Rare)|Books|2025-04-23T00:00:00Z|2025-04-25T00:00:00Z|susankirby|171.9|bdavis
+AUC00360|Hot Wheels Mega Garage (2022 Model)|Toys & Games|2025-08-13T00:00:00Z|2025-08-15T00:00:00Z|amandasantiago|56.95|gregorymckinney
+AUC00361|Samsung Galaxy S22 (Rare)|Electronics|2025-08-21T00:00:00Z|2025-08-23T00:00:00Z|torresronald|205.03|shines
+AUC00362|Atomic Habits (2022 Model)|Books|2025-05-14T00:00:00Z|2025-05-16T00:00:00Z|tkelly|164.34|victoriataylor
+AUC00363|Casio G-Shock Watch (Like New)|Fashion|2025-08-28T00:00:00Z|2025-08-29T00:00:00Z|greenryan|166.1|murphylinda
+AUC00364|To Kill a Mockingbird (Used)|Books|2025-08-11T00:00:00Z|2025-08-13T00:00:00Z|eric50|298.56|barbarajackson
+AUC00365|Antique Pocket Watch (Rare)|Collectibles|2025-03-19T00:00:00Z|2025-03-21T00:00:00Z|grantcassandra|106.61|jsmith
+AUC00366|Zara Wool Coat (Used)|Fashion|2025-08-18T00:00:00Z|2025-08-21T00:00:00Z|iavila|90.67|brianspencer
+AUC00367|Adidas Ultraboost (Rare)|Fashion|2025-07-17T00:00:00Z|2025-07-19T00:00:00Z|melissajames|115.18|arthurmendoza
+AUC00368|Monopoly Classic Edition|Toys & Games|2025-06-12T00:00:00Z|2025-06-13T00:00:00Z|edwardslori|84.13|cynthiarollins
+AUC00369|GoPro Hero 10 (Rare)|Electronics|2025-02-16T00:00:00Z|2025-02-18T00:00:00Z|cookebonnie|92.16|courtneyho
+AUC00370|The Lean Startup (Rare)|Books|2025-01-07T00:00:00Z|2025-01-09T00:00:00Z|justingrant|126.41|thomasgoodwin
+AUC00371|GoPro Hero 10 (Like New)|Electronics|2025-02-07T00:00:00Z|2025-02-09T00:00:00Z|ypaul|133.49|michael03
+AUC00372|LEGO Star Wars Millennium Falcon (Rare)|Toys & Games|2025-08-05T00:00:00Z|2025-08-06T00:00:00Z|tgonzalez|46.26|williamsjames
+AUC00373|The Great Gatsby (Like New)|Books|2025-04-15T00:00:00Z|2025-04-18T00:00:00Z|mcmillanhannah|243.09|colleen14
+AUC00374|Zara Wool Coat (Like New)|Fashion|2025-02-17T00:00:00Z|2025-02-20T00:00:00Z|ljohnson|45.01|jjohnson
+AUC00375|Hot Wheels Mega Garage (Like New)|Toys & Games|2025-04-09T00:00:00Z|2025-04-11T00:00:00Z|justin33|73.99|imitchell
+AUC00376|Monopoly Classic Edition (2022 Model)|Toys & Games|2025-02-11T00:00:00Z|2025-02-14T00:00:00Z|ibowman|116.2|berryandrea
+AUC00377|Vintage Concert Poster|Collectibles|2025-03-26T00:00:00Z|2025-03-28T00:00:00Z|alexandria47|79.67|melissagonzalez
+AUC00378|Rare Pokémon Charizard Card (Like New)|Collectibles|2025-03-18T00:00:00Z|2025-03-21T00:00:00Z|paultorres|244.87|adamsjohn
+AUC00379|Zara Wool Coat (Used)|Fashion|2025-07-28T00:00:00Z|2025-07-29T00:00:00Z|jason87|107.68|jenniferstevens
+AUC00380|Sony WH-1000XM4|Electronics|2025-04-08T00:00:00Z|2025-04-10T00:00:00Z|heberttom|159.8|drice
+AUC00381|IKEA LINNMON Desk (2022 Model)|Home & Garden|2025-03-31T00:00:00Z|2025-04-02T00:00:00Z|johnsnyder|140.44|ocalhoun
+AUC00382|To Kill a Mockingbird (Rare)|Books|2025-05-14T00:00:00Z|2025-05-17T00:00:00Z|gina54|105.73|timothy46
+AUC00383|Samsung Galaxy S22 (2022 Model)|Electronics|2025-05-15T00:00:00Z|2025-05-16T00:00:00Z|kennethhall|164.57|karen61
+AUC00384|Hot Wheels Mega Garage (Like New)|Toys & Games|2025-01-22T00:00:00Z|2025-01-25T00:00:00Z|willisangela|131.96|darrell42
+AUC00385|Philips Hue Starter Kit (2022 Model)|Home & Garden|2025-06-19T00:00:00Z|2025-06-20T00:00:00Z|iwright|118.2|robertbenton
+AUC00386|Funko Pop Marvel Collection (Rare)|Collectibles|2025-03-19T00:00:00Z|2025-03-20T00:00:00Z|jodi02|161.58|jeremykline
+AUC00387|The Great Gatsby (Like New)|Books|2025-02-12T00:00:00Z|2025-02-15T00:00:00Z|taylorjessica|102.62|uwhitney
+AUC00388|Nespresso Vertuo Coffee Machine (2022 Model)|Home & Garden|2025-04-17T00:00:00Z|2025-04-20T00:00:00Z|daniel28|103.02|qgoodwin
+AUC00389|Apple Watch Series 8 (Like New)|Electronics|2025-06-20T00:00:00Z|2025-06-21T00:00:00Z|harriskrystal|128.81|cburch
+AUC00390|Sony WH-1000XM4|Electronics|2025-02-14T00:00:00Z|2025-02-15T00:00:00Z|christensenamy|77.83|websterdawn
+AUC00391|Levi's 501 Jeans (Used)|Fashion|2025-02-10T00:00:00Z|2025-02-11T00:00:00Z|diana93|134.08|allenbrad
+AUC00392|Philips Hue Starter Kit|Home & Garden|2025-06-28T00:00:00Z|2025-06-29T00:00:00Z|tracyhall|120.34|turnernancy
+AUC00393|Zara Wool Coat (Used)|Fashion|2025-08-27T00:00:00Z|2025-08-28T00:00:00Z|william82|163.02|turnertanya
+AUC00394|Apple iPhone 13 Pro (Used)|Electronics|2025-03-08T00:00:00Z|2025-03-09T00:00:00Z|alyssasmith|191.48|idelgado
+AUC00395|Nespresso Vertuo Coffee Machine|Home & Garden|2025-01-28T00:00:00Z|2025-01-30T00:00:00Z|bwise|112.58|jaredsimmons
+AUC00396|To Kill a Mockingbird (Used)|Books|2025-01-14T00:00:00Z|2025-01-16T00:00:00Z|ndavis|52.53|acastillo
+AUC00397|IKEA LINNMON Desk (Like New)|Home & Garden|2025-06-27T00:00:00Z|2025-06-28T00:00:00Z|millerelizabeth|151.67|terrysamuel
+AUC00398|Bosch Cordless Drill (Used)|Home & Garden|2025-07-05T00:00:00Z|2025-07-06T00:00:00Z|fieldschad|78.51|robinsonkatrina
+AUC00399|Philips Hue Starter Kit (Rare)|Home & Garden|2025-07-24T00:00:00Z|2025-07-26T00:00:00Z|serranojuan|96.19|dylan82
+AUC00400|Atomic Habits (2022 Model)|Books|2025-02-24T00:00:00Z|2025-02-26T00:00:00Z|john91|73.67|wheelerricardo
+AUC00401|Casio G-Shock Watch|Fashion|2025-05-11T00:00:00Z|2025-05-13T00:00:00Z|wreynolds|166.73|adriana87
+AUC00402|Adidas Ultraboost (Like New)|Fashion|2025-05-21T00:00:00Z|2025-05-22T00:00:00Z|charles98|170.92|jacob75
+AUC00403|Dyson V11 Vacuum Cleaner|Home & Garden|2025-06-24T00:00:00Z|2025-06-25T00:00:00Z|nicholas50|141.34|apotts
+AUC00404|Apple Watch Series 8 (Like New)|Electronics|2025-06-07T00:00:00Z|2025-06-10T00:00:00Z|mbrown|50.17|sarah67
+AUC00405|Harry Potter and the Philosopher's Stone (1st Ed.) (Used)|Books|2025-02-04T00:00:00Z|2025-02-05T00:00:00Z|yowens|235.87|latoyawarren
+AUC00406|To Kill a Mockingbird|Books|2025-07-04T00:00:00Z|2025-07-06T00:00:00Z|robertbrown|36.53|ccampbell
+AUC00407|Apple Watch Series 8 (2022 Model)|Electronics|2025-05-21T00:00:00Z|2025-05-22T00:00:00Z|obrooks|107.3|igonzalez
+AUC00408|Sapiens: A Brief History of Humankind (Rare)|Books|2025-06-03T00:00:00Z|2025-06-04T00:00:00Z|cjackson|132.4|dorothy63
+AUC00409|Samsung Galaxy S22 (2022 Model)|Electronics|2025-04-22T00:00:00Z|2025-04-24T00:00:00Z|perkinselizabeth|151.69|teresachambers
+AUC00410|Apple iPhone 13 Pro (Like New)|Electronics|2025-03-04T00:00:00Z|2025-03-05T00:00:00Z|jsmith|92.39|xwright
+AUC00411|Harry Potter and the Philosopher's Stone (1st Ed.) (Used)|Books|2025-03-20T00:00:00Z|2025-03-22T00:00:00Z|boonecarl|236.52|nicole10
+AUC00412|Antique Pocket Watch (2022 Model)|Collectibles|2025-05-17T00:00:00Z|2025-05-19T00:00:00Z|danielmartin|120.34|qsalazar
+AUC00413|Samsung Galaxy S22|Electronics|2025-07-21T00:00:00Z|2025-07-23T00:00:00Z|acox|37.74|lindamyers
+AUC00414|Harry Potter and the Philosopher's Stone (1st Ed.) (Like New)|Books|2025-06-01T00:00:00Z|2025-06-02T00:00:00Z|ronald31|176.99|gnelson
+AUC00415|Samsung Galaxy S22 (Used)|Electronics|2025-03-01T00:00:00Z|2025-03-03T00:00:00Z|lori07|143.22|emilymartinez
+AUC00416|Rare Pokémon Charizard Card (Rare)|Collectibles|2025-02-20T00:00:00Z|2025-02-23T00:00:00Z|angel19|163.53|james93
+AUC00417|GoPro Hero 10 (Used)|Electronics|2025-05-08T00:00:00Z|2025-05-10T00:00:00Z|crystal82|134.93|hhunt
+AUC00418|Bosch Cordless Drill (Like New)|Home & Garden|2025-07-29T00:00:00Z|2025-07-30T00:00:00Z|areed|225.37|joseph59
+AUC00419|Barbie Dreamhouse (2022 Model)|Toys & Games|2025-08-06T00:00:00Z|2025-08-09T00:00:00Z|crystaljordan|121.65|brownthomas
+AUC00420|Dyson V11 Vacuum Cleaner (Used)|Home & Garden|2025-06-20T00:00:00Z|2025-06-21T00:00:00Z|marcusmoore|193.79|robert03
+AUC00421|Apple Watch Series 8 (Used)|Electronics|2025-03-30T00:00:00Z|2025-03-31T00:00:00Z|mariaking|103.42|roseharris
+AUC00422|GoPro Hero 10 (Rare)|Electronics|2025-01-02T00:00:00Z|2025-01-04T00:00:00Z|seth11|79.91|johnjohnson
+AUC00423|Apple iPhone 13 Pro|Electronics|2025-06-10T00:00:00Z|2025-06-12T00:00:00Z|ashleyhaley|65.59|serranoandrew
+AUC00424|Hot Wheels Mega Garage (Used)|Toys & Games|2025-06-24T00:00:00Z|2025-06-25T00:00:00Z|mitchellrobert|230.62|sanchezdonna
+AUC00425|Nike Air Force 1 (Rare)|Fashion|2025-06-17T00:00:00Z|2025-06-19T00:00:00Z|russoemily|83.35|sierra89
+AUC00426|Dell XPS 13 Laptop (2022 Model)|Electronics|2025-01-14T00:00:00Z|2025-01-17T00:00:00Z|davisbonnie|25.78|mark34
+AUC00427|Samsung Galaxy S22 (Like New)|Electronics|2025-03-20T00:00:00Z|2025-03-22T00:00:00Z|medinaanne|148.34|ogriffin
+AUC00428|Nike Air Force 1 (Rare)|Fashion|2025-06-23T00:00:00Z|2025-06-26T00:00:00Z|andrewstammy|58.71|jenniferpetersen
+AUC00429|Dyson V11 Vacuum Cleaner (Used)|Home & Garden|2025-02-28T00:00:00Z|2025-03-01T00:00:00Z|bherring|106.4|emilyboyle
+AUC00430|Harry Potter and the Philosopher's Stone (1st Ed.) (Rare)|Books|2025-03-20T00:00:00Z|2025-03-23T00:00:00Z|harrisamanda|154.75|willie60
+AUC00431|The Lean Startup (2022 Model)|Books|2025-07-27T00:00:00Z|2025-07-30T00:00:00Z|ryan66|107.71|tanya61
+AUC00432|Casio G-Shock Watch (Rare)|Fashion|2025-07-21T00:00:00Z|2025-07-24T00:00:00Z|hernandezdebra|185.52|reynoldsmatthew
+AUC00433|LEGO Star Wars Millennium Falcon (Rare)|Toys & Games|2025-05-15T00:00:00Z|2025-05-17T00:00:00Z|grosstiffany|206.53|cranekyle
+AUC00434|IKEA LINNMON Desk|Home & Garden|2025-04-11T00:00:00Z|2025-04-12T00:00:00Z|skelly|57.23|heather49
+AUC00435|Bosch Cordless Drill|Home & Garden|2025-05-10T00:00:00Z|2025-05-11T00:00:00Z|mewing|121.72|owilson
+AUC00436|Nespresso Vertuo Coffee Machine|Home & Garden|2025-05-28T00:00:00Z|2025-05-31T00:00:00Z|juliegilbert|126.74|zacharyperez
+AUC00437|Atomic Habits (Rare)|Books|2025-03-05T00:00:00Z|2025-03-08T00:00:00Z|gcontreras|80.82|jacquelinejohnson
+AUC00438|IKEA LINNMON Desk (Rare)|Home & Garden|2025-07-19T00:00:00Z|2025-07-20T00:00:00Z|yvettebell|88.21|crystalrodriguez
+AUC00439|Apple Watch Series 8 (2022 Model)|Electronics|2025-05-01T00:00:00Z|2025-05-02T00:00:00Z|jgomez|63.23|lopezchad
+AUC00440|LEGO Star Wars Millennium Falcon (2022 Model)|Toys & Games|2025-03-13T00:00:00Z|2025-03-14T00:00:00Z|hansenkim|59.3|martinezpatricia
+AUC00441|Michael Jordan Rookie Card (Rare)|Collectibles|2025-02-09T00:00:00Z|2025-02-12T00:00:00Z|angelaanderson|29.77|ubarnes
+AUC00442|Nintendo Switch (Used)|Toys & Games|2025-07-18T00:00:00Z|2025-07-21T00:00:00Z|tannerhanson|38.93|caitlinbradley
+AUC00443|Uno Card Game (Rare)|Toys & Games|2025-07-11T00:00:00Z|2025-07-12T00:00:00Z|nancy84|166.15|patriciagreene
+AUC00444|Louis Vuitton Neverfull Bag (Used)|Fashion|2025-01-06T00:00:00Z|2025-01-08T00:00:00Z|pamela66|312.71|bakerdebra
+AUC00445|Vintage Concert Poster (Like New)|Collectibles|2025-03-14T00:00:00Z|2025-03-17T00:00:00Z|martinjessica|232.5|nathanmckay
+AUC00446|Harry Potter and the Philosopher's Stone (1st Ed.)|Books|2025-04-12T00:00:00Z|2025-04-14T00:00:00Z|james70|91.89|piercechristopher
+AUC00447|Philips Hue Starter Kit (Used)|Home & Garden|2025-02-13T00:00:00Z|2025-02-15T00:00:00Z|mariah87|238.45|xglenn
+AUC00448|Louis Vuitton Neverfull Bag (Used)|Fashion|2025-06-16T00:00:00Z|2025-06-19T00:00:00Z|nward|69.04|yeseniamoyer
+AUC00449|IKEA LINNMON Desk|Home & Garden|2025-05-13T00:00:00Z|2025-05-16T00:00:00Z|suzannecannon|52.79|ldiaz
+AUC00450|Barbie Dreamhouse (Rare)|Toys & Games|2025-02-28T00:00:00Z|2025-03-01T00:00:00Z|whiteangela|167.51|browndaniel
+AUC00451|Apple iPhone 13 Pro|Electronics|2025-03-09T00:00:00Z|2025-03-10T00:00:00Z|fgutierrez|116.57|jennifer17
+AUC00452|Dyson V11 Vacuum Cleaner (Like New)|Home & Garden|2025-02-15T00:00:00Z|2025-02-17T00:00:00Z|rstone|47.82|jonesgregory
+AUC00453|Bosch Cordless Drill (2022 Model)|Home & Garden|2025-05-13T00:00:00Z|2025-05-15T00:00:00Z|lwagner|85.67|pauldavis
+AUC00454|Atomic Habits (Like New)|Books|2025-02-17T00:00:00Z|2025-02-19T00:00:00Z|fjohnson|132.35|traviswright
+AUC00455|Nespresso Vertuo Coffee Machine (Rare)|Home & Garden|2025-04-16T00:00:00Z|2025-04-18T00:00:00Z|valeriewagner|190.84|markodom
+AUC00456|LEGO Star Wars Millennium Falcon (Like New)|Toys & Games|2025-03-22T00:00:00Z|2025-03-24T00:00:00Z|vmiller|24.95|yrice
+AUC00457|LEGO Star Wars Millennium Falcon (Rare)|Toys & Games|2025-07-16T00:00:00Z|2025-07-19T00:00:00Z|kellyjeffrey|88.43|lgonzales
+AUC00458|Hot Wheels Mega Garage (Like New)|Toys & Games|2025-07-17T00:00:00Z|2025-07-20T00:00:00Z|samuelwebb|183.94|janetanderson
+AUC00459|Dell XPS 13 Laptop (2022 Model)|Electronics|2025-06-25T00:00:00Z|2025-06-28T00:00:00Z|jonesscott|127.83|cervantesalan
+AUC00460|Louis Vuitton Neverfull Bag (Used)|Fashion|2025-06-05T00:00:00Z|2025-06-06T00:00:00Z|cookjoseph|179.62|ashleyscott
+AUC00461|The Lean Startup (Rare)|Books|2025-05-31T00:00:00Z|2025-06-03T00:00:00Z|margaretsmith|119.83|paullopez
+AUC00462|Casio G-Shock Watch (2022 Model)|Fashion|2025-02-14T00:00:00Z|2025-02-15T00:00:00Z|jonesangela|175.58|kylecook
+AUC00463|Bosch Cordless Drill (Like New)|Home & Garden|2025-02-01T00:00:00Z|2025-02-02T00:00:00Z|xjohnston|90.5|thall
+AUC00464|Bosch Cordless Drill|Home & Garden|2025-02-15T00:00:00Z|2025-02-16T00:00:00Z|kevin17|106.41|hprice
+AUC00465|Dell XPS 13 Laptop (Rare)|Electronics|2025-05-31T00:00:00Z|2025-06-01T00:00:00Z|davismarc|103.82|monroelinda
+AUC00466|Uno Card Game (Like New)|Toys & Games|2025-01-11T00:00:00Z|2025-01-14T00:00:00Z|hrobbins|16.7|andrew87
+AUC00467|Casio G-Shock Watch (2022 Model)|Fashion|2025-03-09T00:00:00Z|2025-03-11T00:00:00Z|jeremy39|30.66|margaret83
+AUC00468|Uno Card Game (2022 Model)|Toys & Games|2025-02-07T00:00:00Z|2025-02-10T00:00:00Z|ftaylor|105.31|wilsonsydney
+AUC00469|Samsung Galaxy S22 (2022 Model)|Electronics|2025-05-23T00:00:00Z|2025-05-24T00:00:00Z|rthompson|195.58|clarkbrandon
+AUC00470|Apple Watch Series 8 (2022 Model)|Electronics|2025-05-15T00:00:00Z|2025-05-17T00:00:00Z|caroline25|120.54|mitchellhannah
+AUC00471|Philips Hue Starter Kit|Home & Garden|2025-07-15T00:00:00Z|2025-07-18T00:00:00Z|adam08|30.1|charlesmckee
+AUC00472|Philips Hue Starter Kit (Used)|Home & Garden|2025-03-24T00:00:00Z|2025-03-25T00:00:00Z|middletonjennifer|71.2|xthompson
+AUC00473|Rare Pokémon Charizard Card (Like New)|Collectibles|2025-05-28T00:00:00Z|2025-05-29T00:00:00Z|rebecca27|251.6|randerson
+AUC00474|Sony WH-1000XM4 (Like New)|Electronics|2025-05-25T00:00:00Z|2025-05-27T00:00:00Z|calvin72|46.66|richard48
+AUC00475|Nespresso Vertuo Coffee Machine (Rare)|Home & Garden|2025-03-02T00:00:00Z|2025-03-05T00:00:00Z|victoria02|127.24|wilsonmorgan
+AUC00476|IKEA LINNMON Desk (Rare)|Home & Garden|2025-02-04T00:00:00Z|2025-02-07T00:00:00Z|samantha48|40.84|tara60
+AUC00477|Adidas Ultraboost (Used)|Fashion|2025-04-13T00:00:00Z|2025-04-16T00:00:00Z|murillojohn|231.32|campbellbrian
+AUC00478|Vintage Concert Poster (2022 Model)|Collectibles|2025-04-04T00:00:00Z|2025-04-05T00:00:00Z|john64|82.28|janettaylor
+AUC00479|Louis Vuitton Neverfull Bag (2022 Model)|Fashion|2025-02-14T00:00:00Z|2025-02-17T00:00:00Z|kathywalker|69.5|davidjarvis
+AUC00480|Nike Air Force 1 (Used)|Fashion|2025-04-18T00:00:00Z|2025-04-20T00:00:00Z|gomezgordon|306.46|brooke51
+AUC00481|Apple iPhone 13 Pro (Rare)|Electronics|2025-08-03T00:00:00Z|2025-08-04T00:00:00Z|uconner|152.31|vbrown
+AUC00482|Sapiens: A Brief History of Humankind (2022 Model)|Books|2025-07-25T00:00:00Z|2025-07-27T00:00:00Z|brittanyhurst|285.5|renee58
+AUC00483|The Great Gatsby (Rare)|Books|2025-01-17T00:00:00Z|2025-01-20T00:00:00Z|kellytimothy|64.8|stephanieshaffer
+AUC00484|Apple Watch Series 8 (Rare)|Electronics|2025-08-12T00:00:00Z|2025-08-14T00:00:00Z|jameshayes|89.45|twebster
+AUC00485|GoPro Hero 10 (Used)|Electronics|2025-07-06T00:00:00Z|2025-07-08T00:00:00Z|zachary13|78.44|jonathon69
+AUC00486|Nike Air Force 1|Fashion|2025-06-10T00:00:00Z|2025-06-12T00:00:00Z|vspence|149.37|kanderson
+AUC00487|Nike Air Force 1|Fashion|2025-08-21T00:00:00Z|2025-08-22T00:00:00Z|josearmstrong|68.56|smithlisa
+AUC00488|Weber Spirit II Gas Grill (2022 Model)|Home & Garden|2025-03-05T00:00:00Z|2025-03-07T00:00:00Z|molly35|193.1|smithjames
+AUC00489|Dell XPS 13 Laptop|Electronics|2025-01-05T00:00:00Z|2025-01-07T00:00:00Z|gomezwillie|145.18|vtaylor
+AUC00490|Sapiens: A Brief History of Humankind|Books|2025-06-03T00:00:00Z|2025-06-06T00:00:00Z|baxterrobyn|86.05|carlos80
+AUC00491|Harry Potter and the Philosopher's Stone (1st Ed.)|Books|2025-01-26T00:00:00Z|2025-01-28T00:00:00Z|brian06|70.44|christophersaunders
+AUC00492|GoPro Hero 10 (Used)|Electronics|2025-07-17T00:00:00Z|2025-07-20T00:00:00Z|felicia32|106.91|churchkristi
+AUC00493|Apple Watch Series 8 (Like New)|Electronics|2025-07-16T00:00:00Z|2025-07-18T00:00:00Z|natalieporter|153.63|lwallace
+AUC00494|LEGO Star Wars Millennium Falcon|Toys & Games|2025-01-31T00:00:00Z|2025-02-01T00:00:00Z|elizabeth35|104.08|xrogers
+AUC00495|Apple Watch Series 8 (2022 Model)|Electronics|2025-02-09T00:00:00Z|2025-02-12T00:00:00Z|johnwerner|97.17|jessicadonovan
+AUC00496|Levi's 501 Jeans (2022 Model)|Fashion|2025-04-03T00:00:00Z|2025-04-04T00:00:00Z|berrysusan|217.51|robertthompson
+AUC00497|Atomic Habits (Used)|Books|2025-01-01T00:00:00Z|2025-01-03T00:00:00Z|swood|191.66|chandlerkara
+AUC00498|1980s Comic Book Set (2022 Model)|Collectibles|2025-08-21T00:00:00Z|2025-08-24T00:00:00Z|elizabethparker|54.83|ryan01
+AUC00499|Apple Watch Series 8 (Like New)|Electronics|2025-06-25T00:00:00Z|2025-06-26T00:00:00Z|daniel49|98.12|joshuasmith
+AUC00500|To Kill a Mockingbird (Rare)|Books|2025-08-21T00:00:00Z|2025-08-24T00:00:00Z|leslie25|266.03|robertanthony
+AUC00501|LEGO Star Wars Millennium Falcon|Toys & Games|2025-05-28T00:00:00Z|2025-05-31T00:00:00Z|iellis|312.17|josephgonzales
+AUC00502|Harry Potter and the Philosopher's Stone (1st Ed.) (2022 Model)|Books|2025-05-27T00:00:00Z|2025-05-29T00:00:00Z|douglasday|156.44|wneal
+AUC00503|Atomic Habits (Used)|Books|2025-07-24T00:00:00Z|2025-07-26T00:00:00Z|jesus80|93.67|tbush
+AUC00504|LEGO Star Wars Millennium Falcon (Like New)|Toys & Games|2025-01-17T00:00:00Z|2025-01-19T00:00:00Z|qsnow|97.97|kristinparrish
+AUC00505|Antique Pocket Watch (Used)|Collectibles|2025-05-14T00:00:00Z|2025-05-15T00:00:00Z|brownmark|48.65|campbellheather
+AUC00506|The Lean Startup (Rare)|Books|2025-02-11T00:00:00Z|2025-02-12T00:00:00Z|sguerrero|32.61|michellehill
+AUC00507|Sapiens: A Brief History of Humankind (Like New)|Books|2025-07-11T00:00:00Z|2025-07-12T00:00:00Z|mjohnson|163.07|allison59
+AUC00508|Bosch Cordless Drill (Rare)|Home & Garden|2025-03-26T00:00:00Z|2025-03-29T00:00:00Z|lewiskathy|80.52|kimberlyesparza
+AUC00509|Atomic Habits|Books|2025-08-20T00:00:00Z|2025-08-23T00:00:00Z|crystal19|57.51|brucedavidson
+AUC00510|Sony WH-1000XM4 (2022 Model)|Electronics|2025-02-20T00:00:00Z|2025-02-21T00:00:00Z|jonesyvonne|255.53|davilajames
+AUC00511|Uno Card Game (Like New)|Toys & Games|2025-06-21T00:00:00Z|2025-06-22T00:00:00Z|matthew12|88.74|smithcrystal
+AUC00512|Hot Wheels Mega Garage (2022 Model)|Toys & Games|2025-02-26T00:00:00Z|2025-02-27T00:00:00Z|johnpage|67.34|kevin28
+AUC00513|Apple iPhone 13 Pro|Electronics|2025-08-18T00:00:00Z|2025-08-19T00:00:00Z|stevensonjessica|189.76|millerdavid
+AUC00514|GoPro Hero 10 (Like New)|Electronics|2025-02-21T00:00:00Z|2025-02-22T00:00:00Z|scott86|116.44|santosjohn
+AUC00515|Funko Pop Marvel Collection (Rare)|Collectibles|2025-04-19T00:00:00Z|2025-04-20T00:00:00Z|zdavis|96.59|melissa78
+AUC00516|Monopoly Classic Edition (Like New)|Toys & Games|2025-03-11T00:00:00Z|2025-03-14T00:00:00Z|zshaw|172.85|caleb98
+AUC00517|The Great Gatsby (Like New)|Books|2025-05-03T00:00:00Z|2025-05-06T00:00:00Z|baileytina|139.92|mallory30
+AUC00518|The Great Gatsby|Books|2025-07-20T00:00:00Z|2025-07-21T00:00:00Z|brookssusan|142.02|vhendricks
+AUC00519|Apple Watch Series 8 (2022 Model)|Electronics|2025-05-04T00:00:00Z|2025-05-07T00:00:00Z|donaldbarnes|143.63|rodney02
+AUC00520|IKEA LINNMON Desk (Like New)|Home & Garden|2025-02-23T00:00:00Z|2025-02-24T00:00:00Z|philip11|75.85|davidfisher
+AUC00521|Dell XPS 13 Laptop (Used)|Electronics|2025-07-26T00:00:00Z|2025-07-28T00:00:00Z|richard74|127.53|dstrickland
+AUC00522|Barbie Dreamhouse|Toys & Games|2025-07-18T00:00:00Z|2025-07-20T00:00:00Z|eolsen|43.16|klinesharon
+AUC00523|To Kill a Mockingbird (Used)|Books|2025-05-13T00:00:00Z|2025-05-16T00:00:00Z|hhill|132.6|joshuacalderon
+AUC00524|Vintage Concert Poster|Collectibles|2025-02-17T00:00:00Z|2025-02-20T00:00:00Z|carolyn24|79.15|shawnnguyen
+AUC00525|Levi's 501 Jeans (2022 Model)|Fashion|2025-03-26T00:00:00Z|2025-03-28T00:00:00Z|huffmankaren|118.5|arnoldjoseph
+AUC00526|Vintage Concert Poster (Like New)|Collectibles|2025-08-24T00:00:00Z|2025-08-25T00:00:00Z|philipsantos|103.23|mcmillanfrancis
+AUC00527|Philips Hue Starter Kit (2022 Model)|Home & Garden|2025-01-26T00:00:00Z|2025-01-27T00:00:00Z|rebecca68|45.33|smithbrooke
+AUC00528|Harry Potter and the Philosopher's Stone (1st Ed.) (Rare)|Books|2025-05-13T00:00:00Z|2025-05-14T00:00:00Z|oevans|156.61|dominicgreen
+AUC00529|Dell XPS 13 Laptop (Used)|Electronics|2025-01-19T00:00:00Z|2025-01-21T00:00:00Z|mitchelljeffery|89.24|traciemaynard
+AUC00530|Atomic Habits (Rare)|Books|2025-02-03T00:00:00Z|2025-02-06T00:00:00Z|madison69|159.71|paulrachel
+AUC00531|Samsung Galaxy S22 (Like New)|Electronics|2025-05-12T00:00:00Z|2025-05-14T00:00:00Z|vanderson|161.63|jason40
+AUC00532|Michael Jordan Rookie Card (Like New)|Collectibles|2025-01-05T00:00:00Z|2025-01-07T00:00:00Z|natalielynch|160.66|james14
+AUC00533|Michael Jordan Rookie Card (Rare)|Collectibles|2025-01-20T00:00:00Z|2025-01-22T00:00:00Z|baxterjoseph|149.26|daniel23
+AUC00534|Apple iPhone 13 Pro (2022 Model)|Electronics|2025-05-30T00:00:00Z|2025-06-02T00:00:00Z|justin31|64.27|julie91
+AUC00535|Nespresso Vertuo Coffee Machine (Used)|Home & Garden|2025-06-28T00:00:00Z|2025-06-30T00:00:00Z|ysmith|125.04|ngarcia
+AUC00536|Levi's 501 Jeans|Fashion|2025-03-31T00:00:00Z|2025-04-03T00:00:00Z|burkedeborah|85.21|halljames
+AUC00537|Weber Spirit II Gas Grill (Rare)|Home & Garden|2025-02-18T00:00:00Z|2025-02-21T00:00:00Z|loriwilliams|122.88|amandaowens
+AUC00538|Hot Wheels Mega Garage (2022 Model)|Toys & Games|2025-05-24T00:00:00Z|2025-05-26T00:00:00Z|richardsonlaura|129.35|kingrandy
+AUC00539|GoPro Hero 10 (2022 Model)|Electronics|2025-03-19T00:00:00Z|2025-03-20T00:00:00Z|stanleycarrillo|167.91|tadams
+AUC00540|Antique Pocket Watch (2022 Model)|Collectibles|2025-08-21T00:00:00Z|2025-08-23T00:00:00Z|ortizashley|91.29|garciagina
+AUC00541|LEGO Star Wars Millennium Falcon|Toys & Games|2025-07-29T00:00:00Z|2025-07-30T00:00:00Z|cristian40|109.09|adamcarpenter
+AUC00542|Philips Hue Starter Kit|Home & Garden|2025-03-06T00:00:00Z|2025-03-07T00:00:00Z|chaney|92.62|qthompson
+AUC00543|Rare Pokémon Charizard Card (Used)|Collectibles|2025-07-29T00:00:00Z|2025-07-31T00:00:00Z|omorris|147.78|andersontanner
+AUC00544|Sony WH-1000XM4 (Used)|Electronics|2025-06-01T00:00:00Z|2025-06-03T00:00:00Z|zachary87|146.2|wallacecrystal
+AUC00545|Apple Watch Series 8 (2022 Model)|Electronics|2025-08-26T00:00:00Z|2025-08-29T00:00:00Z|donna59|145.85|tyoung
+AUC00546|Louis Vuitton Neverfull Bag|Fashion|2025-08-07T00:00:00Z|2025-08-10T00:00:00Z|mfowler|71.34|ashley53
+AUC00547|Apple iPhone 13 Pro|Electronics|2025-07-30T00:00:00Z|2025-08-02T00:00:00Z|shepardjason|97.9|imontoya
+AUC00548|Casio G-Shock Watch (2022 Model)|Fashion|2025-01-02T00:00:00Z|2025-01-03T00:00:00Z|danielsbianca|26.15|daniel26
+AUC00549|Michael Jordan Rookie Card (Used)|Collectibles|2025-02-18T00:00:00Z|2025-02-19T00:00:00Z|johnsonbrent|85.47|ortegaeric
+AUC00550|Nespresso Vertuo Coffee Machine (Rare)|Home & Garden|2025-07-13T00:00:00Z|2025-07-14T00:00:00Z|qrobinson|215.98|holly86
+AUC00551|Louis Vuitton Neverfull Bag (Rare)|Fashion|2025-08-18T00:00:00Z|2025-08-21T00:00:00Z|hullmichael|209.6|robertsimon
+AUC00552|GoPro Hero 10 (2022 Model)|Electronics|2025-08-11T00:00:00Z|2025-08-14T00:00:00Z|jacobdorsey|104.34|tabitha43
+AUC00553|To Kill a Mockingbird (2022 Model)|Books|2025-06-28T00:00:00Z|2025-06-30T00:00:00Z|silvadavid|113.98|rachelsmith
+AUC00554|Nespresso Vertuo Coffee Machine (Rare)|Home & Garden|2025-07-18T00:00:00Z|2025-07-21T00:00:00Z|jessicachaney|92.74|monica72
+AUC00555|Nike Air Force 1 (Used)|Fashion|2025-08-05T00:00:00Z|2025-08-07T00:00:00Z|austinpatricia|81.88|marissa94
+AUC00556|Nespresso Vertuo Coffee Machine|Home & Garden|2025-03-27T00:00:00Z|2025-03-28T00:00:00Z|jenny46|187.49|jenniferwallace
+AUC00557|Philips Hue Starter Kit|Home & Garden|2025-05-10T00:00:00Z|2025-05-12T00:00:00Z|amandaturner|286.07|randalltodd
+AUC00558|Philips Hue Starter Kit (Rare)|Home & Garden|2025-05-23T00:00:00Z|2025-05-24T00:00:00Z|amandamorris|269.81|alexanderjordan
+AUC00559|IKEA LINNMON Desk (Like New)|Home & Garden|2025-05-30T00:00:00Z|2025-05-31T00:00:00Z|rodriguezjasmine|84.61|sheltondonald
+AUC00560|GoPro Hero 10 (Like New)|Electronics|2025-03-31T00:00:00Z|2025-04-03T00:00:00Z|llutz|60.7|andersonmichael
+AUC00561|Apple iPhone 13 Pro (Used)|Electronics|2025-08-27T00:00:00Z|2025-08-29T00:00:00Z|james50|176.55|laratracy
+AUC00562|Sony WH-1000XM4|Electronics|2025-02-22T00:00:00Z|2025-02-24T00:00:00Z|thompsonsamantha|121.32|charles19
+AUC00563|Apple Watch Series 8 (Like New)|Electronics|2025-06-24T00:00:00Z|2025-06-25T00:00:00Z|hwatkins|41.43|brittanyvincent
+AUC00564|Levi's 501 Jeans (Rare)|Fashion|2025-07-20T00:00:00Z|2025-07-23T00:00:00Z|emilyrichardson|127.55|mirandavasquez
+AUC00565|The Lean Startup (Rare)|Books|2025-07-03T00:00:00Z|2025-07-05T00:00:00Z|alyssa50|150.2|nfoster
+AUC00566|Sony WH-1000XM4 (2022 Model)|Electronics|2025-05-18T00:00:00Z|2025-05-21T00:00:00Z|william04|173.5|sarah74
+AUC00567|Nespresso Vertuo Coffee Machine (Rare)|Home & Garden|2025-04-07T00:00:00Z|2025-04-09T00:00:00Z|tara79|64.66|corey33
+AUC00568|Philips Hue Starter Kit|Home & Garden|2025-06-27T00:00:00Z|2025-06-29T00:00:00Z|freemanbrent|66.14|jonesjessica
+AUC00569|Atomic Habits (Like New)|Books|2025-02-13T00:00:00Z|2025-02-16T00:00:00Z|mary04|248.18|smithdavid
+AUC00570|Harry Potter and the Philosopher's Stone (1st Ed.) (2022 Model)|Books|2025-01-21T00:00:00Z|2025-01-24T00:00:00Z|stephen00|162.23|ylara
+AUC00571|Louis Vuitton Neverfull Bag|Fashion|2025-03-10T00:00:00Z|2025-03-13T00:00:00Z|berryshawn|207.98|jenniferjenkins
+AUC00572|Monopoly Classic Edition (Rare)|Toys & Games|2025-03-31T00:00:00Z|2025-04-01T00:00:00Z|carl62|163.31|qscott
+AUC00573|Philips Hue Starter Kit (Like New)|Home & Garden|2025-01-01T00:00:00Z|2025-01-04T00:00:00Z|alvarezbryan|122.28|justin94
+AUC00574|Nike Air Force 1 (Like New)|Fashion|2025-06-27T00:00:00Z|2025-06-28T00:00:00Z|debra46|108.92|martinyvonne
+AUC00575|Louis Vuitton Neverfull Bag (2022 Model)|Fashion|2025-06-16T00:00:00Z|2025-06-19T00:00:00Z|gvazquez|58.92|michael90
+AUC00576|Apple Watch Series 8 (2022 Model)|Electronics|2025-05-26T00:00:00Z|2025-05-28T00:00:00Z|tpalmer|129.47|obrady
+AUC00577|Apple iPhone 13 Pro (Rare)|Electronics|2025-08-13T00:00:00Z|2025-08-14T00:00:00Z|franciscohunt|102.67|jmyers
+AUC00578|Hot Wheels Mega Garage (2022 Model)|Toys & Games|2025-06-21T00:00:00Z|2025-06-22T00:00:00Z|brandon41|117.32|igarrison
+AUC00579|IKEA LINNMON Desk (2022 Model)|Home & Garden|2025-03-21T00:00:00Z|2025-03-24T00:00:00Z|browntonya|74.04|olang
+AUC00580|Rare Pokémon Charizard Card (Used)|Collectibles|2025-04-06T00:00:00Z|2025-04-08T00:00:00Z|stephenwiggins|150.31|ulopez
+AUC00581|Uno Card Game|Toys & Games|2025-04-09T00:00:00Z|2025-04-10T00:00:00Z|benjaminmitchell|135.03|turneryolanda
+AUC00582|Rare Pokémon Charizard Card|Collectibles|2025-04-30T00:00:00Z|2025-05-01T00:00:00Z|jason33|281.9|tinamoran
+AUC00583|Weber Spirit II Gas Grill (2022 Model)|Home & Garden|2025-07-02T00:00:00Z|2025-07-04T00:00:00Z|saramendoza|118.7|dbuchanan
+AUC00584|Apple iPhone 13 Pro (Used)|Electronics|2025-02-09T00:00:00Z|2025-02-12T00:00:00Z|dale48|167.29|wilsonross
+AUC00585|Monopoly Classic Edition (Like New)|Toys & Games|2025-03-10T00:00:00Z|2025-03-13T00:00:00Z|foleyoscar|137.54|shanerodriguez
+AUC00586|Antique Pocket Watch (Used)|Collectibles|2025-06-28T00:00:00Z|2025-06-30T00:00:00Z|wreyes|76.46|joel73
+AUC00587|Apple iPhone 13 Pro (Used)|Electronics|2025-02-19T00:00:00Z|2025-02-20T00:00:00Z|eric88|173.66|derek86
+AUC00588|Barbie Dreamhouse (Like New)|Toys & Games|2025-01-09T00:00:00Z|2025-01-11T00:00:00Z|brownjoseph|54.44|andreafoster
+AUC00589|1980s Comic Book Set (Like New)|Collectibles|2025-07-30T00:00:00Z|2025-07-31T00:00:00Z|crystal14|153.87|sarahbarnes
+AUC00590|Casio G-Shock Watch|Fashion|2025-05-05T00:00:00Z|2025-05-07T00:00:00Z|katherinehunter|56.9|laura57
+AUC00591|Rare Pokémon Charizard Card (Like New)|Collectibles|2025-08-03T00:00:00Z|2025-08-04T00:00:00Z|moralesjacob|104.55|pgrimes
+AUC00592|Nintendo Switch (2022 Model)|Toys & Games|2025-05-10T00:00:00Z|2025-05-12T00:00:00Z|tiffany81|167.91|wagnertina
+AUC00593|Sony WH-1000XM4 (Like New)|Electronics|2025-06-03T00:00:00Z|2025-06-06T00:00:00Z|richardfox|70.7|lauriesanchez
+AUC00594|Casio G-Shock Watch|Fashion|2025-04-19T00:00:00Z|2025-04-20T00:00:00Z|johnsonsarah|98.84|lcunningham
+AUC00595|Sony WH-1000XM4 (2022 Model)|Electronics|2025-02-10T00:00:00Z|2025-02-13T00:00:00Z|hmorris|40.5|ycarpenter
+AUC00596|Rare Pokémon Charizard Card|Collectibles|2025-06-11T00:00:00Z|2025-06-14T00:00:00Z|kjones|76.44|marshashley
+AUC00597|Levi's 501 Jeans (Used)|Fashion|2025-01-06T00:00:00Z|2025-01-09T00:00:00Z|dzimmerman|84.17|smithgregory
+AUC00598|Philips Hue Starter Kit|Home & Garden|2025-01-15T00:00:00Z|2025-01-17T00:00:00Z|biancasullivan|15.48|thomas19
+AUC00599|Zara Wool Coat (Rare)|Fashion|2025-08-08T00:00:00Z|2025-08-11T00:00:00Z|kennethjohnson|150.39|josephcastro
+AUC00600|Zara Wool Coat (Rare)|Fashion|2025-03-09T00:00:00Z|2025-03-12T00:00:00Z|marissaclark|135.22|cchung
+AUC00601|Hot Wheels Mega Garage (2022 Model)|Toys & Games|2025-06-26T00:00:00Z|2025-06-29T00:00:00Z|bradleymontgomery|204.09|obrienpaula
+AUC00602|Barbie Dreamhouse (Rare)|Toys & Games|2025-06-20T00:00:00Z|2025-06-21T00:00:00Z|tamara54|204.18|nielsenandrew
+AUC00603|LEGO Star Wars Millennium Falcon (Used)|Toys & Games|2025-04-19T00:00:00Z|2025-04-20T00:00:00Z|angela11|226.06|elizabethgarcia
+AUC00604|Dell XPS 13 Laptop|Electronics|2025-03-07T00:00:00Z|2025-03-09T00:00:00Z|samanthakey|85.72|normajohnson
+AUC00605|Samsung Galaxy S22 (Used)|Electronics|2025-01-07T00:00:00Z|2025-01-10T00:00:00Z|candace19|181.12|pgross
+AUC00606|Samsung Galaxy S22 (Like New)|Electronics|2025-04-19T00:00:00Z|2025-04-21T00:00:00Z|harrisdiana|110.35|christinalee
+AUC00607|Michael Jordan Rookie Card (Like New)|Collectibles|2025-01-18T00:00:00Z|2025-01-21T00:00:00Z|samuelkelly|72.27|meredith57
+AUC00608|Dyson V11 Vacuum Cleaner (Rare)|Home & Garden|2025-05-14T00:00:00Z|2025-05-17T00:00:00Z|gary73|247.9|jacksonvirginia
+AUC00609|Harry Potter and the Philosopher's Stone (1st Ed.) (Like New)|Books|2025-04-09T00:00:00Z|2025-04-10T00:00:00Z|justinharris|102.65|roberthale
+AUC00610|Samsung Galaxy S22 (2022 Model)|Electronics|2025-07-12T00:00:00Z|2025-07-14T00:00:00Z|mboyd|228.96|tmoore
+AUC00611|Dell XPS 13 Laptop (2022 Model)|Electronics|2025-01-29T00:00:00Z|2025-01-30T00:00:00Z|helenjackson|142.16|robertsshawn
+AUC00612|Apple Watch Series 8 (Rare)|Electronics|2025-01-31T00:00:00Z|2025-02-03T00:00:00Z|blevinskylie|53.36|wcombs
+AUC00613|Nike Air Force 1|Fashion|2025-06-07T00:00:00Z|2025-06-09T00:00:00Z|randall96|86.33|pli
+AUC00614|Dyson V11 Vacuum Cleaner (Used)|Home & Garden|2025-05-07T00:00:00Z|2025-05-09T00:00:00Z|vedwards|81.17|craigkatelyn
+AUC00615|IKEA LINNMON Desk (Rare)|Home & Garden|2025-07-14T00:00:00Z|2025-07-16T00:00:00Z|pfisher|234.37|pearsonjeffrey
+AUC00616|Hot Wheels Mega Garage (Like New)|Toys & Games|2025-04-30T00:00:00Z|2025-05-02T00:00:00Z|lestersarah|89.25|hooversheila
+AUC00617|Nintendo Switch (Rare)|Toys & Games|2025-02-02T00:00:00Z|2025-02-03T00:00:00Z|veronicagarcia|74.12|christopherhanson
+AUC00618|Dell XPS 13 Laptop|Electronics|2025-06-19T00:00:00Z|2025-06-22T00:00:00Z|nicole13|145.43|lunarobert
+AUC00619|Samsung Galaxy S22 (Like New)|Electronics|2025-07-29T00:00:00Z|2025-07-30T00:00:00Z|reedtracy|61.26|geraldbrooks
+AUC00620|Apple Watch Series 8 (2022 Model)|Electronics|2025-01-17T00:00:00Z|2025-01-20T00:00:00Z|elizabeth03|151.49|xperez
+AUC00621|Michael Jordan Rookie Card (Like New)|Collectibles|2025-03-26T00:00:00Z|2025-03-28T00:00:00Z|sharon50|243.3|hillcheryl
+AUC00622|Zara Wool Coat (Like New)|Fashion|2025-05-18T00:00:00Z|2025-05-20T00:00:00Z|uandrews|88.44|anthonyhayley
+AUC00623|Atomic Habits (2022 Model)|Books|2025-03-05T00:00:00Z|2025-03-08T00:00:00Z|jessicasmith|169.68|urodriguez
+AUC00624|Nike Air Force 1 (2022 Model)|Fashion|2025-07-23T00:00:00Z|2025-07-24T00:00:00Z|anthonysanders|90.3|travisburns
+AUC00625|Harry Potter and the Philosopher's Stone (1st Ed.) (Used)|Books|2025-03-21T00:00:00Z|2025-03-24T00:00:00Z|jenkinstim|157.61|ylewis
+AUC00626|Weber Spirit II Gas Grill (Used)|Home & Garden|2025-02-21T00:00:00Z|2025-02-23T00:00:00Z|edwardwilson|203.69|warrenbridget
+AUC00627|Apple iPhone 13 Pro|Electronics|2025-05-18T00:00:00Z|2025-05-21T00:00:00Z|jessica28|139.45|zturner
+AUC00628|Nespresso Vertuo Coffee Machine (Like New)|Home & Garden|2025-01-21T00:00:00Z|2025-01-24T00:00:00Z|ssmith|184.65|blake59
+AUC00629|Michael Jordan Rookie Card|Collectibles|2025-02-09T00:00:00Z|2025-02-12T00:00:00Z|wlloyd|123.66|kreynolds
+AUC00630|Adidas Ultraboost (Rare)|Fashion|2025-04-12T00:00:00Z|2025-04-15T00:00:00Z|mcdonaldkevin|63.24|rowlandlisa
+AUC00631|Dell XPS 13 Laptop (Rare)|Electronics|2025-08-13T00:00:00Z|2025-08-16T00:00:00Z|ramoselizabeth|147.88|kim83
+AUC00632|Nike Air Force 1 (Like New)|Fashion|2025-01-30T00:00:00Z|2025-02-02T00:00:00Z|xhall|78.81|matthew75
+AUC00633|GoPro Hero 10|Electronics|2025-05-04T00:00:00Z|2025-05-05T00:00:00Z|williamsjohn|196.11|nicholslaura
+AUC00634|Adidas Ultraboost (Rare)|Fashion|2025-03-07T00:00:00Z|2025-03-10T00:00:00Z|collinsanthony|273|mary56
+AUC00635|Bosch Cordless Drill (Used)|Home & Garden|2025-03-17T00:00:00Z|2025-03-19T00:00:00Z|jacksonlisa|249.59|cponce
+AUC00636|LEGO Star Wars Millennium Falcon (Used)|Toys & Games|2025-01-28T00:00:00Z|2025-01-29T00:00:00Z|elizabeth11|161.64|jeremypotter
+AUC00637|IKEA LINNMON Desk (Used)|Home & Garden|2025-07-04T00:00:00Z|2025-07-05T00:00:00Z|zacharytaylor|58.75|johnsonadriana
+AUC00638|Philips Hue Starter Kit (Like New)|Home & Garden|2025-04-19T00:00:00Z|2025-04-22T00:00:00Z|ryancunningham|208.22|brittanycarson
+AUC00639|Apple Watch Series 8 (Like New)|Electronics|2025-05-10T00:00:00Z|2025-05-11T00:00:00Z|brandonsalazar|277.45|renee07
+AUC00640|The Great Gatsby (Rare)|Books|2025-08-12T00:00:00Z|2025-08-14T00:00:00Z|scottbrent|279.15|carladouglas
+AUC00641|Weber Spirit II Gas Grill (Rare)|Home & Garden|2025-07-31T00:00:00Z|2025-08-02T00:00:00Z|kpugh|126.21|barbaracaldwell
+AUC00642|Levi's 501 Jeans|Fashion|2025-08-06T00:00:00Z|2025-08-08T00:00:00Z|housedaniel|173.82|kathrynbyrd
+AUC00643|Michael Jordan Rookie Card (Used)|Collectibles|2025-02-03T00:00:00Z|2025-02-04T00:00:00Z|dean26|146.5|jacobrogers
+AUC00644|GoPro Hero 10 (2022 Model)|Electronics|2025-03-23T00:00:00Z|2025-03-25T00:00:00Z|jeffrey63|60.97|ihubbard
+AUC00645|Apple Watch Series 8 (Used)|Electronics|2025-05-11T00:00:00Z|2025-05-12T00:00:00Z|greerpatricia|203.11|owalker
+AUC00646|Nike Air Force 1 (Like New)|Fashion|2025-07-14T00:00:00Z|2025-07-16T00:00:00Z|mckinneyanne|108.18|rojaslauren
+AUC00647|Nike Air Force 1 (Rare)|Fashion|2025-06-08T00:00:00Z|2025-06-11T00:00:00Z|jared07|69.38|wallacecurtis
+AUC00648|Dell XPS 13 Laptop (2022 Model)|Electronics|2025-04-10T00:00:00Z|2025-04-13T00:00:00Z|michael64|66.27|rosewilliam
+AUC00649|Monopoly Classic Edition (Like New)|Toys & Games|2025-07-11T00:00:00Z|2025-07-14T00:00:00Z|todd96|127.18|kerritorres
+AUC00650|Uno Card Game (Rare)|Toys & Games|2025-01-26T00:00:00Z|2025-01-29T00:00:00Z|owest|94.61|henryortega
+AUC00651|Apple iPhone 13 Pro (Used)|Electronics|2025-04-19T00:00:00Z|2025-04-21T00:00:00Z|mary80|127.13|edwardsjoseph
+AUC00652|Zara Wool Coat (Used)|Fashion|2025-06-19T00:00:00Z|2025-06-22T00:00:00Z|billy34|109.4|garciakaylee
+AUC00653|GoPro Hero 10 (2022 Model)|Electronics|2025-03-01T00:00:00Z|2025-03-03T00:00:00Z|karl09|126.55|christinalynch
+AUC00654|Monopoly Classic Edition (Used)|Toys & Games|2025-01-24T00:00:00Z|2025-01-27T00:00:00Z|lyonsmatthew|112.08|thompsonjeremiah
+AUC00655|Apple iPhone 13 Pro|Electronics|2025-02-08T00:00:00Z|2025-02-09T00:00:00Z|ritaschmidt|125.66|carolyn22
+AUC00656|LEGO Star Wars Millennium Falcon (2022 Model)|Toys & Games|2025-05-07T00:00:00Z|2025-05-08T00:00:00Z|woodedward|133.12|sandra71
+AUC00657|LEGO Star Wars Millennium Falcon (2022 Model)|Toys & Games|2025-07-23T00:00:00Z|2025-07-24T00:00:00Z|gdougherty|127.08|sandrawilliams
+AUC00658|Michael Jordan Rookie Card (Used)|Collectibles|2025-06-05T00:00:00Z|2025-06-06T00:00:00Z|lanthony|248.63|robertevans
+AUC00659|Samsung Galaxy S22 (Used)|Electronics|2025-05-22T00:00:00Z|2025-05-23T00:00:00Z|brian34|60.6|martinezsarah
+AUC00660|Levi's 501 Jeans|Fashion|2025-07-08T00:00:00Z|2025-07-09T00:00:00Z|bthompson|143.61|sierra82
+AUC00661|Dyson V11 Vacuum Cleaner|Home & Garden|2025-08-25T00:00:00Z|2025-08-26T00:00:00Z|katherineroberts|118.99|laurapatterson
+AUC00662|Sapiens: A Brief History of Humankind (2022 Model)|Books|2025-02-11T00:00:00Z|2025-02-12T00:00:00Z|jenna37|49.46|josephlopez
+AUC00663|Zara Wool Coat|Fashion|2025-08-20T00:00:00Z|2025-08-22T00:00:00Z|zclark|90.25|patriciamcdaniel
+AUC00664|Sapiens: A Brief History of Humankind (2022 Model)|Books|2025-05-11T00:00:00Z|2025-05-12T00:00:00Z|jenniferelliott|37|rmorris
+AUC00665|Antique Pocket Watch (Used)|Collectibles|2025-07-01T00:00:00Z|2025-07-04T00:00:00Z|fmartin|155.07|vhall
+AUC00666|Monopoly Classic Edition|Toys & Games|2025-01-15T00:00:00Z|2025-01-16T00:00:00Z|carriehinton|162.91|robert51
+AUC00667|Bosch Cordless Drill (2022 Model)|Home & Garden|2025-08-10T00:00:00Z|2025-08-11T00:00:00Z|brownshelly|222.21|thompsoncynthia
+AUC00668|Levi's 501 Jeans (Used)|Fashion|2025-02-27T00:00:00Z|2025-03-01T00:00:00Z|elizabeth23|70.42|ujones
+AUC00669|Philips Hue Starter Kit (2022 Model)|Home & Garden|2025-06-25T00:00:00Z|2025-06-28T00:00:00Z|egreen|181.03|tracyfoster
+AUC00670|Samsung Galaxy S22 (Like New)|Electronics|2025-07-18T00:00:00Z|2025-07-19T00:00:00Z|vroberson|29.88|ksummers
+AUC00671|LEGO Star Wars Millennium Falcon (Rare)|Toys & Games|2025-03-03T00:00:00Z|2025-03-06T00:00:00Z|lambmatthew|96.57|jordansarah
+AUC00672|Atomic Habits (2022 Model)|Books|2025-06-11T00:00:00Z|2025-06-14T00:00:00Z|johnbennett|87.2|carlyhill
+AUC00673|Levi's 501 Jeans (Like New)|Fashion|2025-07-18T00:00:00Z|2025-07-19T00:00:00Z|colson|156.47|tcruz
+AUC00674|Nespresso Vertuo Coffee Machine (2022 Model)|Home & Garden|2025-05-22T00:00:00Z|2025-05-24T00:00:00Z|oshaw|177.11|kingcody
+AUC00675|Uno Card Game|Toys & Games|2025-08-12T00:00:00Z|2025-08-15T00:00:00Z|alan96|80.8|andersonmark
+AUC00676|Sony WH-1000XM4 (2022 Model)|Electronics|2025-05-30T00:00:00Z|2025-06-01T00:00:00Z|michellemullins|262.98|tinaboyle
+AUC00677|Funko Pop Marvel Collection (Like New)|Collectibles|2025-01-19T00:00:00Z|2025-01-22T00:00:00Z|gonzalesmatthew|147.45|bjohnson
+AUC00678|Nespresso Vertuo Coffee Machine (Like New)|Home & Garden|2025-08-17T00:00:00Z|2025-08-19T00:00:00Z|james91|119.73|anthonypineda
+AUC00679|Louis Vuitton Neverfull Bag|Fashion|2025-04-22T00:00:00Z|2025-04-24T00:00:00Z|fischertyler|128.58|joshuachung
+AUC00680|GoPro Hero 10|Electronics|2025-01-23T00:00:00Z|2025-01-26T00:00:00Z|qnguyen|126.47|montgomeryluke
+AUC00681|Sony WH-1000XM4 (Used)|Electronics|2025-04-15T00:00:00Z|2025-04-17T00:00:00Z|connor71|82.67|bgreer
+AUC00682|Harry Potter and the Philosopher's Stone (1st Ed.)|Books|2025-01-17T00:00:00Z|2025-01-19T00:00:00Z|pmcdonald|113.57|ucooper
+AUC00683|Adidas Ultraboost (Like New)|Fashion|2025-06-25T00:00:00Z|2025-06-27T00:00:00Z|christophermorgan|100.28|archerlarry
+AUC00684|Vintage Concert Poster (Like New)|Collectibles|2025-05-06T00:00:00Z|2025-05-08T00:00:00Z|marc78|48.36|vhoover
+AUC00685|GoPro Hero 10|Electronics|2025-01-20T00:00:00Z|2025-01-22T00:00:00Z|robin18|99.36|timothy84
+AUC00686|Harry Potter and the Philosopher's Stone (1st Ed.) (2022 Model)|Books|2025-07-18T00:00:00Z|2025-07-21T00:00:00Z|timothy00|109.52|reevesronald
+AUC00687|Adidas Ultraboost (Used)|Fashion|2025-01-05T00:00:00Z|2025-01-08T00:00:00Z|laurenanderson|152.91|brendaglenn
+AUC00688|Bosch Cordless Drill|Home & Garden|2025-06-05T00:00:00Z|2025-06-07T00:00:00Z|curtisgonzalez|52.15|douglastrujillo
+AUC00689|Levi's 501 Jeans|Fashion|2025-07-16T00:00:00Z|2025-07-18T00:00:00Z|mmorris|151|andrew10
+AUC00690|The Great Gatsby (Used)|Books|2025-03-06T00:00:00Z|2025-03-07T00:00:00Z|charlesjefferson|54.92|kimberly84
+AUC00691|GoPro Hero 10 (2022 Model)|Electronics|2025-06-15T00:00:00Z|2025-06-17T00:00:00Z|felicia01|145.65|smithlisa
+AUC00692|GoPro Hero 10 (2022 Model)|Electronics|2025-01-19T00:00:00Z|2025-01-20T00:00:00Z|robertsdeanna|97.75|isaac00
+AUC00693|Sapiens: A Brief History of Humankind (Like New)|Books|2025-06-01T00:00:00Z|2025-06-02T00:00:00Z|martineztracy|152.32|maynardcassie
+AUC00694|Dyson V11 Vacuum Cleaner (Like New)|Home & Garden|2025-05-12T00:00:00Z|2025-05-15T00:00:00Z|qcoffey|69.65|garciagregory
+AUC00695|Uno Card Game (Like New)|Toys & Games|2025-02-15T00:00:00Z|2025-02-18T00:00:00Z|john82|76.44|jenniferwalker
+AUC00696|Atomic Habits (Like New)|Books|2025-07-12T00:00:00Z|2025-07-15T00:00:00Z|elizabethwilliams|151.83|karenjohnson
+AUC00697|Apple iPhone 13 Pro (Like New)|Electronics|2025-01-05T00:00:00Z|2025-01-08T00:00:00Z|shawnwalker|156.29|brian86
+AUC00698|Weber Spirit II Gas Grill (Like New)|Home & Garden|2025-07-27T00:00:00Z|2025-07-30T00:00:00Z|kaylajohnson|80.74|epennington
+AUC00699|Dell XPS 13 Laptop (Rare)|Electronics|2025-02-06T00:00:00Z|2025-02-09T00:00:00Z|vcole|55.61|ronald44
+AUC00700|Louis Vuitton Neverfull Bag (Like New)|Fashion|2025-08-17T00:00:00Z|2025-08-18T00:00:00Z|bgomez|137.18|fstewart
+AUC00701|GoPro Hero 10 (Like New)|Electronics|2025-05-20T00:00:00Z|2025-05-22T00:00:00Z|pclark|14.13|qfranklin
+AUC00702|Adidas Ultraboost|Fashion|2025-06-30T00:00:00Z|2025-07-02T00:00:00Z|edward38|63.17|nancywalter
+AUC00703|IKEA LINNMON Desk|Home & Garden|2025-06-27T00:00:00Z|2025-06-29T00:00:00Z|sarawatson|142.67|scott26
+AUC00704|Atomic Habits (2022 Model)|Books|2025-06-01T00:00:00Z|2025-06-03T00:00:00Z|christian27|214.15|muellerbrenda
+AUC00705|Atomic Habits (Rare)|Books|2025-04-08T00:00:00Z|2025-04-11T00:00:00Z|davisbrenda|58.62|darlenehatfield
+AUC00706|Casio G-Shock Watch|Fashion|2025-05-07T00:00:00Z|2025-05-09T00:00:00Z|hickmandaniel|123.26|michael20
+AUC00707|Philips Hue Starter Kit (Like New)|Home & Garden|2025-01-06T00:00:00Z|2025-01-09T00:00:00Z|ulong|273.83|aleccarter
+AUC00708|Apple Watch Series 8 (Used)|Electronics|2025-01-23T00:00:00Z|2025-01-26T00:00:00Z|brittanyjordan|128.31|charlesthompson
+AUC00709|Nespresso Vertuo Coffee Machine (Like New)|Home & Garden|2025-08-26T00:00:00Z|2025-08-29T00:00:00Z|krobinson|226.61|waynevelasquez
+AUC00710|Hot Wheels Mega Garage (Like New)|Toys & Games|2025-04-12T00:00:00Z|2025-04-14T00:00:00Z|zsantos|61.19|dustin94
+AUC00711|Adidas Ultraboost (Used)|Fashion|2025-02-27T00:00:00Z|2025-03-02T00:00:00Z|ifletcher|145.97|julie88
+AUC00712|The Great Gatsby|Books|2025-07-17T00:00:00Z|2025-07-20T00:00:00Z|jeffery18|194.2|saraflowers
+AUC00713|LEGO Star Wars Millennium Falcon|Toys & Games|2025-08-06T00:00:00Z|2025-08-08T00:00:00Z|jason35|107.89|apriljennings
+AUC00714|Harry Potter and the Philosopher's Stone (1st Ed.) (2022 Model)|Books|2025-01-13T00:00:00Z|2025-01-15T00:00:00Z|david51|34.04|pcobb
+AUC00715|Zara Wool Coat (Rare)|Fashion|2025-05-22T00:00:00Z|2025-05-23T00:00:00Z|tylererickson|171.71|edwardschristopher
+AUC00716|Zara Wool Coat (Like New)|Fashion|2025-07-13T00:00:00Z|2025-07-16T00:00:00Z|howardjoseph|163.49|chapmanlinda
+AUC00717|Dyson V11 Vacuum Cleaner|Home & Garden|2025-03-04T00:00:00Z|2025-03-07T00:00:00Z|xbyrd|215.44|jamienichols
+AUC00718|Atomic Habits (Rare)|Books|2025-01-17T00:00:00Z|2025-01-19T00:00:00Z|heatherreeves|79.95|parksrachel
+AUC00719|Apple iPhone 13 Pro (2022 Model)|Electronics|2025-06-09T00:00:00Z|2025-06-10T00:00:00Z|nathanwilson|61.06|jessica69
+AUC00720|Apple iPhone 13 Pro (Like New)|Electronics|2025-08-22T00:00:00Z|2025-08-24T00:00:00Z|jay20|126.39|tammy94
+AUC00721|GoPro Hero 10|Electronics|2025-05-16T00:00:00Z|2025-05-18T00:00:00Z|karenbanks|97.12|hcarlson
+AUC00722|Nespresso Vertuo Coffee Machine (Used)|Home & Garden|2025-02-07T00:00:00Z|2025-02-10T00:00:00Z|danielbryan|119.86|braundavid
+AUC00723|The Great Gatsby (2022 Model)|Books|2025-02-14T00:00:00Z|2025-02-15T00:00:00Z|peggy70|277.1|hannahbranch
+AUC00724|Nike Air Force 1 (Rare)|Fashion|2025-06-16T00:00:00Z|2025-06-17T00:00:00Z|bhudson|161.47|tiffanyharris
+AUC00725|Adidas Ultraboost (Like New)|Fashion|2025-03-20T00:00:00Z|2025-03-21T00:00:00Z|williamjenkins|104.38|youngjuan
+AUC00726|Antique Pocket Watch (Used)|Collectibles|2025-05-21T00:00:00Z|2025-05-24T00:00:00Z|victoriacoffey|74.52|ujohnson
+AUC00727|Dyson V11 Vacuum Cleaner (2022 Model)|Home & Garden|2025-03-30T00:00:00Z|2025-04-01T00:00:00Z|urobinson|132.29|jeffery20
+AUC00728|Sapiens: A Brief History of Humankind|Books|2025-06-17T00:00:00Z|2025-06-18T00:00:00Z|carlaandersen|15.36|alvareztheresa
+AUC00729|Sapiens: A Brief History of Humankind (Rare)|Books|2025-08-01T00:00:00Z|2025-08-04T00:00:00Z|hannadaniel|94.81|lynnmark
+AUC00730|1980s Comic Book Set (Rare)|Collectibles|2025-07-20T00:00:00Z|2025-07-22T00:00:00Z|pmanning|122.3|joshua53
+AUC00731|Sapiens: A Brief History of Humankind (2022 Model)|Books|2025-06-12T00:00:00Z|2025-06-14T00:00:00Z|christopherpacheco|68.68|cruzbrian
+AUC00732|Harry Potter and the Philosopher's Stone (1st Ed.) (Used)|Books|2025-07-24T00:00:00Z|2025-07-26T00:00:00Z|brandon69|315.24|kimberly43
+AUC00733|GoPro Hero 10 (Used)|Electronics|2025-08-12T00:00:00Z|2025-08-15T00:00:00Z|kathleen42|141.18|qedwards
+AUC00734|Funko Pop Marvel Collection|Collectibles|2025-08-19T00:00:00Z|2025-08-20T00:00:00Z|alex78|58.66|timothy03
+AUC00735|Weber Spirit II Gas Grill (2022 Model)|Home & Garden|2025-02-03T00:00:00Z|2025-02-06T00:00:00Z|jameslopez|99.71|kcombs
+AUC00736|Barbie Dreamhouse|Toys & Games|2025-04-05T00:00:00Z|2025-04-06T00:00:00Z|helencastillo|107.09|christopher65
+AUC00737|Nike Air Force 1 (Used)|Fashion|2025-08-28T00:00:00Z|2025-08-30T00:00:00Z|krussell|202.06|mark64
+AUC00738|Monopoly Classic Edition|Toys & Games|2025-05-31T00:00:00Z|2025-06-02T00:00:00Z|rjames|110.81|andrearobinson
+AUC00739|Sony WH-1000XM4 (Rare)|Electronics|2025-08-12T00:00:00Z|2025-08-15T00:00:00Z|kristinawilson|68.55|adaniels
+AUC00740|Levi's 501 Jeans (Rare)|Fashion|2025-06-30T00:00:00Z|2025-07-03T00:00:00Z|lopezpaul|42.13|parsonsbeverly
+AUC00741|Barbie Dreamhouse|Toys & Games|2025-07-05T00:00:00Z|2025-07-08T00:00:00Z|matthewlambert|131.01|justinsullivan
+AUC00742|GoPro Hero 10 (Like New)|Electronics|2025-01-07T00:00:00Z|2025-01-09T00:00:00Z|diane26|120.99|dacosta
+AUC00743|GoPro Hero 10|Electronics|2025-02-19T00:00:00Z|2025-02-20T00:00:00Z|brian26|63.71|brianna28
+AUC00744|Samsung Galaxy S22 (Like New)|Electronics|2025-07-09T00:00:00Z|2025-07-10T00:00:00Z|matthew58|154.53|robertsloretta
+AUC00745|Bosch Cordless Drill (Rare)|Home & Garden|2025-07-12T00:00:00Z|2025-07-13T00:00:00Z|ajones|100.94|richardhicks
+AUC00746|Uno Card Game (Like New)|Toys & Games|2025-02-25T00:00:00Z|2025-02-26T00:00:00Z|pachecokelly|199.45|ujackson
+AUC00747|Nespresso Vertuo Coffee Machine (Like New)|Home & Garden|2025-03-31T00:00:00Z|2025-04-02T00:00:00Z|janderson|215.24|barrettkristin
+AUC00748|Nike Air Force 1|Fashion|2025-01-05T00:00:00Z|2025-01-07T00:00:00Z|obarnes|107.02|lambertwilliam
+AUC00749|Casio G-Shock Watch (Rare)|Fashion|2025-05-30T00:00:00Z|2025-06-02T00:00:00Z|keithwashington|92.19|csmith
+AUC00750|Uno Card Game (Like New)|Toys & Games|2025-03-18T00:00:00Z|2025-03-20T00:00:00Z|edominguez|55.12|tatkinson
+AUC00751|Adidas Ultraboost (2022 Model)|Fashion|2025-02-12T00:00:00Z|2025-02-15T00:00:00Z|hernandezheidi|62.29|gharvey
+AUC00752|Apple iPhone 13 Pro (Used)|Electronics|2025-07-08T00:00:00Z|2025-07-11T00:00:00Z|kimberly13|97.02|ntorres
+AUC00753|Michael Jordan Rookie Card (Like New)|Collectibles|2025-05-01T00:00:00Z|2025-05-04T00:00:00Z|robertcarter|75.09|gardnerashley
+AUC00754|Hot Wheels Mega Garage (Rare)|Toys & Games|2025-08-22T00:00:00Z|2025-08-24T00:00:00Z|qjohnson|252.02|zhoffman
+AUC00755|Uno Card Game (Used)|Toys & Games|2025-04-26T00:00:00Z|2025-04-27T00:00:00Z|hmcintyre|126.76|robin46
+AUC00756|Monopoly Classic Edition|Toys & Games|2025-01-01T00:00:00Z|2025-01-02T00:00:00Z|justinmiller|122.9|brett14
+AUC00757|Sony WH-1000XM4 (Like New)|Electronics|2025-02-08T00:00:00Z|2025-02-10T00:00:00Z|christina02|28.69|daltonlinda
+AUC00758|Sony WH-1000XM4 (Like New)|Electronics|2025-04-28T00:00:00Z|2025-04-29T00:00:00Z|mgreen|163.13|mking
+AUC00759|Nespresso Vertuo Coffee Machine (2022 Model)|Home & Garden|2025-01-02T00:00:00Z|2025-01-05T00:00:00Z|wmartinez|194.67|meadowslee
+AUC00760|Louis Vuitton Neverfull Bag|Fashion|2025-06-22T00:00:00Z|2025-06-25T00:00:00Z|burnsmegan|131.73|rachelflores
+AUC00761|The Great Gatsby|Books|2025-07-16T00:00:00Z|2025-07-18T00:00:00Z|brian66|63.81|fwilcox
+AUC00762|Monopoly Classic Edition (Rare)|Toys & Games|2025-05-09T00:00:00Z|2025-05-10T00:00:00Z|christopher72|290.03|fwright
+AUC00763|Antique Pocket Watch (Rare)|Collectibles|2025-04-05T00:00:00Z|2025-04-06T00:00:00Z|oholmes|129.29|rmacias
+AUC00764|Samsung Galaxy S22 (Like New)|Electronics|2025-06-20T00:00:00Z|2025-06-23T00:00:00Z|davidsonjamie|48.73|donna48
+AUC00765|Louis Vuitton Neverfull Bag|Fashion|2025-03-13T00:00:00Z|2025-03-15T00:00:00Z|bradbird|142.29|xhaynes
+AUC00766|Monopoly Classic Edition (2022 Model)|Toys & Games|2025-06-12T00:00:00Z|2025-06-13T00:00:00Z|michael98|123.1|ringram
+AUC00767|Nike Air Force 1 (Rare)|Fashion|2025-08-12T00:00:00Z|2025-08-15T00:00:00Z|michael81|87.46|marcguerrero
+AUC00768|Sony WH-1000XM4 (Rare)|Electronics|2025-08-11T00:00:00Z|2025-08-12T00:00:00Z|robert96|36.43|qrobinson
+AUC00769|Nespresso Vertuo Coffee Machine|Home & Garden|2025-03-14T00:00:00Z|2025-03-16T00:00:00Z|chrisjohnson|51.12|garymcdowell
+AUC00770|Uno Card Game (Rare)|Toys & Games|2025-07-13T00:00:00Z|2025-07-14T00:00:00Z|dcarpenter|148.34|yorkmanuel
+AUC00771|To Kill a Mockingbird (2022 Model)|Books|2025-05-02T00:00:00Z|2025-05-04T00:00:00Z|sharongarza|307.18|megan65
+AUC00772|Hot Wheels Mega Garage|Toys & Games|2025-07-27T00:00:00Z|2025-07-28T00:00:00Z|leslie30|171.86|mcollins
+AUC00773|GoPro Hero 10 (Used)|Electronics|2025-06-21T00:00:00Z|2025-06-23T00:00:00Z|shelia35|64.05|shelly47
+AUC00774|LEGO Star Wars Millennium Falcon|Toys & Games|2025-07-09T00:00:00Z|2025-07-11T00:00:00Z|ashley81|93.29|crystalmaddox
+AUC00775|Bosch Cordless Drill (Like New)|Home & Garden|2025-05-19T00:00:00Z|2025-05-22T00:00:00Z|elliottrebecca|140.77|david17
+AUC00776|Nintendo Switch (2022 Model)|Toys & Games|2025-06-18T00:00:00Z|2025-06-21T00:00:00Z|william39|211.97|dmoore
+AUC00777|GoPro Hero 10 (Like New)|Electronics|2025-07-28T00:00:00Z|2025-07-30T00:00:00Z|claire57|187.96|parsonsglen
+AUC00778|Monopoly Classic Edition (2022 Model)|Toys & Games|2025-01-19T00:00:00Z|2025-01-22T00:00:00Z|paulmartin|203.5|sharon01
+AUC00779|Sony WH-1000XM4 (Like New)|Electronics|2025-04-11T00:00:00Z|2025-04-14T00:00:00Z|diane47|50.53|cponce
+AUC00780|Adidas Ultraboost (Rare)|Fashion|2025-08-05T00:00:00Z|2025-08-07T00:00:00Z|debracrawford|74.06|castillosamantha
+AUC00781|Rare Pokémon Charizard Card|Collectibles|2025-05-07T00:00:00Z|2025-05-10T00:00:00Z|mwebb|281.56|sarnold
+AUC00782|Zara Wool Coat (Like New)|Fashion|2025-07-21T00:00:00Z|2025-07-23T00:00:00Z|martinandrew|60.04|iward
+AUC00783|Vintage Concert Poster (Rare)|Collectibles|2025-04-16T00:00:00Z|2025-04-17T00:00:00Z|washingtonjoshua|114.13|hollywilliamson
+AUC00784|Bosch Cordless Drill (Rare)|Home & Garden|2025-08-19T00:00:00Z|2025-08-20T00:00:00Z|carolyn20|201.06|walterspamela
+AUC00785|Apple iPhone 13 Pro (Like New)|Electronics|2025-03-11T00:00:00Z|2025-03-13T00:00:00Z|christopher03|159.5|qdaugherty
+AUC00786|Apple Watch Series 8|Electronics|2025-08-19T00:00:00Z|2025-08-21T00:00:00Z|hwashington|92.96|ryanjohnson
+AUC00787|Dell XPS 13 Laptop (Used)|Electronics|2025-07-08T00:00:00Z|2025-07-10T00:00:00Z|kathleenlin|117.12|jwarner
+AUC00788|Weber Spirit II Gas Grill (2022 Model)|Home & Garden|2025-06-14T00:00:00Z|2025-06-15T00:00:00Z|lisaphillips|58.22|gmeza
+AUC00789|1980s Comic Book Set (Used)|Collectibles|2025-06-17T00:00:00Z|2025-06-18T00:00:00Z|ylewis|58.19|mirandachristina
+AUC00790|Casio G-Shock Watch|Fashion|2025-05-29T00:00:00Z|2025-06-01T00:00:00Z|johnrichardson|37.37|rachel65
+AUC00791|Apple iPhone 13 Pro|Electronics|2025-07-23T00:00:00Z|2025-07-25T00:00:00Z|kimberly17|198.68|bmalone
+AUC00792|Philips Hue Starter Kit (2022 Model)|Home & Garden|2025-07-22T00:00:00Z|2025-07-24T00:00:00Z|jason14|108.82|katelyncook
+AUC00793|Atomic Habits (Like New)|Books|2025-04-28T00:00:00Z|2025-05-01T00:00:00Z|hjohnson|120.19|danielwilliam
+AUC00794|Atomic Habits (Used)|Books|2025-07-19T00:00:00Z|2025-07-20T00:00:00Z|jguerrero|127.23|ryan93
+AUC00795|Weber Spirit II Gas Grill (Used)|Home & Garden|2025-07-13T00:00:00Z|2025-07-15T00:00:00Z|judithmacias|101.18|bwhite
+AUC00796|Funko Pop Marvel Collection (Like New)|Collectibles|2025-01-21T00:00:00Z|2025-01-24T00:00:00Z|robert49|134.74|padillamelissa
+AUC00797|GoPro Hero 10|Electronics|2025-03-13T00:00:00Z|2025-03-15T00:00:00Z|travisamy|118.83|osbornjonathan
+AUC00798|To Kill a Mockingbird (Rare)|Books|2025-04-14T00:00:00Z|2025-04-16T00:00:00Z|moniquebecker|59.06|phillipsrussell
+AUC00799|Weber Spirit II Gas Grill (Like New)|Home & Garden|2025-07-02T00:00:00Z|2025-07-04T00:00:00Z|joshuawhite|162.23|stacyjohnson
+AUC00800|Samsung Galaxy S22 (2022 Model)|Electronics|2025-02-04T00:00:00Z|2025-02-05T00:00:00Z|waltondaniel|38.94|bakermiranda
+AUC00801|Samsung Galaxy S22 (2022 Model)|Electronics|2025-02-17T00:00:00Z|2025-02-19T00:00:00Z|jasonmartinez|71.55|kcampbell
+AUC00802|Funko Pop Marvel Collection (Like New)|Collectibles|2025-07-07T00:00:00Z|2025-07-08T00:00:00Z|jeremy79|210.12|jeffrey94
+AUC00803|IKEA LINNMON Desk|Home & Garden|2025-08-12T00:00:00Z|2025-08-14T00:00:00Z|erik89|161.14|bryansmith
+AUC00804|Sony WH-1000XM4 (2022 Model)|Electronics|2025-08-10T00:00:00Z|2025-08-12T00:00:00Z|perezshawn|125.89|steven71
+AUC00805|Monopoly Classic Edition (2022 Model)|Toys & Games|2025-01-19T00:00:00Z|2025-01-20T00:00:00Z|amy97|33.48|allenbrown
+AUC00806|Apple iPhone 13 Pro (Used)|Electronics|2025-04-21T00:00:00Z|2025-04-22T00:00:00Z|ashley89|154.16|orozcorobert
+AUC00807|Atomic Habits (2022 Model)|Books|2025-05-23T00:00:00Z|2025-05-26T00:00:00Z|bryantalec|140.29|norman25
+AUC00808|Antique Pocket Watch|Collectibles|2025-01-21T00:00:00Z|2025-01-24T00:00:00Z|donnaparker|81.09|nicole91
+AUC00809|Levi's 501 Jeans (Like New)|Fashion|2025-07-13T00:00:00Z|2025-07-16T00:00:00Z|kgilbert|149.57|don18
+AUC00810|Funko Pop Marvel Collection (2022 Model)|Collectibles|2025-01-04T00:00:00Z|2025-01-06T00:00:00Z|patricksanchez|189|jonathanlawson
+AUC00811|LEGO Star Wars Millennium Falcon (Used)|Toys & Games|2025-08-20T00:00:00Z|2025-08-22T00:00:00Z|susan38|119.82|irodgers
+AUC00812|Apple Watch Series 8 (Used)|Electronics|2025-08-21T00:00:00Z|2025-08-22T00:00:00Z|john71|85.68|wbarrett
+AUC00813|1980s Comic Book Set|Collectibles|2025-08-11T00:00:00Z|2025-08-12T00:00:00Z|wilsonrichard|77.32|brenda76
+AUC00814|Nespresso Vertuo Coffee Machine (2022 Model)|Home & Garden|2025-05-13T00:00:00Z|2025-05-14T00:00:00Z|murrayvalerie|103.92|autumnwilliams
+AUC00815|Adidas Ultraboost (2022 Model)|Fashion|2025-01-10T00:00:00Z|2025-01-11T00:00:00Z|adamgonzales|203.07|george24
+AUC00816|Monopoly Classic Edition|Toys & Games|2025-08-21T00:00:00Z|2025-08-22T00:00:00Z|aaroncraig|113.97|bsanchez
+AUC00817|Michael Jordan Rookie Card (Like New)|Collectibles|2025-07-10T00:00:00Z|2025-07-12T00:00:00Z|andrea62|226.49|justindelacruz
+AUC00818|Nespresso Vertuo Coffee Machine|Home & Garden|2025-07-27T00:00:00Z|2025-07-29T00:00:00Z|paul05|86.12|rhodesrobin
+AUC00819|Monopoly Classic Edition (2022 Model)|Toys & Games|2025-07-29T00:00:00Z|2025-07-30T00:00:00Z|andersonanthony|208.78|antonio71
+AUC00820|Bosch Cordless Drill|Home & Garden|2025-04-02T00:00:00Z|2025-04-05T00:00:00Z|susanreese|195.62|brownjames
+AUC00821|Nespresso Vertuo Coffee Machine (2022 Model)|Home & Garden|2025-02-01T00:00:00Z|2025-02-03T00:00:00Z|elizabethwilson|121.11|richardwilliams
+AUC00822|The Great Gatsby (Like New)|Books|2025-02-27T00:00:00Z|2025-02-28T00:00:00Z|jeffrey72|153.95|hschwartz
+AUC00823|The Lean Startup (Rare)|Books|2025-02-13T00:00:00Z|2025-02-14T00:00:00Z|qryan|51.02|ajones
+AUC00824|Casio G-Shock Watch (2022 Model)|Fashion|2025-04-22T00:00:00Z|2025-04-23T00:00:00Z|nward|111.46|qparker
+AUC00825|Samsung Galaxy S22 (Used)|Electronics|2025-06-15T00:00:00Z|2025-06-18T00:00:00Z|nramirez|101.62|larsoncassie
+AUC00826|To Kill a Mockingbird|Books|2025-03-17T00:00:00Z|2025-03-20T00:00:00Z|michaelclark|138.91|robertsmith
+AUC00827|Hot Wheels Mega Garage (Like New)|Toys & Games|2025-03-04T00:00:00Z|2025-03-05T00:00:00Z|ryanrandy|163.71|kerrierickson
+AUC00828|Sony WH-1000XM4 (Rare)|Electronics|2025-02-27T00:00:00Z|2025-03-01T00:00:00Z|wpierce|101.66|zmyers
+AUC00829|Nespresso Vertuo Coffee Machine (Used)|Home & Garden|2025-03-04T00:00:00Z|2025-03-05T00:00:00Z|kelly03|52.28|joshua61
+AUC00830|Antique Pocket Watch (Used)|Collectibles|2025-01-03T00:00:00Z|2025-01-06T00:00:00Z|jestrada|117.58|dawnsanchez
+AUC00831|The Great Gatsby (Used)|Books|2025-03-08T00:00:00Z|2025-03-09T00:00:00Z|bowersjordan|99.35|tiffany50
+AUC00832|Michael Jordan Rookie Card (2022 Model)|Collectibles|2025-07-20T00:00:00Z|2025-07-23T00:00:00Z|julia78|150.58|qrush
+AUC00833|Hot Wheels Mega Garage (2022 Model)|Toys & Games|2025-07-16T00:00:00Z|2025-07-19T00:00:00Z|sue20|133.04|susan63
+AUC00834|Atomic Habits (Used)|Books|2025-02-26T00:00:00Z|2025-02-28T00:00:00Z|mooreclaudia|313.81|michaelparrish
+AUC00835|Apple Watch Series 8 (Used)|Electronics|2025-08-01T00:00:00Z|2025-08-02T00:00:00Z|ruizdaniel|70.95|sophia63
+AUC00836|The Great Gatsby (Used)|Books|2025-02-12T00:00:00Z|2025-02-15T00:00:00Z|sphelps|185.39|jeremiah87
+AUC00837|Uno Card Game (Rare)|Toys & Games|2025-05-03T00:00:00Z|2025-05-06T00:00:00Z|julie34|130.25|samanthavaughn
+AUC00838|Philips Hue Starter Kit (2022 Model)|Home & Garden|2025-05-20T00:00:00Z|2025-05-21T00:00:00Z|angelamoore|229.82|ejensen
+AUC00839|Dyson V11 Vacuum Cleaner|Home & Garden|2025-06-25T00:00:00Z|2025-06-27T00:00:00Z|karenmorgan|169.88|khunter
+AUC00840|Apple iPhone 13 Pro (Rare)|Electronics|2025-04-14T00:00:00Z|2025-04-17T00:00:00Z|thomas40|64.93|thoward
+AUC00841|Apple iPhone 13 Pro|Electronics|2025-01-17T00:00:00Z|2025-01-19T00:00:00Z|bmiller|130.01|christopherhouse
+AUC00842|Samsung Galaxy S22|Electronics|2025-01-28T00:00:00Z|2025-01-29T00:00:00Z|zmoore|70.46|christopherkane
+AUC00843|Zara Wool Coat (Used)|Fashion|2025-02-28T00:00:00Z|2025-03-03T00:00:00Z|snyderjenna|97.62|marycampbell
+AUC00844|IKEA LINNMON Desk (Like New)|Home & Garden|2025-08-14T00:00:00Z|2025-08-17T00:00:00Z|whitakerlauren|96.91|dlara
+AUC00845|Samsung Galaxy S22 (Used)|Electronics|2025-02-06T00:00:00Z|2025-02-09T00:00:00Z|phull|151.75|jwarren
+AUC00846|Samsung Galaxy S22 (Used)|Electronics|2025-07-22T00:00:00Z|2025-07-24T00:00:00Z|jjohnson|188.75|jblanchard
+AUC00847|Uno Card Game (Like New)|Toys & Games|2025-03-14T00:00:00Z|2025-03-17T00:00:00Z|lauren01|254.35|montgomerycarol
+AUC00848|Harry Potter and the Philosopher's Stone (1st Ed.) (2022 Model)|Books|2025-07-26T00:00:00Z|2025-07-27T00:00:00Z|ramosjimmy|117.28|ccox
+AUC00849|Casio G-Shock Watch (Like New)|Fashion|2025-02-10T00:00:00Z|2025-02-12T00:00:00Z|timothy81|193.23|ajones
+AUC00850|The Lean Startup (2022 Model)|Books|2025-05-09T00:00:00Z|2025-05-10T00:00:00Z|srichards|197.11|callen
+AUC00851|Bosch Cordless Drill (2022 Model)|Home & Garden|2025-07-17T00:00:00Z|2025-07-20T00:00:00Z|georgemichael|40.19|danielwatson
+AUC00852|Apple iPhone 13 Pro (Like New)|Electronics|2025-03-30T00:00:00Z|2025-03-31T00:00:00Z|wmaddox|148.71|christinehuang
+AUC00853|Rare Pokémon Charizard Card (2022 Model)|Collectibles|2025-07-02T00:00:00Z|2025-07-03T00:00:00Z|wsteele|169.94|hernandezleslie
+AUC00854|Louis Vuitton Neverfull Bag|Fashion|2025-01-12T00:00:00Z|2025-01-14T00:00:00Z|alexanderbryan|91.72|rhodesmichelle
+AUC00855|Apple iPhone 13 Pro|Electronics|2025-07-14T00:00:00Z|2025-07-16T00:00:00Z|collinsdevon|244.84|dixondan
+AUC00856|Zara Wool Coat (Like New)|Fashion|2025-03-17T00:00:00Z|2025-03-19T00:00:00Z|robert40|96.88|natalieedwards
+AUC00857|Philips Hue Starter Kit (Like New)|Home & Garden|2025-02-04T00:00:00Z|2025-02-07T00:00:00Z|adamwaters|261.1|rodriguezbrianna
+AUC00858|Samsung Galaxy S22 (Like New)|Electronics|2025-07-18T00:00:00Z|2025-07-19T00:00:00Z|jtravis|113.72|dsalazar
+AUC00859|Louis Vuitton Neverfull Bag (2022 Model)|Fashion|2025-04-05T00:00:00Z|2025-04-06T00:00:00Z|swansonshelby|102.2|sraymond
+AUC00860|Casio G-Shock Watch (2022 Model)|Fashion|2025-04-23T00:00:00Z|2025-04-25T00:00:00Z|keithjohnson|65.95|randalldebbie
+AUC00861|Uno Card Game (Used)|Toys & Games|2025-02-06T00:00:00Z|2025-02-08T00:00:00Z|wellsbrandon|109.58|mchapman
+AUC00862|Samsung Galaxy S22 (2022 Model)|Electronics|2025-08-11T00:00:00Z|2025-08-13T00:00:00Z|austinlopez|226.54|crystal25
+AUC00863|Bosch Cordless Drill (Rare)|Home & Garden|2025-02-12T00:00:00Z|2025-02-14T00:00:00Z|johnwright|74.55|shawjonathan
+AUC00864|Adidas Ultraboost (2022 Model)|Fashion|2025-06-08T00:00:00Z|2025-06-10T00:00:00Z|bakergina|97.64|jzavala
+AUC00865|Samsung Galaxy S22 (Rare)|Electronics|2025-07-14T00:00:00Z|2025-07-17T00:00:00Z|ashleyelliott|125.47|marissa36
+AUC00866|Zara Wool Coat (Rare)|Fashion|2025-06-24T00:00:00Z|2025-06-25T00:00:00Z|roberttownsend|184.79|taylornorton
+AUC00867|Dell XPS 13 Laptop (Like New)|Electronics|2025-01-17T00:00:00Z|2025-01-19T00:00:00Z|benjaminmacias|47.78|nicholas44
+AUC00868|Sony WH-1000XM4 (Used)|Electronics|2025-02-24T00:00:00Z|2025-02-26T00:00:00Z|anthony55|86.33|garrett57
+AUC00869|Funko Pop Marvel Collection (Rare)|Collectibles|2025-03-14T00:00:00Z|2025-03-15T00:00:00Z|ndavis|161.94|blackisaac
+AUC00870|Zara Wool Coat (Rare)|Fashion|2025-06-17T00:00:00Z|2025-06-20T00:00:00Z|allenzachary|124.99|goodolivia
+AUC00871|Nintendo Switch (Like New)|Toys & Games|2025-05-13T00:00:00Z|2025-05-15T00:00:00Z|nmaxwell|97.06|elane
+AUC00872|Philips Hue Starter Kit|Home & Garden|2025-05-04T00:00:00Z|2025-05-07T00:00:00Z|shall|133.51|jane50
+AUC00873|Nintendo Switch (Rare)|Toys & Games|2025-02-28T00:00:00Z|2025-03-02T00:00:00Z|braykenneth|129.88|matthew47
+AUC00874|Sapiens: A Brief History of Humankind (Rare)|Books|2025-07-08T00:00:00Z|2025-07-11T00:00:00Z|julie32|162.8|ocraig
+AUC00875|Monopoly Classic Edition (Rare)|Toys & Games|2025-02-28T00:00:00Z|2025-03-01T00:00:00Z|christopher14|69.77|robertsnyder
+AUC00876|Weber Spirit II Gas Grill (2022 Model)|Home & Garden|2025-08-13T00:00:00Z|2025-08-16T00:00:00Z|reginaromero|151.52|everettsharon
+AUC00877|GoPro Hero 10 (Rare)|Electronics|2025-04-13T00:00:00Z|2025-04-14T00:00:00Z|dvazquez|85.33|robert71
+AUC00878|Antique Pocket Watch (Used)|Collectibles|2025-07-19T00:00:00Z|2025-07-22T00:00:00Z|aaronsanders|209.15|iyoung
+AUC00879|Monopoly Classic Edition (Like New)|Toys & Games|2025-06-23T00:00:00Z|2025-06-24T00:00:00Z|johnmendoza|227.14|zflores
+AUC00880|GoPro Hero 10 (Used)|Electronics|2025-02-20T00:00:00Z|2025-02-23T00:00:00Z|bowmanjonathan|197.98|hughesjoshua
+AUC00881|Apple iPhone 13 Pro (Used)|Electronics|2025-06-01T00:00:00Z|2025-06-03T00:00:00Z|saramorris|102.5|josephcox
+AUC00882|Weber Spirit II Gas Grill (2022 Model)|Home & Garden|2025-08-14T00:00:00Z|2025-08-17T00:00:00Z|graymatthew|55.45|daniel19
+AUC00883|Sapiens: A Brief History of Humankind (Like New)|Books|2025-04-18T00:00:00Z|2025-04-19T00:00:00Z|daniel02|153.3|dwaynerivera
+AUC00884|The Great Gatsby|Books|2025-02-24T00:00:00Z|2025-02-27T00:00:00Z|gregoryholden|109.04|cparker
+AUC00885|Nespresso Vertuo Coffee Machine (Rare)|Home & Garden|2025-06-12T00:00:00Z|2025-06-14T00:00:00Z|qmckay|56.87|katherine95
+AUC00886|Atomic Habits (Used)|Books|2025-04-09T00:00:00Z|2025-04-10T00:00:00Z|terrycoleman|49.37|latasha11
+AUC00887|Monopoly Classic Edition (2022 Model)|Toys & Games|2025-07-04T00:00:00Z|2025-07-06T00:00:00Z|dunnalex|108.53|hodgescraig
+AUC00888|Apple iPhone 13 Pro (Like New)|Electronics|2025-03-01T00:00:00Z|2025-03-04T00:00:00Z|cschwartz|111.04|steven83
+AUC00889|Michael Jordan Rookie Card (Rare)|Collectibles|2025-04-30T00:00:00Z|2025-05-01T00:00:00Z|wongteresa|104.44|nnelson
+AUC00890|Apple Watch Series 8 (Like New)|Electronics|2025-06-19T00:00:00Z|2025-06-21T00:00:00Z|mcclureamy|212.02|patrick59
+AUC00891|Hot Wheels Mega Garage (2022 Model)|Toys & Games|2025-07-03T00:00:00Z|2025-07-04T00:00:00Z|dramirez|54.53|ambergregory
+AUC00892|The Lean Startup (2022 Model)|Books|2025-02-11T00:00:00Z|2025-02-12T00:00:00Z|barbarawelch|129.54|travis47
+AUC00893|The Great Gatsby (2022 Model)|Books|2025-01-17T00:00:00Z|2025-01-20T00:00:00Z|murphyheather|57.82|jvalenzuela
+AUC00894|Sony WH-1000XM4 (Used)|Electronics|2025-07-20T00:00:00Z|2025-07-21T00:00:00Z|nrivera|92.03|melendezpeter
+AUC00895|Monopoly Classic Edition (Used)|Toys & Games|2025-02-16T00:00:00Z|2025-02-17T00:00:00Z|kelly03|155.08|garciakyle
+AUC00896|Samsung Galaxy S22 (2022 Model)|Electronics|2025-06-22T00:00:00Z|2025-06-25T00:00:00Z|deborah25|212.81|castillojessica
+AUC00897|Antique Pocket Watch (Rare)|Collectibles|2025-03-26T00:00:00Z|2025-03-29T00:00:00Z|peckjessica|233.16|haynesbryan
+AUC00898|IKEA LINNMON Desk (2022 Model)|Home & Garden|2025-07-22T00:00:00Z|2025-07-25T00:00:00Z|taylorrhonda|135.88|jacobhunt
+AUC00899|Michael Jordan Rookie Card (Used)|Collectibles|2025-03-13T00:00:00Z|2025-03-14T00:00:00Z|carsonhenry|106.53|reynoldsraymond
+AUC00900|Apple Watch Series 8|Electronics|2025-07-24T00:00:00Z|2025-07-26T00:00:00Z|beanjorge|76.73|bward
+AUC00901|Apple Watch Series 8 (Used)|Electronics|2025-05-10T00:00:00Z|2025-05-12T00:00:00Z|jenniferstevens|142.81|rachel12
+AUC00902|To Kill a Mockingbird (Like New)|Books|2025-01-29T00:00:00Z|2025-02-01T00:00:00Z|david26|77.56|bradfordvalerie
+AUC00903|Sapiens: A Brief History of Humankind (2022 Model)|Books|2025-05-23T00:00:00Z|2025-05-24T00:00:00Z|michellegutierrez|20.65|qtorres
+AUC00904|Philips Hue Starter Kit (2022 Model)|Home & Garden|2025-02-13T00:00:00Z|2025-02-16T00:00:00Z|hmills|40.55|paynevalerie
+AUC00905|Nintendo Switch|Toys & Games|2025-05-31T00:00:00Z|2025-06-03T00:00:00Z|floresdouglas|182.39|ortizcourtney
+AUC00906|Sony WH-1000XM4 (Rare)|Electronics|2025-08-19T00:00:00Z|2025-08-20T00:00:00Z|rmedina|38.31|jamessteven
+AUC00907|Sony WH-1000XM4 (Like New)|Electronics|2025-06-06T00:00:00Z|2025-06-09T00:00:00Z|mario63|26.47|davisjohn
+AUC00908|Philips Hue Starter Kit (Rare)|Home & Garden|2025-05-20T00:00:00Z|2025-05-21T00:00:00Z|zlopez|119.65|jennifer44
+AUC00909|To Kill a Mockingbird (2022 Model)|Books|2025-08-25T00:00:00Z|2025-08-27T00:00:00Z|clarkmadeline|155.94|sbradshaw
+AUC00910|Zara Wool Coat|Fashion|2025-01-29T00:00:00Z|2025-02-01T00:00:00Z|gonzalezmark|42.2|lcalderon
+AUC00911|Zara Wool Coat|Fashion|2025-01-08T00:00:00Z|2025-01-09T00:00:00Z|daniellemoss|133.96|brian50
+AUC00912|Nespresso Vertuo Coffee Machine (Rare)|Home & Garden|2025-04-16T00:00:00Z|2025-04-19T00:00:00Z|laura44|227.42|dbrown
+AUC00913|IKEA LINNMON Desk|Home & Garden|2025-04-21T00:00:00Z|2025-04-23T00:00:00Z|smithsteven|32.47|johnnyburton
+AUC00914|Nike Air Force 1 (Like New)|Fashion|2025-01-08T00:00:00Z|2025-01-10T00:00:00Z|rogeranderson|108.78|tgilmore
+AUC00915|Louis Vuitton Neverfull Bag (2022 Model)|Fashion|2025-02-04T00:00:00Z|2025-02-07T00:00:00Z|lobrien|116.85|dburns
+AUC00916|Nespresso Vertuo Coffee Machine (Rare)|Home & Garden|2025-06-04T00:00:00Z|2025-06-06T00:00:00Z|mariawilliams|47.58|deborah27
+AUC00917|Atomic Habits|Books|2025-04-20T00:00:00Z|2025-04-21T00:00:00Z|lli|107.1|fmurphy
+AUC00918|Adidas Ultraboost (2022 Model)|Fashion|2025-01-04T00:00:00Z|2025-01-07T00:00:00Z|jacksonjohn|22.6|dbaker
+AUC00919|Hot Wheels Mega Garage (Used)|Toys & Games|2025-01-19T00:00:00Z|2025-01-20T00:00:00Z|erin24|159.8|dclark
+AUC00920|Harry Potter and the Philosopher's Stone (1st Ed.) (2022 Model)|Books|2025-04-05T00:00:00Z|2025-04-06T00:00:00Z|josephsanders|137.68|aowens
+AUC00921|Uno Card Game (Rare)|Toys & Games|2025-03-03T00:00:00Z|2025-03-04T00:00:00Z|rreed|88.63|rjensen
+AUC00922|IKEA LINNMON Desk (Rare)|Home & Garden|2025-04-18T00:00:00Z|2025-04-20T00:00:00Z|matthewgriffith|261.53|catherine83
+AUC00923|GoPro Hero 10 (Like New)|Electronics|2025-05-17T00:00:00Z|2025-05-20T00:00:00Z|wgreen|134.91|jcallahan
+AUC00924|GoPro Hero 10 (Like New)|Electronics|2025-06-14T00:00:00Z|2025-06-15T00:00:00Z|xwatts|75.99|lawrencemichael
+AUC00925|Nike Air Force 1 (Used)|Fashion|2025-04-02T00:00:00Z|2025-04-04T00:00:00Z|rebeccasanders|174.34|iwatkins
+AUC00926|Nespresso Vertuo Coffee Machine (Used)|Home & Garden|2025-08-12T00:00:00Z|2025-08-14T00:00:00Z|leewalton|292.83|mosleylisa
+AUC00927|Apple Watch Series 8 (2022 Model)|Electronics|2025-01-14T00:00:00Z|2025-01-15T00:00:00Z|zbentley|212.73|epeterson
+AUC00928|Bosch Cordless Drill (Like New)|Home & Garden|2025-05-13T00:00:00Z|2025-05-14T00:00:00Z|iaguilar|80.97|mtownsend
+AUC00929|Dyson V11 Vacuum Cleaner (Used)|Home & Garden|2025-04-17T00:00:00Z|2025-04-19T00:00:00Z|jeffreyriley|154.97|monicasosa
+AUC00930|Adidas Ultraboost (Like New)|Fashion|2025-04-19T00:00:00Z|2025-04-22T00:00:00Z|robert74|144.05|gmcdaniel
+AUC00931|Apple iPhone 13 Pro|Electronics|2025-05-24T00:00:00Z|2025-05-26T00:00:00Z|torresmichelle|67.69|gmartin
+AUC00932|Zara Wool Coat|Fashion|2025-05-27T00:00:00Z|2025-05-28T00:00:00Z|hli|103.26|fitzgeraldjustin
+AUC00933|Philips Hue Starter Kit (Like New)|Home & Garden|2025-06-10T00:00:00Z|2025-06-13T00:00:00Z|richardsonbrandon|55.64|vanessabutler
+AUC00934|1980s Comic Book Set (Rare)|Collectibles|2025-02-11T00:00:00Z|2025-02-14T00:00:00Z|imorales|92.25|jessica45
+AUC00935|Barbie Dreamhouse (Used)|Toys & Games|2025-06-27T00:00:00Z|2025-06-28T00:00:00Z|johnsonchristopher|108.2|fsawyer
+AUC00936|Sony WH-1000XM4 (2022 Model)|Electronics|2025-07-07T00:00:00Z|2025-07-09T00:00:00Z|thompsonphilip|179.78|vwalker
+AUC00937|Harry Potter and the Philosopher's Stone (1st Ed.) (Rare)|Books|2025-08-13T00:00:00Z|2025-08-15T00:00:00Z|susanhurley|113.61|vanessakrause
+AUC00938|Apple Watch Series 8 (Used)|Electronics|2025-01-16T00:00:00Z|2025-01-18T00:00:00Z|buchananethan|184.66|kevinbush
+AUC00939|Philips Hue Starter Kit (Like New)|Home & Garden|2025-01-27T00:00:00Z|2025-01-29T00:00:00Z|amyvega|239.49|apugh
+AUC00940|Sony WH-1000XM4 (2022 Model)|Electronics|2025-02-15T00:00:00Z|2025-02-16T00:00:00Z|lcortez|186.03|marywatson
+AUC00941|LEGO Star Wars Millennium Falcon (2022 Model)|Toys & Games|2025-06-04T00:00:00Z|2025-06-05T00:00:00Z|bondtimothy|116.43|wintersashley
+AUC00942|GoPro Hero 10 (Rare)|Electronics|2025-05-02T00:00:00Z|2025-05-04T00:00:00Z|lindsey18|65.86|fbrown
+AUC00943|To Kill a Mockingbird|Books|2025-06-22T00:00:00Z|2025-06-24T00:00:00Z|yperez|129.99|jeffreyharris
+AUC00944|Vintage Concert Poster|Collectibles|2025-01-02T00:00:00Z|2025-01-03T00:00:00Z|valerie85|116.69|ross56
+AUC00945|1980s Comic Book Set|Collectibles|2025-07-29T00:00:00Z|2025-08-01T00:00:00Z|mary10|62.6|parkspeggy
+AUC00946|Michael Jordan Rookie Card (2022 Model)|Collectibles|2025-01-12T00:00:00Z|2025-01-14T00:00:00Z|laurasims|138.85|qtanner
+AUC00947|Casio G-Shock Watch|Fashion|2025-03-21T00:00:00Z|2025-03-22T00:00:00Z|johnwinters|62.28|jonathan23
+AUC00948|Apple iPhone 13 Pro (Used)|Electronics|2025-01-20T00:00:00Z|2025-01-22T00:00:00Z|colleenwilliams|255.59|jschneider
+AUC00949|Dyson V11 Vacuum Cleaner|Home & Garden|2025-07-17T00:00:00Z|2025-07-19T00:00:00Z|danderson|78.62|rodriguezkathryn
+AUC00950|Samsung Galaxy S22 (2022 Model)|Electronics|2025-03-24T00:00:00Z|2025-03-26T00:00:00Z|deniselivingston|78.82|schultzalisha
+AUC00951|Apple Watch Series 8 (Rare)|Electronics|2025-01-15T00:00:00Z|2025-01-16T00:00:00Z|catherinerichmond|46.8|stephenrodriguez
+AUC00952|Atomic Habits (Rare)|Books|2025-06-15T00:00:00Z|2025-06-16T00:00:00Z|virginia46|173.51|hermankimberly
+AUC00953|Apple iPhone 13 Pro (Rare)|Electronics|2025-04-08T00:00:00Z|2025-04-09T00:00:00Z|jcobb|204.66|ksmith
+AUC00954|Louis Vuitton Neverfull Bag (2022 Model)|Fashion|2025-08-19T00:00:00Z|2025-08-20T00:00:00Z|anthonygomez|71.75|tiffany00
+AUC00955|Sony WH-1000XM4|Electronics|2025-03-15T00:00:00Z|2025-03-17T00:00:00Z|kellycruz|157.03|oalvarez
+AUC00956|Sony WH-1000XM4|Electronics|2025-04-17T00:00:00Z|2025-04-18T00:00:00Z|gonzalesrobert|94.8|wcarr
+AUC00957|Levi's 501 Jeans (Like New)|Fashion|2025-04-29T00:00:00Z|2025-05-01T00:00:00Z|thomashorne|69.56|uray
+AUC00958|Atomic Habits (2022 Model)|Books|2025-08-27T00:00:00Z|2025-08-28T00:00:00Z|matthewwalker|50.53|normangarrett
+AUC00959|The Lean Startup (Used)|Books|2025-06-15T00:00:00Z|2025-06-16T00:00:00Z|kramerwhitney|116.95|troywolfe
+AUC00960|Monopoly Classic Edition|Toys & Games|2025-02-21T00:00:00Z|2025-02-22T00:00:00Z|mmorris|191.51|fernando18
+AUC00961|Samsung Galaxy S22 (2022 Model)|Electronics|2025-03-10T00:00:00Z|2025-03-13T00:00:00Z|shirley74|97.5|matthewcoleman
+AUC00962|Apple Watch Series 8 (Like New)|Electronics|2025-02-25T00:00:00Z|2025-02-28T00:00:00Z|haleykristine|192.68|ekline
+AUC00963|GoPro Hero 10 (2022 Model)|Electronics|2025-01-18T00:00:00Z|2025-01-21T00:00:00Z|jessica15|183.6|vegabrian
+AUC00964|Dell XPS 13 Laptop (Rare)|Electronics|2025-03-22T00:00:00Z|2025-03-24T00:00:00Z|starklisa|135.1|desiree60
+AUC00965|Sony WH-1000XM4 (2022 Model)|Electronics|2025-06-24T00:00:00Z|2025-06-26T00:00:00Z|wmiles|167.15|gomezwendy
+AUC00966|Nike Air Force 1 (Rare)|Fashion|2025-06-23T00:00:00Z|2025-06-24T00:00:00Z|gerald98|61.41|hrojas
+AUC00967|Dyson V11 Vacuum Cleaner|Home & Garden|2025-01-04T00:00:00Z|2025-01-07T00:00:00Z|kschneider|103.48|marthasnyder
+AUC00968|Nespresso Vertuo Coffee Machine (Like New)|Home & Garden|2025-04-06T00:00:00Z|2025-04-08T00:00:00Z|markadams|86.89|scott21
+AUC00969|Philips Hue Starter Kit (Rare)|Home & Garden|2025-01-18T00:00:00Z|2025-01-19T00:00:00Z|jshaw|176.09|xtaylor
+AUC00970|Weber Spirit II Gas Grill (2022 Model)|Home & Garden|2025-05-09T00:00:00Z|2025-05-11T00:00:00Z|lcardenas|86.55|laurawallace
+AUC00971|Rare Pokémon Charizard Card|Collectibles|2025-02-25T00:00:00Z|2025-02-26T00:00:00Z|ralphsmith|160.49|christophermoore
+AUC00972|Samsung Galaxy S22 (2022 Model)|Electronics|2025-01-28T00:00:00Z|2025-01-29T00:00:00Z|gregory48|84.1|beasleyjason
+AUC00973|Nike Air Force 1 (Rare)|Fashion|2025-02-05T00:00:00Z|2025-02-06T00:00:00Z|lowemary|109|masonrichard
+AUC00974|Levi's 501 Jeans (Like New)|Fashion|2025-06-17T00:00:00Z|2025-06-20T00:00:00Z|ellismonica|87.38|kingthomas
+AUC00975|Nike Air Force 1 (Used)|Fashion|2025-03-04T00:00:00Z|2025-03-05T00:00:00Z|paulcurry|109.09|jennifer97
+AUC00976|1980s Comic Book Set (Like New)|Collectibles|2025-02-22T00:00:00Z|2025-02-25T00:00:00Z|brandon44|96.51|toddcarpenter
+AUC00977|Rare Pokémon Charizard Card (Rare)|Collectibles|2025-06-11T00:00:00Z|2025-06-12T00:00:00Z|jeffrey27|160.98|stephenjames
+AUC00978|Dell XPS 13 Laptop (Rare)|Electronics|2025-01-18T00:00:00Z|2025-01-19T00:00:00Z|brent37|91.89|bbrown
+AUC00979|Apple iPhone 13 Pro|Electronics|2025-03-03T00:00:00Z|2025-03-06T00:00:00Z|jayala|199.48|jennifer44
+AUC00980|Casio G-Shock Watch (Like New)|Fashion|2025-03-03T00:00:00Z|2025-03-06T00:00:00Z|aoconnell|83.82|duanecoleman
+AUC00981|Levi's 501 Jeans (2022 Model)|Fashion|2025-05-12T00:00:00Z|2025-05-14T00:00:00Z|gregoryestrada|101.85|davidfisher
+AUC00982|Nike Air Force 1 (2022 Model)|Fashion|2025-04-26T00:00:00Z|2025-04-27T00:00:00Z|michael45|282.1|leah59
+AUC00983|Apple Watch Series 8 (Like New)|Electronics|2025-02-10T00:00:00Z|2025-02-12T00:00:00Z|hopkinsamanda|101.01|reynoldsautumn
+AUC00984|1980s Comic Book Set|Collectibles|2025-01-10T00:00:00Z|2025-01-13T00:00:00Z|michael78|129.46|diana14
+AUC00985|Atomic Habits (2022 Model)|Books|2025-08-15T00:00:00Z|2025-08-17T00:00:00Z|karenmorris|126.75|dfleming
+AUC00986|Sapiens: A Brief History of Humankind (Used)|Books|2025-02-02T00:00:00Z|2025-02-05T00:00:00Z|andrewsscott|145.59|johnsonhaley
+AUC00987|Nintendo Switch (2022 Model)|Toys & Games|2025-07-23T00:00:00Z|2025-07-25T00:00:00Z|zcampbell|105.12|debra82
+AUC00988|Apple Watch Series 8|Electronics|2025-02-08T00:00:00Z|2025-02-11T00:00:00Z|noahchristensen|107.1|xmorrison
+AUC00989|Weber Spirit II Gas Grill (Like New)|Home & Garden|2025-02-03T00:00:00Z|2025-02-05T00:00:00Z|aanderson|65.61|sdavid
+AUC00990|Bosch Cordless Drill (Rare)|Home & Garden|2025-07-13T00:00:00Z|2025-07-14T00:00:00Z|marklewis|131.37|esavage
+AUC00991|Apple iPhone 13 Pro (Like New)|Electronics|2025-01-04T00:00:00Z|2025-01-07T00:00:00Z|ramirezelizabeth|112.13|whiteandrew
+AUC00992|The Great Gatsby|Books|2025-07-15T00:00:00Z|2025-07-18T00:00:00Z|margaretdodson|231.23|bperez
+AUC00993|Barbie Dreamhouse (Like New)|Toys & Games|2025-07-12T00:00:00Z|2025-07-13T00:00:00Z|hernandezholly|187.24|jameslyons
+AUC00994|Nike Air Force 1 (2022 Model)|Fashion|2025-03-17T00:00:00Z|2025-03-18T00:00:00Z|bbowers|86.53|rickeylopez
+AUC00995|Nike Air Force 1 (2022 Model)|Fashion|2025-04-08T00:00:00Z|2025-04-09T00:00:00Z|mitchellvickie|68.61|davisjessica
+AUC00996|Levi's 501 Jeans (2022 Model)|Fashion|2025-05-09T00:00:00Z|2025-05-11T00:00:00Z|john19|159.34|clinesamuel
+AUC00997|Sapiens: A Brief History of Humankind|Books|2025-03-14T00:00:00Z|2025-03-15T00:00:00Z|elliottdebra|148.85|proctorkevin
+AUC00998|Hot Wheels Mega Garage (Used)|Toys & Games|2025-04-20T00:00:00Z|2025-04-22T00:00:00Z|natalielewis|71.89|whitedavid
+AUC00999|Rare Pokémon Charizard Card (2022 Model)|Collectibles|2025-07-17T00:00:00Z|2025-07-20T00:00:00Z|vmcintyre|99.49|charrison
