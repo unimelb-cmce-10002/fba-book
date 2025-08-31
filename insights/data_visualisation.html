@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Foundations of Business Analytics - 4&nbsp; Data Visualisation for Business Intelligence</title>
+<title>4&nbsp; Data Visualisation for Business Intelligence – Foundations of Business Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,7 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -66,22 +67,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <link href="../insights/data_manipulation.html" rel="next">
 <link href="../foundations/reproducible.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6f77e067621728e8e5d8b75f5607b6c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,8 +98,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script src="../solution.js"></script>
@@ -100,18 +110,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../custom.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../insights/data_visualisation.html">Getting Our First Insights from Data</a></li><li class="breadcrumb-item"><a href="../insights/data_visualisation.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation for Business Intelligence</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../insights/data_visualisation.html">Getting Our First Insights from Data</a></li><li class="breadcrumb-item"><a href="../insights/data_visualisation.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation for Business Intelligence</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -121,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Foundations of Business Analytics</a> 
@@ -142,9 +152,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Foundations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -171,9 +181,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Getting Our First Insights from Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -200,13 +210,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Tutorials</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Finding and Storing Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
@@ -242,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -276,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../insights/data_visualisation.html">Getting Our First Insights from Data</a></li><li class="breadcrumb-item"><a href="../insights/data_visualisation.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation for Business Intelligence</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation for Business Intelligence</span></h1>
 </div>
@@ -291,7 +318,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -355,7 +384,7 @@ Learning Goals
 <h3 class="unnumbered anchored" data-anchor-id="where-were-headed">Where we’re headed</h3>
 <p>Our goal is to show how just a few lines of R code can transform raw numbers into business intelligence. We’ll start with a simple data frame—just rows and columns of weekly beer sales—and build a series of visualisations that reveal patterns you could actually use to inform pricing and category strategy.</p>
 <p>From this:</p>
-<div class="cell" data-hash="data_visualisation_cache/html/unnamed-chunk-3_9f20316271e5a02e66899fff9daf7874">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 6
    store  week brand       qty price imported
@@ -373,12 +402,16 @@ Learning Goals
 </div>
 </div>
 <p>To this: (REMARK Still need to complete the pretty-ing of plots)</p>
-<div class="cell" data-hash="data_visualisation_cache/html/unnamed-chunk-4_2f8a75167e15d0d7d5284d375290ab5e">
+<div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Each plot we build will add a layer of understanding: differences in price across product types, variation in sales volume, and finally a visual model of price sensitivity. By the end, we’ll have a dashboard that tells a real story about consumer behavior—and gets us closer to answering our business question.</p>
@@ -387,7 +420,7 @@ Learning Goals
 <section id="loading-and-understanding-the-data" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="loading-and-understanding-the-data"><span class="header-section-number">4.3</span> Loading and Understanding the Data</h2>
 <p>Now that we’ve seen what’s possible with visualisation, let’s load the data and start exploring it for ourselves. We’ll work with a real-world dataset of weekly beer sales and use a handful of R packages to help us plot, organise, and format our results. To get started, we’ll load the following R packages:</p>
-<div class="cell" data-hash="data_visualisation_cache/html/unnamed-chunk-5_a306e32dcae91ff9d75a5ea040b50125">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># for plotting, includes ggplot</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)  <span class="co"># for combining multiple plots into subfigures</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)     <span class="co"># for formatting axis scales</span></span>
@@ -409,7 +442,7 @@ Reminder: What are R packages?
 </div>
 <p>After we load our packages, the first thing we do is read in our dataset. In R, this is done using a <strong>function</strong>. Think of a function is just a named action — something R knows how to do. Most functions take <strong>arguments</strong> — extra pieces of information that tell the function how to behave.</p>
 <p>We’ll use the <code>read_csv()</code> function to load our beer sales data from a CSV file:</p>
-<div class="cell" data-hash="data_visualisation_cache/html/unnamed-chunk-6_80cd199e90a4be98157cc93da1c5e2f1">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>beer <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/beer.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This loads a dataset called <code>beer</code> from a file that contains weekly price and sales data for four brands across multiple stores. You will see that this <code>beer</code> object now appears in the Environment tab on the upper-right in RStudio. This means we now have a dataset stored in R that we can explore, and turn into visual insights.</p>
@@ -436,7 +469,7 @@ Reminder: What are R packages?
 <h3 class="unnumbered anchored" data-anchor-id="the-beer-sales-dataframe">The Beer Sales Dataframe</h3>
 <p>Let’s take a first look at our dataset. In R, a dataset like this is stored in a structure called a <strong>data frame</strong> — a rectangular table where <strong>each row is an observation</strong> (in this case, a product-week-store combination), and <strong>each column is a variable</strong> (like brand, price, or quantity sold).</p>
 <p>We’ve saved this data frame as an object called <code>beer</code>. To inspect it, we can simply type the name:</p>
-<div class="cell" data-hash="data_visualisation_cache/html/unnamed-chunk-7_5950c9a7b26025670218624e099b4ea0">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>beer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4,033 × 17
@@ -459,7 +492,7 @@ Reminder: What are R packages?
 </div>
 </div>
 <p>But that can be overwhelming if there are lots of rows and columns. Instead, we’ll use the <code>glimpse()</code> function. It gives us a quick overview of the structure: variable names, types, and a few sample values from each.</p>
-<div class="cell" data-hash="data_visualisation_cache/html/unnamed-chunk-8_7b79556fe73db920129a2669208449de">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(beer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 4,033
@@ -560,12 +593,12 @@ $ imported        &lt;chr&gt; "domestic", "imported", "imported", "domestic", "d
 <h3 class="unnumbered anchored" data-anchor-id="investigating-price-distributions">Investigating Price Distributions</h3>
 <p>We begin by exploring how beer prices vary across products. Specifically, we’ll compare the prices of imported and domestic beers to see if there are noticeable differences — and try and infer, where possible, what those differences might tell us about the market.</p>
 <p>We start by telling R what data we’re using. This line alone won’t produce a plot, but it sets the stage—like opening a blank canvas and choosing your dataset.</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-9_e237f4f8e76835879d56a5e183efbbb8">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="288"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
 </figure>
 </div>
 </div>
@@ -578,7 +611,7 @@ $ imported        &lt;chr&gt; "domestic", "imported", "imported", "domestic", "d
 <li>See how spread out a variable is</li>
 </ul>
 <p>In our case, we want to understand the distribution of beer prices, and eventually compare prices between imported and domestic products. A box plot helps us do both quickly and clearly.</p>
-<div class="cell" data-hash="data_visualisation_cache/html/unnamed-chunk-10_f1fa5c5941153df4e5dd5b96189019f2">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -603,25 +636,25 @@ What is a box plot?
 </div>
 </div>
 <p>Now we need to map a variable to an aesthetic—a visual feature like position, colour, or size. Here, we’re interested in price, so we map price to the y-axis because we want to see the distribution of prices displayed vertically.</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-11_5642515a9969fe1a3945ae5922961598">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="288"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>This gives us a boxplot showing the overall distribution of beer prices, but it doesn’t yet separate imported from domestic products. To do this, we need to add an additional aesthetic. Because we have prices displayed vertically, we will use the horizontal dimension to show different box plots for imported and domestic beers, giving us a side-by-side comparison. Thus, we add <code>imported</code> as the <code>x</code> aesthetic:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-12_a24907b55fe42475f38587e2eb939a3b">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> imported))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="288"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
 </figure>
 </div>
 </div>
@@ -647,13 +680,13 @@ What is a box plot?
 <p>Solution</p>
 </div>
 <div class="solution-content">
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-13_8605f8947f6edada9b0ecaa16ad0bb2e">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> brand))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="288"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
 </figure>
 </div>
 </div>
@@ -668,24 +701,24 @@ What is a box plot?
 <li>Export the plot to a file (e.g.&nbsp;PNG or PDF)</li>
 </ul>
 <p>Here, we assign the plot to an object called price_box:</p>
-<div class="cell" data-hash="data_visualisation_cache/html/unnamed-chunk-14_a15c336eff178c21310a853e9c53ec27">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>price_box <span class="ot">&lt;-</span> </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> imported))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This doesn’t display the plot yet—it just stores it. To view it, you can type the object name and press Enter:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-15_cc5342a7b6b2c0d27882bec0f648bb23">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>price_box</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="288"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>If we’d like to save the plot as an image file you can use outside of R (e.g.&nbsp;in a report or slide), use <code>ggsave()</code>:</p>
-<div class="cell" data-hash="data_visualisation_cache/html/unnamed-chunk-16_1423aaeeaa4d58a4a4bef19c262b94a9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"price_box.png"</span>, </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot =</span> price_box, </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">5</span>, <span class="at">height =</span> <span class="dv">4</span></span>
@@ -698,7 +731,7 @@ What is a box plot?
 <p>Next, let’s look at sales volume — how many units of beer were sold each week. This can help us understand the distribution of demand across our observations and spot patterns like common purchase sizes or unusually large orders.</p>
 <p>A histogram shows how often different values occur by grouping them into bins. It’s great for seeing the shape of a distribution — for example, whether most sales are small, or if there are frequent large sales.</p>
 <p>Here’s a basic histogram of the quantity sold in a store-brand-week (<code>qty</code>):</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-17_ea59e8eed648b402de2880ff9e733516">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> qty))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -707,31 +740,31 @@ What is a box plot?
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>By default, <code>ggplot</code> chooses a bin size for you, but adjusting the bin width can make the story clearer. A smaller bin width shows more detail, while a larger <strong>bin width</strong> smooths over small variations. Let’s experiment with the binwidth argument to see how changing it alters the level of detail in our histogram. In the code, we set <code>binwidth = 5</code>. This means each bar in the histogram represents a range of 5 units sold. For example, one bar might count all weeks where 1–5 units were sold, the next bar shows 6–10 units, and so on. Choosing <code>binwidth = 5</code> groups the data into wider ranges, smoothing out small fluctuations and making overall patterns easier to see.</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-18_f7784b296381e00c1c894fc1f21c2fa0">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> qty), <span class="at">binwidth =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Alternatively, you can set the <strong>number of bins</strong> instead of the width. Both methods control how finely the data is grouped. Let’s experiment with the bins argument to see how changing it alters the level of detail in our histogram. In the code, we set <code>bins = 40</code>. This means the range of values for quantity sold is divided into 40 equally spaced intervals (bins), and each bar shows how many observations fall into each interval. Choosing a larger number of bins gives a more detailed view of the distribution, while a smaller number of bins smooths out fine-grained variation and shows broader trends.</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-19_567672e4b577bf081838881514c895d3">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> qty), <span class="at">bins =</span> <span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -753,7 +786,7 @@ In our beer sales data, most weekly quantities sold are relatively small, but th
 </div>
 </div>
 <p>We can learn more by splitting the histogram into two groups: imported and domestic beers. This lets us see whether the sales volume distribution looks different for each group. We can do this by mapping the imported variable to the fill aesthetic, which tells ggplot to colour each bar in the histogram according to that variable’s value. In our case, this means domestic and imported beers will each get their own colour, so we can compare their sales distributions.</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-20_ad4d4050d11111cdbec2dd3fd5dd7b71">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> qty, </span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> imported</span>
@@ -762,7 +795,7 @@ In our beer sales data, most weekly quantities sold are relatively small, but th
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -784,7 +817,7 @@ In our beer sales data, most weekly quantities sold are relatively small, but th
 <ol type="1">
 <li></li>
 </ol>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-21_8499884162132246453859e8c4113454">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> qty, <span class="at">fill =</span> brand), <span class="at">alpha =</span> <span class="fl">0.35</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -793,7 +826,7 @@ In our beer sales data, most weekly quantities sold are relatively small, but th
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -801,7 +834,7 @@ In our beer sales data, most weekly quantities sold are relatively small, but th
 <ol start="2" type="1">
 <li></li>
 </ol>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-22_aae17fc2edfa0131255fe15caf62d866">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">fill =</span> brand), <span class="at">alpha =</span> <span class="fl">0.35</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -810,7 +843,7 @@ In our beer sales data, most weekly quantities sold are relatively small, but th
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -819,13 +852,13 @@ In our beer sales data, most weekly quantities sold are relatively small, but th
 <section id="density-plot" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="density-plot">Density Plot</h4>
 <p>Histograms are great for showing how often different quantities occur, but sometimes the bars make it hard to compare two groups side-by-side. A density plot is like a smoothed histogram — it turns the bars into a curve that’s easier to compare. Instead of showing how many weeks fall into each bin, the y-axis now shows density, which stretches or shrinks the bars so that the overall shape reflects the distribution rather than the total number of observations. This means we can compare domestic and imported beers on the same scale, even if one sells far more than the other.</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-23_68406169a4e0a1a9ee6f2719473c4285">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> qty))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -850,13 +883,13 @@ Tip: Reading a density plot
 </div>
 </div>
 <p>We can now look at how the densities differ between domestic and imported beer:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-24_a0b270ae5fdde5270615968e4d557e83">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> qty, <span class="at">fill =</span> imported))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -876,7 +909,7 @@ Tip: Reading a density plot
 </ul>
 <p>For example, a histogram or boxplot typically uses fill, while a line chart or scatterplot usually uses color. When deciding what colors to use, consistency is key: if “imported” is blue in one plot, it should be blue in every plot in the report. This avoids confusion and helps the audience build a visual memory for the categories. Also, avoid using too many colours—stick to the minimum needed to tell your story clearly.</p>
 <p>Because colour carries meaning, it’s important to choose palettes that are readable and accessible to everyone, including people with colour vision deficiencies. This course uses the Okabe-Ito colour palette. The Okabe–Ito palette is a scientifically designed set of eight colours chosen to remain distinct for people with the most common forms of colour blindness. It’s widely recommended in scientific publishing because it makes plots more inclusive without sacrificing clarity for those with typical colour vision. By using this palette, you ensure that your plots remain interpretable to the widest possible audience without sacrificing clarity or visual appeal. To use this palette, we add a new line to our <code>ggplot</code> code. Let’s update our price box plot with the new color palette:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-25_f90e1ddd26a3a18e181894300105ed03">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, </span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">x =</span> imported, </span>
@@ -885,7 +918,7 @@ Tip: Reading a density plot
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -908,9 +941,13 @@ About the Okabe–Ito palette
 **Palette (hex codes):**  
 `#E69F00` (orange), `#56B4E9` (sky blue), `#009E73` (bluish green), `#F0E442` (yellow), `#0072B2` (blue), `#D55E00` (vermillion), `#CC79A7` (reddish purple), `#000000` (black)
 --->
-<div class="cell" data-hash="data_visualisation_cache/html/unnamed-chunk-26_bf476d20ed5c32c5e6cf621ab1a5e429">
+<div class="cell">
 <div class="cell-output-display">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="576"></p>
+<div>
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -924,7 +961,7 @@ About the Okabe–Ito palette
 <p>In <code>ggplot2</code>, you can tweak themes manually with functions like <code>theme(legend.position = "none")</code>, or apply complete presets such as <code>theme_minimal()</code>, <code>theme_classic()</code>, or <code>theme_bw()</code>. Presets give you a quick starting point, and you can then layer on custom changes to suit your needs.</p>
 <p>In this course, we’ll mostly use <code>theme_minimal()</code> as our default. It removes unnecessary chart junk, keeps the focus on the data, and prints cleanly for reports. It also works well when we layer additional style elements like colour palettes or custom labels.</p>
 <p>Let’s use <code>theme_minimal()</code> along with the code that removes the legend in our price box plot. Note that we more often than not, the legend <em>is</em> useful, and turning it off is more so about showing you what we can do than that we should:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-27_a38766e1231ceb45604a8fd89cc602ce">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, </span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">x =</span> imported, </span>
@@ -935,14 +972,26 @@ About the Okabe–Ito palette
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>::: {.callout-tip collapse=“true” title = “Comparing Common <code>ggplot2</code> Themes”} Here’s the same plot shown with four different <code>ggplot2</code> theme presets.<br>
+<div class="callout callout-style-default callout-tip callout-titled" title="Comparing Common `ggplot2` Themes">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Comparing Common <code>ggplot2</code> Themes
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Here’s the same plot shown with four different <code>ggplot2</code> theme presets.<br>
 Notice how each changes the background, grid lines, and overall look, without altering the data.</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-28_f08e8023873a249ad6ecd356588560a7">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> imported, <span class="at">fill =</span> imported)) <span class="sc">+</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_okabe_ito</span>()</span>
@@ -957,12 +1006,14 @@ Notice how each changes the background, grid lines, and overall look, without al
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>:::</p>
+</div>
+</div>
+</div>
 </section>
 <section id="titles" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="titles">Titles</h4>
@@ -974,7 +1025,7 @@ Notice how each changes the background, grid lines, and overall look, without al
 <li>Consistent – if your plots are part of a series, use a consistent style and order of information.</li>
 </ul>
 <p>In ggplot2, titles are usually added with the <code>labs()</code> function using the title argument. Let’s add a title to our box plot:</p>
-<div class="cell" data-hash="data_visualisation_cache/html/unnamed-chunk-29_b81809fedaed9f428514970874a8f703">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, </span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">x =</span> imported, </span>
@@ -986,11 +1037,15 @@ Notice how each changes the background, grid lines, and overall look, without al
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>You can also add a subtitle for more context and a caption to show the data source:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-30_462c850747ee43ba2ce9d955b8530b34">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, </span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">x =</span> imported, </span>
@@ -1006,7 +1061,7 @@ Notice how each changes the background, grid lines, and overall look, without al
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -1020,7 +1075,7 @@ Notice how each changes the background, grid lines, and overall look, without al
 <h4 class="unnumbered anchored" data-anchor-id="axis-labels">Axis Labels</h4>
 <p>Clear, informative axis labels make your plots easier to understand without extra explanation. A good axis label should answer: “What is being measured?” and “In what units?”</p>
 <p>You can set axis labels using the <code>labs()</code> function, by specifying <code>x =</code> and <code>y =</code> arguments:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-31_0e0afdf9e6e78d0a59453a295d3e1fbe">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, </span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">x =</span> imported, </span>
@@ -1036,14 +1091,14 @@ Notice how each changes the background, grid lines, and overall look, without al
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Keeping axis labels descriptive is especially important when your plot might be seen outside the context of your analysis—such as in a report or presentation slide. Instead of <code>y = "Price"</code>, specify <code>y = "Price (USD)"</code>. Instead of <code>x = "Type"</code>, write <code>x = "Beer Type"</code>. Note that the best axis label depends on the audience. For a technical audience, precise measurement units are important. For a business executive audience, shorter, cleaner labels may be better—while still avoiding jargon.</p>
 <p>When category names on the x-axis are long (or there are many of them), the labels can overlap and become unreadable. One fix is to rotate the text so each label has its own space:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-32_0ff1f82c13c68906dc5eab23f45d91dc">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, </span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">x =</span> imported, </span>
@@ -1061,7 +1116,7 @@ Notice how each changes the background, grid lines, and overall look, without al
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -1074,9 +1129,9 @@ Notice how each changes the background, grid lines, and overall look, without al
 <li><p><code>theme()</code> is for appearance — it controls how that text (and other plot elements) is drawn: font size, colour, position, rotation, margins, and so on.</p></li>
 </ul>
 <p>Rotating the axis text is purely a formatting change; it doesn’t alter what the label says, only how it’s displayed. That makes it part of the plot’s theme, not its labels.</p>
-<p>::: {callout-tip collapse = true title=“Centering the Plot Title”} In <code>ggplot2</code>, you center the title by setting its horizontal justification in <code>theme()</code>, similarly to how we modified the axis labels.</p>
+<p>::: {callout-tip collapse=true title=“Centering the Plot Title”} In <code>ggplot2</code>, you center the title by setting its horizontal justification in <code>theme()</code>, similarly to how we modified the axis labels.</p>
 <p>The following code centers the axis title:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-33_463217a7fffb536c6d557571d80d531e">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, </span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">x =</span> imported, </span>
@@ -1095,7 +1150,7 @@ Notice how each changes the background, grid lines, and overall look, without al
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -1117,7 +1172,7 @@ Notice how each changes the background, grid lines, and overall look, without al
 <li>Switch between continuous and categorical scales</li>
 </ul>
 <p>For example, to show beer prices as dollars rather than plain numbers, we want to change the <em>y</em> axis to dollars and keep the scale as <strong>continuous</strong>:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-34_64a6a3d2a7d9ca9e1e7ebbde9e66f83c">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> imported, <span class="at">fill =</span> imported)) <span class="sc">+</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(</span>
@@ -1130,13 +1185,13 @@ Notice how each changes the background, grid lines, and overall look, without al
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>And if we want to have the axis ticks appear every 50 cents we add a <code>breaks</code> argument:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-35_f1cdb790a995497638f41cad91b47183">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> imported, <span class="at">fill =</span> imported)) <span class="sc">+</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(</span>
@@ -1150,12 +1205,23 @@ Notice how each changes the background, grid lines, and overall look, without al
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>::: {.callout-tip collapse=true title = “Understanding <code>scale_*_*()</code> naming”}</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Understanding `scale_*_*()` naming">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Understanding <code>scale_*_*()</code> naming
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>The first * refers to the axis:</p>
 <ul>
 <li>x for the x-axis</li>
@@ -1169,10 +1235,24 @@ Notice how each changes the background, grid lines, and overall look, without al
 <p>Example:</p>
 <ul>
 <li><code>scale_x_continuous()</code> → Adjusts breaks/labels for a numeric x-axis</li>
-<li><code>scale_y_discrete()</code> → Adjusts breaks/labels for a categorical y-axis :::</li>
+<li><code>scale_y_discrete()</code> → Adjusts breaks/labels for a categorical y-axis</li>
 </ul>
-<p>::: {.callout-tip collapse=true title = “Common labels helpers from the scales package”}</p>
-<table class="table">
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Common labels helpers from the scales package">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Common labels helpers from the scales package
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 42%">
 <col style="width: 19%">
@@ -1213,13 +1293,15 @@ Notice how each changes the background, grid lines, and overall look, without al
 </tr>
 </tbody>
 </table>
-<p>:::</p>
+</div>
+</div>
+</div>
 </section>
 <section id="adjusting-transparency-with-alpha" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="adjusting-transparency-with-alpha">Adjusting Transparency with <code>alpha</code></h4>
 <p>When two groups overlap in a plot—such as imported and domestic beer histograms—it can be hard to see both clearly if the bars are fully opaque. The <code>alpha</code> argument in the <code>aes()</code> function controls transparency on a scale from 0 (completely transparent) to 1 (fully opaque).</p>
 <p>A lower alpha lets overlapping areas show through, making it easier to compare groups. For example:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-36_4b07ba51152cabf801c55f43b7509d73">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> qty, <span class="at">fill =</span> imported),</span>
@@ -1230,7 +1312,7 @@ Notice how each changes the background, grid lines, and overall look, without al
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -1251,7 +1333,7 @@ Notice how each changes the background, grid lines, and overall look, without al
 <p>Solution</p>
 </div>
 <div class="solution-content">
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-37_c992b5ddcb56797a3c161c036a92d75c">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>sales_plot <span class="ot">&lt;-</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> qty, <span class="at">fill =</span> imported), </span>
@@ -1265,12 +1347,12 @@ Notice how each changes the background, grid lines, and overall look, without al
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-38_18bf0c1c8ed611341e6b399c44ef4156">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>price_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> imported, <span class="at">fill =</span> imported)) <span class="sc">+</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(</span>
@@ -1289,7 +1371,7 @@ Notice how each changes the background, grid lines, and overall look, without al
 <h3 class="unnumbered anchored" data-anchor-id="pricequantity-relationship">Price–Quantity Relationship</h3>
 <p>Up to this point, we’ve explored individual variables—examining price distributions, sales quantities, and ways to style plots for clarity. The next step is to combine two variables to see how they relate. In economics, a “demand curve” usually means a theoretical relationship showing how quantity demanded changes if all other factors stay constant. What we’ll create here looks similar, but it’s simply the relationship between price and sales in our beer data. It’s not a controlled experiment, so other factors—like brand popularity, promotions, or season—may also influence what we see. Even so, plotting price against quantity sold can highlight patterns worth investigating further.</p>
 <p>To visualise how two continuous variables—like price and quantity—relate, we can use a scatter plot. In <code>ggplot</code>, scatter plots are made with <code>geom_point()</code>, where each point represents one observation in the data. By mapping qty to the x-axis and price to the y-axis, we put sales volume and price on the same plot, allowing us to see whether higher prices are associated with lower sales (or vice versa):</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-39_66694e4a334681e46b1e47449ff71a9c">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, </span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">x =</span> qty)</span>
@@ -1297,13 +1379,13 @@ Notice how each changes the background, grid lines, and overall look, without al
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Lots of points land on top of each other. We can use what we know about adding transparency (<code>alpha</code>) to to make overlapping points easier to distinguish, revealing where observations are densely or sparsely clustered. We’ll also separate out imported and domestic beer brands using the <code>color</code> option:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-40_4a98c8186eb5840bdf3b069c5eba167f">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, </span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">x =</span> qty,</span>
@@ -1314,7 +1396,7 @@ Notice how each changes the background, grid lines, and overall look, without al
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -1324,7 +1406,7 @@ Notice how each changes the background, grid lines, and overall look, without al
 <p>Taking the logarithm of both variables helps solve this problem in two ways. First, it spreads out smaller values, so we can see differences between low-volume products more clearly. Second, it compresses very large values, so they don’t overwhelm the plot. The result is a clearer view of the overall relationship between price and quantity.</p>
 <p>There’s also a neat interpretation benefit: in a log–log plot, straight-line patterns often suggest a constant percentage relationship between the two variables. In business terms, this means we can start thinking about price elasticity—how a percentage change in price might be associated with a percentage change in quantity sold. That makes log–log plots a handy first step toward connecting our visual analysis with economic reasoning.</p>
 <p>When we apply the logarithm directly inside the plot code — <code>log(price)</code> for the y-axis and <code>log(qty)</code> for the x-axis — we’re transforming the data on the fly. This means we don’t have to create new columns in our dataset just to see the log–log relationship. T he scatter plot now shows each product’s weekly sales and price on a scale where equal distances represent equal percentage changes:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-41_aeace949c238917600b346b13490861c">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">log</span>(price), </span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">x =</span> <span class="fu">log</span>(qty),</span>
@@ -1335,14 +1417,14 @@ Notice how each changes the background, grid lines, and overall look, without al
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Notice how the points are now more evenly spread across the plot area. Low-quantity, low-price products no longer bunch up in one corner, and the influence of extreme values is reduced. This makes it much easier to spot patterns in the data—like whether higher prices tend to be associated with lower quantities sold—and to start thinking about how strong that relationship might be.</p>
 <p>Another way to create a log–log plot is to leave the original variables in the data and let ggplot handle the transformation through the scale functions. Instead of wrapping <code>log()</code> around <code>price</code> and <code>qty</code> inside <code>aes()</code>, we can use <code>scale_x_continuous(trans = "log")</code> and <code>scale_y_continuous(trans = "log")</code>. This means we are applying a <strong>log</strong>arithmic <code>trans</code>formation to the axes.</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-42_1fc307a30527174b12fb17faae49f364">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, </span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">x =</span> qty,</span>
@@ -1365,7 +1447,7 @@ Notice how each changes the background, grid lines, and overall look, without al
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -1379,7 +1461,7 @@ Notice how each changes the background, grid lines, and overall look, without al
 <section id="creating-subplots-with-facet_wrap" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="creating-subplots-with-facet_wrap">Creating Subplots with <code>facet_wrap()</code></h4>
 <p>Sometimes, we want to compare the same relationship across different categories — without cramming everything into a single plot. In our beer data, suppose we want to see whether the price–quantity pattern differs between domestic and imported beer. One way is to make a separate plot for each type… but that’s tedious. Instead, <code>ggplot2</code> lets us split one plot into small multiples — called <strong>facets</strong> — so each category gets its own panel but shares the same scales. This can make comparisons much easier. Here’s the code that does this:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-43_b1f64ed8bc1d1a56bc8a3b3b8c71dc8f">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> qty,</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">color =</span> imported), </span>
@@ -1404,7 +1486,7 @@ Notice how each changes the background, grid lines, and overall look, without al
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -1421,7 +1503,7 @@ Notice how each changes the background, grid lines, and overall look, without al
 <p>When you build plots with ggplot, you’re really stacking layers: a data layer, one (or more) geometry layers (points, boxes, lines), plus optional styling layers (scales, themes, labels). Up to now we’ve used one geom in each plot. Now we’ll add another layer: a smooth trend line that helps the eye see the overall relationship between price and quantity.</p>
 <p>Adding a smoothing layer can make patterns in your data much easier to see. A fitted line condenses the overall direction—whether it’s upward, downward, or flat—into a single visual cue, even when the raw data is noisy. When combined with faceting or colour grouping (such as imported vs domestic beers), separate lines make it easier to compare slopes and spot differences between categories. On a log–log plot, a straight fitted line suggests a roughly constant percentage relationship between the two variables, which is a useful way to think about price sensitivity.</p>
 <p>Here’s what we’ll add: we’ll keep the scatter points so the raw data remains visible, but layer on a smoothed line to highlight the main pattern in the data. This line will be drawn using a statistical transformation—such as a simple linear model—so it captures the overall relationship. Together, they tell both the detail and the trend stories on one figure. We choose a linear model because it is a simple, disciplined way of drawing the straight line that best describes the overall relationship between the two variables. We can include a shaded confidence band to show the uncertainty around the fit, or turn it off for a cleaner look. We’ll also be sure that the line’s colour will be distinct but subtle, so it complements the points without overwhelming them.</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-44_377f3212d2ff545c4aef1f9ba2ba1e59">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> qty,</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">color =</span> imported), </span>
@@ -1455,18 +1537,42 @@ Notice how each changes the background, grid lines, and overall look, without al
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
 </div>
 <p><code>geom_smooth()</code> lets us add a fitted line on top of our scatter plot. By setting <code>method = "lm"</code>, we’re asking ggplot to draw a straight line based on a simple linear model. The <code>aes(y = price, x = qty)</code> tells ggplot which variables to use—here, the same ones as our points. We’ve picked a contrasting colour from the Okabe–Ito palette (<code>palette_okabe_ito()[7]</code>) so the line is easy to spot without overpowering the data. With <code>se = TRUE</code>, ggplot shades in a confidence band around the line, giving us a quick visual sense of how certain (or uncertain) that fitted relationship is.</p>
-<p>::: {.callout-caution title = “Caution on interpretation”} This fitted line shows association, not causation. In our retail data, promotions, seasons, and brand effects can also influence the pattern. Treat the line as a visual guide, not proof of a causal “demand curve.” :::</p>
-<p>::: {.callout-tip collapse = true title = “Avoid repeating yourself”} Notice we wrote <code>aes()</code> twice—once for the points and again for the smoothing line.<br>
+<div class="callout callout-style-default callout-caution callout-titled" title="Caution on interpretation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution on interpretation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This fitted line shows association, not causation. In our retail data, promotions, seasons, and brand effects can also influence the pattern. Treat the line as a visual guide, not proof of a causal “demand curve.”</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Avoid repeating yourself">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Avoid repeating yourself
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Notice we wrote <code>aes()</code> twice—once for the points and again for the smoothing line.<br>
 If you plan to use the same aesthetics across multiple layers, you can put them inside the initial <code>ggplot()</code> call.<br>
 That way, every <code>geom_</code> layer inherits them automatically, keeping your code cleaner and easier to read.</p>
 <p>Here’s how we reduce the duplication in the use of <code>aes()</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-45_06bce7c84d85cfe093a51d1258e22ed0">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer, </span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> qty)</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>       ) <span class="sc">+</span></span>
@@ -1500,12 +1606,14 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>:::</p>
+</div>
+</div>
+</div>
 <div class="exercise">
 <div class="exercise-time">
 <p>5 min</p>
@@ -1519,7 +1627,7 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
 <p>Solution</p>
 </div>
 <div class="solution-content">
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-46_764fc9f7bbb869f14a27c8f1e4805eaf">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(beer, </span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> qty)</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>       ) <span class="sc">+</span></span>
@@ -1553,7 +1661,7 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="480"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
 </figure>
 </div>
 </div>
@@ -1564,11 +1672,23 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
 </section>
 <section id="bringing-it-all-together-sharing-our-results" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="bringing-it-all-together-sharing-our-results"><span class="header-section-number">4.5</span> Bringing it all together: Sharing Our Results</h2>
-<p>::: {.callout-tip collapse = true title = “Our Three Plots”} Here is the code for the three plots we have produced so far. We store each of these as their own R objects.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Our Three Plots">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Our Three Plots
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Here is the code for the three plots we have produced so far. We store each of these as their own R objects.</p>
 <ol type="1">
 <li>Price Box Plot</li>
 </ol>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-47_83f4c8d0f1562c34c3313f66327555ac">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>price_plot <span class="ot">&lt;-</span> </span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> imported, <span class="at">fill =</span> imported)) <span class="sc">+</span></span>
@@ -1585,7 +1705,7 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
 <ol start="2" type="1">
 <li>The Quantity Sold Density</li>
 </ol>
-<div class="cell" data-hash="data_visualisation_cache/html/unnamed-chunk-48_8a9e2c26a350234adfd72ee6eacb6d1a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>sales_plot <span class="ot">&lt;-</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(beer) <span class="sc">+</span></span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> qty, <span class="at">fill =</span> imported), </span>
@@ -1603,7 +1723,7 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
 <ol start="3" type="1">
 <li>The Price-Quantity Relationship</li>
 </ol>
-<div class="cell" data-hash="data_visualisation_cache/html/unnamed-chunk-49_ef07326e1cc437bd9879368e28e9a75c">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>price_qty <span class="ot">&lt;-</span> </span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(beer, </span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> qty)</span>
@@ -1633,10 +1753,12 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
 <span id="cb54-27"><a href="#cb54-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb54-28"><a href="#cb54-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>:::</p>
+</div>
+</div>
+</div>
 <p>We’ve now built several plots—each showing a different angle on the same sales and pricing story. But in a real analysis (or a business meeting), you often want to put those views side by side so the audience can compare them at a glance. Instead of juggling separate images, we can combine them into one display. The <code>patchwork</code> package makes this easy, letting us “add” plots together with simple operators so related visuals live in the same frame. This way, we can present a complete picture without scrolling, flipping slides, or asking the reader to mentally stitch things together.</p>
 <p>Let’s start with the simplest layout: putting all our plots in a single row. With patchwork, this is as easy as using the <code>|</code> operator between plot objects. Think of <code>|</code> as saying “put this next to that.”</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-50_de3ef592b89732bffd22239f19d51595">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>price_qty <span class="sc">|</span> price_plot <span class="sc">|</span> sales_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
@@ -1644,13 +1766,13 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="576"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>This tells R to take <code>price_qty</code>, place it on the left, then <code>price_plot</code> next to it, then <code>sales_plot</code> on the right. The result is one combined graphic where each plot keeps its own style, scales, and labels—but they’re visually aligned. However, the plots are cramped together to fit along one row. We might instead want to arrange our plots into multiple rows to make them easier to read. For example, we can put the <code>price_qty</code> plot on the top row, and then the <code>price_plot</code> and <code>sales_plot</code> on the second:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-51_db4be1270ffe941bb40e332eaf5c9b9d">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>price_qty <span class="sc">/</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>    (price_plot <span class="sc">|</span> sales_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1659,7 +1781,7 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid figure-img" width="576"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -1684,21 +1806,20 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
 <section id="always-visualize-the-data" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="always-visualize-the-data"><span class="header-section-number">4.6</span> Always visualize the data!</h2>
 <p>Before we wrap up our work with ggplot, it’s worth pausing to remember why we spend so much time visualising data in the first place. Summary statistics like the mean and standard deviation are useful, but they can hide important patterns, relationships, and even strange quirks in the data. Two datasets can have the exact same averages and spreads yet tell completely different stories when you actually plot them. A famous—and fun—example of this is known as the Datasaurus Dozen, which shows how relying on numbers alone can be misleading. Let’s first load the datasets which are stored in an R package:</p>
-<div class="cell" data-hash="data_visualisation_cache/html/unnamed-chunk-52_2208d27f8c782b021b629965f6c0f04b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasauRus)</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>dino_doz <span class="ot">&lt;-</span> datasaurus_dozen</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we looks at the summary statistics for each data set. In particular we compare the mean and standard deviations:</p>
-<div class="cell" data-hash="data_visualisation_cache/html/unnamed-chunk-53_7ace6591587a592137e7c8993e72b32e">
+<div class="cell">
 <div class="cell-output-display">
-
 <!-- preamble start -->
 
     <script>
 
-      function styleCell_pv82lyteld7msxh8sgnw(i, j, css_id) {
-          var table = document.getElementById("tinytable_pv82lyteld7msxh8sgnw");
+      function styleCell_4vpuuea42v8mx2h515io(i, j, css_id) {
+          var table = document.getElementById("tinytable_4vpuuea42v8mx2h515io");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -1708,7 +1829,7 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_pv82lyteld7msxh8sgnw');
+        var table = document.getElementById('tinytable_4vpuuea42v8mx2h515io');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -1716,8 +1837,8 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_pv82lyteld7msxh8sgnw(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_pv82lyteld7msxh8sgnw");
+      function spanCell_4vpuuea42v8mx2h515io(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_4vpuuea42v8mx2h515io");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -1747,17 +1868,17 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 0, j: 1 }, { i: 0, j: 2 }, { i: 0, j: 3 }, { i: 0, j: 4 },  ], css_id: 'tinytable_css_nr231z5kdzuqb1i2aobc',}, 
-          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_l4xqd528a4v8zx666wli',}, 
-          { positions: [ { i: 13, j: 1 }, { i: 13, j: 2 }, { i: 13, j: 3 }, { i: 13, j: 4 },  ], css_id: 'tinytable_css_ebq80ta7j1eht41dmbm4',}, 
-          { positions: [ { i: 4, j: 1 }, { i: 5, j: 1 }, { i: 6, j: 1 }, { i: 7, j: 1 }, { i: 8, j: 1 }, { i: 9, j: 1 }, { i: 10, j: 1 }, { i: 11, j: 1 }, { i: 12, j: 1 }, { i: 12, j: 2 }, { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 3, j: 2 }, { i: 4, j: 2 }, { i: 5, j: 2 }, { i: 6, j: 2 }, { i: 7, j: 2 }, { i: 8, j: 2 }, { i: 9, j: 2 }, { i: 10, j: 2 }, { i: 11, j: 2 }, { i: 11, j: 3 }, { i: 12, j: 3 }, { i: 1, j: 2 }, { i: 2, j: 2 }, { i: 2, j: 3 }, { i: 3, j: 3 }, { i: 4, j: 3 }, { i: 5, j: 3 }, { i: 6, j: 3 }, { i: 7, j: 3 }, { i: 8, j: 3 }, { i: 9, j: 3 }, { i: 10, j: 3 }, { i: 10, j: 4 }, { i: 11, j: 4 }, { i: 12, j: 4 }, { i: 1, j: 3 }, { i: 1, j: 4 }, { i: 2, j: 4 }, { i: 3, j: 4 }, { i: 4, j: 4 }, { i: 5, j: 4 }, { i: 6, j: 4 }, { i: 7, j: 4 }, { i: 8, j: 4 }, { i: 9, j: 4 },  ], css_id: 'tinytable_css_ao4mgx19yr8ax3tj1msb',}, 
-          { positions: [ { i: 13, j: 0 },  ], css_id: 'tinytable_css_7se05w64yq2wz3ikitaw',}, 
+          { positions: [ { i: 13, j: 1 }, { i: 13, j: 2 }, { i: 13, j: 3 }, { i: 13, j: 4 },  ], css_id: 'tinytable_css_u42msjr4rtxmms3rjh5a',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_tumpobknc2ydet7w78fg',}, 
+          { positions: [ { i: 0, j: 1 }, { i: 0, j: 2 }, { i: 0, j: 3 }, { i: 0, j: 4 },  ], css_id: 'tinytable_css_q5uepep7ropl0xf9vrf2',}, 
+          { positions: [ { i: 4, j: 1 }, { i: 5, j: 1 }, { i: 6, j: 1 }, { i: 7, j: 1 }, { i: 8, j: 1 }, { i: 9, j: 1 }, { i: 10, j: 1 }, { i: 11, j: 1 }, { i: 12, j: 1 }, { i: 12, j: 2 }, { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 3, j: 2 }, { i: 4, j: 2 }, { i: 5, j: 2 }, { i: 6, j: 2 }, { i: 7, j: 2 }, { i: 8, j: 2 }, { i: 9, j: 2 }, { i: 10, j: 2 }, { i: 11, j: 2 }, { i: 11, j: 3 }, { i: 12, j: 3 }, { i: 1, j: 2 }, { i: 2, j: 2 }, { i: 2, j: 3 }, { i: 3, j: 3 }, { i: 4, j: 3 }, { i: 5, j: 3 }, { i: 6, j: 3 }, { i: 7, j: 3 }, { i: 8, j: 3 }, { i: 9, j: 3 }, { i: 10, j: 3 }, { i: 10, j: 4 }, { i: 11, j: 4 }, { i: 12, j: 4 }, { i: 1, j: 3 }, { i: 1, j: 4 }, { i: 2, j: 4 }, { i: 3, j: 4 }, { i: 4, j: 4 }, { i: 5, j: 4 }, { i: 6, j: 4 }, { i: 7, j: 4 }, { i: 8, j: 4 }, { i: 9, j: 4 },  ], css_id: 'tinytable_css_p5ejd6h036i0zm419y61',}, 
+          { positions: [ { i: 13, j: 0 },  ], css_id: 'tinytable_css_l906jr9xza5kpmg0wgay',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_pv82lyteld7msxh8sgnw(cell.i, cell.j, group.css_id);
+                  styleCell_4vpuuea42v8mx2h515io(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -1765,14 +1886,14 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
 
     <style>
       /* tinytable css entries after */
-      .table td.tinytable_css_nr231z5kdzuqb1i2aobc, .table th.tinytable_css_nr231z5kdzuqb1i2aobc { text-align: right; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-      .table td.tinytable_css_l4xqd528a4v8zx666wli, .table th.tinytable_css_l4xqd528a4v8zx666wli { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-      .table td.tinytable_css_ebq80ta7j1eht41dmbm4, .table th.tinytable_css_ebq80ta7j1eht41dmbm4 { text-align: right; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_ao4mgx19yr8ax3tj1msb, .table th.tinytable_css_ao4mgx19yr8ax3tj1msb { text-align: right; }
-      .table td.tinytable_css_7se05w64yq2wz3ikitaw, .table th.tinytable_css_7se05w64yq2wz3ikitaw { border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_u42msjr4rtxmms3rjh5a, .table th.tinytable_css_u42msjr4rtxmms3rjh5a { text-align: right; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_tumpobknc2ydet7w78fg, .table th.tinytable_css_tumpobknc2ydet7w78fg { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_q5uepep7ropl0xf9vrf2, .table th.tinytable_css_q5uepep7ropl0xf9vrf2 { text-align: right; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_p5ejd6h036i0zm419y61, .table th.tinytable_css_p5ejd6h036i0zm419y61 { text-align: right; }
+      .table td.tinytable_css_l906jr9xza5kpmg0wgay, .table th.tinytable_css_l906jr9xza5kpmg0wgay { border-bottom: solid #d3d8dc 0.1em; }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_pv82lyteld7msxh8sgnw" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_4vpuuea42v8mx2h515io" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -1883,7 +2004,7 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
 </div>
 </div>
 <p>Summary statistics are identical for all datasets. But when we plot them, we see there are very different patterns in each dataset:</p>
-<div class="cell" data-layout-align="center" data-hash="data_visualisation_cache/html/unnamed-chunk-54_4b4f23c6b3bbfff66bb88882b98f15df">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dino_doz,</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> x,</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> y)) <span class="sc">+</span></span>
@@ -1892,7 +2013,7 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_visualisation_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid figure-img" width="576"></p>
+<p><img src="data_visualisation_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -1915,7 +2036,18 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
 <li>Price-Quantity Relationship: Transformations (like log scales) can reveal patterns.</li>
 </ul>
 <p>When you combine a clear plotting process with purposeful design choices, you get more than just nice-looking charts—you get business intelligence. This is one simple yet powerful example of how we turn raw numbers into stories that reveal patterns, answer questions, and guide decisions.</p>
-<p>::: {.callout-note collapse=true title = “The Analytics Workflow (Revisited)”}</p>
+<div class="callout callout-style-default callout-note callout-titled" title="The Analytics Workflow (Revisited)">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The Analytics Workflow (Revisited)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>Recall our Analytics workflow from Chapter 2. Here’s how we used that in our data visualization journey.</p>
 <p><strong>Define the Business Question</strong><br>
 → How does price affect sales? Are imported beers different?</p>
@@ -1926,264 +2058,444 @@ That way, every <code>geom_</code> layer inherits them automatically, keeping yo
 <p><strong>Analyze and Interpret Findings</strong><br>
 → Noting price dispersion, skewed demand, and elasticity differences.</p>
 <p><strong>Communicate Insights and Recommendations</strong><br>
-→ Using clear visuals that a category manager could act on.<br>
-:::</p>
-<p>::: {.callout-warning title = “Beyond the Geoms We Covered”}</p>
+→ Using clear visuals that a category manager could act on.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Beyond the Geoms We Covered">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Beyond the Geoms We Covered
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>We’ve only scratched the surface of what <code>ggplot2</code> can do.<br>
 There are dozens of other <strong>geoms</strong> each suited to different types of data and questions.<br>
 Before you create a plot, think about what visual form best matches your data and your audience’s needs.</p>
-<p>You can browse the full list (with examples) in the official <a href="https://ggplot2.tidyverse.org/reference/"><strong>ggplot2 reference</strong></a>. :::</p>
+<p>You can browse the full list (with examples) in the official <a href="https://ggplot2.tidyverse.org/reference/"><strong>ggplot2 reference</strong></a>.</p>
+</div>
+</div>
 
 
 </section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-  function tippyHover(el, contentFn) {
-    const config = {
-      allowHTML: true,
-      content: contentFn,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start'
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
       }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
+      return false;
     }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
       });
     }
-  }
-});
-</script>
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../foundations/reproducible.html" class="pagination-link">
+      <a href="../foundations/reproducible.html" class="pagination-link" aria-label="Reproducible Workflows with R &amp; Posit Cloud">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows with R &amp; Posit Cloud</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../insights/data_manipulation.html" class="pagination-link">
+      <a href="../insights/data_manipulation.html" class="pagination-link" aria-label="Data Wrangling for Business Analytics">
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Wrangling for Business Analytics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 
