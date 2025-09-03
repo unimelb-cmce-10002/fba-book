@@ -12,7 +12,7 @@ By the end of this lecture, you should be able to:
 * Identify common data storage formats (CSV, JSON, SQL, Parquet) and explain when each is appropriate for business use.
 * Load, explore, and manipulate datasets stored in flat files and nested JSON using R.
 * Use unnesting and reshaping techniques to convert nested or redundant data structures into tidy formats.
-* Read and query data stored in DuckDB and Parquet formats using `dbplyr` and `arrow`.
+* Read and query data stored in databases using `duckdb` and `dplyr`.
 * Evaluate trade-offs between different storage formats in terms of scalability, structure, and analytical convenience.
 * Apply best practices for storing, documenting, and sharing data within an organization.
 :::
@@ -20,15 +20,21 @@ By the end of this lecture, you should be able to:
 
 ## The Business Challenge
 
-Online marketplaces like eBay host millions of auctions each year, connecting buyers and sellers across countless product categories. Behind the scenes, this generates complex, nested, and high-volume data. For a business analyst, turning this raw data into useful insights—and storing it in a way that's efficient, accessible, and reusable—is a foundational challenge.
+Online marketplaces like eBay host millions of auctions each year, connecting buyers and sellers across countless product categories. 
+Behind the scenes, this generates complex, nested, and high-volume data. 
+For a business analyst, turning this raw data into useful insights—and storing it in a way that's efficient, accessible, and reusable—is a foundational challenge.
 
-You've just joined the data team at a fast-growing online marketplace. Right now, every team — from marketing to data engineering and customer support — is handling auction data in different ways: some use Excel sheets, others parse logs from an API that stores information in a format called JSON, and a few engineers keep things in a different format known as Parquet (but no one else knows how to read them!).
+Suppose you've just joined the data team at this fast-growing online marketplace. 
+Right now, every team — from marketing to data engineering and customer support — is handling auction data in different ways: some use Excel sheets, others parse logs from an API that stores information in a format called JSON, and data engineers keep things in a database (but no one else knows how to read them!).
 
-This chaos is slowing everyone down. Your first task as a new analyst is to propose a better data storage solution that balances usability, scalability, and efficiency for teams across the business.
+This chaos is slowing everyone down. 
+Your first task as a new analyst is to propose a better data storage solution that balances usability, scalability, and efficiency for teams across the business.
 
-But how do you choose the right format? Should you push everyone to use Excel spreadsheets? Convince IT to move everything into a database? Or are columnar formats like Parquet worth the learning curve?
+But how do you choose the right format? 
+Should you push everyone to use Excel spreadsheets? 
+Why not convince everyone to move everything into a database?
 
-Before you decide, you'll need to understand the strengths and trade-offs of each major data storage format. That is what we will cover in this lecture
+Before you decide, you'll need to understand the strengths and trade-offs of each major data storage format. That is what we will cover in this chapter.
 
 ### About the Data {.unnumbered}
 
@@ -38,26 +44,66 @@ To guide your decision, we'll work with a sample dataset of online auctions. Eac
 * Seller details: user ID, rating
 * Bidding history: a nested list of bids, each with a bidder ID, amount, and timestamp
 
-We have stored and structured the dataset in multiple formats — Excel, flat files (CSV), JSON, DuckDB, and Parquet—so you can compare how different formats impact usability and performance. Along the way, you’ll learn not just how to load data, but how to think about storing and transforming it for long-term use in a business setting.
+We have stored and structured the dataset in multiple formats — Excel, flat files (CSV), JSON and DuckDB — so you can compare how different formats impact usability and performance. 
+Along the way, you'll learn not just how to load data, but how to think about storing and transforming it for long-term use in a business setting.
 
-> **Poll**: Which of these data formats have you heard of?
+:::{.callout-note collapse=true}
+## Which of data formats have you heard of? {.unnumbered}
+
+Which of the data formats that we will cover in this chapter have you already heard of? 
+
 > - Excel
 > - CSV files
 > - A database
 > - JSON
-> - Parquet
 
-## Spreadsheets (Excel, Google Sheets & Friends)
+Where did you learn about the formats you are aware of? What limitations have you found when using them?
 
-For many of us, spreadsheets like Microsoft Excel or Google Sheets are the default way we have worked with data until taking this course. 
+:::
 
-### Reading Spreadsheets in R
+## Spreadsheets (Excel & Friends)
 
-Figure XX shows what the spreadsheet we’re going to read into R looks like in Excel. This spreadsheet can be downloaded as an Excel file from ...
+For many of us, spreadsheets like Microsoft Excel or Google Sheets are the default way we have worked with data until starting our business analytics journey. 
 
-To load spreadsheet data into R, we use the `readxl` package, which allows us to read .xlsx files directly without requiring Excel to be installed.
+### Reading Spreadsheets in R {.unnumbered}
 
-```r
+```{r}
+#| label: fig-auctions-excel
+#| fig-cap: "Auctions Data in Excel Format"
+#| fig-align: center
+#| out-width: 100%
+#| out-height: 100%
+#| echo: false
+#| eval: true
+
+knitr::include_graphics("../figs/data-management/ebay_auctions_excel.png")
+```
+
+
+The figure above shows what the spreadsheet we're going to read into R looks like in Excel.
+We see that there is data across three separate sheets:
+
+1. `auctions` contains information about the each auction,
+2. `bids` contains information about bids in each auction; and
+3. `sellers` contains information about the seller of each item
+
+To load the spreadsheet data into R, we use the `readxl` package, which allows us to read .xlsx files directly without requiring Excel to be installed.
+
+```{r}
+#| eval: true
+#| echo: false
+library(readxl)
+
+# Read a spreadsheet file
+auctions_excel <- read_excel("../data/ebay_auctions.xlsx")
+
+# Peek at the first few rows
+head(auctions_excel)
+```
+
+```{r}
+#| eval: false
+#| echo: true
 library(readxl)
 
 # Read a spreadsheet file
@@ -67,26 +113,39 @@ auctions_excel <- read_excel("data/ebay_auctions.xlsx")
 head(auctions_excel)
 ```
 
-You can also specify a sheet name or index:
+We can see that by default, R loads the `auctions` sheet which is the *first* sheet in the Excel workbook.
+If we want to specify the sheet we want to load, we can do that as follows:
 
-```r
+```{r} 
+#| eval: true
+#| echo: false
 # Read a specific sheet
-read_excel("data/ebay_auctions.xlsx", sheet = "bids")
+excel_bids <- read_excel("../data/ebay_auctions.xlsx", sheet = "bids")
 
 # Or use sheet number
-read_excel("data/ebay_auctions.xlsx", sheet = 2)
+excel_bids <- read_excel("../data/ebay_auctions.xlsx", sheet = 2)
+
+head(excel_bids)
 ```
 
-By default, `read_excel()` will guess the column types from the first 1000 rows.
+```{r} 
+#| eval: false
+#| echo: true
+# Read a specific sheet
+excel_bids <- read_excel("data/ebay_auctions.xlsx", sheet = "bids")
 
-### Writing to Excel
-Let’s create a small data frame that we can then write out.
+# Or use sheet number
+excel_bids <- read_excel("data/ebay_auctions.xlsx", sheet = 2)
 
-### Issues with Spreadsheets
+head(excel_bids)
+```
 
-They're widely used in business and education, and offer an approachable interface for organizing tables, applying formulas, and making quick charts. This makes spreadsheets a great entry point into the world of data—but also a format with serious limitations when it comes to analytics at scale.
+### Issues with Spreadsheets {.unnumbered}
 
-Spreadsheets don’t record your steps, meaning you can’t always retrace how a figure was calculated. There’s no built-in version history (at least not one that’s easy to audit), and formulas often vary invisibly from cell to cell—especially if you’ve copied or dragged them across a range. This makes it difficult to ensure consistency and nearly impossible to reproduce or validate your results.
+Spreadsheets are widely used in business and education, and offer an approachable interface for organizing tables, applying formulas, and making quick charts. 
+This makes spreadsheets a great entry point into the world of data—but also a format with serious limitations when it comes to analytics at scale.
+
+Spreadsheets don't record your steps, meaning you can't always retrace how a certain number or figure was calculated. There's no built-in version history (at least not one that's easy to audit), and formulas often vary invisibly from cell to cell—especially if you've copied or dragged them across a range. This makes it difficult to ensure consistency and nearly impossible to reproduce or validate your results.
 
 Even small errors—like accidentally referencing the wrong column—can go unnoticed. A single cell with a broken formula can distort an entire analysis. These issues are especially problematic when figures or charts are being used for decisions or presentations.
 
@@ -98,688 +157,711 @@ To make matters worse, analysts often inherit spreadsheets from others—colleag
 * merged cells
 * duplicated values across tabs
 
-Despite these flaws, spreadsheets remain a powerful tool for quick exploration and lightweight collaboration. They’re useful for small teams, early prototyping, or downloading data from platforms like Shopify, Facebook Ads, or Google Analytics. But when your work moves toward reproducibility, scalability, or automation, it’s time to adopt formats designed for analysis.
+all of which make using them for further analysis difficult.
 
-TIP: Googlesheets
-Google Sheets is another widely used spreadsheet program. It’s free and web-based. Just like with Excel, in Google Sheets data are organized in worksheets (also called sheets) inside of spreadsheet files.
+Despite these flaws, spreadsheets remain a powerful tool for quick exploration and lightweight collaboration. 
+They're useful for small teams, early prototyping, or downloading data from platforms like Shopify, Facebook Ads, or Google Analytics. 
+But when your work moves toward reproducibility, scalability, or automation, it's time to adopt formats designed for analysis.
 
-Prerequisites
-This section will also focus on spreadsheets, but this time you’ll be loading data from a Google Sheet with the googlesheets4 package. This package is non-core tidyverse as well, you need to load it explicitly.
+### Writing to Excel {.unnumbered}
 
-The first argument to read_sheet() is the URL of the file to read, and it returns a tibble:
-https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w. These URLs are not pleasant to work with, so you’ll often want to identify a sheet by its ID.
+Despite not wanting to use Excel files as an output, we might want to export the final results for an Excel workbook to pass on to a less technical colleague. 
+To do this, we need the library `writexl` to save datasets to an Excel format.
+Let's create a small data frame that we can then write out to a file.
+Specifically, lets filter all bids from the auction with the ID `AUC00001` and save them in a file names `small_bids.xlsx`:
 
-```r
-gs4_deauth()
+```{r}
+#| eval: false
+library(tidyverse)
+library(writexl)
 
-students_sheet_id <- "1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w"
-students <- read_sheet(students_sheet_id)
+colnames(excel_bids)
+
+bids_to_export <-
+    excel_bids |> 
+    filter(item_id == "AUC00001")
+
+write_xlsx(bids_to_export, "small_bids.xlsx")
 ```
 
-#### Writing to Google Sheets
-You can write from R to Google Sheets with write_sheet(). The first argument is the data frame to write, and the second argument is the name (or other identifier) of the Google Sheet to write to:
+:::{.callout-tip collapse = "true"}
+## Reading and Writing from Google Sheets {.unnumbered}
 
-write_sheet(bake_sale, ss = "bake-sale")
+Google Sheets is another widely used spreadsheet program. It's free and web-based. Just like with Excel, in Google Sheets data are organized in worksheets (also called sheets) inside of spreadsheet files.
 
-If you’d like to write your data to a specific (work)sheet inside a Google Sheet, you can specify that with the sheet argument as well.
+You can load data from a Google Sheet with the `googlesheets4` package. This package is non-core tidyverse as well, you need to load it explicitly.
 
-write_sheet(bake_sale, ss = "bake-sale", sheet = "Sales")
+The first argument to `read_sheet()` is the URL of the file to read, and it returns a tibble:
+https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w. These URLs are not pleasant to work with, so you'll often want to identify a sheet by its ID.
 
-#### Authentication
-While you can read from a public Google Sheet without authenticating with your Google account and with gs4_deauth(), reading a private sheet or writing to a sheet requires authentication so that googlesheets4 can view and manage your Google Sheets.
+```r
+library(googlesheets4)
+gs4_deauth()
 
-When you attempt to read in a sheet that requires authentication, googlesheets4 will direct you to a web browser with a prompt to sign in to your Google account and grant permission to operate on your behalf with Google Sheets. However, if you want to specify a specific Google account, authentication scope, etc. you can do so with gs4_auth(), e.g., gs4_auth(email = "mine@example.com"), which will force the use of a token associated with a specific email. For further authentication details, we recommend reading the documentation googlesheets4 auth vignette: https://googlesheets4.tidyverse.org/articles/auth.html.
+sheet_id <- "1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w"
+google_df <- read_sheet(sheet_id)
+```
+
+You can also write from R to Google Sheets with `write_sheet()`. The first argument is the data frame to write, and the second argument is the name (or other identifier) of the Google Sheet to write to:
+
+```{r}
+#| eval: false
+write_sheet(bids_to_export, ss = "bids_auc10001")
+```
+
+If you'd like to write your data to a specific work-sheet inside a Google Sheet, you can specify that with the sheet argument as well.
+
+```{r}
+#| eval: false
+write_sheet(bake_sale, ss = "bids_auc10001", sheet = "bids")
+```
+
+:::
+
+:::{.callout-caution collapse = "true"}
+## Authentication with Google Sheets {.unnumbered}
+While you can read from a public Google Sheet without authenticating with your Google account and with `gs4_deauth()`, reading a private sheet or writing to a sheet requires authentication so that `googlesheets4` can view and manage your Google Sheets.
+
+When you attempt to read in a sheet that requires authentication, googlesheets4 will direct you to a web browser with a prompt to sign in to your Google account and grant permission to operate on your behalf with Google Sheets. However, if you want to specify a specific Google account, authentication scope, etc. you can do so with `gs4_auth()`, e.g., `gs4_auth(email = "mine@example.com")`, which will force the use of a token associated with a specific email. For further authentication details, we recommend reading the documentation `googlesheets4` auth vignette: https://googlesheets4.tidyverse.org/articles/auth.html.
+
+:::
 
 ## Flat Files (CSV, TSV and other delimited files)
 
-when it comes to storing and sharing structured data reliably, especially in a way that can be reproduced by code, an alternative format often works better: flat files.
-
+When we need to store and share structured data reliably, especially in a way that can be reproduced by code, an alternative format often works better: flat files.
 Flat files look similar to spreadsheets on the surface—just rows and columns of data—but under the hood they behave very differently.
+A flat file is stored as plain text. Each line represents a row of data, and the values are separated by a special character like a comma or tab. 
+There are no formulas, no styling, no hidden or merged cells - just the raw information.
+There is another difference compared to Spreadsheets like Excel, flat files store each data set as a separate file, so there is no concept of multiple sheets if information stored in the same file.
 
-A flat file is stored as plain text. Each line represents a row of data, and the values are separated by a special character like a comma or tab. There are no formulas, no styling, no hidden cells—just the raw information.
+One of the most common flat file types is the CSV, which stands for Comma-Separated Values. 
+You have already encountered files with a .csv extension in the earlier chapter in this book, all the data we have worked with so far has been stored as CSV files.
 
-One of the most common flat file types is the CSV, which stands for Comma-Separated Values. You might have encountered files with a .csv extension when exporting data from online dashboards or business tools.
+For our auction example this means there are 3 CSV files, one each for `auctions`, `bids` and `sellers`
 
-Here’s what a CSV might look like when opened in a text editor:
-
-``` out
-item_id,bidder_id,amount,time
-a001,u07,45.00,2023-08-21 10:13
-a001,u12,47.50,2023-08-21 10:30
+```{bash}
+#| echo: false
+ls ../data/{auctions,bids,sellers}.csv
 ```
 
-This format is:
+Because CSVs simply store raw information, we can see the content of the file when we open it in a text editor.
+Here's what the first few lines of `bids.csv` looks like when opened in a text editor:
 
-* Easy to inspect and edit
-* Supported by nearly every tool
-* A common default for data exports
+```{bash}
+#| echo: false
+head ../data/bids.csv
+```
+We can see that we can view and read the data with our own eyes.
+As such flat files are easy to inspect manually.
+The first row, commonly called the header row, gives the column names, and the following six rows provide the data. The columns are separated, aka delimited, by commas.
+They are also easy to edit, as we can manually add or edit rows and save the results if desired.
+These are not the only advantages of flat files, 
+they are supported by nearly every data analytics tool so they are extremely portable which makes them a common default choice when exporting data from software such as R.
+
+:::{.callout-warning collapse=true}
+## What do Excel Files Look Like in a Text Editor? {.unnumbered}
+
+Not all files can be viewed as cleanly as flat file formats such as csv in a text editor. 
+If we tried to do the same thing, and view the first few lines of `ebay_auctions.xlsx` in a text editor, we will get the following output:
+
+
+```{bash}
+#| echo: false
+head ../data/ebay_auctions.xlsx
+```
+
+That's not so useful!
+
+:::
 
 ### Reading Flat Files in R
 
-will focus on reading plain-text rectangular files. WHAT IS rectangular data?
+In R, we can use the `readr` package to import flat files quickly and reliably. We can read this file into R using `read_csv()`. The first argument is the most important: the path to the file. You can think about the path as the address of the file: the file is called `bids.csv` and it lives in the `data` folder.
 
-To begin, we’ll focus on the most common rectangular data file type: CSV, which is short for comma-separated values. Here is what a simple CSV file looks like. The first row, commonly called the header row, gives the column names, and the following six rows provide the data. The columns are separated, aka delimited, by commas.
-
-In R, we can use the `readr` package to import flat files quickly and reliably. We can read this file into R using `read_csv()`. The first argument is the most important: the path to the file. You can think about the path as the address of the file: the file is called XXX.csv and it lives in the data folder.
-
-``` r
+``` {r}
+#| echo: true
+#| eval: false
 library(readr)
-
 # Read a CSV file into a tibble
-auctions_flat <- read_csv("data/bids_flat.csv")
+bids_flat <- read_csv("data/bids.csv")
 ```
 
-When you run read_csv(), it prints out a message telling you the number of rows and columns of data, the delimiter that was used, and the column specifications (names of columns organized by the type of data the column contains). It also prints out some information about retrieving the full column specification and how to quiet this message. This message is an integral part of readr, and we’ll return to it in XXX
+``` {r}
+#| echo: false
+#| eval: true
+library(readr)
+# Read a CSV file into a tibble
+bids_flat <- read_csv("../data/bids.csv")
+```
 
-This loads your flat file into a tidy tibble for further analysis. You can also read tab-separated files (read_tsv()) or files with other delimiters (read_delim()).
+When you run `read_csv()`, it prints out a message telling you the number of rows and columns of data, the delimiter that was used, and the column specifications (names of columns organized by the type of data the column contains). 
+It also prints out some information about retrieving the full column specification and how to quiet this message.
 
 ::: {.callout-tip}
- Delimiters and File Extensions
+## Delimiters and File Extensions {.unnumbered}
 The character that separates columns in a flat file is called a delimiter. Common ones include:
 
 * Comma (,) — for .csv files
 * Tab (\t) — for .tsv files
 * Pipe (|) — occasionally used for exports from databases
 
-Also note that not all .csv files use commas! Always double-check if your data loads incorrectly. You can adjust the delimiter using the `delim` argument in `read_csv()`
-:::
+If we wanted to load the the file `bids.tsv` which uses Tab separated values:
 
+```{bash}
+head ../data/bids.tsv
+```
+We would use the `read_delim()` function and specify that columns are tab separated:
 
-::: {.exercise}
-::: {.exercise-time}
-5 min
-:::
-
-**Exercise: One Auction, Many Rows**
-
-Let’s investigate how data is stored in a flat file format by looking at all the bids placed on a single auction.
-
-```r
-library(dplyr)
-
-# Step 1: Filter to a single auction with multiple bids
-a1_bids <- auctions_flat %>%
-  filter(item_id == "a001")
-
-# Step 2: View the result
-a1_bids
+```{r}
+#| eval: false
+bids_tab <- read_delim("data/bids.tsv", delim = "\t")
 ```
 
-
-(a) How many rows are returned? What does each row represent?
-(b) Look at the title, category, and seller_id columns — what do you notice?
-(c) What are some potential challenges that could arise from this repetition, especially as the dataset grows or changes over time?
-
 :::
-
-### Why are the same values repeated?
-
-When you look at the bids for one auction, you might notice that the item title, category, and seller name appear again and again in every row. That might seem strange—why repeat the same information?
-
-This happens because of the way flat files are designed. In a flat file, each row represents one observation—in this case, one bid. That means every row needs to include not just the bid amount and time, but also the details of the auction it belongs to. Even if those auction details don’t change, they’re still copied into every row.
-
-This approach is useful for analysis, but it can also lead to large files and repeated information. In more advanced systems, like databases, we might store the auction information just once and link each bid to it. But flat files keep everything together in one place, which makes them easy to share and work with.
-
-Later in this chapter, we’ll see how other formats (like JSON and SQL) handle this differently—and how that affects the way we store and analyze data.
-
-> 💡 **Tip:** Use flat files for medium-sized, flat data when simplicity trumps scale
 
 ### Writing to a file
 
-readr also comes with two useful functions for writing data back to disk: write_csv() and write_tsv(). The most important arguments to these functions are x (the data frame to save) and file (the location to save it). You can also specify how missing values are written with na, and if you want to append to an existing file.
+`readr` also comes with functions for writing data back to disk: `write_csv()` and `write_delim()`.
+The most important arguments to these functions are the data frame we want to save and the location where we want to save the file. 
+Suppose we want to take the bids from `AUC0001` and save them in a CSV file `bids_auc0001.csv` located in the data directory:
 
 ```r
-write_csv(students, "students.csv")
+auctions_filtered <-
+    bids |> 
+    filter(item_id == "AUC0001")
+    
+write_csv(auctions_filtered, "data/bids_auc0001.csv")
 ```
-
-Now let’s read that csv file back in. Note that the variable type information that you just set up is lost when you save to CSV because you’re starting over with reading from a plain text file again:
-
-This makes CSVs a little unreliable for caching interim results—you need to recreate the column specification every time you load in. 
 
 ## JSON Files: When rectangular data might not be enough
 
-Flat files are great when every observation fits neatly into one row. But what if each item in your dataset comes with its own mini-dataset inside—like multiple bids per auction?
+Flat files are great when every observation fits neatly into one row. 
+But sometimes our dataset comes with a sort of hierarchy, its mini-datasets nested inside a larger dataset.
+In our `bids` data, for example, one could imagine rather than having each row of data being one bid from one auction, and storing the `item_id` in each row along with the bid information, we could think about storing the set of bids for each auction as a mini-dataset attached to each item ID. 
 
-Trying to represent that in a flat file leads to a lot of repetition. Every bid needs to repeat the same auction information—item title, seller name, category—even if it doesn’t change. This design follows the tidy data principle, where each row is a single observation and each column is a variable. It’s ideal for analysis, but not always the most efficient way to store structured or repeated data.
 
-To better handle these cases, we can use nested data formats—and one of the most popular is JSON.
+To handle these cases, we can use nested data formats — and one of the most popular is JSON.
+JSON (JavaScript Object Notation) is a format designed to store structured data. 
+It can be especially useful when one record contains multiple layers of information—for example, an auction that has several bids attached to it as we have here.
 
-JSON (JavaScript Object Notation) is a format designed to store structured data. It’s especially useful when one record contains multiple layers of information—for example, an auction that has several bids attached to it.
+Unlike flat files, JSON allows us to store all related data in one object, without repeating fields. 
+It's human-readable, flexible, and widely used in real-world business data systems. 
 
-Why JSON?
-
-* Captures nested structures, such as multiple bids grouped within a single auction
-* Common in APIs, log files, and web applications
-* More compact and organized for data with repeating elements
-
-Unlike flat files, JSON allows us to store all related data in one object, without repeating fields. It’s human-readable, flexible, and widely used in real-world business data systems. 
-
-JSON (short for JavaScript Object Notation) stores data as a set of key-value pairs. Think of it like a list of labeled boxes—each label is the name of a variable, and inside each box is the value.
-
+JSON stores data as a set of key-value pairs. 
+Think of it like a list of labeled boxes — each label is the name of a variable, and inside each box is the value.
 In the context of our auction dataset, one auction might look like this in JSON format:
 
 ```json
-{
-  "item_id": "a001",
-  "title": "Vintage Coffee Table",
-  "category": "Furniture",
-  "seller": {
-    "user_id": "seller42",
-    "rating": 4.8
+[
+  {
+    "item_id": "AUC00000",
+    "title": "Samsung Galaxy S22",
+    "category": "Electronics",
+    "start_time": "2025-07-19T08:04:31.226153",
+    "end_time": "2025-07-20T08:04:31.226153",
+    "seller": {
+      "user_id": "pray",
+      "rating": 4.63,
+      "country": "AE"
+    },
+    "bids": [
+      {
+        "bidder_id": "istevens",
+        "amount": 94.61,
+        "time": "2025-07-19T10:41:31.226153"
+      },
+      {
+        "bidder_id": "mendozajasmine",
+        "amount": 97.73,
+        "time": "2025-07-19T13:27:31.226153"
+      },
+      {
+        "bidder_id": "james22",
+        "amount": 103.28,
+        "time": "2025-07-19T16:10:31.226153"
+      },
+      {
+        "bidder_id": "wnunez",
+        "amount": 119.04,
+        "time": "2025-07-19T16:34:31.226153"
+      }
+    ],
+    "final_price": 119.04,
+    "winner_id": "wnunez"
+  }
+]
+```
+
+Let's break it down:
+
+* The top-level keys (`item_id`, `title`, `category`) describe the auction itself.
+* The `seller` key contains a nested object with seller details.
+* The `bids` key holds a list of bid objects, each with its own bidder, amount, and time.
+
+This structure keeps all related information grouped together.
+That's (one of) the power(s) of JSON: it stores complex relationships without flattening the data.
+
+:::{.callout-note collapse=true}
+## JSON data does NOT have to be nested {.unnumbered}
+
+Just because JSON data can feature nesting structures does not mean that it has to.
+JSON data can have a flat structure.
+An example of a flat JSON dataset, that stores key value-pairs for two auctions is: 
+
+```json
+[
+  {
+    "item_id": "AUC10001",
+    "title": "Nike Air Force 1",
+    "category": "Fashion",
+    "start_time": "2025-08-15T09:00:00",
+    "end_time": "2025-08-17T09:00:00",
+    "seller_user_id": "alvarez",
+    "seller_rating": 4.87,
+    "seller_country": "US",
+    "final_price": 145.50,
+    "winner_id": "sophiaw"
   },
-  "bids": [
-    { "bidder_id": "user123", "amount": 120, "time": "2023-01-01 10:05" },
-    { "bidder_id": "user456", "amount": 130, "time": "2023-01-01 11:20" }
-  ]
-}
+  {
+    "item_id": "AUC10002",
+    "title": "LEGO Star Wars Millennium Falcon",
+    "category": "Toys & Games",
+    "start_time": "2025-08-20T14:30:00",
+    "end_time": "2025-08-22T14:30:00",
+    "seller_user_id": "zhangwei",
+    "seller_rating": 4.95,
+    "seller_country": "CN",
+    "final_price": 349.99,
+    "winner_id": "marklee"
+  }
+]
 ```
 
-Let’s break it down:
+Here the data is just a flat list of records, where each attribute sits side-by-side in a similar manner to a row of a flat file.
+:::
 
-* The top-level keys (item_id, title, category) describe the auction itself.
-* The seller key contains a nested object with seller details.
-* The bids key holds a list of bid objects, each with its own bidder, amount, and time.
+### Working with Nested JSON Auction Data in R {.unnumbered}
 
-This structure keeps all related information grouped together—no need to repeat the title or seller info for every bid like we did in the CSV file. That's (one of) the power(s) of JSON: it stores complex relationships without flattening the data.
+Next, we'll learn how to work with nested JSON data. 
+Each auction record includes top-level information (like item title and category), a nested list of seller information, and a **nested list of bids** placed by users.
+Our goal is to explore how to load and manipulate this nested structure using our tidyverse tools. We'll move step by step, from the raw JSON to a tidy dataset.
 
-ADD callout: JSON does not have to be nested!
+#### Step 1: Load the JSON File {.unnumbered}
 
-### Working with Nested JSON Auction Data in R
+We'll start by reading in the data using the `read_json()` function from the `jsonlite` package. This preserves the nested list structure exactly as it appears in the JSON file.
 
-In this section, we’ll learn how to work with nested JSON data. Each auction record includes top-level information (like item title and category), seller information, and a **nested list of bids** placed by users. This structure is very common in the real world—especially when dealing with data from APIs or web applications.
-
-Our goal is to explore how to load and manipulate this nested structure using tidyverse tools. We'll move step by step, from raw JSON to a tidy tibble.
-
-### Step 1: Load the JSON File
-We’ll start by reading in the data using the `read_json()` function from the `jsonlite` package. This preserves the nested list structure exactly as it appears in the JSON file.
-
-```r
+```{r}
+#| echo: false
+#| eval: true
 library(jsonlite)
-library(tibble)
-library(dplyr)
-library(tidyr)
 
-auctions_nested <- read_json("_extras/code/data_storage/output/ebay_auctions_large.json")
+auctions_nested <- read_json("../data/ebay_auctions.json")
+
 ```
 
-The object `auctions_nested` is a list of auction records. Each element in the list is a nested list with keys like `item_id`, `title`, `seller`, and `bids`.
+```{r}
+#| echo: true
+#| eval: false
+library(jsonlite)
 
+auctions_nested <- read_json("data/ebay_auctions.json")
 
-### Step 2: Peek Inside a Single Record
-Let’s take a closer look at the structure of the first auction.
-
-```r
-str(auctions_nested[[1]])
+typeof(auctions_nested)
 ```
 
-Try also inspecting individual components:
-```r
-auctions_nested[[1]]$item_id
-auctions_nested[[1]]$seller$user_id
+The object `auctions_nested` is a list of auction records. 
+
+#### Step 2: Peek Inside a Single Record {.unnumbered}
+
+Let's take a closer look at the structure of the first auction record.
+If we inspect the first element of the list, can see the keys associated with the auction:
+
+```{r}
+names(auctions_nested[[1]])
+```
+We look at one of the top-level lists, such as the `title` which stores the type of product being auctioned:
+
+```{r}
+auctions_nested[[1]]$title
+```
+
+And if wanted to peek into the one of the the keys that contains a nested object, such as `bids`, we can see the names of the keys inside the bids list:
+
+```{r}
+names(auctions_nested[[1]]$bids[[1]])
+```
+
+And if we wanted to see the amount bid:
+
+```{r}
 auctions_nested[[1]]$bids[[1]]$amount
 ```
 
-This is a good way to understand the JSON hierarchy before jumping into manipulation.
+Thus, what we see here is when we load the data into R using `read_json` the hierarchical structure is preserved.
 
-### Step 3: Wrap the List into a Tibble
-To start working with this in tidyverse pipelines, we’ll wrap the list of auctions into a tibble with one column:
+#### Step 3: Wrap the List into a Tibble {.unnumbered}
+To start working with this in tidyverse pipelines, we'll wrap the list of auctions into a tibble with one column:
 
-```r
+```{r}
 auctions_tbl <- tibble(record = auctions_nested)
 ```
 
-Each row of `auctions_tbl` now contains one full auction record.
+Each row of `auctions_tbl` now contains one full auction record:
 
-### Rectangling non-rectangular data
-
-you’ll learn the art of data rectangling: taking data that is fundamentally hierarchical, or tree-like, and converting it into a rectangular data frame made up of rows and columns. This is important because hierarchical data is surprisingly common, especially when working with data that comes from the web.
-
-CALLOUT ON R lists
-
-### Step 4: Unnest the Top-Level Fields
-
-
-
-We can begin flattening the nested structure one layer at a time using `unnest_wider()`:
-
-```r
-auctions_tbl <- auctions_tbl %>%
-  unnest_wider(record)
+```{r}
+head(auctions_tbl)
 ```
 
-Now we have columns like `item_id`, `title`, `category`, `seller`, and `bids`. Both `seller` and `bids` are still lists.
+and there are 1000 rows of auction data:
 
-When each row has the same number of elements with the same names, like XXX, it’s natural to put each component into its own column with unnest_wider():
+```{r}
+nrow(auctions_tbl)
+```
 
-```r
-auctions_tbl <- auctions_tbl %>%
-  unnest_wider(seller, names_sep = "_")
+#### Step 4: Rectangling non-rectangular data
+
+Now our task is to enagage in "data rectangling": taking data that is fundamentally hierarchical, or tree-like, and converting it into a rectangular data frame made up of rows and columns.
+To start rectangling the data, we want to take the top level keys from our JSON data and convert them to columns of data.
+We make this conversion by unnesting the lists we have stored in the `record` column, and making our data *wider*, thus the function we want to use is `unnest_wider()`.
+This process of removing hierarchy is also known as flattening the data.
+Let's do it:
+
+```{r}
+auctions_tbl <- 
+    auctions_tbl |> 
+    unnest_wider(record)
+
+glimpse(auctions_tbl)
+```
+
+Now we have columns like `item_id`, `title`, `category`, `seller`, and `bids`, and our data looks more rectangular than it did prior to this unnesting step. 
+However, both `seller` and `bids` are still lists, we need to engage in further flattening.
+
+When each row has the same number of elements with the same names, like with `seller`, it's natural to further widen the data and put each component into its own column with a second application of `unnest_wider()`.
+When we do, the new columns will have a two-part name, `seller-<SOMETHING>`, because we are unnesting a list from the seller column.
+The <SOMETHING> will be the name of each of the keys within the sublist.
+We will separate the two part name with an underscore:
+
+```{r}
+auctions_tbl <- 
+    auctions_tbl |> 
+    unnest_wider(seller, names_sep = "_")
+
+glimpse(auctions_tbl)
 ```
 
 Now seller information like `user_id` and `rating` is available as separate columns.
 
 
-### Step 5: Flattening the Bid Lists (Wide Format)
-What about the `bids` column? Each auction has its own list of bids, and each bid is a small list too. First, we can break it out into wide format:
+#### Step 5a: Flattening the Bid Lists to Columns {.unnumbered}
 
-```r
-auctions_tbl_wide <- auctions_tbl %>%
-  unnest_wider(bids, names_sep = "_")
+What about the `bids` column? 
+Each auction has its own list of bids, and each bid is a small list too. 
+A natural next step, given what we have done above would be to break it out into wide format:
+
+```{r}
+auctions_tbl_wide <- 
+    auctions_tbl |> 
+    unnest_wider(bids, names_sep = "_")
+
+glimpse(auctions_tbl_wide)    
 ```
 
-This gives us one column for each bid: `bids_1`, `bids_2`, etc.—but these are still lists. We can unnest them as well:
+This gives us one column for each bid: `bids_1`, `bids_2`, etc.
+But these are still lists. 
+We start to unnest them as well:
 
 ```r
-auctions_tbl_wide <- auctions_tbl_wide %>%
-  unnest_wider(bids_1, names_sep = "_", names_repair = "unique") %>%
-  unnest_wider(bids_2, names_sep = "_", names_repair = "unique")
+auctions_tbl_wide <- 
+    auctions_tbl_wide |> 
+    unnest_wider(bids_1, names_sep = "_", names_repair = "unique") %>%
+    unnest_wider(bids_2, names_sep = "_", names_repair = "unique")
 ```
 
-This gets tedious if there are many bids. So let’s automate it.
+This gets tedious if there are many bids (and tough if we didn't know the number of bids per auction). 
+This might suggest that continuing to widen the data is not the 'right' approach.
+As we've advocated throughout the book, when we have to manually repeat actions, the structure of the data we are working with, or trying to create, is likely not the most natural one.
+
+:::{.callout-tip collapse=true}
+## Continuing to widen the data {.unnumbered}
+
+Suppose you really wanted to keep widening the data via `unnest_wider()` even though the approach might now be first-best.
+How would we do it?
+We'd need to follow these steps:
+
+1. Determine the names of all the `bids_` columns, ideally in an automated way that R can do for us
+2. Apply a function that takes all of these column names in the `auctions_tbl_wide` data and apply `unnest_wider` on them.
+
+Here's how you can do that.
+It uses the `reduce()` function in Step 2 to apply a function iteratively that unnest's each of the columns we identified in the first.
 
 
-### Step 6: Automate the Unnesting of All Bid Columns
-Use this if you don’t know how many bids there will be ahead of time:
+```{r}
+# Step 1: Find all column names that 
+# we want to apply unnest_wider() to
+bid_cols <- 
+    auctions_tbl_wide |> 
+    select(starts_with("bids_")) |> 
+    select(where(is.list)) |> 
+    names()
 
-```r
-library(purrr)
+auctions_tbl_wide <- 
+    reduce(
+        bid_cols,
+        .init = auctions_tbl_wide,
+        .f = function(df, col) {
+            unnest_wider(df, 
+                         !!sym(col), 
+                         names_sep = "_", 
+                         names_repair = "unique"
+                         )
+            }
+    )
 
-bid_cols <- auctions_tbl_wide %>%
-  select(starts_with("bids_")) %>%
-  select(where(is.list)) %>%
-  names()
-
-auctions_tbl_wide <- reduce(
-  bid_cols,
-  .init = auctions_tbl_wide,
-  .f = function(df, col) {
-    unnest_wider(df, !!sym(col), names_sep = "_", names_repair = "unique")
-  }
-)
+glimpse(auctions_tbl_wide)
 ```
 
+Don't worry, we won't expect you to remember those steps. 
+That's a pretty advanced pipeline.
+But it shows this route can be pursued if need be.
 
-### Step 7: Unnesting to Long Format
-Discuss why the wider might not be what we wanted ...
+:::
 
-Instead of going wider, we can go longer. This means one row per bid:
 
-```r
-bids_long <- auctions_tbl %>%
-  unnest_longer(bids) %>%
-  unnest_wider(bids)
+#### Step 5b: Unnesting `bids` to new rows {.unnumbered}
+
+So far, our rectangling has made the data wider.
+But rectangles have two dimensions, width *and* length.
+Thus, instead of going wider, we can go longer. 
+This means we unnest the bids data into new rows, with each new row being one bid, via the `unnest_longer()` function.
+The beauty in this is that we do not need to know the number of new rows we need to create per auction:
+
+```{r}
+auctions_tbl_long <- 
+    auctions_tbl |> 
+    unnest_longer(bids) 
+
+glimpse(auctions_tbl_long)
 ```
 
-Now we have a tidy table where each row is a bid, including the item ID and other metadata. This is often easier to work with for analysis and looks very much like the CSV format!.
+Now we have a tidy table where each row is one bid and it includes the item ID and other metadata. 
+However, the bids column is still a list.
+But now each list is simply the of one bid. 
+We can unnest `bids` list wider, to get each of the bid's characteristics as new columns: 
 
-### Bonus: Nesting Back Again
+```{r}
+auctions_tbl_long <-
+    auctions_tbl_long |> 
+    unnest_wider(bids, names_sep = "_")
 
-Let’s reverse the process and group the bids back into a nested column:
-
-```r
-bids_renested <- bids_long %>%
-  select(item_id, bidder_id, amount, time) %>%
-  group_by(item_id) %>%
-  summarise(bids = list(cur_data()), .groups = "drop")
+glimpse(auctions_tbl_long)
 ```
+##  Databases with DuckDB
 
-> 💡 **Extension:** Compare `unnest_wider()` vs `unnest_longer()` strategies
+A huge amount of business data lives in databases, so it's important that you know how to access it.
+The reason lots of business data lives inside of a database, is that databases are efficient at storing the data and there is a widely used language, known as SQL (Structured Query Language), for performing data wrangling on databases. 
+Luckily for us, our knowlegde of R and the tidyverse in particular, means we have most of tools we need to work with data that lives in pre-existing databases.
+This is because the packages within the tidyverse know how to translate and run `dplyr` commands on a database.
+This means that once we know how to connect to a database, we can apply the knowledge from previous chapters to extract insights with relative ease.
+
+:::{.callout-tip collapse = true}
+## Database Management Systems {.unnumbered}
+
+Databases are run by database management systems (DBMS's for short), which come in three basic forms:
+
+ - Client-server DBMS's run on a powerful central server, which you connect to from your computer (the client). They are great for sharing data with multiple people in an organization. Popular client-server DBMS's include PostgreSQL, MariaDB, SQL Server, and Oracle.
+- Cloud DBMS's, like Snowflake, Amazon's RedShift, and Google's BigQuery, are similar to client server DBMS's, but they run in the cloud. This means that they can easily handle extremely large datasets and can automatically provide more compute resources as needed.
+- In-process DBMS's, like SQLite or duckdb, run entirely on your computer. They're great for working with large datasets where you're the primary user.
+
+:::
 
 
-> 💬 JSON teaches data structure thinking — objects, lists, hierarchies
+### Connecting to a database {.unnumbered}
 
----
+To connect to a database from R, you'll use a pair of packages:
 
-## 🗄️ 3. Databases (DuckDB)
+- `DBI` as a database interface
+- `duckdb` as database engine that stores and queries data in the database
 
-### Why databases?
+Whenever you work with a database in R, you'll always use `DBI` (database interface) because it provides a set of generic functions that connect to the database, upload data, and run  queries.
+`duckdb` is a high-performance database that's designed very much for the needs of a data scientist. We use it here because it's very easy to get started with, but it's also capable of handling gigabytes of data with great speed.
+Depending on your some specifics of the database you are looking to connect to, you may need to use a different engine.
+However, the the only difference between using duckdb and any other DBMS is how you'll connect to the database. 
+This makes it great to teach with because you can easily run this code as well as easily take what you learn and apply it elsewhere.
 
-A huge amount of data lives in databases, so it’s essential that you know how to access it.
+The database we want to connect to is the auctions data is located in the file `data/auctions.duckdb`. 
+We want to use the `duckdb` as the engine with which we interface with the data:
 
-- Efficient for large structured data
-- Use SQL to join/filter/aggregate
-
-TIP BOX
-
-Databases are run by database management systems (DBMS’s for short), which come in three basic forms:
-
- - Client-server DBMS’s run on a powerful central server, which you connect to from your computer (the client). They are great for sharing data with multiple people in an organization. Popular client-server DBMS’s include PostgreSQL, MariaDB, SQL Server, and Oracle.
-- Cloud DBMS’s, like Snowflake, Amazon’s RedShift, and Google’s BigQuery, are similar to client server DBMS’s, but they run in the cloud. This means that they can easily handle extremely large datasets and can automatically provide more compute resources as needed.
-- In-process DBMS’s, like SQLite or duckdb, run entirely on your computer. They’re great for working with large datasets where you’re the primary user.
-
-Our to dos:
-
-how to use it to connect to a database and then retrieve data 
-
-### Connecting to a database
-To connect to the database from R, you’ll use a pair of packages:
-
-You’ll always use DBI (database interface) because it provides a set of generic functions that connect to the database, upload data, run SQL queries, etc.
-
-You’ll also use a package tailored for the DBMS you’re connecting to. This package translates the generic DBI commands into the specifics needed for a given DBMS.
-
-we’ll instead use an in-process DBMS that lives entirely in an R package: duckdb. Thanks to the magic of DBI, the only difference between using duckdb and any other DBMS is how you’ll connect to the database. This makes it great to teach with because you can easily run this code as well as easily take what you learn and apply it elsewhere.
-
-Connecting to duckdb is particularly simple because the defaults create a temporary database that is deleted when you quit R. That’s great for learning because it guarantees that you’ll start from a clean slate every time you restart R:
-
-```r
-con <- DBI::dbConnect(duckdb::duckdb())
-```
-
-duckdb is a high-performance database that’s designed very much for the needs of a data scientist. We use it here because it’s very easy to get started with, but it’s also capable of handling gigabytes of data with great speed. 
-
-TIP 
-If you want to use duckdb for a real data analysis project, you’ll also need to supply the dbdir argument to make a persistent database and tell duckdb where to save it
-
-### DuckDB:
-
-#### DBI basics
-You can check that the data is loaded correctly by using a couple of other DBI functions: dbListTables() lists all tables in the database3 and dbReadTable() retrieves the contents of a table.
-
-```e
-dbListTables(con)
-#> [1] "diamonds" "mpg"
-
-con |> 
-  dbReadTable("diamonds") |> 
-  as_tibble()
-```
-
-```r
+```{r}
+#| eval: true
+#| echo: false
 library(DBI)
 library(duckdb)
-con <- dbConnect(duckdb(), "bids.duckdb")
-dbWriteTable(con, "bids", bids_long)
+
+con <- dbConnect(duckdb(), dbdir = "../data/auctions.duckdb")
 ```
 
-### `dbplyr`
+```{r}
+#| eval: false
+#| echo: true
+library(DBI)
+library(duckdb)
 
-Now that we’ve connected to a database and loaded up some data, we can start to learn about dbplyr. dbplyr is a dplyr backend, which means that you keep writing dplyr code but the backend executes it differently. In this, dbplyr translates to SQL;
+con <- dbConnect(duckdb(), dbdir = "data/auctions.duckdb")
 
-To use dbplyr, you must first use tbl() to create an object that represents a database table:
-
-```
-diamonds_db <- tbl(con, "diamonds")
-diamonds_db
-```
-
-This object is lazy; when you use dplyr verbs on it, dplyr doesn’t do any work: it just records the sequence of operations that you want to perform and only performs them when needed. For example, take the following pipeline:
-
-```
-big_diamonds_db <- diamonds_db |> 
-  filter(price > 15000) |> 
-  select(carat:clarity, price)
+print(con)
 ```
 
-You can tell this object represents a database query because it prints the DBMS name at the top, and while it tells you the number of columns, it typically doesn’t know the number of rows. This is because finding the total number of rows usually requires executing the complete query, something we’re trying to avoid.
+Great. Now we have a connection called `con`.
+As we move forward, we'll always have to use this connection to interact with the database.
+For example, if we want to see which tables of data are stored in our database, we can use the `dbListTables()` function:
 
-To get all the data back into R, you call collect(). Behind the scenes, this generates the SQL, calls dbGetQuery() to get the data, then turns the result into a tibble:
-
-``` r
-library(dplyr)
-bids_db <- tbl(con, "bids") %>% filter(category == "Books") %>% collect()
+```{r}
+dbListTables(con)
 ```
 
-How did that work? You can see the SQL code generated by the dplyr function show_query(). If you know dplyr, this is a great way to learn SQL! Write some dplyr code, get dbplyr to translate it to SQL, and then try to figure out how the two languages match up.
+Which shows we have three distinct tables of data stored. 
+This is kind of like what we had with our Excel spreadsheet, multiple sheets of data living inside one location.
+If we then want to look at the contents of each table, we can ask R to return to us a glimpse of one of the tables:
 
-Typically, you’ll use dbplyr to select the data you want from the database, performing basic filtering and aggregation using the translations described below. Then, once you’re ready to analyse the data with functions that are unique to R, you’ll collect() the data to get an in-memory tibble, and continue your work with pure R code.
+```{r}
+tbl(con, "bids") |> 
+    glimpse()
+```
+In the code above, we first had to use `tbl()` to create an object that represents a database table.
+Whenever we want to work with a table in the database, we will need to use the `tbl()` function with the connection `con` as its first argument.
+You can tell this object represents a database query because it prints the DBMS name at the top, and while it tells you information about each of of columns, it typically doesn't know the exact number of rows. 
+This object is lazy; and finding the total number of rows of a table stored in a database (or as the result of a set of data-wrangling tasks) could be (very) time consuming.
+Thus by default, we only see you a small preview of the data — a handful of rows along with the column definitions — while postponing the actual work of counting or retrieving everything until we explicitly ask for it.
 
-Now run some dplyr code including joins. Do exercises.
+:::{.callout-warning}
+## Closing Your Database connection
 
-> 💡 **Tip:** DuckDB works with flat files *and* Parquet — great for teaching SQL locally
+When you have finished working with your database, you should close the connection:
 
-TIP
-
-If you’ve finished this chapter and would like to learn more about SQL, we have two recommendations:
-
-SQL for Data Scientists by Renée M. P. Teate is an introduction to SQL designed specifically for the needs of data scientists, and includes examples of the sort of highly interconnected data you’re likely to encounter in real organizations.
-Practical SQL by Anthony DeBarros is written from the perspective of a data journalist (a data scientist specialized in telling compelling stories) and goes into more detail about getting your data into a database and running your own DBMS.
-
----
-
-## 📦 4. Parquet (Columnar Format)
-
-### Why Parquet?
-- Compressed, fast, and scalable
-- Ideal for analytics
-
-the parquet format, an open standards-based format widely used by big data systems.
-
-We’ll pair parquet files with Apache Arrow, a multi-language toolbox designed for efficient analysis and transport of large datasets. We’ll use Apache Arrow via the arrow package, which provides a dplyr backend allowing you to analyze larger-than-memory datasets using familiar dplyr syntax. As an additional benefit, arrow is extremely fast: you’ll see some examples later in the chapter.
-
-Opening a dataset
-Let’s start by taking a look at the data. At 9 GB, this file is large enough that we probably don’t want to load the whole thing into memory. A good rule of thumb is that you usually want at least twice as much memory as the size of the data, and many laptops top out at 16 GB. This means we want to avoid read_csv() and instead use the arrow::open_dataset():
-
-```r
-seattle_csv <- open_dataset(
-  sources = "data/seattle-library-checkouts.csv", 
-  col_types = schema(ISBN = string()),
-  format = "csv"
-)
+```{r}
+dbDisconnect(con)
 ```
 
-What happens when this code is run? open_dataset() will scan a few thousand rows to figure out the structure of the dataset. The ISBN column contains blank values for the first 80,000 rows, so we have to specify the column type to help arrow work out the data structure. Once the data has been scanned by open_dataset(), it records what it’s found and stops; it will only read further rows as you specifically request them. This metadata is what we see if we print seattle_csv:
+:::
 
-```r
-seattle_csv
-#> FileSystemDataset with 1 csv file
-#> UsageClass: string
-#> CheckoutType: string
-#> MaterialType: string
-#> CheckoutYear: int64
-#> CheckoutMonth: int64
-#> Checkouts: int64
-#> Title: string
-#> ISBN: string
-#> Creator: string
-#> Subjects: string
-#> Publisher: string
-#> PublicationYear: string
+### `dbplyr`: `dplyr` for databases {.unnumbered}
+
+Now that we've connected to a database and loaded up some data, we can start to wrangle with the data.
+Data wrangling with databases in the tidyverse uses a package called `dbplyr`. 
+`dbplyr` is a `dplyr` backend, which means that we keep writing `dplyr` code but behind the scenes executes it differently. 
+In our database, `dbplyr` translates the code to SQL - the language for operating on structured databases.
+
+Let's now complete a task that is all too familiar in this chapter, selecting all bids from the auction labelled `AUC0001`.
+The `dplyr` code that would do that for us is:
+
+```{r}
+bids_filtered <-
+    tbl(con, "bids") |>
+    filter(item_id == "AUC00001") 
+
+glimpse(bids_filtered)
 ```
 
-The first line in the output tells you that seattle_csv is stored locally on-disk as a single CSV file; it will only be loaded into memory as needed. The remainder of the output tells you the column type that arrow has imputed for each column.
+Hmmmm, nothing gets returned here.
+This comes back to the lazyness of the `tbl()` command. 
+If we want our code to be executed against the database, we have to add a `collect()` command as a final step:
 
-We can see what’s actually in with glimpse(). This reveals that there are ~41 million rows and 12 columns, and shows us a few values.
+```{r}
+bids_filtered <-
+    tbl(con, "bids") |>
+    filter(item_id == "AUC00001") |> 
+    collect()
 
-```r
-seattle_csv |> glimpse()
+glimpse(bids_filtered)
 ```
 
-We can see what’s actually in with glimpse(). This reveals that there are ~41 million rows and 12 columns, and shows us a few values.
+This matches what we had in previous sections, as expected.
 
-```r
-seattle_csv |> glimpse()
+:::{.callout-tip collapse=true}
+## What's happening behind the scenes? {.unnumbered}
+
+Behind the scenes, dplyr generates the SQL code that is equivalent to what we wrote, then calls `dbGetQuery()` to run the query against the database, then turns the result into a tibble.
+
+To see this, we can use `show_query()` to see the SQL version of our `dplyr` code:
+
+```{r}
+query <- 
+    tbl(con, "bids") |>
+    filter(item_id == "AUC00001")
+
+show_query(query)
 ```
 
-#### The parquet format
-To make this data easier to work with, let’s switch to the parquet file format and split it up into multiple files. The following sections will first introduce you to parquet and partitioning, and then apply what we learned to the Seattle library data.
+and then run that SQL query against the database: 
 
-Advantages of parquet
-Like CSV, parquet is used for rectangular data, but instead of being a text format that you can read with any file editor, it’s a custom binary format designed specifically for the needs of big data. This means that:
-
-Parquet files are usually smaller than the equivalent CSV file. Parquet relies on efficient encodings to keep file size down, and supports file compression. This helps make parquet files fast because there’s less data to move from disk to memory.
-
-Parquet files have a rich type system. As we talked about in Section 7.3, a CSV file does not provide any information about column types. For example, a CSV reader has to guess whether "08-10-2022" should be parsed as a string or a date. In contrast, parquet files store data in a way that records the type along with the data.
-
-Parquet files are “column-oriented”. This means that they’re organized column-by-column, much like R’s data frame. This typically leads to better performance for data analysis tasks compared to CSV files, which are organized row-by-row.
-
-Parquet files are “chunked”, which makes it possible to work on different parts of the file at the same time, and, if you’re lucky, to skip some chunks altogether.
-
-There’s one primary disadvantage to parquet files: they are no longer “human readable”, i.e. if you look at a parquet file using readr::read_file(), you’ll just see a bunch of gibberish.
-
-22.4.2 Partitioning
-As datasets get larger and larger, storing all the data in a single file gets increasingly painful and it’s often useful to split large datasets across many files. When this structuring is done intelligently, this strategy can lead to significant improvements in performance because many analyses will only require a subset of the files.
-
-There are no hard and fast rules about how to partition your dataset: the results will depend on your data, access patterns, and the systems that read the data. You’re likely to need to do some experimentation before you find the ideal partitioning for your situation. As a rough guide, arrow suggests that you avoid files smaller than 20MB and larger than 2GB and avoid partitions that produce more than 10,000 files. You should also try to partition by variables that you filter by; as you’ll see shortly, that allows arrow to skip a lot of work by reading only the relevant files.
-
-Let’s take a look at what we just produced:
-
-```r
-tibble(
-  files = list.files(pq_path, recursive = TRUE),
-  size_MB = file.size(file.path(pq_path, files)) / 1024^2
-)
-#> # A tibble: 18 × 2
-#>   files                            size_MB
-#>   <chr>                              <dbl>
-#> 1 CheckoutYear=2005/part-0.parquet    109.
-#> 2 CheckoutYear=2006/part-0.parquet    164.
-#> 3 CheckoutYear=2007/part-0.parquet    178.
-#> 4 CheckoutYear=2008/part-0.parquet    195.
-#> 5 CheckoutYear=2009/part-0.parquet    214.
-#> 6 CheckoutYear=2010/part-0.parquet    222.
-#> # ℹ 12 more rows
+```{r}
+dbGetQuery(con, "SELECT * FROM bids WHERE (item_id = 'AUC00001')")
 ```
 
-Our single 9GB CSV file has been rewritten into 18 parquet files. The file names use a “self-describing” convention used by the Apache Hive project. Hive-style partitions name folders with a “key=value” convention, so as you might guess, the CheckoutYear=2005 directory contains all the data where CheckoutYear is 2005. Each file is between 100 and 300 MB and the total size is now around 4 GB, a little over half the size of the original CSV file. This is as we expect since parquet is a much more efficient format.
+which yields exactly the same dataset.
+:::
 
-Using dplyr with arrow
-Now we’ve created these parquet files, we’ll need to read them in again. We use open_dataset() again, but this time we give it a directory:
+Typically, you'll use `dbplyr` to select the data you want from the database, performing basic filtering and aggregation using the translations described below. 
+Then, once you're ready to analyse the data with functions that are unique to R, you'll `collect()` the data to get an in-memory tibble, and (possibly) continue your work with pure R code.
 
-seattle_pq <- open_dataset(pq_path)
+To see this in action, let's wrangle the data in the database to produce a table very similar to the one we produced by flattening the JSON data.
 
-Now we can write our dplyr pipeline. For example, we could count the total number of books checked out in each month for the last five years:
+### Working with the Auctions database
 
-query <- seattle_pq |> 
-  filter(CheckoutYear >= 2018, MaterialType == "BOOK") |>
-  group_by(CheckoutYear, CheckoutMonth) |>
-  summarize(TotalCheckouts = sum(Checkouts)) |>
-  arrange(CheckoutYear, CheckoutMonth)
+To start to aggregate our data into one table, we can join the data in the `auctions` table to the seller information in `sellers`.
+We will do this using a `left_join()`.
+First let's look at each of the datasets structures to find a common variable to join on:
 
-Writing dplyr code for arrow data is conceptually similar to dbplyr, Chapter 21: you write dplyr code, which is automatically transformed into a query that the Apache Arrow C++ library understands, which is then executed when you call collect(). If we print out the query object we can see a little information about what we expect Arrow to return when the execution takes place:
-
-```r
-query
-#> FileSystemDataset (query)
-#> CheckoutYear: int32
-#> CheckoutMonth: int64
-#> TotalCheckouts: int64
-#> 
-#> * Grouped by CheckoutYear
-#> * Sorted by CheckoutYear [asc], CheckoutMonth [asc]
-#> See $.data for the source Arrow object
-```
-And we can get the results by calling collect():
-
-```r
-query |> collect()
-#> # A tibble: 58 × 3
-#> # Groups:   CheckoutYear [5]
-#>   CheckoutYear CheckoutMonth TotalCheckouts
-#>          <int>         <int>          <int>
-#> 1         2018             1         355101
-#> 2         2018             2         309813
-#> 3         2018             3         344487
-#> 4         2018             4         330988
-#> 5         2018             5         318049
-#> 6         2018             6         341825
-#> # ℹ 52 more rows
+```{r}
+tbl(con, "auctions") |> 
+    glimpse()
 ```
 
-Like dbplyr, arrow only understands some R expressions, so you may not be able to write exactly the same code you usually would. However, the list of operations and functions supported is fairly extensive and continues to grow; find a complete list of currently supported functions in ?acero.
+```{r}
+tbl(con, "sellers") |> 
+    glimpse()
+```
+So we can use `seller_user_id` as the common variable to join on:
 
-Performance
-Let’s take a quick look at the performance impact of switching from CSV to parquet. First, let’s time how long it takes to calculate the number of books checked out in each month of 2021, when the data is stored as a single large csv:
+```{r}
+auctions_sellers <-
+    tbl(con, "auctions") |>
+    left_join(tbl(con, "sellers"),
+                by = "seller_user_id")
+```
+Notice how we do not use a `collect()` statement, because we do not yet need to return the results.
+We only need the results once we join this data to the bids data.
+To join `auctions_sellers` to the bids data, we use the `item_id` as the common key:
 
-```r
-seattle_csv |> 
-  filter(CheckoutYear == 2021, MaterialType == "BOOK") |>
-  group_by(CheckoutMonth) |>
-  summarize(TotalCheckouts = sum(Checkouts)) |>
-  arrange(desc(CheckoutMonth)) |>
-  collect() |> 
-  system.time()
-#>    user  system elapsed 
-#>  11.951   1.297  11.387
+```{r}
+res <-
+    auctions_sellers |> 
+    left_join(tbl(con, "bids"),
+              by = "item_id") |> 
+    collect()
+
+glimpse(res)
+```
+Which has the same rows and columns as the rectangled data from the JSON file.
+
+
+## Wrap-up: Which Format Would You Use?
+
+```{r}
+#| echo: false
+dbDisconnect(con)
 ```
 
-Now let’s use our new version of the dataset in which the Seattle library checkout data has been partitioned into 18 smaller parquet files:
 
-```r
-seattle_pq |> 
-  filter(CheckoutYear == 2021, MaterialType == "BOOK") |>
-  group_by(CheckoutMonth) |>
-  summarize(TotalCheckouts = sum(Checkouts)) |>
-  arrange(desc(CheckoutMonth)) |>
-  collect() |> 
-  system.time()
-#>    user  system elapsed 
-#>   0.263   0.058   0.063
-```
+Now that we've seen four alternative data storage formats:
 
-The ~100x speedup in performance is attributable to two factors: the multi-file partitioning, and the format of individual files:
+1. Spreadsheets
+2. Flat Files
+3. JSON
+4. Databases
 
-Partitioning improves performance because this query uses CheckoutYear == 2021 to filter the data, and arrow is smart enough to recognize that it only needs to read 1 of the 18 parquet files.
-The parquet format improves performance by storing data in a binary format that can be read more directly into memory. The column-wise format and rich metadata means that arrow only needs to read the four columns actually used in the query (CheckoutYear, MaterialType, CheckoutMonth, and Checkouts).
-This massive difference in performance is why it pays off to convert large CSVs to parquet!
+which one do you think is best for the online auction data we have here? 
 
-####  Using duckdb with arrow
-There’s one last advantage of parquet and arrow — it’s very easy to turn an arrow dataset into a DuckDB database (Chapter 21) by calling arrow::to_duckdb():
-
-```r
-seattle_pq |> 
-  to_duckdb() |>
-  filter(CheckoutYear >= 2018, MaterialType == "BOOK") |>
-  group_by(CheckoutYear) |>
-  summarize(TotalCheckouts = sum(Checkouts)) |>
-  arrange(desc(CheckoutYear)) |>
-  collect()
-```
-
-### Partitioning example:
-```r
-library(arrow)
-write_dataset(bids_long, path = "bids_by_category", format = "parquet", partitioning = "category")
-```
-
-### Reading it efficiently:
-```r
-ds <- open_dataset("bids_by_category")
-books_bids <- ds %>% filter(category == "Books") %>% collect()
-```
-
-> 💡 **Extension:** Explain partition pruning and how it speeds up queries
-
----
-
-## 📊 5. Format Comparison
-
-| Format     | Structure      | Scale       | Best For                        | Limitation                    |
-|------------|----------------|-------------|----------------------------------|-------------------------------|
-| CSV        | Flat           | Medium      | Simple, readable data            | No types, no nesting          |
-| JSON       | Nested         | Small–Med   | APIs, logs, config               | Harder to analyze in R        |
-| SQL (DuckDB)| Relational    | Large       | Queries, joining datasets        | Needs setup or SQL            |
-| Parquet    | Columnar       | Huge        | Analytics, filtering             | Not human-readable            |
-| Excel      | Manual         | Small       | Fast edits and charts            | Not scalable or reproducible  |
-
-
-## 🔐 6. Best Practices for Storing & Sharing Data
-
-### ✅ Golden Rules
-- Use clear file/folder names
-- Document variables (data dictionary)
-- Secure access and backup regularly
-
-### 🧭 FAIR Principles (Tip Box)
-> **Findable**: Clear names and locations  
-> **Accessible**: Stored where people can get it  
-> **Interoperable**: Works in Excel, R, Python  
-> **Reusable**: Well-documented, no guesswork
-
-### 🔐 Privacy
-- HR and customer data require secure handling
-- Never leave sensitive data in shared drives
-
-### 🧱 Breaking Down Silos
-- Departments often keep separate versions of the truth
-- Well-organized, central storage enables business-wide insights
-
-
-## 🧠 Wrap-up Activity: Which Format Would You Use?
-
-> Choose one scenario:
-> - A retail dataset with 10M rows
-> - A survey with branching responses
-> - A time-stamped log from a website
->
-> Discuss which format fits and why.
+In the next chapter, rather than working with existing data we are going to explore one method of collecting new data called webscraping.
+We'll look to harvest data from websites and then store the information for future analysis.
