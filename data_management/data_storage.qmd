@@ -91,6 +91,19 @@ To load the spreadsheet data into R, we use the `readxl` package, which allows u
 
 ```{r}
 #| eval: true
+#| echo: false
+library(readxl)
+
+# Read a spreadsheet file
+auctions_excel <- read_excel("../data/ebay_auctions.xlsx")
+
+# Peek at the first few rows
+head(auctions_excel)
+```
+
+```{r}
+#| eval: false
+#| echo: true
 library(readxl)
 
 # Read a spreadsheet file
@@ -105,6 +118,19 @@ If we want to specify the sheet we want to load, we can do that as follows:
 
 ```{r} 
 #| eval: true
+#| echo: false
+# Read a specific sheet
+excel_bids <- read_excel("../data/ebay_auctions.xlsx", sheet = "bids")
+
+# Or use sheet number
+excel_bids <- read_excel("../data/ebay_auctions.xlsx", sheet = 2)
+
+head(excel_bids)
+```
+
+```{r} 
+#| eval: false
+#| echo: true
 # Read a specific sheet
 excel_bids <- read_excel("data/ebay_auctions.xlsx", sheet = "bids")
 
@@ -215,7 +241,7 @@ For our auction example this means there are 3 CSV files, one each for `auctions
 
 ```{bash}
 #| echo: false
-ls data/{auctions,bids,sellers}.csv
+ls ../data/{auctions,bids,sellers}.csv
 ```
 
 Because CSVs simply store raw information, we can see the content of the file when we open it in a text editor.
@@ -223,7 +249,7 @@ Here's what the first few lines of `bids.csv` looks like when opened in a text e
 
 ```{bash}
 #| echo: false
-head data/bids.csv
+head ../data/bids.csv
 ```
 We can see that we can view and read the data with our own eyes.
 As such flat files are easy to inspect manually.
@@ -241,7 +267,7 @@ If we tried to do the same thing, and view the first few lines of `ebay_auctions
 
 ```{bash}
 #| echo: false
-head data/ebay_auctions.xlsx
+head ../data/ebay_auctions.xlsx
 ```
 
 That's not so useful!
@@ -253,9 +279,19 @@ That's not so useful!
 In R, we can use the `readr` package to import flat files quickly and reliably. We can read this file into R using `read_csv()`. The first argument is the most important: the path to the file. You can think about the path as the address of the file: the file is called `bids.csv` and it lives in the `data` folder.
 
 ``` {r}
+#| echo: true
+#| eval: false
 library(readr)
 # Read a CSV file into a tibble
 bids_flat <- read_csv("data/bids.csv")
+```
+
+``` {r}
+#| echo: false
+#| eval: true
+library(readr)
+# Read a CSV file into a tibble
+bids_flat <- read_csv("../data/bids.csv")
 ```
 
 When you run `read_csv()`, it prints out a message telling you the number of rows and columns of data, the delimiter that was used, and the column specifications (names of columns organized by the type of data the column contains). 
@@ -272,7 +308,7 @@ The character that separates columns in a flat file is called a delimiter. Commo
 If we wanted to load the the file `bids.tsv` which uses Tab separated values:
 
 ```{bash}
-head data/bids.tsv
+head ../data/bids.tsv
 ```
 We would use the `read_delim()` function and specify that columns are tab separated:
 
@@ -290,11 +326,11 @@ The most important arguments to these functions are the data frame we want to sa
 Suppose we want to take the bids from `AUC0001` and save them in a CSV file `bids_auc0001.csv` located in the data directory:
 
 ```r
-auc0001_filtered <-
+auctions_filtered <-
     bids |> 
     filter(item_id == "AUC0001")
     
-write_csv(auc0001_filtered, "data/bids_auc0001.csv")
+write_csv(auctions_filtered, "data/bids_auc0001.csv")
 ```
 
 ## JSON Files: When rectangular data might not be enough
@@ -415,6 +451,17 @@ Our goal is to explore how to load and manipulate this nested structure using ou
 We'll start by reading in the data using the `read_json()` function from the `jsonlite` package. This preserves the nested list structure exactly as it appears in the JSON file.
 
 ```{r}
+#| echo: false
+#| eval: true
+library(jsonlite)
+
+auctions_nested <- read_json("../data/ebay_auctions.json")
+
+```
+
+```{r}
+#| echo: true
+#| eval: false
 library(jsonlite)
 
 auctions_nested <- read_json("data/ebay_auctions.json")
@@ -647,6 +694,16 @@ We want to use the `duckdb` as the engine with which we interface with the data:
 
 ```{r}
 #| eval: true
+#| echo: false
+library(DBI)
+library(duckdb)
+
+con <- dbConnect(duckdb(), dbdir = "../data/auctions.duckdb")
+```
+
+```{r}
+#| eval: false
+#| echo: true
 library(DBI)
 library(duckdb)
 
