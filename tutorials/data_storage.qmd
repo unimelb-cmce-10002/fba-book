@@ -1,0 +1,461 @@
+# Tutorial 6: Storing & Retrieving Data {.unnumbered}
+
+::: {.callout-tip}
+## Learning Goals {.unnumbered}
+
+By the end of this tutorial, you should be able to:
+
+* Apply tidyverse workflows across alternative data sources (CSV, JSON Lines, DuckDB) to wrangle, flatten, and join auction data into tidy tables suitable for analysis.
+
+* Analyze outcomes and telemetry by creating visuals and simple metrics (seller_focus, win_rate) to identify patterns that could indicate shill behaviour.
+:::
+
+## The Business Challenge: Identifying Shill Bidding
+
+Online auctions are big business. Platforms like eBay, Yahoo! Auctions, and specialist marketplaces connect millions of buyers and sellers every day. But with opportunity comes risk: not every bidder is playing fair.
+
+One form of fraud is called **shill bidding**. This happens when sellers (or their associates) secretly bid on their own items. The goal isn't to win the auction, but to drive up the price and trick genuine buyers into paying more than they otherwise would. Shill bidders might:
+
+- Place bids just high enough to outbid real customers, forcing them to keep bidding.
+- Use multiple accounts or devices to hide their identity.
+- Bid early and often to create the illusion of demand.
+
+For an auction platform, shill bidding creates serious problems:
+
+- It damages buyer trust, which can reduce participation and long-term revenue.
+- It raises legal and reputational risks if fraud is not detected.
+- It can distort the competitive landscape for honest sellers.
+
+Your task in this exercise is to step into the role of an analyst at an online auction company. You've been asked to examine bidding data and look for patterns that might indicate suspicious activity. To do this, you'll need to:
+
+1. Explore the auctions data provided in multiple formats (CSV, JSON, database).
+2. Use wrangling and visualization tools to spot differences between ordinary buyers and suspicious bidders.
+3. Interpret these patterns in business terms — would a manager at the auction platform be worried?
+
+## The Data: Auction Bids and Devices
+
+We'll be working with synthetic data that simulates an online auction platform. It comes in a few different formats:
+
+ - CSV / SQLite: structured data on auctions, bidders, bid amounts, and timestamps.
+- JSON: extra details about each bidder's activity, such as the devices or sessions they used.
+
+Together, these files let us see not just who is bidding and how much, but also how they are bidding — which can be a clue for spotting suspicious behavior.
+
+## The Method: Wrangling Data Across Backends
+
+In this tutorial, the focus isn't just on wrangling data — it's on seeing how the same tidyverse tools work across different backends. We'll be using:
+
+- `dplyr`: to filter, group, summarise, and join data.
+- `tidyr`: to reshape nested or messy data into tidy tables.
+
+You'll apply these verbs on top of different data sources:
+
+- Flat files (CSV)
+- Databases (SQLite)
+- Nested structures (JSON)
+
+The key idea is that once you know the tidyverse workflow, it carries over no matter where the data lives.
+
+```{r}
+#| message: false
+library(tidyverse) # Core tidyverse for wrangling and plotting
+library(patchwork) # Combine multiple plots
+library(jsonlite) # For reading JSON files
+library(DBI) # For working with databases
+library(duckdb) # for working with duckdb databases
+```
+
+## Prepare these Exercises before Class 
+
+Prepare these exercises before coming to class. Plan to spend 30 minutes on these exercises.
+
+### Exercise 1: Auction results baseline.
+
+**(a).** Read the CSV file located at `data/auction_results.csv` and examine its structure by completing the code below:
+
+```{r}
+#| eval: false
+# Load the data
+auction_results <-
+    YOUR_CODE("data/auction_results.csv")
+
+# Examine the structure
+YOUR_CODE(auction_results)
+```
+
+**(b)**. What does one row represent in the dataset? Which columns look most informative for understanding auction outcomes?
+
+**(c)**. Produce 3 plots using the starter code below:
+
+1. A histogram of `final_price`
+2. A histogram of `num_bids`
+3. A scatterplot of the relationship between `final_price` and `num_bids`.
+
+```{r}
+#| eval: false
+
+p1 <-
+    auction_results |>
+    ggplot() +
+    geom_histogram(aes(x = YOUR_CODE)) +
+    theme_minimal()
+
+p2 <-
+    auction_results |>
+    ggplot() +
+    YOUR_CODE(aes(x = YOUR_CODE), bins = YOUR_CODE) +
+    theme_minimal()
+
+p3 <-
+    auction_results |>
+    ggplot(aes(x = YOUR_CODE, y = YOUR_CODE)) +
+    YOUR_CODE() +
+    geom_smooth(method = "lm") +
+    theme_minimal()
+
+p1 / p2 / p3
+```
+
+**(d)**. Provide a short explanation of your findings from (c). Are there any patterns that are suggestive of shill bidding?
+
+**(e)**. Next, let's explore how certain auction outcomes vary across sellers. Complete the starter code below to produce summary statistics by seller:
+
+```{r}
+#| eval: false
+seller_profile <- 
+    auction_results |>
+    group_by(seller_id) |>
+    summarise(
+        n_auctions    = YOUR_CODE(),
+        median_price  = YOUR_CODE(final_price, na.rm = TRUE),
+        median_bids   = YOUR_CODE(num_bids, na.rm = TRUE),
+        share_missing_winner = YOUR_CODE(is.na(YOUR_CODE)) / n_auctions,
+        .groups = "drop"
+    ) |>
+    arrange(YOUR_CODE(n_auctions))
+```
+
+**(f)**. Based on the seller profiles in (e), are there any patterns suggestive of shill bidding? What further information would you need to confirm any suspicion?
+
+```{r}
+# Write your answer here
+```
+
+### Exercise 2: Digging Deeper into User Behaviour
+
+In Exercise 1, we built a market baseline from auction outcomes: prices, bid counts, and seller summaries. That showed us where to look, but not how those outcomes happened.
+Next, we'll bring in behavioral telemetry from a JSON file (devices/sessions). Using `dplyr`/`tidyr` verbs, we'll flatten the nested JSON and link it to our auctions so we can ask: who was active, on which devices, and how activity clustered around particular sellers.
+
+**(a)**. An example record in the JSON file `data/bids.jsonl` is as follows: 
+
+```json
+{
+  "auction_id": "A00001",
+  "bid_time": "2024-11-28T23:27:00Z",
+  "bidder": {
+    "id": "B00153",
+    "rating": 83,
+    "country": "AU"
+  },
+  "amount": 21.43,
+  "device": {
+    "os": "iOS",
+    "browser": "Firefox"
+  },
+  "auto_bid_flag": false,
+  "ip_address": "203.0.113.189"
+}
+```
+
+Explain the structure of this record in words (what's at the top level vs. what's nested, and what fields each nested object contains).
+
+**(b)**. Now let's load the data from the file `data/bids.jsonl` and examine the first two rows. Complete the starter code below and identify any nested columns:
+
+::: {.callout-tip collapse = "true"}
+## Streaming JSON has a different structure.
+
+This JSON file has a different structure than we saw in the reading and in the lecture.
+It's called streaming JSON (or sometimes "JSON Lines") — one complete JSON record per line, with no surrounding [] array and no commas between records.
+
+Think of it like a log file: one complete JSON record per line.
+(Regular JSON is often one big list: `[{...}, {...}, ...]`.)
+
+Why it's used: handles large files smoothly — you can read it line by line without loading everything.
+
+How to load in R: use `stream_in()` (not `read_json`()`).
+
+Common gotcha: don't add brackets or commas between lines; each line must be valid JSON on its own.
+
+:::
+
+```{r}
+#| eval: false
+bids_json <- stream_in(file("YOUR_FILE_NAME"))
+
+head(YOUR_DATA_SET, 2)
+```
+
+**(c)** Complete the code below to unnest the JSON data:
+
+```{r}
+#| eval: false
+bids_json <-
+    bids_json  |> 
+    unnest_wider(YOUR_VARIABLE, names_sep = "_") |> 
+    YOUR_FUNCTION(YOUR_VARIABLE, names_sep = "_") 
+
+```
+
+**(d)**. One piece of evidence pointing towards shill bidding is if multiple bidders are using the same IP address. Explain why this is the case, then complete the code below to isolate those instances.
+
+::: {.callout-tip collapse = "true"}
+What's an IP address (and why we care)?
+
+* Think of an IP address like a street address for a device on the internet. It helps websites know where to send data.
+
+* On most shared Wi-Fi (homes, offices, libraries), many people/devices can appear under the same public IP. So “same IP” ≠ “same person.”
+
+* IPs can change over time (dynamic addresses) and can be hidden/changed with VPNs — so they're imperfect identity signals.
+
+:::
+
+```{r}
+#| eval: false
+same_ip <-
+    bids_json |>
+    distinct(auction_id, ip_address, bidder_id) |>
+    count(YOUR_VARIABLE, YOUR_VARIABLE) |>
+    filter(YOUR_CONDITION) |>
+    arrange(desc(n)) 
+```
+
+**(e)**. Another possible sign of shill bidding could be auto-bidding. Explain when auto-bids could be signs of shill-bids versus legitimate behaviour. Complete the code below to measure the share of auto-bids per auction.
+
+::: {.callout-tip collapse = true}
+What is auto-bidding (proxy bidding)?
+
+* It's a feature where you set a maximum price you're willing to pay and the system bids for you automatically in small steps to keep you on top—without you watching the auction.
+
+* Why people use it: convenience and to avoid overbidding in the moment.
+
+* What it looks like in the data: a series of quick, incremental bids appearing from the same bidder as others place bids.
+
+Important: auto-bidding is normal. It's only review-worthy if you also see other flags (e.g., shared IPs, unusual timing patterns, repeated ties to the same seller).
+:::
+
+```{r}
+#| eval: false
+auto_bids <-
+    bids_json |>
+    group_by(auction_id) |>
+    summarise(
+        num_auto_bids = sum(YOUR_VARIABLE, na.rm = TRUE),
+        total_bids    = YOUR_FUNCTION(),
+        share_auto    = YOUR_VARIABLE / YOUR_VARIABLE
+    ) |>
+    arrange(desc(num_auto_bids))
+```
+
+**(f)** Let's combine the data on shared IP addresses and auto-bids into one data-frame. Complete the code below, and then identify any auctions that might have seen shill bidding. Explain your  answer. 
+
+```{r}
+#| eval: false
+# aggregate IP data to the auction level for easy join
+same_ip_auctions <-
+    same_ip |>
+    group_by(auction_id) |>
+    summarise(
+        n_shared_ips = n(),           # how many IPs in this auction were used by 2+ bidders
+        max_shared_n = max(n),        # largest number of bidders sharing a single IP
+        .groups = "drop"
+    )
+
+shill_signals <- 
+    YOUR_DATA |>
+    YOUR_FUNCTION(YOUR_DATA, by = "auction_id") |> 
+    arrange(desc(n_shared_ips), desc(share_auto))
+
+```
+
+```{r}
+# Write your answer here
+```
+
+## In-Class Exercises
+
+You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.
+
+### Exercise 3: Working with a Database
+
+Our next data source is a database so we can join tables at scale (bids, auctions, items, users, orders) and study relationships: who bids on whom, how concentrated that behaviour is, and whether it translates into wins. Using the same `dplyr` verbs on a database backend, we'll push work to the database and only `collect()` results when needed.
+
+::: {.callout-warning collapse=true}
+## Quarto gotcha: close your DuckDB connection before you Render {.unnumbered}
+
+Quarto renders your document in a fresh R session. If you opened a DuckDB connection in the Console (or earlier chunk) and leave it open, that session may lock the .duckdb file, causing errors like “database is locked” or “unable to open database file.”
+
+You can fix this by following one of these routes:
+
+* Manage the connection inside the document and close it at the end
+
+```{r}
+#| eval: false
+library(DBI); 
+library(duckdb)
+con <- dbConnect(duckdb(), dbdir = "data/auctions.duckdb")
+
+# ... your analysis ...
+
+dbDisconnect(con, shutdown = TRUE)
+```
+
+If you connected in the Console, run:
+
+```{r}
+#| eval: false
+dbDisconnect(con, shutdown = TRUE)
+```
+
+before clicking Render.
+
+(If you still see a lock—especially on Windows—restart R and render again.)
+:::
+
+**(a)**. Explain how a database differs from the CSV and JSON data types we have seen so far.
+
+**(b)**. Connect to the database stored in `data/auctions.duckdb` and list the tables present in it by completing the code below.
+
+```{r}
+#| eval: false
+con <- dbConnect(duckdb(), dbdir = "YOUR_FILENAME")
+
+dbListTables(YOUR_CODE)
+```
+
+**(c)** Find what information is present in each table by completing the code below. 
+
+```{r}
+#| eval: false
+
+tbl(con, "bids")       |> glimpse()
+tbl(con, "YOUR_TABLE") |> glimpse()
+tbl(con, "YOUR_TABLE") |> YOUR_FUNCTION()
+YOUR_FUNCTION(con, "YOUR_TABLE") |> YOUR_FUNCTION()
+YOUR_FUNCTION(YOUR_OBJECT, "YOUR_TABLE") |> YOUR_FUNCTION()
+```
+
+**(d)** For each bidder, count their total number of bids and the number of auctions they have particpated in by completing the code below. 
+
+```{r}
+#| eval: false
+bidder_activity <- 
+    tbl(con, "bids") |>
+    group_by(YOUR_VARIABLE) |>
+    YOUR_VARIABLE(
+        total_bids = YOUR_FUNCTION(),
+        auctions_participated = YOUR_FUNCTION(YOUR_VARIABLE),
+        .groups = "drop"
+    ) |>
+    collect()
+
+```
+
+**(e)** A colleague suggests that you look at links between buyers and sellers. We will want to see how often does the same bidder bid against the same seller, and across how many auctions. Why might these metrics useful for identifying possible shill bidding behaviour and could they be suggestive of something more innocent?
+
+**(f)**. We'll go a slightly different route and instead compute the share of one bidder's bids that go to their top seller. Is there an advantage to this versus your colleagues suggestion in (e)?
+
+**(g)** Complete the code below to compute the share of one bidder's bids that go to their top seller. Note that there are many small steps to achieve this goal. Think through why each is necessary
+
+```{r}
+#| eval: false
+# Step 1: rename to make easier to track
+bids <- 
+    tbl(con, "bids") |>
+    rename(bidder_id = user_id)
+
+# Step 2: Link bids to the seller who's 
+#         auction they are participating in
+#
+# Note: here we are selecting the min. number of columns
+#       we need to keep
+bids_items <- 
+    bids |>
+    left_join(tbl(con, "auctions") |> 
+                  select(auction_id, item_id),
+                by = "auction_id") |>
+    left_join(tbl(con, "items")    |> 
+                  select(item_id, seller_id),
+                by = "item_id")
+
+# Step 3: How many bids does a bidder make in total?
+total_bids_per_bidder <- 
+    bids_items |>
+    YOUR_FUNCTION(bidder_id, name = "total_bids")
+
+# Step 4: How many bids does a bidder make to each seller?
+bidder_seller_bids <- 
+    bids_items |>
+    YOUR_FUNCTION(YOUR_VARIABLE, YOUR_VARIABLE, name = "bids_to_seller")
+
+# Find the highest concentration a bidder bids go to one seller
+concentration <- 
+    YOUR_DATASET |>
+    YOUR_FUNCTION(YOUR_DATASET, 
+              by = "bidder_id") |>
+    mutate(seller_share = YOUR_VARIABLE / YOUR_VARIABLE) |>
+    group_by(bidder_id) |> 
+    slice_max(seller_share, n = 1) |> 
+    collect()
+```
+
+**(h)** Do any of these bid concentration ratios appear "too high"? Identify a set of bidders whose behaviour you want to explore more closely. Explain your decision making strategy here.
+
+**(i)** Why might possible shill bidder's share of bids to one seller be an intermediate value, like 20 - 30 percent, rather than over 50%?
+
+**(j)** Concentrating one's bidding to a given seller is likely not enough. People who shill bid do not want to win the auction. Calculate how often the bidders win the auctions they participate in. 
+
+```{r}
+#| eval: false
+
+# Step 1: winners per auction
+winners <- 
+    tbl(con, "orders") |>
+    select(auction_id, winner_id)
+
+# Step 2: distinct auctions each bidder joined
+bidder_auctions <- 
+    bids_items |>
+    YOUR_FUNCTION(bidder_id, auction_id)
+
+# Step 3: join winners and compute win_rate
+win_rates <- 
+    bidder_auctions |>
+    YOUR_FUNCTION(winners, by = "auction_id") |>
+    mutate(won = bidder_id == winner_id) |>
+    group_by(bidder_id) |>
+    summarise(
+        auctions_participated = YOUR_FUNCTION(),
+        auctions_won          = YOUR_FUNCTION(YOUR_VARIABLE, na.rm = TRUE),
+        .groups = "drop"
+    ) |>
+    mutate(win_rate = YOUR_VARIABLE / YOUR_VARIABLE) |> 
+    collect()
+
+```
+
+**(k)**. Join the `win_rate` data to the `concentration` data and save the combined dataset to a file `data/shill_metrics.csv`.
+
+```{r}
+#| eval: false
+shill_metrics <-
+    YOUR_DATASET |> 
+    YOUR_FUNCTION(YOUR_DATASET, by = "bidder_id")
+
+YOUR_FUNCTION(YOUR_DATASET, "data/shill_metrics.csv")
+```
+
+**(l)**. Create a scatter plot that shows the relationship between `win_rate` and `seller_share`. Are there any regions in this plot that are indicative of shill bidding?
+
+**(m)** (Optional, if time). Propose an alternative way to use the `win_rate` and `concentration` data, along with any other data you have access to in the exercise to identify possible shill bidders. Explain why your method works. You can explain your method intuitively, you do not need to code a solution.
+
+
