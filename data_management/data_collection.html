@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.22">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,15 +69,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../data_management/data_storage.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-08a17407ac8bdf6ef4986fac9a905031.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6f77e067621728e8e5d8b75f5607b6c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -133,9 +132,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Foundations of Business Analytics</a> 
     </div>
@@ -273,6 +270,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Tutorial 5: Shaping and Joining Data for Business Analytics</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 6: Storing &amp; Retrieving Data</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -288,23 +291,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge"><span class="header-section-number">8.1</span> The Business Challenge</a></li>
   <li><a href="#structured-semi-structured-and-unstructured-data" id="toc-structured-semi-structured-and-unstructured-data" class="nav-link" data-scroll-target="#structured-semi-structured-and-unstructured-data"><span class="header-section-number">8.2</span> Structured, Semi-structured, and Unstructured Data</a>
   <ul class="collapse">
-  <li><a href="#structured-data" id="toc-structured-data" class="nav-link" data-scroll-target="#structured-data"><span class="header-section-number">8.2.1</span> Structured Data</a></li>
-  <li><a href="#unstructured-data" id="toc-unstructured-data" class="nav-link" data-scroll-target="#unstructured-data"><span class="header-section-number">8.2.2</span> Unstructured Data</a></li>
-  <li><a href="#semi-structured-data" id="toc-semi-structured-data" class="nav-link" data-scroll-target="#semi-structured-data"><span class="header-section-number">8.2.3</span> Semi-Structured Data</a></li>
+  <li><a href="#structured-data" id="toc-structured-data" class="nav-link" data-scroll-target="#structured-data">Structured Data</a></li>
+  <li><a href="#unstructured-data" id="toc-unstructured-data" class="nav-link" data-scroll-target="#unstructured-data">Unstructured Data</a></li>
+  <li><a href="#semi-structured-data" id="toc-semi-structured-data" class="nav-link" data-scroll-target="#semi-structured-data">Semi-Structured Data</a></li>
   </ul></li>
   <li><a href="#getting-data-using-application-program-interface-api" id="toc-getting-data-using-application-program-interface-api" class="nav-link" data-scroll-target="#getting-data-using-application-program-interface-api"><span class="header-section-number">8.3</span> Getting Data Using Application Program Interface (API)</a>
   <ul class="collapse">
-  <li><a href="#definitions-of-api" id="toc-definitions-of-api" class="nav-link" data-scroll-target="#definitions-of-api"><span class="header-section-number">8.3.1</span> Definitions of API</a></li>
-  <li><a href="#advantages-of-apis" id="toc-advantages-of-apis" class="nav-link" data-scroll-target="#advantages-of-apis"><span class="header-section-number">8.3.2</span> Advantages of APIs</a></li>
-  <li><a href="#workflow-of-using-apis-to-acquire-data" id="toc-workflow-of-using-apis-to-acquire-data" class="nav-link" data-scroll-target="#workflow-of-using-apis-to-acquire-data"><span class="header-section-number">8.3.3</span> Workflow of Using APIs to Acquire Data</a></li>
+  <li><a href="#definitions-of-api" id="toc-definitions-of-api" class="nav-link" data-scroll-target="#definitions-of-api">Definitions of API</a></li>
+  <li><a href="#advantages-of-apis" id="toc-advantages-of-apis" class="nav-link" data-scroll-target="#advantages-of-apis">Advantages of APIs</a></li>
+  <li><a href="#workflow-of-using-apis-to-acquire-data" id="toc-workflow-of-using-apis-to-acquire-data" class="nav-link" data-scroll-target="#workflow-of-using-apis-to-acquire-data">Workflow of Using APIs to Acquire Data</a></li>
   </ul></li>
   <li><a href="#website-scraping" id="toc-website-scraping" class="nav-link" data-scroll-target="#website-scraping"><span class="header-section-number">8.4</span> Website Scraping</a>
   <ul class="collapse">
-  <li><a href="#website-basics" id="toc-website-basics" class="nav-link" data-scroll-target="#website-basics"><span class="header-section-number">8.4.1</span> Website Basics</a></li>
-  <li><a href="#website-scraping-workflow" id="toc-website-scraping-workflow" class="nav-link" data-scroll-target="#website-scraping-workflow"><span class="header-section-number">8.4.2</span> Website Scraping Workflow</a></li>
-  <li><a href="#pros-and-cons-of-web-scraping" id="toc-pros-and-cons-of-web-scraping" class="nav-link" data-scroll-target="#pros-and-cons-of-web-scraping"><span class="header-section-number">8.4.3</span> Pros and Cons of Web Scraping</a></li>
-  <li><a href="#more-advanced-web-scraping" id="toc-more-advanced-web-scraping" class="nav-link" data-scroll-target="#more-advanced-web-scraping"><span class="header-section-number">8.4.4</span> More Advanced Web Scraping</a></li>
-  <li><a href="#ethics-of-web-scraping" id="toc-ethics-of-web-scraping" class="nav-link" data-scroll-target="#ethics-of-web-scraping"><span class="header-section-number">8.4.5</span> Ethics of Web Scraping</a></li>
+  <li><a href="#website-basics" id="toc-website-basics" class="nav-link" data-scroll-target="#website-basics">Website Basics</a></li>
+  <li><a href="#website-scraping-workflow" id="toc-website-scraping-workflow" class="nav-link" data-scroll-target="#website-scraping-workflow">Website Scraping Workflow</a></li>
+  <li><a href="#pros-and-cons-of-web-scraping" id="toc-pros-and-cons-of-web-scraping" class="nav-link" data-scroll-target="#pros-and-cons-of-web-scraping">Pros and Cons of Web Scraping</a></li>
+  <li><a href="#more-advanced-web-scraping" id="toc-more-advanced-web-scraping" class="nav-link" data-scroll-target="#more-advanced-web-scraping">More Advanced Web Scraping</a></li>
+  <li><a href="#ethics-of-web-scraping" id="toc-ethics-of-web-scraping" class="nav-link" data-scroll-target="#ethics-of-web-scraping">Ethics of Web Scraping</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -337,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Learning Goals
+Learning Goals
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -345,9 +348,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Distinguish structured, semi-structured, and unstructured data</li>
 <li>Explain intuitively the differences between user interface and application program interface (API)</li>
-<li>Appreciate the advantages of APIs and apply established APIs to acquire data</li>
+<li>List the advantages of APIs as a means to collect data and apply use APIs to acquire data</li>
 <li>Know the basic procedures of website scraping</li>
-<li>Understand the ethics of web scrapingh</li>
+<li>Understand the ethics of web scraping</li>
 </ul>
 </div>
 </div>
@@ -365,8 +368,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Unstructured data</li>
 <li>Semi-structured data</li>
 </ul>
-<section id="structured-data" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="structured-data"><span class="header-section-number">8.2.1</span> Structured Data</h3>
+<section id="structured-data" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="structured-data">Structured Data</h3>
 <p><strong>Structured data</strong>, as the name suggests, refers to highly organized data that follows a predefined schema. It is stored in formats such as relational databases, spreadsheets, and CSV files, where every piece of data is clearly defined and fits into a particular row and column. Most data that we have worked with so far in this subject belongs to this category.</p>
 <p>A well-defined structure for data often consists of:</p>
 <ul>
@@ -381,7 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Examples
+Examples
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -394,8 +397,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Structured data’s strength lies in its precision and reliability. However, it is also limited in scope and volume. Many real-world data and information, such as consumer opinions, video content, or machine logs, cannot be easily captured in neat rows and columns.</p>
 </section>
-<section id="unstructured-data" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="unstructured-data"><span class="header-section-number">8.2.2</span> Unstructured Data</h3>
+<section id="unstructured-data" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="unstructured-data">Unstructured Data</h3>
 <p>In reality, structured data represents only a small fraction of all data. As predicted by International Data Corporation (IDC) and Seagate, the global data endowment will continue growing exponentially and reach 163 zettabytes (i.e., 1 trillion gigabytes) by the end of 2025, and among all data, more than 80% is unstructured.</p>
 <p><strong>Unstructured data</strong>, in stark contrast to structured data, lacks a fixed or consistent schema. It is generated in diverse formats and is often messy, irregular, or context-dependent. Broadly speaking, all information that we generate, unless it comes with predefined structures, belongs to unstructured data. Unlike structured data, it cannot be easily represented in tables of rows and columns.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -404,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Examples
+Examples
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -446,8 +449,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="semi-structured-data" class="level3" data-number="8.2.3">
-<h3 data-number="8.2.3" class="anchored" data-anchor-id="semi-structured-data"><span class="header-section-number">8.2.3</span> Semi-Structured Data</h3>
+<section id="semi-structured-data" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="semi-structured-data">Semi-Structured Data</h3>
 <p>Between these two extremes is <strong>semi-structured data</strong>. Different from structured data, semi-structured data does not fit neatly into tables, but it still carries markers or tags that provide some structure. Compared with purely unstructured data, semi-structured data has a flexible but interpretable format.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -455,7 +458,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Examples
+Examples
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -468,12 +471,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Summary">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Summary
+Summary
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -493,7 +496,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Remark
+Remark
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -513,8 +516,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The request for a book is the message your program sends to the API</li>
 <li>The book the librarian brings back is the data or service the API provides</li>
 </ul>
-<section id="definitions-of-api" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="definitions-of-api"><span class="header-section-number">8.3.1</span> Definitions of API</h3>
+<section id="definitions-of-api" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="definitions-of-api">Definitions of API</h3>
 <p>Technically speaking, <strong>Application program interface (API)</strong> builds a “connection” between computer and computer programs and specifies a standard set of rules or procedures that an application program will do. This is in contrast to <strong>user interfaces (UI)</strong> where users directly interact with computers or programs.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -522,7 +525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Example: Uber’s Usage of Google Map API
+Example: Uber’s Usage of Google Map API
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -533,8 +536,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="advantages-of-apis" class="level3" data-number="8.3.2">
-<h3 data-number="8.3.2" class="anchored" data-anchor-id="advantages-of-apis"><span class="header-section-number">8.3.2</span> Advantages of APIs</h3>
+<section id="advantages-of-apis" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="advantages-of-apis">Advantages of APIs</h3>
 <p>Nowadays, many data providers set up APIs as a preferred way to provide data to data users, and there are several advantages of doing so:</p>
 <ul>
 <li><strong>Controlled Access.</strong> APIs allow data providers to share only selected data or functions, rather than giving users full access to internal systems and data servers. This helps protect sensitive data and system integrity.</li>
@@ -543,25 +546,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Usage Tracking and Monetization.</strong> APIs make it easy to monitor who is using the data and how often. This opens up possibilities for charging based on usage or offering premium tiers.</li>
 </ul>
 </section>
-<section id="workflow-of-using-apis-to-acquire-data" class="level3" data-number="8.3.3">
-<h3 data-number="8.3.3" class="anchored" data-anchor-id="workflow-of-using-apis-to-acquire-data"><span class="header-section-number">8.3.3</span> Workflow of Using APIs to Acquire Data</h3>
+<section id="workflow-of-using-apis-to-acquire-data" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="workflow-of-using-apis-to-acquire-data">Workflow of Using APIs to Acquire Data</h3>
 <p>Most APIs are user-friendly because the rules and protocols of data acquisition have already been set up by data providers. Although every API may differ significantly from the other in many ways. Standard workflow still applies to the usage of APIs.</p>
 <p>We are going to use the “Music to Scrape” website (https://music-to-scrape.org/) to walk through the usage of APIs.</p>
-<section id="read-user-manuals" class="level4" data-number="8.3.3.1">
-<h4 data-number="8.3.3.1" class="anchored" data-anchor-id="read-user-manuals"><span class="header-section-number">8.3.3.1</span> Read User Manuals</h4>
+<section id="read-user-manuals" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="read-user-manuals">Read User Manuals</h4>
 <p>APIs are structured differently for different functions and needs. In practice, every API may have its own predefined functions and specific requirements for inputs and outputs. Therefore, it is rather important to carefully read through API user manuals before starting using it. Additionally, data providers often provide detailed user manuals and sample program for their APIs. As a user, it would be useful to go through these materials (if available).</p>
 </section>
-<section id="obtaining-api-key" class="level4" data-number="8.3.3.2">
-<h4 data-number="8.3.3.2" class="anchored" data-anchor-id="obtaining-api-key"><span class="header-section-number">8.3.3.2</span> Obtaining API Key</h4>
+<section id="obtaining-api-key" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="obtaining-api-key">Obtaining API Key</h4>
 <p>In many cases, the access to APIs is limited - you need to get an <strong>API key</strong> so that you can use the API. We can think API key as the log-in credentials for programs. Data providers can use API keys to track the download and the usage of data and prevent unwarranted access to their data.</p>
 <p>For the simple website we are working on, there is no need to obtain an API key. In the workshop, we are going to apply for a free API key from the <strong>Federal Reserve Economic Data (FRED)</strong>.</p>
 </section>
-<section id="using-apis" class="level4" data-number="8.3.3.3">
-<h4 data-number="8.3.3.3" class="anchored" data-anchor-id="using-apis"><span class="header-section-number">8.3.3.3</span> Using APIs</h4>
+<section id="using-apis" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="using-apis">Using APIs</h4>
 <p>Before proceed with programming, we always start by reading API manuals carefully (https://api.music-to-scrape.org/docs). We are going to follow the example provided by the website to extract top-tracts for Week 42 of 2023.</p>
 <p>The <code>httr</code> package in R is used for working with APIs. It provides tools that let your R program send requests to websites or servers and receive data in return. Note that, not all APIs use <code>httr</code>. You need to follow closely to the user manual of the API that you are using.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required library</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required library</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -591,7 +594,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># View the resulting song data</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(song_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(song_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -600,8 +603,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="8.4" class="anchored" data-anchor-id="website-scraping"><span class="header-section-number">8.4</span> Website Scraping</h2>
 <p>It may not always be feasible to obtain data from well-structured databases or APIs. In fact, plenty of useful data could be from unstructured sources. These data could be from newspapers, surveys,</p>
 <p>Sometimes, we may be interested in the data and information on websites and would like to obtain these data in a batch. <strong>Website scraping</strong> is the technique that allows us to do so.</p>
-<section id="website-basics" class="level3" data-number="8.4.1">
-<h3 data-number="8.4.1" class="anchored" data-anchor-id="website-basics"><span class="header-section-number">8.4.1</span> Website Basics</h3>
+<section id="website-basics" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="website-basics">Website Basics</h3>
 <p>Websites are one of the most important sources for us to obtain data that are not available from structured databases. For example, we may be interested in It may not be difficult for us to manually copy and paste inforamtion and data from websites if we are dealing with a small number of data points</p>
 <p>HTML (Hypertext Markup Language) is the programming language used for building up a website. It defines how each website is displayed and presented on website browsers. Basic knowledge of HTML would help us understand website structures and master basic techniques for website scraping. Note that the technical details of HTML is not required for this subject.</p>
 <p>Although websites appear very different from each other - some websites are full of fancy animation and decorations, while others are plain and simple, they are constructed using the same set of building blocks, HTML elements. HTML use a standard set of tags to identify each HTML element on a website (sections, divisions, headings of different levels, paragraphs, image blocks etc.). As these tags are standardized across different websites, we are able to extract the contents</p>
@@ -654,8 +657,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     &lt;/section&gt;
   &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-<section id="html-tags-and-elements" class="level4" data-number="8.4.1.1">
-<h4 data-number="8.4.1.1" class="anchored" data-anchor-id="html-tags-and-elements"><span class="header-section-number">8.4.1.1</span> HTML Tags and Elements</h4>
+<section id="html-tags-and-elements" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="html-tags-and-elements">HTML Tags and Elements</h4>
 <p>HTML documents are simply semi-structured data. HTML documents use “tags” to wrap and identify contents. These tags are the fundamental building blocks of a webpage’s structure. Tags (often come in pairs) tell the browser what each element is and how it should be organized.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -663,7 +666,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Example
+Example
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -692,11 +695,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="website-scraping-workflow" class="level3" data-number="8.4.2">
-<h3 data-number="8.4.2" class="anchored" data-anchor-id="website-scraping-workflow"><span class="header-section-number">8.4.2</span> Website Scraping Workflow</h3>
+<section id="website-scraping-workflow" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="website-scraping-workflow">Website Scraping Workflow</h3>
 <p>We are going to work on a website, https://music-to-scrape.org, to learn basic website scraping techniques and walk through the basic procedures. This practice, however, is by no means a sophisticated way of web scraping nor can it be directly used on other websites.</p>
-<section id="understand-the-website-structure" class="level4" data-number="8.4.2.1">
-<h4 data-number="8.4.2.1" class="anchored" data-anchor-id="understand-the-website-structure"><span class="header-section-number">8.4.2.1</span> Understand the Website Structure</h4>
+<section id="understand-the-website-structure" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="understand-the-website-structure">Understand the Website Structure</h4>
 <p>As a preparation for website scraping, we are going to first get a basic sense of the HTML document of the website.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -705,8 +708,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </section>
-<section id="locate-the-contents" class="level4" data-number="8.4.2.2">
-<h4 data-number="8.4.2.2" class="anchored" data-anchor-id="locate-the-contents"><span class="header-section-number">8.4.2.2</span> Locate the Contents</h4>
+<section id="locate-the-contents" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="locate-the-contents">Locate the Contents</h4>
 <p>We need to locate the contents that we want to scrape in the HTML document. An HTML document is basically semi-structured data with tags labeling contents of a website. Hence, what we need to do is to locate the contents and identify the tags labeling the contents.</p>
 <p>For most mainstream browsers (e.g., Google Chrome, Firefox, and Microsoft Edge), we can view the HTML code of websites under the “developer mode” (or similar).</p>
 <p>Additionally, we can use the <strong>inspection</strong> function to locate the contents of our interest in HTML file. For example, if we are interested in obtaining the names of song writers/singers under “Top 15 Weekly Tracks” from https://music-to-scrape.org, we can select the song name and use right click in Google Chrome to inspect the HTML file:</p>
@@ -729,11 +732,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>We can locate “Gabriel Yared” uniquely by following the hierarchy of the HTML document: <code>&lt;a&gt;</code>, <code>&lt;h5&gt;</code>, and lastly <code>&lt;b&gt;</code>.</p></li>
 </ul>
 </section>
-<section id="scrape-the-contents" class="level4" data-number="8.4.2.3">
-<h4 data-number="8.4.2.3" class="anchored" data-anchor-id="scrape-the-contents"><span class="header-section-number">8.4.2.3</span> Scrape the Contents</h4>
+<section id="scrape-the-contents" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="scrape-the-contents">Scrape the Contents</h4>
 <p>After locating the contents and identifying the tags, we use the following program to scrape the information we need from the website.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the necessary libraries</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the necessary libraries</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -749,7 +752,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="st">'a'</span>) <span class="sc">%&gt;%</span> <span class="co"># Get to the elements to be scraped through the HTML hierarchy</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_element</span>(<span class="st">'h5'</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_element</span>(<span class="st">'b'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_text</span>() <span class="co">#Grab the text from the selected contents</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_text</span>() <span class="co">#Grab the text from the selected contents</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -757,7 +760,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><code>html_element()</code> and <code>html_elements()</code>
+<code>html_element()</code> and <code>html_elements()</code>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -796,7 +799,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li></li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the URL of the website</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the URL of the website</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://music-to-scrape.org"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the HTML code of the website into R</span></span>
@@ -817,7 +820,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">songs =</span> data[<span class="fu">seq</span>(<span class="dv">2</span>, <span class="fu">length</span>(data), <span class="dv">2</span>)]</span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(song_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(song_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -825,7 +828,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><code>seq()</code> in R
+<code>seq()</code> in R
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -843,7 +846,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>We need to use “Inspect” function on your browser to locate the contents in the HTML file and modify the program accordingly. Note that you need to change the sections to be scraped in this exercise.</li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the URL of the website</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the URL of the website</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://music-to-scrape.org"</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the HTML code of the website into R</span></span>
@@ -858,13 +861,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="st">'h5'</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_text</span>() <span class="co">#Grab the text from the selected contents</span></span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(active_users)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(active_users)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 </section>
-<section id="pros-and-cons-of-web-scraping" class="level3" data-number="8.4.3">
-<h3 data-number="8.4.3" class="anchored" data-anchor-id="pros-and-cons-of-web-scraping"><span class="header-section-number">8.4.3</span> Pros and Cons of Web Scraping</h3>
+<section id="pros-and-cons-of-web-scraping" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="pros-and-cons-of-web-scraping">Pros and Cons of Web Scraping</h3>
 <p>Collecting data through website scraping has pros and cons.</p>
 <p>Pros:</p>
 <ul>
@@ -879,8 +882,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Inconsistent data quality, requires additional work to clean up collected data.</li>
 </ul>
 </section>
-<section id="more-advanced-web-scraping" class="level3" data-number="8.4.4">
-<h3 data-number="8.4.4" class="anchored" data-anchor-id="more-advanced-web-scraping"><span class="header-section-number">8.4.4</span> More Advanced Web Scraping</h3>
+<section id="more-advanced-web-scraping" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="more-advanced-web-scraping">More Advanced Web Scraping</h3>
 <p>As you will notice along the way, getting information directly from HTML contents becomes less feasible nowadays. Here are the reasons:</p>
 <ul>
 <li><p>Dynamic and Interactive Web Pages In the early web, HTML pages were mostly static: the content was directly embedded in the HTML source (the same as the simple website that we just worked on) Today, many websites use JavaScript frameworks (e.g., React, Angular, Vue) to dynamically load and render content in the browser. As a result, if you fetch the raw HTML, you often see only the skeleton structure (<code>&lt;div&gt;</code> placeholders), while the actual text, images, or tables are injected later by scripts.</p></li>
@@ -888,8 +891,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>As a result, you have to sharpen your tools to get adapted to the changing world. To get into the web scraping space, we need to have solid knowledge about HTML and Javascript. Additionally, we need to be familiar with more advanced web scraping frameworks (e.g., <code>selenium</code>).</p>
 </section>
-<section id="ethics-of-web-scraping" class="level3" data-number="8.4.5">
-<h3 data-number="8.4.5" class="anchored" data-anchor-id="ethics-of-web-scraping"><span class="header-section-number">8.4.5</span> Ethics of Web Scraping</h3>
+<section id="ethics-of-web-scraping" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="ethics-of-web-scraping">Ethics of Web Scraping</h3>
 <ul>
 <li>Respect for Website Terms and Conditions
 <ul>
