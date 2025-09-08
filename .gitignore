@@ -17,3 +17,5 @@
 **/*_files/
 **/output/
 .DS_Store
+
+**/*.quarto_ipynb
