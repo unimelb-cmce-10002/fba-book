@@ -28,7 +28,7 @@ book:
     - part: "Finding and Storing Data"
       chapters:
         - data_management/data_storage.qmd
-    #     - data_management/data_collection.qmd
+        - data_management/data_collection.qmd
     # - part: "Extracting Deeper Insights from Data"
     #   chapters:
     #     - advanced_analytics/data_variation.qmd
