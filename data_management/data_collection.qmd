@@ -11,9 +11,9 @@ By the end of this lecture, you should be able to:
 
 -   Distinguish structured, semi-structured, and unstructured data
 -   Explain intuitively the differences between user interface and application program interface (API)
--   Appreciate the advantages of APIs and apply established APIs to acquire data
+-   List the advantages of APIs as a means to collect data and apply use APIs to acquire data
 -   Know the basic procedures of website scraping 
--   Understand the ethics of web scrapingh
+-   Understand the ethics of web scraping
 
 :::
 
@@ -33,7 +33,7 @@ Just as crude oil must be refined before it becomes useful, raw data only genera
 -   Unstructured data
 -   Semi-structured data
 
-### Structured Data
+### Structured Data {.unnumbered}
 
 **Structured data**, as the name suggests, refers to highly organized data that follows a predefined schema. It is stored in formats such as relational databases, spreadsheets, and CSV files, where every piece of data is clearly defined and fits into a particular row and column. Most data that we have worked with so far in this subject belongs to this category.
 
@@ -59,7 +59,7 @@ Because of their consistency, structured datasets can be easily managed and anal
 
 Structured data’s strength lies in its precision and reliability. However, it is also limited in scope and volume. Many real-world data and information, such as consumer opinions, video content, or machine logs, cannot be easily captured in neat rows and columns.
 
-### Unstructured Data
+### Unstructured Data {.unnumbered}
 
 In reality, structured data represents only a small fraction of all data. As predicted by International Data Corporation (IDC) and Seagate, the global data endowment will continue growing exponentially and reach 163 zettabytes (i.e., 1 trillion gigabytes) by the end of 2025, and among all data, more than 80% is unstructured.
 
@@ -91,7 +91,7 @@ Unstructured data is pervasive because much of the information we generate in da
         -   Images: resizing, labeling, feature extraction
         -   Audio: noise reduction, speech-to-text transcription
 
-### Semi-Structured Data
+### Semi-Structured Data {.unnumbered}
 
 Between these two extremes is **semi-structured data**. Different from structured data, semi-structured data does not fit neatly into tables, but it still carries markers or tags that provide some structure. Compared with purely unstructured data, semi-structured data has a flexible but interpretable format.
 
@@ -129,7 +129,7 @@ This process is a nice analogy to what happens when we acquire data via applicat
 -   The request for a book is the message your program sends to the API
 -   The book the librarian brings back is the data or service the API provides
 
-### Definitions of API
+### Definitions of API {.unnumbered}
 
 Technically speaking, **Application program interface (API)** builds a "connection" between computer and computer programs and specifies a standard set of rules or procedures that an application program will do. This is in contrast to **user interfaces (UI)** where users directly interact with computers or programs.
 
@@ -145,7 +145,7 @@ Of course, the access to Google Map via API is not free. Uber pays millions to G
 ![](../figs/data_collection/uber_google_api.png)
 :::
 
-### Advantages of APIs
+### Advantages of APIs {.unnumbered}
 
 Nowadays, many data providers set up APIs as a preferred way to provide data to data users, and there are several advantages of doing so:
 
@@ -154,24 +154,24 @@ Nowadays, many data providers set up APIs as a preferred way to provide data to 
 -   **Innovation and Ecosystem Growth.** APIs allow third-party developers to build new apps or services that enhance the value of data (e.g., Google Maps used in ride-sharing apps).
 -   **Usage Tracking and Monetization.** APIs make it easy to monitor who is using the data and how often. This opens up possibilities for charging based on usage or offering premium tiers.
 
-### Workflow of Using APIs to Acquire Data
+### Workflow of Using APIs to Acquire Data {.unnumbered}
 
 Most APIs are user-friendly because the rules and protocols of data acquisition have already been set up by data providers. Although every API may differ significantly from the other in many ways. Standard workflow still applies to the usage of APIs.
 
 We are going to use the "Music to Scrape" website (https://music-to-scrape.org/) to walk through the usage of APIs.
 
-#### Read User Manuals
+#### Read User Manuals {.unnumbered}
 
 APIs are structured differently for different functions and needs. In practice, every API may have its own predefined functions and specific requirements for inputs and outputs. Therefore, it is rather important to carefully read through API user manuals before starting using it. Additionally, data providers often provide detailed user manuals and sample program for their APIs. As a user, it would be useful to go through these materials (if available).
 
-#### Obtaining API Key
+#### Obtaining API Key {.unnumbered}
 
 In many cases, the access to APIs is limited - you need to get an **API key** so that you can use the API. We can think API key as the log-in credentials for programs. Data providers can use API keys to track the download and the usage of data and prevent unwarranted access to their data.
 
 For the simple website we are working on, there is no need to obtain an API key. In the workshop, we are going to apply for a free API key from the **Federal Reserve Economic Data (FRED)**.
 
 
-#### Using APIs
+#### Using APIs {.unnumbered}
 
 Before proceed with programming, we always start by reading API manuals carefully (https://api.music-to-scrape.org/docs). We are going to follow the example provided by the website to extract top-tracts for Week 42 of 2023.
 
@@ -219,7 +219,7 @@ It may not always be feasible to obtain data from well-structured databases or A
 
 Sometimes, we may be interested in the data and information on websites and would like to obtain these data in a batch. **Website scraping** is the technique that allows us to do so.
 
-### Website Basics
+### Website Basics {.unnumbered}
 
 Websites are one of the most important sources for us to obtain data that are not available from structured databases. For example, we may be interested in It may not be difficult for us to manually copy and paste inforamtion and data from websites if we are dealing with a small number of data points
 
@@ -280,12 +280,12 @@ Below is a simple example of HTML file, and we are going to briefly elaborate on
 </html>
 ```
 
-#### HTML Tags and Elements
+#### HTML Tags and Elements {.unnumbered}
 
 HTML documents are simply semi-structured data. HTML documents use "tags" to wrap and identify contents. These tags are the fundamental building blocks of a webpage’s structure. Tags (often come in pairs) tell the browser what each element is and how it should be organized.
 
 ::: callout-note
-# Example
+## Example
 
 This is a simple HTML document:
 
@@ -312,17 +312,17 @@ Below is a more complete list of commonly seen HTML tags:
 -   `<p>` and `</p>` contain paragraghs.
 -   `<img>` are used to insert images into a website.
 
-### Website Scraping Workflow
+### Website Scraping Workflow {.unnumbered}
 
 We are going to work on a website, https://music-to-scrape.org, to learn basic website scraping techniques and walk through the basic procedures. This practice, however, is by no means a sophisticated way of web scraping nor can it be directly used on other websites.
 
-#### Understand the Website Structure
+#### Understand the Website Structure {.unnumbered}
 
 As a preparation for website scraping, we are going to first get a basic sense of the HTML document of the website.
 
 ![HTML code as shown in Chrome](../figs/data_collection/html_code.png){width="90%" fig-align="center"}
 
-#### Locate the Contents
+#### Locate the Contents {.unnumbered}
 
 We need to locate the contents that we want to scrape in the HTML document. An HTML document is basically semi-structured data with tags labeling contents of a website. Hence, what we need to do is to locate the contents and identify the tags labeling the contents.
 
@@ -342,7 +342,7 @@ The key to scrape information and data from websites is to precisely locate rele
 
 -   We can locate "Gabriel Yared" uniquely by following the hierarchy of the HTML document: `<a>`, `<h5>`, and lastly `<b>`.
 
-#### Scrape the Contents
+#### Scrape the Contents {.unnumbered}
 
 After locating the contents and identifying the tags, we use the following program to scrape the information we need from the website.
 
@@ -469,7 +469,7 @@ print(active_users)
 
 :::
 
-### Pros and Cons of Web Scraping
+### Pros and Cons of Web Scraping {.unnumbered}
 
 Collecting data through website scraping has pros and cons.
 
@@ -485,7 +485,7 @@ Cons:
 -   Unstable performance due to website maintenance, restructuring, and limited internet access.
 -   Inconsistent data quality, requires additional work to clean up collected data.
 
-### More Advanced Web Scraping
+### More Advanced Web Scraping {.unnumbered}
 
 As you will notice along the way, getting information directly from HTML contents becomes less feasible nowadays. Here are the reasons:
 
@@ -495,7 +495,7 @@ As you will notice along the way, getting information directly from HTML content
 
 As a result, you have to sharpen your tools to get adapted to the changing world. To get into the web scraping space, we need to have solid knowledge about HTML and Javascript. Additionally, we need to be familiar with more advanced web scraping frameworks (e.g., `selenium`).
 
-### Ethics of Web Scraping
+### Ethics of Web Scraping {.unnumbered}
 
 -   Respect for Website Terms and Conditions
     -   Many websites describe the usage of website data in their terms and conditions. Always check these documents before conducting website scraping to avoid getting into trouble.
