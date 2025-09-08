@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.22">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -65,18 +65,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tutorials/what_is_business_analytics.html" rel="next">
+<link href="../data_management/data_collection.html" rel="next">
 <link href="../insights/data_tidy.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6f77e067621728e8e5d8b75f5607b6c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-08a17407ac8bdf6ef4986fac9a905031.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -132,7 +133,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Foundations of Business Analytics</a> 
     </div>
@@ -223,6 +226,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -264,12 +273,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Tutorial 5: Shaping and Joining Data for Business Analytics</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 6: Storing &amp; Retrieving Data</span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -286,28 +289,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#about-the-data" id="toc-about-the-data" class="nav-link" data-scroll-target="#about-the-data">About the Data</a></li>
   </ul></li>
-  <li><a href="#spreadsheets-excel-friends" id="toc-spreadsheets-excel-friends" class="nav-link" data-scroll-target="#spreadsheets-excel-friends"><span class="header-section-number">7.2</span> Spreadsheets (Excel &amp; Friends)</a>
+  <li><a href="#spreadsheets-excel-google-sheets-friends" id="toc-spreadsheets-excel-google-sheets-friends" class="nav-link" data-scroll-target="#spreadsheets-excel-google-sheets-friends"><span class="header-section-number">7.2</span> Spreadsheets (Excel, Google Sheets &amp; Friends)</a>
   <ul class="collapse">
-  <li><a href="#reading-spreadsheets-in-r" id="toc-reading-spreadsheets-in-r" class="nav-link" data-scroll-target="#reading-spreadsheets-in-r">Reading Spreadsheets in R</a></li>
-  <li><a href="#issues-with-spreadsheets" id="toc-issues-with-spreadsheets" class="nav-link" data-scroll-target="#issues-with-spreadsheets">Issues with Spreadsheets</a></li>
-  <li><a href="#writing-to-excel" id="toc-writing-to-excel" class="nav-link" data-scroll-target="#writing-to-excel">Writing to Excel</a></li>
+  <li><a href="#reading-spreadsheets-in-r" id="toc-reading-spreadsheets-in-r" class="nav-link" data-scroll-target="#reading-spreadsheets-in-r"><span class="header-section-number">7.2.1</span> Reading Spreadsheets in R</a></li>
+  <li><a href="#writing-to-excel" id="toc-writing-to-excel" class="nav-link" data-scroll-target="#writing-to-excel"><span class="header-section-number">7.2.2</span> Writing to Excel</a></li>
+  <li><a href="#issues-with-spreadsheets" id="toc-issues-with-spreadsheets" class="nav-link" data-scroll-target="#issues-with-spreadsheets"><span class="header-section-number">7.2.3</span> Issues with Spreadsheets</a></li>
   </ul></li>
   <li><a href="#flat-files-csv-tsv-and-other-delimited-files" id="toc-flat-files-csv-tsv-and-other-delimited-files" class="nav-link" data-scroll-target="#flat-files-csv-tsv-and-other-delimited-files"><span class="header-section-number">7.3</span> Flat Files (CSV, TSV and other delimited files)</a>
   <ul class="collapse">
   <li><a href="#reading-flat-files-in-r" id="toc-reading-flat-files-in-r" class="nav-link" data-scroll-target="#reading-flat-files-in-r"><span class="header-section-number">7.3.1</span> Reading Flat Files in R</a></li>
-  <li><a href="#writing-to-a-file" id="toc-writing-to-a-file" class="nav-link" data-scroll-target="#writing-to-a-file"><span class="header-section-number">7.3.2</span> Writing to a file</a></li>
+  <li><a href="#why-are-the-same-values-repeated" id="toc-why-are-the-same-values-repeated" class="nav-link" data-scroll-target="#why-are-the-same-values-repeated"><span class="header-section-number">7.3.2</span> Why are the same values repeated?</a></li>
+  <li><a href="#writing-to-a-file" id="toc-writing-to-a-file" class="nav-link" data-scroll-target="#writing-to-a-file"><span class="header-section-number">7.3.3</span> Writing to a file</a></li>
   </ul></li>
   <li><a href="#json-files-when-rectangular-data-might-not-be-enough" id="toc-json-files-when-rectangular-data-might-not-be-enough" class="nav-link" data-scroll-target="#json-files-when-rectangular-data-might-not-be-enough"><span class="header-section-number">7.4</span> JSON Files: When rectangular data might not be enough</a>
   <ul class="collapse">
-  <li><a href="#working-with-nested-json-auction-data-in-r" id="toc-working-with-nested-json-auction-data-in-r" class="nav-link" data-scroll-target="#working-with-nested-json-auction-data-in-r">Working with Nested JSON Auction Data in R</a></li>
+  <li><a href="#working-with-nested-json-auction-data-in-r" id="toc-working-with-nested-json-auction-data-in-r" class="nav-link" data-scroll-target="#working-with-nested-json-auction-data-in-r"><span class="header-section-number">7.4.1</span> Working with Nested JSON Auction Data in R</a></li>
+  <li><a href="#step-1-load-the-json-file" id="toc-step-1-load-the-json-file" class="nav-link" data-scroll-target="#step-1-load-the-json-file"><span class="header-section-number">7.4.2</span> Step 1: Load the JSON File</a></li>
+  <li><a href="#step-2-peek-inside-a-single-record" id="toc-step-2-peek-inside-a-single-record" class="nav-link" data-scroll-target="#step-2-peek-inside-a-single-record"><span class="header-section-number">7.4.3</span> Step 2: Peek Inside a Single Record</a></li>
+  <li><a href="#step-3-wrap-the-list-into-a-tibble" id="toc-step-3-wrap-the-list-into-a-tibble" class="nav-link" data-scroll-target="#step-3-wrap-the-list-into-a-tibble"><span class="header-section-number">7.4.4</span> Step 3: Wrap the List into a Tibble</a></li>
+  <li><a href="#rectangling-non-rectangular-data" id="toc-rectangling-non-rectangular-data" class="nav-link" data-scroll-target="#rectangling-non-rectangular-data"><span class="header-section-number">7.4.5</span> Rectangling non-rectangular data</a></li>
+  <li><a href="#step-4-unnest-the-top-level-fields" id="toc-step-4-unnest-the-top-level-fields" class="nav-link" data-scroll-target="#step-4-unnest-the-top-level-fields"><span class="header-section-number">7.4.6</span> Step 4: Unnest the Top-Level Fields</a></li>
+  <li><a href="#step-5-flattening-the-bid-lists-wide-format" id="toc-step-5-flattening-the-bid-lists-wide-format" class="nav-link" data-scroll-target="#step-5-flattening-the-bid-lists-wide-format"><span class="header-section-number">7.4.7</span> Step 5: Flattening the Bid Lists (Wide Format)</a></li>
+  <li><a href="#step-6-automate-the-unnesting-of-all-bid-columns" id="toc-step-6-automate-the-unnesting-of-all-bid-columns" class="nav-link" data-scroll-target="#step-6-automate-the-unnesting-of-all-bid-columns"><span class="header-section-number">7.4.8</span> Step 6: Automate the Unnesting of All Bid Columns</a></li>
+  <li><a href="#step-7-unnesting-to-long-format" id="toc-step-7-unnesting-to-long-format" class="nav-link" data-scroll-target="#step-7-unnesting-to-long-format"><span class="header-section-number">7.4.9</span> Step 7: Unnesting to Long Format</a></li>
+  <li><a href="#bonus-nesting-back-again" id="toc-bonus-nesting-back-again" class="nav-link" data-scroll-target="#bonus-nesting-back-again"><span class="header-section-number">7.4.10</span> Bonus: Nesting Back Again</a></li>
   </ul></li>
-  <li><a href="#databases-with-duckdb" id="toc-databases-with-duckdb" class="nav-link" data-scroll-target="#databases-with-duckdb"><span class="header-section-number">7.5</span> Databases with DuckDB</a>
+  <li><a href="#databases-duckdb" id="toc-databases-duckdb" class="nav-link" data-scroll-target="#databases-duckdb"><span class="header-section-number">7.5</span> 🗄️ 3. Databases (DuckDB)</a>
   <ul class="collapse">
-  <li><a href="#connecting-to-a-database" id="toc-connecting-to-a-database" class="nav-link" data-scroll-target="#connecting-to-a-database">Connecting to a database</a></li>
-  <li><a href="#dbplyr-dplyr-for-databases" id="toc-dbplyr-dplyr-for-databases" class="nav-link" data-scroll-target="#dbplyr-dplyr-for-databases"><code>dbplyr</code>: <code>dplyr</code> for databases</a></li>
-  <li><a href="#working-with-the-auctions-database" id="toc-working-with-the-auctions-database" class="nav-link" data-scroll-target="#working-with-the-auctions-database"><span class="header-section-number">7.5.1</span> Working with the Auctions database</a></li>
+  <li><a href="#why-databases" id="toc-why-databases" class="nav-link" data-scroll-target="#why-databases"><span class="header-section-number">7.5.1</span> Why databases?</a></li>
+  <li><a href="#connecting-to-a-database" id="toc-connecting-to-a-database" class="nav-link" data-scroll-target="#connecting-to-a-database"><span class="header-section-number">7.5.2</span> Connecting to a database</a></li>
+  <li><a href="#duckdb" id="toc-duckdb" class="nav-link" data-scroll-target="#duckdb"><span class="header-section-number">7.5.3</span> DuckDB:</a></li>
+  <li><a href="#dbplyr" id="toc-dbplyr" class="nav-link" data-scroll-target="#dbplyr"><span class="header-section-number">7.5.4</span> <code>dbplyr</code></a></li>
   </ul></li>
-  <li><a href="#wrap-up-which-format-would-you-use" id="toc-wrap-up-which-format-would-you-use" class="nav-link" data-scroll-target="#wrap-up-which-format-would-you-use"><span class="header-section-number">7.6</span> Wrap-up: Which Format Would You Use?</a></li>
+  <li><a href="#parquet-columnar-format" id="toc-parquet-columnar-format" class="nav-link" data-scroll-target="#parquet-columnar-format"><span class="header-section-number">7.6</span> 📦 4. Parquet (Columnar Format)</a>
+  <ul class="collapse">
+  <li><a href="#why-parquet" id="toc-why-parquet" class="nav-link" data-scroll-target="#why-parquet"><span class="header-section-number">7.6.1</span> Why Parquet?</a></li>
+  <li><a href="#partitioning-example" id="toc-partitioning-example" class="nav-link" data-scroll-target="#partitioning-example"><span class="header-section-number">7.6.2</span> Partitioning example:</a></li>
+  <li><a href="#reading-it-efficiently" id="toc-reading-it-efficiently" class="nav-link" data-scroll-target="#reading-it-efficiently"><span class="header-section-number">7.6.3</span> Reading it efficiently:</a></li>
+  </ul></li>
+  <li><a href="#format-comparison" id="toc-format-comparison" class="nav-link" data-scroll-target="#format-comparison"><span class="header-section-number">7.7</span> 📊 5. Format Comparison</a></li>
+  <li><a href="#best-practices-for-storing-sharing-data" id="toc-best-practices-for-storing-sharing-data" class="nav-link" data-scroll-target="#best-practices-for-storing-sharing-data"><span class="header-section-number">7.8</span> 🔐 6. Best Practices for Storing &amp; Sharing Data</a>
+  <ul class="collapse">
+  <li><a href="#golden-rules" id="toc-golden-rules" class="nav-link" data-scroll-target="#golden-rules"><span class="header-section-number">7.8.1</span> ✅ Golden Rules</a></li>
+  <li><a href="#fair-principles-tip-box" id="toc-fair-principles-tip-box" class="nav-link" data-scroll-target="#fair-principles-tip-box"><span class="header-section-number">7.8.2</span> 🧭 FAIR Principles (Tip Box)</a></li>
+  <li><a href="#privacy" id="toc-privacy" class="nav-link" data-scroll-target="#privacy"><span class="header-section-number">7.8.3</span> 🔐 Privacy</a></li>
+  <li><a href="#breaking-down-silos" id="toc-breaking-down-silos" class="nav-link" data-scroll-target="#breaking-down-silos"><span class="header-section-number">7.8.4</span> 🧱 Breaking Down Silos</a></li>
+  </ul></li>
+  <li><a href="#wrap-up-activity-which-format-would-you-use" id="toc-wrap-up-activity-which-format-would-you-use" class="nav-link" data-scroll-target="#wrap-up-activity-which-format-would-you-use"><span class="header-section-number">7.9</span> 🧠 Wrap-up Activity: Which Format Would You Use?</a></li>
   </ul>
 </nav>
     </div>
@@ -339,7 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Learning Goals
+<span class="screen-reader-only">Tip</span>Learning Goals
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -348,7 +376,7 @@ Learning Goals
 <li>Identify common data storage formats (CSV, JSON, SQL, Parquet) and explain when each is appropriate for business use.</li>
 <li>Load, explore, and manipulate datasets stored in flat files and nested JSON using R.</li>
 <li>Use unnesting and reshaping techniques to convert nested or redundant data structures into tidy formats.</li>
-<li>Read and query data stored in databases using <code>duckdb</code> and <code>dplyr</code>.</li>
+<li>Read and query data stored in DuckDB and Parquet formats using <code>dbplyr</code> and <code>arrow</code>.</li>
 <li>Evaluate trade-offs between different storage formats in terms of scalability, structure, and analytical convenience.</li>
 <li>Apply best practices for storing, documenting, and sharing data within an organization.</li>
 </ul>
@@ -357,10 +385,10 @@ Learning Goals
 <section id="the-business-challenge" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="the-business-challenge"><span class="header-section-number">7.1</span> The Business Challenge</h2>
 <p>Online marketplaces like eBay host millions of auctions each year, connecting buyers and sellers across countless product categories. Behind the scenes, this generates complex, nested, and high-volume data. For a business analyst, turning this raw data into useful insights—and storing it in a way that’s efficient, accessible, and reusable—is a foundational challenge.</p>
-<p>Suppose you’ve just joined the data team at this fast-growing online marketplace. Right now, every team — from marketing to data engineering and customer support — is handling auction data in different ways: some use Excel sheets, others parse logs from an API that stores information in a format called JSON, and data engineers keep things in a database (but no one else knows how to read them!).</p>
+<p>You’ve just joined the data team at a fast-growing online marketplace. Right now, every team — from marketing to data engineering and customer support — is handling auction data in different ways: some use Excel sheets, others parse logs from an API that stores information in a format called JSON, and a few engineers keep things in a different format known as Parquet (but no one else knows how to read them!).</p>
 <p>This chaos is slowing everyone down. Your first task as a new analyst is to propose a better data storage solution that balances usability, scalability, and efficiency for teams across the business.</p>
-<p>But how do you choose the right format? Should you push everyone to use Excel spreadsheets? Why not convince everyone to move everything into a database?</p>
-<p>Before you decide, you’ll need to understand the strengths and trade-offs of each major data storage format. That is what we will cover in this chapter.</p>
+<p>But how do you choose the right format? Should you push everyone to use Excel spreadsheets? Convince IT to move everything into a database? Or are columnar formats like Parquet worth the learning curve?</p>
+<p>Before you decide, you’ll need to understand the strengths and trade-offs of each major data storage format. That is what we will cover in this lecture</p>
 <section id="about-the-data" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="about-the-data">About the Data</h3>
 <p>To guide your decision, we’ll work with a sample dataset of online auctions. Each auction record includes:</p>
@@ -369,111 +397,42 @@ Learning Goals
 <li>Seller details: user ID, rating</li>
 <li>Bidding history: a nested list of bids, each with a bidder ID, amount, and timestamp</li>
 </ul>
-<p>We have stored and structured the dataset in multiple formats — Excel, flat files (CSV), JSON and DuckDB — so you can compare how different formats impact usability and performance. Along the way, you’ll learn not just how to load data, but how to think about storing and transforming it for long-term use in a business setting.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Which of data formats have you heard of?
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Which of the data formats that we will cover in this chapter have you already heard of?</p>
+<p>We have stored and structured the dataset in multiple formats — Excel, flat files (CSV), JSON, DuckDB, and Parquet—so you can compare how different formats impact usability and performance. Along the way, you’ll learn not just how to load data, but how to think about storing and transforming it for long-term use in a business setting.</p>
 <blockquote class="blockquote">
-<ul>
-<li>Excel</li>
-<li>CSV files</li>
-<li>A database</li>
-<li>JSON</li>
-</ul>
+<p><strong>Poll</strong>: Which of these data formats have you heard of? - Excel - CSV files - A database - JSON - Parquet</p>
 </blockquote>
-<p>Where did you learn about the formats you are aware of? What limitations have you found when using them?</p>
-</div>
-</div>
-</div>
 </section>
 </section>
-<section id="spreadsheets-excel-friends" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="spreadsheets-excel-friends"><span class="header-section-number">7.2</span> Spreadsheets (Excel &amp; Friends)</h2>
-<p>For many of us, spreadsheets like Microsoft Excel or Google Sheets are the default way we have worked with data until starting our business analytics journey.</p>
-<section id="reading-spreadsheets-in-r" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="reading-spreadsheets-in-r">Reading Spreadsheets in R</h3>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-auctions-excel" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-auctions-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../figs/data-management/ebay_auctions_excel.png" class="quarto-figure quarto-figure-center figure-img" style="width:100.0%;height:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-auctions-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.1: Auctions Data in Excel Format
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>The figure above shows what the spreadsheet we’re going to read into R looks like in Excel. We see that there is data across three separate sheets:</p>
-<ol type="1">
-<li><code>auctions</code> contains information about the each auction,</li>
-<li><code>bids</code> contains information about bids in each auction; and</li>
-<li><code>sellers</code> contains information about the seller of each item</li>
-</ol>
-<p>To load the spreadsheet data into R, we use the <code>readxl</code> package, which allows us to read .xlsx files directly without requiring Excel to be installed.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  item_id  title category start_time          end_time            seller_user_id
-  &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;    &lt;dttm&gt;              &lt;dttm&gt;              &lt;chr&gt;         
-1 AUC00000 Sams… Electro… 2025-07-19 00:00:00 2025-07-20 00:00:00 pray          
-2 AUC00001 Casi… Fashion  2025-04-24 00:00:00 2025-04-27 00:00:00 vgomez        
-3 AUC00002 Loui… Fashion  2025-03-20 00:00:00 2025-03-22 00:00:00 rodrigueznich…
-4 AUC00003 The … Books    2025-03-24 00:00:00 2025-03-26 00:00:00 tylercook     
-5 AUC00004 Mono… Toys &amp; … 2025-08-14 00:00:00 2025-08-15 00:00:00 benjamin55    
-6 AUC00005 Dyso… Home &amp; … 2025-06-25 00:00:00 2025-06-28 00:00:00 khuff         
-# ℹ 2 more variables: final_price &lt;dbl&gt;, winner_id &lt;chr&gt;</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a spreadsheet file</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>auctions_excel <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/ebay_auctions.xlsx"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Peek at the first few rows</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(auctions_excel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We can see that by default, R loads the <code>auctions</code> sheet which is the <em>first</em> sheet in the Excel workbook. If we want to specify the sheet we want to load, we can do that as follows:</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-  item_id  bidder_id      bid_amount bid_time           
-  &lt;chr&gt;    &lt;chr&gt;               &lt;dbl&gt; &lt;dttm&gt;             
-1 AUC00000 istevens             94.6 2025-07-19 00:00:00
-2 AUC00000 mendozajasmine       97.7 2025-07-19 00:00:00
-3 AUC00000 james22             103.  2025-07-19 00:00:00
-4 AUC00000 wnunez              119.  2025-07-19 00:00:00
-5 AUC00000 paynejoshua         124.  2025-07-19 00:00:00
-6 AUC00000 yolanda40           127.  2025-07-19 00:00:00</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a specific sheet</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>excel_bids <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/ebay_auctions.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"bids"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Or use sheet number</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>excel_bids <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/ebay_auctions.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">2</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(excel_bids)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="spreadsheets-excel-google-sheets-friends" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="spreadsheets-excel-google-sheets-friends"><span class="header-section-number">7.2</span> Spreadsheets (Excel, Google Sheets &amp; Friends)</h2>
+<p>For many of us, spreadsheets like Microsoft Excel or Google Sheets are the default way we have worked with data until taking this course.</p>
+<section id="reading-spreadsheets-in-r" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="reading-spreadsheets-in-r"><span class="header-section-number">7.2.1</span> Reading Spreadsheets in R</h3>
+<p>Figure XX shows what the spreadsheet we’re going to read into R looks like in Excel. This spreadsheet can be downloaded as an Excel file from …</p>
+<p>To load spreadsheet data into R, we use the <code>readxl</code> package, which allows us to read .xlsx files directly without requiring Excel to be installed.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a spreadsheet file</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>auctions_excel <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/ebay_auctions.xlsx"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Peek at the first few rows</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(auctions_excel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can also specify a sheet name or index:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a specific sheet</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="st">"data/ebay_auctions.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"bids"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Or use sheet number</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="st">"data/ebay_auctions.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>By default, <code>read_excel()</code> will guess the column types from the first 1000 rows.</p>
 </section>
-<section id="issues-with-spreadsheets" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="issues-with-spreadsheets">Issues with Spreadsheets</h3>
-<p>Spreadsheets are widely used in business and education, and offer an approachable interface for organizing tables, applying formulas, and making quick charts. This makes spreadsheets a great entry point into the world of data—but also a format with serious limitations when it comes to analytics at scale.</p>
-<p>Spreadsheets don’t record your steps, meaning you can’t always retrace how a certain number or figure was calculated. There’s no built-in version history (at least not one that’s easy to audit), and formulas often vary invisibly from cell to cell—especially if you’ve copied or dragged them across a range. This makes it difficult to ensure consistency and nearly impossible to reproduce or validate your results.</p>
+<section id="writing-to-excel" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="writing-to-excel"><span class="header-section-number">7.2.2</span> Writing to Excel</h3>
+<p>Let’s create a small data frame that we can then write out.</p>
+</section>
+<section id="issues-with-spreadsheets" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="issues-with-spreadsheets"><span class="header-section-number">7.2.3</span> Issues with Spreadsheets</h3>
+<p>They’re widely used in business and education, and offer an approachable interface for organizing tables, applying formulas, and making quick charts. This makes spreadsheets a great entry point into the world of data—but also a format with serious limitations when it comes to analytics at scale.</p>
+<p>Spreadsheets don’t record your steps, meaning you can’t always retrace how a figure was calculated. There’s no built-in version history (at least not one that’s easy to audit), and formulas often vary invisibly from cell to cell—especially if you’ve copied or dragged them across a range. This makes it difficult to ensure consistency and nearly impossible to reproduce or validate your results.</p>
 <p>Even small errors—like accidentally referencing the wrong column—can go unnoticed. A single cell with a broken formula can distort an entire analysis. These issues are especially problematic when figures or charts are being used for decisions or presentations.</p>
 <p>To make matters worse, analysts often inherit spreadsheets from others—colleagues, clients, or external partners. These files might contain:</p>
 <ul>
@@ -483,569 +442,563 @@ Figure&nbsp;7.1: Auctions Data in Excel Format
 <li>merged cells</li>
 <li>duplicated values across tabs</li>
 </ul>
-<p>all of which make using them for further analysis difficult.</p>
 <p>Despite these flaws, spreadsheets remain a powerful tool for quick exploration and lightweight collaboration. They’re useful for small teams, early prototyping, or downloading data from platforms like Shopify, Facebook Ads, or Google Analytics. But when your work moves toward reproducibility, scalability, or automation, it’s time to adopt formats designed for analysis.</p>
+<p>TIP: Googlesheets Google Sheets is another widely used spreadsheet program. It’s free and web-based. Just like with Excel, in Google Sheets data are organized in worksheets (also called sheets) inside of spreadsheet files.</p>
+<p>Prerequisites This section will also focus on spreadsheets, but this time you’ll be loading data from a Google Sheet with the googlesheets4 package. This package is non-core tidyverse as well, you need to load it explicitly.</p>
+<p>The first argument to read_sheet() is the URL of the file to read, and it returns a tibble: https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w. These URLs are not pleasant to work with, so you’ll often want to identify a sheet by its ID.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gs4_deauth</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>students_sheet_id <span class="ot">&lt;-</span> <span class="st">"1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">read_sheet</span>(students_sheet_id)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="writing-to-google-sheets" class="level4" data-number="7.2.3.1">
+<h4 data-number="7.2.3.1" class="anchored" data-anchor-id="writing-to-google-sheets"><span class="header-section-number">7.2.3.1</span> Writing to Google Sheets</h4>
+<p>You can write from R to Google Sheets with write_sheet(). The first argument is the data frame to write, and the second argument is the name (or other identifier) of the Google Sheet to write to:</p>
+<p>write_sheet(bake_sale, ss = “bake-sale”)</p>
+<p>If you’d like to write your data to a specific (work)sheet inside a Google Sheet, you can specify that with the sheet argument as well.</p>
+<p>write_sheet(bake_sale, ss = “bake-sale”, sheet = “Sales”)</p>
 </section>
-<section id="writing-to-excel" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="writing-to-excel">Writing to Excel</h3>
-<p>Despite not wanting to use Excel files as an output, we might want to export the final results for an Excel workbook to pass on to a less technical colleague. To do this, we need the library <code>writexl</code> to save datasets to an Excel format. Let’s create a small data frame that we can then write out to a file. Specifically, lets filter all bids from the auction with the ID <code>AUC00001</code> and save them in a file names <code>small_bids.xlsx</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(excel_bids)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>bids_to_export <span class="ot">&lt;-</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    excel_bids <span class="sc">|&gt;</span> </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(item_id <span class="sc">==</span> <span class="st">"AUC00001"</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(bids_to_export, <span class="st">"small_bids.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Reading and Writing from Google Sheets
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Google Sheets is another widely used spreadsheet program. It’s free and web-based. Just like with Excel, in Google Sheets data are organized in worksheets (also called sheets) inside of spreadsheet files.</p>
-<p>You can load data from a Google Sheet with the <code>googlesheets4</code> package. This package is non-core tidyverse as well, you need to load it explicitly.</p>
-<p>The first argument to <code>read_sheet()</code> is the URL of the file to read, and it returns a tibble: https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w. These URLs are not pleasant to work with, so you’ll often want to identify a sheet by its ID.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gs4_deauth</span>()</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>sheet_id <span class="ot">&lt;-</span> <span class="st">"1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w"</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>google_df <span class="ot">&lt;-</span> <span class="fu">read_sheet</span>(sheet_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can also write from R to Google Sheets with <code>write_sheet()</code>. The first argument is the data frame to write, and the second argument is the name (or other identifier) of the Google Sheet to write to:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_sheet</span>(bids_to_export, <span class="at">ss =</span> <span class="st">"bids_auc10001"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>If you’d like to write your data to a specific work-sheet inside a Google Sheet, you can specify that with the sheet argument as well.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_sheet</span>(bake_sale, <span class="at">ss =</span> <span class="st">"bids_auc10001"</span>, <span class="at">sheet =</span> <span class="st">"bids"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Authentication with Google Sheets
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>While you can read from a public Google Sheet without authenticating with your Google account and with <code>gs4_deauth()</code>, reading a private sheet or writing to a sheet requires authentication so that <code>googlesheets4</code> can view and manage your Google Sheets.</p>
-<p>When you attempt to read in a sheet that requires authentication, googlesheets4 will direct you to a web browser with a prompt to sign in to your Google account and grant permission to operate on your behalf with Google Sheets. However, if you want to specify a specific Google account, authentication scope, etc. you can do so with <code>gs4_auth()</code>, e.g., <code>gs4_auth(email = "mine@example.com")</code>, which will force the use of a token associated with a specific email. For further authentication details, we recommend reading the documentation <code>googlesheets4</code> auth vignette: https://googlesheets4.tidyverse.org/articles/auth.html.</p>
-</div>
-</div>
-</div>
+<section id="authentication" class="level4" data-number="7.2.3.2">
+<h4 data-number="7.2.3.2" class="anchored" data-anchor-id="authentication"><span class="header-section-number">7.2.3.2</span> Authentication</h4>
+<p>While you can read from a public Google Sheet without authenticating with your Google account and with gs4_deauth(), reading a private sheet or writing to a sheet requires authentication so that googlesheets4 can view and manage your Google Sheets.</p>
+<p>When you attempt to read in a sheet that requires authentication, googlesheets4 will direct you to a web browser with a prompt to sign in to your Google account and grant permission to operate on your behalf with Google Sheets. However, if you want to specify a specific Google account, authentication scope, etc. you can do so with gs4_auth(), e.g., gs4_auth(email = “mine@example.com”), which will force the use of a token associated with a specific email. For further authentication details, we recommend reading the documentation googlesheets4 auth vignette: https://googlesheets4.tidyverse.org/articles/auth.html.</p>
+</section>
 </section>
 </section>
 <section id="flat-files-csv-tsv-and-other-delimited-files" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="flat-files-csv-tsv-and-other-delimited-files"><span class="header-section-number">7.3</span> Flat Files (CSV, TSV and other delimited files)</h2>
-<p>When we need to store and share structured data reliably, especially in a way that can be reproduced by code, an alternative format often works better: flat files. Flat files look similar to spreadsheets on the surface—just rows and columns of data—but under the hood they behave very differently. A flat file is stored as plain text. Each line represents a row of data, and the values are separated by a special character like a comma or tab. There are no formulas, no styling, no hidden or merged cells - just the raw information. There is another difference compared to Spreadsheets like Excel, flat files store each data set as a separate file, so there is no concept of multiple sheets if information stored in the same file.</p>
-<p>One of the most common flat file types is the CSV, which stands for Comma-Separated Values. You have already encountered files with a .csv extension in the earlier chapter in this book, all the data we have worked with so far has been stored as CSV files.</p>
-<p>For our auction example this means there are 3 CSV files, one each for <code>auctions</code>, <code>bids</code> and <code>sellers</code></p>
-<p>Because CSVs simply store raw information, we can see the content of the file when we open it in a text editor. Here’s what the first few lines of <code>bids.csv</code> looks like when opened in a text editor:</p>
-<p>We can see that we can view and read the data with our own eyes. As such flat files are easy to inspect manually. The first row, commonly called the header row, gives the column names, and the following six rows provide the data. The columns are separated, aka delimited, by commas. They are also easy to edit, as we can manually add or edit rows and save the results if desired. These are not the only advantages of flat files, they are supported by nearly every data analytics tool so they are extremely portable which makes them a common default choice when exporting data from software such as R.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-What do Excel Files Look Like in a Text Editor?
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Not all files can be viewed as cleanly as flat file formats such as csv in a text editor. If we tried to do the same thing, and view the first few lines of <code>ebay_auctions.xlsx</code> in a text editor, we will get the following output:</p>
-<p>That’s not so useful!</p>
-</div>
-</div>
-</div>
+<p>when it comes to storing and sharing structured data reliably, especially in a way that can be reproduced by code, an alternative format often works better: flat files.</p>
+<p>Flat files look similar to spreadsheets on the surface—just rows and columns of data—but under the hood they behave very differently.</p>
+<p>A flat file is stored as plain text. Each line represents a row of data, and the values are separated by a special character like a comma or tab. There are no formulas, no styling, no hidden cells—just the raw information.</p>
+<p>One of the most common flat file types is the CSV, which stands for Comma-Separated Values. You might have encountered files with a .csv extension when exporting data from online dashboards or business tools.</p>
+<p>Here’s what a CSV might look like when opened in a text editor:</p>
+<pre class="out"><code>item_id,bidder_id,amount,time
+a001,u07,45.00,2023-08-21 10:13
+a001,u12,47.50,2023-08-21 10:30</code></pre>
+<p>This format is:</p>
+<ul>
+<li>Easy to inspect and edit</li>
+<li>Supported by nearly every tool</li>
+<li>A common default for data exports</li>
+</ul>
 <section id="reading-flat-files-in-r" class="level3" data-number="7.3.1">
 <h3 data-number="7.3.1" class="anchored" data-anchor-id="reading-flat-files-in-r"><span class="header-section-number">7.3.1</span> Reading Flat Files in R</h3>
-<p>In R, we can use the <code>readr</code> package to import flat files quickly and reliably. We can read this file into R using <code>read_csv()</code>. The first argument is the most important: the path to the file. You can think about the path as the address of the file: the file is called <code>bids.csv</code> and it lives in the <code>data</code> folder.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a CSV file into a tibble</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>bids_flat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/bids.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 13414 Columns: 4
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr  (2): item_id, bidder_id
-dbl  (1): bid_amount
-dttm (1): bid_time
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-</div>
-<p>When you run <code>read_csv()</code>, it prints out a message telling you the number of rows and columns of data, the delimiter that was used, and the column specifications (names of columns organized by the type of data the column contains). It also prints out some information about retrieving the full column specification and how to quiet this message.</p>
+<p>will focus on reading plain-text rectangular files. WHAT IS rectangular data?</p>
+<p>To begin, we’ll focus on the most common rectangular data file type: CSV, which is short for comma-separated values. Here is what a simple CSV file looks like. The first row, commonly called the header row, gives the column names, and the following six rows provide the data. The columns are separated, aka delimited, by commas.</p>
+<p>In R, we can use the <code>readr</code> package to import flat files quickly and reliably. We can read this file into R using <code>read_csv()</code>. The first argument is the most important: the path to the file. You can think about the path as the address of the file: the file is called XXX.csv and it lives in the data folder.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a CSV file into a tibble</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>auctions_flat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/bids_flat.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>When you run read_csv(), it prints out a message telling you the number of rows and columns of data, the delimiter that was used, and the column specifications (names of columns organized by the type of data the column contains). It also prints out some information about retrieving the full column specification and how to quiet this message. This message is an integral part of readr, and we’ll return to it in XXX</p>
+<p>This loads your flat file into a tidy tibble for further analysis. You can also read tab-separated files (read_tsv()) or files with other delimiters (read_delim()).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Delimiters and File Extensions
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The character that separates columns in a flat file is called a delimiter. Common ones include:</p>
+<p>Delimiters and File Extensions The character that separates columns in a flat file is called a delimiter. Common ones include:</p>
 <ul>
 <li>Comma (,) — for .csv files</li>
 <li>Tab ( — for .tsv files</li>
 <li>Pipe (|) — occasionally used for exports from databases</li>
 </ul>
-<p>If we wanted to load the the file <code>bids.tsv</code> which uses Tab separated values:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> ../data/bids.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We would use the <code>read_delim()</code> function and specify that columns are tab separated:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>bids_tab <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/bids.tsv"</span>, <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Also note that not all .csv files use commas! Always double-check if your data loads incorrectly. You can adjust the delimiter using the <code>delim</code> argument in <code>read_csv()</code></p>
 </div>
 </div>
+<div class="exercise">
+<div class="exercise-time">
+<p>5 min</p>
+</div>
+<p><strong>Exercise: One Auction, Many Rows</strong></p>
+<p>Let’s investigate how data is stored in a flat file format by looking at all the bids placed on a single auction.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Filter to a single auction with multiple bids</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>a1_bids <span class="ot">&lt;-</span> auctions_flat <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(item_id <span class="sc">==</span> <span class="st">"a001"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: View the result</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>a1_bids</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="a">
+<li>How many rows are returned? What does each row represent?</li>
+<li>Look at the title, category, and seller_id columns — what do you notice?</li>
+<li>What are some potential challenges that could arise from this repetition, especially as the dataset grows or changes over time?</li>
+</ol>
 </div>
 </section>
-<section id="writing-to-a-file" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="writing-to-a-file"><span class="header-section-number">7.3.2</span> Writing to a file</h3>
-<p><code>readr</code> also comes with functions for writing data back to disk: <code>write_csv()</code> and <code>write_delim()</code>. The most important arguments to these functions are the data frame we want to save and the location where we want to save the file. Suppose we want to take the bids from <code>AUC0001</code> and save them in a CSV file <code>bids_auc0001.csv</code> located in the data directory:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>auctions_filtered <span class="ot">&lt;-</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    bids <span class="sc">|&gt;</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(item_id <span class="sc">==</span> <span class="st">"AUC0001"</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(auctions_filtered, <span class="st">"data/bids_auc0001.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="why-are-the-same-values-repeated" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="why-are-the-same-values-repeated"><span class="header-section-number">7.3.2</span> Why are the same values repeated?</h3>
+<p>When you look at the bids for one auction, you might notice that the item title, category, and seller name appear again and again in every row. That might seem strange—why repeat the same information?</p>
+<p>This happens because of the way flat files are designed. In a flat file, each row represents one observation—in this case, one bid. That means every row needs to include not just the bid amount and time, but also the details of the auction it belongs to. Even if those auction details don’t change, they’re still copied into every row.</p>
+<p>This approach is useful for analysis, but it can also lead to large files and repeated information. In more advanced systems, like databases, we might store the auction information just once and link each bid to it. But flat files keep everything together in one place, which makes them easy to share and work with.</p>
+<p>Later in this chapter, we’ll see how other formats (like JSON and SQL) handle this differently—and how that affects the way we store and analyze data.</p>
+<blockquote class="blockquote">
+<p>💡 <strong>Tip:</strong> Use flat files for medium-sized, flat data when simplicity trumps scale</p>
+</blockquote>
+</section>
+<section id="writing-to-a-file" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="writing-to-a-file"><span class="header-section-number">7.3.3</span> Writing to a file</h3>
+<p>readr also comes with two useful functions for writing data back to disk: write_csv() and write_tsv(). The most important arguments to these functions are x (the data frame to save) and file (the location to save it). You can also specify how missing values are written with na, and if you want to append to an existing file.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(students, <span class="st">"students.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now let’s read that csv file back in. Note that the variable type information that you just set up is lost when you save to CSV because you’re starting over with reading from a plain text file again:</p>
+<p>This makes CSVs a little unreliable for caching interim results—you need to recreate the column specification every time you load in.</p>
 </section>
 </section>
 <section id="json-files-when-rectangular-data-might-not-be-enough" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="json-files-when-rectangular-data-might-not-be-enough"><span class="header-section-number">7.4</span> JSON Files: When rectangular data might not be enough</h2>
-<p>Flat files are great when every observation fits neatly into one row. But sometimes our dataset comes with a sort of hierarchy, its mini-datasets nested inside a larger dataset. In our <code>bids</code> data, for example, one could imagine rather than having each row of data being one bid from one auction, and storing the <code>item_id</code> in each row along with the bid information, we could think about storing the set of bids for each auction as a mini-dataset attached to each item ID.</p>
-<p>To handle these cases, we can use nested data formats — and one of the most popular is JSON. JSON (JavaScript Object Notation) is a format designed to store structured data. It can be especially useful when one record contains multiple layers of information—for example, an auction that has several bids attached to it as we have here.</p>
+<p>Flat files are great when every observation fits neatly into one row. But what if each item in your dataset comes with its own mini-dataset inside—like multiple bids per auction?</p>
+<p>Trying to represent that in a flat file leads to a lot of repetition. Every bid needs to repeat the same auction information—item title, seller name, category—even if it doesn’t change. This design follows the tidy data principle, where each row is a single observation and each column is a variable. It’s ideal for analysis, but not always the most efficient way to store structured or repeated data.</p>
+<p>To better handle these cases, we can use nested data formats—and one of the most popular is JSON.</p>
+<p>JSON (JavaScript Object Notation) is a format designed to store structured data. It’s especially useful when one record contains multiple layers of information—for example, an auction that has several bids attached to it.</p>
+<p>Why JSON?</p>
+<ul>
+<li>Captures nested structures, such as multiple bids grouped within a single auction</li>
+<li>Common in APIs, log files, and web applications</li>
+<li>More compact and organized for data with repeating elements</li>
+</ul>
 <p>Unlike flat files, JSON allows us to store all related data in one object, without repeating fields. It’s human-readable, flexible, and widely used in real-world business data systems.</p>
-<p>JSON stores data as a set of key-value pairs. Think of it like a list of labeled boxes — each label is the name of a variable, and inside each box is the value. In the context of our auction dataset, one auction might look like this in JSON format:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"item_id"</span><span class="fu">:</span> <span class="st">"AUC00000"</span><span class="fu">,</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Samsung Galaxy S22"</span><span class="fu">,</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"category"</span><span class="fu">:</span> <span class="st">"Electronics"</span><span class="fu">,</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"start_time"</span><span class="fu">:</span> <span class="st">"2025-07-19T08:04:31.226153"</span><span class="fu">,</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"end_time"</span><span class="fu">:</span> <span class="st">"2025-07-20T08:04:31.226153"</span><span class="fu">,</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"seller"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"user_id"</span><span class="fu">:</span> <span class="st">"pray"</span><span class="fu">,</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"rating"</span><span class="fu">:</span> <span class="fl">4.63</span><span class="fu">,</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"country"</span><span class="fu">:</span> <span class="st">"AE"</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"bids"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"bidder_id"</span><span class="fu">:</span> <span class="st">"istevens"</span><span class="fu">,</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"amount"</span><span class="fu">:</span> <span class="fl">94.61</span><span class="fu">,</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"time"</span><span class="fu">:</span> <span class="st">"2025-07-19T10:41:31.226153"</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"bidder_id"</span><span class="fu">:</span> <span class="st">"mendozajasmine"</span><span class="fu">,</span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"amount"</span><span class="fu">:</span> <span class="fl">97.73</span><span class="fu">,</span></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"time"</span><span class="fu">:</span> <span class="st">"2025-07-19T13:27:31.226153"</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"bidder_id"</span><span class="fu">:</span> <span class="st">"james22"</span><span class="fu">,</span></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"amount"</span><span class="fu">:</span> <span class="fl">103.28</span><span class="fu">,</span></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"time"</span><span class="fu">:</span> <span class="st">"2025-07-19T16:10:31.226153"</span></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"bidder_id"</span><span class="fu">:</span> <span class="st">"wnunez"</span><span class="fu">,</span></span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"amount"</span><span class="fu">:</span> <span class="fl">119.04</span><span class="fu">,</span></span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"time"</span><span class="fu">:</span> <span class="st">"2025-07-19T16:34:31.226153"</span></span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"final_price"</span><span class="fu">:</span> <span class="fl">119.04</span><span class="fu">,</span></span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"winner_id"</span><span class="fu">:</span> <span class="st">"wnunez"</span></span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>JSON (short for JavaScript Object Notation) stores data as a set of key-value pairs. Think of it like a list of labeled boxes—each label is the name of a variable, and inside each box is the value.</p>
+<p>In the context of our auction dataset, one auction might look like this in JSON format:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"item_id"</span><span class="fu">:</span> <span class="st">"a001"</span><span class="fu">,</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Vintage Coffee Table"</span><span class="fu">,</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"category"</span><span class="fu">:</span> <span class="st">"Furniture"</span><span class="fu">,</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"seller"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"user_id"</span><span class="fu">:</span> <span class="st">"seller42"</span><span class="fu">,</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"rating"</span><span class="fu">:</span> <span class="fl">4.8</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"bids"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">"bidder_id"</span><span class="fu">:</span> <span class="st">"user123"</span><span class="fu">,</span> <span class="dt">"amount"</span><span class="fu">:</span> <span class="dv">120</span><span class="fu">,</span> <span class="dt">"time"</span><span class="fu">:</span> <span class="st">"2023-01-01 10:05"</span> <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">"bidder_id"</span><span class="fu">:</span> <span class="st">"user456"</span><span class="fu">,</span> <span class="dt">"amount"</span><span class="fu">:</span> <span class="dv">130</span><span class="fu">,</span> <span class="dt">"time"</span><span class="fu">:</span> <span class="st">"2023-01-01 11:20"</span> <span class="fu">}</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Let’s break it down:</p>
 <ul>
-<li>The top-level keys (<code>item_id</code>, <code>title</code>, <code>category</code>) describe the auction itself.</li>
-<li>The <code>seller</code> key contains a nested object with seller details.</li>
-<li>The <code>bids</code> key holds a list of bid objects, each with its own bidder, amount, and time.</li>
+<li>The top-level keys (item_id, title, category) describe the auction itself.</li>
+<li>The seller key contains a nested object with seller details.</li>
+<li>The bids key holds a list of bid objects, each with its own bidder, amount, and time.</li>
 </ul>
-<p>This structure keeps all related information grouped together. That’s (one of) the power(s) of JSON: it stores complex relationships without flattening the data.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-JSON data does NOT have to be nested
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Just because JSON data can feature nesting structures does not mean that it has to. JSON data can have a flat structure. An example of a flat JSON dataset, that stores key value-pairs for two auctions is:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"item_id"</span><span class="fu">:</span> <span class="st">"AUC10001"</span><span class="fu">,</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Nike Air Force 1"</span><span class="fu">,</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"category"</span><span class="fu">:</span> <span class="st">"Fashion"</span><span class="fu">,</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"start_time"</span><span class="fu">:</span> <span class="st">"2025-08-15T09:00:00"</span><span class="fu">,</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"end_time"</span><span class="fu">:</span> <span class="st">"2025-08-17T09:00:00"</span><span class="fu">,</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"seller_user_id"</span><span class="fu">:</span> <span class="st">"alvarez"</span><span class="fu">,</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"seller_rating"</span><span class="fu">:</span> <span class="fl">4.87</span><span class="fu">,</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"seller_country"</span><span class="fu">:</span> <span class="st">"US"</span><span class="fu">,</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"final_price"</span><span class="fu">:</span> <span class="fl">145.50</span><span class="fu">,</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"winner_id"</span><span class="fu">:</span> <span class="st">"sophiaw"</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"item_id"</span><span class="fu">:</span> <span class="st">"AUC10002"</span><span class="fu">,</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"LEGO Star Wars Millennium Falcon"</span><span class="fu">,</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"category"</span><span class="fu">:</span> <span class="st">"Toys &amp; Games"</span><span class="fu">,</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"start_time"</span><span class="fu">:</span> <span class="st">"2025-08-20T14:30:00"</span><span class="fu">,</span></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"end_time"</span><span class="fu">:</span> <span class="st">"2025-08-22T14:30:00"</span><span class="fu">,</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"seller_user_id"</span><span class="fu">:</span> <span class="st">"zhangwei"</span><span class="fu">,</span></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"seller_rating"</span><span class="fu">:</span> <span class="fl">4.95</span><span class="fu">,</span></span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"seller_country"</span><span class="fu">:</span> <span class="st">"CN"</span><span class="fu">,</span></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"final_price"</span><span class="fu">:</span> <span class="fl">349.99</span><span class="fu">,</span></span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"winner_id"</span><span class="fu">:</span> <span class="st">"marklee"</span></span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Here the data is just a flat list of records, where each attribute sits side-by-side in a similar manner to a row of a flat file.</p>
-</div>
-</div>
-</div>
-<section id="working-with-nested-json-auction-data-in-r" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="working-with-nested-json-auction-data-in-r">Working with Nested JSON Auction Data in R</h3>
-<p>Next, we’ll learn how to work with nested JSON data. Each auction record includes top-level information (like item title and category), a nested list of seller information, and a <strong>nested list of bids</strong> placed by users. Our goal is to explore how to load and manipulate this nested structure using our tidyverse tools. We’ll move step by step, from the raw JSON to a tidy dataset.</p>
-<section id="step-1-load-the-json-file" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="step-1-load-the-json-file">Step 1: Load the JSON File</h4>
+<p>This structure keeps all related information grouped together—no need to repeat the title or seller info for every bid like we did in the CSV file. That’s (one of) the power(s) of JSON: it stores complex relationships without flattening the data.</p>
+<p>ADD callout: JSON does not have to be nested!</p>
+<section id="working-with-nested-json-auction-data-in-r" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="working-with-nested-json-auction-data-in-r"><span class="header-section-number">7.4.1</span> Working with Nested JSON Auction Data in R</h3>
+<p>In this section, we’ll learn how to work with nested JSON data. Each auction record includes top-level information (like item title and category), seller information, and a <strong>nested list of bids</strong> placed by users. This structure is very common in the real world—especially when dealing with data from APIs or web applications.</p>
+<p>Our goal is to explore how to load and manipulate this nested structure using tidyverse tools. We’ll move step by step, from raw JSON to a tidy tibble.</p>
+</section>
+<section id="step-1-load-the-json-file" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="step-1-load-the-json-file"><span class="header-section-number">7.4.2</span> Step 1: Load the JSON File</h3>
 <p>We’ll start by reading in the data using the <code>read_json()</code> function from the <code>jsonlite</code> package. This preserves the nested list structure exactly as it appears in the JSON file.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>auctions_nested <span class="ot">&lt;-</span> <span class="fu">read_json</span>(<span class="st">"data/ebay_auctions.json"</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(auctions_nested)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The object <code>auctions_nested</code> is a list of auction records.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>auctions_nested <span class="ot">&lt;-</span> <span class="fu">read_json</span>(<span class="st">"_extras/code/data_storage/output/ebay_auctions_large.json"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The object <code>auctions_nested</code> is a list of auction records. Each element in the list is a nested list with keys like <code>item_id</code>, <code>title</code>, <code>seller</code>, and <code>bids</code>.</p>
 </section>
-<section id="step-2-peek-inside-a-single-record" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="step-2-peek-inside-a-single-record">Step 2: Peek Inside a Single Record</h4>
-<p>Let’s take a closer look at the structure of the first auction record. If we inspect the first element of the list, can see the keys associated with the auction:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(auctions_nested[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We look at one of the top-level lists, such as the <code>title</code> which stores the type of product being auctioned:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>auctions_nested[[<span class="dv">1</span>]]<span class="sc">$</span>title</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>And if wanted to peek into the one of the the keys that contains a nested object, such as <code>bids</code>, we can see the names of the keys inside the bids list:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(auctions_nested[[<span class="dv">1</span>]]<span class="sc">$</span>bids[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>And if we wanted to see the amount bid:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>auctions_nested[[<span class="dv">1</span>]]<span class="sc">$</span>bids[[<span class="dv">1</span>]]<span class="sc">$</span>amount</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Thus, what we see here is when we load the data into R using <code>read_json</code> the hierarchical structure is preserved.</p>
+<section id="step-2-peek-inside-a-single-record" class="level3" data-number="7.4.3">
+<h3 data-number="7.4.3" class="anchored" data-anchor-id="step-2-peek-inside-a-single-record"><span class="header-section-number">7.4.3</span> Step 2: Peek Inside a Single Record</h3>
+<p>Let’s take a closer look at the structure of the first auction.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(auctions_nested[[<span class="dv">1</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Try also inspecting individual components:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>auctions_nested[[<span class="dv">1</span>]]<span class="sc">$</span>item_id</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>auctions_nested[[<span class="dv">1</span>]]<span class="sc">$</span>seller<span class="sc">$</span>user_id</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>auctions_nested[[<span class="dv">1</span>]]<span class="sc">$</span>bids[[<span class="dv">1</span>]]<span class="sc">$</span>amount</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is a good way to understand the JSON hierarchy before jumping into manipulation.</p>
 </section>
-<section id="step-3-wrap-the-list-into-a-tibble" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="step-3-wrap-the-list-into-a-tibble">Step 3: Wrap the List into a Tibble</h4>
+<section id="step-3-wrap-the-list-into-a-tibble" class="level3" data-number="7.4.4">
+<h3 data-number="7.4.4" class="anchored" data-anchor-id="step-3-wrap-the-list-into-a-tibble"><span class="header-section-number">7.4.4</span> Step 3: Wrap the List into a Tibble</h3>
 <p>To start working with this in tidyverse pipelines, we’ll wrap the list of auctions into a tibble with one column:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>auctions_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">record =</span> auctions_nested)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Each row of <code>auctions_tbl</code> now contains one full auction record:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(auctions_tbl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>and there are 1000 rows of auction data:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(auctions_tbl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>auctions_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">record =</span> auctions_nested)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Each row of <code>auctions_tbl</code> now contains one full auction record.</p>
 </section>
-<section id="step-4-rectangling-non-rectangular-data" class="level4" data-number="7.4.0.1">
-<h4 data-number="7.4.0.1" class="anchored" data-anchor-id="step-4-rectangling-non-rectangular-data"><span class="header-section-number">7.4.0.1</span> Step 4: Rectangling non-rectangular data</h4>
-<p>Now our task is to enagage in “data rectangling”: taking data that is fundamentally hierarchical, or tree-like, and converting it into a rectangular data frame made up of rows and columns. To start rectangling the data, we want to take the top level keys from our JSON data and convert them to columns of data. We make this conversion by unnesting the lists we have stored in the <code>record</code> column, and making our data <em>wider</em>, thus the function we want to use is <code>unnest_wider()</code>. This process of removing hierarchy is also known as flattening the data. Let’s do it:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>auctions_tbl <span class="ot">&lt;-</span> </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    auctions_tbl <span class="sc">|&gt;</span> </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest_wider</span>(record)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(auctions_tbl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now we have columns like <code>item_id</code>, <code>title</code>, <code>category</code>, <code>seller</code>, and <code>bids</code>, and our data looks more rectangular than it did prior to this unnesting step. However, both <code>seller</code> and <code>bids</code> are still lists, we need to engage in further flattening.</p>
-<p>When each row has the same number of elements with the same names, like with <code>seller</code>, it’s natural to further widen the data and put each component into its own column with a second application of <code>unnest_wider()</code>. When we do, the new columns will have a two-part name, <code>seller-&lt;SOMETHING&gt;</code>, because we are unnesting a list from the seller column. The <something> will be the name of each of the keys within the sublist. We will separate the two part name with an underscore:</something></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>auctions_tbl <span class="ot">&lt;-</span> </span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    auctions_tbl <span class="sc">|&gt;</span> </span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest_wider</span>(seller, <span class="at">names_sep =</span> <span class="st">"_"</span>)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(auctions_tbl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="rectangling-non-rectangular-data" class="level3" data-number="7.4.5">
+<h3 data-number="7.4.5" class="anchored" data-anchor-id="rectangling-non-rectangular-data"><span class="header-section-number">7.4.5</span> Rectangling non-rectangular data</h3>
+<p>you’ll learn the art of data rectangling: taking data that is fundamentally hierarchical, or tree-like, and converting it into a rectangular data frame made up of rows and columns. This is important because hierarchical data is surprisingly common, especially when working with data that comes from the web.</p>
+<p>CALLOUT ON R lists</p>
+</section>
+<section id="step-4-unnest-the-top-level-fields" class="level3" data-number="7.4.6">
+<h3 data-number="7.4.6" class="anchored" data-anchor-id="step-4-unnest-the-top-level-fields"><span class="header-section-number">7.4.6</span> Step 4: Unnest the Top-Level Fields</h3>
+<p>We can begin flattening the nested structure one layer at a time using <code>unnest_wider()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>auctions_tbl <span class="ot">&lt;-</span> auctions_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(record)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now we have columns like <code>item_id</code>, <code>title</code>, <code>category</code>, <code>seller</code>, and <code>bids</code>. Both <code>seller</code> and <code>bids</code> are still lists.</p>
+<p>When each row has the same number of elements with the same names, like XXX, it’s natural to put each component into its own column with unnest_wider():</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>auctions_tbl <span class="ot">&lt;-</span> auctions_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(seller, <span class="at">names_sep =</span> <span class="st">"_"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now seller information like <code>user_id</code> and <code>rating</code> is available as separate columns.</p>
 </section>
-<section id="step-5a-flattening-the-bid-lists-to-columns" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="step-5a-flattening-the-bid-lists-to-columns">Step 5a: Flattening the Bid Lists to Columns</h4>
-<p>What about the <code>bids</code> column? Each auction has its own list of bids, and each bid is a small list too. A natural next step, given what we have done above would be to break it out into wide format:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>auctions_tbl_wide <span class="ot">&lt;-</span> </span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    auctions_tbl <span class="sc">|&gt;</span> </span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest_wider</span>(bids, <span class="at">names_sep =</span> <span class="st">"_"</span>)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(auctions_tbl_wide)    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This gives us one column for each bid: <code>bids_1</code>, <code>bids_2</code>, etc. But these are still lists. We start to unnest them as well:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>auctions_tbl_wide <span class="ot">&lt;-</span> </span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    auctions_tbl_wide <span class="sc">|&gt;</span> </span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest_wider</span>(bids_1, <span class="at">names_sep =</span> <span class="st">"_"</span>, <span class="at">names_repair =</span> <span class="st">"unique"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest_wider</span>(bids_2, <span class="at">names_sep =</span> <span class="st">"_"</span>, <span class="at">names_repair =</span> <span class="st">"unique"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This gets tedious if there are many bids (and tough if we didn’t know the number of bids per auction). This might suggest that continuing to widen the data is not the ‘right’ approach. As we’ve advocated throughout the book, when we have to manually repeat actions, the structure of the data we are working with, or trying to create, is likely not the most natural one.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Continuing to widen the data
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Suppose you really wanted to keep widening the data via <code>unnest_wider()</code> even though the approach might now be first-best. How would we do it? We’d need to follow these steps:</p>
-<ol type="1">
-<li>Determine the names of all the <code>bids_</code> columns, ideally in an automated way that R can do for us</li>
-<li>Apply a function that takes all of these column names in the <code>auctions_tbl_wide</code> data and apply <code>unnest_wider</code> on them.</li>
-</ol>
-<p>Here’s how you can do that. It uses the <code>reduce()</code> function in Step 2 to apply a function iteratively that unnest’s each of the columns we identified in the first.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Find all column names that </span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we want to apply unnest_wider() to</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>bid_cols <span class="ot">&lt;-</span> </span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    auctions_tbl_wide <span class="sc">|&gt;</span> </span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"bids_"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">where</span>(is.list)) <span class="sc">|&gt;</span> </span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>()</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>auctions_tbl_wide <span class="ot">&lt;-</span> </span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reduce</span>(</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>        bid_cols,</span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">.init =</span> auctions_tbl_wide,</span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">.f =</span> <span class="cf">function</span>(df, col) {</span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>            <span class="fu">unnest_wider</span>(df, </span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>                         <span class="sc">!!</span><span class="fu">sym</span>(col), </span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names_sep =</span> <span class="st">"_"</span>, </span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names_repair =</span> <span class="st">"unique"</span></span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>                         )</span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>            }</span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(auctions_tbl_wide)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Don’t worry, we won’t expect you to remember those steps. That’s a pretty advanced pipeline. But it shows this route can be pursued if need be.</p>
-</div>
-</div>
-</div>
+<section id="step-5-flattening-the-bid-lists-wide-format" class="level3" data-number="7.4.7">
+<h3 data-number="7.4.7" class="anchored" data-anchor-id="step-5-flattening-the-bid-lists-wide-format"><span class="header-section-number">7.4.7</span> Step 5: Flattening the Bid Lists (Wide Format)</h3>
+<p>What about the <code>bids</code> column? Each auction has its own list of bids, and each bid is a small list too. First, we can break it out into wide format:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>auctions_tbl_wide <span class="ot">&lt;-</span> auctions_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(bids, <span class="at">names_sep =</span> <span class="st">"_"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This gives us one column for each bid: <code>bids_1</code>, <code>bids_2</code>, etc.—but these are still lists. We can unnest them as well:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>auctions_tbl_wide <span class="ot">&lt;-</span> auctions_tbl_wide <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(bids_1, <span class="at">names_sep =</span> <span class="st">"_"</span>, <span class="at">names_repair =</span> <span class="st">"unique"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(bids_2, <span class="at">names_sep =</span> <span class="st">"_"</span>, <span class="at">names_repair =</span> <span class="st">"unique"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This gets tedious if there are many bids. So let’s automate it.</p>
 </section>
-<section id="step-5b-unnesting-bids-to-new-rows" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="step-5b-unnesting-bids-to-new-rows">Step 5b: Unnesting <code>bids</code> to new rows</h4>
-<p>So far, our rectangling has made the data wider. But rectangles have two dimensions, width <em>and</em> length. Thus, instead of going wider, we can go longer. This means we unnest the bids data into new rows, with each new row being one bid, via the <code>unnest_longer()</code> function. The beauty in this is that we do not need to know the number of new rows we need to create per auction:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>auctions_tbl_long <span class="ot">&lt;-</span> </span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    auctions_tbl <span class="sc">|&gt;</span> </span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest_longer</span>(bids) </span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(auctions_tbl_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now we have a tidy table where each row is one bid and it includes the item ID and other metadata. However, the bids column is still a list. But now each list is simply the of one bid. We can unnest <code>bids</code> list wider, to get each of the bid’s characteristics as new columns:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>auctions_tbl_long <span class="ot">&lt;-</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    auctions_tbl_long <span class="sc">|&gt;</span> </span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest_wider</span>(bids, <span class="at">names_sep =</span> <span class="st">"_"</span>)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(auctions_tbl_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="step-6-automate-the-unnesting-of-all-bid-columns" class="level3" data-number="7.4.8">
+<h3 data-number="7.4.8" class="anchored" data-anchor-id="step-6-automate-the-unnesting-of-all-bid-columns"><span class="header-section-number">7.4.8</span> Step 6: Automate the Unnesting of All Bid Columns</h3>
+<p>Use this if you don’t know how many bids there will be ahead of time:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>bid_cols <span class="ot">&lt;-</span> auctions_tbl_wide <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"bids_"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.list)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>()</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>auctions_tbl_wide <span class="ot">&lt;-</span> <span class="fu">reduce</span>(</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  bid_cols,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">.init =</span> auctions_tbl_wide,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">.f =</span> <span class="cf">function</span>(df, col) {</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest_wider</span>(df, <span class="sc">!!</span><span class="fu">sym</span>(col), <span class="at">names_sep =</span> <span class="st">"_"</span>, <span class="at">names_repair =</span> <span class="st">"unique"</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="step-7-unnesting-to-long-format" class="level3" data-number="7.4.9">
+<h3 data-number="7.4.9" class="anchored" data-anchor-id="step-7-unnesting-to-long-format"><span class="header-section-number">7.4.9</span> Step 7: Unnesting to Long Format</h3>
+<p>Discuss why the wider might not be what we wanted …</p>
+<p>Instead of going wider, we can go longer. This means one row per bid:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>bids_long <span class="ot">&lt;-</span> auctions_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_longer</span>(bids) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(bids)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now we have a tidy table where each row is a bid, including the item ID and other metadata. This is often easier to work with for analysis and looks very much like the CSV format!.</p>
+</section>
+<section id="bonus-nesting-back-again" class="level3" data-number="7.4.10">
+<h3 data-number="7.4.10" class="anchored" data-anchor-id="bonus-nesting-back-again"><span class="header-section-number">7.4.10</span> Bonus: Nesting Back Again</h3>
+<p>Let’s reverse the process and group the bids back into a nested column:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>bids_renested <span class="ot">&lt;-</span> bids_long <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(item_id, bidder_id, amount, time) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(item_id) <span class="sc">%&gt;%</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">bids =</span> <span class="fu">list</span>(<span class="fu">cur_data</span>()), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p>💡 <strong>Extension:</strong> Compare <code>unnest_wider()</code> vs <code>unnest_longer()</code> strategies</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>💬 JSON teaches data structure thinking — objects, lists, hierarchies</p>
+</blockquote>
+<hr>
 </section>
 </section>
-</section>
-<section id="databases-with-duckdb" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="databases-with-duckdb"><span class="header-section-number">7.5</span> Databases with DuckDB</h2>
-<p>A huge amount of business data lives in databases, so it’s important that you know how to access it. The reason lots of business data lives inside of a database, is that databases are efficient at storing the data and there is a widely used language, known as SQL (Structured Query Language), for performing data wrangling on databases. Luckily for us, our knowlegde of R and the tidyverse in particular, means we have most of tools we need to work with data that lives in pre-existing databases. This is because the packages within the tidyverse know how to translate and run <code>dplyr</code> commands on a database. This means that once we know how to connect to a database, we can apply the knowledge from previous chapters to extract insights with relative ease.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Database Management Systems
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+<section id="databases-duckdb" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="databases-duckdb"><span class="header-section-number">7.5</span> 🗄️ 3. Databases (DuckDB)</h2>
+<section id="why-databases" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="why-databases"><span class="header-section-number">7.5.1</span> Why databases?</h3>
+<p>A huge amount of data lives in databases, so it’s essential that you know how to access it.</p>
+<ul>
+<li>Efficient for large structured data</li>
+<li>Use SQL to join/filter/aggregate</li>
+</ul>
+<p>TIP BOX</p>
 <p>Databases are run by database management systems (DBMS’s for short), which come in three basic forms:</p>
 <ul>
 <li>Client-server DBMS’s run on a powerful central server, which you connect to from your computer (the client). They are great for sharing data with multiple people in an organization. Popular client-server DBMS’s include PostgreSQL, MariaDB, SQL Server, and Oracle.</li>
 <li>Cloud DBMS’s, like Snowflake, Amazon’s RedShift, and Google’s BigQuery, are similar to client server DBMS’s, but they run in the cloud. This means that they can easily handle extremely large datasets and can automatically provide more compute resources as needed.</li>
 <li>In-process DBMS’s, like SQLite or duckdb, run entirely on your computer. They’re great for working with large datasets where you’re the primary user.</li>
 </ul>
-</div>
-</div>
-</div>
-<section id="connecting-to-a-database" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="connecting-to-a-database">Connecting to a database</h3>
-<p>To connect to a database from R, you’ll use a pair of packages:</p>
+<p>Our to dos:</p>
+<p>how to use it to connect to a database and then retrieve data</p>
+</section>
+<section id="connecting-to-a-database" class="level3" data-number="7.5.2">
+<h3 data-number="7.5.2" class="anchored" data-anchor-id="connecting-to-a-database"><span class="header-section-number">7.5.2</span> Connecting to a database</h3>
+<p>To connect to the database from R, you’ll use a pair of packages:</p>
+<p>You’ll always use DBI (database interface) because it provides a set of generic functions that connect to the database, upload data, run SQL queries, etc.</p>
+<p>You’ll also use a package tailored for the DBMS you’re connecting to. This package translates the generic DBI commands into the specifics needed for a given DBMS.</p>
+<p>we’ll instead use an in-process DBMS that lives entirely in an R package: duckdb. Thanks to the magic of DBI, the only difference between using duckdb and any other DBMS is how you’ll connect to the database. This makes it great to teach with because you can easily run this code as well as easily take what you learn and apply it elsewhere.</p>
+<p>Connecting to duckdb is particularly simple because the defaults create a temporary database that is deleted when you quit R. That’s great for learning because it guarantees that you’ll start from a clean slate every time you restart R:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(duckdb<span class="sc">::</span><span class="fu">duckdb</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>duckdb is a high-performance database that’s designed very much for the needs of a data scientist. We use it here because it’s very easy to get started with, but it’s also capable of handling gigabytes of data with great speed.</p>
+<p>TIP If you want to use duckdb for a real data analysis project, you’ll also need to supply the dbdir argument to make a persistent database and tell duckdb where to save it</p>
+</section>
+<section id="duckdb" class="level3" data-number="7.5.3">
+<h3 data-number="7.5.3" class="anchored" data-anchor-id="duckdb"><span class="header-section-number">7.5.3</span> DuckDB:</h3>
+<section id="dbi-basics" class="level4" data-number="7.5.3.1">
+<h4 data-number="7.5.3.1" class="anchored" data-anchor-id="dbi-basics"><span class="header-section-number">7.5.3.1</span> DBI basics</h4>
+<p>You can check that the data is loaded correctly by using a couple of other DBI functions: dbListTables() lists all tables in the database3 and dbReadTable() retrieves the contents of a table.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode e code-with-copy"><code class="sourceCode eiffel"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>dbListTables(con)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>#&gt; [<span class="dv">1</span>] <span class="st">"diamonds"</span> <span class="st">"mpg"</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>con |&gt; </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  dbReadTable(<span class="st">"diamonds"</span>) |&gt; </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  as_tibble()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(duckdb)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(<span class="fu">duckdb</span>(), <span class="st">"bids.duckdb"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">"bids"</span>, bids_long)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="dbplyr" class="level3" data-number="7.5.4">
+<h3 data-number="7.5.4" class="anchored" data-anchor-id="dbplyr"><span class="header-section-number">7.5.4</span> <code>dbplyr</code></h3>
+<p>Now that we’ve connected to a database and loaded up some data, we can start to learn about dbplyr. dbplyr is a dplyr backend, which means that you keep writing dplyr code but the backend executes it differently. In this, dbplyr translates to SQL;</p>
+<p>To use dbplyr, you must first use tbl() to create an object that represents a database table:</p>
+<pre><code>diamonds_db &lt;- tbl(con, "diamonds")
+diamonds_db</code></pre>
+<p>This object is lazy; when you use dplyr verbs on it, dplyr doesn’t do any work: it just records the sequence of operations that you want to perform and only performs them when needed. For example, take the following pipeline:</p>
+<pre><code>big_diamonds_db &lt;- diamonds_db |&gt; 
+  filter(price &gt; 15000) |&gt; 
+  select(carat:clarity, price)</code></pre>
+<p>You can tell this object represents a database query because it prints the DBMS name at the top, and while it tells you the number of columns, it typically doesn’t know the number of rows. This is because finding the total number of rows usually requires executing the complete query, something we’re trying to avoid.</p>
+<p>To get all the data back into R, you call collect(). Behind the scenes, this generates the SQL, calls dbGetQuery() to get the data, then turns the result into a tibble:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>bids_db <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"bids"</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(category <span class="sc">==</span> <span class="st">"Books"</span>) <span class="sc">%&gt;%</span> <span class="fu">collect</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>How did that work? You can see the SQL code generated by the dplyr function show_query(). If you know dplyr, this is a great way to learn SQL! Write some dplyr code, get dbplyr to translate it to SQL, and then try to figure out how the two languages match up.</p>
+<p>Typically, you’ll use dbplyr to select the data you want from the database, performing basic filtering and aggregation using the translations described below. Then, once you’re ready to analyse the data with functions that are unique to R, you’ll collect() the data to get an in-memory tibble, and continue your work with pure R code.</p>
+<p>Now run some dplyr code including joins. Do exercises.</p>
+<blockquote class="blockquote">
+<p>💡 <strong>Tip:</strong> DuckDB works with flat files <em>and</em> Parquet — great for teaching SQL locally</p>
+</blockquote>
+<p>TIP</p>
+<p>If you’ve finished this chapter and would like to learn more about SQL, we have two recommendations:</p>
+<p>SQL for Data Scientists by Renée M. P. Teate is an introduction to SQL designed specifically for the needs of data scientists, and includes examples of the sort of highly interconnected data you’re likely to encounter in real organizations. Practical SQL by Anthony DeBarros is written from the perspective of a data journalist (a data scientist specialized in telling compelling stories) and goes into more detail about getting your data into a database and running your own DBMS.</p>
+<hr>
+</section>
+</section>
+<section id="parquet-columnar-format" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="parquet-columnar-format"><span class="header-section-number">7.6</span> 📦 4. Parquet (Columnar Format)</h2>
+<section id="why-parquet" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="why-parquet"><span class="header-section-number">7.6.1</span> Why Parquet?</h3>
 <ul>
-<li><code>DBI</code> as a database interface</li>
-<li><code>duckdb</code> as database engine that stores and queries data in the database</li>
+<li>Compressed, fast, and scalable</li>
+<li>Ideal for analytics</li>
 </ul>
-<p>Whenever you work with a database in R, you’ll always use <code>DBI</code> (database interface) because it provides a set of generic functions that connect to the database, upload data, and run queries. <code>duckdb</code> is a high-performance database that’s designed very much for the needs of a data scientist. We use it here because it’s very easy to get started with, but it’s also capable of handling gigabytes of data with great speed. Depending on your some specifics of the database you are looking to connect to, you may need to use a different engine. However, the the only difference between using duckdb and any other DBMS is how you’ll connect to the database. This makes it great to teach with because you can easily run this code as well as easily take what you learn and apply it elsewhere.</p>
-<p>The database we want to connect to is the auctions data is located in the file <code>data/auctions.duckdb</code>. We want to use the <code>duckdb</code> as the engine with which we interface with the data:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(duckdb)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(<span class="fu">duckdb</span>(), <span class="at">dbdir =</span> <span class="st">"data/auctions.duckdb"</span>)</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Great. Now we have a connection called <code>con</code>. As we move forward, we’ll always have to use this connection to interact with the database. For example, if we want to see which tables of data are stored in our database, we can use the <code>dbListTables()</code> function:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Which shows we have three distinct tables of data stored. This is kind of like what we had with our Excel spreadsheet, multiple sheets of data living inside one location. If we then want to look at the contents of each table, we can ask R to return to us a glimpse of one of the tables:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl</span>(con, <span class="st">"bids"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>In the code above, we first had to use <code>tbl()</code> to create an object that represents a database table. Whenever we want to work with a table in the database, we will need to use the <code>tbl()</code> function with the connection <code>con</code> as its first argument. You can tell this object represents a database query because it prints the DBMS name at the top, and while it tells you information about each of of columns, it typically doesn’t know the exact number of rows. This object is lazy; and finding the total number of rows of a table stored in a database (or as the result of a set of data-wrangling tasks) could be (very) time consuming. Thus by default, we only see you a small preview of the data — a handful of rows along with the column definitions — while postponing the actual work of counting or retrieving everything until we explicitly ask for it.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Closing Your Database connection
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>When you have finished working with your database, you should close the connection:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
+<p>the parquet format, an open standards-based format widely used by big data systems.</p>
+<p>We’ll pair parquet files with Apache Arrow, a multi-language toolbox designed for efficient analysis and transport of large datasets. We’ll use Apache Arrow via the arrow package, which provides a dplyr backend allowing you to analyze larger-than-memory datasets using familiar dplyr syntax. As an additional benefit, arrow is extremely fast: you’ll see some examples later in the chapter.</p>
+<p>Opening a dataset Let’s start by taking a look at the data. At 9 GB, this file is large enough that we probably don’t want to load the whole thing into memory. A good rule of thumb is that you usually want at least twice as much memory as the size of the data, and many laptops top out at 16 GB. This means we want to avoid read_csv() and instead use the arrow::open_dataset():</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>seattle_csv <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">sources =</span> <span class="st">"data/seattle-library-checkouts.csv"</span>, </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">schema</span>(<span class="at">ISBN =</span> <span class="fu">string</span>()),</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">format =</span> <span class="st">"csv"</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>What happens when this code is run? open_dataset() will scan a few thousand rows to figure out the structure of the dataset. The ISBN column contains blank values for the first 80,000 rows, so we have to specify the column type to help arrow work out the data structure. Once the data has been scanned by open_dataset(), it records what it’s found and stops; it will only read further rows as you specifically request them. This metadata is what we see if we print seattle_csv:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>seattle_csv</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; FileSystemDataset with 1 csv file</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; UsageClass: string</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; CheckoutType: string</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; MaterialType: string</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; CheckoutYear: int64</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; CheckoutMonth: int64</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Checkouts: int64</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Title: string</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ISBN: string</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Creator: string</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Subjects: string</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Publisher: string</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; PublicationYear: string</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The first line in the output tells you that seattle_csv is stored locally on-disk as a single CSV file; it will only be loaded into memory as needed. The remainder of the output tells you the column type that arrow has imputed for each column.</p>
+<p>We can see what’s actually in with glimpse(). This reveals that there are ~41 million rows and 12 columns, and shows us a few values.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>seattle_csv <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We can see what’s actually in with glimpse(). This reveals that there are ~41 million rows and 12 columns, and shows us a few values.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>seattle_csv <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="the-parquet-format" class="level4" data-number="7.6.1.1">
+<h4 data-number="7.6.1.1" class="anchored" data-anchor-id="the-parquet-format"><span class="header-section-number">7.6.1.1</span> The parquet format</h4>
+<p>To make this data easier to work with, let’s switch to the parquet file format and split it up into multiple files. The following sections will first introduce you to parquet and partitioning, and then apply what we learned to the Seattle library data.</p>
+<p>Advantages of parquet Like CSV, parquet is used for rectangular data, but instead of being a text format that you can read with any file editor, it’s a custom binary format designed specifically for the needs of big data. This means that:</p>
+<p>Parquet files are usually smaller than the equivalent CSV file. Parquet relies on efficient encodings to keep file size down, and supports file compression. This helps make parquet files fast because there’s less data to move from disk to memory.</p>
+<p>Parquet files have a rich type system. As we talked about in Section 7.3, a CSV file does not provide any information about column types. For example, a CSV reader has to guess whether “08-10-2022” should be parsed as a string or a date. In contrast, parquet files store data in a way that records the type along with the data.</p>
+<p>Parquet files are “column-oriented”. This means that they’re organized column-by-column, much like R’s data frame. This typically leads to better performance for data analysis tasks compared to CSV files, which are organized row-by-row.</p>
+<p>Parquet files are “chunked”, which makes it possible to work on different parts of the file at the same time, and, if you’re lucky, to skip some chunks altogether.</p>
+<p>There’s one primary disadvantage to parquet files: they are no longer “human readable”, i.e.&nbsp;if you look at a parquet file using readr::read_file(), you’ll just see a bunch of gibberish.</p>
+<p>22.4.2 Partitioning As datasets get larger and larger, storing all the data in a single file gets increasingly painful and it’s often useful to split large datasets across many files. When this structuring is done intelligently, this strategy can lead to significant improvements in performance because many analyses will only require a subset of the files.</p>
+<p>There are no hard and fast rules about how to partition your dataset: the results will depend on your data, access patterns, and the systems that read the data. You’re likely to need to do some experimentation before you find the ideal partitioning for your situation. As a rough guide, arrow suggests that you avoid files smaller than 20MB and larger than 2GB and avoid partitions that produce more than 10,000 files. You should also try to partition by variables that you filter by; as you’ll see shortly, that allows arrow to skip a lot of work by reading only the relevant files.</p>
+<p>Let’s take a look at what we just produced:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">files =</span> <span class="fu">list.files</span>(pq_path, <span class="at">recursive =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">size_MB =</span> <span class="fu">file.size</span>(<span class="fu">file.path</span>(pq_path, files)) <span class="sc">/</span> <span class="dv">1024</span><span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 18 × 2</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   files                            size_MB</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                              &lt;dbl&gt;</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 CheckoutYear=2005/part-0.parquet    109.</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 CheckoutYear=2006/part-0.parquet    164.</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 CheckoutYear=2007/part-0.parquet    178.</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 CheckoutYear=2008/part-0.parquet    195.</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 CheckoutYear=2009/part-0.parquet    214.</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 CheckoutYear=2010/part-0.parquet    222.</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 12 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Our single 9GB CSV file has been rewritten into 18 parquet files. The file names use a “self-describing” convention used by the Apache Hive project. Hive-style partitions name folders with a “key=value” convention, so as you might guess, the CheckoutYear=2005 directory contains all the data where CheckoutYear is 2005. Each file is between 100 and 300 MB and the total size is now around 4 GB, a little over half the size of the original CSV file. This is as we expect since parquet is a much more efficient format.</p>
+<p>Using dplyr with arrow Now we’ve created these parquet files, we’ll need to read them in again. We use open_dataset() again, but this time we give it a directory:</p>
+<p>seattle_pq &lt;- open_dataset(pq_path)</p>
+<p>Now we can write our dplyr pipeline. For example, we could count the total number of books checked out in each month for the last five years:</p>
+<p>query &lt;- seattle_pq |&gt; filter(CheckoutYear &gt;= 2018, MaterialType == “BOOK”) |&gt; group_by(CheckoutYear, CheckoutMonth) |&gt; summarize(TotalCheckouts = sum(Checkouts)) |&gt; arrange(CheckoutYear, CheckoutMonth)</p>
+<p>Writing dplyr code for arrow data is conceptually similar to dbplyr, Chapter 21: you write dplyr code, which is automatically transformed into a query that the Apache Arrow C++ library understands, which is then executed when you call collect(). If we print out the query object we can see a little information about what we expect Arrow to return when the execution takes place:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>query</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; FileSystemDataset (query)</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; CheckoutYear: int32</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; CheckoutMonth: int64</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; TotalCheckouts: int64</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; * Grouped by CheckoutYear</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; * Sorted by CheckoutYear [asc], CheckoutMonth [asc]</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; See $.data for the source Arrow object</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>And we can get the results by calling collect():</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>query <span class="sc">|&gt;</span> <span class="fu">collect</span>()</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 58 × 3</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Groups:   CheckoutYear [5]</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   CheckoutYear CheckoutMonth TotalCheckouts</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;int&gt;         &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1         2018             1         355101</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2         2018             2         309813</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3         2018             3         344487</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4         2018             4         330988</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5         2018             5         318049</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6         2018             6         341825</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 52 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Like dbplyr, arrow only understands some R expressions, so you may not be able to write exactly the same code you usually would. However, the list of operations and functions supported is fairly extensive and continues to grow; find a complete list of currently supported functions in ?acero.</p>
+<p>Performance Let’s take a quick look at the performance impact of switching from CSV to parquet. First, let’s time how long it takes to calculate the number of books checked out in each month of 2021, when the data is stored as a single large csv:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>seattle_csv <span class="sc">|&gt;</span> </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CheckoutYear <span class="sc">==</span> <span class="dv">2021</span>, MaterialType <span class="sc">==</span> <span class="st">"BOOK"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(CheckoutMonth) <span class="sc">|&gt;</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">TotalCheckouts =</span> <span class="fu">sum</span>(Checkouts)) <span class="sc">|&gt;</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(CheckoutMonth)) <span class="sc">|&gt;</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.time</span>()</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    user  system elapsed </span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  11.951   1.297  11.387</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now let’s use our new version of the dataset in which the Seattle library checkout data has been partitioned into 18 smaller parquet files:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>seattle_pq <span class="sc">|&gt;</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CheckoutYear <span class="sc">==</span> <span class="dv">2021</span>, MaterialType <span class="sc">==</span> <span class="st">"BOOK"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(CheckoutMonth) <span class="sc">|&gt;</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">TotalCheckouts =</span> <span class="fu">sum</span>(Checkouts)) <span class="sc">|&gt;</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(CheckoutMonth)) <span class="sc">|&gt;</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.time</span>()</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    user  system elapsed </span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   0.263   0.058   0.063</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The ~100x speedup in performance is attributable to two factors: the multi-file partitioning, and the format of individual files:</p>
+<p>Partitioning improves performance because this query uses CheckoutYear == 2021 to filter the data, and arrow is smart enough to recognize that it only needs to read 1 of the 18 parquet files. The parquet format improves performance by storing data in a binary format that can be read more directly into memory. The column-wise format and rich metadata means that arrow only needs to read the four columns actually used in the query (CheckoutYear, MaterialType, CheckoutMonth, and Checkouts). This massive difference in performance is why it pays off to convert large CSVs to parquet!</p>
 </section>
-<section id="dbplyr-dplyr-for-databases" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="dbplyr-dplyr-for-databases"><code>dbplyr</code>: <code>dplyr</code> for databases</h3>
-<p>Now that we’ve connected to a database and loaded up some data, we can start to wrangle with the data. Data wrangling with databases in the tidyverse uses a package called <code>dbplyr</code>. <code>dbplyr</code> is a <code>dplyr</code> backend, which means that we keep writing <code>dplyr</code> code but behind the scenes executes it differently. In our database, <code>dbplyr</code> translates the code to SQL - the language for operating on structured databases.</p>
-<p>Let’s now complete a task that is all too familiar in this chapter, selecting all bids from the auction labelled <code>AUC0001</code>. The <code>dplyr</code> code that would do that for us is:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>bids_filtered <span class="ot">&lt;-</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tbl</span>(con, <span class="st">"bids"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(item_id <span class="sc">==</span> <span class="st">"AUC00001"</span>) </span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bids_filtered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Hmmmm, nothing gets returned here. This comes back to the lazyness of the <code>tbl()</code> command. If we want our code to be executed against the database, we have to add a <code>collect()</code> command as a final step:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>bids_filtered <span class="ot">&lt;-</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tbl</span>(con, <span class="st">"bids"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(item_id <span class="sc">==</span> <span class="st">"AUC00001"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">collect</span>()</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bids_filtered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This matches what we had in previous sections, as expected.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-What’s happening behind the scenes?
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Behind the scenes, dplyr generates the SQL code that is equivalent to what we wrote, then calls <code>dbGetQuery()</code> to run the query against the database, then turns the result into a tibble.</p>
-<p>To see this, we can use <code>show_query()</code> to see the SQL version of our <code>dplyr</code> code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>query <span class="ot">&lt;-</span> </span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tbl</span>(con, <span class="st">"bids"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(item_id <span class="sc">==</span> <span class="st">"AUC00001"</span>)</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">show_query</span>(query)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>and then run that SQL query against the database:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(con, <span class="st">"SELECT * FROM bids WHERE (item_id = 'AUC00001')"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>which yields exactly the same dataset.</p>
-</div>
-</div>
-</div>
-<p>Typically, you’ll use <code>dbplyr</code> to select the data you want from the database, performing basic filtering and aggregation using the translations described below. Then, once you’re ready to analyse the data with functions that are unique to R, you’ll <code>collect()</code> the data to get an in-memory tibble, and (possibly) continue your work with pure R code.</p>
-<p>To see this in action, let’s wrangle the data in the database to produce a table very similar to the one we produced by flattening the JSON data.</p>
-</section>
-<section id="working-with-the-auctions-database" class="level3" data-number="7.5.1">
-<h3 data-number="7.5.1" class="anchored" data-anchor-id="working-with-the-auctions-database"><span class="header-section-number">7.5.1</span> Working with the Auctions database</h3>
-<p>To start to aggregate our data into one table, we can join the data in the <code>auctions</code> table to the seller information in <code>sellers</code>. We will do this using a <code>left_join()</code>. First let’s look at each of the datasets structures to find a common variable to join on:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl</span>(con, <span class="st">"auctions"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl</span>(con, <span class="st">"sellers"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>So we can use <code>seller_user_id</code> as the common variable to join on:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>auctions_sellers <span class="ot">&lt;-</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tbl</span>(con, <span class="st">"auctions"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(<span class="fu">tbl</span>(con, <span class="st">"sellers"</span>),</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">by =</span> <span class="st">"seller_user_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Notice how we do not use a <code>collect()</code> statement, because we do not yet need to return the results. We only need the results once we join this data to the bids data. To join <code>auctions_sellers</code> to the bids data, we use the <code>item_id</code> as the common key:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    auctions_sellers <span class="sc">|&gt;</span> </span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(<span class="fu">tbl</span>(con, <span class="st">"bids"</span>),</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">by =</span> <span class="st">"item_id"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">collect</span>()</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Which has the same rows and columns as the rectangled data from the JSON file.</p>
+<section id="using-duckdb-with-arrow" class="level4" data-number="7.6.1.2">
+<h4 data-number="7.6.1.2" class="anchored" data-anchor-id="using-duckdb-with-arrow"><span class="header-section-number">7.6.1.2</span> Using duckdb with arrow</h4>
+<p>There’s one last advantage of parquet and arrow — it’s very easy to turn an arrow dataset into a DuckDB database (Chapter 21) by calling arrow::to_duckdb():</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>seattle_pq <span class="sc">|&gt;</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">to_duckdb</span>() <span class="sc">|&gt;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CheckoutYear <span class="sc">&gt;=</span> <span class="dv">2018</span>, MaterialType <span class="sc">==</span> <span class="st">"BOOK"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(CheckoutYear) <span class="sc">|&gt;</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">TotalCheckouts =</span> <span class="fu">sum</span>(Checkouts)) <span class="sc">|&gt;</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(CheckoutYear)) <span class="sc">|&gt;</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="wrap-up-which-format-would-you-use" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="wrap-up-which-format-would-you-use"><span class="header-section-number">7.6</span> Wrap-up: Which Format Would You Use?</h2>
-<p>Now that we’ve seen four alternative data storage formats:</p>
-<ol type="1">
-<li>Spreadsheets</li>
-<li>Flat Files</li>
-<li>JSON</li>
-<li>Databases</li>
-</ol>
-<p>which one do you think is best for the online auction data we have here?</p>
-<p>In the next chapter, rather than working with existing data we are going to explore one method of collecting new data called webscraping. We’ll look to harvest data from websites and then store the information for future analysis.</p>
+<section id="partitioning-example" class="level3" data-number="7.6.2">
+<h3 data-number="7.6.2" class="anchored" data-anchor-id="partitioning-example"><span class="header-section-number">7.6.2</span> Partitioning example:</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_dataset</span>(bids_long, <span class="at">path =</span> <span class="st">"bids_by_category"</span>, <span class="at">format =</span> <span class="st">"parquet"</span>, <span class="at">partitioning =</span> <span class="st">"category"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="reading-it-efficiently" class="level3" data-number="7.6.3">
+<h3 data-number="7.6.3" class="anchored" data-anchor-id="reading-it-efficiently"><span class="header-section-number">7.6.3</span> Reading it efficiently:</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ds <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(<span class="st">"bids_by_category"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>books_bids <span class="ot">&lt;-</span> ds <span class="sc">%&gt;%</span> <span class="fu">filter</span>(category <span class="sc">==</span> <span class="st">"Books"</span>) <span class="sc">%&gt;%</span> <span class="fu">collect</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p>💡 <strong>Extension:</strong> Explain partition pruning and how it speeds up queries</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="format-comparison" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="format-comparison"><span class="header-section-number">7.7</span> 📊 5. Format Comparison</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 32%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Format</th>
+<th>Structure</th>
+<th>Scale</th>
+<th>Best For</th>
+<th>Limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CSV</td>
+<td>Flat</td>
+<td>Medium</td>
+<td>Simple, readable data</td>
+<td>No types, no nesting</td>
+</tr>
+<tr class="even">
+<td>JSON</td>
+<td>Nested</td>
+<td>Small–Med</td>
+<td>APIs, logs, config</td>
+<td>Harder to analyze in R</td>
+</tr>
+<tr class="odd">
+<td>SQL (DuckDB)</td>
+<td>Relational</td>
+<td>Large</td>
+<td>Queries, joining datasets</td>
+<td>Needs setup or SQL</td>
+</tr>
+<tr class="even">
+<td>Parquet</td>
+<td>Columnar</td>
+<td>Huge</td>
+<td>Analytics, filtering</td>
+<td>Not human-readable</td>
+</tr>
+<tr class="odd">
+<td>Excel</td>
+<td>Manual</td>
+<td>Small</td>
+<td>Fast edits and charts</td>
+<td>Not scalable or reproducible</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="best-practices-for-storing-sharing-data" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="best-practices-for-storing-sharing-data"><span class="header-section-number">7.8</span> 🔐 6. Best Practices for Storing &amp; Sharing Data</h2>
+<section id="golden-rules" class="level3" data-number="7.8.1">
+<h3 data-number="7.8.1" class="anchored" data-anchor-id="golden-rules"><span class="header-section-number">7.8.1</span> ✅ Golden Rules</h3>
+<ul>
+<li>Use clear file/folder names</li>
+<li>Document variables (data dictionary)</li>
+<li>Secure access and backup regularly</li>
+</ul>
+</section>
+<section id="fair-principles-tip-box" class="level3" data-number="7.8.2">
+<h3 data-number="7.8.2" class="anchored" data-anchor-id="fair-principles-tip-box"><span class="header-section-number">7.8.2</span> 🧭 FAIR Principles (Tip Box)</h3>
+<blockquote class="blockquote">
+<p><strong>Findable</strong>: Clear names and locations<br>
+<strong>Accessible</strong>: Stored where people can get it<br>
+<strong>Interoperable</strong>: Works in Excel, R, Python<br>
+<strong>Reusable</strong>: Well-documented, no guesswork</p>
+</blockquote>
+</section>
+<section id="privacy" class="level3" data-number="7.8.3">
+<h3 data-number="7.8.3" class="anchored" data-anchor-id="privacy"><span class="header-section-number">7.8.3</span> 🔐 Privacy</h3>
+<ul>
+<li>HR and customer data require secure handling</li>
+<li>Never leave sensitive data in shared drives</li>
+</ul>
+</section>
+<section id="breaking-down-silos" class="level3" data-number="7.8.4">
+<h3 data-number="7.8.4" class="anchored" data-anchor-id="breaking-down-silos"><span class="header-section-number">7.8.4</span> 🧱 Breaking Down Silos</h3>
+<ul>
+<li>Departments often keep separate versions of the truth</li>
+<li>Well-organized, central storage enables business-wide insights</li>
+</ul>
+</section>
+</section>
+<section id="wrap-up-activity-which-format-would-you-use" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="wrap-up-activity-which-format-would-you-use"><span class="header-section-number">7.9</span> 🧠 Wrap-up Activity: Which Format Would You Use?</h2>
+<blockquote class="blockquote">
+<p>Choose one scenario: - A retail dataset with 10M rows - A survey with branching responses - A time-stamped log from a website</p>
+<p>Discuss which format fits and why.</p>
+</blockquote>
 
 
 </section>
@@ -1457,8 +1410,8 @@ What’s happening behind the scenes?
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tutorials/what_is_business_analytics.html" class="pagination-link" aria-label="Tutorial 1: Business Analytics Skills for Inventory Management">
-        <span class="nav-page-text">Tutorial 1: Business Analytics Skills for Inventory Management</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../data_management/data_collection.html" class="pagination-link" aria-label="Collected Structured and Unstructured Data">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

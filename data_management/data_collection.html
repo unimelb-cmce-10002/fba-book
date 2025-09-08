@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.22">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; Collected Structured and Unstructured Data – Foundations of Business Analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../tutorials/what_is_business_analytics.html" rel="next">
+<link href="../data_management/data_storage.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-08a17407ac8bdf6ef4986fac9a905031.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../solution.js"></script>
+
+
+<link rel="stylesheet" href="../custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data_management/data_storage.html">Finding and Storing Data</a></li><li class="breadcrumb-item"><a href="../data_management/data_collection.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Foundations of Business Analytics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What is Business Analytics?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Core Skills of a “Business Scientist”</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/reproducible.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows with R &amp; Posit Cloud</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Getting Our First Insights from Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../insights/data_visualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation for Business Intelligence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../insights/data_manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Wrangling for Business Analytics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../insights/data_tidy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Shaping and Combining Data for Business Analytics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Finding and Storing Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 1: Business Analytics Skills for Inventory Management</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 2: Core Skills of a Business Scientist &amp; Introduction to Posit Cloud</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_visualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 3: Data Visualisation for Business Intelligence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 4: Data Wrangling for Business Analytics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_tidy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 5: Shaping and Joining Data for Business Analytics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge"><span class="header-section-number">8.1</span> The Business Challenge</a></li>
+  <li><a href="#structured-semi-structured-and-unstructured-data" id="toc-structured-semi-structured-and-unstructured-data" class="nav-link" data-scroll-target="#structured-semi-structured-and-unstructured-data"><span class="header-section-number">8.2</span> Structured, Semi-structured, and Unstructured Data</a>
+  <ul class="collapse">
+  <li><a href="#structured-data" id="toc-structured-data" class="nav-link" data-scroll-target="#structured-data"><span class="header-section-number">8.2.1</span> Structured Data</a></li>
+  <li><a href="#unstructured-data" id="toc-unstructured-data" class="nav-link" data-scroll-target="#unstructured-data"><span class="header-section-number">8.2.2</span> Unstructured Data</a></li>
+  <li><a href="#semi-structured-data" id="toc-semi-structured-data" class="nav-link" data-scroll-target="#semi-structured-data"><span class="header-section-number">8.2.3</span> Semi-Structured Data</a></li>
+  </ul></li>
+  <li><a href="#getting-data-using-application-program-interface-api" id="toc-getting-data-using-application-program-interface-api" class="nav-link" data-scroll-target="#getting-data-using-application-program-interface-api"><span class="header-section-number">8.3</span> Getting Data Using Application Program Interface (API)</a>
+  <ul class="collapse">
+  <li><a href="#definitions-of-api" id="toc-definitions-of-api" class="nav-link" data-scroll-target="#definitions-of-api"><span class="header-section-number">8.3.1</span> Definitions of API</a></li>
+  <li><a href="#advantages-of-apis" id="toc-advantages-of-apis" class="nav-link" data-scroll-target="#advantages-of-apis"><span class="header-section-number">8.3.2</span> Advantages of APIs</a></li>
+  <li><a href="#workflow-of-using-apis-to-acquire-data" id="toc-workflow-of-using-apis-to-acquire-data" class="nav-link" data-scroll-target="#workflow-of-using-apis-to-acquire-data"><span class="header-section-number">8.3.3</span> Workflow of Using APIs to Acquire Data</a></li>
+  </ul></li>
+  <li><a href="#website-scraping" id="toc-website-scraping" class="nav-link" data-scroll-target="#website-scraping"><span class="header-section-number">8.4</span> Website Scraping</a>
+  <ul class="collapse">
+  <li><a href="#website-basics" id="toc-website-basics" class="nav-link" data-scroll-target="#website-basics"><span class="header-section-number">8.4.1</span> Website Basics</a></li>
+  <li><a href="#website-scraping-workflow" id="toc-website-scraping-workflow" class="nav-link" data-scroll-target="#website-scraping-workflow"><span class="header-section-number">8.4.2</span> Website Scraping Workflow</a></li>
+  <li><a href="#pros-and-cons-of-web-scraping" id="toc-pros-and-cons-of-web-scraping" class="nav-link" data-scroll-target="#pros-and-cons-of-web-scraping"><span class="header-section-number">8.4.3</span> Pros and Cons of Web Scraping</a></li>
+  <li><a href="#more-advanced-web-scraping" id="toc-more-advanced-web-scraping" class="nav-link" data-scroll-target="#more-advanced-web-scraping"><span class="header-section-number">8.4.4</span> More Advanced Web Scraping</a></li>
+  <li><a href="#ethics-of-web-scraping" id="toc-ethics-of-web-scraping" class="nav-link" data-scroll-target="#ethics-of-web-scraping"><span class="header-section-number">8.4.5</span> Ethics of Web Scraping</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data_management/data_storage.html">Finding and Storing Data</a></li><li class="breadcrumb-item"><a href="../data_management/data_collection.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Learning Goals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>By the end of this lecture, you should be able to:</p>
+<ul>
+<li>Distinguish structured, semi-structured, and unstructured data</li>
+<li>Explain intuitively the differences between user interface and application program interface (API)</li>
+<li>Appreciate the advantages of APIs and apply established APIs to acquire data</li>
+<li>Know the basic procedures of website scraping</li>
+<li>Understand the ethics of web scrapingh</li>
+</ul>
+</div>
+</div>
+<section id="the-business-challenge" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="the-business-challenge"><span class="header-section-number">8.1</span> The Business Challenge</h2>
+<p>Data is often called the “new oil” of the digital economy. Yet, just as not all oil flows neatly through pipelines, not all data comes in ready-to-use formats. Some data is nicely organized in databases, spreadsheets, or CSV files, while other data appears in messy, irregular, or unconventional formats.</p>
+<p>So far in this subject, we have mainly worked with structured data. In practice, however, such well-organized data is something of a luxury. It is costly to collect, standardize, and store, and organizations often invest heavily in information systems just to maintain it. At the same time, vast amounts of potentially valuable data exist outside these traditional formats.</p>
+<p>In this chapter, we will explore structured, semi-structured, and unstructured data. You will learn the defining characteristics of each category, why they matter for business analytics, and how analysts can collect and make use of data from different sources.</p>
+</section>
+<section id="structured-semi-structured-and-unstructured-data" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="structured-semi-structured-and-unstructured-data"><span class="header-section-number">8.2</span> Structured, Semi-structured, and Unstructured Data</h2>
+<p>Just as crude oil must be refined before it becomes useful, raw data only generates value when it can be systematically collected, processed, and analyzed. Depending on how well-defined its format is, data is typically classified into three broad categories:</p>
+<ul>
+<li>Structured data</li>
+<li>Unstructured data</li>
+<li>Semi-structured data</li>
+</ul>
+<section id="structured-data" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="structured-data"><span class="header-section-number">8.2.1</span> Structured Data</h3>
+<p><strong>Structured data</strong>, as the name suggests, refers to highly organized data that follows a predefined schema. It is stored in formats such as relational databases, spreadsheets, and CSV files, where every piece of data is clearly defined and fits into a particular row and column. Most data that we have worked with so far in this subject belongs to this category.</p>
+<p>A well-defined structure for data often consists of:</p>
+<ul>
+<li><p>Rows (Records, Observations): Each row corresponds to one unique instance of the entity being described (e.g., a single customer, a single sales transaction).</p></li>
+<li><p>Columns (Fields, Variables): Columns represent attributes or characteristics of the entity (e.g., customer age, transaction amount).</p></li>
+<li><p>Tables: Data is organized into tables that can be linked to each other through shared variables or keys (e.g., linking different customer data using customer ID).</p></li>
+</ul>
+<p>Because of their consistency, structured datasets can be easily managed and analyzed with tools like SQL, R’s Tidyverse, or Python’s Pandas. These tools allow us to perform operations easily on structured data by doing filtering, grouping, aggregating, merging, and reshaping data efficiently.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Examples
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Banking transaction records (date, amount, sender, recipient)</p></li>
+<li><p>Inventory databases (product ID, stock quantity, unit price)</p></li>
+<li><p>Employee HR records (employee ID, salary, department)</p></li>
+</ul>
+</div>
+</div>
+<p>Structured data’s strength lies in its precision and reliability. However, it is also limited in scope and volume. Many real-world data and information, such as consumer opinions, video content, or machine logs, cannot be easily captured in neat rows and columns.</p>
+</section>
+<section id="unstructured-data" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="unstructured-data"><span class="header-section-number">8.2.2</span> Unstructured Data</h3>
+<p>In reality, structured data represents only a small fraction of all data. As predicted by International Data Corporation (IDC) and Seagate, the global data endowment will continue growing exponentially and reach 163 zettabytes (i.e., 1 trillion gigabytes) by the end of 2025, and among all data, more than 80% is unstructured.</p>
+<p><strong>Unstructured data</strong>, in stark contrast to structured data, lacks a fixed or consistent schema. It is generated in diverse formats and is often messy, irregular, or context-dependent. Broadly speaking, all information that we generate, unless it comes with predefined structures, belongs to unstructured data. Unlike structured data, it cannot be easily represented in tables of rows and columns.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Examples
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Textual data: emails, chat messages, social media posts, product reviews.</li>
+<li>Multimedia data: images, audios, videos, surveillance cameras recordings, readings/images from medical devices.</li>
+</ul>
+</div>
+</div>
+<p>Unstructured data is pervasive because much of the information we generate in daily life does not naturally follow a rigid, tabular structure. It posits significant challenges in collecting and processing data:</p>
+<ul>
+<li>Lack of standardization.
+<ul>
+<li>Unstructured data is in very different categories. Even within the same category, unstructured data may be recorded in different formats.</li>
+<li>Computers and programs cannot easily tackle data without standardized formats and patterns,</li>
+</ul></li>
+<li>Volume and variety
+<ul>
+<li>The scale of unstructured data is massive: billions of social media posts per day, countless images and videos uploaded online, etc.</li>
+<li>The variety of formats requires specialized tools for each type (e.g., natural language processing for text, computer vision for images).</li>
+</ul></li>
+<li>Collection challenges
+<ul>
+<li>Unstructured data is often dispersed across platforms and devices. Collecting it may involve:
+<ul>
+<li>Massive manual work (i.e., human labelling of data, CAPTCHA)</li>
+<li>Web scraping (can be technically challenging and sometimes legally restricted)</li>
+<li>Large storage infrastructures (extremly costly)</li>
+</ul></li>
+</ul></li>
+<li>Processing requirements
+<ul>
+<li>Before analysis, unstructured data usually must undergo heavy preprocessing and transformation (e.g., machine learning algorithms and AI):
+<ul>
+<li>Text: tokenization, stop-word removal, stemming, sentiment analysis (note that Google BERT and GPT have largely facilitated the processing of texts and natural language)</li>
+<li>Images: resizing, labeling, feature extraction</li>
+<li>Audio: noise reduction, speech-to-text transcription</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="semi-structured-data" class="level3" data-number="8.2.3">
+<h3 data-number="8.2.3" class="anchored" data-anchor-id="semi-structured-data"><span class="header-section-number">8.2.3</span> Semi-Structured Data</h3>
+<p>Between these two extremes is <strong>semi-structured data</strong>. Different from structured data, semi-structured data does not fit neatly into tables, but it still carries markers or tags that provide some structure. Compared with purely unstructured data, semi-structured data has a flexible but interpretable format.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Examples
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>JSON file (as we discussed in the previous week).</li>
+<li>HTML documents: HTML tags (<code>&lt;div&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>) give structures, but the actual text and images inside the tags are unstructured.</li>
+<li>Emails: contain structured fields (sender, recipient, timestamp, subject) but also unstructured free-form text in the body.</li>
+<li>Chat logs: often include metadata (user ID, time) plus free text content.</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Summary">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Summary
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Structured data is easy to store, query, and analyze, but costly to maintain and often limited in scope.</p></li>
+<li><p>Unstructured data is abundant and rich but difficult to process without specialized tools.</p></li>
+<li><p>Semi-structured data sits in the middle: it provides some structure but still requires significant preprocessing before analysis.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For structured data, we have databases to manage them and apply to them relatively standardized data wrangling tools (e.g., <code>dplyr</code>). However, we do not have such luxury for less structured data. The ways of collecting and using less structured data usually vary across different cases. Do not be panic if the methods that we use in our examples do not work in a different case. What matters to us is to get familiar with the workflow.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="getting-data-using-application-program-interface-api" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="getting-data-using-application-program-interface-api"><span class="header-section-number">8.3</span> Getting Data Using Application Program Interface (API)</h2>
+<p>In library, we may not always be able to go and look for the books directly - especially when some books may be stored in the staff-only area or difficult to find. In such cases, we can submit requests to a librarian, and the librarian gets the books for us from the shelves.</p>
+<p>This process is a nice analogy to what happens when we acquire data via application program interface (API):</p>
+<ul>
+<li>You are a data user</li>
+<li>The librarian is the API</li>
+<li>The staff-only area is the internal system or database you don’t have access to</li>
+<li>The request for a book is the message your program sends to the API</li>
+<li>The book the librarian brings back is the data or service the API provides</li>
+</ul>
+<section id="definitions-of-api" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="definitions-of-api"><span class="header-section-number">8.3.1</span> Definitions of API</h3>
+<p>Technically speaking, <strong>Application program interface (API)</strong> builds a “connection” between computer and computer programs and specifies a standard set of rules or procedures that an application program will do. This is in contrast to <strong>user interfaces (UI)</strong> where users directly interact with computers or programs.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Example: Uber’s Usage of Google Map API
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We use web-based Google Map or Google Map App to search for locations and navigate to places we want to go. In such scenarios, we, as human users, are directly interact with the user interface (UI) of Google Map to acquire data and information.</p>
+<p>As a giant in ride-share and door-to-door delivery services, Uber uses Google Map to obtain data and information that they need for their apps (e.g., map, address information, routes, estimated time of arrival, etc.). In contrast to our usage of Google Map, Uber gets access to Google Map data by using programs to interact with Google Map’s application program interface (API). This allows Uber to get real-time data from Google Map and use such data in real time. We cannot imagine Uber would be able to kick start its business without the Google Map API.</p>
+<p>Of course, the access to Google Map via API is not free. Uber pays millions to Google in order to use their services.</p>
+<p><img src="../figs/data_collection/uber_google_api.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="advantages-of-apis" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="advantages-of-apis"><span class="header-section-number">8.3.2</span> Advantages of APIs</h3>
+<p>Nowadays, many data providers set up APIs as a preferred way to provide data to data users, and there are several advantages of doing so:</p>
+<ul>
+<li><strong>Controlled Access.</strong> APIs allow data providers to share only selected data or functions, rather than giving users full access to internal systems and data servers. This helps protect sensitive data and system integrity.</li>
+<li><strong>Standardization.</strong> By providing a standardized way to access data, APIs reduce the need to handle custom requests or build separate solutions for each user, thus reducing the costs.</li>
+<li><strong>Innovation and Ecosystem Growth.</strong> APIs allow third-party developers to build new apps or services that enhance the value of data (e.g., Google Maps used in ride-sharing apps).</li>
+<li><strong>Usage Tracking and Monetization.</strong> APIs make it easy to monitor who is using the data and how often. This opens up possibilities for charging based on usage or offering premium tiers.</li>
+</ul>
+</section>
+<section id="workflow-of-using-apis-to-acquire-data" class="level3" data-number="8.3.3">
+<h3 data-number="8.3.3" class="anchored" data-anchor-id="workflow-of-using-apis-to-acquire-data"><span class="header-section-number">8.3.3</span> Workflow of Using APIs to Acquire Data</h3>
+<p>Most APIs are user-friendly because the rules and protocols of data acquisition have already been set up by data providers. Although every API may differ significantly from the other in many ways. Standard workflow still applies to the usage of APIs.</p>
+<p>We are going to use the “Music to Scrape” website (https://music-to-scrape.org/) to walk through the usage of APIs.</p>
+<section id="read-user-manuals" class="level4" data-number="8.3.3.1">
+<h4 data-number="8.3.3.1" class="anchored" data-anchor-id="read-user-manuals"><span class="header-section-number">8.3.3.1</span> Read User Manuals</h4>
+<p>APIs are structured differently for different functions and needs. In practice, every API may have its own predefined functions and specific requirements for inputs and outputs. Therefore, it is rather important to carefully read through API user manuals before starting using it. Additionally, data providers often provide detailed user manuals and sample program for their APIs. As a user, it would be useful to go through these materials (if available).</p>
+</section>
+<section id="obtaining-api-key" class="level4" data-number="8.3.3.2">
+<h4 data-number="8.3.3.2" class="anchored" data-anchor-id="obtaining-api-key"><span class="header-section-number">8.3.3.2</span> Obtaining API Key</h4>
+<p>In many cases, the access to APIs is limited - you need to get an <strong>API key</strong> so that you can use the API. We can think API key as the log-in credentials for programs. Data providers can use API keys to track the download and the usage of data and prevent unwarranted access to their data.</p>
+<p>For the simple website we are working on, there is no need to obtain an API key. In the workshop, we are going to apply for a free API key from the <strong>Federal Reserve Economic Data (FRED)</strong>.</p>
+</section>
+<section id="using-apis" class="level4" data-number="8.3.3.3">
+<h4 data-number="8.3.3.3" class="anchored" data-anchor-id="using-apis"><span class="header-section-number">8.3.3.3</span> Using APIs</h4>
+<p>Before proceed with programming, we always start by reading API manuals carefully (https://api.music-to-scrape.org/docs). We are going to follow the example provided by the website to extract top-tracts for Week 42 of 2023.</p>
+<p>The <code>httr</code> package in R is used for working with APIs. It provides tools that let your R program send requests to websites or servers and receive data in return. Note that, not all APIs use <code>httr</code>. You need to follow closely to the user manual of the API that you are using.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required library</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the URL of the API</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>api_url <span class="ot">&lt;-</span> <span class="st">"https://api.music-to-scrape.org"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Remember, the API documentation is available at https://api.music-to-scrape.org/docs</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># We are going to extract top ranked songs played in Week 42 of 2023</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the url to get response from (Closely follow the API documentation)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="fu">paste0</span>(api_url, <span class="st">'/charts/top-tracks?week=42&amp;year=2023'</span>))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the request was successful</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (response<span class="sc">$</span>status_code <span class="sc">==</span> <span class="dv">200</span>) {</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If successful (code == 200), parse the responses  into lists and then combine into data</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Parse the JSON response</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    data <span class="ot">&lt;-</span> <span class="fu">content</span>(response, <span class="st">"parsed"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compile data in a table and select columns</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    song_data <span class="ot">&lt;-</span> data<span class="sc">$</span>chart <span class="sc">%&gt;%</span> <span class="fu">bind_rows</span>() <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, artist)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Error message for unsuccessful request</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Failed to retrieve data. Status code:"</span>, response<span class="sc">$</span>status_code, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    song_data <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># View the resulting song data</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(song_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+</section>
+<section id="website-scraping" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="website-scraping"><span class="header-section-number">8.4</span> Website Scraping</h2>
+<p>It may not always be feasible to obtain data from well-structured databases or APIs. In fact, plenty of useful data could be from unstructured sources. These data could be from newspapers, surveys,</p>
+<p>Sometimes, we may be interested in the data and information on websites and would like to obtain these data in a batch. <strong>Website scraping</strong> is the technique that allows us to do so.</p>
+<section id="website-basics" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="website-basics"><span class="header-section-number">8.4.1</span> Website Basics</h3>
+<p>Websites are one of the most important sources for us to obtain data that are not available from structured databases. For example, we may be interested in It may not be difficult for us to manually copy and paste inforamtion and data from websites if we are dealing with a small number of data points</p>
+<p>HTML (Hypertext Markup Language) is the programming language used for building up a website. It defines how each website is displayed and presented on website browsers. Basic knowledge of HTML would help us understand website structures and master basic techniques for website scraping. Note that the technical details of HTML is not required for this subject.</p>
+<p>Although websites appear very different from each other - some websites are full of fancy animation and decorations, while others are plain and simple, they are constructed using the same set of building blocks, HTML elements. HTML use a standard set of tags to identify each HTML element on a website (sections, divisions, headings of different levels, paragraphs, image blocks etc.). As these tags are standardized across different websites, we are able to extract the contents</p>
+<p>Below is a simple example of HTML file, and we are going to briefly elaborate on the building blocks of websites.</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;My First Page&lt;/title&gt;
+    &lt;style&gt;
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 20px;
+        background-color: #f9f9f9;
+      }
+
+      h1 {
+        color: darkblue;
+        text-align: center;
+      }
+
+      section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;h1&gt;Welcome to My Website!&lt;/h1&gt;
+
+    &lt;section id="section1"&gt;
+      &lt;h2&gt;About This Site&lt;/h2&gt;
+      &lt;div&gt;
+        &lt;p&gt;This is a paragraph of text.&lt;/p&gt;
+        &lt;p&gt;Because I wanted to learn HTML and share my interests.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section id="section2"&gt;
+      &lt;h2&gt;Gallery&lt;/h2&gt;
+      &lt;div&gt;
+        &lt;h3&gt;What You'll Find Here&lt;/h3&gt;
+        &lt;p&gt;Pictures, stories, and ideas I enjoy.&lt;/p&gt;
+        &lt;img src="photo.jpg" alt="A photo of a sunset"&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<section id="html-tags-and-elements" class="level4" data-number="8.4.1.1">
+<h4 data-number="8.4.1.1" class="anchored" data-anchor-id="html-tags-and-elements"><span class="header-section-number">8.4.1.1</span> HTML Tags and Elements</h4>
+<p>HTML documents are simply semi-structured data. HTML documents use “tags” to wrap and identify contents. These tags are the fundamental building blocks of a webpage’s structure. Tags (often come in pairs) tell the browser what each element is and how it should be organized.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a simple HTML document:</p>
+<pre><code>&lt;h1&gt;Title&lt;/h1&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;img src="cat.jpg" alt="A cat"&gt;</code></pre>
+<ul>
+<li><code>&lt;h1&gt;</code> <code>&lt;\h1&gt;</code>: wrap the title and specify it as the header (level 1).</li>
+<li><code>&lt;p&gt;</code> <code>&lt;\p&gt;</code>: wrap the contents of a paragraph.</li>
+<li><code>&lt;img&gt;</code> specifies an image to be inserted.</li>
+</ul>
+</div>
+</div>
+<p>Below is a more complete list of commonly seen HTML tags:</p>
+<ul>
+<li><code>&lt;!DOCTYPE html&gt;</code> is the start for an HTML file, specifying that the format of the document is in HTML.</li>
+<li><code>&lt;head&gt;</code> and <code>&lt;/head&gt;</code> are used to define the title of a website.</li>
+<li><code>&lt;style&gt;</code> and <code>&lt;/style&gt;</code> are inside the heading of an HTML file to specify the appearance of each part (using Cascade Style Sheets (CSS)).</li>
+<li><code>&lt;body&gt;</code> and <code>&lt;/body&gt;</code> specify the body of the HTML document.</li>
+<li><code>&lt;section&gt;</code> and <code>&lt;/section&gt;</code> are used to define sections of a website.</li>
+<li><code>&lt;div&gt;</code> and <code>&lt;/div&gt;</code> are used to define divisions, which are often used to group related contents in a website.</li>
+<li><code>&lt;h1&gt;</code> (or <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>,…, <code>&lt;h6&gt;</code>) are used to generate structures for websites (similar to the heading structure in Microsoft Word).</li>
+<li><code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code> contain paragraghs.</li>
+<li><code>&lt;img&gt;</code> are used to insert images into a website.</li>
+</ul>
+</section>
+</section>
+<section id="website-scraping-workflow" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="website-scraping-workflow"><span class="header-section-number">8.4.2</span> Website Scraping Workflow</h3>
+<p>We are going to work on a website, https://music-to-scrape.org, to learn basic website scraping techniques and walk through the basic procedures. This practice, however, is by no means a sophisticated way of web scraping nor can it be directly used on other websites.</p>
+<section id="understand-the-website-structure" class="level4" data-number="8.4.2.1">
+<h4 data-number="8.4.2.1" class="anchored" data-anchor-id="understand-the-website-structure"><span class="header-section-number">8.4.2.1</span> Understand the Website Structure</h4>
+<p>As a preparation for website scraping, we are going to first get a basic sense of the HTML document of the website.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figs/data_collection/html_code.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>HTML code as shown in Chrome</figcaption>
+</figure>
+</div>
+</section>
+<section id="locate-the-contents" class="level4" data-number="8.4.2.2">
+<h4 data-number="8.4.2.2" class="anchored" data-anchor-id="locate-the-contents"><span class="header-section-number">8.4.2.2</span> Locate the Contents</h4>
+<p>We need to locate the contents that we want to scrape in the HTML document. An HTML document is basically semi-structured data with tags labeling contents of a website. Hence, what we need to do is to locate the contents and identify the tags labeling the contents.</p>
+<p>For most mainstream browsers (e.g., Google Chrome, Firefox, and Microsoft Edge), we can view the HTML code of websites under the “developer mode” (or similar).</p>
+<p>Additionally, we can use the <strong>inspection</strong> function to locate the contents of our interest in HTML file. For example, if we are interested in obtaining the names of song writers/singers under “Top 15 Weekly Tracks” from https://music-to-scrape.org, we can select the song name and use right click in Google Chrome to inspect the HTML file:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figs/data_collection/inspect_func.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Use “Inspect” to map from website contents to HTML contents</figcaption>
+</figure>
+</div>
+<p>The name appears in the HTML file:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figs/data_collection/inspect_result.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Use “Inspect” to map from website contents to HTML contents</figcaption>
+</figure>
+</div>
+<p>The key to scrape information and data from websites is to precisely locate relevant contents using HTML tags. If we would like to obtain the name information, we need to first find a way to uniquely locate the contents based on CSS selectors.</p>
+<ul>
+<li><p>The contents are under the section <code>&lt;section name="weekly_15"&gt;</code></p></li>
+<li><p>We can locate “Gabriel Yared” uniquely by following the hierarchy of the HTML document: <code>&lt;a&gt;</code>, <code>&lt;h5&gt;</code>, and lastly <code>&lt;b&gt;</code>.</p></li>
+</ul>
+</section>
+<section id="scrape-the-contents" class="level4" data-number="8.4.2.3">
+<h4 data-number="8.4.2.3" class="anchored" data-anchor-id="scrape-the-contents"><span class="header-section-number">8.4.2.3</span> Scrape the Contents</h4>
+<p>After locating the contents and identifying the tags, we use the following program to scrape the information we need from the website.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the necessary libraries</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the URL of the website</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://music-to-scrape.org"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the HTML code of the website into R</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>page <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the desired information using the tags (here, names from the weekly top 15)</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> page <span class="sc">%&gt;%</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_nodes</span>(<span class="st">"section[name='weekly_15']"</span>) <span class="sc">%&gt;%</span> <span class="co">#Locate to the section</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="st">'a'</span>) <span class="sc">%&gt;%</span> <span class="co"># Get to the elements to be scraped through the HTML hierarchy</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_element</span>(<span class="st">'h5'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_element</span>(<span class="st">'b'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_text</span>() <span class="co">#Grab the text from the selected contents</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><code>html_element()</code> and <code>html_elements()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These two arguments are in singular and plural forms, respectively:</p>
+<ul>
+<li><code>html_element()</code> selects the first match of the HTML tag and stops there.</li>
+<li><code>html_elements()</code> selects all matched tags through of the HTML document.</li>
+</ul>
+<p>Combining the two would help you accurately locate and extract information you want. In the example website that we are working on:</p>
+<ul>
+<li><code>&lt;a&gt;</code> is a label corresponding to each block showing a top song on the website. If we want to get all the top song blocks selected, we need to use <code>html_elements()</code> to select all of them.
+<ul>
+<li>You may have a try by changing it to <code>html_element()</code>.</li>
+</ul></li>
+<li><code>&lt;h5&gt;</code> and <code>&lt;b&gt;</code> under each block tagged by <code>&lt;a&gt;</code> only appear once - it does not matter in this case whether we use singular or plural. In some other cases, it may be necessary to use singular or plural form.</li>
+</ul>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-time">
+<p>15 min</p>
+</div>
+<p>Modify the code above to address the following questions:</p>
+<ol type="1">
+<li><p>There is one line of code selecting HTML tags redundant. Find and remove it from the program.</p></li>
+<li><p>Collect both the names of artists and musics in the weekly top 15 list and make the output as a table.</p></li>
+<li><p>Obtain usernames of recent active users on the website.</p></li>
+</ol>
+</div>
+<div class="solution-header">
+<p>Solution</p>
+</div>
+<div class="solution-content">
+<ol type="1">
+<li><p><code>html_element('h5')</code> is redundant. This is because under each node <code>&lt;a&gt;</code>, we are able to uniquely locate the name using the tag <code>&lt;b&gt;</code>. Hence, there is no need to specify another layer <code>&lt;h5&gt;</code> in between.</p></li>
+<li></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the URL of the website</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://music-to-scrape.org"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the HTML code of the website into R</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>page <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Locate the information to be scraped using HTML tags</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the information from HTML document</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> page <span class="sc">%&gt;%</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_nodes</span>(<span class="st">"section[name='weekly_15']"</span>) <span class="sc">%&gt;%</span> <span class="co">#Locate to the section</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="st">'a'</span>) <span class="sc">%&gt;%</span> <span class="co"># Get to the elements to be scraped through the HTML hierarchy</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="st">'b,p'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_text</span>() <span class="co">#Grab the text from the selected contents</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert into tibble</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>song_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">artists =</span> data[<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">length</span>(data), <span class="dv">2</span>)],</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">songs =</span> data[<span class="fu">seq</span>(<span class="dv">2</span>, <span class="fu">length</span>(data), <span class="dv">2</span>)]</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(song_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><code>seq()</code> in R
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>seq()</code> is a useful function in R to generate a sequence. Here, we are using <code>seq()</code> to generate a list of indices to select elements from a list.</p>
+<p>The function has three arguments: <code>seq(from = , to = , by = )</code></p>
+<ul>
+<li><code>from =</code> specifies the start</li>
+<li><code>to =</code> specifies the end</li>
+<li><code>by =</code> specifies the step size (i.e.&nbsp;the gap between two consecutive numbers)</li>
+</ul>
+<p><code>seq(1, length(data), 2)</code> will generate a list as (1, 3, 5, …) in this case until sequence reach to the length of the list.</p>
+</div>
+</div>
+<ol start="3" type="1">
+<li>We need to use “Inspect” function on your browser to locate the contents in the HTML file and modify the program accordingly. Note that you need to change the sections to be scraped in this exercise.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the URL of the website</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://music-to-scrape.org"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the HTML code of the website into R</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>page <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Locate the information to be scraped using HTML tags</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the information from HTML document</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>active_users <span class="ot">&lt;-</span> page <span class="sc">%&gt;%</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_nodes</span>(<span class="st">"section[name='recent_users']"</span>) <span class="sc">%&gt;%</span> <span class="co">#Locate to the section</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="st">'a'</span>) <span class="sc">%&gt;%</span> <span class="co"># Get to the elements to be scraped through the HTML hierarchy</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="st">'h5'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_text</span>() <span class="co">#Grab the text from the selected contents</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(active_users)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+</section>
+<section id="pros-and-cons-of-web-scraping" class="level3" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="pros-and-cons-of-web-scraping"><span class="header-section-number">8.4.3</span> Pros and Cons of Web Scraping</h3>
+<p>Collecting data through website scraping has pros and cons.</p>
+<p>Pros:</p>
+<ul>
+<li>Ability to obtain real-time data, no need to wait for databases.</li>
+<li>Full flexibility in data collection.</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>Legal and ethical issues regarding website scraping.</li>
+<li>Many websites have installed protection mechanisms (e.g., bot detectors and CAPTCHA)</li>
+<li>Unstable performance due to website maintenance, restructuring, and limited internet access.</li>
+<li>Inconsistent data quality, requires additional work to clean up collected data.</li>
+</ul>
+</section>
+<section id="more-advanced-web-scraping" class="level3" data-number="8.4.4">
+<h3 data-number="8.4.4" class="anchored" data-anchor-id="more-advanced-web-scraping"><span class="header-section-number">8.4.4</span> More Advanced Web Scraping</h3>
+<p>As you will notice along the way, getting information directly from HTML contents becomes less feasible nowadays. Here are the reasons:</p>
+<ul>
+<li><p>Dynamic and Interactive Web Pages In the early web, HTML pages were mostly static: the content was directly embedded in the HTML source (the same as the simple website that we just worked on) Today, many websites use JavaScript frameworks (e.g., React, Angular, Vue) to dynamically load and render content in the browser. As a result, if you fetch the raw HTML, you often see only the skeleton structure (<code>&lt;div&gt;</code> placeholders), while the actual text, images, or tables are injected later by scripts.</p></li>
+<li><p>Anti-scraping Measures and Legal Restrictions Many websites deliberately make HTML scraping difficult by using obfuscation, CAPTCHAs, or rate-limiting. Some also encrypt content or require user interaction (scrolling, clicking) to load additional data.</p></li>
+</ul>
+<p>As a result, you have to sharpen your tools to get adapted to the changing world. To get into the web scraping space, we need to have solid knowledge about HTML and Javascript. Additionally, we need to be familiar with more advanced web scraping frameworks (e.g., <code>selenium</code>).</p>
+</section>
+<section id="ethics-of-web-scraping" class="level3" data-number="8.4.5">
+<h3 data-number="8.4.5" class="anchored" data-anchor-id="ethics-of-web-scraping"><span class="header-section-number">8.4.5</span> Ethics of Web Scraping</h3>
+<ul>
+<li>Respect for Website Terms and Conditions
+<ul>
+<li>Many websites describe the usage of website data in their terms and conditions. Always check these documents before conducting website scraping to avoid getting into trouble.</li>
+</ul></li>
+<li>Avoiding Hindering Normal Website Operations
+<ul>
+<li>Excessive website scraping can strain website servers and result in slowed performance or even downtime. Ethical scraping practices include implementing rate limits, setting up program sleep time, and avoiding high-frequency visits in peak times.</li>
+</ul></li>
+<li>Be Aware of Sensitive and Private Data
+<ul>
+<li>Certain data scraped from websites, even though they are public, could contain sensitive information. Make sure your website scraping practice and data usage are in compliance with relevant data privacy protection laws.</li>
+</ul></li>
+<li>Use the Data Ethically -Using scraped data for good purposes. Do not use scraped data for spamming, unauthorized data resale, or activities infringing on intellectual property rights. Be careful about your legal responsibility and ligitation risk when using scraped data for commercial purposes.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../data_management/data_storage.html" class="pagination-link" aria-label="Storing and Using Existing Data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../tutorials/what_is_business_analytics.html" class="pagination-link" aria-label="Tutorial 1: Business Analytics Skills for Inventory Management">
+        <span class="nav-page-text">Tutorial 1: Business Analytics Skills for Inventory Management</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.22">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,14 +34,15 @@ ul.task-list li input[type="checkbox"] {
 <link href="../foundations/what_is_business_analytics.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6f77e067621728e8e5d8b75f5607b6c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-08a17407ac8bdf6ef4986fac9a905031.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -97,7 +98,9 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Foundations of Business Analytics</a> 
     </div>
@@ -188,6 +191,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -227,12 +236,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../tutorials/data_tidy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorial 5: Shaping and Joining Data for Business Analytics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 6: Storing &amp; Retrieving Data</span></a>
   </div>
 </li>
       </ul>
@@ -312,7 +315,7 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Learning Goals
+<span class="screen-reader-only">Tip</span>Learning Goals
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -336,7 +339,7 @@ Learning Goals
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Thinking Like a Business Scientist
+<span class="screen-reader-only">Note</span>Thinking Like a Business Scientist
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -389,7 +392,7 @@ Thinking Like a Business Scientist
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Example: Thinking with Context at Starbucks
+<span class="screen-reader-only">Tip</span>Example: Thinking with Context at Starbucks
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -420,7 +423,7 @@ Example: Thinking with Context at Starbucks
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Example: Estimating Profit Margins When You Don’t Have Cost Data
+<span class="screen-reader-only">Tip</span>Example: Estimating Profit Margins When You Don’t Have Cost Data
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -450,7 +453,7 @@ Example: Estimating Profit Margins When You Don’t Have Cost Data
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Example: Why Are the Employees Quitting?
+<span class="screen-reader-only">Tip</span>Example: Why Are the Employees Quitting?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -473,7 +476,7 @@ Example: Why Are the Employees Quitting?
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Example: Planning Fresh Produce Orders at Coles
+<span class="screen-reader-only">Tip</span>Example: Planning Fresh Produce Orders at Coles
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -504,7 +507,7 @@ Example: Planning Fresh Produce Orders at Coles
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Example: Did the Loyalty Program Really Work?
+<span class="screen-reader-only">Tip</span>Example: Did the Loyalty Program Really Work?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -526,7 +529,7 @@ Example: Did the Loyalty Program Really Work?
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip: Learning to Code Is Like Learning to Cook
+<span class="screen-reader-only">Tip</span>Tip: Learning to Code Is Like Learning to Cook
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -555,7 +558,7 @@ Tip: Learning to Code Is Like Learning to Cook
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Example: The Executive Slide That Looked Like a Stats Exam
+<span class="screen-reader-only">Tip</span>Example: The Executive Slide That Looked Like a Stats Exam
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -571,7 +574,7 @@ Example: The Executive Slide That Looked Like a Stats Exam
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-📊 Example: The Analyst Who Got the ‘So What?’ Question
+<span class="screen-reader-only">Tip</span>📊 Example: The Analyst Who Got the ‘So What?’ Question
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -594,7 +597,7 @@ Example: The Executive Slide That Looked Like a Stats Exam
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip: A Good Question Is Half the Work
+<span class="screen-reader-only">Tip</span>Tip: A Good Question Is Half the Work
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -742,7 +745,7 @@ Tip: A Good Question Is Half the Work
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip: Revisit Your Skills Over Time
+<span class="screen-reader-only">Tip</span>Tip: Revisit Your Skills Over Time
 </div>
 </div>
 <div class="callout-body-container callout-body">
