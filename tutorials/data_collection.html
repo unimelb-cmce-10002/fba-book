@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Tutorial 7: Obtaining Macroeconomic Data through FRED – Foundations of Business Analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../tutorials/data_storage.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6f77e067621728e8e5d8b75f5607b6c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../solution.js"></script>
+
+
+<link rel="stylesheet" href="../custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/what_is_business_analytics.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/data_collection.html">Tutorial 7: Obtaining Macroeconomic Data through FRED</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Foundations of Business Analytics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What is Business Analytics?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Core Skills of a “Business Scientist”</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/reproducible.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows with R &amp; Posit Cloud</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Getting Our First Insights from Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../insights/data_visualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation for Business Intelligence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../insights/data_manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Wrangling for Business Analytics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../insights/data_tidy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Shaping and Combining Data for Business Analytics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Finding and Storing Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 1: Business Analytics Skills for Inventory Management</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 2: Core Skills of a Business Scientist &amp; Introduction to Posit Cloud</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_visualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 3: Data Visualisation for Business Intelligence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 4: Data Wrangling for Business Analytics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_tidy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 5: Shaping and Joining Data for Business Analytics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 6: Storing &amp; Retrieving Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_collection.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Tutorial 7: Obtaining Macroeconomic Data through FRED</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge">The Business Challenge</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1-visualize-and-download-macroeconomic-data-directly-from-the-fred-website" id="toc-exercise-1-visualize-and-download-macroeconomic-data-directly-from-the-fred-website" class="nav-link" data-scroll-target="#exercise-1-visualize-and-download-macroeconomic-data-directly-from-the-fred-website">Exercise 1: Visualize and Download Macroeconomic Data Directly from the FRED Website</a></li>
+  <li><a href="#exercise-2-preparing-for-obtaining-data-through-apis" id="toc-exercise-2-preparing-for-obtaining-data-through-apis" class="nav-link" data-scroll-target="#exercise-2-preparing-for-obtaining-data-through-apis">Exercise 2: Preparing for Obtaining Data through APIs</a></li>
+  <li><a href="#exercise-3-set-up-fred-api-and-acquire-unemployment-data" id="toc-exercise-3-set-up-fred-api-and-acquire-unemployment-data" class="nav-link" data-scroll-target="#exercise-3-set-up-fred-api-and-acquire-unemployment-data">Exercise 3: Set Up FRED API and Acquire Unemployment Data</a></li>
+  <li><a href="#exercise-4-seasonal-adjustment-for-unemployment-data" id="toc-exercise-4-seasonal-adjustment-for-unemployment-data" class="nav-link" data-scroll-target="#exercise-4-seasonal-adjustment-for-unemployment-data">Exercise 4: Seasonal Adjustment for Unemployment Data</a></li>
+  <li><a href="#exercise-5-okuns-law" id="toc-exercise-5-okuns-law" class="nav-link" data-scroll-target="#exercise-5-okuns-law">Exercise 5: Okun’s Law</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/what_is_business_analytics.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/data_collection.html">Tutorial 7: Obtaining Macroeconomic Data through FRED</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Tutorial 7: Obtaining Macroeconomic Data through FRED</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Learning Goals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>By the end of this tutorial, you should be able to:</p>
+<ul>
+<li>Get familiar the workflow of using API to acquire data</li>
+<li>Acquire macroeconomic data from the U.S. Federal Reserve Economic Data through web-based platform and API</li>
+<li>Clean and visualize macroeconomic data</li>
+<li>Identify trends and patterns in macroeconomic data and interpret findings</li>
+<li>Critically evaluate data limitations and challenges (e.g., seasonality, outliers, etc.)</li>
+</ul>
+</div>
+</div>
+<section id="the-business-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="the-business-challenge">The Business Challenge</h2>
+<p>The macroeconomy is the stage on which every business decision plays out. No business, whether a global tech giant, a local café, or even a freelance consultant, operates in a vacuum. Shifts in GDP growth, spikes in inflation, surges in unemployment, or sudden changes in interest rates ripple through the economy and ultimately shape outcomes for each microeconomic entity.</p>
+<p>Over the past few decades, we have seen how powerful these forces can be. The 2008 global financial crisis reshaped credit markets and consumer demand for years. The COVID-19 pandemic disrupted supply chains, accelerated digital adoption, and left lasting changes in labor markets. Even today, firms must navigate the challenges of inflationary pressures, shifting interest rate policies, and geopolitical uncertainty.</p>
+<p>For data analysts, we cannot answer micro-level business questions without accounting for the macroeconomic backdrop. In this session, you will step into the role of a macro-aware business analyst. Specifically, you will:</p>
+<ul>
+<li><p>Obtain real macroeconomic data on key indicators like GDP, unemployment, and inflation.</p></li>
+<li><p>Visualize and explore trends across different time periods, spotting patterns between macroeconomic indicators.</p></li>
+</ul>
+<p>To carry out these tasks, we need high-quality and reliable macroeconomic data. The <strong>Federal Reserve Economic Data (FRED)</strong>, managed by the Federal Reserve Bank of St.&nbsp;Louis, is one of the most widely used platforms by academics, policymakers, and industry analysts alike. It offers thousands of time series on the U.S. and global economy.</p>
+<p>We will learn two ways to interact with FRED:</p>
+<ul>
+<li><p>Directly through the FRED website, which allows quick searches and visualization.</p></li>
+<li><p>Programmatically through the FRED API, which lets us pull large datasets directly into our analysis tools and integrate them into reproducible workflows.</p></li>
+</ul>
+<p>By the end of this workshop, you’ll not only gain hands-on experience with macroeconomic data, but also develop an appreciation for how the “big picture” shapes the smaller decisions businesses face every day.</p>
+<section id="exercise-1-visualize-and-download-macroeconomic-data-directly-from-the-fred-website" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1-visualize-and-download-macroeconomic-data-directly-from-the-fred-website">Exercise 1: Visualize and Download Macroeconomic Data Directly from the FRED Website</h3>
+<p>FRED offers an easily accessible web-based platform for users to visualize and download macroeconomic data directly from their website (https://fred.stlouisfed.org/).</p>
+<p>Search in FRED and find the pages of the following data:</p>
+<ul>
+<li>Real Gross Domestic Product (GDP)</li>
+<li>Core Consumer Price Index (CPI)</li>
+<li>Unemployment Rate</li>
+</ul>
+<p>Read through each page and think about the following questions (recap of Macroeconomics):</p>
+<ul>
+<li>What does “core CPI” mean here? How does it differ from normal CPI?</li>
+<li>What is the relation between CPI and inflation?</li>
+</ul>
+<p><em>Write your answer here</em></p>
+</section>
+<section id="exercise-2-preparing-for-obtaining-data-through-apis" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-preparing-for-obtaining-data-through-apis">Exercise 2: Preparing for Obtaining Data through APIs</h3>
+<p>In addition to the web-based interactive platform, FRED offers APIs to those who would like to acquire data through programs and in large batches (see the page for details: https://fred.stlouisfed.org/docs/api/fred/).</p>
+<p>To prepare for our practices during the workshop, make sure you have applied for the API key for FRED before the workshop (VERY IMPORTANT!). Below are the detailed steps</p>
+<ul>
+<li>Visit the FRED’s API webpage (https://fred.stlouisfed.org/docs/api/fred/) and click the link to “API Keys.”</li>
+</ul>
+<p><img src="Images/FRED_API_1.png" class="img-fluid"></p>
+<ul>
+<li>Request your own API key:</li>
+</ul>
+<p><img src="Images/FRED_API_2.png" class="img-fluid"></p>
+<ul>
+<li>You will see a pop-up window asking for signing in. Click “create new account” at the top and you will get to the following page:</li>
+</ul>
+<p><img src="Images/FRED_API_3.png" class="img-fluid"></p>
+<ul>
+<li><p>Use your Uni email address to register. For the question “In what context do you use FRED?”, choose “Student.”</p></li>
+<li><p>Once you finish your registration, you will be automatically directed to the API request page. Click “+ Request API Key”.</p></li>
+</ul>
+<p><img src="Images/FRED_API_4.png" class="img-fluid"></p>
+<ul>
+<li>In the next page, briefly describe why you are applying for the API access.</li>
+</ul>
+<p><img src="Images/FRED_API_5.png" class="img-fluid"></p>
+<ul>
+<li><p>You will now see your API key on the page. MAKE SURE that you copy and store the key safely. Do not share your API key with others, as doing so may block your access to the FRED API.</p></li>
+<li><p>If you forget your API key, you can retrieve it from FRED using your registered email and log-in credentials.</p></li>
+</ul>
+<p><em>Write your answer here</em></p>
+</section>
+<section id="exercise-3-set-up-fred-api-and-acquire-unemployment-data" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3-set-up-fred-api-and-acquire-unemployment-data">Exercise 3: Set Up FRED API and Acquire Unemployment Data</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tasks
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Skim the user manual of the FRED API (https://fred.stlouisfed.org/docs/api/fred/) and the package <code>fredr</code> (https://cran.r-project.org/web/packages/fredr/vignettes/fredr.html).</p></li>
+<li><p>Set up FRED API in your program.</p></li>
+<li><p>Use <code>fredr</code> to search for the ID of unemployment rate data.</p></li>
+<li><p>Download unemployment rate data from 1990 to 2024 using the FRED API.</p></li>
+</ul>
+</div>
+</div>
+<section id="a-set-up-the-fred-api" class="level4">
+<h4 class="anchored" data-anchor-id="a-set-up-the-fred-api">(a) Set Up the FRED API</h4>
+<p>After obtaining the API key for FRED, let’s connect to the API and download the data we need.</p>
+<ul>
+<li>Make sure that you have all required packages loaded. <code>fredr</code> is the package we need for getting access to the FRED API.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the packages if needed:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("fredr", "dplyr", "ggplot2", "lubridate"))</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fredr) <span class="co"># Package for Using FRED API</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>We need to tell the program your API key (i.e., the log-in credentials for your R program) using the function <code>fredr_set_key()</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign your API key to a variable "api_key"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>api_key <span class="ot">&lt;-</span> <span class="st">"YOUR_API_KEY"</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set API Key </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fredr_set_key</span>(api_key)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>We are now connected to the API and ready for data acquisition.</li>
+</ul>
+</section>
+<section id="b-extract-data-using-fredr" class="level4">
+<h4 class="anchored" data-anchor-id="b-extract-data-using-fredr">(b) Extract data using <code>fredr()</code></h4>
+<p><code>fredr()</code> is the function we are going to use to extract data from FRED.</p>
+<p>This function comes with several arguments:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">fredr</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">series_id =</span> <span class="st">"SERIES ID"</span>, <span class="co"># Replace with the Series ID in FRED</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">observation_start =</span> , <span class="co"># The start date of extracted data</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">observation_end   =</span> <span class="co"># The end date of extracted data</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>series_id</code> is the ID of the data series you would like to retrieve from FRED.</li>
+<li><code>observation_start</code> specifies the starting date of the data. Note that this value needs to be in the date format. We can use <code>as.Date(YYYY-MM-DD)</code> to generate dates. If this value is not specified, the function will retrieve the data back to the earliest available period.</li>
+<li><code>observation_end</code> specifies the starting date of the data. If this value is not specified, the function will retrieve the data until the most recent period.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="What is `as.Date()`">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What is <code>as.Date()</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>as.Date()</code> is a base function in R that generates or converts variables to <strong>date variables</strong>. Dates and time stamps are unique data formats that require additional work (more about this topic in the next chapter).</p>
+<ul>
+<li>By default, <code>as.Date()</code> converts strings in “YYYY-MM-DD” into corresponding dates and store the value as the date format. For example, <code>as.Date("2025-09-10")</code> delivers a date value corresponding to September 10, 2025.</li>
+<li><code>as.Date()</code> can also deal with other date expressed in alternative ways as long as you specify the date style accordingly. For example, <code>as.Date("10/09/2025", format = "%d/%m/%Y")</code> and <code>as.Date("Sep 10, 2025", format = "%b %d, %Y")</code> also give you the same date value in R.</li>
+</ul>
+<p>In <code>fredr()</code>, the values for <code>observation_start =</code> and <code>observation_end =</code> must be in the date format. You need to make sure to input date values for these two arguments.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Get Series IDs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each series of data in FRED has a unique ID. There are two ways to find the IDs:</p>
+<ul>
+<li>You can see the series ID on its pages on the FRED’s website</li>
+<li>Use the embedded search function in <code>fredr</code> to get the IDs
+<ul>
+<li><code>fredr_series_search_text()</code> is the function for you to search by key words and find series IDs for the data you need.</li>
+<li>Simply put the key words (with quote marks) in the function to do the search</li>
+<li>Filter the output and keep only titles and corresponding IDs</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fredr_series_search_text</span>(<span class="st">"TEXT HERE"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Select and display the results with two columns: Series ID and title of data</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">fredr_series_search_text</span>(<span class="st">"TEXT HERE"</span>)[YOUR_CODE]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="c-retrieve-data" class="level4">
+<h4 class="anchored" data-anchor-id="c-retrieve-data">(c) Retrieve Data</h4>
+<p>Once you get the ID for the unemployment rate data, download the unemployment data from 1990 to 2024. Note that <code>fredr()</code> plays nicely with the <code>tidyverse</code> and you can directly apply data wrangling skills you have learned so far.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>unrate <span class="ot">&lt;-</span> <span class="fu">YOUR_CODE</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">series_id =</span> <span class="st">"YOUR_CODE"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">observation_start =</span> <span class="fu">as.Date</span>(<span class="st">"1990-01-01"</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">observation_end   =</span> <span class="fu">as.Date</span>(<span class="st">"2024-12-31"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">YOURCODE</span>(date, <span class="at">unrate =</span> value) </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep the date column and the unemployment rate (rename as "unrate")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="d-visualize-inflation-and-unemployment-data" class="level4">
+<h4 class="anchored" data-anchor-id="d-visualize-inflation-and-unemployment-data">(d) Visualize Inflation and Unemployment Data</h4>
+<p>Inflation has become a major concern in the macroeconomy. Since 2020, large-scale monetary expansions and government stimulus have driven inflation sharply higher, making it a central topic of discussion. In this exercise, you’ll get to use the FRED API to pull real economic data and calculate inflation yourself.</p>
+<p>(d1) Retrieve the Core Consumer Price Index (all items excluding food and energy) during 1990 and 2024 from FRED.</p>
+<p>(d2) Inflation is often measured as the changes in consumer price index (CPI). Here, we are going to calculate <strong>YoY</strong> changes in core CPI.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Calculate YoY (year-over-year) Changes">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Calculate YoY (year-over-year) Changes
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>When calculating changes in macroeconomic data (as well as other data evolving over time), we tend to focus on YoY changes. The major reason is that many economic indicators are strongly affected by seasons. Comparing July to June (MoM) or Q4 to Q3 (QoQ) may reflect seasonal swings rather than true economic trends. If we focus on YoY changes, such seasonal variations will be cancelled out.</p>
+<p>The <code>tidyverse</code> makes it easy for us to calculate YoY changes in a variable. As the CPI data is monthly, to calculate YoY changes, we simply need to calculate the changes in the value from month <em>t-12</em> to <em>t</em>.</p>
+<p>To do this in R, we need to - <strong>Sort</strong> the data by date in the ascending order - Use <code>lag()</code> to “look backwards in the data”. lag() lets you grab the value in previous rows within the same column so you can compare it to the current one. - <code>lag(x, 1)</code>: value from 1 row earlier - <code>lag(x, 3)</code>: value from 1 row earlier (useful if your data is monthly and you want last quarter’s value) - <code>lag(x, 12)</code>: value from 12 rows earlier (useful if your data is monthly and you want last year’s value) - You may need additional data ahead of your desired sample period so that the first few observations are non-missing. - For example, if you want to calculate inflation rate as of 1990-01-01, you need to keep your CPI data back to 1989-01-01 so that you can calculate YoY changes for 1990-01-01. - If you only have CPI data starting from 1990-01-01, the inflation rate for 1990-01 to 1990-12 will be missing, as their is no denominator for the calculation of YoY changes/growth.</p>
+</div>
+</div>
+</div>
+<p>Here is the code and you need to fill in necessary information</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate inflation</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>inflation <span class="ot">&lt;-</span> <span class="fu">YOUR_CODE</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">series_id =</span> <span class="st">"CPILFESL"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">observation_start =</span> <span class="fu">as.Date</span>(<span class="st">"1989-01-01"</span>), <span class="co"># One year ahead for lag operation</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">observation_end =</span> <span class="fu">as.Date</span>(<span class="st">"2024-12-31"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">YOUR_CODE</span>(date, <span class="at">cpi =</span> value) <span class="sc">|&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date) <span class="sc">|&gt;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">YOUR_CODE</span>(<span class="at">inflation =</span> (cpi <span class="sc">/</span> <span class="fu">lag</span>(cpi, <span class="dv">12</span>) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(inflation)) <span class="co"># Remove missing values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>(d3) Plot unemployment rates and inflation from 1990 to 2024 in <strong>one single graph</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Inflation line</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">YOUR_CODE</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> inflation,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> inflation, <span class="at">color =</span> <span class="st">"Inflation (%)"</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Unemployment line</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">YOUR_CODE</span>(</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> unrate,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> unrate, <span class="at">color =</span> <span class="st">"Unemployment Rate (%)"</span>),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Inflation and Unemployment Rate (1990 - 2024)"</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Percent"</span>, <span class="at">color =</span> <span class="cn">NULL</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"2 years"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>) <span class="sc">+</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="e-recession-periods" class="level4">
+<h4 class="anchored" data-anchor-id="e-recession-periods">(e) Recession Periods</h4>
+<p>Economic recessions indicate that the whole economy is in a bad shape. The National Bureau of Economic Research defines economic recessions as a period when there is a significant decline in economic activities (https://www.nber.org/research/business-cycle-dating). According to their thresholds for the depth, diffusion, and duration of economic recessions, there are certain periods defined as recession periods. FRED integrates NBER’s recession period data into its database and allows us to extract the data using the API.</p>
+<p>(e1) Use the FRED API to get access to the U.S. recession data (<code>series_id ="USREC"</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># US recessions data: 1 = during recession, 0 = otherwise</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>usrec <span class="ot">&lt;-</span> <span class="fu">fredr</span>(<span class="at">series_id =</span> <span class="st">"USREC"</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">YOUR_CODE =</span> <span class="fu">YOUR_CODE</span>(<span class="st">"1990-01-01"</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">YOUR_CODE =</span> <span class="fu">YOUR_CODE</span>(<span class="st">"2024-12-31"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">YOUR_CODE</span>(date, <span class="at">rec =</span> value) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>(e2) (Challenge yourself) The data from FRED is at the month level, showing whether a month is in recession or not. Use data wrangling tools you have learned from this subject to convert the monthly recession data into a data at the recession level (i.e., each row represents one recession). For each recession, we need two columns: <code>start</code> showing the start month of a recession, and <code>end</code> showing the end month of a recession.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try before seeing this part">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try before seeing this part
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The code below is an application of data wrangling tools as well as logical operations (<code>True</code> and <code>False</code>, as well as the operations for logical values). No pressure if you cannot write this chunk independently - make sure you are able to understand each line.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>recession_period <span class="ot">&lt;-</span> usrec <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">rec =</span> (rec <span class="sc">==</span> <span class="dv">1</span>), </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert "rec" into a logical variable (true/false) for next line.</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">start_flag =</span> rec <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">lag</span>(rec, <span class="at">default =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mark the start month of recession</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rec) <span class="sc">|&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">grp =</span> <span class="fu">cumsum</span>(start_flag)) <span class="sc">|&gt;</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">start =</span> <span class="fu">min</span>(date),</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">end   =</span> <span class="fu">max</span>(date),</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span> </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> <span class="fu">select</span>(start, end)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>(e3) In the plot generated from (d3), add shaded areas to indicate recession periods.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span>   <span class="fu">geom_rect</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> recession_period,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">xmin =</span> start, <span class="at">xmax =</span> end, <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">ymax =</span> <span class="cn">Inf</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"grey75"</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>(e4) Is there any patterns for unemployment rates and inflation during the recession periods? How do you explain the pattern(s)?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="exercise-4-seasonal-adjustment-for-unemployment-data" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4-seasonal-adjustment-for-unemployment-data">Exercise 4: Seasonal Adjustment for Unemployment Data</h3>
+<p>When you retrieve the unemployment data from FRED using the series tag, <code>UNRATE</code>, you obtain seasonally adjusted unemployment rate.</p>
+<p><img src="Images/unemployment_rate.png" class="img-fluid"></p>
+<p>In this exercise, we are going to get a deeper understanding of seasonal adjustment by comparing seasonally adjusted and unadjusted unemployment rate.</p>
+<section id="a-retrieve-data" class="level4">
+<h4 class="anchored" data-anchor-id="a-retrieve-data">(a) Retrieve Data</h4>
+<ul>
+<li><p>Search using the FRED API (or the FRED’s website) to obtain tags for both seasonally adjusted and unadjusted unemployment rate.</p></li>
+<li><p>Use <code>fredr</code> to acquire both seasonally adjusted and unadjusted unemployment rate data in the period “2020-01-01 to 2024-12-31.”</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unemployment rate (seasonally adjusted)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>unrate_sa <span class="ot">&lt;-</span> <span class="fu">YOUR_CODE</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">YOUR_CODE =</span> <span class="st">"YOUR_CODE"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">observation_start =</span> <span class="st">"YOUR_CODE"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">observation_end =</span> <span class="st">"YOUR_CODE"</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(YOUR_CODE) </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># keep date and unemployment rate (adjusted), rename it as "unrate_sa"</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Unemployment rate (seasonally unadjusted)</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>unrate_usa <span class="ot">&lt;-</span> <span class="fu">YOUR_CODE</span>(</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">YOUR_CODE =</span> <span class="st">"YOUR_CODE"</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">observation_start =</span> <span class="st">"YOUR_CODE"</span>,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">observation_end =</span> <span class="st">"YOUR_CODE"</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(YOUR_CODE) </span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># keep date and unemployment rate (unadjusted), rename it as "unrate_usa"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="b-visualize-unemployment-rates" class="level4">
+<h4 class="anchored" data-anchor-id="b-visualize-unemployment-rates">(b) Visualize Unemployment Rates</h4>
+<p>Plot the two series of data in the same plot with time as the horizontal axis and unemployment rate (%) as the vertical axis. Discuss (1) how the two lines differ from each other and (2) which one is more useful?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">YOUR_CODE</span>(<span class="at">data =</span> unrate_sa, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> YOUR_CODE, <span class="at">y =</span> YOUR_CODE, </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">"Seasonally Adjusted (%)"</span>)) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">YOUR_CODE</span>(<span class="at">data =</span> unrate_nsa, </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> YOUR_CODE, <span class="at">y =</span> YOUR_CODE, </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">"Non Seasonally Adjusted (%)"</span>)) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Unemployment Rate (Adjusted vs. Unadjusted)"</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year-Month"</span>, <span class="at">y =</span> <span class="st">"Percent"</span>, <span class="at">color =</span> <span class="cn">NULL</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>, </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">date_breaks =</span> <span class="st">"3 months"</span>) <span class="sc">+</span> <span class="co"># Set up date labels for x-axis </span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Avoid text labels from overlapping with each other</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="c-seasonal-adjustments" class="level4">
+<h4 class="anchored" data-anchor-id="c-seasonal-adjustments">(c) Seasonal Adjustments</h4>
+<p>Although you are not required to master the recipe and the algorithms that the FRED uses to adjust seasonality, you may use the two series (adjusted and unadjusted) to reverse-engineer the seasonal adjustments made to the data.</p>
+<p>(c1) Merge seasonal adjusted and unadjusted unemployment rates and calculate the adjustment made to the unadjusted number.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge two series of data and </span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a new variable "adjustment" for the adjustment made </span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>adjustment <span class="ot">&lt;-</span> YOUR_CODE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>(c2) Visualize the pattern of seasonal adjustments</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(YOUR_DATA, <span class="fu">aes</span>(<span class="at">x =</span> YOUR_VARIABLE, <span class="at">y =</span> YOUR_VARIABLE)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">YOUR_CODE</span>() <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a dashed line = 0 </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Seasonal Adjustments Made to Unemployment Rates (%)"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"UNRATENSA – UNRATE"</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year-Month"</span>, <span class="at">y =</span> <span class="st">"Seasonal Adjustment (%)"</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>, <span class="at">date_breaks =</span> <span class="st">"3 months"</span>) <span class="sc">+</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="d-discuss-your-findings" class="level4">
+<h4 class="anchored" data-anchor-id="d-discuss-your-findings">(d) Discuss your Findings</h4>
+<ul>
+<li><p>Do you observe any seasonality in the unemployment rate data? What would be the possible causes of the seasonality?</p></li>
+<li><p>Why is seasonal adjustment important when working on unemployment data?</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="exercise-5-okuns-law" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-5-okuns-law">Exercise 5: Okun’s Law</h3>
+<p>You may have learned the <strong>Okun’s Law</strong> from ECON10003 (Introductory Macroeconomics). This is an important relation for us to understand the relation between economic output and unemployment.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition: Okun’s Law
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Okun’s Law is a relation observed by Arthur Okun that links <strong>changes</strong> in the unemployment rate to <strong>changes</strong> in a country’s real gross domestic product (GDP). It states that there is a negative correlation between changes in unemployment rate and changes in real GDP: a rise in the unemployment rate by a certain percentage generally corresponds to a fall in real GDP by a larger percentage. For example, a 1% increase in unemployment often correlates with a 2% to 3% decrease in real GDP.</p>
+</div>
+</div>
+<p>In this exercise, we are going to visualize the Okun’s Law using the macroeconomic data obtained from FRED. Here is our roadmap:</p>
+<section id="a-obtain-data" class="level4">
+<h4 class="anchored" data-anchor-id="a-obtain-data">(a) Obtain Data</h4>
+<p>Set up the API and use it to obtain real Gross Domestic Product (GDP) and seasonally adjusted unemployment rate data from 1990-01-01 to 2024-12-31.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fredr) <span class="co"># Package for Using FRED API</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign your API key to a variable "api_key"</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>api_key <span class="ot">&lt;-</span> <span class="st">"YOUR API KEY"</span> </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Set API Key </span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="fu">fredr_set_key</span>(api_key)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Real GDP Data</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>gdp <span class="ot">&lt;-</span> <span class="fu">YOUR_CODE</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">series_id =</span> <span class="st">"YOUR_ID"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">observation_start =</span> <span class="fu">as.Date</span>(<span class="st">"1989-01-01"</span>), <span class="co"># One-year ahead for lag operation</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">observation_end   =</span> <span class="fu">as.Date</span>(<span class="st">"2024-12-31"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">YOUR_CODE</span>(date, <span class="at">gdp =</span> value) </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>unrate <span class="ot">&lt;-</span> <span class="fu">fredr</span>(</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">series_id =</span> <span class="st">"UNRATE"</span>,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">observation_start =</span> <span class="fu">as.Date</span>(<span class="st">"1989-01-01"</span>), <span class="co"># One-year ahead for lag operation</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">observation_end   =</span> <span class="fu">as.Date</span>(<span class="st">"2024-12-31"</span>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">YOUR_CODE</span>(date, <span class="at">unrate =</span> value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="b-frequency-of-data" class="level4">
+<h4 class="anchored" data-anchor-id="b-frequency-of-data">(b) Frequency of Data</h4>
+<p>Take a quick look at the data, are the two data share the same frequency? Can you propose some solutions to this situation?</p>
+</section>
+<section id="c-variable-calculation" class="level4">
+<h4 class="anchored" data-anchor-id="c-variable-calculation">(c) Variable Calculation</h4>
+<p>(c1) Calculate YoY growth (in %) of real GDP (Hint: be careful about the number of periods for your lag operation).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate YoY GDP Growth</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>gdp_growth <span class="ot">&lt;-</span> gdp <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">YOUR_CODE</span>(date) <span class="sc">%&gt;%</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">YOUR_CODE</span>(<span class="at">gdp_growth =</span> <span class="dv">100</span> <span class="sc">*</span> (gdp <span class="sc">/</span> <span class="fu">lag</span>(gdp, YOUR_NUMBER) <span class="sc">-</span> <span class="dv">1</span>)) </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate the GDP growth relative to the same quarter in the previous year</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>(c2) Convert monthly unemployment rate data into quarterly by calculating quarterly average unemployment rate. Calculate the changes in unemployment rate relative to the previous quarter.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to Quarter Unemployment Rates and Calculate changes</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>unrate_qtr <span class="ot">&lt;-</span> unrate <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use the first month (Jan, Apr, Jul, Oct) to represent each quarter</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">YOUR_CODE</span>(<span class="at">quarter =</span> <span class="fu">floor_date</span>(date, <span class="st">"quarter"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YOUR_OBJECT) <span class="sc">%&gt;%</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">unrate =</span> <span class="fu">YOUR_CODE</span>(unrate), </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">date =</span> quarter) <span class="sc">%&gt;%</span> <span class="co"># for easier merge in following steps</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">YOUR_CODE</span>(date) <span class="sc">%&gt;%</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">YOUR_CODE</span>(<span class="at">unrate_chg =</span> unrate <span class="sc">-</span> <span class="fu">lag</span>(unrate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="d-visualize-the-okuns-law" class="level4">
+<h4 class="anchored" data-anchor-id="d-visualize-the-okuns-law">(d) Visualize the Okun’s Law</h4>
+<p>Merge the changes in unemployment rates and real GDP in one single dataset, use <code>ggplot()</code> to create a scattered plot showing the relation between changes in unemployment rates (on the <strong>horizontal</strong> axis) and changes in real GDP (on the <strong>vertical</strong> axis).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge data</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>okun <span class="ot">&lt;-</span> <span class="fu">YOUR_CODE</span>(YOUR_OBJECT, YOUR_OBJECT, <span class="at">by =</span> <span class="st">"YOUR_VARIABLE"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(unrate_chg) <span class="sc">&amp;!</span><span class="fu">is.na</span>(gdp_growth) )</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter Plot</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>scatter_plt <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(YOUR_OBJECT, <span class="fu">aes</span>(<span class="at">x =</span> YOUR_OBJECT, <span class="at">y =</span> YOUR_OBJECT)) <span class="sc">+</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"darkred"</span>) <span class="sc">+</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Okun’s Law Visualization"</span>,</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Change in Unemployment Rate (%)"</span>,</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Change in Real GDP (%)"</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="e-quantify-the-relation" class="level4">
+<h4 class="anchored" data-anchor-id="e-quantify-the-relation">(e) Quantify the Relation</h4>
+<p>The fitted line provides with us a rough idea of the relation between changes in unemployment and real GDP. However, it is difficult to spot the exact slope of the fitted line in the graph. As Okun’s Law suggests, a 1% increase in unemployment often correlates with a 2% to 3% decrease in real GDP. We would like to confirm this quantitative relation using the data from FRED. To achieve our goal, we need to do a simple linear regression to obtain the exact value of the slope. In R, we can use the built-in method <code>lm</code> to fit a linear regression model. Once the model has been fitted, coefficient estimates will be stored in our assigned object. We can use the function <code>coef()</code> to get a list of numbers representing the intercept and the slope.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Slope of fitted line</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>line_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(gdp_growth <span class="sc">~</span> unrate_chg, <span class="at">data =</span> okun)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(line_fit)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Equation (Just print it out in a string format)</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>line_equation <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"ΔGDP = "</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">round</span>(<span class="fu">coef</span>(line_fit)[<span class="dv">1</span>], <span class="dv">2</span>), <span class="st">" + "</span>, </span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">round</span>(<span class="fu">coef</span>(line_fit)[<span class="dv">2</span>], <span class="dv">2</span>), <span class="st">" × ΔUnemp"</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the equation</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>line_equation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What if our replication is inconsistent with the Okun’s Law?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Check if everything is correct in our program (always necessary and important).</li>
+<li>The sample is different: Okun’s Law is based on data decades ago, whereas we are using recent decades. This may suggest that Okun’s Law no longer holds (?).</li>
+<li>Is there anything odd in the scattered plot?</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="f-eliminate-outliers-extreme-values" class="level4">
+<h4 class="anchored" data-anchor-id="f-eliminate-outliers-extreme-values">(f) Eliminate Outliers (Extreme Values)</h4>
+<p>As you can see from the scattered plot in (d), there are a few outliers to the right of the graph (almost 10% unemployment rate). These points are due to the outbreak of COVID-19 in early 2020, when many people became jobless in a night because of lockdowns.</p>
+<p>Okun’s law describes a general relation between changes in unemployment and GDP. It may not apply to such extreme cases as the COVID-19 outbreak. Additionally, such observations in the data will largely affect our inferences: it will affect the shape of the fitted line as well as the slope significantly. Hence, we need to get rid of these extreme cases (“outliers”) from our sample when we are interested in obtaining a generalizable conclusion.</p>
+<p>There are many techniques dealing with outliers in data. We are going to adopt a simple and straightforward approach - trimming. By trimming the data, we drop observations with extremely large (small) values from the sample to eliminate their influence on our results and inferences. In common practice, we trim the sample at the 1^{st} and the 99^{th} percentiles, meaning that one observation is dropped if it has a value larger (smaller) than the 99^{th} (1^{st}) percentile of the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the outliers</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>okun_trim <span class="ot">&lt;-</span> okun <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">between</span>(gdp_growth, </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">quantile</span>(gdp_growth, <span class="fl">0.01</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">quantile</span>(gdp_growth, <span class="fl">0.99</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">between</span>(unrate_chg, </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>            <span class="fu">quantile</span>(unrate_chg, <span class="fl">0.01</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>            <span class="fu">quantile</span>(unrate_chg, <span class="fl">0.99</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="g-okuns-law-without-outliers" class="level4">
+<h4 class="anchored" data-anchor-id="g-okuns-law-without-outliers">(g) Okun’s Law without Outliers</h4>
+<p>After removing outliers from the data, let’s do the plot again:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot again</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="st">"FILL IN THE BLANK HERE"</span>) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Okun’s Law Visualization without Outliers"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Change in Unemployment Rate (%)"</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Change in Real GDP (%)"</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Again, let’s take a look at the slope. Does it look consistent with the Okun’s Law?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fitted Line after Trim</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>line_fit <span class="ot">&lt;-</span> <span class="fu">YOUR_CODE</span>(gdp_growth <span class="sc">~</span> unrate_chg, <span class="at">data =</span> okun_trim)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">YOUR_CODE</span>(line_fit)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Equation</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>line_equation <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"ΔGDP = "</span>,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">round</span>(<span class="fu">coef</span>(line_fit)[<span class="dv">1</span>], <span class="dv">2</span>), <span class="st">" + "</span>, </span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">round</span>(<span class="fu">coef</span>(line_fit)[<span class="dv">2</span>], <span class="dv">2</span>), <span class="st">" × ΔUnemp"</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>line_equation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../tutorials/data_storage.html" class="pagination-link" aria-label="Tutorial 6: Storing &amp; Retrieving Data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tutorial 6: Storing &amp; Retrieving Data</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
