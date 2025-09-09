@@ -52,6 +52,7 @@ book:
         - tutorials/data_wrangling.qmd
         - tutorials/data_tidy.qmd
         - tutorials/data_storage.qmd
+        - tutorials/data_collection.qmd
   # appendices:
     # - appendices/installation.qmd
 
