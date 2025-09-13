@@ -34,6 +34,10 @@ We will learn two ways to interact with FRED:
 
 By the end of this workshop, you’ll not only gain hands-on experience with macroeconomic data, but also develop an appreciation for how the “big picture” shapes the smaller decisions businesses face every day.
 
+## Prepare these Exercises before Class 
+
+Prepare these exercises before coming to class. Plan to spend 30 minutes on these exercises.
+
 ### Exercise 1: Visualize and Download Macroeconomic Data Directly from the FRED Website
 
 FRED offers an easily accessible web-based platform for users to visualize and download macroeconomic data directly from their website (https://fred.stlouisfed.org/). 
@@ -304,6 +308,11 @@ p1 +   geom_rect(
 ```
 
 (e4) Is there any patterns for unemployment rates and inflation during the recession periods? How do you explain the pattern(s)?
+
+## In-Class Exercises
+
+You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.
+
 
 ### Exercise 4: Seasonal Adjustment for Unemployment Data
 
