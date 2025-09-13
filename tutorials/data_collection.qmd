@@ -397,7 +397,7 @@ ggplot(YOUR_DATA, aes(x = YOUR_VARIABLE, y = YOUR_VARIABLE)) +
   geom_hline(yintercept = 0, color = "red", linetype = "dashed") +
   labs(
     title = "Seasonal Adjustments Made to Unemployment Rates (%)",
-    subtitle = "UNRATENSA – UNRATE",
+    subtitle = "UNRATE – UNRATENSA",
     x = "Year-Month", y = "Seasonal Adjustment (%)"
   ) +
   scale_x_date(date_labels = "%Y-%m", date_breaks = "3 months") +
