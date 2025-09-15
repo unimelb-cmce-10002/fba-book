@@ -783,8 +783,36 @@ Important
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate returns from prices </span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>aapl_return <span class="ot">&lt;-</span> aapl_tbl <span class="sc">%&gt;%</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(date) <span class="sc">%&gt;%</span> <span class="co"># Sort in ascending order to avoid mistakes</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">transmute</span>(date, <span class="at">Price =</span> Close,</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">Return =</span> (Close <span class="sc">-</span> <span class="fu">lag</span>(Close))<span class="sc">/</span><span class="fu">lag</span>(Close)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">transmute</span>(date, <span class="at">Price =</span> Adjusted,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">Return =</span> (Adjusted <span class="sc">-</span> <span class="fu">lag</span>(Adjusted))<span class="sc">/</span><span class="fu">lag</span>(Adjusted)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Adjusted Stock Prices
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There are different prices in the data obtained through <code>getSymbols()</code>. Conceptually, we only need <code>Close</code> to calculate daily returns. However, in reality, prices could change due to reasons outside the stock market. For example, dividend payouts will affect stock prices and the number of shares outstanding, making post-payout prices incomparable to prices prior to payouts. Stock splits also make prices incomparable across different days.</p>
+<p>Here is an example:</p>
+<blockquote class="blockquote">
+<p>Suppose Firm A has 10,000 shares outstanding, and each share is priced at $10 on September 1, 2025. On September 2, the firm announced that they are going to split each share into two shares. Stock split does not affect total market cap but affect how many pieces a cake is divided into.</p>
+</blockquote>
+<blockquote class="blockquote">
+<ul>
+<li>In this case, the total market cap remains unchanged: <span class="math inline">\(10 \times 10,000 = 100,000\)</span>.</li>
+<li>Number of shares outstanding doubled to 20,000.</li>
+<li>Price for each share becomes $5.</li>
+</ul>
+</blockquote>
+<blockquote class="blockquote">
+<p>Does it mean that investors of Firm A experience a 50% loss overnight?</p>
+</blockquote>
+<p>As a result, we need to adjust these factors so that prices are comparable over time. In the data, <code>Adjusted</code> is the prices that have been adjusted so that all prices are comparable over time. When calculate returns, we need to use <code>Adjusted</code> rather than <code>Close</code> to ensure that prices are comparable and returns are correctly calculated.</p>
+</div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -819,7 +847,7 @@ Important
 </div>
 <div class="callout-body-container callout-body">
 <p>In the code chunk above, we use <code>cumprod(1 + coalesce(Return, 0)) - 1</code> to calculate cumulative returns. If we express it in mathematically, we are simply calculating:</p>
-<p><span class="math inline">\(Cumret_t = (1 + Return_1)\times(1 + Return_2) \times ... \times (1 + Return_{t-1}) \times (1 + Return_t)\)</span></p>
+<p><span class="math inline">\(Cumret_t = (1 + Return_1)\times(1 + Return_2) \times ... \times (1 + Return_{t-1}) \times (1 + Return_t) - 1\)</span></p>
 <ul>
 <li><code>Return</code> is the stock return for each day</li>
 <li><code>coalesce(Return, 0)</code> means that we replace missing values in <code>Return</code> as 0 (otherwise, everything after a missing value will be missing)</li>
@@ -935,7 +963,7 @@ dbl (6): id, Year1, Year2, Year3, Year4, Year5
 <p>The strength of panel data is that it lets us study both differences across firms and changes within firms over time in the same framework. This opens the door to much more powerful analysis. For example, we could ask: “Do firms with higher profitability earn higher future returns?” By using panel data, we can track the same firm’s financial ratios and returns over time while also comparing across many firms at once. This dual perspective helps us avoid misleading results that might come from only looking at a single snapshot or only tracking one company.</p>
 <p>Panel data is especially important because it allows us compare one observation with other observations at the same time point or with itself in the past. Such features of panel data help us draw more reliable conclusions and inferences from data.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="(Optional) Fixed Effects">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -944,7 +972,7 @@ dbl (6): id, Year1, Year2, Year3, Year4, Year5
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Panel data allows us to use <strong>fixed effects</strong> to isolate the effect of individual entities or time. Most of us may have used the notion of fixed effects consciously or unconsciously. For example, when we compare entities with other comparable entities at the same time point, we are actually controlling for time fixed effects. When we compare someone with its past, we are accounting for individual entity fixed effects.</p>
 <p>Fixed effects refers to the average effect either at the entity level or at the time level. Understanding the concept of fixed effects may help avoid fallacys in drawing conclusions.</p>
@@ -1010,7 +1038,7 @@ dbl (6): id, Year1, Year2, Year3, Year4, Year5
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ticker) <span class="sc">%&gt;%</span></span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date, <span class="at">.by_group =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Return   =</span> Close <span class="sc">/</span> <span class="fu">lag</span>(Close) <span class="sc">-</span> <span class="dv">1</span>,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Return   =</span> Adjusted <span class="sc">/</span> <span class="fu">lag</span>(Adjusted) <span class="sc">-</span> <span class="dv">1</span>,</span>
 <span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Cumret =</span> <span class="fu">cumprod</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">coalesce</span>(Return, <span class="dv">0</span>)) <span class="sc">-</span> <span class="dv">1</span></span>
 <span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
