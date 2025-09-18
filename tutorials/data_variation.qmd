@@ -1,5 +1,4 @@
----
----
+# Tutorial 8: Develop and Test Stock Trading Strategies {.unnumbered}
 
 ::: {.callout-tip}
 ## Learning Goals {.unnumbered}
