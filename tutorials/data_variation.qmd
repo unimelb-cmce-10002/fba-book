@@ -505,6 +505,8 @@ Financial statements and reports provides useful information for us to assess fi
 As a quant trader, you want to exploit such information to invest your money into firms that are more likely to deliver good performance and higher stock returns. As a required step for your strategy design, you are required to conduct backtests to evaluate the performance of your strategy using historical data.
 
 ```{r}
+#| eval: false
+#| warning: false
 # Load packages and data
 # load packages
 library(dplyr)
