@@ -67,7 +67,7 @@ library(lubridate)
 library(ggplot2)
 library(patchwork) # Combine multiple plots
 # Load data into R
-financials <- YOUR_CODE("data/financials.csv")
+financials <- YOUR_CODE("../data/financials.csv")
 
 ```
 
@@ -518,7 +518,7 @@ library(tidyr)
 sp500_q4 <- sp500_q2
 
 # Load financial data from CSV
-financials <- read.csv("data/financials.csv")
+financials <- read.csv("../data/financials.csv")
 
 ```
 
