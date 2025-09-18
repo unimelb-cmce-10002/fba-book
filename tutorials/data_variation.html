@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; — – Foundations of Business Analytics</title>
+<title>Tutorial 8: Develop and Test Stock Trading Strategies – Foundations of Business Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -148,7 +148,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/what_is_business_analytics.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/data_variation.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">—</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/what_is_business_analytics.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/data_variation.html">Tutorial 8: Develop and Test Stock Trading Strategies</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -265,12 +265,29 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Tutorials</span></a>
+ <span class="menu-text">Extracting Deeper Insights from Data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/data_variation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variation in Cross-Sectional, Times-Series, and Panel Data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
@@ -316,7 +333,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/data_variation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">—</span></span></a>
+ <span class="menu-text">Tutorial 8: Develop and Test Stock Trading Strategies</span></a>
   </div>
 </li>
       </ul>
@@ -331,17 +348,17 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge"><span class="header-section-number">9.1</span> The Business Challenge</a></li>
-  <li><a href="#prepare-these-exercises-before-class" id="toc-prepare-these-exercises-before-class" class="nav-link" data-scroll-target="#prepare-these-exercises-before-class"><span class="header-section-number">9.2</span> Prepare these Exercises before Class</a>
+  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge">The Business Challenge</a></li>
+  <li><a href="#prepare-these-exercises-before-class" id="toc-prepare-these-exercises-before-class" class="nav-link" data-scroll-target="#prepare-these-exercises-before-class">Prepare these Exercises before Class</a>
   <ul class="collapse">
-  <li><a href="#exercise-1-play-with-financial-data" id="toc-exercise-1-play-with-financial-data" class="nav-link" data-scroll-target="#exercise-1-play-with-financial-data"><span class="header-section-number">9.2.1</span> Exercise 1: Play with Financial Data</a></li>
-  <li><a href="#exercise-2-stock-prices-and-returns" id="toc-exercise-2-stock-prices-and-returns" class="nav-link" data-scroll-target="#exercise-2-stock-prices-and-returns"><span class="header-section-number">9.2.2</span> Exercise 2: Stock Prices and Returns</a></li>
+  <li><a href="#exercise-1-play-with-financial-data" id="toc-exercise-1-play-with-financial-data" class="nav-link" data-scroll-target="#exercise-1-play-with-financial-data">Exercise 1: Play with Financial Data</a></li>
+  <li><a href="#exercise-2-stock-prices-and-returns" id="toc-exercise-2-stock-prices-and-returns" class="nav-link" data-scroll-target="#exercise-2-stock-prices-and-returns">Exercise 2: Stock Prices and Returns</a></li>
   </ul></li>
-  <li><a href="#in-class-exercises" id="toc-in-class-exercises" class="nav-link" data-scroll-target="#in-class-exercises"><span class="header-section-number">9.3</span> In-Class Exercises</a>
+  <li><a href="#in-class-exercises" id="toc-in-class-exercises" class="nav-link" data-scroll-target="#in-class-exercises">In-Class Exercises</a>
   <ul class="collapse">
-  <li><a href="#exercise-3-making-money-from-historical-stock-trading-data" id="toc-exercise-3-making-money-from-historical-stock-trading-data" class="nav-link" data-scroll-target="#exercise-3-making-money-from-historical-stock-trading-data"><span class="header-section-number">9.3.1</span> Exercise 3: Making Money from Historical Stock Trading Data?</a></li>
-  <li><a href="#exercise-4-trade-on-financial-statement-information" id="toc-exercise-4-trade-on-financial-statement-information" class="nav-link" data-scroll-target="#exercise-4-trade-on-financial-statement-information"><span class="header-section-number">9.3.2</span> Exercise 4: Trade on Financial Statement Information</a></li>
-  <li><a href="#final-remarks" id="toc-final-remarks" class="nav-link" data-scroll-target="#final-remarks"><span class="header-section-number">9.3.3</span> Final Remarks</a></li>
+  <li><a href="#exercise-3-making-money-from-historical-stock-trading-data" id="toc-exercise-3-making-money-from-historical-stock-trading-data" class="nav-link" data-scroll-target="#exercise-3-making-money-from-historical-stock-trading-data">Exercise 3: Making Money from Historical Stock Trading Data?</a></li>
+  <li><a href="#exercise-4-trade-on-financial-statement-information" id="toc-exercise-4-trade-on-financial-statement-information" class="nav-link" data-scroll-target="#exercise-4-trade-on-financial-statement-information">Exercise 4: Trade on Financial Statement Information</a></li>
+  <li><a href="#final-remarks" id="toc-final-remarks" class="nav-link" data-scroll-target="#final-remarks">Final Remarks</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -349,9 +366,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/what_is_business_analytics.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/data_variation.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">—</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/what_is_business_analytics.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/data_variation.html">Tutorial 8: Develop and Test Stock Trading Strategies</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">—</span></h1>
+<h1 class="title">Tutorial 8: Develop and Test Stock Trading Strategies</h1>
 </div>
 
 
@@ -388,8 +405,8 @@ window.Quarto = {
 </ul>
 </div>
 </div>
-<section id="the-business-challenge" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="the-business-challenge"><span class="header-section-number">9.1</span> The Business Challenge</h2>
+<section id="the-business-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="the-business-challenge">The Business Challenge</h2>
 <p>Quantitative trading, or quant trading, is an investment approach that relies on data, statistics, and computer power instead of intuition or “gut feeling.” It has become one of the most important and pervasive forces in global financial markets, with many stock trades driven by quantitative strategies rather than human stock pickers. Instead of relying on subjective judgment or qualitative analysis on individual firms, quant traders design strategies based on patterns observed in financial or market data, test those strategies using historical data (a process called back-testing), and use them to guide real investment decisions. This data-driven approach is used not only by hedge funds, but also by pension funds and ETFs that we may be investing in every day.</p>
 <p>When you hear “quant trading,” you might imagine complicated math formulas, high-speed computers, and algorithms buying and selling stocks in milliseconds. That is partly true, whereas not all quant trading is alike. Some strategies are actually quite simple and use information you have already seen in accounting or finance classes.</p>
 <p><strong>Foundamental-based quant trading</strong> is a genre of quant investment that builds trading strategies based on fundamentals (i.e., numbers that describe a company’s financial status and performance). This type of strategies are widely adopted, especially among institutions that trade at a lower frequency and prefer fewer adjustments to portfolios. The inputs of such strategies are often from financial statements, such as:</p>
@@ -400,11 +417,11 @@ window.Quarto = {
 </ul>
 <p>Suppose you are an quant trader working for FBE Investment Group. You are targeting U.S. S&amp;P 500 firms and have a total asset under management (AUM) of $1,000,000 as of today. You are going to develop and backtest trading strategies using real data from the market.</p>
 </section>
-<section id="prepare-these-exercises-before-class" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="prepare-these-exercises-before-class"><span class="header-section-number">9.2</span> Prepare these Exercises before Class</h2>
+<section id="prepare-these-exercises-before-class" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-these-exercises-before-class">Prepare these Exercises before Class</h2>
 <p>Prepare these exercises before coming to class. Plan to spend 30 minutes on these exercises.</p>
-<section id="exercise-1-play-with-financial-data" class="level3" data-number="9.2.1">
-<h3 data-number="9.2.1" class="anchored" data-anchor-id="exercise-1-play-with-financial-data"><span class="header-section-number">9.2.1</span> Exercise 1: Play with Financial Data</h3>
+<section id="exercise-1-play-with-financial-data" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1-play-with-financial-data">Exercise 1: Play with Financial Data</h3>
 <p>In the data file, <code>financials.csv</code> contains basic financial statement data for a list of firms. Below are brief definitions of each variable:</p>
 <ul>
 <li><code>tic</code>: Stock ticker, the symbol used for trading their stocks on the market</li>
@@ -423,8 +440,8 @@ window.Quarto = {
 <li><code>ceq</code>: Common equity</li>
 <li><code>pstk</code>: Preferred stock</li>
 </ul>
-<section id="a-fiscal-quarter-ends-and-reporting-dates" class="level4" data-number="9.2.1.1">
-<h4 data-number="9.2.1.1" class="anchored" data-anchor-id="a-fiscal-quarter-ends-and-reporting-dates"><span class="header-section-number">9.2.1.1</span> (a) Fiscal Quarter Ends and Reporting Dates</h4>
+<section id="a-fiscal-quarter-ends-and-reporting-dates" class="level4">
+<h4 class="anchored" data-anchor-id="a-fiscal-quarter-ends-and-reporting-dates">(a) Fiscal Quarter Ends and Reporting Dates</h4>
 <p>Financial reports are not immediately available to the public when a fiscal year/quarter ends. Instead, it takes time for companies to gather relevant information and prepare their financial reports. As a result, the actual dates when financial reports are available to investors and stakeholders, <code>report_date</code>, is different from fiscal quarter end dates, <code>datadate</code>.</p>
 <p>(a1) In the dataset <code>financials</code>, keep the data for all fiscal quarters ends after 2019-01-01, use data wrangling tools to calculate the number of days between fiscal quarter ends (<code>datadate</code>) and reporting dates (<code>report_date</code>).</p>
 <div class="cell">
@@ -459,8 +476,8 @@ window.Quarto = {
 </div>
 <p>(a3) What factors will affect the number of lagged days between fiscal quarter ends and reporting dates?</p>
 </section>
-<section id="b-financial-numbers-and-ratios" class="level4" data-number="9.2.1.2">
-<h4 data-number="9.2.1.2" class="anchored" data-anchor-id="b-financial-numbers-and-ratios"><span class="header-section-number">9.2.1.2</span> (b) Financial Numbers and Ratios</h4>
+<section id="b-financial-numbers-and-ratios" class="level4">
+<h4 class="anchored" data-anchor-id="b-financial-numbers-and-ratios">(b) Financial Numbers and Ratios</h4>
 <p>You may have already learned from your accounting and finance subjects about some simple financial numbers and ratios. In this exercise, we are going to calculate some of them using real data from financial statements.</p>
 <p>(b1) Create a histogram showing the distribution of <strong>total assets</strong> in the sample after 2019-01-01. How does it look like?</p>
 <div class="cell">
@@ -515,8 +532,8 @@ window.Quarto = {
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">YOUR_CODE</span>(financials_q1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(roa, ni))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="c-reporting-lags-and-firm-characteristics" class="level4" data-number="9.2.1.3">
-<h4 data-number="9.2.1.3" class="anchored" data-anchor-id="c-reporting-lags-and-firm-characteristics"><span class="header-section-number">9.2.1.3</span> (c) Reporting Lags and Firm Characteristics</h4>
+<section id="c-reporting-lags-and-firm-characteristics" class="level4">
+<h4 class="anchored" data-anchor-id="c-reporting-lags-and-firm-characteristics">(c) Reporting Lags and Firm Characteristics</h4>
 <p>Reporting lags matter for quant traders. As information is not immediately available after fiscal quarter/year ends, quant traders always mark the release dates of financial reports so that they incorporate new information into their models in a timely fashion. Hence, understanding the reporting lags offers additional information to quant traders.</p>
 <p>Using log-transformed total assets and ROA calculated in part (b), create two scattered plots with linear line fitting all the points. Do you observe any relation between firm size (or profitability)?</p>
 <div class="cell">
@@ -535,8 +552,8 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="exercise-2-stock-prices-and-returns" class="level3" data-number="9.2.2">
-<h3 data-number="9.2.2" class="anchored" data-anchor-id="exercise-2-stock-prices-and-returns"><span class="header-section-number">9.2.2</span> Exercise 2: Stock Prices and Returns</h3>
+<section id="exercise-2-stock-prices-and-returns" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-stock-prices-and-returns">Exercise 2: Stock Prices and Returns</h3>
 <p>Standard &amp; Poor’s 500 (S&amp;P 500) is one of the most important index in the global financial market. It tracks the stock performance of the 500 leading companies listed on U.S. stock exchanges. You will be working on developing trading strategies using constituent stocks within S&amp;P 500. As a starting point, you are going to do some data wrangling work over the provided dataset <code>sp500_panel.csv</code>. The variables are defined as follows:</p>
 <ul>
 <li><code>gvkey</code>: Global Company Key.</li>
@@ -555,8 +572,8 @@ window.Quarto = {
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data into R</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> YOUR_CODE</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="a-date-variables" class="level4" data-number="9.2.2.1">
-<h4 data-number="9.2.2.1" class="anchored" data-anchor-id="a-date-variables"><span class="header-section-number">9.2.2.1</span> (a) Date Variables</h4>
+<section id="a-date-variables" class="level4">
+<h4 class="anchored" data-anchor-id="a-date-variables">(a) Date Variables</h4>
 <p>To prepare for our in-class exercise on backtesting trading strategies, we need to do some work to get our date variables ready so that we are able to merge stock prices and returns with financial ratios. When dealing with stock (as well as other financial assets) trading data, we need to be mindful the difference between trading days and calendar days. As there is no trading on weekends and holidays, you will see dates missing when you look at daily trading data. Also, the month/year ends in trading data may not be the last day of a month/year.</p>
 <p>The <code>date</code> column in the data refers to the last trading day of the month rather than the last calendar day. For example, the last trading day of August 2025 is <code>29/08/2025</code> because the last two days were a weekend. Such incidence may introduce inconsistency in date variables and prevent us from merging data by dates. One common practice is to push the date to the last calendar day (i.e., push <code>29/08/2025</code> to <code>31/08/2025</code>).</p>
 <p>Think about how to use <code>lubridate</code> to achieve this goal. Note that there are multiple ways of doing this task - be creative!</p>
@@ -569,8 +586,8 @@ window.Quarto = {
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>sp500_q2 <span class="ot">&lt;-</span> YOUR_CODE</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="b-variable-calculation" class="level4" data-number="9.2.2.2">
-<h4 data-number="9.2.2.2" class="anchored" data-anchor-id="b-variable-calculation"><span class="header-section-number">9.2.2.2</span> (b) Variable calculation</h4>
+<section id="b-variable-calculation" class="level4">
+<h4 class="anchored" data-anchor-id="b-variable-calculation">(b) Variable calculation</h4>
 <p>In the second part, you are going to calculate the following variables using stock price and return data of S&amp;P 500 stocks:</p>
 <ul>
 <li>Market capitalization (<code>mktcap</code>): the market value of all shares, calculated as stock prices multiplied by the number of shares outstanding on the market.</li>
@@ -604,8 +621,8 @@ window.Quarto = {
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="c-rolling-window-cumulative-returns" class="level4" data-number="9.2.2.3">
-<h4 data-number="9.2.2.3" class="anchored" data-anchor-id="c-rolling-window-cumulative-returns"><span class="header-section-number">9.2.2.3</span> (c) Rolling-Window Cumulative Returns</h4>
+<section id="c-rolling-window-cumulative-returns" class="level4">
+<h4 class="anchored" data-anchor-id="c-rolling-window-cumulative-returns">(c) Rolling-Window Cumulative Returns</h4>
 <p>When analyzing financial market data (as well as other time series data), it is common that we conduct rolling-window calculation. For example, we may calculate the moving average of prices and use it as trading signals. For example, one famous example in stock trading is called “golden cross” (may not be valid though… you can verify it with your data)</p>
 <blockquote class="blockquote">
 <p>“Golden Cross” in the stock market: when short-term moving average line (e.g., MA of five days) cross long-term moving average line (e.g., MA of 60 days), stock prices tend to move up further.</p>
@@ -633,11 +650,11 @@ window.Quarto = {
 </section>
 </section>
 </section>
-<section id="in-class-exercises" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="in-class-exercises"><span class="header-section-number">9.3</span> In-Class Exercises</h2>
+<section id="in-class-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-exercises">In-Class Exercises</h2>
 <p>You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.</p>
-<section id="exercise-3-making-money-from-historical-stock-trading-data" class="level3" data-number="9.3.1">
-<h3 data-number="9.3.1" class="anchored" data-anchor-id="exercise-3-making-money-from-historical-stock-trading-data"><span class="header-section-number">9.3.1</span> Exercise 3: Making Money from Historical Stock Trading Data?</h3>
+<section id="exercise-3-making-money-from-historical-stock-trading-data" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3-making-money-from-historical-stock-trading-data">Exercise 3: Making Money from Historical Stock Trading Data?</h3>
 <p>Many investors are trading on historical data of stock performance. Some investors prefer to trade on smaller stocks because they feel these stocks are more profitable that the larger stocks. Some investors focus on analyzing price trends and decide their trading strategies based on recent price trends:</p>
 <ul>
 <li>Momentum strategy: buy (sell) stocks when their returns in the recent months were high (low)</li>
@@ -667,8 +684,8 @@ window.Quarto = {
 <li>If the signal works, we would see the group with the largest values for the signal outperforms or underperforms the group with the smallest values.</li>
 </ul></li>
 </ul>
-<section id="a-get-your-data-ready-directly-from-exercise-2-pre-class" class="level4" data-number="9.3.1.1">
-<h4 data-number="9.3.1.1" class="anchored" data-anchor-id="a-get-your-data-ready-directly-from-exercise-2-pre-class"><span class="header-section-number">9.3.1.1</span> (a) Get your data ready (directly from Exercise 2 (pre-class))</h4>
+<section id="a-get-your-data-ready-directly-from-exercise-2-pre-class" class="level4">
+<h4 class="anchored" data-anchor-id="a-get-your-data-ready-directly-from-exercise-2-pre-class">(a) Get your data ready (directly from Exercise 2 (pre-class))</h4>
 <p>Directly use your data from Exercise 2. You should already have returns in the past and the next months, as well as rolling-window past 12-month returns</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
@@ -681,8 +698,8 @@ window.Quarto = {
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>sp500_q3 <span class="ot">&lt;-</span> sp500_q2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="b-small-vs.-large" class="level4" data-number="9.3.1.2">
-<h4 data-number="9.3.1.2" class="anchored" data-anchor-id="b-small-vs.-large"><span class="header-section-number">9.3.1.2</span> (b) Small vs.&nbsp;Large</h4>
+<section id="b-small-vs.-large" class="level4">
+<h4 class="anchored" data-anchor-id="b-small-vs.-large">(b) Small vs.&nbsp;Large</h4>
 <p>To test if small firms outperform large firms in stock performance, we use their market capitalization to measure their size.</p>
 <p>(b1) At the end of each month <span class="math inline">\(t\)</span>, we use end-of-month market cap (publicly available information) as the trading signal. For each month, we rank all stocks by market cap and sort them into five groups (1 = smallest, 5 = largest).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -767,8 +784,8 @@ window.Quarto = {
 </div>
 <p>(b6) Based on your analyses, would you think small firms or large firms to be more favorable investment targets? Why or Why not? Would you think the results from your backtesting apply to the future?</p>
 </section>
-<section id="c-momentum-and-reversal-strategy" class="level4" data-number="9.3.1.3">
-<h4 data-number="9.3.1.3" class="anchored" data-anchor-id="c-momentum-and-reversal-strategy"><span class="header-section-number">9.3.1.3</span> (c) Momentum and Reversal Strategy</h4>
+<section id="c-momentum-and-reversal-strategy" class="level4">
+<h4 class="anchored" data-anchor-id="c-momentum-and-reversal-strategy">(c) Momentum and Reversal Strategy</h4>
 <p>Now, we can reuse the program that we built for testing “small vs.&nbsp;large” strategy. As we have endeavored to make the program more generic. We only need to change the variable names for the trading signal at the very beginning.</p>
 <p>(c1) Use S&amp;P 500 data to evaluate if momentum and reversal strategy works (you may look at both short-term and medium-term returns (i.e., past 1-month and 12-month returns))</p>
 <div class="cell">
@@ -788,8 +805,8 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="exercise-4-trade-on-financial-statement-information" class="level3" data-number="9.3.2">
-<h3 data-number="9.3.2" class="anchored" data-anchor-id="exercise-4-trade-on-financial-statement-information"><span class="header-section-number">9.3.2</span> Exercise 4: Trade on Financial Statement Information</h3>
+<section id="exercise-4-trade-on-financial-statement-information" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4-trade-on-financial-statement-information">Exercise 4: Trade on Financial Statement Information</h3>
 <p>In the last exercise, we are going to take a step further by bringing in financial statement numbers and ratios in our quantitative trading strategies.</p>
 <p>Financial statements and reports provides useful information for us to assess firms’ operating performance and financial health and predict the value of a stock in the future. Such metrics are important factors that may affect stock prices. For example, if we observe that a firm’s profitability is deteriorating, it may signal that the firm may create less value for its shareholders, which may result in a decline in stock prices.</p>
 <p>As a quant trader, you want to exploit such information to invest your money into firms that are more likely to deliver good performance and higher stock returns. As a required step for your strategy design, you are required to conduct backtests to evaluate the performance of your strategy using historical data.</p>
@@ -807,8 +824,8 @@ window.Quarto = {
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Load financial data from CSV</span></span>
 <span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>financials <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/financials.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="a-calculate-the-signal-from-financial-data" class="level4" data-number="9.3.2.1">
-<h4 data-number="9.3.2.1" class="anchored" data-anchor-id="a-calculate-the-signal-from-financial-data"><span class="header-section-number">9.3.2.1</span> (a) Calculate the signal from financial data</h4>
+<section id="a-calculate-the-signal-from-financial-data" class="level4">
+<h4 class="anchored" data-anchor-id="a-calculate-the-signal-from-financial-data">(a) Calculate the signal from financial data</h4>
 <p>(a1) Inspect all the date variables in <code>financials</code>: are they stored in the <code>&lt;date&gt;</code> format? If not, convert them into <code>&lt;date&gt;</code> formatted variable.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check date variable</span></span>
@@ -851,8 +868,8 @@ Important
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="b-align-the-dates" class="level4" data-number="9.3.2.2">
-<h4 data-number="9.3.2.2" class="anchored" data-anchor-id="b-align-the-dates"><span class="header-section-number">9.3.2.2</span> (b) Align the Dates</h4>
+<section id="b-align-the-dates" class="level4">
+<h4 class="anchored" data-anchor-id="b-align-the-dates">(b) Align the Dates</h4>
 <p>The major challenge here is to merge financial statement data into the S&amp;P 500 stock return data we have worked on in Exercises 2 and 3. For your trading strategy, you rank firms at the end of each month <span class="math inline">\(t\)</span> and evalute the performance of each ranked group for the next month <span class="math inline">\(t+1\)</span>. However, financial statements and reports are not release at the end of each month nor at the monthly frequency. As a result, we are not able to join <code>financials_q4</code> and <code>sp500_q4</code> directly by dates and firm IDs.</p>
 <p>For quant traders, you always want to incorporate most up-to-date information when you are adjusting your portfolios and investments. Hence, at the end of each month, you would like to rank firms based on the <strong>most recently released</strong> financial statement data. We are going to stick to this rule and figure out how to merge our dataset.</p>
 <p><strong>Joining by date range</strong>. It is not uncommon that we are going to do joins by date ranges. For example, we may need to merge Data A with Data B so that the dates in Data A falls in between two different date columns in Data B. In this case, we are doing something similar:</p>
@@ -874,8 +891,8 @@ Important
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(gvkey, date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="c-evaluate-performance-of-your-strategies" class="level4" data-number="9.3.2.3">
-<h4 data-number="9.3.2.3" class="anchored" data-anchor-id="c-evaluate-performance-of-your-strategies"><span class="header-section-number">9.3.2.3</span> (c) Evaluate performance of your strategies</h4>
+<section id="c-evaluate-performance-of-your-strategies" class="level4">
+<h4 class="anchored" data-anchor-id="c-evaluate-performance-of-your-strategies">(c) Evaluate performance of your strategies</h4>
 <p>Use the backtesting template, evaluate the performance for (1) Operating Profitability and (2) Sales Growth.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>FILL IN THIS CHUNK BY YOURSELF</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -891,8 +908,8 @@ Important
 <p><em>Write your answer here</em></p>
 </section>
 </section>
-<section id="final-remarks" class="level3" data-number="9.3.3">
-<h3 data-number="9.3.3" class="anchored" data-anchor-id="final-remarks"><span class="header-section-number">9.3.3</span> Final Remarks</h3>
+<section id="final-remarks" class="level3">
+<h3 class="anchored" data-anchor-id="final-remarks">Final Remarks</h3>
 <p>In Exercises 3 and 4, you may have already obtained significant returns from your trading strategies (more than 100% for some groups). Are you going to dive directly into the market and implement your strategies right away?</p>
 <blockquote class="blockquote">
 <p>Waiiiiit a SECOND!</p>
