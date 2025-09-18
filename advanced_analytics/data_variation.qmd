@@ -73,10 +73,8 @@ Note that the list of firms belonging to the S&P 500 index is not constant. Firm
 
 ```{r}
 # Load packages for data wrangling and visualization
-library(dplyr)
-library(tibble)
+library(tidyverse)
 library(lubridate)
-library(ggplot2)
 # quantmod is used to get stock price data from Yahoo Finance
 library(quantmod)
 
