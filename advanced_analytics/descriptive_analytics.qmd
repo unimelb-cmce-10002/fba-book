@@ -5,10 +5,515 @@
 
 By the end of this chapter, students should be able to:
 
+- Understand what descriptive analytics means in a business context and recognize its role  as the foundation for more advanced approaches.  
 - Explain how RFM provides a simple rule-based approach to customer segmentation.
 - Recognize the limitations of rule-based segmentation and why data-driven methods like K-means are useful.
 - Preprocess and scale data appropriately for clustering using recipes.
 - Apply K-means clustering to customer data, evaluate different choices of k, and visualize the results.
 - Interpret and compare K-means clusters with RFM segments to draw actionable business insights.
+
+:::
+
+## What is Descriptive Analytics?
+
+Descriptive analytics is the starting point of data analysis in business. 
+It focuses on **summarising past data to identify patterns and trends**. 
+Rather than predicting what will happen next or uncovering cause-and-effect relationships, descriptive analytics answers the question:  
+
+> **What happened?**  
+
+In practice, descriptive analytics often takes the form of **reports, dashboards, and summaries** that help decision makers see what has occurred in their business. For example:  
+
+- A retailer might track sales by product category over the past month.  
+- A streaming service might analyse which genres were most watched last quarter.  
+- An airline might compare passenger loads across routes.  
+
+These analyses do not tell us *why* the patterns occurred, nor do they predict *what will happen next*. 
+Instead, they give us a **clear picture of the past**, which is essential for any further analysis.  
+
+::: {.callout-tip}
+### Descriptive vs Predictive vs Causal Analytics
+
+- **Descriptive analytics**: Summarises historical data to show what happened.  
+- **Predictive analytics**: Uses models to estimate what is likely to happen next.  
+- **Causal analytics**: Identifies cause-and-effect relationships to answer what would happen if we made a change.  
+:::
+
+## The Business Challenge
+
+Descriptive analytics is especially important in **customer analytics**, where it helps us group customers by behaviour, spending, or engagement. 
+But simply knowing what happened is not enough—businesses want to act on this information.  
+
+Suppose you are   a marketing analyst working with data from the **CDNOW Online Music Store**, a retailer that sold CDs during the early years of e-commerce. The dataset you have contains detailed information on customers' purchases between 1997 and 1998:  
+
+- **Who** bought (customer ID).  
+- **When** they bought (purchase dates).  
+- **How much** they spent (transaction amounts).  
+
+Your manager asks:  
+
+> **“Which customers should we target for our new loyalty campaign?”**  
+
+This is a classic **segmentation problem**. 
+Not all customers are equal: some shop frequently, some spend a lot, and others may be slipping away. 
+Treating every customer the same wastes resources and misses opportunities.  
+
+To solve this problem, we will use descriptive analytics to **summarise customer behaviour over time** and identify meaningful groups. 
+In this chapter, we will explore two approaches:  
+
+1. **RFM (Recency, Frequency, Monetary)** — a simple, rule-based method that is easy to compute and interpret.  
+2. **K-means clustering** — a data-driven method that uses algorithms to find patterns in behaviour that RFM might not pick up.  
+
+By comparing these approaches on the CDNOW data, you will see how descriptive analytics provides the foundation for identifying customer groups that can guide real marketing decisions.
+
+### What is Customer Segmentation? {.unnumbered}
+
+Customer segmentation is the process of **dividing a customer base into groups that share similar characteristics or behaviours**.
+The goal is to treat customers differently depending on their value, needs, or potential, rather than applying a “one-size-fits-all” strategy.  
+
+In the case of the CDNOW Online Music Store, segmentation could mean:  
+
+- Identifying **loyal repeat buyers** who purchase many CDs over time.  
+- Spotting **big spenders** who buy fewer times but place large orders.  
+- Detecting **at-risk customers** who have not purchased recently.  
+
+::: {.callout-tip}
+### Why Segment Customers?
+Businesses segment customers to:  
+- Allocate marketing resources more effectively.  
+- Target promotions to groups most likely to respond.  
+- Protect valuable customers from churning.  
+- Identify growth opportunities in overlooked groups.  
+
+Without segmentation, every customer is treated the same—leading to wasted resources and missed opportunities.  
+:::
+
+
+Segmentation is a form of **descriptive analytics**: it summarises the data into interpretable groups that can guide marketing strategy. Once customers are segmented, a business can ask targeted questions such as: 
+
+- Which group should receive a loyalty discount?  
+- Which group is most at risk of churn?  
+- Which group generates the most revenue?  
+
+::: {.callout-tip}
+### Segmentation vs. Personalisation
+
+- **Segmentation** groups customers into categories (e.g., high-value vs. low-value).  
+- **Personalisation** tailors offers at the individual level.  
+
+Segmentation is usually the first step toward more personalised strategies.  
+:::
+
+### Loading the R packages and Data {.unnumbered}
+
+To get started, we need to load the R packages that will help us work with the CDNOW dataset.  
+We will use the **tidyverse** for data wrangling and reading in the CSV file, **lubridate** for handling dates.  
+
+```{r}
+#| eval: true
+#| echo: false
+#| warnings: false
+#| message: false
+# Load packages
+library(tidyverse)
+library(lubridate)
+
+# Load the CDNOW purchases dataset
+purchases <- read_csv("../data/cdnow_purchases.csv")
+```
+
+```{r}
+#| eval: false
+#| echo: true
+#| warnings: false
+#| message: false
+# Load packages
+library(tidyverse)
+library(lubridate)
+
+# Load the CDNOW purchases dataset
+purchases <- read_csv("data/cdnow_purchases.csv")
+```
+
+The purchases file contains transaction records for each customer. It includes four columns:
+
+- `id`: the customer identifier.
+- `date`: the date of the purchase.
+- `cds`: the number of CDs purchased in a transaction
+- `amt`: the amount spent in that transaction.
+
+We can quickly check the structure of the data:
+
+```{r}
+glimpse(purchases)
+```
+
+Notice that the `date` variable has been recognized as a date.
+This means we can use it "as-is" when we will need to apply date transformations going forward.
+
+## Rule-Based Segmentation
+
+One simple way to group customers is through **rule-based segmentation**.  
+In this approach, analysts define a set of **rules or thresholds** that assign customers to different groups.  
+
+For example: 
+
+- A retailer might classify **“VIP customers”** as anyone who spends more than \$500 per month.  
+- A subscription service might define **“inactive customers”** as those who have not logged in for 90 days.  
+
+The strengths of rule-based segmentation is that it is **easy to explain and apply** and **interpretable** by humans.  
+Managers can set rules based on business intuition and communicate them without technical detail.  
+The limitation is that the rules are often **arbitrary**, and customers just above or below a threshold may be very similar in reality.  
+
+::: {.callout-tip}
+### Rule-Based vs. Data-Driven Segmentation
+- **Rule-based**: Groups are defined by fixed cutoffs chosen by analysts or managers.  
+- **Data-driven**: Groups are discovered by algorithms that search for natural patterns in the data.  
+:::
+
+In customer analytics, one of the most widely used rule-based methods is **RFM segmentation**, which groups customers based on:  
+
+- **Recency** of their last purchase.  
+- **Frequency** of their purchases.  
+- **Monetary value** of their purchases.  
+
+::: {.callout-tip}
+### Why RFM?
+RFM is one of the oldest and most widely used customer segmentation methods in marketing.  
+
+- **Recency, Frequency, Monetary** measures are intuitive and easy to calculate.  
+- They often capture a large share of the variation in customer value.  
+- Many CRM and loyalty systems still rely on RFM as a starting point for segmentation.  
+
+Because of this, RFM is an ideal first step for learning about segmentation before moving on to data-driven methods like K-means.
+:::
+
+### Calculating the RFM metrics {.unnumbered}
+
+Our transaction dataset has one row per purchase: a customer ID, the date of purchase, and the amount spent.  
+To compute RFM measures, we first need to **aggregate** this data to the customer level because we are describing features of a customer's interactions with the company rather then each individual transaction.  
+
+For each customer, we will calculate:  
+
+- **Length of time since most recent purchase date (Recency)**  
+- **Number of purchases (Frequency)**  
+- **Total amount spent (Monetary)**  
+
+The latter two of these metrics, Frequency and Monetary are much easier to calculate as they can be obtained from a `group_by()` and `summarise()` chain of commands.
+To find the length of time since most recent purchase date, we will need to do a bit more work.
+But, we will start by finding the date each customer most recently bought from the store:
+
+```{r}
+customer_aggregates <-
+    purchases |>
+    group_by(users_id) |>
+    summarise(
+        last_purch_date  = max(date),
+        frequency        = n(),           
+        monetary         = sum(amt),      
+        .groups = "drop"
+      )
+```
+
+Next we need to compute recency, i.e. time since last purchase.
+Since the data was collected in 1997-1998, computing a metric relative to now, i.e. the year 2025, seems a bit silly.
+Let's suppose we were asked to do the analysis on the 1st of July 1998.
+We'll store that value in R for later:
+
+```{r}
+# Set the analysis date
+# note as_date is the tidyverse version of as.Date
+analysis_date <- as_date("1998-07-01")  
+```
+
+Finally, we will compute `recency`. 
+We will compute the number of months between the analysis date and the last purchase.
+To do this, first we compute the length of time between two dates with `interval`, and then convert that length into months:
+
+```{r}
+customer_aggregates <- 
+    customer_aggregates |> 
+    mutate(
+        recency = interval(last_purch_date, analysis_date) %/% months(1),
+    ) |> 
+    select(-last_purch_date)
+```
+
+These measures allow us to capture how fresh or established a customer’s relationship is with the business.
+
+### From Metrics to Segments {.unnumbered}
+
+At this point, each customer has three measures, R, F and M: 
+
+```{r}
+glimpse(customer_aggregates)
+```
+
+These numbers are continuous, which makes them hard to compare directly across customers.  
+For example:  
+
+- Is a customer with a recency of 4 months “recent” or “not recent”?  
+- Is 12 purchases “frequent” or “average”?  
+
+To make these comparisons easier, we group customers into **segments** by splitting each measure into categories.  
+A common approach is to use **5 segments (quintiles)**:  
+
+- **1 = lowest group** (e.g., least recent, least frequent, lowest spenders).  
+- **5 = highest group** (e.g., most recent, most frequent, biggest spenders).  
+
+::: {.callout-tip}
+### Why 5 segments?
+- **Simple to interpret**: a score from 1 to 5 for each metric.  
+- **Balanced groups**: quintiles divide customers so that each group has roughly 20% of the population.  
+- **Flexible**: fine-grained enough to capture variation, but not too detailed to overwhelm.  
+:::
+
+We will use the function `ntile()` to split customers into quintiles.  
+Let's do that:
+
+```{r}
+rfm_data <-
+  customer_aggregates |>
+  mutate(
+    r_tile = ntile(recency, 5),
+    f_tile = ntile(frequency, 5),
+    m_tile = ntile(monetary, 5)
+  ) 
+```
+
+Now let's look at the output for `r_tile`.
+In particular let's look at average recency per tile:
+
+```{r}
+rfm_data |> 
+    group_by(r_tile) |>
+    summarise(mean_r = mean(recency))
+
+```
+
+This is not what we wanted.
+Here the 5th quantile represents customers who on average interacted with the company approximately 17 months ago, the longest of all the quantiles.
+We wanted the 5th quantile to represent most recent, and the 1st quantile to be the longest. 
+We'll need to reverse that ranking.
+Reversing the ranking is unfortunately a bit more complex than we'd want. 
+
+How can we flip the numbers around?
+
+* If a customer in tile 1 they should be in 5.
+* If a customer in tile 5 they should be in 1.
+* A customer in tile 3 should stay 3.
+
+Mathematically, we can do this by subtracting the tile number from the maximum, and then adding 1 back:
+
+
+$$
+\text{new tile} =  (\text{max tile value})−(\text{old tile value})+1
+$$
+
+This simple formula inverts the direction of the recency scores while keeping them within the same 1–5 scale.
+Let's implement it:
+
+```{r}
+rfm_data <-
+    rfm_data |>
+    mutate(
+        r_tile     = max(r_tile) - r_tile + 1,        # invert → 5 (recent) … 1 (stale)
+    )
+
+# Check the direction now: higher r_tile should mean more recent (lower recency)
+rfm_data |>
+    group_by(r_tile) |>
+    summarise(mean_r = mean(recency), 
+              .groups = "drop"
+              )
+
+```
+
+Great -- we now have scores for each customer along each of our three dimensions.
+
+We can do the same check for Frequency and Monetary value:
+
+```{r}
+rfm_data |>
+    group_by(f_tile) |>
+    summarise(mean_f = mean(frequency), 
+              .groups = "drop"
+              )
+```
+
+And
+
+```{r}
+rfm_data |>
+    group_by(m_tile) |>
+    summarise(mean_m = mean(monetary), 
+              .groups = "drop"
+            )
+```
+
+::: {.callout-tip}
+Remember: We reverse the score for Recency only (smaller months since last purchase is better).
+Frequency and Monetary already have the right direction: higher is better.
+:::
+
+These summaries allow us to profile the tiles:
+
+- Higher R-scores mean more recent customers.
+- Higher F-scores mean more purchases.
+- Higher M-scores mean bigger spenders.
+
+
+::: {.callout-tip}
+## Why Profile?
+
+It’s not enough to compute RFM tiles—we need to check and interpret them.
+Profiling tells us whether the scores are behaving as expected and gives us a first look at how different types of customers compare.
+:::
+
+### Naming Customer Segments {.unnumbered}
+
+So far, our RFM tiles tell us whether a customer is more recent, more frequent, or a bigger spender.  
+But managers don’t want to hear that “Customer 1032 is R = 5, F = 4, M = 3.”  
+They want clear, interpretable **segments** that can guide action.  
+
+To do this, we can combine the three RFM scores into rule-based categories and assign **meaningful names**.  
+
+For example:  
+- A customer with **R = 5, F = 5, M = 5** is a *Champion* — very recent, very frequent, and high spending.  
+- A customer with **R = 1, F = 1, M = 1** is *Lost* — they haven’t purchased in a long time, and even when they did, they didn’t buy much.  
+
+Over time, analysts and marketers have developed a set of **standard RFM-based segments**.  
+These categories provide an easy way to translate the numbers into **meaningful customer types**.  
+The idea is to take combinations of Recency, Frequency, and Monetary scores and give them **descriptive names** that managers can act on.  
+
+The table below shows ten common segments, their criteria, and a short description:
+
+| Segment             | R (Recency) | F (Frequency) | M (Monetary) | Description                                                                 |
+|---------------------|-------------|---------------|--------------|-----------------------------------------------------------------------------|
+| **Champions**       | 5           | 5             | 5            | Bought recently, buy often, and spend the most.                             |
+| **Potential Loyalist** | 3–5       | 3–5           | 2–5          | Recent customers, spent a good amount, bought more than once.               |
+| **Loyal Customers** | 2–4         | 2–4           | 2–4          | Spend well, responsive to promotions, consistent buyers.                    |
+| **Promising**       | 3–4         | 1–3           | 3–5          | Recent shoppers but haven’t spent much.                                     |
+| **New Customers**   | 4–5         | 1–3           | 1–5          | Bought recently but not often.                                              |
+| **Can’t Lose Them** | 1–2         | 3–4           | 4–5          | Previously big spenders and frequent, but not purchased for a long time.    |
+| **At Risk**         | 1–2         | 2–5           | 4–5          | Used to spend a lot and buy often, but long inactive now.                   |
+| **Need Attention**  | 1–3         | 3–5           | 3–5          | Above average on most dimensions, could become loyal with the right push.   |
+| **About To Sleep**  | 2–3         | 1–3           | 1–4          | Below average on recency, frequency, and monetary—at risk of being lost.    |
+| **Lost**            | 1           | 1–5           | 1–5          | Bought a long time ago, low engagement and value.                           |
+
+This table gives us a behavioural profile of each segment.
+For example:
+
+- Champions should have low recency (they bought recently), high frequency, and high monetary.
+- Lost customers should have very high recency (long inactive), low frequency, and low monetary.
+- At Risk should look like once-valuable customers who have gone quiet.
+
+By profiling, we check that our segmentation makes sense in practice before drawing business conclusions.
+
+::: {.callout-note}
+## Names as Heuristics
+
+These categories are **heuristics** developed in practice.  
+They are not set in stone — companies often **adapt the cutoffs or labels** to fit their business context.  
+For example, an online retailer might define *Champions* differently from a subscription service.
+:::
+
+Next, we will translate this table into R code so that each customer in our dataset is assigned to one of these segments.
+
+We can build a full segmentation scheme with `case_when()`:
+
+```{r}
+rfm_segmented <-
+  rfm_data |>
+  mutate(
+    segment = case_when(
+      # 1. Champions
+      r_tile == 5 & f_tile == 5 & m_tile == 5 ~ "Champions",
+      # 2. Potential Loyalist
+      r_tile %in% 3:5 & f_tile %in% 3:5 & m_tile %in% 2:5 ~ "Potential Loyalist",
+      # 3. Loyal Customers
+      r_tile %in% 2:4 & f_tile %in% 2:4 & m_tile %in% 2:4 ~ "Loyal Customers",
+      # 4. Promising
+      r_tile %in% 3:4 & f_tile %in% 1:3 & m_tile %in% 3:5 ~ "Promising",
+      # 5. New Customers
+      r_tile %in% 4:5 & f_tile %in% 1:3 & m_tile %in% 1:5 ~ "New Customers",
+      # 6. Can't Lose Them
+      r_tile %in% 1:2 & f_tile %in% 3:4 & m_tile %in% 4:5 ~ "Can't Lose Them",
+      # 7. At Risk
+      r_tile %in% 1:2 & f_tile %in% 2:5 & m_tile %in% 4:5 ~ "At Risk",
+      # 8. Need Attention
+      r_tile %in% 1:3 & f_tile %in% 3:5 & m_tile %in% 3:5 ~ "Need Attention",
+      # 9. About To Sleep
+      r_tile %in% 2:3 & f_tile %in% 1:3 & m_tile %in% 1:4 ~ "About To Sleep",
+      # 10. Lost
+      r_tile == 1 & f_tile %in% 1:5 & m_tile %in% 1:5 ~ "Lost",
+      # fallback
+      .default = "Unclassified"
+    )
+  )
+```
+
+Now that each customer has been assigned to a named segment, we can explore what these groups look like.
+A first check is to see **how many customers fall into each category**:
+
+```{r}
+rfm_segmented |>
+  count(segment, sort = TRUE)
+```
+
+This shows us which groups dominate our customer base.
+In many datasets, we will see a large share of customers in “Lost” or “At Risk” segments, and only a small share in “Champions.”
+
+Next, we can compute the average RFM values for each segment.
+This helps verify that the labels line up with the underlying behaviour:
+
+```{r}
+rfm_segmented |>
+    group_by(segment) |>
+    summarise(
+        avg_recency   = mean(recency),
+        avg_frequency = mean(frequency),
+        avg_monetary  = mean(monetary),
+        n_customers   = n(),
+        .groups = "drop"
+    ) |> 
+    arrange(desc(n_customers)) |> 
+    kableExtra::kable()
+```
+
+::: {.exercise}
+::: {.exercise-time}
+5 min
+:::
+
+Let's bring these segment results back to the original business questions we had:
+
+1. Which segment  is most valuable?
+2. If you were running a loyalty campaign, which groups would you target first?
+3. Which groups might not be worth investing in?
+
+:::
+
+::: {.solution-header}
+Solution
+:::
+::: {.solution-content}
+
+
+**1. Which segment is most valuable?**  
+- Typically, the **Champions** segment is the most valuable.  
+- They buy recently, buy often, and spend the most.  
+- Even if the group is relatively small, they drive a disproportionate share of revenue.  
+
+**2. If you were running a loyalty campaign, which groups would you target first?**  
+- Start with **Champions** to keep them engaged and feeling rewarded.  
+- Next, look at **Potential Loyalists** and **Loyal Customers** — they already show good behaviour and can be nurtured into long-term, high-value relationships.  
+- **At Risk** customers are also candidates: a well-designed campaign could bring them back before they are lost completely.  
+
+**3. Which groups might not be worth investing in?**  
+- **Lost** customers: if someone hasn’t purchased in a very long time, the cost of reactivation may outweigh the benefits.  
+- **Promising** or **About to Sleep** customers: these are lower-value segments where heavy marketing investment may not deliver strong returns.  
+- For these groups, a light-touch or automated approach (e.g., generic email offers) is usually more efficient.  
+
 
 :::
