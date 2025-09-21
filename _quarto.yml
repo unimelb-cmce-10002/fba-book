@@ -29,10 +29,10 @@ book:
       chapters:
         - data_management/data_storage.qmd
         - data_management/data_collection.qmd
-    # - part: "Extracting Deeper Insights from Data"
-    #   chapters:
-    #     - advanced_analytics/data_variation.qmd
-    #     - advanced_analytics/descriptive_analytics.qmd
+    - part: "Extracting Deeper Insights from Data"
+      chapters:
+        - advanced_analytics/data_variation.qmd
+        - advanced_analytics/descriptive_analytics.qmd
     #     - advanced_analytics/causal_analytics.qmd
     #     - advanced_analytics/predictive_analytics.qmd
     # - part: "Ethics and Privacy"
