@@ -1,3 +1,8 @@
+---
+execute:
+  cache: true
+---
+
 # Descriptive Analytics
 
 ::: callout-tip
@@ -239,7 +244,7 @@ customer_aggregates <-
     select(-last_purch_date)
 ```
 
-These measures allow us to capture how fresh or established a customer’s relationship is with the business.
+These measures allow us to capture how fresh or established a customer's relationship is with the business.
 
 ### From Metrics to Segments {.unnumbered}
 
@@ -366,21 +371,21 @@ These summaries allow us to profile the tiles:
 ::: {.callout-tip}
 ## Why Profile?
 
-It’s not enough to compute RFM tiles—we need to check and interpret them.
+It's not enough to compute RFM tiles—we need to check and interpret them.
 Profiling tells us whether the scores are behaving as expected and gives us a first look at how different types of customers compare.
 :::
 
 ### Naming Customer Segments {.unnumbered}
 
 So far, our RFM tiles tell us whether a customer is more recent, more frequent, or a bigger spender.  
-But managers don’t want to hear that “Customer 1032 is R = 5, F = 4, M = 3.”  
+But managers don't want to hear that “Customer 1032 is R = 5, F = 4, M = 3.”  
 They want clear, interpretable **segments** that can guide action.  
 
 To do this, we can combine the three RFM scores into rule-based categories and assign **meaningful names**.  
 
 For example:  
 - A customer with **R = 5, F = 5, M = 5** is a *Champion* — very recent, very frequent, and high spending.  
-- A customer with **R = 1, F = 1, M = 1** is *Lost* — they haven’t purchased in a long time, and even when they did, they didn’t buy much.  
+- A customer with **R = 1, F = 1, M = 1** is *Lost* — they haven't purchased in a long time, and even when they did, they didn't buy much.  
 
 Over time, analysts and marketers have developed a set of **standard RFM-based segments**.  
 These categories provide an easy way to translate the numbers into **meaningful customer types**.  
@@ -393,9 +398,9 @@ The table below shows ten common segments, their criteria, and a short descripti
 | **Champions**       | 5           | 5             | 5            | Bought recently, buy often, and spend the most.                             |
 | **Potential Loyalist** | 3–5       | 3–5           | 2–5          | Recent customers, spent a good amount, bought more than once.               |
 | **Loyal Customers** | 2–4         | 2–4           | 2–4          | Spend well, responsive to promotions, consistent buyers.                    |
-| **Promising**       | 3–4         | 1–3           | 3–5          | Recent shoppers but haven’t spent much.                                     |
+| **Promising**       | 3–4         | 1–3           | 3–5          | Recent shoppers but haven't spent much.                                     |
 | **New Customers**   | 4–5         | 1–3           | 1–5          | Bought recently but not often.                                              |
-| **Can’t Lose Them** | 1–2         | 3–4           | 4–5          | Previously big spenders and frequent, but not purchased for a long time.    |
+| **Can't Lose Them** | 1–2         | 3–4           | 4–5          | Previously big spenders and frequent, but not purchased for a long time.    |
 | **At Risk**         | 1–2         | 2–5           | 4–5          | Used to spend a lot and buy often, but long inactive now.                   |
 | **Need Attention**  | 1–3         | 3–5           | 3–5          | Above average on most dimensions, could become loyal with the right push.   |
 | **About To Sleep**  | 2–3         | 1–3           | 1–4          | Below average on recency, frequency, and monetary—at risk of being lost.    |
@@ -478,7 +483,7 @@ rfm_segmented |>
         .groups = "drop"
     ) |> 
     arrange(desc(n_customers)) |> 
-    kableExtra::kable()
+    kableExtra::kable(digits = 2)
 ```
 
 ::: {.exercise}
@@ -511,9 +516,864 @@ Solution
 - **At Risk** customers are also candidates: a well-designed campaign could bring them back before they are lost completely.  
 
 **3. Which groups might not be worth investing in?**  
-- **Lost** customers: if someone hasn’t purchased in a very long time, the cost of reactivation may outweigh the benefits.  
+- **Lost** customers: if someone hasn't purchased in a very long time, the cost of reactivation may outweigh the benefits.  
 - **Promising** or **About to Sleep** customers: these are lower-value segments where heavy marketing investment may not deliver strong returns.  
 - For these groups, a light-touch or automated approach (e.g., generic email offers) is usually more efficient.  
 
 
 :::
+
+## Data-Driven Segmentation
+
+
+### Going Beyond Rule-Based Segmentation {.unnumbered}
+
+Up to this point, we have grouped customers using **RFM segmentation** with rules defined by us as modellers.  
+This approach gave us a clear structure: we defined Recency, Frequency, and Monetary measures, divided customers into tiles, and then named the resulting segments.  
+It is simple, intuitive, and widely used in practice.  
+
+But there are some important limitations:  
+
+- The cutoffs we used for tiles are somewhat arbitrary.  
+- Customers who are very similar might end up in different groups because they fall on opposite sides of a threshold.  
+- The rule-based segments we created reflect business intuition, but they may not capture the **natural patterns in the data**.  
+
+This motivates our next step: moving to a **data-driven segmentation method**.  
+Instead of us setting the rules, we will let an algorithm search for groups of customers that are **similar to one another and different from others**.  
+The method we will use is called **K-means clustering**.  
+
+To do this, we will go through three main steps:  
+
+1. **Put variables on the same scale**  
+   K-means compares customers using distance. If we don't rescale, variables with large numbers (like total spending) will dominate those with smaller numbers (like recency in months).  
+
+2. **Run the clustering algorithm**  
+   We choose a number of clusters (*k*), and K-means assigns each customer to the group with the closest “center.” This step groups customers by similarity across our Recency, Frequency, and Monetary measures.  
+
+3. **Decide how many clusters make sense**  
+   Choosing *k* is part of the analysis. We'll test different values and use diagnostics to see which number of clusters best describes the data.  
+
+Our purpose here is not to replace RFM but to compare approaches:  
+
+- RFM shows how analysts can create interpretable, rule-based groups.  
+- K-means shows how algorithms can discover structure we might miss.  
+
+Next, we will begin by **preparing the data** so that K-means treats each RFM measure fairly.
+
+::: {.callout-tip collapse=true}
+### What is an Algorithm?
+
+In everyday life, people often use “algorithm” to mean “some mysterious computer program.”  
+In fact, the idea is much simpler.  
+
+An **algorithm** is just a **step-by-step procedure** for solving a problem.  
+- A cooking recipe is an algorithm for preparing a dish.  
+- Long division is an algorithm for dividing numbers.  
+- K-means is an algorithm for grouping customers into clusters.  
+
+Algorithms can be done by hand (slowly!) or by computer (very quickly).  
+The power of data analytics comes from running these algorithms at scale.
+:::
+
+::: {.callout-tip collapse=true}
+### RFM as a Human Algorithm
+
+When we built RFM segments, we were already following an **algorithm** — a fixed set of steps to reach a result:  
+
+1. Calculate Recency, Frequency, and Monetary values for each customer.  
+2. Split each measure into tiles (1–5).  
+3. Apply rules to assign customers to named segments.  
+
+This is a **rule-based algorithm**: the steps were designed by us as analysts.  
+
+K-means is different in that it is a **data-driven algorithm**: instead of us writing the rules, the computer searches for patterns in the data to define the groups.
+:::
+
+### Preparing Data for Clustering {.unnumbered}
+
+Before we jump into running K-means, we need to stop and think about **the data we are giving to the algorithm**.  
+
+K-means works by measuring the **distance** between customers in terms of their features (here: Recency, Frequency, Monetary).  
+This means that the **scale of each variable matters**:  
+
+- Recency is measured in **months**.  
+- Frequency is measured as a **count of purchases**.  
+- Monetary is measured in **dollars spent**.  
+
+If we feed these raw values into K-means, the algorithm will be dominated by whichever variable has the largest scale.  
+For example, if spending runs into the hundreds while recency is only a few months, the clusters will mostly reflect differences in spending.  
+
+Let's check the ranges of our three measures:  
+
+```{r}
+rfm_data |>
+  summarise(
+    min_recency   = min(recency),   
+    max_recency   = max(recency),
+    min_frequency = min(frequency), 
+    max_frequency = max(frequency),
+    min_monetary  = min(monetary),  
+    max_monetary  = max(monetary)
+  ) |>
+  pivot_longer(
+    everything(),
+    names_to = c("stat", "variable"),
+    names_sep = "_"
+  ) |>
+  pivot_wider(
+    names_from = stat,
+    values_from = value
+  )
+```
+
+This shows us the smallest and largest values for each variable.
+
+* Recency ranges from 0 to 18 months.
+* Frequency ranges from 1 to 217 purchases.
+* Monetary ranges from a zero dollars to several thousand dollars.
+
+Clearly, these are on very different scales.
+If we run K-means on these raw numbers, the algorithm will mostly detect differences in monetary value, because that variable spans thousands, while barely noticing differences in recency or frequency.
+
+::: {.callout-warning}
+## Potential Pitfall: Scale matters
+
+Clustering is a distance-based method.
+Variables with larger numeric ranges will dominate the distance calculations, making smaller-range variables nearly irrelevant.
+:::
+
+To avoid the issues due to different scales, we standardise our variables so that each has:
+
+* Mean = 0
+* Standard deviation = 1
+
+This transformation makes Recency, Frequency, and Monetary comparable in how much they can influence the clustering.
+
+::: {.callout-tip collapse=true}
+## Scaling and Z-scores
+
+When we **standardise** a variable, we are turning it into a **z-score**.  
+This means we subtract the mean and divide by the standard deviation:
+
+$$
+z = \frac{x - \text{mean}(x)}{\text{sd}(x)}
+$$
+
+- A value of 0 means the observation is right at the average.  
+- Positive values mean it is above average.  
+- Negative values mean it is below average.  
+
+Why does this matter for clustering?
+K-means groups customers by calculating distances between them.
+If one variable has a very large numeric range (say, spending in the thousands), and another has a smaller range (say, recency in months), the large-range variable will dominate the distance calculation.  
+
+By converting all variables to z-scores, we:  
+- Remove differences in scale (months, counts, dollars).  
+- Put them on a **common yardstick** where 1 unit always means “1 standard deviation from the mean.”  
+- Ensure that **each measure contributes equally to the distance calculation**, so clustering reflects *all three dimensions* of customer behaviour, not just the one with the largest numbers.
+:::
+
+::: {.callout-note collapse = true}
+### n-Tiles vs. Scaling
+
+Earlier, when we built RFM segments, we used **n-tiles** (quintiles) to rank customers from 1 to 5 on each measure.  
+This was another way of handling differences in scale:
+
+- Instead of comparing raw values (e.g., dollars vs. months), we compared **relative positions** within the distribution.  
+- A customer in tile 5 for Recency is in the **top 20% most recent** purchasers, regardless of whether that means 2 months or 10 days.  
+
+Scaling with z-scores serves a similar purpose:  
+- Both methods transform raw variables into a form where they can be compared more directly.  
+- The key difference is that **tiles rank customers** relative to each other, while **z-scores measure distance** from the mean in standard deviation units.  
+
+This is why scaling is essential for clustering: it keeps the *distances* meaningful across all variables, rather than just their ranks.
+:::
+
+#### Scaling Variables by Hand {.unnumbered}
+
+Let's start small by scaling just one variable: **monetary value**.
+Recall how to calculate the mean and standard deviation:
+
+```{r}
+rfm_data |>
+  summarise(
+    mean_m = mean(monetary),
+    sd_m   = sd(monetary)
+  )
+```
+
+We can use these summary statistics to compute a scaled measure for `monetary` for all customers in the data:
+
+```{r}
+rfm_data |>
+  mutate(monetary_scaled = (monetary - mean(monetary)) / sd(monetary)) |>
+  select(monetary, monetary_scaled) |>
+  head(10)
+```
+
+#### Scaling Variables with `recipes` {.unnumbered}
+Doing this for one variable makes the idea of scaling clear, but manually calculating across what could be many variables is tedious.
+And we know that when we are manually writing tedious code with the tidyverse, we are probably missing a more efficient and reproducible approach.  
+
+This is where the `recipes` package comes in.
+Recipes let us define a set of preprocessing steps — like scaling — that can be applied consistently across multiple variables.
+The big advantage is that the recipe keeps track of *how* the data was transformed, making the process transparent and easy to reproduce.
+
+We start by using the `recipe` function to write a set of steps we want to perform:
+
+```{r}
+library(recipes)
+
+rfm_rec <- 
+    recipe(~ recency + frequency + monetary, 
+           data = rfm_data) |>
+    step_normalize(all_numeric_predictors())
+
+```
+
+Here we created a simple preprocessing plan, i.e. a recipe, that tells R which variables to prepare and how. 
+In `recipe(~ recency + frequency + monetary, data = rfm)`, the tilde, `~`, is the formula separator: the left side is for something you want to predict (an outcome) and the right side lists the input variables. 
+When clustering, there's no outcome variable in the data that we are trying to predict — we're just grouping customers—so we leave the left side empty and list our inputs on the right: recency, frequency, and monetary. 
+We then pipe into the next step `step_normalize(all_numeric_predictors())` which standardises each of those numeric variables (turn them into z-scores).
+If we then look at the object:
+
+```{r}
+rfm_rec
+
+```
+
+When we printed `rfm_rec`, you may have noticed something curious: the data itself wasn't transformed yet.  
+Instead, R showed us a **blueprint** of what will happen — which variables are included (`recency`, `frequency`, `monetary`), the role they play (all as predictors, since there's no outcome in clustering), and the step that will be applied (`step_normalize()`).  
+This design is intentional: a recipe describes the instructions, but it does not execute them right away.  
+
+To actually make the transformations, we need to **prep** the recipe.
+Think of this as training the recipe on our data, or, more informally, as preparing the ingredients before cooking. 
+For the scaling we want to do, `prep()` calculates the mean and standard deviation of each variable so that it knows exactly how to convert them into z-scores.
+
+```{r}
+rfm_prepped <- prep(rfm_rec)
+
+rfm_prepped
+```
+
+
+The output is still a recipe object, but now it has all the information required to perform the transformation.
+the output looks similar to the earlier recipe, but with an important difference:
+it now shows that the `step_normalize()` step has been trained.
+Behind the scenes, R has stored the mean and standard deviation of each variable (recency, frequency, and monetary) based on the data we provided.
+The result is still a recipe object, but now it contains all the information needed to perform the transformation.
+Intuitively, this is the same as weighing out all the ingredients before you start cooking — everything is ready, but the meal hasn't been served yet.
+
+Finally, we use **bake** to apply the recipe to the data.
+If `prep()` was about preparing the ingredients, then `bake()` is the step where we actually cook the dish and put it on the table.
+`bake()` takes the prepared recipe and returns a new data frame with the standardized variables ready to use.
+
+```{r}
+rfm_scaled <- bake(rfm_prepped, new_data = NULL)
+
+head(rfm_scaled)
+```
+
+By using `new_data = NULL`, we tell R to apply the recipe to the same data that was used when we prepped it.
+The result is a data frame where recency, frequency, and monetary have all been transformed into z-scores — each with mean zero and standard deviation one.
+Let's check that our scaling worked as intended.  
+If the recipe did its job, each of our variables — `recency`, `frequency`, and `monetary` — should now have a mean of zero and a standard deviation of one.
+
+```{r}
+rfm_scaled |>
+    summarise(
+        across(everything(),
+                list(mean = mean, sd = sd)) |>
+    pivot_longer(
+        cols = everything(),
+        names_to = c("variable", ".value"),
+        names_sep = "_"
+        )
+    ) |> 
+    kableExtra::kable(digits = 2)
+```
+
+::: {.callout-tip collapse= true}
+## Same Recipe, New Data?
+If you later want to apply the same recipe to a new dataset (e.g., fresh customers with the same variables), you can supply use the same code as above with `new_data = rfm_data` instead of `NULL`.
+This makes recipes especially powerful for production settings, where the same preprocessing steps need to be applied consistently over time.
+:::
+
+### Clustering with K-means {.unnumbered}
+
+Now that our variables are standardized, we are ready to group customers using **K-means clustering**.  
+This is one of the most widely used clustering methods in business analytics because it is simple, fast, and effective.
+
+The basic idea is to divide customers into groups where those in the same group are more similar to each other (in terms of recency, frequency, and monetary value) than to customers in other groups.  
+Instead of setting rules ourselves — as we did with RFM quintiles — we let the algorithm discover the natural groupings in the data.
+
+At a high level, the process works like this:  
+
+- **Step 1: Decide on \(k\).**  
+We choose how many clusters we want the algorithm to find.
+Think of this as telling it, “please uncover \(k\) different types of customers.”  
+
+- **Step 2: Assign customers to clusters.**  
+Each customer is assigned to the cluster with the nearest **center point** (called a *centroid*).
+A centroid is simply the **average customer** in the cluster.
+It is calculated by taking the average recency, the average frequency, and the average monetary value of all customers currently in the group.
+For example, if three customers had frequencies of 2, 4, and 6 purchases, the cluster's frequency centroid would be \((2+4+6)/3 = 4\).
+In this way, the centroid represents the “typical customer” in that group.
+
+- **Step 3: Update the centroids.**  
+Once customers are assigned, the centroid of each cluster is recalculated.
+This makes the center points shift toward where most of the customers really are.  
+
+- **Step 4: Reassign customers.**  
+Customers are then reassigned to whichever centroid they are now closest to.  
+
+This cycle of recalculating averages and reassigning customers repeats until the groups stop changing.  
+At that point, the clustering is considered stable.  
+
+::: {.callout-tip}
+### Clustering as a Networking Event for Your Data
+
+You can think of this process like a networking event.
+At first, people cluster around randomly chosen “representatives.”
+As the crowd shifts, the representatives change to reflect the average person in their group.
+People keep moving until they find themselves in the group that feels like the best fit — and then the groups stop changing.
+:::
+
+Let's see how this works in practice by running K-means on our CDNOW dataset with \(k = 3\) clusters.
+
+```{r}
+set.seed(123) 
+
+kmeans_3 <- kmeans(rfm_scaled, centers = 3)
+```
+
+::: {.callout-warning collapse=true}
+## Why set a seed?
+
+K-means starts by placing centroids in random positions before it begins the averaging-and-reassigning process.  
+Because of this, you can get slightly different results each time you run the algorithm.  
+
+By setting a random **seed** (e.g., `set.seed(123)`), we make the results reproducible — so that if you (or your manager, or your professor) rerun the code, you will get the same clusters.  
+This is especially important in reporting, where consistency matters.
+:::
+
+::: {.callout-note collapse=true}
+## The Raw K-means Output
+
+If you print the `kmeans()` result directly, the output can look a little overwhelming:
+
+```{r}
+kmeans_3
+```
+
+You'll see a lot of information, but the most important parts are:
+
+* Cluster means (centers): the average recency, frequency, and monetary value for each cluster.
+These describe the “typical customer” in each group.
+
+* Cluster sizes: the number of customers assigned to each cluster.
+This shows which groups are large and which are small.
+
+The other details (like sum of squares) are diagnostics we'll use later when deciding how many clusters to keep.
+
+So while the raw output looks a bit “ugly,” the take-home message is simple:
+what each cluster looks like, and how many customers are in each one.
+:::
+
+The raw output of the K-means model is not always the easiest to interpret. 
+The numbers are useful, but they don't give us an immediate feel for how distinct the clusters really are. 
+To help with this, we'll use the `factoextra` package. 
+This package provides a set of convenient functions for visualising clustering and dimension-reduction results in R. 
+Here, we'll use it to create a scatterplot that shows each customer's cluster membership in a way that's easy to see at a glance.
+
+```{r}
+library(factoextra)
+
+fviz_cluster(kmeans_3, data = rfm_scaled,
+             geom = "point",
+             palette = "jco",
+             ggtheme = theme_minimal())
+
+```
+
+The plot shows each customer as a point, coloured by the cluster they belong to. 
+Notice that the axes are labelled *Dim1* and *Dim2* rather than recency, frequency, and monetary. 
+These are new dimensions created by combining the original variables in a way that makes the clusters as easy to separate as possible. 
+In other words, the plot is giving us the best possible two-dimensional “snapshot” of the clustering results.
+Each of the *Dim*s also have a with a percentage in brackets in the axis label. 
+These percentages tell us how much of the overall variation in the data is captured by that dimension.
+
+::: {.callout-note collapse=true}
+## What are Dim1 and Dim2?
+
+The axes come from a method called **Principal Component Analysis (PCA)**.  
+PCA creates new variables (called *principal components*) that are linear combinations of the original inputs.  
+- **Dim1** is the combination that explains the most variation in the data.  
+- **Dim2** is the next most important combination, and it is chosen to be independent of Dim1.  
+
+Plotting Dim1 and Dim2 together allows us to capture as much of the underlying structure as possible in just two dimensions — even when the original data had more variables.  
+That's why the axes don't map neatly onto “recency,” “frequency,” or “monetary,” but instead represent blends of them that best reveal the clusters.
+:::
+
+::: {.callout-warning collapse=true}
+## Dims are not variables in our data
+
+It's tempting to read Dim1 or Dim2 as “recency” or “monetary,” but that's not correct.  
+Each dimension is a **blend** of all three variables, designed only to make the clusters easier to see.  
+Use them for interpretation of the clustering structure, not for direct business meaning.
+:::
+
+::: {.callout-note collapse=true}
+## Principal Component Analysis (PCA) Beyond Cluster Visualisation
+
+Here we used PCA only to reduce three variables (R, F, M) into two dimensions for plotting.  
+But PCA is especially powerful when you have **many variables** — for example, dozens of customer behaviour measures or hundreds of survey items.  
+By summarising those into a handful of principal components, PCA makes complex data more manageable while retaining most of the information.  
+This is why PCA is a common first step in many advanced analytics pipelines, including clustering.
+
+In the tutorial accompanying this chapter you will explore PCA in more depth to help you tackle a different segmentation problem that has more variables.
+:::
+
+### Adding Cluster Assignments to the Data & Profiling Consumers {.unnumbered}
+
+So far, we've seen the raw K-means output and a visualization of the clusters.
+The next step is to bring the cluster assignments back into our dataset so that we can describe and profile each group in business terms.
+
+We'll use the `broom` package, which provides tidy outputs for many modelling functions in R.
+With `augment()`, broom takes the original data and adds new columns — here, the most important one is `.cluster`, which tells us which cluster each customer belongs to.
+
+```{r}
+library(broom)
+
+rfm_clustered <- 
+    augment(kmeans_3, rfm_data) 
+
+head(rfm_clustered)
+
+```
+
+The new `.cluster` column shows the cluster assignment for each customer.
+Now we can summarise the characteristics of each cluster — for example, their average recency, frequency, and monetary value — to see what makes them different.
+
+With the cluster assignments attached to each customer, we can now summarise the groups.  
+A simple way is to calculate the average recency, frequency, and monetary value for each cluster.
+
+```{r}
+rfm_clustered |>
+  group_by(.cluster) |>
+  summarise(
+    recency   = mean(recency),
+    frequency = mean(frequency),
+    monetary  = mean(monetary),
+    n_customers = n(),
+    .groups = "drop"
+  )
+```
+
+From a managerial perspective, these profiles tell a clear story:
+
+* Cluster 1 (very recent, very frequent, very high spenders, but a small group of 150 customers) → elite loyalists.
+* Cluster 2 (long time since last purchase, very infrequent, very low spend) → lapsed low-value customers.
+* Cluster 3 (fairly recent, moderate frequency and spend) → steady mid-level buyers.
+
+This is where clustering becomes actionable: we can see who the most valuable customers are, who may be drifting away, and which groups could be nurtured for growth.
+
+::: {.callout-note collapse=true}
+## Comparing K-means Clusters to RFM Segments
+
+It's useful to connect our K-means results back to the RFM segmentation we built earlier.  
+RFM used fixed quintiles and rules; K-means let the data itself define the groups.  
+
+Looking at the cluster profiles, we can see clear parallels:  
+
+- **Cluster 1** (very recent, very frequent, very high spenders) ≈ *RFM champions / loyal high-value customers*.  
+- **Cluster 2** (long recency, very low frequency, low spend) ≈ *RFM at-risk / lapsed customers*.  
+- **Cluster 3** (moderate recency, moderate frequency, moderate spend) ≈ *RFM (potential) loyalists*.  
+
+One way too see this in the data is to group by the cluster and take the average tile values:
+
+```{r}
+rfm_clustered |>
+  group_by(.cluster) |>
+  summarise(
+    avg_recency_tile   = mean(r_tile),
+    avg_frequency_tile = mean(f_tile),
+    avg_monetary_tile  = mean(m_tile),
+    n_customers = n(),
+    .groups = "drop"
+  )
+```
+:::
+
+::: {.callout-warning collapse=true}
+## Why Link Clusters Back to Raw Data?
+
+K-means needs **scaled data** (z-scores) to make the clustering fair, since variables measured on different scales (like dollars vs. days) would otherwise distort the results.  
+But once the clusters are created, the **scaled values aren't very interpretable** for managers.  
+
+- A z-score of 1.5 in monetary spend doesn't tell a manager much.  
+- Saying “this group spends about \$2,000 on average” is clear and actionable.  
+
+That's why we always **map the cluster assignments back to the original RFM data**.  
+It lets us profile each group in the actual business units — days since last purchase, number of purchases, and dollars spent — which managers can understand and act on.
+:::
+
+
+::: {.exercise}
+::: {.exercise-time}
+15 min
+:::
+
+Let's extend our analysis by running **K-means with 10 clusters** instead of 3.  
+Repeat the same steps we used earlier:
+
+1. Run `kmeans()` with `centers = 10`.  
+
+2. Use `fviz_cluster()` to visualise the 10 clusters.  
+   - What do you notice about the spread and separation of the clusters?  
+   - Are there clear groups, or do some clusters overlap heavily?  
+
+3. Attach the cluster assignments back to the **raw RFM data** (not the scaled data).  
+
+4. Summarise each cluster to get its average recency, frequency, and monetary values.  
+
+5. Based on these profiles, try to match each cluster to one of the familiar **RFM-style segments** (e.g., Champions, At Risk, Steady Buyers).  
+
+Questions to answer:  
+- Which cluster(s) look like **Champions** (recent, frequent, high spenders)?  
+- Which cluster(s) look like **At Risk / Lapsed** customers?  
+- Which cluster(s) might be **Potential Loyalists** or **Steady Buyers**?  
+- Does having 10 clusters give you **new insights** compared to the 3-cluster solution, or does it make the story harder to communicate?
+
+:::
+
+::: {.solution-header}
+Solution
+:::
+::: {.solution-content}
+
+**1. Run K-means with 10 clusters**  
+- Use `k10 <- kmeans(rfm_scaled, centers = 10)`.  
+- Remember to set a seed for reproducibility.  
+
+**2. Visualise with `fviz_cluster()`**  
+- You'll see 10 colours, but many clusters will overlap.  
+- This shows that splitting into 10 groups often produces clusters that are **indistinguishable in practice**.  
+
+**3. Attach clusters back to raw RFM data**  
+- Use `rfm_data |> mutate(cluster = k10$cluster)`.  
+- This gives you cluster assignments in real business units.  
+
+**4. Summarise clusters**  
+- Calculate average recency, frequency, and monetary for each cluster.  
+- You'll likely notice that several clusters have almost identical averages.  
+
+**5. Interpret clusters**  
+- A few clusters will match clearly to RFM-style groups (e.g., Champions, At Risk).  
+- But many clusters won't add much extra insight compared to the 3-cluster solution.  
+
+**Key takeaway**  
+- Asking for too many clusters can make the segmentation look detailed, but in reality many groups are **redundant**.  
+- For managers, simpler solutions (like 3–4 clusters) are usually more actionable.  
+- This highlights the importance of balancing **granularity** with **interpretability** when choosing \(k\).
+
+:::
+
+### How Many Clusters Should We Use? {.unnumbered}
+
+So far, we have been running K-means with three clusters. 
+That was useful for learning the workflow, but notice that we didn't really have a clear rationale for picking the number three.  
+
+With RFM, we **fixed quintiles** and then a human decided how many segments to create (e.g., 10 segments from the tile scores). 
+K-means is different: it can take the human out of the loop by suggesting how many clusters best fit the data. 
+The challenge is that we need a systematic way to decide on \(k\).
+
+If we pick too few clusters, we risk missing important differences between customers. 
+If we pick too many, we may end up with groups that are indistinguishable and hard to explain to managers, like in the exercise above.
+
+To figure out how many clusters make sense, we can't just look at the data once — we actually need to **run K-means many times with different values of \(k\)**.
+For example, we might run it with \(k = 2\), then with \(k = 3\), then with \(k = 4\), and so on. 
+Each time, the algorithm produces clusters, and we can measure how well those clusters “fit” the data. 
+Fitting the data here means spotting where adding more clusters really improves the segmentation — and where it stops adding value. 
+This gives us a more objective basis for choosing the right number of clusters, rather than just picking a number (like 3) without justification.
+
+To explore different choices of \(k\), we need to run K-means many times. 
+On a large dataset this can be slow, so a common trick is to work with a **random sample** of customers. 
+This smaller sample still gives us a good sense of the cluster structure while keeping computations fast.
+
+```{r}
+set.seed(42) # so we sample the same people!
+
+rfm_scale_sample <- 
+  rfm_scaled |>
+  sample_n(1000)   # take 1,000 random customers
+```
+
+There isn't just one way to decide on the “right” number of clusters. 
+In practice, analysts use several different methods to guide the choice of \(k\). 
+Each method has its own logic, and together they give us a more rounded view.  
+
+In this section we'll look at three common methods: 
+
+1. The **Elbow Method**  
+2. The **Silhouette Method**  
+3. The **Gap Statistic**
+
+#### The Elbow Method {.unnumbered}
+
+The Elbow Method is one of the simplest and most widely used techniques. 
+It is based on a measure called the **within-cluster sum of squares (WSS)**. 
+WSS tells us how tightly the customers are grouped within each cluster: lower WSS means customers inside a cluster are very similar to each other.
+
+Here's the key idea:  
+
+- As we increase \(k\), WSS will always go down — more clusters means each cluster can get smaller and tighter.  
+- But the *improvement* in WSS gets smaller and smaller as we keep adding clusters.  
+- If we plot WSS against \(k\), the curve usually bends like an arm, and the point where it bends looks like an **elbow**.  
+
+That elbow point suggests a good trade-off:  
+enough clusters to capture the main differences, but not so many that we end up with redundant groups.
+
+We can implement the Elbow method as follows:
+
+```{r}
+fviz_nbclust(
+  rfm_scale_sample, 
+  kmeans,
+  method = "wss",     # Within-cluster sum of squares
+  k.max = 15,
+  nstart = 5
+)
+```
+
+In the figure above we can see the curve drop steeply at first and then start to flatten. 
+In our case, the biggest improvements in WSS come between 2 and 4 clusters. 
+After \(k = 4\), the line levels off — adding more clusters still lowers WSS, but only by small amounts.  
+
+This bend around 4 is the “elbow.” 
+It suggests that 4 clusters strike a good balance: enough to capture meaningful differences between customers, but not so many that we end up with redundant or overlapping groups.
+
+
+::: {.callout-tip collapse=true}
+## Extra Arguments in the Elbow Method
+
+* `k.max = 15`: tells R to test values of $k$ from 1 up to 15. You can increase or decrease this depending on how many clusters you want to check.
+
+* `nstart = 5`: K-means begins with random placements of the cluster centers.
+By running it 5 times with different random starts, we reduce the risk of getting stuck in a poor solution.
+For serious work, analysts often use larger values (20, 50, or more) to ensure stability.
+:::
+
+::: {.callout-warning}
+## There's No Perfect Elbow
+
+Just like our own elbows aren't perfectly shaped, the elbow plot may not show a sharp bend.  
+Don't expect a perfect elbow — sometimes the curve is gradual, and there isn't one obvious elbow point.
+In those cases, there may not be a single “correct” answer, and you'll need to balance the statistics with business interpretability.
+:::
+
+#### The Silhouette Method {.unnumbered}
+
+Another popular approach is the **Silhouette Method**.
+Where the elbow method looked at how tightly customers are grouped inside each cluster, the silhouette method asks a different question: 
+*“How well does each customer fit into its assigned cluster compared to the next closest cluster?”*
+
+The silhouette score for a single customer ranges from **–1 to 1**:  
+
+- A value close to **1** means the customer is much closer to their own cluster than to others (a good fit).  
+- A value near **0** means they sit on the border between two clusters.  
+- A negative value means they might actually belong in another cluster.  
+
+By averaging these scores across all customers, we get a measure of how well-defined the clusters are overall.  
+The **best number of clusters** is the one that gives the **highest average silhouette score**.
+
+```{r}
+fviz_nbclust(
+  rfm_scale_sample, 
+  kmeans,
+  method = "silhouette"
+)
+```
+
+In our dataset, the silhouette plot suggests that the clustering quality peaks at around 3 clusters.
+That means customers are, on average, most clearly separated into groups when 
+k=3.
+
+::: {.callout-warning}
+## Every Customer Needs Their Space  
+
+Silhouette scores tell us how “comfortable” each customer feels in their cluster.  
+
+- High scores: the customer is happily surrounded by similar neighbours.  
+- Low scores: they're awkwardly stuck between groups.  
+- Negative scores: they probably wandered into the wrong party.  
+
+That's why the average silhouette is a handy guide — it shows us how much breathing room the clusters really give customers.
+:::
+
+#### The Gap Statistic {.unnumbered}
+
+A third method is the **Gap Statistic**.  
+This approach asks: *“Do the clusters in our data look more meaningful than clusters we'd expect if the data were completely random?”*  
+
+Here’s how it works:  
+
+- The algorithm compares the clustering results from our dataset to clustering results from many random datasets with no real structure.  
+- The **gap** is the difference between the two: how much better our clusters are than random ones.  
+- If adding more clusters doesn’t improve the gap clearly beyond the random “wiggle,” the method stops.  
+- That means the recommended number of clusters is often smaller than the place where the gap looks biggest in the plot — it prefers the simpler solution unless the bigger one is **clearly better**.
+
+
+```{r}
+fviz_nbclust(
+  rfm_scale_sample, 
+  kmeans,
+  method = "gap_stat",
+  nstart = 10,
+  iter.max = 50
+)
+```
+
+In our plot, the gap statistic curve flattens for several values of \(k\), then makes a noticeable jump.  
+But the function still recommends a lower \(k\).  
+This is because the method is deliberately **conservative**: it only picks a bigger \(k\) if the improvement is clearly better than what could be explained by random variation.  
+If not, it sticks with the simpler solution.
+
+That’s why the printed result may suggest fewer clusters than your eyes would pick from the plot.  
+It’s not wrong — it’s just using a conservative rule that prefers a simpler solution if two choices are statistically similar.  
+For business decisions, this is another reminder that **judgment matters**: we balance the statistical guidance with what makes sense for managers.
+
+::: {.callout-tip collapse=true}
+## Arguments in `fviz_nbclust()`
+
+* `nstart = 10`: K-means starts with random cluster centers.
+Running it 10 times and keeping the best solution improves stability.
+(For bigger jobs, analysts often increase this further.)
+
+* `iter.max = 50`: the maximum number of times K-means can iterate to reassign customers and update centroids before it stops.
+Higher values give the algorithm more chances to converge, but also take longer to run.
+:::
+
+::: {.callout-note collapse=true}
+## What the Bars in the Gap Plot Really Mean  
+
+The vertical bars in the gap statistic plot are **not error bars on the clusters**.  
+They show the **amount of natural wiggle** that comes from comparing our data to lots of random datasets.  
+
+If adding another cluster only improves the gap by a little — within that wiggle — the method says “not worth it” and sticks with fewer clusters.  
+That’s why the recommended \(k\) can be smaller than the “big jump” you might notice by eye.  
+It’s a built-in preference for **simplicity unless extra complexity is clearly justified**.
+:::
+
+
+::: {.callout-warning collapse=true}
+## Mind the Gap  
+
+The gap statistic is asking: *“Are these clusters really better than random chance?”*  
+
+If the gap is **big**, it means our clusters capture real structure in the data.  
+If the gap is **small**, the extra clusters might just be noise.  
+
+That’s why the method is conservative: it won’t add clusters unless the improvement is clearly beyond the random wiggle.  
+In practice, this often means the recommended \(k\) is smaller than what your eyes might pick from the plot.
+:::
+
+
+::: {.exercise}
+::: {.exercise-time}
+8 min
+:::
+
+Our diagnostics gave us mixed signals:  
+
+- **Elbow Method** → around 4 clusters  
+- **Silhouette Method** → 3 clusters  
+- **Gap Statistic** → around 4 clusters  
+
+Since both the elbow and gap methods point to **4 clusters**, let’s explore that solution.
+
+1. Re-run K-means with `centers = 4`.  
+2. Attach the cluster assignments back to the **raw RFM data** (not the scaled version).  
+3. Summarise each cluster by average recency, frequency, monetary, and number of customers.  
+4. Look for **meaningful differences** across the 4 groups.  
+   - Which clusters look like *Champions*?  
+   - Which resemble *At Risk* or *Lapsed* customers?  
+   - Do any groups split into subgroups of interest (e.g., frequent but lower spend vs. moderate buyers)?  
+
+:::
+
+::: {.solution-header}
+Solution
+:::
+::: {.solution-content}
+
+**1. Estimate 4 clusters**  
+```{r}
+set.seed(123)
+k4 <- kmeans(rfm_scaled, centers = 4)
+```
+
+2. Attach clusters with `augment()`
+
+```{r}
+rfm_clustered4 <- augment(k4, rfm_data)
+head(rfm_clustered4)
+``` 
+
+3. Summarise clusters
+
+```{r}
+rfm_clustered4 |>
+  group_by(.cluster) |>
+  summarise(
+    recency   = mean(recency),
+    frequency = mean(frequency),
+    monetary  = mean(monetary),
+    n_customers = n(),
+    .groups = "drop"
+  )
+```
+
+4. Interpret
+
+* Cluster 1: Champions  — extremely recent, very frequent, very high spenders. A tiny but enormously valuable group.
+* Cluster 2: Lapsed low-value customers — long recency, almost no repeat purchases, very low spend. The largest group but least valuable.
+* Cluster 3: Elite loyalists — recent, frequent, and high spenders. Larger than Cluster 1 but still a minority.
+* Cluster 4: Steady mid-level buyers — moderate recency, frequency, and spend. A substantial group with growth potential.
+
+**Key takeaway**
+
+The 4-cluster solution balances simplicity and detail:
+
+- It distinguishes between two types of high-value customers (Cluster 1 “Champion” vs. Cluster 3 “loyalist”).
+- It separates the huge low-value base (Cluster 2) from steady but moderate buyers (Cluster 4).
+
+This gives managers a clear, actionable segmentation to work with.
+:::
+
+## Wrap Up
+
+In this chapter, we explored two different approaches to customer segmentation:  
+
+- **Rule-based segmentation with RFM**  
+  - Simple, transparent, and manager-friendly.  
+  - Groups customers using fixed cut-offs (quintiles) and human choices about how many segments to create.  
+  - Easy to explain, but rigid — it may miss patterns that don’t line up neatly with the rules.  
+
+- **K-means clustering**  
+  - A data-driven alternative that lets the algorithm decide where the boundaries between groups should be.  
+  - Requires us to choose the number of clusters (\(k\)), which we guided using diagnostics like the elbow method, silhouette scores, and the gap statistic.  
+  - Produces clusters that adapt to the data and can scale to many more variables, but the results are less intuitive without careful profiling and interpretation.  
+
+Together, these methods are complementary rather than competing:
+
+- RFM provides a quick, rule-based snapshot that’s easy to communicate.  
+- K-means digs deeper, uncovering patterns that might not be obvious from rules alone.  
+
+For managers, the choice depends on the business context: 
+
+- If clarity and simplicity are the priority, RFM may be the best tool.  
+- If flexibility and precision are needed — especially with larger datasets — K-means offers richer insights.  
+
+The most powerful insight comes from **combining both**:
+start with RFM to build intuition (and potentially a business theory) and provide a benchmark, then use clustering to refine the picture and test whether the rule-based groups align with natural patterns in the data.  
