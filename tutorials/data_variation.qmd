@@ -158,6 +158,12 @@ Hence, we consider another remedy: using logarithmic transformation to make the 
 
 (b3) Obtain net income numbers and return-on-asset (ROA) for sample companies. When we compare profitability across companies, should we focus on net income or ROA? Why?
 
+::: {.callout-tip}
+## `summary()`
+
+`summary()` is a function that tabulates descriptive statistics of variables (including mean, median, standard deviation, values at different percentiles).
+:::
+
 ```{r}
 #| eval: false
 #| warning: false
