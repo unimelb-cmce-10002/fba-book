@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../tutorials/descriptive_analytics.html" rel="next">
 <link href="../tutorials/data_collection.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -339,6 +340,12 @@ window.Quarto = {
  <span class="menu-text">Tutorial 8: Develop and Test Stock Trading Strategies</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 9: Descriptive Analytics in HRM</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -526,6 +533,19 @@ Logarithmic Transformation
 </div>
 </div>
 <p>(b3) Obtain net income numbers and return-on-asset (ROA) for sample companies. When we compare profitability across companies, should we focus on net income or ROA? Why?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>summary()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>summary()</code> is a function that tabulates descriptive statistics of variables (including mean, median, standard deviation, values at different percentiles).</p>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Log tranformation</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>financials_q1 <span class="ot">&lt;-</span> financials_q1 <span class="sc">%&gt;%</span> </span>
@@ -1346,6 +1366,9 @@ Important
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../tutorials/descriptive_analytics.html" class="pagination-link" aria-label="Tutorial 9: Descriptive Analytics in HRM">
+        <span class="nav-page-text">Tutorial 9: Descriptive Analytics in HRM</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

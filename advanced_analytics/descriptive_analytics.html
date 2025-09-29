@@ -340,6 +340,12 @@ window.Quarto = {
  <span class="menu-text">Tutorial 8: Develop and Test Stock Trading Strategies</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 9: Descriptive Analytics in HRM</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -410,8 +416,7 @@ Learning Goals
 <div class="callout-body-container callout-body">
 <p>By the end of this chapter, students should be able to:</p>
 <ul>
-<li>Understand what descriptive analytics means in a business context and recognize its role as the foundation for more advanced approaches.<br>
-</li>
+<li>Understand what descriptive analytics means in a business context and recognize its role as the foundation for more advanced approaches.</li>
 <li>Explain how RFM provides a simple rule-based approach to customer segmentation.</li>
 <li>Recognize the limitations of rule-based segmentation and why data-driven methods like K-means are useful.</li>
 <li>Preprocess and scale data appropriately for clustering using recipes.</li>
@@ -428,10 +433,8 @@ Learning Goals
 </blockquote>
 <p>In practice, descriptive analytics often takes the form of <strong>reports, dashboards, and summaries</strong> that help decision makers see what has occurred in their business. For example:</p>
 <ul>
-<li>A retailer might track sales by product category over the past month.<br>
-</li>
-<li>A streaming service might analyse which genres were most watched last quarter.<br>
-</li>
+<li>A retailer might track sales by product category over the past month.</li>
+<li>A streaming service might analyse which genres were most watched last quarter.</li>
 <li>An airline might compare passenger loads across routes.</li>
 </ul>
 <p>These analyses do not tell us <em>why</em> the patterns occurred, nor do they predict <em>what will happen next</em>. Instead, they give us a <strong>clear picture of the past</strong>, which is essential for any further analysis.</p>
@@ -446,12 +449,9 @@ Descriptive vs Predictive vs Causal Analytics
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><strong>Descriptive analytics</strong>: Summarises historical data to show what happened.<br>
-</li>
-<li><strong>Predictive analytics</strong>: Uses models to estimate what is likely to happen next.<br>
-</li>
-<li><strong>Causal analytics</strong>: Identifies cause-and-effect relationships to answer what would happen if we made a change.<br>
-</li>
+<li><strong>Descriptive analytics</strong>: Summarises historical data to show what happened.</li>
+<li><strong>Predictive analytics</strong>: Uses models to estimate what is likely to happen next.</li>
+<li><strong>Causal analytics</strong>: Identifies cause-and-effect relationships to answer what would happen if we made a change.</li>
 </ul>
 </div>
 </div>
@@ -461,10 +461,8 @@ Descriptive vs Predictive vs Causal Analytics
 <p>Descriptive analytics is especially important in <strong>customer analytics</strong>, where it helps us group customers by behaviour, spending, or engagement. But simply knowing what happened is not enough—businesses want to act on this information.</p>
 <p>Suppose you are a marketing analyst working with data from the <strong>CDNOW Online Music Store</strong>, a retailer that sold CDs during the early years of e-commerce. The dataset you have contains detailed information on customers’ purchases between 1997 and 1998:</p>
 <ul>
-<li><strong>Who</strong> bought (customer ID).<br>
-</li>
-<li><strong>When</strong> they bought (purchase dates).<br>
-</li>
+<li><strong>Who</strong> bought (customer ID).</li>
+<li><strong>When</strong> they bought (purchase dates).</li>
 <li><strong>How much</strong> they spent (transaction amounts).</li>
 </ul>
 <p>Your manager asks:</p>
@@ -474,8 +472,7 @@ Descriptive vs Predictive vs Causal Analytics
 <p>This is a classic <strong>segmentation problem</strong>. Not all customers are equal: some shop frequently, some spend a lot, and others may be slipping away. Treating every customer the same wastes resources and misses opportunities.</p>
 <p>To solve this problem, we will use descriptive analytics to <strong>summarise customer behaviour over time</strong> and identify meaningful groups. In this chapter, we will explore two approaches:</p>
 <ol type="1">
-<li><strong>RFM (Recency, Frequency, Monetary)</strong> — a simple, rule-based method that is easy to compute and interpret.<br>
-</li>
+<li><strong>RFM (Recency, Frequency, Monetary)</strong> — a simple, rule-based method that is easy to compute and interpret.</li>
 <li><strong>K-means clustering</strong> — a data-driven method that uses algorithms to find patterns in behaviour that RFM might not pick up.</li>
 </ol>
 <p>By comparing these approaches on the CDNOW data, you will see how descriptive analytics provides the foundation for identifying customer groups that can guide real marketing decisions.</p>
@@ -484,10 +481,8 @@ Descriptive vs Predictive vs Causal Analytics
 <p>Customer segmentation is the process of <strong>dividing a customer base into groups that share similar characteristics or behaviours</strong>. The goal is to treat customers differently depending on their value, needs, or potential, rather than applying a “one-size-fits-all” strategy.</p>
 <p>In the case of the CDNOW Online Music Store, segmentation could mean:</p>
 <ul>
-<li>Identifying <strong>loyal repeat buyers</strong> who purchase many CDs over time.<br>
-</li>
-<li>Spotting <strong>big spenders</strong> who buy fewer times but place large orders.<br>
-</li>
+<li>Identifying <strong>loyal repeat buyers</strong> who purchase many CDs over time.</li>
+<li>Spotting <strong>big spenders</strong> who buy fewer times but place large orders.</li>
 <li>Detecting <strong>at-risk customers</strong> who have not purchased recently.</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -500,20 +495,14 @@ Why Segment Customers?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Businesses segment customers to:<br>
-- Allocate marketing resources more effectively.<br>
-- Target promotions to groups most likely to respond.<br>
-- Protect valuable customers from churning.<br>
-- Identify growth opportunities in overlooked groups.</p>
+<p>Businesses segment customers to: - Allocate marketing resources more effectively. - Target promotions to groups most likely to respond. - Protect valuable customers from churning. - Identify growth opportunities in overlooked groups.</p>
 <p>Without segmentation, every customer is treated the same—leading to wasted resources and missed opportunities.</p>
 </div>
 </div>
 <p>Segmentation is a form of <strong>descriptive analytics</strong>: it summarises the data into interpretable groups that can guide marketing strategy. Once customers are segmented, a business can ask targeted questions such as:</p>
 <ul>
-<li>Which group should receive a loyalty discount?<br>
-</li>
-<li>Which group is most at risk of churn?<br>
-</li>
+<li>Which group should receive a loyalty discount?</li>
+<li>Which group is most at risk of churn?</li>
 <li>Which group generates the most revenue?</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -527,8 +516,7 @@ Segmentation vs.&nbsp;Personalisation
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><strong>Segmentation</strong> groups customers into categories (e.g., high-value vs.&nbsp;low-value).<br>
-</li>
+<li><strong>Segmentation</strong> groups customers into categories (e.g., high-value vs.&nbsp;low-value).</li>
 <li><strong>Personalisation</strong> tailors offers at the individual level.</li>
 </ul>
 <p>Segmentation is usually the first step toward more personalised strategies.</p>
@@ -537,8 +525,7 @@ Segmentation vs.&nbsp;Personalisation
 </section>
 <section id="loading-the-r-packages-and-data" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="loading-the-r-packages-and-data">Loading the R packages and Data</h3>
-<p>To get started, we need to load the R packages that will help us work with the CDNOW dataset.<br>
-We will use the <strong>tidyverse</strong> for data wrangling and reading in the CSV file, <strong>lubridate</strong> for handling dates.</p>
+<p>To get started, we need to load the R packages that will help us work with the CDNOW dataset. We will use the <strong>tidyverse</strong> for data wrangling and reading in the CSV file, <strong>lubridate</strong> for handling dates.</p>
 <div class="cell" data-warnings="false">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -571,17 +558,13 @@ $ amt      &lt;dbl&gt; 11.77, 12.00, 77.00, 20.76, 20.76, 19.54, 57.45, 20.96, 1
 </section>
 <section id="rule-based-segmentation" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="rule-based-segmentation"><span class="header-section-number">10.3</span> Rule-Based Segmentation</h2>
-<p>One simple way to group customers is through <strong>rule-based segmentation</strong>.<br>
-In this approach, analysts define a set of <strong>rules or thresholds</strong> that assign customers to different groups.</p>
+<p>One simple way to group customers is through <strong>rule-based segmentation</strong>. In this approach, analysts define a set of <strong>rules or thresholds</strong> that assign customers to different groups.</p>
 <p>For example:</p>
 <ul>
-<li>A retailer might classify <strong>“VIP customers”</strong> as anyone who spends more than $500 per month.<br>
-</li>
+<li>A retailer might classify <strong>“VIP customers”</strong> as anyone who spends more than $500 per month.</li>
 <li>A subscription service might define <strong>“inactive customers”</strong> as those who have not logged in for 90 days.</li>
 </ul>
-<p>The strengths of rule-based segmentation is that it is <strong>easy to explain and apply</strong> and <strong>interpretable</strong> by humans.<br>
-Managers can set rules based on business intuition and communicate them without technical detail.<br>
-The limitation is that the rules are often <strong>arbitrary</strong>, and customers just above or below a threshold may be very similar in reality.</p>
+<p>The strengths of rule-based segmentation is that it is <strong>easy to explain and apply</strong> and <strong>interpretable</strong> by humans. Managers can set rules based on business intuition and communicate them without technical detail. The limitation is that the rules are often <strong>arbitrary</strong>, and customers just above or below a threshold may be very similar in reality.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -593,19 +576,15 @@ Rule-Based vs.&nbsp;Data-Driven Segmentation
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><strong>Rule-based</strong>: Groups are defined by fixed cutoffs chosen by analysts or managers.<br>
-</li>
-<li><strong>Data-driven</strong>: Groups are discovered by algorithms that search for natural patterns in the data.<br>
-</li>
+<li><strong>Rule-based</strong>: Groups are defined by fixed cutoffs chosen by analysts or managers.</li>
+<li><strong>Data-driven</strong>: Groups are discovered by algorithms that search for natural patterns in the data.</li>
 </ul>
 </div>
 </div>
 <p>In customer analytics, one of the most widely used rule-based methods is <strong>RFM segmentation</strong>, which groups customers based on:</p>
 <ul>
-<li><strong>Recency</strong> of their last purchase.<br>
-</li>
-<li><strong>Frequency</strong> of their purchases.<br>
-</li>
+<li><strong>Recency</strong> of their last purchase.</li>
+<li><strong>Frequency</strong> of their purchases.</li>
 <li><strong>Monetary value</strong> of their purchases.</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -620,10 +599,8 @@ Why RFM?
 <div class="callout-body-container callout-body">
 <p>RFM is one of the oldest and most widely used customer segmentation methods in marketing.</p>
 <ul>
-<li><strong>Recency, Frequency, Monetary</strong> measures are intuitive and easy to calculate.<br>
-</li>
-<li>They often capture a large share of the variation in customer value.<br>
-</li>
+<li><strong>Recency, Frequency, Monetary</strong> measures are intuitive and easy to calculate.</li>
+<li>They often capture a large share of the variation in customer value.</li>
 <li>Many CRM and loyalty systems still rely on RFM as a starting point for segmentation.</li>
 </ul>
 <p>Because of this, RFM is an ideal first step for learning about segmentation before moving on to data-driven methods like K-means.</p>
@@ -631,42 +608,39 @@ Why RFM?
 </div>
 <section id="calculating-the-rfm-metrics" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="calculating-the-rfm-metrics">Calculating the RFM metrics</h3>
-<p>Our transaction dataset has one row per purchase: a customer ID, the date of purchase, and the amount spent.<br>
-To compute RFM measures, we first need to <strong>aggregate</strong> this data to the customer level because we are describing features of a customer’s interactions with the company rather then each individual transaction.</p>
+<p>Our transaction dataset has one row per purchase: a customer ID, the date of purchase, and the amount spent. To compute RFM measures, we first need to <strong>aggregate</strong> this data to the customer level because we are describing features of a customer’s interactions with the company rather then each individual transaction.</p>
 <p>For each customer, we will calculate:</p>
 <ul>
-<li><strong>Length of time since most recent purchase date (Recency)</strong><br>
-</li>
-<li><strong>Number of purchases (Frequency)</strong><br>
-</li>
+<li><strong>Length of time since most recent purchase date (Recency)</strong></li>
+<li><strong>Number of purchases (Frequency)</strong></li>
 <li><strong>Total amount spent (Monetary)</strong></li>
 </ul>
 <p>The latter two of these metrics, Frequency and Monetary are much easier to calculate as they can be obtained from a <code>group_by()</code> and <code>summarise()</code> chain of commands. To find the length of time since most recent purchase date, we will need to do a bit more work. But, we will start by finding the date each customer most recently bought from the store:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>customer_aggregates <span class="ot">&lt;-</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    purchases <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(users_id) <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">last_purch_date  =</span> <span class="fu">max</span>(date),</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">frequency        =</span> <span class="fu">n</span>(),           </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">monetary         =</span> <span class="fu">sum</span>(amt),      </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  purchases <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(users_id) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">last_purch_date =</span> <span class="fu">max</span>(date),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">frequency    =</span> <span class="fu">n</span>(),      </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">monetary     =</span> <span class="fu">sum</span>(amt),   </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>   )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next we need to compute recency, i.e.&nbsp;time since last purchase. Since the data was collected in 1997-1998, computing a metric relative to now, i.e.&nbsp;the year 2025, seems a bit silly. Let’s suppose we were asked to do the analysis on the 1st of July 1998. We’ll store that value in R for later:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the analysis date</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># note as_date is the tidyverse version of as.Date</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>analysis_date <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">"1998-07-01"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>analysis_date <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">"1998-07-01"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally, we will compute <code>recency</code>. We will compute the number of months between the analysis date and the last purchase. To do this, first we compute the length of time between two dates with <code>interval</code>, and then convert that length into months:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>customer_aggregates <span class="ot">&lt;-</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    customer_aggregates <span class="sc">|&gt;</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">recency =</span> <span class="fu">interval</span>(last_purch_date, analysis_date) <span class="sc">%/%</span> <span class="fu">months</span>(<span class="dv">1</span>),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>last_purch_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  customer_aggregates <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">recency =</span> <span class="fu">interval</span>(last_purch_date, analysis_date) <span class="sc">%/%</span> <span class="fu">months</span>(<span class="dv">1</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>last_purch_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>These measures allow us to capture how fresh or established a customer’s relationship is with the business.</p>
 </section>
@@ -684,18 +658,14 @@ $ monetary  &lt;dbl&gt; 11.77, 89.00, 156.46, 100.50, 385.61, 20.99, 264.67, 197
 $ recency   &lt;dbl&gt; 18, 17, 1, 6, 5, 18, 3, 3, 0, 17, 4, 18, 18, 18, 18, 9, 18, …</code></pre>
 </div>
 </div>
-<p>These numbers are continuous, which makes them hard to compare directly across customers.<br>
-For example:</p>
+<p>These numbers are continuous, which makes them hard to compare directly across customers. For example:</p>
 <ul>
-<li>Is a customer with a recency of 4 months “recent” or “not recent”?<br>
-</li>
+<li>Is a customer with a recency of 4 months “recent” or “not recent”?</li>
 <li>Is 12 purchases “frequent” or “average”?</li>
 </ul>
-<p>To make these comparisons easier, we group customers into <strong>segments</strong> by splitting each measure into categories.<br>
-A common approach is to use <strong>5 segments (quintiles)</strong>:</p>
+<p>To make these comparisons easier, we group customers into <strong>segments</strong> by splitting each measure into categories. A common approach is to use <strong>5 segments (quintiles)</strong>:</p>
 <ul>
-<li><strong>1 = lowest group</strong> (e.g., least recent, least frequent, lowest spenders).<br>
-</li>
+<li><strong>1 = lowest group</strong> (e.g., least recent, least frequent, lowest spenders).</li>
 <li><strong>5 = highest group</strong> (e.g., most recent, most frequent, biggest spenders).</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -709,31 +679,27 @@ Why 5 segments?
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><strong>Simple to interpret</strong>: a score from 1 to 5 for each metric.<br>
-</li>
-<li><strong>Balanced groups</strong>: quintiles divide customers so that each group has roughly 20% of the population.<br>
-</li>
-<li><strong>Flexible</strong>: fine-grained enough to capture variation, but not too detailed to overwhelm.<br>
-</li>
+<li><strong>Simple to interpret</strong>: a score from 1 to 5 for each metric.</li>
+<li><strong>Balanced groups</strong>: quintiles divide customers so that each group has roughly 20% of the population.</li>
+<li><strong>Flexible</strong>: fine-grained enough to capture variation, but not too detailed to overwhelm.</li>
 </ul>
 </div>
 </div>
-<p>We will use the function <code>ntile()</code> to split customers into quintiles.<br>
-Let’s do that:</p>
+<p>We will use the function <code>ntile()</code> to split customers into quintiles. Let’s do that:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rfm_data <span class="ot">&lt;-</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  customer_aggregates <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">r_tile =</span> <span class="fu">ntile</span>(recency, <span class="dv">5</span>),</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">f_tile =</span> <span class="fu">ntile</span>(frequency, <span class="dv">5</span>),</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">m_tile =</span> <span class="fu">ntile</span>(monetary, <span class="dv">5</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a> customer_aggregates <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">r_tile =</span> <span class="fu">ntile</span>(recency, <span class="dv">5</span>),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">f_tile =</span> <span class="fu">ntile</span>(frequency, <span class="dv">5</span>),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">m_tile =</span> <span class="fu">ntile</span>(monetary, <span class="dv">5</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a> ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now let’s look at the output for <code>r_tile</code>. In particular let’s look at average recency per tile:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rfm_data <span class="sc">|&gt;</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(r_tile) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean_r =</span> <span class="fu">mean</span>(recency))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(r_tile) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_r =</span> <span class="fu">mean</span>(recency))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
   r_tile mean_r
@@ -754,22 +720,22 @@ Let’s do that:</p>
 </ul>
 <p>Mathematically, we can do this by subtracting the tile number from the maximum, and then adding 1 back:</p>
 <p><span class="math display">\[
-\text{new tile} =  (\text{max tile value})−(\text{old tile value})+1
+\text{new tile} = (\text{max tile value})−(\text{old tile value})+1
 \]</span></p>
 <p>This simple formula inverts the direction of the recency scores while keeping them within the same 1–5 scale. Let’s implement it:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rfm_data <span class="ot">&lt;-</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    rfm_data <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">r_tile     =</span> <span class="fu">max</span>(r_tile) <span class="sc">-</span> r_tile <span class="sc">+</span> <span class="dv">1</span>,        <span class="co"># invert → 5 (recent) … 1 (stale)</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  rfm_data <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">r_tile   =</span> <span class="fu">max</span>(r_tile) <span class="sc">-</span> r_tile <span class="sc">+</span> <span class="dv">1</span>,    <span class="co"># invert → 5 (recent) … 1 (stale)</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the direction now: higher r_tile should mean more recent (lower recency)</span></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>rfm_data <span class="sc">|&gt;</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(r_tile) <span class="sc">|&gt;</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean_r =</span> <span class="fu">mean</span>(recency), </span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>              )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(r_tile) <span class="sc">|&gt;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_r =</span> <span class="fu">mean</span>(recency), </span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>       )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
   r_tile mean_r
@@ -785,10 +751,10 @@ Let’s do that:</p>
 <p>We can do the same check for Frequency and Monetary value:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rfm_data <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(f_tile) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean_f =</span> <span class="fu">mean</span>(frequency), </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>              )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(f_tile) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_f =</span> <span class="fu">mean</span>(frequency), </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>       )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
   f_tile mean_f
@@ -803,10 +769,10 @@ Let’s do that:</p>
 <p>And</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rfm_data <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(m_tile) <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean_m =</span> <span class="fu">mean</span>(monetary), </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>            )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(m_tile) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_m =</span> <span class="fu">mean</span>(monetary), </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>      )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
   m_tile mean_m
@@ -853,16 +819,14 @@ Why Profile?
 </section>
 <section id="naming-customer-segments" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="naming-customer-segments">Naming Customer Segments</h3>
-<p>So far, our RFM tiles tell us whether a customer is more recent, more frequent, or a bigger spender.<br>
-But managers don’t want to hear that “Customer 1032 is R = 5, F = 4, M = 3.”<br>
-They want clear, interpretable <strong>segments</strong> that can guide action.</p>
+<p>So far, our RFM tiles tell us whether a customer is more recent, more frequent, or a bigger spender. But managers don’t want to hear that “Customer 1032 is R = 5, F = 4, M = 3.” They want clear, interpretable <strong>segments</strong> that can guide action.</p>
 <p>To do this, we can combine the three RFM scores into rule-based categories and assign <strong>meaningful names</strong>.</p>
-<p>For example:<br>
-- A customer with <strong>R = 5, F = 5, M = 5</strong> is a <em>Champion</em> — very recent, very frequent, and high spending.<br>
-- A customer with <strong>R = 1, F = 1, M = 1</strong> is <em>Lost</em> — they haven’t purchased in a long time, and even when they did, they didn’t buy much.</p>
-<p>Over time, analysts and marketers have developed a set of <strong>standard RFM-based segments</strong>.<br>
-These categories provide an easy way to translate the numbers into <strong>meaningful customer types</strong>.<br>
-The idea is to take combinations of Recency, Frequency, and Monetary scores and give them <strong>descriptive names</strong> that managers can act on.</p>
+<p>For example:</p>
+<ul>
+<li>A customer with <strong>R = 5, F = 5, M = 5</strong> is a <em>Champion</em> — very recent, very frequent, and high spending.</li>
+<li>A customer with <strong>R = 1, F = 1, M = 1</strong> is <em>Lost</em> — they haven’t purchased in a long time, and even when they did, they didn’t buy much.</li>
+</ul>
+<p>Over time, analysts and marketers have developed a set of <strong>standard RFM-based segments</strong>. These categories provide an easy way to translate the numbers into <strong>meaningful customer types</strong>. The idea is to take combinations of Recency, Frequency, and Monetary scores and give them <strong>descriptive names</strong> that managers can act on.</p>
 <p>The table below shows ten common segments, their criteria, and a short description:</p>
 <table class="caption-top table">
 <colgroup>
@@ -971,47 +935,45 @@ Names as Heuristics
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>These categories are <strong>heuristics</strong> developed in practice.<br>
-They are not set in stone — companies often <strong>adapt the cutoffs or labels</strong> to fit their business context.<br>
-For example, an online retailer might define <em>Champions</em> differently from a subscription service.</p>
+<p>These categories are <strong>heuristics</strong> developed in practice. They are not set in stone — companies often <strong>adapt the cutoffs or labels</strong> to fit their business context. For example, an online retailer might define <em>Champions</em> differently from a subscription service.</p>
 </div>
 </div>
 <p>Next, we will translate this table into R code so that each customer in our dataset is assigned to one of these segments.</p>
 <p>We can build a full segmentation scheme with <code>case_when()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>rfm_segmented <span class="ot">&lt;-</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  rfm_data <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">segment =</span> <span class="fu">case_when</span>(</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 1. Champions</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>      r_tile <span class="sc">==</span> <span class="dv">5</span> <span class="sc">&amp;</span> f_tile <span class="sc">==</span> <span class="dv">5</span> <span class="sc">&amp;</span> m_tile <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Champions"</span>,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 2. Potential Loyalist</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>      r_tile <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="st">"Potential Loyalist"</span>,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 3. Loyal Customers</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>      r_tile <span class="sc">%in%</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">~</span> <span class="st">"Loyal Customers"</span>,</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 4. Promising</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>      r_tile <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="st">"Promising"</span>,</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 5. New Customers</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>      r_tile <span class="sc">%in%</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="st">"New Customers"</span>,</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 6. Can't Lose Them</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>      r_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="st">"Can't Lose Them"</span>,</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 7. At Risk</span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>      r_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="st">"At Risk"</span>,</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 8. Need Attention</span></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>      r_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="st">"Need Attention"</span>,</span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 9. About To Sleep</span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>      r_tile <span class="sc">%in%</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">~</span> <span class="st">"About To Sleep"</span>,</span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 10. Lost</span></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>      r_tile <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="st">"Lost"</span>,</span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>      <span class="co"># fallback</span></span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="st">"Unclassified"</span></span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a> rfm_data <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">segment =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>   <span class="co"># 1. Champions</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>   r_tile <span class="sc">==</span> <span class="dv">5</span> <span class="sc">&amp;</span> f_tile <span class="sc">==</span> <span class="dv">5</span> <span class="sc">&amp;</span> m_tile <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Champions"</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>   <span class="co"># 2. Potential Loyalist</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>   r_tile <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="st">"Potential Loyalist"</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>   <span class="co"># 3. Loyal Customers</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>   r_tile <span class="sc">%in%</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">~</span> <span class="st">"Loyal Customers"</span>,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>   <span class="co"># 4. Promising</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>   r_tile <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="st">"Promising"</span>,</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>   <span class="co"># 5. New Customers</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>   r_tile <span class="sc">%in%</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="st">"New Customers"</span>,</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>   <span class="co"># 6. Can't Lose Them</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>   r_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="st">"Can't Lose Them"</span>,</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>   <span class="co"># 7. At Risk</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>   r_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="st">"At Risk"</span>,</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>   <span class="co"># 8. Need Attention</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>   r_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="st">"Need Attention"</span>,</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>   <span class="co"># 9. About To Sleep</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>   r_tile <span class="sc">%in%</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">~</span> <span class="st">"About To Sleep"</span>,</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>   <span class="co"># 10. Lost</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>   r_tile <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> f_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">&amp;</span> m_tile <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="st">"Lost"</span>,</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>   <span class="co"># fallback</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>   <span class="at">.default =</span> <span class="st">"Unclassified"</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now that each customer has been assigned to a named segment, we can explore what these groups look like. A first check is to see <strong>how many customers fall into each category</strong>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>rfm_segmented <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(segment, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">count</span>(segment, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 11 × 2
    segment                n
@@ -1033,16 +995,16 @@ For example, an online retailer might define <em>Champions</em> differently from
 <p>Next, we can compute the average RFM values for each segment. This helps verify that the labels line up with the underlying behaviour:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>rfm_segmented <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(segment) <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">avg_recency   =</span> <span class="fu">mean</span>(recency),</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">avg_frequency =</span> <span class="fu">mean</span>(frequency),</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">avg_monetary  =</span> <span class="fu">mean</span>(monetary),</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">n_customers   =</span> <span class="fu">n</span>(),</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> </span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n_customers)) <span class="sc">|&gt;</span> </span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(segment) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_recency  =</span> <span class="fu">mean</span>(recency),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_frequency =</span> <span class="fu">mean</span>(frequency),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_monetary =</span> <span class="fu">mean</span>(monetary),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_customers  =</span> <span class="fu">n</span>(),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n_customers)) <span class="sc">|&gt;</span> </span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
@@ -1151,18 +1113,9 @@ For example, an online retailer might define <em>Champions</em> differently from
 <p>Solution</p>
 </div>
 <div class="solution-content">
-<p><strong>1. Which segment is most valuable?</strong><br>
-- Typically, the <strong>Champions</strong> segment is the most valuable.<br>
-- They buy recently, buy often, and spend the most.<br>
-- Even if the group is relatively small, they drive a disproportionate share of revenue.</p>
-<p><strong>2. If you were running a loyalty campaign, which groups would you target first?</strong><br>
-- Start with <strong>Champions</strong> to keep them engaged and feeling rewarded.<br>
-- Next, look at <strong>Potential Loyalists</strong> and <strong>Loyal Customers</strong> — they already show good behaviour and can be nurtured into long-term, high-value relationships.<br>
-- <strong>At Risk</strong> customers are also candidates: a well-designed campaign could bring them back before they are lost completely.</p>
-<p><strong>3. Which groups might not be worth investing in?</strong><br>
-- <strong>Lost</strong> customers: if someone hasn’t purchased in a very long time, the cost of reactivation may outweigh the benefits.<br>
-- <strong>Promising</strong> or <strong>About to Sleep</strong> customers: these are lower-value segments where heavy marketing investment may not deliver strong returns.<br>
-- For these groups, a light-touch or automated approach (e.g., generic email offers) is usually more efficient.</p>
+<p><strong>1. Which segment is most valuable?</strong> - Typically, the <strong>Champions</strong> segment is the most valuable. - They buy recently, buy often, and spend the most. - Even if the group is relatively small, they drive a disproportionate share of revenue.</p>
+<p><strong>2. If you were running a loyalty campaign, which groups would you target first?</strong> - Start with <strong>Champions</strong> to keep them engaged and feeling rewarded. - Next, look at <strong>Potential Loyalists</strong> and <strong>Loyal Customers</strong> — they already show good behaviour and can be nurtured into long-term, high-value relationships. - <strong>At Risk</strong> customers are also candidates: a well-designed campaign could bring them back before they are lost completely.</p>
+<p><strong>3. Which groups might not be worth investing in?</strong> - <strong>Lost</strong> customers: if someone hasn’t purchased in a very long time, the cost of reactivation may outweigh the benefits. - <strong>Promising</strong> or <strong>About to Sleep</strong> customers: these are lower-value segments where heavy marketing investment may not deliver strong returns. - For these groups, a light-touch or automated approach (e.g., generic email offers) is usually more efficient.</p>
 </div>
 </section>
 </section>
@@ -1170,33 +1123,23 @@ For example, an online retailer might define <em>Champions</em> differently from
 <h2 data-number="10.4" class="anchored" data-anchor-id="data-driven-segmentation"><span class="header-section-number">10.4</span> Data-Driven Segmentation</h2>
 <section id="going-beyond-rule-based-segmentation" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="going-beyond-rule-based-segmentation">Going Beyond Rule-Based Segmentation</h3>
-<p>Up to this point, we have grouped customers using <strong>RFM segmentation</strong> with rules defined by us as modellers.<br>
-This approach gave us a clear structure: we defined Recency, Frequency, and Monetary measures, divided customers into tiles, and then named the resulting segments.<br>
-It is simple, intuitive, and widely used in practice.</p>
+<p>Up to this point, we have grouped customers using <strong>RFM segmentation</strong> with rules defined by us as modellers. This approach gave us a clear structure: we defined Recency, Frequency, and Monetary measures, divided customers into tiles, and then named the resulting segments. It is simple, intuitive, and widely used in practice.</p>
 <p>But there are some important limitations:</p>
 <ul>
-<li>The cutoffs we used for tiles are somewhat arbitrary.<br>
-</li>
-<li>Customers who are very similar might end up in different groups because they fall on opposite sides of a threshold.<br>
-</li>
+<li>The cutoffs we used for tiles are somewhat arbitrary.</li>
+<li>Customers who are very similar might end up in different groups because they fall on opposite sides of a threshold.</li>
 <li>The rule-based segments we created reflect business intuition, but they may not capture the <strong>natural patterns in the data</strong>.</li>
 </ul>
-<p>This motivates our next step: moving to a <strong>data-driven segmentation method</strong>.<br>
-Instead of us setting the rules, we will let an algorithm search for groups of customers that are <strong>similar to one another and different from others</strong>.<br>
-The method we will use is called <strong>K-means clustering</strong>.</p>
+<p>This motivates our next step: moving to a <strong>data-driven segmentation method</strong>. Instead of us setting the rules, we will let an algorithm search for groups of customers that are <strong>similar to one another and different from others</strong>. The method we will use is called <strong>K-means clustering</strong>.</p>
 <p>To do this, we will go through three main steps:</p>
 <ol type="1">
-<li><p><strong>Put variables on the same scale</strong><br>
-K-means compares customers using distance. If we don’t rescale, variables with large numbers (like total spending) will dominate those with smaller numbers (like recency in months).</p></li>
-<li><p><strong>Run the clustering algorithm</strong><br>
-We choose a number of clusters (<em>k</em>), and K-means assigns each customer to the group with the closest “center.” This step groups customers by similarity across our Recency, Frequency, and Monetary measures.</p></li>
-<li><p><strong>Decide how many clusters make sense</strong><br>
-Choosing <em>k</em> is part of the analysis. We’ll test different values and use diagnostics to see which number of clusters best describes the data.</p></li>
+<li><p><strong>Put variables on the same scale</strong> K-means compares customers using distance. If we don’t rescale, variables with large numbers (like total spending) will dominate those with smaller numbers (like recency in months).</p></li>
+<li><p><strong>Run the clustering algorithm</strong> We choose a number of clusters (<em>k</em>), and K-means assigns each customer to the group with the closest “center.” This step groups customers by similarity across our Recency, Frequency, and Monetary measures.</p></li>
+<li><p><strong>Decide how many clusters make sense</strong> Choosing <em>k</em> is part of the analysis. We’ll test different values and use diagnostics to see which number of clusters best describes the data.</p></li>
 </ol>
 <p>Our purpose here is not to replace RFM but to compare approaches:</p>
 <ul>
-<li>RFM shows how analysts can create interpretable, rule-based groups.<br>
-</li>
+<li>RFM shows how analysts can create interpretable, rule-based groups.</li>
 <li>K-means shows how algorithms can discover structure we might miss.</li>
 </ul>
 <p>Next, we will begin by <strong>preparing the data</strong> so that K-means treats each RFM measure fairly.</p>
@@ -1212,14 +1155,9 @@ What is an Algorithm?
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>In everyday life, people often use “algorithm” to mean “some mysterious computer program.”<br>
-In fact, the idea is much simpler.</p>
-<p>An <strong>algorithm</strong> is just a <strong>step-by-step procedure</strong> for solving a problem.<br>
-- A cooking recipe is an algorithm for preparing a dish.<br>
-- Long division is an algorithm for dividing numbers.<br>
-- K-means is an algorithm for grouping customers into clusters.</p>
-<p>Algorithms can be done by hand (slowly!) or by computer (very quickly).<br>
-The power of data analytics comes from running these algorithms at scale.</p>
+<p>In everyday life, people often use “algorithm” to mean “some mysterious computer program.” In fact, the idea is much simpler.</p>
+<p>An <strong>algorithm</strong> is just a <strong>step-by-step procedure</strong> for solving a problem. - A cooking recipe is an algorithm for preparing a dish. - Long division is an algorithm for dividing numbers. - K-means is an algorithm for grouping customers into clusters.</p>
+<p>Algorithms can be done by hand (slowly!) or by computer (very quickly). The power of data analytics comes from running these algorithms at scale.</p>
 </div>
 </div>
 </div>
@@ -1237,10 +1175,8 @@ RFM as a Human Algorithm
 <div class="callout-body-container callout-body">
 <p>When we built RFM segments, we were already following an <strong>algorithm</strong> — a fixed set of steps to reach a result:</p>
 <ol type="1">
-<li>Calculate Recency, Frequency, and Monetary values for each customer.<br>
-</li>
-<li>Split each measure into tiles (1–5).<br>
-</li>
+<li>Calculate Recency, Frequency, and Monetary values for each customer.</li>
+<li>Split each measure into tiles (1–5).</li>
 <li>Apply rules to assign customers to named segments.</li>
 </ol>
 <p>This is a <strong>rule-based algorithm</strong>: the steps were designed by us as analysts.</p>
@@ -1252,37 +1188,33 @@ RFM as a Human Algorithm
 <section id="preparing-data-for-clustering" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="preparing-data-for-clustering">Preparing Data for Clustering</h3>
 <p>Before we jump into running K-means, we need to stop and think about <strong>the data we are giving to the algorithm</strong>.</p>
-<p>K-means works by measuring the <strong>distance</strong> between customers in terms of their features (here: Recency, Frequency, Monetary).<br>
-This means that the <strong>scale of each variable matters</strong>:</p>
+<p>K-means works by measuring the <strong>distance</strong> between customers in terms of their features (here: Recency, Frequency, Monetary). This means that the <strong>scale of each variable matters</strong>:</p>
 <ul>
-<li>Recency is measured in <strong>months</strong>.<br>
-</li>
-<li>Frequency is measured as a <strong>count of purchases</strong>.<br>
-</li>
+<li>Recency is measured in <strong>months</strong>.</li>
+<li>Frequency is measured as a <strong>count of purchases</strong>.</li>
 <li>Monetary is measured in <strong>dollars spent</strong>.</li>
 </ul>
-<p>If we feed these raw values into K-means, the algorithm will be dominated by whichever variable has the largest scale.<br>
-For example, if spending runs into the hundreds while recency is only a few months, the clusters will mostly reflect differences in spending.</p>
+<p>If we feed these raw values into K-means, the algorithm will be dominated by whichever variable has the largest scale. For example, if spending runs into the hundreds while recency is only a few months, the clusters will mostly reflect differences in spending.</p>
 <p>Let’s check the ranges of our three measures:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>rfm_data <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_recency   =</span> <span class="fu">min</span>(recency),   </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_recency   =</span> <span class="fu">max</span>(recency),</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_frequency =</span> <span class="fu">min</span>(frequency), </span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_frequency =</span> <span class="fu">max</span>(frequency),</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_monetary  =</span> <span class="fu">min</span>(monetary),  </span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_monetary  =</span> <span class="fu">max</span>(monetary)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">everything</span>(),</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"stat"</span>, <span class="st">"variable"</span>),</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> stat,</span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> value</span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarise</span>(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_recency  =</span> <span class="fu">min</span>(recency),  </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_recency  =</span> <span class="fu">max</span>(recency),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_frequency =</span> <span class="fu">min</span>(frequency), </span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_frequency =</span> <span class="fu">max</span>(frequency),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_monetary =</span> <span class="fu">min</span>(monetary), </span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_monetary =</span> <span class="fu">max</span>(monetary)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a> ) <span class="sc">|&gt;</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a> <span class="fu">pivot_longer</span>(</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">everything</span>(),</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"stat"</span>, <span class="st">"variable"</span>),</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_sep =</span> <span class="st">"_"</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a> ) <span class="sc">|&gt;</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a> <span class="fu">pivot_wider</span>(</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_from =</span> stat,</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_from =</span> value</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   variable    min    max
@@ -1330,23 +1262,17 @@ Scaling and Z-scores
 </div>
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>When we <strong>standardise</strong> a variable, we are turning it into a <strong>z-score</strong>.<br>
-This means we subtract the mean and divide by the standard deviation:</p>
+<p>When we <strong>standardise</strong> a variable, we are turning it into a <strong>z-score</strong>. This means we subtract the mean and divide by the standard deviation:</p>
 <p><span class="math display">\[
 z = \frac{x - \text{mean}(x)}{\text{sd}(x)}
 \]</span></p>
 <ul>
-<li>A value of 0 means the observation is right at the average.<br>
-</li>
-<li>Positive values mean it is above average.<br>
-</li>
+<li>A value of 0 means the observation is right at the average.</li>
+<li>Positive values mean it is above average.</li>
 <li>Negative values mean it is below average.</li>
 </ul>
 <p>Why does this matter for clustering? K-means groups customers by calculating distances between them. If one variable has a very large numeric range (say, spending in the thousands), and another has a smaller range (say, recency in months), the large-range variable will dominate the distance calculation.</p>
-<p>By converting all variables to z-scores, we:<br>
-- Remove differences in scale (months, counts, dollars).<br>
-- Put them on a <strong>common yardstick</strong> where 1 unit always means “1 standard deviation from the mean.”<br>
-- Ensure that <strong>each measure contributes equally to the distance calculation</strong>, so clustering reflects <em>all three dimensions</em> of customer behaviour, not just the one with the largest numbers.</p>
+<p>By converting all variables to z-scores, we: - Remove differences in scale (months, counts, dollars). - Put them on a <strong>common yardstick</strong> where 1 unit always means “1 standard deviation from the mean.” - Ensure that <strong>each measure contributes equally to the distance calculation</strong>, so clustering reflects <em>all three dimensions</em> of customer behaviour, not just the one with the largest numbers.</p>
 </div>
 </div>
 </div>
@@ -1362,16 +1288,12 @@ n-Tiles vs.&nbsp;Scaling
 </div>
 <div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Earlier, when we built RFM segments, we used <strong>n-tiles</strong> (quintiles) to rank customers from 1 to 5 on each measure.<br>
-This was another way of handling differences in scale:</p>
+<p>Earlier, when we built RFM segments, we used <strong>n-tiles</strong> (quintiles) to rank customers from 1 to 5 on each measure. This was another way of handling differences in scale:</p>
 <ul>
-<li>Instead of comparing raw values (e.g., dollars vs.&nbsp;months), we compared <strong>relative positions</strong> within the distribution.<br>
-</li>
+<li>Instead of comparing raw values (e.g., dollars vs.&nbsp;months), we compared <strong>relative positions</strong> within the distribution.</li>
 <li>A customer in tile 5 for Recency is in the <strong>top 20% most recent</strong> purchasers, regardless of whether that means 2 months or 10 days.</li>
 </ul>
-<p>Scaling with z-scores serves a similar purpose:<br>
-- Both methods transform raw variables into a form where they can be compared more directly.<br>
-- The key difference is that <strong>tiles rank customers</strong> relative to each other, while <strong>z-scores measure distance</strong> from the mean in standard deviation units.</p>
+<p>Scaling with z-scores serves a similar purpose: - Both methods transform raw variables into a form where they can be compared more directly. - The key difference is that <strong>tiles rank customers</strong> relative to each other, while <strong>z-scores measure distance</strong> from the mean in standard deviation units.</p>
 <p>This is why scaling is essential for clustering: it keeps the <em>distances</em> meaningful across all variables, rather than just their ranks.</p>
 </div>
 </div>
@@ -1381,10 +1303,10 @@ This was another way of handling differences in scale:</p>
 <p>Let’s start small by scaling just one variable: <strong>monetary value</strong>. Recall how to calculate the mean and standard deviation:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>rfm_data <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_m =</span> <span class="fu">mean</span>(monetary),</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_m   =</span> <span class="fu">sd</span>(monetary)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarise</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_m =</span> <span class="fu">mean</span>(monetary),</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd_m  =</span> <span class="fu">sd</span>(monetary)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   mean_m  sd_m
@@ -1395,9 +1317,9 @@ This was another way of handling differences in scale:</p>
 <p>We can use these summary statistics to compute a scaled measure for <code>monetary</code> for all customers in the data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>rfm_data <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">monetary_scaled =</span> (monetary <span class="sc">-</span> <span class="fu">mean</span>(monetary)) <span class="sc">/</span> <span class="fu">sd</span>(monetary)) <span class="sc">|&gt;</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(monetary, monetary_scaled) <span class="sc">|&gt;</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(<span class="at">monetary_scaled =</span> (monetary <span class="sc">-</span> <span class="fu">mean</span>(monetary)) <span class="sc">/</span> <span class="fu">sd</span>(monetary)) <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">select</span>(monetary, monetary_scaled) <span class="sc">|&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a> <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 2
    monetary monetary_scaled
@@ -1421,29 +1343,16 @@ This was another way of handling differences in scale:</p>
 <p>This is where the <code>recipes</code> package comes in. Recipes let us define a set of preprocessing steps — like scaling — that can be applied consistently across multiple variables. The big advantage is that the recipe keeps track of <em>how</em> the data was transformed, making the process transparent and easy to reproduce.</p>
 <p>We start by using the <code>recipe</code> function to write a set of steps we want to perform:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(recipes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'recipes'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:stringr':
-
-    fixed</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:stats':
-
-    step</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>rfm_rec <span class="ot">&lt;-</span> </span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">recipe</span>(<span class="sc">~</span> recency <span class="sc">+</span> frequency <span class="sc">+</span> monetary, </span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> rfm_data) <span class="sc">|&gt;</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(recipes)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>rfm_rec <span class="ot">&lt;-</span> </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(<span class="sc">~</span> recency <span class="sc">+</span> frequency <span class="sc">+</span> monetary, </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> rfm_data) <span class="sc">|&gt;</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here we created a simple preprocessing plan, i.e.&nbsp;a recipe, that tells R which variables to prepare and how. In <code>recipe(~ recency + frequency + monetary, data = rfm)</code>, the tilde, <code>~</code>, is the formula separator: the left side is for something you want to predict (an outcome) and the right side lists the input variables. When clustering, there’s no outcome variable in the data that we are trying to predict — we’re just grouping customers—so we leave the left side empty and list our inputs on the right: recency, frequency, and monetary. We then pipe into the next step <code>step_normalize(all_numeric_predictors())</code> which standardises each of those numeric variables (turn them into z-scores). If we then look at the object:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>rfm_rec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>rfm_rec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
 </div>
@@ -1472,14 +1381,12 @@ Attaching package: 'recipes'</code></pre>
 <pre><code>• Centering and scaling for: all_numeric_predictors()</code></pre>
 </div>
 </div>
-<p>When we printed <code>rfm_rec</code>, you may have noticed something curious: the data itself wasn’t transformed yet.<br>
-Instead, R showed us a <strong>blueprint</strong> of what will happen — which variables are included (<code>recency</code>, <code>frequency</code>, <code>monetary</code>), the role they play (all as predictors, since there’s no outcome in clustering), and the step that will be applied (<code>step_normalize()</code>).<br>
-This design is intentional: a recipe describes the instructions, but it does not execute them right away.</p>
+<p>When we printed <code>rfm_rec</code>, you may have noticed something curious: the data itself wasn’t transformed yet. Instead, R showed us a <strong>blueprint</strong> of what will happen — which variables are included (<code>recency</code>, <code>frequency</code>, <code>monetary</code>), the role they play (all as predictors, since there’s no outcome in clustering), and the step that will be applied (<code>step_normalize()</code>). This design is intentional: a recipe describes the instructions, but it does not execute them right away.</p>
 <p>To actually make the transformations, we need to <strong>prep</strong> the recipe. Think of this as training the recipe on our data, or, more informally, as preparing the ingredients before cooking. For the scaling we want to do, <code>prep()</code> calculates the mean and standard deviation of each variable so that it knows exactly how to convert them into z-scores.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>rfm_prepped <span class="ot">&lt;-</span> <span class="fu">prep</span>(rfm_rec)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>rfm_prepped</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>rfm_prepped <span class="ot">&lt;-</span> <span class="fu">prep</span>(rfm_rec)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>rfm_prepped</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
 </div>
@@ -1520,9 +1427,9 @@ This design is intentional: a recipe describes the instructions, but it does not
 <p>The output is still a recipe object, but now it has all the information required to perform the transformation. the output looks similar to the earlier recipe, but with an important difference: it now shows that the <code>step_normalize()</code> step has been trained. Behind the scenes, R has stored the mean and standard deviation of each variable (recency, frequency, and monetary) based on the data we provided. The result is still a recipe object, but now it contains all the information needed to perform the transformation. Intuitively, this is the same as weighing out all the ingredients before you start cooking — everything is ready, but the meal hasn’t been served yet.</p>
 <p>Finally, we use <strong>bake</strong> to apply the recipe to the data. If <code>prep()</code> was about preparing the ingredients, then <code>bake()</code> is the step where we actually cook the dish and put it on the table. <code>bake()</code> takes the prepared recipe and returns a new data frame with the standardized variables ready to use.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>rfm_scaled <span class="ot">&lt;-</span> <span class="fu">bake</span>(rfm_prepped, <span class="at">new_data =</span> <span class="cn">NULL</span>)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rfm_scaled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>rfm_scaled <span class="ot">&lt;-</span> <span class="fu">bake</span>(rfm_prepped, <span class="at">new_data =</span> <span class="cn">NULL</span>)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rfm_scaled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   recency frequency monetary
@@ -1535,20 +1442,19 @@ This design is intentional: a recipe describes the instructions, but it does not
 6   1.07     -0.413  -0.353 </code></pre>
 </div>
 </div>
-<p>By using <code>new_data = NULL</code>, we tell R to apply the recipe to the same data that was used when we prepped it. The result is a data frame where recency, frequency, and monetary have all been transformed into z-scores — each with mean zero and standard deviation one. Let’s check that our scaling worked as intended.<br>
-If the recipe did its job, each of our variables — <code>recency</code>, <code>frequency</code>, and <code>monetary</code> — should now have a mean of zero and a standard deviation of one.</p>
+<p>By using <code>new_data = NULL</code>, we tell R to apply the recipe to the same data that was used when we prepped it. The result is a data frame where recency, frequency, and monetary have all been transformed into z-scores — each with mean zero and standard deviation one. Let’s check that our scaling worked as intended. If the recipe did its job, each of our variables — <code>recency</code>, <code>frequency</code>, and <code>monetary</code> — should now have a mean of zero and a standard deviation of one.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>rfm_scaled <span class="sc">|&gt;</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">across</span>(<span class="fu">everything</span>(),</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>                <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sd =</span> sd)) <span class="sc">|&gt;</span></span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(</span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"variable"</span>, <span class="st">".value"</span>),</span>
-<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_sep =</span> <span class="st">"_"</span></span>
-<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> </span>
-<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>    kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>rfm_scaled <span class="sc">|&gt;</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">everything</span>(),</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sd =</span> sd)) <span class="sc">|&gt;</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"variable"</span>, <span class="st">".value"</span>),</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in
 dplyr 1.1.0.
@@ -1605,23 +1511,16 @@ Same Recipe, New Data?
 </section>
 <section id="clustering-with-k-means" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="clustering-with-k-means">Clustering with K-means</h3>
-<p>Now that our variables are standardized, we are ready to group customers using <strong>K-means clustering</strong>.<br>
-This is one of the most widely used clustering methods in business analytics because it is simple, fast, and effective.</p>
-<p>The basic idea is to divide customers into groups where those in the same group are more similar to each other (in terms of recency, frequency, and monetary value) than to customers in other groups.<br>
-Instead of setting rules ourselves — as we did with RFM quintiles — we let the algorithm discover the natural groupings in the data.</p>
+<p>Now that our variables are standardized, we are ready to group customers using <strong>K-means clustering</strong>. This is one of the most widely used clustering methods in business analytics because it is simple, fast, and effective.</p>
+<p>The basic idea is to divide customers into groups where those in the same group are more similar to each other (in terms of recency, frequency, and monetary value) than to customers in other groups. Instead of setting rules ourselves — as we did with RFM quintiles — we let the algorithm discover the natural groupings in the data.</p>
 <p>At a high level, the process works like this:</p>
 <ul>
-<li><p><strong>Step 1: Decide on (k).</strong><br>
-We choose how many clusters we want the algorithm to find. Think of this as telling it, “please uncover (k) different types of customers.”</p></li>
-<li><p><strong>Step 2: Assign customers to clusters.</strong><br>
-Each customer is assigned to the cluster with the nearest <strong>center point</strong> (called a <em>centroid</em>). A centroid is simply the <strong>average customer</strong> in the cluster. It is calculated by taking the average recency, the average frequency, and the average monetary value of all customers currently in the group. For example, if three customers had frequencies of 2, 4, and 6 purchases, the cluster’s frequency centroid would be ((2+4+6)/3 = 4). In this way, the centroid represents the “typical customer” in that group.</p></li>
-<li><p><strong>Step 3: Update the centroids.</strong><br>
-Once customers are assigned, the centroid of each cluster is recalculated. This makes the center points shift toward where most of the customers really are.</p></li>
-<li><p><strong>Step 4: Reassign customers.</strong><br>
-Customers are then reassigned to whichever centroid they are now closest to.</p></li>
+<li><p><strong>Step 1: Decide on (k).</strong> We choose how many clusters we want the algorithm to find. Think of this as telling it, “please uncover (k) different types of customers.”</p></li>
+<li><p><strong>Step 2: Assign customers to clusters.</strong> Each customer is assigned to the cluster with the nearest <strong>center point</strong> (called a <em>centroid</em>). A centroid is simply the <strong>average customer</strong> in the cluster. It is calculated by taking the average recency, the average frequency, and the average monetary value of all customers currently in the group. For example, if three customers had frequencies of 2, 4, and 6 purchases, the cluster’s frequency centroid would be ((2+4+6)/3 = 4). In this way, the centroid represents the “typical customer” in that group.</p></li>
+<li><p><strong>Step 3: Update the centroids.</strong> Once customers are assigned, the centroid of each cluster is recalculated. This makes the center points shift toward where most of the customers really are.</p></li>
+<li><p><strong>Step 4: Reassign customers.</strong> Customers are then reassigned to whichever centroid they are now closest to.</p></li>
 </ul>
-<p>This cycle of recalculating averages and reassigning customers repeats until the groups stop changing.<br>
-At that point, the clustering is considered stable.</p>
+<p>This cycle of recalculating averages and reassigning customers repeats until the groups stop changing. At that point, the clustering is considered stable.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1637,9 +1536,9 @@ Clustering as a Networking Event for Your Data
 </div>
 <p>Let’s see how this works in practice by running K-means on our CDNOW dataset with (k = 3) clusters.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) </span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>kmeans_3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(rfm_scaled, <span class="at">centers =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) </span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>kmeans_3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(rfm_scaled, <span class="at">centers =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
@@ -1653,10 +1552,8 @@ Why set a seed?
 </div>
 <div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>K-means starts by placing centroids in random positions before it begins the averaging-and-reassigning process.<br>
-Because of this, you can get slightly different results each time you run the algorithm.</p>
-<p>By setting a random <strong>seed</strong> (e.g., <code>set.seed(123)</code>), we make the results reproducible — so that if you (or your manager, or your professor) rerun the code, you will get the same clusters.<br>
-This is especially important in reporting, where consistency matters.</p>
+<p>K-means starts by placing centroids in random positions before it begins the averaging-and-reassigning process. Because of this, you can get slightly different results each time you run the algorithm.</p>
+<p>By setting a random <strong>seed</strong> (e.g., <code>set.seed(123)</code>), we make the results reproducible — so that if you (or your manager, or your professor) rerun the code, you will get the same clusters. This is especially important in reporting, where consistency matters.</p>
 </div>
 </div>
 </div>
@@ -1674,7 +1571,7 @@ The Raw K-means Output
 <div class="callout-body-container callout-body">
 <p>If you print the <code>kmeans()</code> result directly, the output can look a little overwhelming:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>kmeans_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>kmeans_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>K-means clustering with 3 clusters of sizes 150, 16287, 7133
 
@@ -2363,14 +2260,12 @@ Available components:
 </div>
 <p>The raw output of the K-means model is not always the easiest to interpret. The numbers are useful, but they don’t give us an immediate feel for how distinct the clusters really are. To help with this, we’ll use the <code>factoextra</code> package. This package provides a set of convenient functions for visualising clustering and dimension-reduction results in R. Here, we’ll use it to create a scatterplot that shows each customer’s cluster membership in a way that’s easy to see at a glance.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_cluster</span>(kmeans_3, <span class="at">data =</span> rfm_scaled,</span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">geom =</span> <span class="st">"point"</span>,</span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">palette =</span> <span class="st">"jco"</span>,</span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_cluster</span>(kmeans_3, <span class="at">data =</span> rfm_scaled,</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">geom =</span> <span class="st">"point"</span>,</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">palette =</span> <span class="st">"jco"</span>,</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2392,12 +2287,8 @@ What are Dim1 and Dim2?
 </div>
 <div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The axes come from a method called <strong>Principal Component Analysis (PCA)</strong>.<br>
-PCA creates new variables (called <em>principal components</em>) that are linear combinations of the original inputs.<br>
-- <strong>Dim1</strong> is the combination that explains the most variation in the data.<br>
-- <strong>Dim2</strong> is the next most important combination, and it is chosen to be independent of Dim1.</p>
-<p>Plotting Dim1 and Dim2 together allows us to capture as much of the underlying structure as possible in just two dimensions — even when the original data had more variables.<br>
-That’s why the axes don’t map neatly onto “recency,” “frequency,” or “monetary,” but instead represent blends of them that best reveal the clusters.</p>
+<p>The axes come from a method called <strong>Principal Component Analysis (PCA)</strong>. PCA creates new variables (called <em>principal components</em>) that are linear combinations of the original inputs. - <strong>Dim1</strong> is the combination that explains the most variation in the data. - <strong>Dim2</strong> is the next most important combination, and it is chosen to be independent of Dim1.</p>
+<p>Plotting Dim1 and Dim2 together allows us to capture as much of the underlying structure as possible in just two dimensions — even when the original data had more variables. That’s why the axes don’t map neatly onto “recency,” “frequency,” or “monetary,” but instead represent blends of them that best reveal the clusters.</p>
 </div>
 </div>
 </div>
@@ -2413,9 +2304,7 @@ Dims are not variables in our data
 </div>
 <div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>It’s tempting to read Dim1 or Dim2 as “recency” or “monetary,” but that’s not correct.<br>
-Each dimension is a <strong>blend</strong> of all three variables, designed only to make the clusters easier to see.<br>
-Use them for interpretation of the clustering structure, not for direct business meaning.</p>
+<p>It’s tempting to read Dim1 or Dim2 as “recency” or “monetary,” but that’s not correct. Each dimension is a <strong>blend</strong> of all three variables, designed only to make the clusters easier to see. Use them for interpretation of the clustering structure, not for direct business meaning.</p>
 </div>
 </div>
 </div>
@@ -2431,10 +2320,7 @@ Principal Component Analysis (PCA) Beyond Cluster Visualisation
 </div>
 <div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Here we used PCA only to reduce three variables (R, F, M) into two dimensions for plotting.<br>
-But PCA is especially powerful when you have <strong>many variables</strong> — for example, dozens of customer behaviour measures or hundreds of survey items.<br>
-By summarising those into a handful of principal components, PCA makes complex data more manageable while retaining most of the information.<br>
-This is why PCA is a common first step in many advanced analytics pipelines, including clustering.</p>
+<p>Here we used PCA only to reduce three variables (R, F, M) into two dimensions for plotting. But PCA is especially powerful when you have <strong>many variables</strong> — for example, dozens of customer behaviour measures or hundreds of survey items. By summarising those into a handful of principal components, PCA makes complex data more manageable while retaining most of the information. This is why PCA is a common first step in many advanced analytics pipelines, including clustering.</p>
 <p>In the tutorial accompanying this chapter you will explore PCA in more depth to help you tackle a different segmentation problem that has more variables.</p>
 </div>
 </div>
@@ -2445,12 +2331,12 @@ This is why PCA is a common first step in many advanced analytics pipelines, inc
 <p>So far, we’ve seen the raw K-means output and a visualization of the clusters. The next step is to bring the cluster assignments back into our dataset so that we can describe and profile each group in business terms.</p>
 <p>We’ll use the <code>broom</code> package, which provides tidy outputs for many modelling functions in R. With <code>augment()</code>, broom takes the original data and adds new columns — here, the most important one is <code>.cluster</code>, which tells us which cluster each customer belongs to.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>rfm_clustered <span class="ot">&lt;-</span> </span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">augment</span>(kmeans_3, rfm_data) </span>
-<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rfm_clustered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>rfm_clustered <span class="ot">&lt;-</span> </span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>(kmeans_3, rfm_data) </span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rfm_clustered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
   users_id frequency monetary recency r_tile f_tile m_tile .cluster
@@ -2464,18 +2350,17 @@ This is why PCA is a common first step in many advanced analytics pipelines, inc
 </div>
 </div>
 <p>The new <code>.cluster</code> column shows the cluster assignment for each customer. Now we can summarise the characteristics of each cluster — for example, their average recency, frequency, and monetary value — to see what makes them different.</p>
-<p>With the cluster assignments attached to each customer, we can now summarise the groups.<br>
-A simple way is to calculate the average recency, frequency, and monetary value for each cluster.</p>
+<p>With the cluster assignments attached to each customer, we can now summarise the groups. A simple way is to calculate the average recency, frequency, and monetary value for each cluster.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>rfm_clustered <span class="sc">|&gt;</span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(.cluster) <span class="sc">|&gt;</span></span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">recency   =</span> <span class="fu">mean</span>(recency),</span>
-<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">frequency =</span> <span class="fu">mean</span>(frequency),</span>
-<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">monetary  =</span> <span class="fu">mean</span>(monetary),</span>
-<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_customers =</span> <span class="fu">n</span>(),</span>
-<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>rfm_clustered <span class="sc">|&gt;</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">group_by</span>(.cluster) <span class="sc">|&gt;</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarise</span>(</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">recency  =</span> <span class="fu">mean</span>(recency),</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">frequency =</span> <span class="fu">mean</span>(frequency),</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">monetary =</span> <span class="fu">mean</span>(monetary),</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_customers =</span> <span class="fu">n</span>(),</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   .cluster recency frequency monetary n_customers
@@ -2504,27 +2389,24 @@ Comparing K-means Clusters to RFM Segments
 </div>
 <div id="callout-23" class="callout-23-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>It’s useful to connect our K-means results back to the RFM segmentation we built earlier.<br>
-RFM used fixed quintiles and rules; K-means let the data itself define the groups.</p>
+<p>It’s useful to connect our K-means results back to the RFM segmentation we built earlier. RFM used fixed quintiles and rules; K-means let the data itself define the groups.</p>
 <p>Looking at the cluster profiles, we can see clear parallels:</p>
 <ul>
-<li><strong>Cluster 1</strong> (very recent, very frequent, very high spenders) ≈ <em>RFM champions / loyal high-value customers</em>.<br>
-</li>
-<li><strong>Cluster 2</strong> (long recency, very low frequency, low spend) ≈ <em>RFM at-risk / lapsed customers</em>.<br>
-</li>
+<li><strong>Cluster 1</strong> (very recent, very frequent, very high spenders) ≈ <em>RFM champions / loyal high-value customers</em>.</li>
+<li><strong>Cluster 2</strong> (long recency, very low frequency, low spend) ≈ <em>RFM at-risk / lapsed customers</em>.</li>
 <li><strong>Cluster 3</strong> (moderate recency, moderate frequency, moderate spend) ≈ <em>RFM (potential) loyalists</em>.</li>
 </ul>
 <p>One way too see this in the data is to group by the cluster and take the average tile values:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>rfm_clustered <span class="sc">|&gt;</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(.cluster) <span class="sc">|&gt;</span></span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_recency_tile   =</span> <span class="fu">mean</span>(r_tile),</span>
-<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_frequency_tile =</span> <span class="fu">mean</span>(f_tile),</span>
-<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_monetary_tile  =</span> <span class="fu">mean</span>(m_tile),</span>
-<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_customers =</span> <span class="fu">n</span>(),</span>
-<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>rfm_clustered <span class="sc">|&gt;</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">group_by</span>(.cluster) <span class="sc">|&gt;</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarise</span>(</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_recency_tile  =</span> <span class="fu">mean</span>(r_tile),</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_frequency_tile =</span> <span class="fu">mean</span>(f_tile),</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_monetary_tile =</span> <span class="fu">mean</span>(m_tile),</span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_customers =</span> <span class="fu">n</span>(),</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   .cluster avg_recency_tile avg_frequency_tile avg_monetary_tile n_customers
@@ -2549,15 +2431,12 @@ Why Link Clusters Back to Raw Data?
 </div>
 <div id="callout-24" class="callout-24-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>K-means needs <strong>scaled data</strong> (z-scores) to make the clustering fair, since variables measured on different scales (like dollars vs.&nbsp;days) would otherwise distort the results.<br>
-But once the clusters are created, the <strong>scaled values aren’t very interpretable</strong> for managers.</p>
+<p>K-means needs <strong>scaled data</strong> (z-scores) to make the clustering fair, since variables measured on different scales (like dollars vs.&nbsp;days) would otherwise distort the results. But once the clusters are created, the <strong>scaled values aren’t very interpretable</strong> for managers.</p>
 <ul>
-<li>A z-score of 1.5 in monetary spend doesn’t tell a manager much.<br>
-</li>
+<li>A z-score of 1.5 in monetary spend doesn’t tell a manager much.</li>
 <li>Saying “this group spends about $2,000 on average” is clear and actionable.</li>
 </ul>
-<p>That’s why we always <strong>map the cluster assignments back to the original RFM data</strong>.<br>
-It lets us profile each group in the actual business units — days since last purchase, number of purchases, and dollars spent — which managers can understand and act on.</p>
+<p>That’s why we always <strong>map the cluster assignments back to the original RFM data</strong>. It lets us profile each group in the actual business units — days since last purchase, number of purchases, and dollars spent — which managers can understand and act on.</p>
 </div>
 </div>
 </div>
@@ -2565,72 +2444,52 @@ It lets us profile each group in the actual business units — days since last p
 <div class="exercise-time">
 <p>15 min</p>
 </div>
-<p>Let’s extend our analysis by running <strong>K-means with 10 clusters</strong> instead of 3.<br>
-Repeat the same steps we used earlier:</p>
+<p>Let’s extend our analysis by running <strong>K-means with 10 clusters</strong> instead of 3. Repeat the same steps we used earlier:</p>
 <ol type="1">
 <li><p>Run <code>kmeans()</code> with <code>centers = 10</code>.</p></li>
-<li><p>Use <code>fviz_cluster()</code> to visualise the 10 clusters.</p>
+<li><p>Use <code>fviz_cluster()</code> to visualise the 10 clusters.</p></li>
+</ol>
 <ul>
-<li>What do you notice about the spread and separation of the clusters?<br>
-</li>
+<li>What do you notice about the spread and separation of the clusters?</li>
 <li>Are there clear groups, or do some clusters overlap heavily?</li>
-</ul></li>
+</ul>
+<ol start="3" type="1">
 <li><p>Attach the cluster assignments back to the <strong>raw RFM data</strong> (not the scaled data).</p></li>
 <li><p>Summarise each cluster to get its average recency, frequency, and monetary values.</p></li>
 <li><p>Based on these profiles, try to match each cluster to one of the familiar <strong>RFM-style segments</strong> (e.g., Champions, At Risk, Steady Buyers).</p></li>
 </ol>
-<p>Questions to answer:<br>
-- Which cluster(s) look like <strong>Champions</strong> (recent, frequent, high spenders)?<br>
-- Which cluster(s) look like <strong>At Risk / Lapsed</strong> customers?<br>
-- Which cluster(s) might be <strong>Potential Loyalists</strong> or <strong>Steady Buyers</strong>?<br>
-- Does having 10 clusters give you <strong>new insights</strong> compared to the 3-cluster solution, or does it make the story harder to communicate?</p>
+<p>Questions to answer: - Which cluster(s) look like <strong>Champions</strong> (recent, frequent, high spenders)? - Which cluster(s) look like <strong>At Risk / Lapsed</strong> customers? - Which cluster(s) might be <strong>Potential Loyalists</strong> or <strong>Steady Buyers</strong>? - Does having 10 clusters give you <strong>new insights</strong> compared to the 3-cluster solution, or does it make the story harder to communicate?</p>
 </div>
 <div class="solution-header">
 <p>Solution</p>
 </div>
 <div class="solution-content">
-<p><strong>1. Run K-means with 10 clusters</strong><br>
-- Use <code>k10 &lt;- kmeans(rfm_scaled, centers = 10)</code>.<br>
-- Remember to set a seed for reproducibility.</p>
-<p><strong>2. Visualise with <code>fviz_cluster()</code></strong><br>
-- You’ll see 10 colours, but many clusters will overlap.<br>
-- This shows that splitting into 10 groups often produces clusters that are <strong>indistinguishable in practice</strong>.</p>
-<p><strong>3. Attach clusters back to raw RFM data</strong><br>
-- Use <code>rfm_data |&gt; mutate(cluster = k10$cluster)</code>.<br>
-- This gives you cluster assignments in real business units.</p>
-<p><strong>4. Summarise clusters</strong><br>
-- Calculate average recency, frequency, and monetary for each cluster.<br>
-- You’ll likely notice that several clusters have almost identical averages.</p>
-<p><strong>5. Interpret clusters</strong><br>
-- A few clusters will match clearly to RFM-style groups (e.g., Champions, At Risk).<br>
-- But many clusters won’t add much extra insight compared to the 3-cluster solution.</p>
-<p><strong>Key takeaway</strong><br>
-- Asking for too many clusters can make the segmentation look detailed, but in reality many groups are <strong>redundant</strong>.<br>
-- For managers, simpler solutions (like 3–4 clusters) are usually more actionable.<br>
-- This highlights the importance of balancing <strong>granularity</strong> with <strong>interpretability</strong> when choosing (k).</p>
+<p><strong>1. Run K-means with 10 clusters</strong> - Use <code>k10 &lt;- kmeans(rfm_scaled, centers = 10)</code>. - Remember to set a seed for reproducibility.</p>
+<p><strong>2. Visualise with <code>fviz_cluster()</code></strong> - You’ll see 10 colours, but many clusters will overlap. - This shows that splitting into 10 groups often produces clusters that are <strong>indistinguishable in practice</strong>.</p>
+<p><strong>3. Attach clusters back to raw RFM data</strong> - Use <code>rfm_data |&gt; mutate(cluster = k10$cluster)</code>. - This gives you cluster assignments in real business units.</p>
+<p><strong>4. Summarise clusters</strong> - Calculate average recency, frequency, and monetary for each cluster. - You’ll likely notice that several clusters have almost identical averages.</p>
+<p><strong>5. Interpret clusters</strong> - A few clusters will match clearly to RFM-style groups (e.g., Champions, At Risk). - But many clusters won’t add much extra insight compared to the 3-cluster solution.</p>
+<p><strong>Key takeaway</strong> - Asking for too many clusters can make the segmentation look detailed, but in reality many groups are <strong>redundant</strong>. - For managers, simpler solutions (like 3–4 clusters) are usually more actionable. - This highlights the importance of balancing <strong>granularity</strong> with <strong>interpretability</strong> when choosing (k).</p>
 </div>
 </section>
 <section id="how-many-clusters-should-we-use" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="how-many-clusters-should-we-use">How Many Clusters Should We Use?</h3>
 <p>So far, we have been running K-means with three clusters. That was useful for learning the workflow, but notice that we didn’t really have a clear rationale for picking the number three.</p>
-<p>With RFM, we <strong>fixed quintiles</strong> and then a human decided how many segments to create (e.g., 10 segments from the tile scores). K-means is different: it can take the human out of the loop by suggesting how many clusters best fit the data. The challenge is that we need a systematic way to decide on (k).</p>
-<p>If we pick too few clusters, we risk missing important differences between customers. If we pick too many, we may end up with groups that are indistinguishable and hard to explain to managers, like in the exercise above.</p>
+<p>With RFM, we <strong>fixed quintiles</strong> and then a human decided how many segments to create (e.g., 10 segments from the tile scores). K-means is different: it can take the human out of the loop by suggesting how many clusters best fit the data. The challenge is that we need a systematic way to decide on (k). If we pick too few clusters, we risk missing important differences between customers. On the other hand, if we pick too many, we may end up with groups that are indistinguishable and hard to explain to managers, like in the exercise above.</p>
 <p>To figure out how many clusters make sense, we can’t just look at the data once — we actually need to <strong>run K-means many times with different values of (k)</strong>. For example, we might run it with (k = 2), then with (k = 3), then with (k = 4), and so on. Each time, the algorithm produces clusters, and we can measure how well those clusters “fit” the data. Fitting the data here means spotting where adding more clusters really improves the segmentation — and where it stops adding value. This gives us a more objective basis for choosing the right number of clusters, rather than just picking a number (like 3) without justification.</p>
 <p>To explore different choices of (k), we need to run K-means many times. On a large dataset this can be slow, so a common trick is to work with a <strong>random sample</strong> of customers. This smaller sample still gives us a good sense of the cluster structure while keeping computations fast.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>) <span class="co"># so we sample the same people!</span></span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>rfm_scale_sample <span class="ot">&lt;-</span> </span>
-<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>  rfm_scaled <span class="sc">|&gt;</span></span>
-<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">1000</span>)   <span class="co"># take 1,000 random customers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>) <span class="co"># so we sample the same people!</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>rfm_scale_sample <span class="ot">&lt;-</span> </span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a> rfm_scaled <span class="sc">|&gt;</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a> <span class="fu">sample_n</span>(<span class="dv">1000</span>)  <span class="co"># take 1,000 random customers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There isn’t just one way to decide on the “right” number of clusters. In practice, analysts use several different methods to guide the choice of (k). Each method has its own logic, and together they give us a more rounded view.</p>
 <p>In this section we’ll look at three common methods:</p>
 <ol type="1">
-<li>The <strong>Elbow Method</strong><br>
-</li>
-<li>The <strong>Silhouette Method</strong><br>
-</li>
+<li>The <strong>Elbow Method</strong></li>
+<li>The <strong>Silhouette Method</strong></li>
 <li>The <strong>Gap Statistic</strong></li>
 </ol>
 <section id="the-elbow-method" class="level4 unnumbered">
@@ -2638,23 +2497,20 @@ Repeat the same steps we used earlier:</p>
 <p>The Elbow Method is one of the simplest and most widely used techniques. It is based on a measure called the <strong>within-cluster sum of squares (WSS)</strong>. WSS tells us how tightly the customers are grouped within each cluster: lower WSS means customers inside a cluster are very similar to each other.</p>
 <p>Here’s the key idea:</p>
 <ul>
-<li>As we increase (k), WSS will always go down — more clusters means each cluster can get smaller and tighter.<br>
-</li>
-<li>But the <em>improvement</em> in WSS gets smaller and smaller as we keep adding clusters.<br>
-</li>
+<li>As we increase (k), WSS will always go down — more clusters means each cluster can get smaller and tighter.</li>
+<li>But the <em>improvement</em> in WSS gets smaller and smaller as we keep adding clusters.</li>
 <li>If we plot WSS against (k), the curve usually bends like an arm, and the point where it bends looks like an <strong>elbow</strong>.</li>
 </ul>
-<p>That elbow point suggests a good trade-off:<br>
-enough clusters to capture the main differences, but not so many that we end up with redundant groups.</p>
+<p>That elbow point suggests a good trade-off: enough clusters to capture the main differences, but not so many that we end up with redundant groups.</p>
 <p>We can implement the Elbow method as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(</span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  rfm_scale_sample, </span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>  kmeans,</span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"wss"</span>,     <span class="co"># Within-cluster sum of squares</span></span>
-<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">k.max =</span> <span class="dv">15</span>,</span>
-<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">nstart =</span> <span class="dv">5</span></span>
-<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a> rfm_scale_sample, </span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a> kmeans,</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a> <span class="at">method =</span> <span class="st">"wss"</span>,   <span class="co"># Within-cluster sum of squares</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a> <span class="at">k.max =</span> <span class="dv">15</span>,</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a> <span class="at">nstart =</span> <span class="dv">5</span></span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2694,8 +2550,7 @@ There’s No Perfect Elbow
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Just like our own elbows aren’t perfectly shaped, the elbow plot may not show a sharp bend.<br>
-Don’t expect a perfect elbow — sometimes the curve is gradual, and there isn’t one obvious elbow point. In those cases, there may not be a single “correct” answer, and you’ll need to balance the statistics with business interpretability.</p>
+<p>Just like our own elbows aren’t perfectly shaped, the elbow plot may not show a sharp bend. Don’t expect a perfect elbow — sometimes the curve is gradual, and there isn’t one obvious elbow point. In those cases, there may not be a single “correct” answer, and you’ll need to balance the statistics with business interpretability.</p>
 </div>
 </div>
 </section>
@@ -2704,20 +2559,17 @@ Don’t expect a perfect elbow — sometimes the curve is gradual, and there isn
 <p>Another popular approach is the <strong>Silhouette Method</strong>. Where the elbow method looked at how tightly customers are grouped inside each cluster, the silhouette method asks a different question: <em>“How well does each customer fit into its assigned cluster compared to the next closest cluster?”</em></p>
 <p>The silhouette score for a single customer ranges from <strong>–1 to 1</strong>:</p>
 <ul>
-<li>A value close to <strong>1</strong> means the customer is much closer to their own cluster than to others (a good fit).<br>
-</li>
-<li>A value near <strong>0</strong> means they sit on the border between two clusters.<br>
-</li>
+<li>A value close to <strong>1</strong> means the customer is much closer to their own cluster than to others (a good fit).</li>
+<li>A value near <strong>0</strong> means they sit on the border between two clusters.</li>
 <li>A negative value means they might actually belong in another cluster.</li>
 </ul>
-<p>By averaging these scores across all customers, we get a measure of how well-defined the clusters are overall.<br>
-The <strong>best number of clusters</strong> is the one that gives the <strong>highest average silhouette score</strong>.</p>
+<p>By averaging these scores across all customers, we get a measure of how well-defined the clusters are overall. The <strong>best number of clusters</strong> is the one that gives the <strong>highest average silhouette score</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(</span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  rfm_scale_sample, </span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  kmeans,</span>
-<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"silhouette"</span></span>
-<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a> rfm_scale_sample, </span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a> kmeans,</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a> <span class="at">method =</span> <span class="st">"silhouette"</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2739,10 +2591,8 @@ Every Customer Needs Their Space
 <div class="callout-body-container callout-body">
 <p>Silhouette scores tell us how “comfortable” each customer feels in their cluster.</p>
 <ul>
-<li>High scores: the customer is happily surrounded by similar neighbours.<br>
-</li>
-<li>Low scores: they’re awkwardly stuck between groups.<br>
-</li>
+<li>High scores: the customer is happily surrounded by similar neighbours.</li>
+<li>Low scores: they’re awkwardly stuck between groups.</li>
 <li>Negative scores: they probably wandered into the wrong party.</li>
 </ul>
 <p>That’s why the average silhouette is a handy guide — it shows us how much breathing room the clusters really give customers.</p>
@@ -2751,26 +2601,22 @@ Every Customer Needs Their Space
 </section>
 <section id="the-gap-statistic" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="the-gap-statistic">The Gap Statistic</h4>
-<p>A third method is the <strong>Gap Statistic</strong>.<br>
-This approach asks: <em>“Do the clusters in our data look more meaningful than clusters we’d expect if the data were completely random?”</em></p>
+<p>A third method is the <strong>Gap Statistic</strong>. This approach asks: <em>“Do the clusters in our data look more meaningful than clusters we’d expect if the data were completely random?”</em></p>
 <p>Here’s how it works:</p>
 <ul>
-<li>The algorithm compares the clustering results from our dataset to clustering results from many random datasets with no real structure.<br>
-</li>
-<li>The <strong>gap</strong> is the difference between the two: how much better our clusters are than random ones.<br>
-</li>
-<li>If adding more clusters doesn’t improve the gap clearly beyond the random “wiggle,” the method stops.<br>
-</li>
+<li>The algorithm compares the clustering results from our dataset to clustering results from many random datasets with no real structure.</li>
+<li>The <strong>gap</strong> is the difference between the two: how much better our clusters are than random ones.</li>
+<li>If adding more clusters doesn’t improve the gap clearly beyond the random “wiggle,” the method stops.</li>
 <li>That means the recommended number of clusters is often smaller than the place where the gap looks biggest in the plot — it prefers the simpler solution unless the bigger one is <strong>clearly better</strong>.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(</span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  rfm_scale_sample, </span>
-<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  kmeans,</span>
-<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"gap_stat"</span>,</span>
-<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">nstart =</span> <span class="dv">10</span>,</span>
-<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter.max =</span> <span class="dv">50</span></span>
-<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a> rfm_scale_sample, </span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a> kmeans,</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a> <span class="at">method =</span> <span class="st">"gap_stat"</span>,</span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a> <span class="at">nstart =</span> <span class="dv">10</span>,</span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a> <span class="at">iter.max =</span> <span class="dv">50</span></span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2779,13 +2625,8 @@ This approach asks: <em>“Do the clusters in our data look more meaningful than
 </div>
 </div>
 </div>
-<p>In our plot, the gap statistic curve flattens for several values of (k), then makes a noticeable jump.<br>
-But the function still recommends a lower (k).<br>
-This is because the method is deliberately <strong>conservative</strong>: it only picks a bigger (k) if the improvement is clearly better than what could be explained by random variation.<br>
-If not, it sticks with the simpler solution.</p>
-<p>That’s why the printed result may suggest fewer clusters than your eyes would pick from the plot.<br>
-It’s not wrong — it’s just using a conservative rule that prefers a simpler solution if two choices are statistically similar.<br>
-For business decisions, this is another reminder that <strong>judgment matters</strong>: we balance the statistical guidance with what makes sense for managers.</p>
+<p>In our plot, the gap statistic curve flattens for several values of (k), then makes a noticeable jump. But the function still recommends a lower (k). This is because the method is deliberately <strong>conservative</strong>: it only picks a bigger (k) if the improvement is clearly better than what could be explained by random variation. If not, it sticks with the simpler solution.</p>
+<p>That’s why the printed result may suggest fewer clusters than your eyes would pick from the plot. It’s not wrong — it’s just using a conservative rule that prefers a simpler solution if two choices are statistically similar. For business decisions, this is another reminder that <strong>judgment matters</strong>: we balance the statistical guidance with what makes sense for managers.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2817,11 +2658,8 @@ What the Bars in the Gap Plot Really Mean
 </div>
 <div id="callout-29" class="callout-29-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The vertical bars in the gap statistic plot are <strong>not error bars on the clusters</strong>.<br>
-They show the <strong>amount of natural wiggle</strong> that comes from comparing our data to lots of random datasets.</p>
-<p>If adding another cluster only improves the gap by a little — within that wiggle — the method says “not worth it” and sticks with fewer clusters.<br>
-That’s why the recommended (k) can be smaller than the “big jump” you might notice by eye.<br>
-It’s a built-in preference for <strong>simplicity unless extra complexity is clearly justified</strong>.</p>
+<p>The vertical bars in the gap statistic plot are <strong>not error bars on the clusters</strong>. They show the <strong>amount of natural wiggle</strong> that comes from comparing our data to lots of random datasets.</p>
+<p>If adding another cluster only improves the gap by a little — within that wiggle — the method says “not worth it” and sticks with fewer clusters. That’s why the recommended (k) can be smaller than the “big jump” you might notice by eye. It’s a built-in preference for <strong>simplicity unless extra complexity is clearly justified</strong>.</p>
 </div>
 </div>
 </div>
@@ -2838,10 +2676,8 @@ Mind the Gap
 <div id="callout-30" class="callout-30-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The gap statistic is asking: <em>“Are these clusters really better than random chance?”</em></p>
-<p>If the gap is <strong>big</strong>, it means our clusters capture real structure in the data.<br>
-If the gap is <strong>small</strong>, the extra clusters might just be noise.</p>
-<p>That’s why the method is conservative: it won’t add clusters unless the improvement is clearly beyond the random wiggle.<br>
-In practice, this often means the recommended (k) is smaller than what your eyes might pick from the plot.</p>
+<p>If the gap is <strong>big</strong>, it means our clusters capture real structure in the data. If the gap is <strong>small</strong>, the extra clusters might just be noise.</p>
+<p>That’s why the method is conservative: it won’t add clusters unless the improvement is clearly beyond the random wiggle. In practice, this often means the recommended (k) is smaller than what your eyes might pick from the plot.</p>
 </div>
 </div>
 </div>
@@ -2851,29 +2687,22 @@ In practice, this often means the recommended (k) is smaller than what your eyes
 </div>
 <p>Our diagnostics gave us mixed signals:</p>
 <ul>
-<li><strong>Elbow Method</strong> → around 4 clusters<br>
-</li>
-<li><strong>Silhouette Method</strong> → 3 clusters<br>
-</li>
+<li><strong>Elbow Method</strong> → around 4 clusters</li>
+<li><strong>Silhouette Method</strong> → 3 clusters</li>
 <li><strong>Gap Statistic</strong> → around 4 clusters</li>
 </ul>
 <p>Since both the elbow and gap methods point to <strong>4 clusters</strong>, let’s explore that solution.</p>
 <ol type="1">
-<li>Re-run K-means with <code>centers = 4</code>.<br>
-</li>
-<li>Attach the cluster assignments back to the <strong>raw RFM data</strong> (not the scaled version).<br>
-</li>
-<li>Summarise each cluster by average recency, frequency, monetary, and number of customers.<br>
-</li>
-<li>Look for <strong>meaningful differences</strong> across the 4 groups.
-<ul>
-<li>Which clusters look like <em>Champions</em>?<br>
-</li>
-<li>Which resemble <em>At Risk</em> or <em>Lapsed</em> customers?<br>
-</li>
-<li>Do any groups split into subgroups of interest (e.g., frequent but lower spend vs.&nbsp;moderate buyers)?</li>
-</ul></li>
+<li>Re-run K-means with <code>centers = 4</code>.</li>
+<li>Attach the cluster assignments back to the <strong>raw RFM data</strong> (not the scaled version).</li>
+<li>Summarise each cluster by average recency, frequency, monetary, and number of customers.</li>
+<li>Look for <strong>meaningful differences</strong> across the 4 groups.</li>
 </ol>
+<ul>
+<li>Which clusters look like <em>Champions</em>?</li>
+<li>Which resemble <em>At Risk</em> or <em>Lapsed</em> customers?</li>
+<li>Do any groups split into subgroups of interest (e.g., frequent but lower spend vs.&nbsp;moderate buyers)?</li>
+</ul>
 </div>
 <div class="solution-header">
 <p>Solution</p>
@@ -2881,15 +2710,15 @@ In practice, this often means the recommended (k) is smaller than what your eyes
 <div class="solution-content">
 <p><strong>1. Estimate 4 clusters</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>k4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(rfm_scaled, <span class="at">centers =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>k4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(rfm_scaled, <span class="at">centers =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>Attach clusters with <code>augment()</code></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>rfm_clustered4 <span class="ot">&lt;-</span> <span class="fu">augment</span>(k4, rfm_data)</span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rfm_clustered4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>rfm_clustered4 <span class="ot">&lt;-</span> <span class="fu">augment</span>(k4, rfm_data)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rfm_clustered4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
   users_id frequency monetary recency r_tile f_tile m_tile .cluster
@@ -2906,15 +2735,15 @@ In practice, this often means the recommended (k) is smaller than what your eyes
 <li>Summarise clusters</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>rfm_clustered4 <span class="sc">|&gt;</span></span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(.cluster) <span class="sc">|&gt;</span></span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">recency   =</span> <span class="fu">mean</span>(recency),</span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">frequency =</span> <span class="fu">mean</span>(frequency),</span>
-<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">monetary  =</span> <span class="fu">mean</span>(monetary),</span>
-<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_customers =</span> <span class="fu">n</span>(),</span>
-<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>rfm_clustered4 <span class="sc">|&gt;</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">group_by</span>(.cluster) <span class="sc">|&gt;</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarise</span>(</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">recency  =</span> <span class="fu">mean</span>(recency),</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">frequency =</span> <span class="fu">mean</span>(frequency),</span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">monetary =</span> <span class="fu">mean</span>(monetary),</span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_customers =</span> <span class="fu">n</span>(),</span>
+<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 5
   .cluster recency frequency monetary n_customers
@@ -2949,33 +2778,23 @@ In practice, this often means the recommended (k) is smaller than what your eyes
 <h2 data-number="10.5" class="anchored" data-anchor-id="wrap-up"><span class="header-section-number">10.5</span> Wrap Up</h2>
 <p>In this chapter, we explored two different approaches to customer segmentation:</p>
 <ul>
-<li><strong>Rule-based segmentation with RFM</strong>
-<ul>
-<li>Simple, transparent, and manager-friendly.<br>
-</li>
-<li>Groups customers using fixed cut-offs (quintiles) and human choices about how many segments to create.<br>
-</li>
-<li>Easy to explain, but rigid — it may miss patterns that don’t line up neatly with the rules.</li>
-</ul></li>
-<li><strong>K-means clustering</strong>
-<ul>
-<li>A data-driven alternative that lets the algorithm decide where the boundaries between groups should be.<br>
-</li>
-<li>Requires us to choose the number of clusters ((k)), which we guided using diagnostics like the elbow method, silhouette scores, and the gap statistic.<br>
-</li>
-<li>Produces clusters that adapt to the data and can scale to many more variables, but the results are less intuitive without careful profiling and interpretation.</li>
-</ul></li>
+<li><p><strong>Rule-based segmentation with RFM</strong></p></li>
+<li><p>Simple, transparent, and manager-friendly.</p></li>
+<li><p>Groups customers using fixed cut-offs (quintiles) and human choices about how many segments to create.</p></li>
+<li><p>Easy to explain, but rigid — it may miss patterns that don’t line up neatly with the rules.</p></li>
+<li><p><strong>K-means clustering</strong></p></li>
+<li><p>A data-driven alternative that lets the algorithm decide where the boundaries between groups should be.</p></li>
+<li><p>Requires us to choose the number of clusters ((k)), which we guided using diagnostics like the elbow method, silhouette scores, and the gap statistic.</p></li>
+<li><p>Produces clusters that adapt to the data and can scale to many more variables, but the results are less intuitive without careful profiling and interpretation.</p></li>
 </ul>
 <p>Together, these methods are complementary rather than competing:</p>
 <ul>
-<li>RFM provides a quick, rule-based snapshot that’s easy to communicate.<br>
-</li>
+<li>RFM provides a quick, rule-based snapshot that’s easy to communicate.</li>
 <li>K-means digs deeper, uncovering patterns that might not be obvious from rules alone.</li>
 </ul>
 <p>For managers, the choice depends on the business context:</p>
 <ul>
-<li>If clarity and simplicity are the priority, RFM may be the best tool.<br>
-</li>
+<li>If clarity and simplicity are the priority, RFM may be the best tool.</li>
 <li>If flexibility and precision are needed — especially with larger datasets — K-means offers richer insights.</li>
 </ul>
 <p>The most powerful insight comes from <strong>combining both</strong>: start with RFM to build intuition (and potentially a business theory) and provide a benchmark, then use clustering to refine the picture and test whether the rule-based groups align with natural patterns in the data.</p>
