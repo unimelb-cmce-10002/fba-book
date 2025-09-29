@@ -54,6 +54,7 @@ book:
         - tutorials/data_storage.qmd
         - tutorials/data_collection.qmd
         - tutorials/data_variation.qmd
+        - tutorials/descriptive_analytics.qmd
   # appendices:
     # - appendices/installation.qmd
 
