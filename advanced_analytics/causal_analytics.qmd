@@ -1,79 +1,391 @@
 # Causal Analytics
 
-## Why Causality? (General Concepts)
+::: callout-tip
+## Learning Goals {.unnumbered}
 
-- Business question: *"Spend $2M on advertising, sales go up — did the ad cause it?"*
-- Maybe — but maybe something else changed (competition, seasonality, trends).
+By the end of this chapter, students should be able to:
 
-### Key Concepts
-- **Omitted Variable Bias**: Other factors affect both treatment and outcome.
-- **Selection Bias**: Customers who saw the ad might already be more interested.
+- Explain the difference between correlation and causation.
+- Describe the counterfactual (potential outcomes) framework.
+- Contrast model-based inference and design-based inference.
+- Analyze the DonorsChoose experiment as an example of design-based causal inference.
+- Recognize challenges in the experimental framework such as compliance and spillovers.
 
-> **Without a clean design, you can't claim causality.**
+:::
 
-## Solving the Causality Problem
+## What is Causal Analytics? 
 
-- **Experiments**: Randomization breaks confounding.
-- **Quasi-Experiments**: Approximate randomization when experiments aren't feasible.
+Many of the most important questions in business are not about what has happened, or even what will happen, but about what will change if we act differently. 
+If we lower a monthly subscription price, will sign-ups increase? 
+If we redesign our warehouse layout, will delivery times improve? 
+If we introduce a new training program, will employee performance rise? 
+If we change our supplier contracts, will costs go down? 
+These are **causal questions**—they ask whether changing one thing actually causes a change in another.  
 
-### Key Frameworks
-- **Experiments** (A/B Testing)
-- **Quasi-Experiments** (Difference-in-Differences)
+**Causal analytics** is the process of using data to make credible claims about cause and effect. 
+It is not enough to observe that sales rise when advertising rises, because both may be driven by a third factor like seasonality. 
+Instead, we want to know: did advertising itself cause sales to rise?  
 
-Summary visual: Comparison of Experiments vs. Quasi-Experiments.
+Businesses care about causality because managers rarely control outcomes directly. 
+They make **decisions**—to set a price, run an ad, or add a new feature. 
+Each decision can be thought of as an **intervention**. 
+Causal analytics helps estimate what outcomes would have looked like *with* and *without* that intervention, answering the "what if" questions at the heart of business decision-making.  
 
-## Standard A/B Test Example - PSA Campaign
+At the heart of every causal question there is a **counterfactual** built in: what would have happened otherwise? 
+If a company lowers its subscription price, what would sign-ups have been if the price had stayed the same? 
+If a retailer invests in new training, what would employee performance have looked like without it? 
+The challenge is that we never observe both worlds for the same customer, store, or firm.  
 
-### Setup
-*Placeholder to describe business context and design of the PSA A/B test.*
+Causal analytics is about finding credible ways to approximate those missing counterfactuals. 
+Sometimes we can try to do this with assumptions about how the world works. 
+As we'll see below, this is a worthwhile but often difficult way to make causal claims. An alternative approach is to design our research in ways that create cleaner comparisons. 
+To see how each of these options play out in practice, let's turn to an example.  
 
-### Conceptual Focus
-- Randomization creates comparable groups.
-- Estimate treatment effect as difference in means.
+## The Business Challenge 
 
-### Hands-on R Exercise
-- Group by treatment.
-- Summarize mean outcomes.
-- Compute difference in means.
-- Bar plot to visualize effects.
+DonorsChoose is a U.S.-based non-profit platform that connects teachers with regular people who want to support classrooms. 
+A teacher might post a project such as “new art supplies for my class” or “science kits for an after-school program,” and donors can choose which projects to fund. Over the years, millions of small donations have helped fund everything from books to laptops.  
 
-### Interpretation
-- Randomized assignment → credible causal claims.
+For DonorsChoose, raising money is only part of the story. 
+Just as important is raising awareness. If a donor tells others about their gift, it can spark a chain reaction: friends may click through, learn about the project, and decide to donate themselves. 
+This is a form of **online word-of-mouth (WoM)*.
+Unlike face-to-face word-of-mouth, it often happens through a quick post on Facebook, Twitter, or email after making a donation.  
+
+::: {.callout-note collapse="true"}  
+### What is Word-of-Mouth? 
+
+**Word-of-mouth (WoM)** is when customers or supporters voluntarily share information, opinions, or experiences about a product, service, or cause with others. 
+Because it comes from trusted peers rather than the organization itself, WoM can be especially influential.  
+In general, we as business analysts, separate word of mouth into offline and online:
+
+* **Offline word-of-mouth** happens when people talk in person — for example, a parent telling another at school pick-up about a great new teacher resource.  
+* **Online word-of-mouth** happens through digital channels — for example, posting on Instagram about a donation, or forwarding a project link by email.  
+
+Both forms rely on trust between people, but online word-of-mouth can spread more quickly and reach many more people at once.  
+:::  
+
+But encouraging people to share is tricky. Donors may worry about appearing self-congratulatory ("look at me, I donated!") or insincere. 
+DonorsChoose therefore faces a classic communication challenge: how do you design a message that encourages sharing in a way that feels authentic and motivating?  
+
+For years, the platform used a simple prompt after each donation:  
+
+> *"Share this classroom with family and friends."*  
+
+The team considered a new version that framed sharing as part of a broader impact:  
+
+> *"Your donation can start a chain reaction, but only if you tell others about the cause."*  
+
+The question for DonorsChoose was clear: **would this new wording actually cause more donors to share their gift with others?**  
+
+Answering this question requires more than looking at raw data. 
+Donations happen at different times of year, from different types of donors, and for different kinds of projects. 
+How can we tell whether any change in sharing is really caused by the message, rather than by these other factors? 
+This is the challenge we face when we do causal analytics.
 
 
-## Quasi-Experiment Example - Search Engine Marketing Suspension (Nosko et al.)
+::: {.exercise}
+::: {.exercise-time}
+5 min
+:::
 
-### Setup
-*Placeholder to describe business context and design of Nosko et al.'s quasi-experiment.*
+DonorsChoose wants to know: **Does the new message actually cause more donors to share?**  
 
-### Conceptual Focus
-- Regions not randomized.
-- Pre-existing differences possible.
-- DiD compares changes over time, not levels.
+How would you go about answering this question? 
+Explain why you think your approach would work.  
+:::
 
-### Hands-on R Exercise
-- Plot trends over time by group.
-- Compute before-after differences.
-- Visualize and interpret the DiD effect.
+## A First Approach: Comparing Before and After a Change 
 
-### Interpretation
-- Parallel trends assumption critical for causal claims.
+Imagine DonorsChoose rolls out the new message in **September**, replacing the old version used in **August**. 
+After the switch, the share rate rises from 14% to 15%: 
 
-## Other Quasi-Experimental Approaches (Simple Overview)
+| Month     | Message (after donation)                                      | Share rate |
+|-----------|----------------------------------------------------------------|------------|
+| August    | “Share this classroom with family and friends.”                | 14%        |
+| September | “Your donation can start a chain reaction…”                    | 15%        |
 
-Students should be aware that Difference-in-Differences is not the only quasi-experimental tool. Here are a few others:
 
-- **Instrumental Variables (IV):** Use a third variable that affects treatment but not the outcome directly.
-- **Regression Discontinuity Design (RDD):** Compare observations just above and below a cutoff point.
-- **Propensity Score Matching:** Match treated and untreated units with similar observed characteristics.
-- **Synthetic Control Method:** Create a weighted combination of control units to act as a comparison group for a treated unit.
+It’s tempting to say the new wording worked. But notice what else changed: it’s a new month. 
+September in the U.S. is back-to-school season, when different kinds of donors are active, new projects appear on the site, and public attention to education is higher. 
+Any of these shifts could have raised sharing rates even if the message had stayed the same.  
 
-Each has different assumptions and use cases but all aim to approximate experimental conditions.
+In fact, many factors can change from one month to the next:  
 
-##  Wrap Up
+- **Seasonality:** back-to-school timing, pay cycles, public interest in classrooms.  
+- **Donor mix:** more first-time vs. returning donors, or donors from different regions.  
+- **Project mix:** more urgent or attention-grabbing classroom needs.  
+- **Traffic & visibility:** a media mention, newsletter timing, or homepage tweaks.  
+- **Other product changes:** small interface changes that affect sharing.  
+- **External events:** news cycles, platform outages, or unrelated shocks.  
 
-- Experiments provide the strongest causal claims.
-- Quasi-experiments approximate experiments under assumptions.
-- Business analytics requires causal thinking to make good decisions.
+These examples show why before/after comparisons are fragile: they capture not only the effect of the new message but also everything else that moved between August and September.  
 
-> **Good business decisions aren't just based on what happened — they're based on why it happened.**
+
+It’s tempting to say the new wording worked. 
+But notice what else changed: it’s a new month. 
+September in the U.S. is back-to-school season, when different kinds of donors are active, new projects appear on the site, and public attention to education is higher. 
+Any, or all of these shifts could have played  raised sharing rates even if the message had stayed the same.  
+
+This means that the August–September comparison identifies a **causal** effect **only if** all of the following hold:
+
+1. The **message wording is the only change** affecting sharing across months.  
+2. The **composition of donors** is the same in both months.  
+3. The **mix of projects** (types, topics, urgency) is the same.  
+4. There are **no time trends or external shocks** that affect sharing.  
+5. There were **no other product/UX changes** relevant to sharing.
+
+These are strong assumptions and usually unverifiable in real settings.
+
+This is why before and after comparisons can mislead us: they mix the effect of the new message with all the other things that changed at the same time. 
+To get closer to the truth, we need better ways of making comparisons. 
+Sometimes that means using what we already know about how the world works. 
+Other times it means setting up the situation so that groups are directly comparable. 
+In the next section, we’ll see how to think about this more clearly using the idea of **counterfactuals**.  
+
+## Thinking in Counterfactuals & Potential Outcomes {.unnumbered}
+
+As we've already discussed, every causal question has a hidden **“what if”** built into it.  
+
+- If a donor saw the new message, what would have happened if they had seen the old one instead?  
+- If a donor saw the old message, what would have happened if they had seen the new one?  
+
+These 'what ifs' are called **counterfactuals**. They describe the outcomes we don’t get to observe, but that we'd love to know.  
+
+To keep track of this idea, we can use some simple notation. For each donor $i$, let:  
+
+- $Y_i(1)$: the outcome if donor $i$ sees the **new message**.  
+- $Y_i(0)$: the outcome if donor $i$ sees the **old message**. 
+
+
+These two values are called **potential outcomes**. They are “potential” because both are possible for donor $i$, depending on which message they see, but only one will ever be observed in reality.  
+
+The numbers in parentheses — (1) and (0) — are just labels for the two conditions:  
+
+- $1$ = treated with the new message  
+- $0$ = control, the old message  
+
+So $Y_i(1)$ means “what would happen to donor $i$ if they get treatment,” while $Y_i(0)$ means “what would happen if they don’t.” The causal effect for donor $i$ is the difference between these two potential outcomes:  
+
+$$
+Y_i(1) - Y_i(0)
+$$  
+
+This gives a precise way of saying: *how much more (or less) likely would donor $i$ be to share if they saw the new message instead of the old one?*  
+
+### The Fundamental Problem of Causal Inference {.unnumbered} 
+
+Here’s the catch: for each donor, we only ever get to see **one outcome in real life**.  
+
+- If donor $i$ saw the new message, we observe $Y_i(1)$. But we never learn what would have happened under the old message, $Y_i(0)$.  
+- If donor $i$ saw the old message, we observe $Y_i(0)$. But we never see what would have happened if they had seen the new message, $Y_i(1)$.  
+
+Each donor therefore has **two potential outcomes** — one under each message — but only one of them is ever observed. The other is always hidden. This is why causal inference is hard: the **counterfactual outcome** (the “what if” world that didn’t happen) is always missing.  
+
+::: {.callout-warning}  
+### Why the Before/After Comparison Fails  
+
+Think back to the August–September comparison.  
+
+- In September, we saw donors under the **new message** ($Y_i(1)$), but we never got to see those *same donors* under the **old message** ($Y_i(0)$).  
+- In August, we saw a different set of donors under the old message.  
+
+What if a donor gave in both August and September? Even then, the situation is not so clean: the same person might be in a different mood, supporting a different project, or responding to the season. Those changes mean their August outcome isn’t a perfect stand-in for the missing September counterfactual.  
+
+The problem is that **before/after compares across time, not across identical conditions**. It never truly gives us both potential outcomes for the same donor at the same moment — and that’s what we’d need for a clean causal claim.  
+:::  
+
+Because we can’t rewind time to show each donor both messages in the exact same situation, researchers need other strategies to approximate the missing counterfactuals. Next, we’ll see two broad approaches: relying on assumptions (model-based inference) and relying on research design (design-based inference).  
+
+
+### Moving from Individuals to Groups  {.unnumbered}
+
+Since we can’t calculate the exact causal effect for one donor, we shift our focus to groups. 
+Instead of asking *what was the effect for donor \(i\)?*, we ask: *on average, what happens when donors see the new message compared to when they see the old one? 
+
+Formally, this is the **average treatment effect (ATE):**  
+
+$$
+\text{ATE} = E[Y(1) - Y(0)],
+$$ 
+
+where $E[\cdot]$ means "the average across all donors."
+
+In words: the ATE tells us the average difference in sharing rates if **everyone** were shown the new message versus if **everyone** were shown the old one. 
+This is exactly the kind of information DonorsChoose cares about. 
+They don’t need to know the effect on one particular donor; they need to know whether, on average, changing the message boosts sharing.  
+
+As you might recall from your introductory statistics class, the expectation operator is linear, which means we can "move it inside":  
+
+$$
+E[Y(1) - Y(0)] = E[Y(1)] - E[Y(0)].
+$$  
+
+This shows that the average causal effect is equal to the difference between two expected outcomes:  
+
+- the expected outcome if everyone got the new message, and  
+- the expected outcome if everyone got the old message.  
+
+This looks much closer to something we can try to estimate with data. 
+In practice, we often replace expected values—unknown population statistics—with their approximations, the **sample averages**. If we do that, we get:  
+
+$$
+\text{SATE} = \bar{Y}(1) - \bar{Y}(0),
+$$  
+
+where $\bar{Y}(0)$ is the average sharing rate among donors who actually saw the new message, and $\bar{Y}(0)$ is the average sharing rate among donors who saw the old one.  This is known as the **Sample Average Treatment Effect** or, more simply as the  **difference in means estimator**.
+
+So does that mean we can just take the difference in sample means and be done? 
+Not quite. 
+The formula is correct — the average treatment effect can be estimated as a difference in means — but only if we are comparing the **right groups** and comparing the **right sample means**.
+
+In the before/after case, the groups came from different months, with different mixes of donors, projects, and seasonal factors. 
+Those averages combine the effect of the new message with all those other differences.
+What we really want is to compare two groups that are the same in every respect **except** the message they saw. 
+Only then does the difference in means reflect the true causal effect.
+
+So the math itself is not the problem — it’s the data we feed into it. 
+That’s why **research design** — how we create the groups for comparison — is so important. 
+Let's explore two approaches.
+
+## Approach 1 - Model-Based Inference 
+
+So how can we make groups comparable? One option is to use what we already know — or think we know — about how the world works to adjust our comparisons. 
+We will call this approach **model-based inference**. 
+In model-based inference, we build a model that explains how outcomes are generated and use that model to correct for differences between groups. 
+If our assumptions about the model are right, our comparison becomes more meaningful. If they’re wrong, the model can mislead us just as easily as the data. 
+
+To see how this works, let's abstract away from the DonorsChoose business problem and start with a fictious example where we are in control of how the data are generated. 
+Imagine we’re studying a very simple artificial economy where earn an income.
+To be precise, the economy will follow the following 6 rules:
+
+1. Income is log-normally distributed
+2. Being brown-haired gives you a 10% income boost
+3. 20% of people are naturally brown-haired
+4. Having a college degree gives you a 20% income boost
+5. 30% of people have college degrees
+6. 40% of people who don’t have brown hair or a college degree will choose to dye their hair brown
+
+::: {.callout-warning} 
+### Normal vs. Log-Normal Incomes  
+
+A **normal distribution** is symmetric: most values cluster around the mean, and the probabilities of being above or below it are similar. Height or test scores often follow this pattern.
+
+In contrast, a **log-normal distribution** is **skewed to the right**. Most people earn moderate incomes, but a small number earn much more. 
+
+When we say income is *log-normally distributed*, we mean that if we took the logarithm of income (for example, `log(income)`), the result would follow a normal distribution. That’s why we simulate baseline incomes this way—to reflect a realistic spread of lower and higher earners.  
+:::
+
+
+To see this economy in action, let's generate data for 5,000 people living in it:
+
+```{r}
+#| echo: true
+#| eval: false
+library(tidyverse)
+
+set.seed(42)
+
+sim <- 
+    tibble(college = runif(5000) < .3) %>%
+    mutate(hair = case_when(
+                runif(5000) < .2+.8*.4*(!college) ~ "Brown",
+                TRUE ~ "Other Color"
+                ),
+    log_income = .1*(hair == "Brown") + 
+                .2*college + rnorm(5000) + 5 
+           )
+    
+glimpse(sim)
+```
+
+```{r}
+#| echo: false
+#| eval: true
+library(tidyverse)
+
+sim <- read_csv("../data/brown_hair_example.csv")
+```
+
+We want to use this data to estimate the causal effect of having brown hair on income.
+According to the rules above, we should see a difference of 10%.
+Let's look at the distribution of income between the two hair colors:
+
+```{r}
+sim %>%
+  ggplot(aes(x = log_income, fill = hair)) +
+  geom_density(alpha = 0.4) +
+  ggokabeito::scale_fill_okabe_ito() + 
+  labs(
+    x = "Income",
+    y = "Density",
+    fill = "Hair color",
+    title = "Income distributions by hair color"
+  ) +
+  theme_minimal()
+```
+
+The figure above doesn't suggest a 10% difference in income between hair colors, as the density plots are almost perfectly overlapping. 
+What if we tease out the mean difference in the data by comparing mean income of brown haired people to non-brown haired people?
+Computing difference in log income will give us a percentage difference:
+
+```{r}
+sim |> 
+    group_by(hair) |> 
+    summarise(mean_income = mean(log_income)) |> 
+    mutate(pct_diff = round(mean_income - lag(mean_income), 2))
+```
+
+Here we see the difference in incomes in the data is two percent. 
+That's a far cry from the 10% we know it is in the data.
+Why do we see the discrepancy?
+Because our comparison is confounded — we’re not comparing the right groups.
+That might feel like an incorrect statement because we are comparing across hair colors which is what we wanted to do
+
+Remember that some people who aren’t naturally brown-haired chose to **dye** their hair, and those individuals are also less likely to have a college degree. As a result, the group we observe as “brown-haired” contains more people without college degrees than the group we observe as “not brown-haired.” 
+Since education has a strong positive effect on income, this imbalance pulls the average income of the brown-haired group downward, making the true 10% income boost look much smaller.  
+
+This is a classic example of **omitted variable bias**: a hidden factor (education) is correlated with both the treatment (hair color) and the outcome (income), distorting the relationship we observe in the data.
+The question is whether we can make assumptions or use what we know about the economy to find the right comparisons.
+
+Among college graduates, nobody is dyeing their hair — people either have naturally brown hair or they don’t.
+That means within this group, hair color isn’t tangled up with other factors like education or hair-dyeing choices. 
+The only reason we might see income differences is because brown hair itself gives an income boost in our simulated economy.
+So, let’s focus only on **college graduates** and re-run our summary statistics: 
+
+```{r}
+sim |> 
+    filter(college == TRUE) |> 
+    group_by(hair) |> 
+    summarise(mean_income = mean(log_income)) |> 
+    mutate(pct_diff = round(mean_income - lag(mean_income), 3))
+```
+
+Now we see a mean difference of 12.2%.
+This is much closer to the 10% that we know is true, and the difference between 12.2% and 10% is due to randomness.
+
+What we just did is an example of **model-based inference** in action.
+We used our understanding of how this economy works — that education affects income and that dyeing only happens among people without degrees — to decide how to make a fair comparison.
+By restricting the sample to college graduates, we effectively **controlled for education**, removing the main source of confounding that meant our naive difference in means between hair colors across the entire population was not returning the correct answer.
+This works because our model of the world told us that once we hold education constant, the only remaining systematic difference between groups is hair color itself.  
+
+This is the essence of model-based inference:
+we rely on a model — a set of assumptions about how outcomes are generated — to adjust our comparisons and approximate the right counterfactuals.
+If our model is right, our inference is credible.
+If it’s wrong, we may still be fooled by hidden differences.
+
+The challenge in real business data is that the assumptions we need to make are rarely obvious.
+Model-based inference often requires **expert-level domain knowledge** to even guess which factors matter and how they interact.
+And even with such expertise, we can never be sure our assumptions are correct — because, as analysts, we don’t control all the features of the economy we study.  
+
+::: {.callout-note}  
+### Where Do Assumptions Come From?  
+
+In our simulated economy, we didn’t have to *guess* which factors mattered — we already knew the rules that generated the data.
+That means our assumption about the model (that income depends on education and hair color, and that dyeing only happens for non-graduates) came from **knowledge**, not belief.
+
+In the real world, we rarely get that luxury.
+Business Analysts must rely on theory, prior evidence, or domain expertise to decide which variables to include and what relationships to assume.  
+That’s why model-based inference always carries some risk: our conclusions are only as good as the model we choose.
+:::
+
+## Approach 2 - Design Based Inference
