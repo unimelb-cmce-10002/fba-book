@@ -303,7 +303,7 @@ glimpse(sim)
 #| eval: true
 library(tidyverse)
 
-sim <- read_csv("../data/brown_hair_example.csv")
+sim <- read_csv("data/brown_hair_example.csv")
 ```
 
 We want to use this data to estimate the causal effect of having brown hair on income.
@@ -425,7 +425,7 @@ Let's visualize that.
 ```{r}
 #| echo: false
 #| fig-align: center
-knitr::include_graphics("../figs/random_allocation.png")
+knitr::include_graphics("figs/random_allocation.png")
 ```
 
 In this figure, every participant starts in the same big pool.
@@ -487,7 +487,7 @@ We can load the data from the experiment to explore the effects:
 ```{r}
 #| message: false
 donors_choose <-
-    read_csv("../data/donors_choose.csv")
+    read_csv("data/donors_choose.csv")
 
 head(donors_choose)
 ```
