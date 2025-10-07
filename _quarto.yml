@@ -55,6 +55,7 @@ book:
         - tutorials/data_collection.qmd
         - tutorials/data_variation.qmd
         - tutorials/descriptive_analytics.qmd
+        - tutorials/causal_analytics.qmd
   # appendices:
     # - appendices/installation.qmd
 
