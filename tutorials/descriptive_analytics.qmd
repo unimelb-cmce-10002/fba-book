@@ -1,0 +1,514 @@
+# Tutorial 9: Descriptive Analytics in HRM {.unnumbered}
+
+
+::: {.callout-tip}
+## Learning Goals {.unnumbered}
+
+By the end of this tutorial, you should be able to:
+
+- Understand key factors related to employee attrition and their potential impact on the business.
+- Apply clustering techniques (K-means, PCA) to uncover segments of employees with different characteristics.
+- Interpret and compare the resulting clusters in terms of job satisfaction, income, tenure, and attrition risk.
+- Evaluate how well the clustering reflects meaningful differences using visualizations and summary statistics.
+:::
+
+## The Business Challenge
+
+### The Topic: Why are employees leaving — and how can we group them to better understand attrition? {.unnumbered}
+
+Every time an employee leaves, companies incur real costs. Thus, understanding **which types of employees are most at risk of leaving** is a key priority for HR analytics.
+
+In this tutorial, we’ll use clustering techniques to group employees based on their characteristics and see whether some groups are more likely to quit. This lets us move beyond individual-level predictors to identify broader patterns and profiles — a common strategy in **descriptive analytics**.
+
+We'll also introduce **Principal Component Analysis (PCA)** — a method for reducing complexity while keeping the structure of the data intact.
+
+### The Data: HR Analytics Data on 1,470 Employees {.unnumbered}
+
+We'll be working with an anonymized dataset from a fictional company’s HR department. It includes detailed information on 1,470 employees, including:
+
+- **Personal characteristics**: `age`, `gender`, `marital_status`, `distance_from_home`
+- **Job-related features**: `job_satisfaction`, `monthly_income`, `years_at_company`, `department`
+- **Outcome**: `attrition` – whether the employee has left the company
+
+This gives us a rich set of variables to explore patterns in attrition and test whether employee segments differ in meaningful ways.
+
+### The Method: Clustering and PCA for Descriptive Segmentation {.unnumbered}
+
+Our goal is to **segment employees** into groups with similar profiles — and examine whether some segments are more prone to attrition. To do this, we’ll:
+
+1. **Prepare and normalize** the data so that all variables are on comparable scales  
+2. Use **K-means clustering** to group employees based on features like satisfaction, income, and commute distance  
+3. Use **PCA** to reduce the number of variables while preserving the main structure in the data  
+4. Interpret the resulting clusters — comparing their average characteristics and attrition rates
+
+We'll also explore how to choose the **right number of clusters**.
+
+### Loading the R packages and data
+
+Here's the packages we will need to complete the exercises:
+
+```{r}
+#| eval: false
+#| message: false
+library(tidyverse)  # data manipulation and plotting
+library(janitor)    # cleaning column names
+library(recipes)    # For data preprocessing
+library(cluster)    # clustering
+library(factoextra) # k-means visualization and cluster evaluation
+library(broom)      # tidy output of clustering results
+```
+
+Let's load the data that we will use today:
+
+```{r}
+#| eval: false
+df <-
+    read_csv("data/hr_attrition.csv") |> 
+    # tidy up column names to snake_case 
+    clean_names()
+```
+
+## Prepare these Exercises before Class 
+
+Prepare these exercises before coming to class. Plan to spend 30 minutes on these exercises.
+
+### Exercise 1: The What and Why of employee attrition
+
+Employee attrition refers to people leaving the company — either voluntarily (resignation) or involuntarily (termination). 
+While some turnover is normal, high attrition can signal deeper issues.
+
+**(a)** What kinds of consequences might high attrition have for a business?
+
+**(b)** What might cause employees to leave?
+
+**(c)** Why would a company want to predict or understand patterns in attrition?
+
+### Exercise 2: Identifying Some Preliminary Patterns
+
+::: {.callout-warning collapse=true}
+### Why We're Not Giving You Template Code
+
+You've had plenty of practice with `dplyr` tools like `group_by()`, `summarise()`, and `mutate()`. This question is designed to help you build fluency in writing tidyverse code from scratch.
+
+It's normal to feel unsure at first—but struggling a little helps solidify your skills. If you're stuck, re-use patterns from previous tutorials.
+:::
+
+Let's start exploring the dataset to identify patterns in attrition. 
+Our goal is to understand where attrition is most common and what kinds of employees are more likely to leave.
+
+**(a)** What is the overall attrition rate in the dataset?
+
+**(b)** Which departments or job roles seem to have the highest attrition? Use proportions, not just counts.
+
+**(c)** How do the following characteristics differ between employees who left and those who stayed?
+Use averages to compare:
+
+- Job satisfaction
+- Monthly income
+- Years at company
+- Distance from home
+- Age
+
+**(d)** Based on your findings, describe the typical profile of an employee who leaves. Are there any surprises?
+
+### Exercise 3: Preparing Data for Clustering
+
+You've been asked to explore whether there are natural groupings of employees based on key workplace characteristics. 
+Clustering sounds like a promising direction — but before you dive in, your colleague suggests you first prepare a clean, numeric dataset.
+
+They recommend using the following variables:
+
+- `job_satisfaction`  
+- `monthly_income`  
+- `years_at_company`  
+- `distance_from_home`  
+- `age`
+
+**(a)** Why might your colleague suggest using only numeric variables at this stage?  
+
+*Hint: Think about how clustering methods like K-means work.*
+
+**(b)** Why is it important to scale or normalise the variables before clustering?
+
+**(c)** Complete the  preprocessing pipeline below that:
+
+- selects the 5 numeric variables above  
+- scales (normalises) them so they are all on the same scale (mean 0, SD 1)
+
+```{r}
+#| eval: false
+rec <- 
+    YOUR_CODE(~ ., data = df |> 
+        YOUR_CODE(job_satisfaction, monthly_income, years_at_company, distance_from_home, age)
+        ) |>
+    YOUR_CODE (all_numeric_predictors())
+
+df_scaled <- 
+    YOUR_CODE(rec) |> 
+    YOUR_CODE(new_data = NULL)
+```
+
+**(d)** Check that your preprocessing worked by printing the mean and standard deviation of each column in `df_scaled`. What do you notice?
+
+### Exercise 4: First Steps with K-Means Clustering
+
+You've prepared a numeric dataset of employee features — now let’s try to find **natural groupings** among employees using **K-means clustering**.
+
+**(a)** What do you think K-means clustering tries to do?  
+Try to explain it in your own words — no need to be technical yet.  
+
+*Hint: Think about what it means for observations to be “similar” and how K-means might group them.*
+
+**(b)** Complete the code below to run K-means clustering on your `df_scaled` data, asking for 3 clusters.  
+We've asked the function to use 10 random starting points (`nstart = 10`) to improve stability, and set a seed for reproducibility.
+
+```{r}
+#| eval: false
+set.seed(123)  
+
+kmeans_model <- 
+    YOUR_CODE(YOUR_DATA, 
+           centers = YOUR_NUMBER, 
+           nstart = 10
+           )
+```
+
+**(c)** Complete the code below to visualise the clusters.
+
+```{r}
+#| eval: false
+fviz_cluster(
+  YOUR_MODEL,
+  data = YOUR_DATA,
+  palette = c("#00AFBB", "#2E9FDF", "#E7B800"),
+  ggtheme = theme_minimal(),
+  main = "K-means Clustering Results"
+)
+```
+
+**(d)** Interpret the plot.
+Do the clusters look well-separated? 
+
+**(e)** Which variables might be driving the clustering? Complete the code below.
+
+```{r}
+#| eval: false
+# include variables we want to keep from our analysis and attrition
+df_clustered <- 
+    df |> 
+    select(YOUR_VARIABLES)
+
+# add the cluster assignment to the data
+df_clustered <- 
+    augment(kmeans_model, df_clustered)
+
+# Now some summary statistics grouping by cluster
+df_clustered |>
+    group_by(YOUR_VARIABLE) |>
+    summarise(across(job_satisfaction:age, mean))
+
+df_clustered |>
+    group_by(YOUR_VARIABLE) |>
+    summarise(
+        count = n(),
+        attrition_rate = mean(attrition == "Yes")
+    )
+```
+
+
+## In-Class Exercises
+
+You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.
+
+### Exercise 5: How many clusters should we use?
+
+Clustering requires us to pick a value for `k` — the number of clusters. But how do we decide what’s best?
+
+There are several methods we can use. Each has a different way of deciding whether the clusters are "tight" and "well separated."
+
+**(a)** What do you think could go wrong if we choose too few or too many clusters?
+
+**(b)** One common approach we encountered in the lecture is the **elbow method**.  
+What is the elbow method trying to do, in plain language?
+
+**(c)** Run the code below and look at the plot.  
+Where do you see a clear "elbow" or bend in the curve?  
+Based on the plot, what value of `k` would you choose?
+
+```{r}
+#| eval: false
+fviz_nbclust(
+  df_scaled, 
+  kmeans,
+  method = "wss",     # Within-cluster sum of squares
+  k.max = 10,
+  nstart = 10
+)
+```
+
+**(d)** One alternative to the elbow method is the silhouette method which looks at how well each point fits within its cluster vs. other clusters.
+Run the code below and report which value of `k` this method prefers.
+
+```{r}
+#| eval: false
+fviz_nbclust(
+  df_scaled, 
+  kmeans,
+  method = "silhouette"
+)
+```
+
+**(e)** Another alternative to the elbow method is the gap statistic which compares your clustering to what you’d expect from random data.
+Run the code below and report which value of `k` this method prefers.
+
+```{r}
+#| eval: false
+fviz_nbclust(
+  df_scaled,
+  kmeans,
+  method = "gap_stat",
+  nstart = 25,
+  iter.max = 50
+)
+```
+
+**(f)** Do all three methods agree on the best value of k? If not, how would you decide?
+
+**(g)** Based on your answer, pick a value for k, rerun the kmeans() function, and briefly describe the new clustering results.
+
+```{r}
+#| eval: false
+set.seed(123)
+kmeans_model <- kmeans(df_scaled, centers = YOUR_CHOICE, nstart = 10)
+
+fviz_cluster(
+  kmeans_model,
+  data = df_scaled,
+  palette = "jco",
+  ggtheme = theme_minimal()
+)
+```
+
+### Exercise 6: Segmentation with Dimensionality Reduction
+
+We now explore whether simplifying our dataset — by reducing the number of dimensions — might help improve clustering.
+
+Right now, we're clustering using all five numeric features. But some of these might contain similar information. 
+Dimensionality reduction helps us find a smaller number of new features (called components) that capture most of the variation in the data.
+Once we have reduced dimensionality, we can then run Segmentation on this reduced set of features.
+This will prove helpful in the next question when we want to use **all** variables in the dataset
+
+One common method of dimensionality reduction is Principal Component Analysis (PCA).
+
+**(a)** Ask your tutor to briefly explain the intuition behind the PCA method and how it works.
+Then, in your own words, write down one thing that PCA is trying to do.
+
+**(b)** Run the code below to apply PCA to the `df_scaled` data.
+Then use summary(pca_model) to inspect how much variance is explained by the first few components.
+
+```{r}
+#| eval: false
+pca_model <- 
+    prcomp(df_scaled,
+           # because we have already done each of these
+           # set them to false
+           center = FALSE,   # if TRUE sets means to 0
+           scale. = FALSE)   # IF TRUE sets std dev to 1
+summary(pca_model)
+```
+
+**(c)** After looking at the output, suppose a colleague suggests "use 3 principal components". Explain why he might make that suggestion.
+
+**(d)** Another way to choose how many components to keep is to look at which variables are being absorbed into each components.
+Run the code below, and then decide how many components you want to keep, justifying your decision.
+
+```{r}
+#| eval: false
+# PC1 variable contributions
+fviz_contrib(pca_model, choice = "var", axes = 1)
+
+# PC2 variable contributions
+fviz_contrib(pca_model, choice = "var", axes = 2)
+
+# PC3 variable contributions
+fviz_contrib(pca_model, choice = "var", axes = 3)
+
+# PC4 variable contributions
+fviz_contrib(pca_model, choice = "var", axes = 4)
+
+# PC5 variable contributions
+fviz_contrib(pca_model, choice = "var", axes = 5)
+```
+
+**(e)** Create a new PCA-transformed dataset with only the components you selected above by completing the code below:
+
+```{r}
+#| eval: false
+df_pca <- as_tibble(pca_model$x[, 1:YOUR_CHOICE])
+```
+
+**(f)** Run K-means on `df_pca` using 3 clusters.
+
+```{r}
+#| eval: false
+set.seed(123)
+kmeans_pca <- kmeans(df_pca, centers = 3, nstart = 10)
+```
+
+**(g)** Visualise the PCA clustering results using the code below. Did the three cluster model perform better compared to Exercise 4? Try and explain why.
+
+```{r}
+#| eval: false
+fviz_cluster(kmeans_pca, data = df_pca)
+```
+
+### [Advanced, Optional] Exercise 7: Segmenting with All Variables
+
+::: {.callout-warning collapse=true}
+## Only complete if > 40 mins left in the tutorial!
+
+This exercise takes a while to complete. If there is less than 40 mins to go in class, skip this exercise and proceed to Exercise 8.
+Solutions will be posted after the tutorial.
+:::
+
+::: {.callout-warning collapse=true}
+## What comes next is tough!
+
+In the exercises that follow, you’ll walk through how to do K-means clustering using **both numeric and categorical features**, with **dimensionality reduction via Principal Component Analysis (PCA)**.
+
+This is advanced content — we don’t expect you to write this code on your own nor will a detailed example such as this be expected in an assessment situation.
+We want to show you what **is** possible building off the skills you have acquired above.
+Follow along with your tutor and focus on building intuition for:
+
+- What each step does
+- Why we need it
+- How it connects to what you’ve learned so far
+
+Exercises after the data prepation will feel very familiar — only the somewhat involved data preparation is new.
+:::
+
+So far, we've limited our clustering to just five numeric features.  
+But in reality, companies might want to use **all available information** — including categorical variables like job role, marital status, and department — to uncover richer segmentation patterns.
+
+That introduces two new challenges:
+
+1. **K-means clustering only works with numeric inputs.**  
+   So how do we use categorical variables?
+
+2. **K-means works best with fewer dimensions.**  
+   But after we include all those dummy variables, we get many more!
+
+This exercise guides you through a workflow to overcome both challenges.
+
+**(a)** Run the data preparation pipeline below that:
+
+- Removes `employee_number` (a unique ID)
+- Removes `attrition` (our outcome variable — we want to use it *after* clustering)
+- Converts categorical variables into dummy (one-hot encoded) columns
+- Normalises all numeric columns
+
+```{r}
+#| eval: false
+rec <- 
+    recipe(~ ., data = df) |>
+    # Remove these variables from processing pipeline
+    update_role(employee_number, new_role = "id") |>
+    update_role(attrition, new_role = "outcome") |>
+    # Drop variables that are constant across all rows
+    step_zv(all_predictors()) |>
+    # Create "Dummmy Variables" from Categoricals
+    step_dummy(all_nominal_predictors()) |>
+    # normalize all numerics, as before, but across all
+    step_normalize(all_numeric_predictors())
+
+df_pca_all <- 
+    prep(rec) |> 
+    bake(new_data = NULL) |>
+    # drop these from the PCA
+    select(-employee_number, -attrition)
+
+```
+
+**(b)** What does the `step_dummy()` line do?
+Why does this solve the problem we mentioned above — that K-means requires numeric inputs?
+
+**(c)** The pipeline also includes `step_normalize(all_numeric_predictors())`, but this doesn’t affect the dummy variables.
+Why might that be a good thing? What could go wrong if we normalised dummy variables?
+
+**(d)** Why do we remove `employee_number` and `attrition` after the `bake()` step?
+
+**(e)** Run PCA on the dataframe created in (a) and investigate the output. Think about how many components you would want to keep for the K-means analysis.
+
+```{r}
+#| eval: false
+pca_model <- 
+    prcomp(df_pca_all, 
+           center = FALSE, 
+           scale. = FALSE
+           )
+summary(pca_model)
+
+fviz_contrib(pca_model, choice = "var", axes = 2)
+
+```
+
+**(f)** Run the code below to keep the first 2 Principal Components. Can you explain why we chose to keep only the first two?
+
+```{r}
+#| eval: false 
+df_pca_2 <- as_tibble(pca_model$x[, 1:2])
+```
+
+**(g)** Use the Elbow method to determine the number of clusters you want to use in your K-means analysis. How many clusters would you choose?
+
+```{r}
+#| eval: false
+fviz_nbclust(
+  df_pca_2, 
+  kmeans,
+  method = "wss",     # Within-cluster sum of squares
+  k.max = 10,
+  nstart = 10
+)
+```
+
+**(h)** Run the code below to run K-means clustering with `k=3` clusters.
+
+```{r}
+#| eval: false
+set.seed(123)
+kmeans_pca <- kmeans(df_pca_2, centers = 3, nstart = 10)
+```
+
+**(i)** Visualise the PCA clustering results using the code below. Did the three cluster model perform better compared to Exercises 4 and 6? Try and explain why.
+
+```{r}
+#| eval: false
+fviz_cluster(kmeans_pca, data = df_pca_2)
+```
+
+### Exercise 8: Communicating Your Results at an Analytics Team Meeting
+
+You’ve now explored several ways to segment employees using clustering. 
+In this final task, you’ll choose the clustering model you believe worked best, and draft a short memo to guide an internal team discussion. Use the outline below and provide 2–3 bullets under each subheader.  
+
+Your summary should be clear, concise, and insightful — not just a restatement of your code.
+
+*Hints*:
+
+- Use the "Write Like an Amazonian" tips from Group Assignment 1 to aid your writing. 
+
+**Problem Statement**  
+*(1 short paragraph summarising why we are segmenting employees and what business problem this analysis addresses)*  
+
+**Recommended Clustering Model**  
+- …  
+- …  
+
+**Key Employee Segments**  
+- …  
+- …  
+
+**Limitations & Next Steps**  
+- …  
+- …  

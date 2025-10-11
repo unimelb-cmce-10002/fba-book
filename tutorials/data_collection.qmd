@@ -34,6 +34,10 @@ We will learn two ways to interact with FRED:
 
 By the end of this workshop, you’ll not only gain hands-on experience with macroeconomic data, but also develop an appreciation for how the “big picture” shapes the smaller decisions businesses face every day.
 
+## Prepare these Exercises before Class 
+
+Prepare these exercises before coming to class. Plan to spend 30 minutes on these exercises.
+
 ### Exercise 1: Visualize and Download Macroeconomic Data Directly from the FRED Website
 
 FRED offers an easily accessible web-based platform for users to visualize and download macroeconomic data directly from their website (https://fred.stlouisfed.org/). 
@@ -49,40 +53,36 @@ Read through each page and think about the following questions (recap of Macroec
 - What does "core CPI" mean here? How does it differ from normal CPI?
 - What is the relation between CPI and inflation?
 
-*Write your answer here*
-
 ### Exercise 2: Preparing for Obtaining Data through APIs
 In addition to the web-based interactive platform, FRED offers APIs to those who would like to acquire data through programs and in large batches (see the page for details: https://fred.stlouisfed.org/docs/api/fred/). 
 
 To prepare for our practices during the workshop, make sure you have applied for the API key for FRED before the workshop (VERY IMPORTANT!). Below are the detailed steps
 
-* Visit the FRED's API webpage (https://fred.stlouisfed.org/docs/api/fred/) and click the link to "API Keys."
+* Visit the FRED's [API webpage](https://fred.stlouisfed.org/docs/api/fred/) and click the link to "API Keys."
 
-![](Images/FRED_API_1.png)
+![](../figs/data_collection/FRED_API_1.png)
 
 * Request your own API key:
 
-![](Images/FRED_API_2.png)
+![](../figs/data_collection/FRED_API_2.png)
 
 * You will see a pop-up window asking for signing in. Click "create new account" at the top and you will get to the following page:
 
-![](Images/FRED_API_3.png)
+![](../figs/data_collection/FRED_API_3.png)
 
 * Use your Uni email address to register. For the question "In what context do you use FRED?", choose "Student."
 
 * Once you finish your registration, you will be automatically directed to the API request page. Click "+ Request API Key".
 
-![](Images/FRED_API_4.png)
+![](../figs/data_collection/FRED_API_4.png)
 
 * In the next page, briefly describe why you are applying for the API access.
 
-![](Images/FRED_API_5.png)
+![](../figs/data_collection/FRED_API_5.png)
 
 * You will now see your API key on the page. MAKE SURE that you copy and store the key safely. Do not share your API key with others, as doing so may block your access to the FRED API.
 
 * If you forget your API key, you can retrieve it from FRED using your registered email and log-in credentials. 
-
-*Write your answer here*
 
 ### Exercise 3: Set Up FRED API and Acquire Unemployment Data
 
@@ -309,15 +309,16 @@ p1 +   geom_rect(
 
 (e4) Is there any patterns for unemployment rates and inflation during the recession periods? How do you explain the pattern(s)?
 
-```{r}
-# Write your answer here
-```
+## In-Class Exercises
+
+You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.
+
 
 ### Exercise 4: Seasonal Adjustment for Unemployment Data
 
 When you retrieve the unemployment data from FRED using the series tag, `UNRATE`, you obtain seasonally adjusted unemployment rate.
 
-![](Images/unemployment_rate.png)
+![](../figs/data_collection/unemployment_rate.png)
 
 In this exercise, we are going to get a deeper understanding of seasonal adjustment by comparing seasonally adjusted and unadjusted unemployment rate. 
 
@@ -396,7 +397,7 @@ ggplot(YOUR_DATA, aes(x = YOUR_VARIABLE, y = YOUR_VARIABLE)) +
   geom_hline(yintercept = 0, color = "red", linetype = "dashed") +
   labs(
     title = "Seasonal Adjustments Made to Unemployment Rates (%)",
-    subtitle = "UNRATENSA – UNRATE",
+    subtitle = "UNRATE – UNRATENSA",
     x = "Year-Month", y = "Seasonal Adjustment (%)"
   ) +
   scale_x_date(date_labels = "%Y-%m", date_breaks = "3 months") +
@@ -410,13 +411,9 @@ ggplot(YOUR_DATA, aes(x = YOUR_VARIABLE, y = YOUR_VARIABLE)) +
 
 -   Why is seasonal adjustment important when working on unemployment data?
 
-```{r}
-# Write your answer here
-```
-
 ### Exercise 5: Okun's Law
 
-You may have learned the **Okun's Law** from ECON10003 (Introductory Macroeconomics). This is an important relation for us to understand the relation between economic output and unemployment.
+You may have learned the **Okun's Law** from ECON10003 (Introductory Macroeconomics). This is an important relation for us to understand the relationship between economic output and unemployment.
 
 ::: callout-note
 ## Definition: Okun's Law
@@ -601,7 +598,4 @@ line_equation <- paste0("ΔGDP = ",
 line_equation
 ```
 
-```{r}
-# Write your answer here
-```
 

@@ -1,0 +1,657 @@
+# Tutorial 8: Develop and Test Stock Trading Strategies {.unnumbered}
+
+::: {.callout-tip}
+## Learning Goals {.unnumbered}
+
+By the end of this tutorial, you should be able to:
+
+- Understand the concepts and workflows of quant trading strategy development and backtests.
+- Learn how to deal with financial market data (stock returns and firms' financial statement data).
+- Execute data wrangling on dates and joins by date ranges.
+- Be aware of the alignment of dates and time stamps in backtesting to avoid look-ahead bias.
+- Apply basic backtesting procedures to evaluate trading signals and performance of trading strategies.
+:::
+
+## The Business Challenge
+
+Quantitative trading, or quant trading, is an investment approach that relies on data, statistics, and computer power instead of intuition or "gut feeling." It has become one of the most important and pervasive forces in global financial markets, with many stock trades driven by quantitative strategies rather than human stock pickers. Instead of relying on subjective judgment or qualitative analysis on individual firms, quant traders design strategies based on patterns observed in financial or market data, test those strategies using historical data (a process called back-testing), and use them to guide real investment decisions. This data-driven approach is used not only by hedge funds, but also by pension funds and ETFs that we may be investing in every day.
+
+When you hear “quant trading,” you might imagine complicated math formulas, high-speed computers, and algorithms buying and selling stocks in milliseconds. That is partly true, whereas not all quant trading is alike. Some strategies are actually quite simple and use information you have already seen in accounting or finance classes. 
+
+**Foundamental-based quant trading** is a genre of quant investment that builds trading strategies based on fundamentals (i.e., numbers that describe a company's financial status and performance). This type of strategies are widely adopted, especially among institutions that trade at a lower frequency and prefer fewer adjustments to portfolios. The inputs of such strategies are often from financial statements, such as:
+
+- Profitability: gross profits, operating profits, net income, etc.
+- Growth: sales growth, asset growth 
+- Financial ratios: market-to-book ratio, P/E ratio, etc.
+
+Suppose you are an quant trader working for FBE Investment Group. You are targeting U.S. S&P 500 firms and have a total asset under management (AUM) of $1,000,000 as of today. You are going to develop and backtest trading strategies using real data from the market. 
+
+## Prepare these Exercises before Class 
+
+Prepare these exercises before coming to class. Plan to spend 30 minutes on these exercises.
+
+### Exercise 1: Play with Financial Data
+
+In the data file, `financials.csv` contains basic financial statement data for a list of firms. Below are brief definitions of each variable:
+
+- `tic`: Stock ticker, the symbol used for trading their stocks on the market
+- `gvkey`: Global Company Key used in database to uniquely identify each firm
+- `datadate`: Fiscal quarter end dates for each fiscal quarter
+- `fyear`: Fiscal year
+- `fqtr`: Fiscal quarter (1, 2, 3, or 4)
+- `report_date`: The dates when quarterly financial reports are issued (NOTE: financial information is not known or available to the public before this date)
+- `sale`: Sales revenue
+- `cogs`: Costs of goods sold
+- `xsga`: Selling, general, and administration (SG&A) expenses
+- `ni`: Net income
+- `at`: Total assets
+- `lt`: Total Liabilities
+- `seq`: Shareholders' equity
+- `ceq`: Common equity
+- `pstk`: Preferred stock
+
+#### (a) Fiscal Quarter Ends and Reporting Dates
+
+Financial reports are not immediately available to the public when a fiscal year/quarter ends. Instead, it takes time for companies to gather relevant information and prepare their financial reports. As a result, the actual dates when financial reports are available to investors and stakeholders, `report_date`, is different from fiscal quarter end dates, `datadate`. 
+
+(a1) In the dataset `financials`, keep the data for all fiscal quarters ends after 2019-01-01, use data wrangling tools to calculate the number of days between fiscal quarter ends (`datadate`) and reporting dates (`report_date`).
+
+```{r}
+#| eval: false
+#| warning: false
+
+# Load packages before you go
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+library(patchwork) # Combine multiple plots
+# Load data into R
+financials <- YOUR_CODE("../data/financials.csv")
+
+```
+
+```{r}
+#| eval: false
+#| warning: false
+
+# Convert dates in the <date> format
+financials_q1 <- financials %>% 
+    YOUR_CODE(
+        datadate = YOUR_CODE(datadate),
+        report_date = YOUR_CODE(report_date),
+        num_lags = report_date - datadate
+    ) %>%
+    filter(YOUR_CODE >= 2019) %>% 
+    arrange(desc(num_lags))
+
+```
+
+(a2) Get descriptive statistics for your variable `num_lags`. Create a histogram showing the distribution of the number of days between fiscal quarter ends and reporting dates. 
+
+```{r}
+#| eval: false
+#| warning: false
+
+# Generate histogram
+YOUR_CODE + 
+    labs(
+        x = "Number of Lagged Days",
+        y = "# of firms"
+    ) +
+    theme_minimal(base_size = 12)
+
+```
+
+(a3) What factors will affect the number of lagged days between fiscal quarter ends and reporting dates?
+
+#### (b) Financial Numbers and Ratios
+
+You may have already learned from your accounting and finance subjects about some simple financial numbers and ratios. In this exercise, we are going to calculate some of them using real data from financial statements.
+
+(b1) Create a histogram showing the distribution of **total assets** in the sample after 2019-01-01. How does it look like? 
+
+```{r}
+#| eval: false
+#| warning: false
+
+# Generate histogram
+YOUR_CODE + 
+    labs(
+        x = "Total Assets",
+        y = "# of firms"
+    ) +
+    theme_minimal(base_size = 12)
+
+```
+
+(b2) Take natural logarithmic transformation ($log()$) over **total assets**, and redo the histogram. Does it look similar to the one in (b1)?
+
+```{r}
+#| eval: false
+#| warning: false
+
+# Log tranformation
+financials_q1 <- financials_q1 %>%
+    YOUR_CODE(log_at = log(at)) 
+
+# Plot log-transformed total assets
+YOUR_CODE + 
+    labs(
+        x = "Total Assets",
+        y = "# of firms"
+    ) +
+    theme_minimal(base_size = 12)
+```
+::: {.callout-tip}
+## Logarithmic Transformation
+
+As we can see in the first plot of total assets, the distribution of total assets looks odd. Most firms concentrates near the left of the histogram, while several giant firms are on the far right. In data analyses, such distribution may not be ideal because:
+
+- Make it difficult for us to visualize the distribution in a meaningful way
+- May introduce problems to statistical procedures 
+
+One immediate remedy (recall Tutorial 7) would be dropping all the outliers on the right. However, this may not be ideal if we are analyzing financial market. "Outlier firms" are actually giants in the economy and deserves more attention (e.g., JP Morgan, Bank of America, and HSBC in the data).
+
+Hence, we consider another remedy: using logarithmic transformation to make the distribution more consistent to "normal distribution" (in the bell shape). This is a standard procedure when dealing with variables such as total assets and market capitalization.
+
+:::
+
+(b3) Obtain net income numbers and return-on-asset (ROA) for sample companies. When we compare profitability across companies, should we focus on net income or ROA? Why?
+
+::: {.callout-tip}
+## `summary()`
+
+`summary()` is a function that tabulates descriptive statistics of variables (including mean, median, standard deviation, values at different percentiles).
+:::
+
+```{r}
+#| eval: false
+#| warning: false
+
+# Log tranformation
+financials_q1 <- financials_q1 %>% 
+    YOUR_CODE(roa = ni/at)
+
+# Get summary statistics for net income and ROA (mean, median, standard deviation, etc.)
+YOUR_CODE(financials_q1 %>% select(roa, ni))
+```
+
+#### (c) Reporting Lags and Firm Characteristics
+
+Reporting lags matter for quant traders. As information is not immediately available after fiscal quarter/year ends, quant traders always mark the release dates of financial reports so that they incorporate new information into their models in a timely fashion. Hence, understanding the reporting lags offers additional information to quant traders.
+
+Using log-transformed total assets and ROA calculated in part (b), create two scattered plots with linear line fitting all the points. Do you observe any relation between firm size (or profitability)?
+
+```{r}
+#| eval: false
+#| warning: false
+
+p1 <- YOUR_CODE + 
+    labs(x = "Log(Total Assets)", y = "Number of Lagged Days") +
+    theme_minimal(base_size = 12)
+
+p2 <- YOUR_CODE + 
+    labs(x = "ROA", y = "Number of Lagged Days") +
+    theme_minimal(base_size = 12)
+
+p1 / p2
+
+```
+
+```{r}
+# Write your answer here
+```
+
+### Exercise 2: Stock Prices and Returns 
+
+Standard & Poor's 500 (S&P 500) is one of the most important index in the global financial market. It tracks the stock performance of the 500 leading companies listed on U.S. stock exchanges. You will be working on developing trading strategies using constituent stocks within S&P 500. As a starting point, you are going to do some data wrangling work over the provided dataset `sp500_panel.csv`. The variables are defined as follows:
+
+- `gvkey`: Global Company Key.
+- `tic`: Stock ticker, the symbol used for trading their stocks on the market.
+- `date`: The last trading day of a month.
+- `prc`: Closing prices (already adjusted for dividends payout, stock splits, etc.) at the end of the month.
+- `ret`: Stock returns from the beginning to the end of a month.
+- `shrout`: The number of shares (in 1000s) outstanding at the end of a month.
+
+```{r}
+#| eval: false
+#| warning: false
+# Load packages before you go
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+
+# Load data into R
+sp500 <- YOUR_CODE
+```
+
+#### (a) Date Variables
+
+To prepare for our in-class exercise on backtesting trading strategies, we need to do some work to get our date variables ready so that we are able to merge stock prices and returns with financial ratios. When dealing with stock (as well as other financial assets) trading data, we need to be mindful the difference between trading days and calendar days. As there is no trading on weekends and holidays, you will see dates missing when you look at daily trading data. Also, the month/year ends in trading data may not be the last day of a month/year.
+
+The `date` column in the data refers to the last trading day of the month rather than the last calendar day. For example, the last trading day of August 2025 is `29/08/2025` because the last two days were a weekend. Such incidence may introduce inconsistency in date variables and prevent us from merging data by dates. One common practice is to push the date to the last calendar day (i.e., push `29/08/2025` to `31/08/2025`). 
+
+Think about how to use `lubridate` to achieve this goal. Note that there are multiple ways of doing this task - be creative!
+
+```{r}
+#| eval: false
+#| warning: false
+# There are multiple ways of pushing the last trading day to last calendar day
+# (not just the two methods below)
+#     Note that you can always convert dates to 
+#     year, month, day components and start from there
+
+sp500_q2 <- YOUR_CODE
+
+```
+
+#### (b) Variable calculation
+
+In the second part, you are going to calculate the following variables using stock price and return data of S&P 500 stocks:
+
+- Market capitalization (`mktcap`): the market value of all shares, calculated as stock prices multiplied by the number of shares outstanding on the market.
+- Returns of the past month (`ret_past1`) and the next month (`ret_next1`).
+
+::: {.callout-tip}
+## Tips
+Use tickers (`tic`) rather than `gvkey` to group stocks in this case. This is because one company may issue more than one stocks (of different classes). Trading data of different classes of stocks can be different. However, using `tic` may not be always correct because firms may change their tickers in some scenarios.
+
+In practice, we will use alternative IDs for stocks so that each stock is uniquely identified (e.g., `PERMNO` in the CRSP Database).
+:::
+
+```{r}
+#| eval: false
+#| warning: false
+
+# Calculate Market cap
+sp500_q2 <- YOUR_CODE
+
+# Return of past month and the next month
+sp500_q2 <- sp500_q2 %>%
+    YOUR_CODE(tic) %>%
+    YOUR_CODE(date, .by_group = TRUE) %>%
+    YOUR_CODE(
+        ret_past1 = YOUR_CODE(ret, 1),
+        ret_next1 = YOUR_CODE(ret, 1)
+    )
+
+```
+
+#### (c) Rolling-Window Cumulative Returns
+
+When analyzing financial market data (as well as other time series data), it is common that we conduct rolling-window calculation. For example, we may calculate the moving average of prices and use it as trading signals. For example, one famous example in stock trading is called "golden cross" (may not be valid though... you can verify it with your data)
+
+> "Golden Cross" in the stock market: when short-term moving average line (e.g., MA of five days) cross long-term moving average line (e.g., MA of 60 days), stock prices tend to move up further. 
+
+For each month in the data, we are going to use R to calculate cumulative returns of this stock in past 12 months but exclude the most recent month. Specifically, for a given month $t$, we are going to calculate the cumulative returns from the beginning of month $t-12$ to the end of month $t-2$. We are going to use `roll_prod` from `slider` to do this particular task. You may search for `slider` online to understand how we set up the function (optional).
+
+```{r}
+#| eval: false
+#| warning: false
+
+# Necessary package for rolling
+library(slider)
+
+roll_prod <- 
+    function(x, n) exp(slide_dbl(log1p(x), 
+    sum, .before = n - 1, .complete = TRUE)) - 1
+
+# Rolling calculation (using `roll_prod`)
+sp500_q2 <- sp500_q2 %>%
+    arrange(tic, date) %>%
+    group_by(tic) %>% 
+    mutate(
+        ret_past12 = roll_prod(lag(ret, 2), 11)
+    ) %>% ungroup()
+
+```
+
+
+```{r}
+# Write your answer here
+```
+
+## In-Class Exercises
+
+You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.
+
+
+### Exercise 3: Making Money from Historical Stock Trading Data?
+
+Many investors are trading on historical data of stock performance. Some investors prefer to trade on smaller stocks because they feel these stocks are more profitable that the larger stocks. Some investors focus on analyzing price trends and decide their trading strategies based on recent price trends:
+
+- Momentum strategy: buy (sell) stocks when their returns in the recent months were high (low)
+- Reversal strategy: buy (sell) stocks when their returns in the recent months were low (high)
+
+With monthly stock return data of S&P 500 firms, your team is considering testing these strategies based on historical stock trading data. 
+
+Below is the roadmap for a typical backtesting, and you will follow the procedure to do yours.
+
+1. Select and construct a signal
+
+    - A signal in quant trading is a variable or a firm/stock characteristic that you would like to evaluate its relation with future stock returns
+    - In this case, your signal will be "returns in the recent months."
+    
+2. Rank stocks into groups based on the signal
+
+    - Rank stocks in your pool for **each trading period** (each month for this exercise).
+    - If the signal is working, you may expect the signal is either positively or negatively associated with **future stock returns**.
+    
+3. Evaluate performance by group
+
+- Instead of looking at individual stocks, we rank stocks into groups so that the random errors are cancelled out
+
+- Here is the detailed procedure:
+    - At the end of each month $t$, we rank stocks into 5 groups based on **the most recently available value** of the selected signal.
+    - We calculate the mean of `ret_next1` (month $t+1$'s (next month's) return) for each group
+    - If the signal works, we would see the group with the largest values for the signal outperforms or underperforms the group with the smallest values.
+    
+
+#### (a) Get your data ready (directly from Exercise 2 (pre-class))
+
+Directly use your data from Exercise 2. You should already have returns in the past and the next months, as well as rolling-window past 12-month returns
+```{r}
+#| eval: false
+#| warning: false
+
+# load packages
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+library(tidyr)
+
+# Assign the data as a new object for this question:
+sp500_q3 <- sp500_q2
+
+```
+
+#### (b) Small vs. Large 
+
+To test if small firms outperform large firms in stock performance, we use their market capitalization to measure their size. 
+
+(b1) At the end of each month $t$, we use end-of-month market cap (publicly available information) as the trading signal. For each month, we rank all stocks by market cap and sort them into five groups (1 = smallest, 5 = largest).
+
+::: {.callout-tip}
+## Programming with Variable Names
+
+Sometimes you may want to write your program in a more generic form so that it can be easily altered to do similar tasks. For example, the backtesting program is basically the same no matter which signal you are testing. Hence, it would save us some time if we create a more generic program.
+
+In the code, we first assign the column name of the signal (`"mktcap"`) in this case to an object `signal`. Note that `signal` is now a string value. Next, when we use `dplyr` in data wrangling, we can directly use the object `signal` in the code. To avoid confusion, we need to use `!!sym()` to wrap `signal`. `sym()` converts the string value ("mktcap") into a signal, and `!!` unquotes it so `dplyr` understands it as a column rather than a string value.
+
+:::
+
+```{r}
+#| eval: false
+#| warning: false
+
+# Small vs. Large
+
+## Step 1: Select and Construct a Signal 
+##### Assign the variable name of the trading signal to an object
+signal <- "mktcap" 
+raw_data <- sp500_q3
+
+## Step 2: Rank stocks into groups based on the signal at the end of each month
+rank_stock <- raw_data %>%
+    # Make sure the signal is missing and finite
+    filter(is.finite(!!sym(signal)) & !is.na(!!sym(signal))) %>%
+    group_by(date) %>% 
+    mutate(
+        # ntile() sort a column and divide into ordered groups
+        group = ntile(!!sym(signal), 5) # 5-largest, 1-smallest
+    ) %>%
+    ungroup()
+
+```
+
+(b2) Once we have all stocks sorted for *each* month, we can proceed with aggregating stocks by group for each month and calculate the average return in month $t+1$ for each group formed at the end month $t$. 
+
+```{r}
+#| eval: false
+#| warning: false
+# Aggregate at the group and month level
+agg_to_group <- rank_stock %>%
+    YOUR_CODE(date, group) %>%
+    YOUR_CODE(group_ret = mean(ret_next1, na.rm = TRUE), .groups = "drop") %>%
+    YOUR_CODE(date, group)
+```
+
+(b3) To make things easier for us to visualize return patterns for each group over time using `ggplot()`, we prefer to have the returns of each group stored as a single column:
+
+```{r}
+#| eval: false
+#| warning: false
+# Make it wide (need to load tidyr)
+agg_to_group_wide <- agg_to_group %>%
+    YOUR_CODE(names_from = group, 
+              values_from = `group_ret`, 
+              names_prefix = "Group")
+
+```
+
+(b4) Now, we are ready to evaluate the performance of each group over time and see if it is more profitable to buy small-size or large-size stocks:
+
+```{r}
+#| eval: false
+#| warning: false
+
+# Step 3: Evaluate performance
+## Calculate cumulative returns
+group_return <- agg_to_group_wide %>%
+    filter(!is.na(date) & !is.na(Group1)) %>%
+    arrange(date) %>%
+    YOUR_CODE(
+        across(`Group1`:`Group5`, ~ (cumprod(1 + .x) - 1), 
+               .names = "{col}")
+    )
+
+## Visualize the pattern
+ggplot(group_return) +
+    geom_line(aes(x = date, y = Group1 * 100, color = "Group 1")) +
+    geom_line(aes(x = date, y = Group5 * 100, color = "Group 5")) +
+    labs(x = "Date", y = "Returns (%)") + 
+    theme_minimal(base_size = 12)
+
+```
+(b5) In addition to the returns, risk is another important consideration in stock investment. You may want to take a look at the standard deviation of returns that each group earns over time. One useful metrics is to scale the average return of each group with the standard deviation (similar to the idea of Sharpe Ratio). We are going to walk back to `agg_to_group` to do this task:
+
+```{r}
+#| eval: false
+#| warning: false
+
+## Consider risk
+
+agg_to_group %>%
+    YOUR_CODE(group) %>%
+    YOUR_CODE(
+        mean_ret = mean(group_ret, na.rm = TRUE),
+        sd_ret = sd(group_ret, na.rm = TRUE), 
+        ratio = mean_ret/sd_ret
+    )
+
+```
+
+(b6) Based on your analyses, would you think small firms or large firms to be more favorable investment targets? Why or Why not? Would you think the results from your backtesting apply to the future?
+
+#### (c) Momentum and Reversal Strategy
+
+Now, we can reuse the program that we built for testing "small vs. large" strategy. As we have endeavored to make the program more generic. We only need to change the variable names for the trading signal at the very beginning.
+
+(c1) Use S&P 500 data to evaluate if momentum and reversal strategy works (you may look at both short-term and medium-term returns (i.e., past 1-month and 12-month returns))
+
+```{r}
+#| eval: false
+#| warning: false
+
+# Momentum & Reversal
+
+##### Assign the variable name of the trading signal to an object
+signal <- YOUR_CODE
+raw_data <- YOUR_CODE 
+
+### Copy your code from part (b) below
+
+COPY YOUR CODE HERE!
+
+```
+
+(c2) Do momentum and reversal strategies work in S&P 500 during the sample period (2019 - 2024)? Discuss about why (or why don't) such strategy work.
+
+```{r}
+# Write your answer here
+```
+
+### Exercise 4: Trade on Financial Statement Information
+
+In the last exercise, we are going to take a step further by bringing in financial statement numbers and ratios in our quantitative trading strategies.
+
+Financial statements and reports provides useful information for us to assess firms' operating performance and financial health and predict the value of a stock in the future. Such metrics are important factors that may affect stock prices. For example, if we observe that a firm's profitability is deteriorating, it may signal that the firm may create less value for its shareholders, which may result in a decline in stock prices. 
+
+As a quant trader, you want to exploit such information to invest your money into firms that are more likely to deliver good performance and higher stock returns. As a required step for your strategy design, you are required to conduct backtests to evaluate the performance of your strategy using historical data.
+
+```{r}
+#| eval: false
+#| warning: false
+# Load packages and data
+# load packages
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+library(tidyr)
+
+# Load stock return file from Q2
+sp500_q4 <- sp500_q2
+
+# Load financial data from CSV
+financials <- read.csv("../data/financials.csv")
+
+```
+
+#### (a) Calculate the signal from financial data
+
+(a1) Inspect all the date variables in `financials`: are they stored in the `<date>` format? If not, convert them into `<date>` formatted variable.
+
+```{r}
+#| eval: false
+#| warning: false
+
+# Check date variable
+YOUR_CODE(YOUR_CODE) 
+YOUR_CODE(YOUR_CODE)
+
+# Date format conversion? Assign the data you would like to work on further as
+# "financials_q4"
+financials_q4 <- financials %>%
+    YOUR_CODE
+```
+
+(a2) Since we have already obtained the template for backtesting in Q3, we are going to construct several signals and evaluate them in the next steps at a time.
+
+- Gross profitability: (sale - cogs)/at
+- Operating profitability: (sale - cogs - xsga)/at
+- Sales growth (YoY)
+
+::: {.callout-important}
+
+Why do we scale profits by total assets? What if we do not?
+
+::: 
+
+```{r}
+#| eval: false
+#| warning: false
+
+# Signal construction
+financials_q4 <- financials_q4 %>%
+    YOUR_CODE(gvkey) %>%
+    YOUR_CODE(YOUR_CODE, .by_group = TRUE) %>%
+    YOUR_CODE(
+        gp = (sale - cogs)/at,
+        op = (sale - cogs - xsga)/at,
+        sales_growth = YOUR_CODE
+    ) %>% ungroup()
+
+```
+
+#### (b) Align the Dates
+
+The major challenge here is to merge financial statement data into the S&P 500 stock return data we have worked on in Exercises 2 and 3. For your trading strategy, you rank firms at the end of each month $t$ and evalute the performance of each ranked group for the next month $t+1$. However, financial statements and reports are not release at the end of each month nor at the monthly frequency. As a result, we are not able to join `financials_q4` and `sp500_q4` directly by dates and firm IDs.
+
+For quant traders, you always want to incorporate most up-to-date information when you are adjusting your portfolios and investments. Hence, at the end of each month, you would like to rank firms based on the **most recently released** financial statement data. We are going to stick to this rule and figure out how to merge our dataset.
+
+**Joining by date range**. It is not uncommon that we are going to do joins by date ranges. For example, we may need to merge Data A with Data B so that the dates in Data A falls in between two different date columns in Data B. In this case, we are doing something similar:
+
+-  We would like to use `sp500_q4` as the base dataset and do a `inner_join` with `financials_q4`. 
+-  We are doing exact match for `gvkey` in our joining process, but range matches for date variables.
+-  For each stock-month observation, we would like to match it with the most recently available financial data in `financials_q4`
+-  In other words, for each month-end `date` in `sp500_q4`, we select the `report_date` from `financials_q4` that is the most recent date right before (and closest to) that month-end.
+
+Below is the program we are going to execute. Please finish the missing part.
+
+```{r}
+#| eval: false
+#| warning: false
+
+# Merge financials to stock return data
+merged_data <- sp500_q4 %>%
+    inner_join(financials_q4, join_by(gvkey, date > report_date)) %>%
+    # Select the most recent one from all dates merged with a month end 
+    group_by(gvkey, date) %>%
+    slice_max(report_date, with_ties = FALSE) %>%
+    ungroup() %>%
+    arrange(gvkey, date)
+```
+
+#### (c) Evaluate performance of your strategies
+
+Use the backtesting template, evaluate the performance for (1) Operating Profitability and (2) Sales Growth. 
+
+```{r}
+#| eval: false
+#| warning: false
+
+FILL IN THIS CHUNK BY YOURSELF
+
+```
+
+(c) Discuss with your classmate:
+
+- Are these trading strategy feasible in reality?
+- Are you convinced by the results of your analyses? Why?
+- Are we ready to put the strategies in use now? Is there anything that may affect the effectiveness of the strategies?
+
+
+
+
+*Write your answer here*
+
+
+
+
+### Final Remarks
+
+In Exercises 3 and 4, you may have already obtained significant returns from your trading strategies (more than 100% for some groups). Are you going to dive directly into the market and implement your strategies right away? 
+
+> Waiiiiit a SECOND!
+
+We have to make a disclaimer that
+
+> The information and data results of this exercise materials is ONLY for the purposes of teaching and learning of CMCE10002: Foundations of Business Analytics at the University of Melbourne. All information within this document does not constitute investment recommendations or financial advice of any forms.
+
+The work you have just done is a great start while still far away from real quant trading. Here are a few things:
+
+- We do not use raw returns to evaluate the performance of trading strategies, instead, we focus on "excess returns" (exceeding certain benchmarks).
+
+- We have not simulated any trading activities in our backtesting. It is not guaranteed that we are always able to buy/sell the stocks at the end of the month (depending on the market conditions and whether we have a counterparty). Also, trading costs are not accounted for in our backtests (which can be huge in some scenarios).
+
+- We have not separate out the part of the return we are gaining for taking additional risk (i.e., in an unrealized world, we may not be so lucky...). 
+
+Also, there are many things you need to learn before you are able to independently design and test trading strategies:
+
+- Knowledge of financial markets, investment phylosophy and experience, accounting and finance theories
+
+- Advanced mathematical tools and statistics
+
+- Techniques for optimization and simulation
+
+That said, if you have worked through this tutorial, you deserve to applaud yourself for the progress made. Keep going if this is the path you want to pursue.
