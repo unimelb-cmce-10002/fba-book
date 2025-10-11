@@ -182,6 +182,8 @@ When run, this command returns a tidy data frame where each row corresponds to a
 To inspect the function’s source in R:
 
 ```{r}
+#| eval: false
+
 View(bref_team_results)
 ```
 
