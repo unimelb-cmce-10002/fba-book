@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>12&nbsp; Forming and Evaluating Data-driven Predictions – Foundations of Business Analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../tutorials/what_is_business_analytics.html" rel="next">
+<link href="../advanced_analytics/causal_analytics.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-601ca197ba2484b932d775b6c6a1237a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../solution.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../advanced_analytics/data_variation.html">Extracting Deeper Insights from Data</a></li><li class="breadcrumb-item"><a href="../advanced_analytics/predictive_analytics.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-driven Predictions</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Foundations of Business Analytics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What is Business Analytics?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Core Skills of a “Business Scientist”</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/reproducible.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows with R &amp; Posit Cloud</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Getting Our First Insights from Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../insights/data_visualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation for Business Intelligence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../insights/data_manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Wrangling for Business Analytics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../insights/data_tidy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Shaping and Combining Data for Business Analytics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Finding and Storing Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Extracting Deeper Insights from Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/data_variation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variation in Cross-Sectional, Times-Series, and Panel Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive Analytics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/causal_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Causal Analytics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/predictive_analytics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-driven Predictions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 1: Business Analytics Skills for Inventory Management</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 2: Core Skills of a Business Scientist &amp; Introduction to Posit Cloud</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_visualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 3: Data Visualisation for Business Intelligence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 4: Data Wrangling for Business Analytics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_tidy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 5: Shaping and Joining Data for Business Analytics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 6: Storing &amp; Retrieving Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 7: Obtaining Macroeconomic Data through FRED</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_variation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 8: Develop and Test Stock Trading Strategies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 9: Descriptive Analytics in HRM</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/causal_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 10: Causal Analytics to Improve User Sign Up Experiences</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge"><span class="header-section-number">12.1</span> The Business Challenge</a>
+  <ul class="collapse">
+  <li><a href="#the-topic-demand-forecasting-for-workforce-planning" id="toc-the-topic-demand-forecasting-for-workforce-planning" class="nav-link" data-scroll-target="#the-topic-demand-forecasting-for-workforce-planning">The Topic: Demand Forecasting for Workforce Planning</a></li>
+  </ul></li>
+  <li><a href="#the-setting-attendance-at-major-league-baseball-games" id="toc-the-setting-attendance-at-major-league-baseball-games" class="nav-link" data-scroll-target="#the-setting-attendance-at-major-league-baseball-games">The Setting: Attendance at Major League Baseball Games</a></li>
+  <li><a href="#the-method-using-base-r-and-the-tidyverse-to-fit-and-evaluate-simple-but-useful-prediction-models" id="toc-the-method-using-base-r-and-the-tidyverse-to-fit-and-evaluate-simple-but-useful-prediction-models" class="nav-link" data-scroll-target="#the-method-using-base-r-and-the-tidyverse-to-fit-and-evaluate-simple-but-useful-prediction-models">The Method: Using base R and the <code>tidyverse</code> to Fit and Evaluate Simple But Useful Prediction Models</a></li>
+  <li><a href="#where-were-headed" id="toc-where-were-headed" class="nav-link" data-scroll-target="#where-were-headed">Where we’re headed</a></li>
+  <li><a href="#the-game-plan-what-were-aiming-for" id="toc-the-game-plan-what-were-aiming-for" class="nav-link" data-scroll-target="#the-game-plan-what-were-aiming-for"><span class="header-section-number">12.2</span> The Game Plan: What we’re aiming for</a></li>
+  <li><a href="#loading-and-understanding-the-data" id="toc-loading-and-understanding-the-data" class="nav-link" data-scroll-target="#loading-and-understanding-the-data"><span class="header-section-number">12.3</span> Loading and understanding the data</a>
+  <ul class="collapse">
+  <li><a href="#r-packages-for-today" id="toc-r-packages-for-today" class="nav-link" data-scroll-target="#r-packages-for-today">R packages for today</a></li>
+  <li><a href="#loading-the-mlb-attendance-data" id="toc-loading-the-mlb-attendance-data" class="nav-link" data-scroll-target="#loading-the-mlb-attendance-data">Loading the MLB attendance data</a></li>
+  <li><a href="#wrangling-the-mlb-attendance-data" id="toc-wrangling-the-mlb-attendance-data" class="nav-link" data-scroll-target="#wrangling-the-mlb-attendance-data">Wrangling the MLB attendance data</a></li>
+  </ul></li>
+  <li><a href="#predicting-attendance-at-red-sox-home-games" id="toc-predicting-attendance-at-red-sox-home-games" class="nav-link" data-scroll-target="#predicting-attendance-at-red-sox-home-games"><span class="header-section-number">12.4</span> Predicting Attendance at Red Sox home games</a>
+  <ul class="collapse">
+  <li><a href="#how-is-red-sox-attendance-data-distributed" id="toc-how-is-red-sox-attendance-data-distributed" class="nav-link" data-scroll-target="#how-is-red-sox-attendance-data-distributed">How is Red Sox attendance data distributed?</a></li>
+  <li><a href="#building-simple-prediction-models" id="toc-building-simple-prediction-models" class="nav-link" data-scroll-target="#building-simple-prediction-models">Building simple prediction models</a></li>
+  <li><a href="#evaluating-and-comparing-simple-prediction-models" id="toc-evaluating-and-comparing-simple-prediction-models" class="nav-link" data-scroll-target="#evaluating-and-comparing-simple-prediction-models">Evaluating and comparing simple prediction models</a></li>
+  <li><a href="#judging-model-performance-against-a-random-baseline" id="toc-judging-model-performance-against-a-random-baseline" class="nav-link" data-scroll-target="#judging-model-performance-against-a-random-baseline"><span class="header-section-number">12.4.1</span> Judging model performance against a random baseline</a></li>
+  <li><a href="#summary-and-next-steps" id="toc-summary-and-next-steps" class="nav-link" data-scroll-target="#summary-and-next-steps">Summary and next steps</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../advanced_analytics/data_variation.html">Extracting Deeper Insights from Data</a></li><li class="breadcrumb-item"><a href="../advanced_analytics/predictive_analytics.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-driven Predictions</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-driven Predictions</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Learning Goals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>By the end of this lecture, you should be able to:</p>
+<ul>
+<li>Define demand forecasting for workforce planning and diagram the forecast → headcount → roster workflow, noting cost and service-quality trade-offs under fixed capacity.</li>
+<li>Summarize and visualize attendance distributions; recognize capacity-driven censoring (sellouts) and describe implications for feasible forecast ranges.</li>
+<li>Fit and evaluate simple time-series prediction models: lag-1, trailing-3, cumulative mean.</li>
+<li>Evaluate forecasts with MAE, RMSE, and MAPE; benchmark against a random baseline; and translate attendance forecasts into staffing recommendations under capacity constraints.</li>
+</ul>
+</div>
+</div>
+<section id="the-business-challenge" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="the-business-challenge"><span class="header-section-number">12.1</span> The Business Challenge</h2>
+<section id="the-topic-demand-forecasting-for-workforce-planning" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="the-topic-demand-forecasting-for-workforce-planning">The Topic: Demand Forecasting for Workforce Planning</h3>
+<p>In business operations, few challenges are as universal—or as consequential—as predicting future demand. Firms must constantly anticipate what customers will want, when they will want it, and in what quantity. This process, known as demand forecasting, underpins nearly every operational decision: how much to produce, how many staff to schedule, how much inventory to hold, and how to allocate logistics and supply-chain resources.</p>
+<p>At its core, demand forecasting is about aligning resources with expected demand. A grocery store that overestimates weekend beer sales ties up capital in unsold stock; one that underestimates risks empty shelves and disappointed customers. A furniture manufacturer that anticipates a surge in orders during a Black Friday promotion can avoid delivery delays only if it has already ordered enough raw materials and secured machine time. In both cases, the crux of the problem is the same: demand is uncertain, while capacity is fixed in the short run. Too much capacity is costly; too little undermines service and revenue.</p>
+<p>The same principle applies to workforce planning. Managers need to ensure that the right number of employees are on hand at the right times. Forecasting workforce requirements—whether for the next hour, shift, or day—enables firms to staff efficiently without compromising service quality.</p>
+<p>Consider a few examples:</p>
+<ul>
+<li>Call centres forecast the number of inbound calls each hour to schedule agents appropriately.</li>
+<li>Retail stores predict foot traffic to determine how many cashiers and floor staff to roster.</li>
+<li>Hospitals anticipate patient admissions to allocate nurses across wards.</li>
+<li>Manufacturers plan shift work based on expected production targets.</li>
+</ul>
+<p>Effective staffing requires integrating forecasts into workflow systems. A typical process might look like this:</p>
+<ol type="1">
+<li>Forecast demand (e.g., 2,000 inbound calls next Monday).</li>
+<li>Translate demand into headcount (e.g., each agent handles 20 calls per hour, so 13 agents are required).</li>
+<li>Build the roster by assigning staff to shifts in advance.</li>
+</ol>
+<p>Accurate forecasts reduce labor costs by avoiding overstaffing, prevent service bottlenecks by avoiding understaffing, and ultimately improve both customer and employee satisfaction.</p>
+</section>
+</section>
+<section id="the-setting-attendance-at-major-league-baseball-games" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-setting-attendance-at-major-league-baseball-games">The Setting: Attendance at Major League Baseball Games</h2>
+<p>To see these ideas in action, we turn to an example from professional sports. Stadium operators must staff concession stands that sell food and beverages during baseball games. If they schedule too few employees, service slows and queues lengthen; too many, and labor costs surge.</p>
+<p>Their challenge begins with a prediction problem: how many fans will attend each game? Attendance depends on many factors—day of the week, weather, opponent quality, promotional events, and more. Once attendance is forecasted, managers can estimate how many customers will visit concession stands per hour and allocate staff accordingly.</p>
+<p>In this module, we will focus on this first step: using data to predict game attendance. This exercise illustrates how prediction models help managers transform historical information into operational insight—bridging analytics and real-world decision-making.</p>
+</section>
+<section id="the-method-using-base-r-and-the-tidyverse-to-fit-and-evaluate-simple-but-useful-prediction-models" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-method-using-base-r-and-the-tidyverse-to-fit-and-evaluate-simple-but-useful-prediction-models">The Method: Using base R and the <code>tidyverse</code> to Fit and Evaluate Simple But Useful Prediction Models</h2>
+<blockquote class="blockquote">
+<p>“Even a broken clock is right twice a day.” — Proverb</p>
+</blockquote>
+<p>Forecasting is a data-driven activity that draws on different analytical tools:</p>
+<ul>
+<li>Time-series models analyze patterns in past demand—such as trends, cycles, or seasonality—using techniques like historical averages, moving averages, or lagged values.</li>
+<li>Multivariate models incorporate other explanatory factors, such as weather, prices, promotions, or events, using regression-based approaches.</li>
+<li>Machine-learning models capture complex, nonlinear relationships across many predictors using methods such as tree-based ensembles, regularization, and neural networks.</li>
+</ul>
+<p>No method is perfect: every forecast must contend with noise, unexpected shocks, and changing environments. The art of forecasting lies in using data to reduce uncertainty—not eliminate it entirely.</p>
+<p>In this module, we will explore several foundational techniques for building and evaluating prediction models using base R and the <code>tidyverse</code>.</p>
+</section>
+<section id="where-were-headed" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="where-were-headed">Where we’re headed</h2>
+<p>By the end of this week’s module, you will be able to take a dataset like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bref_team_results</span>(<span class="st">"BOS"</span>, <span class="dv">2015</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Attendance, <span class="fu">everything</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── MLB Team Results data from baseball-reference.com ──────── baseballr 1.6.0 ──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Data updated: 2025-10-11 14:14:25 AEDT</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 22
+   Attendance    Gm Date       Tm    H_A   Opp   Result     R    RA Inn   Record
+        &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+ 1      45549     1 Monday, A… BOS   A     PHI   W          8     0 ""    1-0   
+ 2      26465     2 Wednesday… BOS   A     PHI   L          2     4 ""    1-1   
+ 3      23418     3 Thursday,… BOS   A     PHI   W          6     2 ""    2-1   
+ 4      41292     4 Friday, A… BOS   A     NYY   W          6     5 "19"  3-1   
+ 5      46678     5 Saturday,… BOS   A     NYY   W          8     4 ""    4-1   
+ 6      43019     6 Sunday, A… BOS   A     NYY   L          4    14 ""    4-2   
+ 7      37203     7 Monday, A… BOS   H     WSN   W          9     4 ""    5-2   
+ 8      35258     8 Tuesday, … BOS   H     WSN   W          8     7 ""    6-2   
+ 9      33493     9 Wednesday… BOS   H     WSN   L          5    10 ""    6-3   
+10      34341    10 Friday, A… BOS   H     BAL   W-wo       3     2 ""    7-3   
+# ℹ 11 more variables: Rank &lt;dbl&gt;, GB &lt;chr&gt;, Win &lt;chr&gt;, Loss &lt;chr&gt;, Save &lt;chr&gt;,
+#   Time &lt;chr&gt;, `D/N` &lt;chr&gt;, cLI &lt;dbl&gt;, Streak &lt;dbl&gt;, Orig_Scheduled &lt;chr&gt;,
+#   Year &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>And use it to fit and evaluate prediction models such as these:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figs/forecast_metrics_by_model.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Don’t panic! We will explain what all this means by the end of the lesson.</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-game-plan-what-were-aiming-for" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="the-game-plan-what-were-aiming-for"><span class="header-section-number">12.2</span> The Game Plan: What we’re aiming for</h2>
+<p>Recall our general business analytics workflow:</p>
+<ol type="1">
+<li>Define the Business Question(s) &amp; Plan Outputs<br>
+</li>
+<li>Acquire and Prepare Data<br>
+</li>
+<li>Explore and Visualize Patterns<br>
+</li>
+<li>Analyze and Interpret Findings<br>
+</li>
+<li>Communicate Insights and Recommendations</li>
+</ol>
+<p>Sketch of the plan</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Define the Business Questions</label></li>
+<li><label><input type="checkbox">Read in and wrangle attendance data</label></li>
+<li><label><input type="checkbox">Summarize and describe the data</label></li>
+<li><label><input type="checkbox">Use insights from exploratory analysis to fit prediction models and make forecasts: baselines, group means, and OLS</label></li>
+<li><label><input type="checkbox">Evaluate, compare, and select prediction models</label></li>
+<li><label><input type="checkbox">Analyze, Interpret &amp; Communicate: Convert demand forecasts into actionable insights for workforce planning</label></li>
+</ul>
+<p>Let’s get started!</p>
+</section>
+<section id="loading-and-understanding-the-data" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="loading-and-understanding-the-data"><span class="header-section-number">12.3</span> Loading and understanding the data</h2>
+<section id="r-packages-for-today" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="r-packages-for-today">R packages for today</h3>
+<p>To begin, we need to load the packages that we will use for this chapter:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># baseballr — download MLB schedules/results/attendance (e.g., bref_team_results) from Baseball-Reference, etc.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(baseballr)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># tidyverse — core data wrangling &amp; visualization (dplyr, ggplot2, tidyr, readr, purrr, stringr, tibble, forcats)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># lubridate — parse and manipulate dates/times (e.g., mdy(), weekdays())</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># slider — tidy-style rolling/moving window calculations (e.g., sliding means)</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(slider)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load ggokabeito for a colour-blind-friendly palette (available if you choose to use it)</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggokabeito)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># janitor — simple data cleaning tools (e.g., clean_names()) </span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>These packages should look familiar to you by now, except for <code>baseballr</code>, which is a specialized package for working with baseball data. We will use it to download historical attendance data for Major League Baseball (MLB) games.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="A quick primer on Major League Baseball (MLB)">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A quick primer on Major League Baseball (MLB)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>What is MLB?</strong><br>
+Major League Baseball (MLB) is the top professional baseball league in the U.S. and Canada, with 30 teams split into two leagues (American and National), each with East/Central/West divisions.</p>
+<p><strong>When is the season?</strong><br>
+The regular season typically runs from late March or early April to late September or early October. Each team plays 162 games (about 81 home and 81 away), with occasional off days, a mid-July All-Star break, and some doubleheaders (two games in one day) to make up postponements. The postseason follows in October (Wild Card, Division Series, League Championship Series, World Series).</p>
+<p><strong>Game and attendance basics</strong><br>
+A standard game is nine innings (extra innings if tied). Stadium capacity varies by venue, so many games near capacity will sell out, compressing the right tail of attendance. “Official attendance” is the figure reported by the club for that game.</p>
+<p><strong>Why this matters for our forecasts</strong><br>
+In these notes we focus on regular-season home games for one team. The variables you’ll see—opponent (<code>opp</code>), home/away (<code>h_a</code>), day vs night (<code>day_night</code>), date/weekday (<code>dotw</code>), and attendance—align with operational drivers (for example, weekend nights and rivalry opponents often draw larger crowds). Weather, promotions, and team performance can also shift demand, while stadium capacity imposes a natural upper bound on forecasts.</p>
+<p><strong>Quick glossary</strong><br>
+- Homestand/road trip: Consecutive home/away games.<br>
+- Series: A set of games vs the same opponent (often 2–4 games).<br>
+- Doubleheader: Two games on the same date; often labeled “(1)” and “(2)”.<br>
+- Sell-out: Attendance at or near stadium capacity.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="loading-the-mlb-attendance-data" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="loading-the-mlb-attendance-data">Loading the MLB attendance data</h3>
+<p>The <code>baseballr</code> package provides convenient access to baseball statistics and schedules through a set of functions that scrape and clean publicly available data from Baseball-Reference.com</p>
+<p>A simple example is <code>bref_team_results()</code>, a function which retrieves all games played by a given MLB team during a particular season. For instance, the code below pulls the 2015 game results for the Boston Red Sox:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(<span class="fu">bref_team_results</span>(<span class="st">"BOS"</span>, <span class="dv">2015</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 162
+Columns: 22
+$ Gm             &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …
+$ Date           &lt;chr&gt; "Monday, Apr 6", "Wednesday, Apr 8", "Thursday, Apr 9",…
+$ Tm             &lt;chr&gt; "BOS", "BOS", "BOS", "BOS", "BOS", "BOS", "BOS", "BOS",…
+$ H_A            &lt;chr&gt; "A", "A", "A", "A", "A", "A", "H", "H", "H", "H", "H", …
+$ Opp            &lt;chr&gt; "PHI", "PHI", "PHI", "NYY", "NYY", "NYY", "WSN", "WSN",…
+$ Result         &lt;chr&gt; "W", "L", "W", "W", "W", "L", "W", "W", "L", "W-wo", "L…
+$ R              &lt;dbl&gt; 8, 2, 6, 6, 8, 4, 9, 8, 5, 3, 1, 3, 7, 1, 5, 1, 7, 4, 7…
+$ RA             &lt;dbl&gt; 0, 4, 2, 5, 4, 14, 4, 7, 10, 2, 4, 8, 1, 0, 7, 2, 5, 5,…
+$ Inn            &lt;chr&gt; "", "", "", "19", "", "", "", "", "", "", "", "", "7", …
+$ Record         &lt;chr&gt; "1-0", "1-1", "2-1", "3-1", "4-1", "4-2", "5-2", "6-2",…
+$ Rank           &lt;dbl&gt; 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3…
+$ GB             &lt;chr&gt; "Tied", "0.5", "Tied", "Tied", "up 1.0", "Tied", "up 1.…
+$ Win            &lt;chr&gt; "Buchholz", "Harang", "Masterson", "Wright", "Kelly", "…
+$ Loss           &lt;chr&gt; "Hamels", "Porcello", "Buchanan", "Rogers", "Warren", "…
+$ Save           &lt;chr&gt; "", "Papelbon", "", "", "", "", "", "Uehara", "", "", "…
+$ Time           &lt;chr&gt; "3:01", "2:54", "3:08", "6:49", "3:13", "3:24", "3:01",…
+$ `D/N`          &lt;chr&gt; "D", "N", "N", "N", "D", "N", "D", "N", "D", "N", "D", …
+$ Attendance     &lt;dbl&gt; 45549, 26465, 23418, 41292, 46678, 43019, 37203, 35258,…
+$ cLI            &lt;dbl&gt; 0.92, 0.94, 0.89, 1.14, 1.13, 1.19, 1.01, 1.03, 1.07, 1…
+$ Streak         &lt;dbl&gt; 1, -1, 1, 2, 3, -1, 1, 2, -1, 1, -1, -2, 1, 2, -1, -2, …
+$ Orig_Scheduled &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "", "", "", "",…
+$ Year           &lt;dbl&gt; 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2…</code></pre>
+</div>
+</div>
+<p>When run, this command returns a tidy data frame where each row corresponds to a single game (we have 162 rows, corresponding to the 81 home games and 81 away games that the Red Sox played in the 2015 regular season). You’ll see variables such as date, opponent, home/away indicator, runs scored and allowed, win–loss record attendance, and more.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="What does `bref_team_results()` do under the hood?">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What does <code>bref_team_results()</code> do under the hood?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>bref_team_results()</code> is a lightweight wrapper around a web-scraping workflow that pulls MLB game results from Baseball-Reference and returns a tidy data frame ready for analysis. Behind the scenes, it:</p>
+<ol type="1">
+<li>Takes a team abbreviation and season year as inputs.<br>
+</li>
+<li>Builds the corresponding Baseball-Reference URL for that team and season.<br>
+</li>
+<li>Scrapes the HTML table containing game-level results.<br>
+</li>
+<li>Parses and cleans the table into a structured R data frame.<br>
+</li>
+<li>Returns the cleaned dataset.</li>
+</ol>
+<p>To inspect the function’s source in R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(bref_team_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This reveals the underlying R code, which uses packages like <code>rvest</code> for web scraping and <code>dplyr</code> for data manipulation. The function abstracts away these details, letting you easily retrieve team results with a simple function call.</p>
+</div>
+</div>
+</div>
+<p>Often, we want to analyze more than one season—or compare multiple teams. To do this efficiently, we can use <code>lapply()</code>, which as the name suggests applies a function to each element in a list or vector and returns a list of results.</p>
+<p>For example, to combine Red Sox results from 2000–2002:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose the team and the range of seasons to download</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>teams <span class="ot">&lt;-</span> <span class="st">"BOS"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">2000</span><span class="sc">:</span><span class="dv">2002</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Download game results for each season and bind them into one data frame</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>bos_2000_2002 <span class="ot">&lt;-</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(years, <span class="cf">function</span>(y) {</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fetch game-level results for the specified team and year</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bref_team_results</span>(<span class="at">Tm =</span> teams, <span class="at">year =</span> y)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  }) <span class="sc">|&gt;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Stack the list of season data frames row-wise</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>bind_rows()</code> function from <code>dplyr</code> stacks the results into a single data frame with all three seasons combined.</p>
+<p>If we want both the Boston Red Sox and the New York Yankees over that same period, we can nest <code>lapply()</code> calls—one over teams, another over years:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose the teams and the range of seasons to download</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>teams <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"BOS"</span>, <span class="st">"NYY"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">2000</span><span class="sc">:</span><span class="dv">2002</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># For each team and season:</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#  - fetch game-level results</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  - add team/season identifiers</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  - bind rows within each team, then across teams</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>bos_nyy_2000_2002 <span class="ot">&lt;-</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(teams, <span class="cf">function</span>(team) {</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lapply</span>(years, <span class="cf">function</span>(year) {</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Pull the season’s results for this team</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>      df <span class="ot">&lt;-</span> <span class="fu">bref_team_results</span>(<span class="at">Tm =</span> team, <span class="at">year =</span> year)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Annotate with team and season for clarity after binding</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>      df<span class="sc">$</span>Team   <span class="ot">&lt;-</span> team</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>      df<span class="sc">$</span>Season <span class="ot">&lt;-</span> year</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Return the annotated data frame</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(df)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    }) <span class="sc">|&gt;</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Combine all seasons for this team</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bind_rows</span>()</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  }) <span class="sc">|&gt;</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine both teams into one data frame</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This produces a tidy dataset with both teams, across all selected years, each record tagged with Team and Season:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>bos_nyy_2000_2002 <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(Team, Season) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Games =</span> n) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── MLB Team Results data from baseball-reference.com ──────── baseballr 1.6.0 ──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Data updated: 2025-10-11 14:16:00 AEDT</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  Team  Season Games
+  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;
+1 BOS     2000   162
+2 BOS     2001   161
+3 BOS     2002   162
+4 NYY     2000   161
+5 NYY     2001   161
+6 NYY     2002   161</code></pre>
+</div>
+</div>
+<p>Note in some seasons there are fewer than 162 games due to cancellations due to poor weather, labor disputes, and other factors.</p>
+<div class="exercise">
+<div class="exercise-time">
+<p>10 min</p>
+</div>
+<p>You’ll build the in-sample dataset for our prediction task: Boston Red Sox games from 2005–2015, then inspect its structure.</p>
+<p><strong>Tasks</strong> 1. Use <code>bref_team_results()</code> and <code>lapply()</code> to download Red Sox game results for each season from 2005 to 2015.<br>
+2. Stack the season data frames into one object named <code>bos_2005_2015</code>.<br>
+3. Print the structure with <code>glimpse()</code> and verify the row count (should be <strong>1,782</strong>).</p>
+</div>
+<div class="solution-header">
+<p>Solution</p>
+</div>
+<div class="solution-content">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Team and seasons to download</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>teams <span class="ot">&lt;-</span> <span class="st">"BOS"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">2005</span><span class="sc">:</span><span class="dv">2015</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Download each season and bind into one data frame</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>bos_2005_2015 <span class="ot">&lt;-</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(years, <span class="cf">function</span>(y) {</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Game-level results for BOS in season y</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bref_team_results</span>(<span class="at">Tm =</span> teams, <span class="at">year =</span> y)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  }) <span class="sc">|&gt;</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">bind_rows</span>()</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect structure (variables, types, examples)</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bos_2005_2015)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,782
+Columns: 22
+$ Gm             &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …
+$ Date           &lt;chr&gt; "Sunday, Apr 3", "Tuesday, Apr 5", "Wednesday, Apr 6", …
+$ Tm             &lt;chr&gt; "BOS", "BOS", "BOS", "BOS", "BOS", "BOS", "BOS", "BOS",…
+$ H_A            &lt;chr&gt; "A", "A", "A", "A", "A", "A", "H", "H", "H", "H", "H", …
+$ Opp            &lt;chr&gt; "NYY", "NYY", "NYY", "TOR", "TOR", "TOR", "NYY", "NYY",…
+$ Result         &lt;chr&gt; "L", "L-wo", "W", "W", "L", "L-wo", "W", "L", "W", "W",…
+$ R              &lt;dbl&gt; 2, 3, 7, 6, 5, 3, 8, 2, 8, 10, 6, 3, 12, 3, 8, 1, 4, 5,…
+$ RA             &lt;dbl&gt; 9, 4, 3, 5, 12, 4, 1, 5, 5, 0, 2, 1, 7, 4, 0, 0, 5, 6, …
+$ Inn            &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "", "", "", "",…
+$ Record         &lt;chr&gt; "0-1", "0-2", "1-2", "2-2", "2-3", "2-4", "3-4", "3-5",…
+$ Rank           &lt;dbl&gt; 5, 4, 4, 1, 4, 5, 4, 4, 3, 3, 3, 3, 1, 3, 1, 1, 1, 2, 2…
+$ GB             &lt;chr&gt; "1.0", "2.0", "1.0", "Tied", "1.0", "2.0", "2.0", "2.5"…
+$ Win            &lt;chr&gt; "Johnson", "Rivera", "Timlin", "Arroyo", "Frasor", "Bat…
+$ Loss           &lt;chr&gt; "Wells", "Foulke", "Rivera", "Bush", "Wells", "Timlin",…
+$ Save           &lt;chr&gt; "", "", "", "Foulke", "", "", "", "Rivera", "", "", "",…
+$ Time           &lt;chr&gt; "3:19", "3:16", "3:22", "2:48", "2:40", "2:55", "2:49",…
+$ `D/N`          &lt;chr&gt; "N", "D", "D", "N", "D", "D", "D", "N", "N", "N", "N", …
+$ Attendance     &lt;dbl&gt; 54818, 54690, 55165, 50560, 28765, 22845, 33702, 35115,…
+$ cLI            &lt;dbl&gt; 1.09, 1.07, 1.02, 1.11, 1.17, 1.13, 1.05, 1.07, 0.98, 1…
+$ Streak         &lt;dbl&gt; -1, -2, 1, 2, -1, -2, 1, -1, 1, 2, 3, 4, 5, -1, 1, 2, -…
+$ Orig_Scheduled &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "", "", "", "",…
+$ Year           &lt;int&gt; 2005, 2005, 2005, 2005, 2005, 2005, 2005, 2005, 2005, 2…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify total rows (expected: 1,782)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(bos_2005_2015)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1782</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="wrangling-the-mlb-attendance-data" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="wrangling-the-mlb-attendance-data">Wrangling the MLB attendance data</h3>
+<p>Before modeling, we need to tidy up a few fields.</p>
+<p>First, let’s clean up our variable names:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>bos_2005_2015 <span class="ot">&lt;-</span> bos_2005_2015 <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we need to reformat the dates. Currently, game dates are stored as character strings like <code>"Sunday, Apr 3"</code>. We’ll convert these into proper date values <code>(YYYY-MM-DD)</code> using functions from the <code>lubridate</code> and <code>stringr</code> packages:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a parsed date (ymd) from the raw Date string and Year</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># - str_remove(".*, ") drops the weekday and trailing comma (e.g., "Sunday, ")</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># - paste0(..., " ", Year) appends the year to the month/day (e.g., "Apr 3 2010")</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># - mdy() parses "Mon Day Year" into a proper Date</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>bos_2005_2015_fenway <span class="ot">&lt;-</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  bos_2005_2015 <span class="sc">|&gt;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymd =</span> <span class="fu">mdy</span>(<span class="fu">paste0</span>(<span class="fu">str_remove</span>(date, <span class="st">".*, "</span>), <span class="st">" "</span>, year))</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A few date strings failed to parse—often corresponding to double-header games (two games played on the same day). We can inspect them directly:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(ymd)) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, ymd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── MLB Team Results data from baseball-reference.com ──────── baseballr 1.6.0 ──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Data updated: 2025-10-11 14:16:33 AEDT</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 44 × 2
+   date                 ymd   
+   &lt;chr&gt;                &lt;date&gt;
+ 1 Tuesday, Sep 27 (1)  NA    
+ 2 Tuesday, Sep 27 (2)  NA    
+ 3 Friday, Aug 18 (1)   NA    
+ 4 Friday, Aug 18 (2)   NA    
+ 5 Saturday, Sep 16 (1) NA    
+ 6 Saturday, Sep 16 (2) NA    
+ 7 Sunday, Sep 17 (1)   NA    
+ 8 Sunday, Sep 17 (2)   NA    
+ 9 Thursday, May 17 (1) NA    
+10 Thursday, May 17 (2) NA    
+# ℹ 34 more rows</code></pre>
+</div>
+</div>
+<p>We can fix these programmatically by assigning the correct dates:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parse a clean YYYY-MM-DD date (ymd) from the raw Date + Year fields,</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># handling double-header annotations like "(1)" / "(2)" and extra whitespace.</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>bos_2005_2015_fenway <span class="ot">&lt;-</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymd =</span> date <span class="sc">|&gt;</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_remove</span>(<span class="st">".*, "</span>) <span class="sc">|&gt;</span>            <span class="co"># drop weekday and trailing comma (e.g., "Sunday, ")</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_remove</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">s*</span><span class="sc">\\</span><span class="st">(</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">)"</span>) <span class="sc">|&gt;</span>  <span class="co"># remove "(1)" or "(2)" from double headers</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_trim</span>() <span class="sc">|&gt;</span>                    <span class="co"># trim any leading/trailing whitespace</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste</span>(year) <span class="sc">|&gt;</span>                   <span class="co"># append the year to get "Apr 3 2010"</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mdy</span>()                            <span class="co"># parse "Mon Day Year" to Date</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, all dates should be valid (i.e., we should have no more <code>NA</code>s in <code>ymd</code>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(ymd)) <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, ymd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── MLB Team Results data from baseball-reference.com ──────── baseballr 1.6.0 ──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Data updated: 2025-10-11 14:16:33 AEDT</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 2
+# ℹ 2 variables: date &lt;chr&gt;, ymd &lt;date&gt;</code></pre>
+</div>
+</div>
+<p>For those double headers, we also want to flag them explicitly.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Within each calendar date (ymd), tag double-headers and label game order</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>bos_2005_2015_fenway <span class="ot">&lt;-</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(ymd) <span class="sc">|&gt;</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">game_num         =</span> dplyr<span class="sc">::</span><span class="fu">row_number</span>(),  <span class="co"># sequence games on the same date: 1, 2, ...</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">is_double_header =</span> dplyr<span class="sc">::</span><span class="fu">n</span>() <span class="sc">&gt;</span> <span class="dv">1</span>        <span class="co"># TRUE if more than one game on that date</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, let’s check for these double headers:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(is_double_header) <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ymd, game_num, date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 62 × 3
+   ymd        game_num date                
+   &lt;date&gt;        &lt;int&gt; &lt;chr&gt;               
+ 1 2005-05-08        1 Sunday, May 8 (1)   
+ 2 2005-05-08        2 Sunday, May 8 (2)   
+ 3 2005-09-27        1 Tuesday, Sep 27 (1) 
+ 4 2005-09-27        2 Tuesday, Sep 27 (2) 
+ 5 2006-06-11        1 Sunday, Jun 11 (1)  
+ 6 2006-06-11        2 Sunday, Jun 11 (2)  
+ 7 2006-08-18        1 Friday, Aug 18 (1)  
+ 8 2006-08-18        2 Friday, Aug 18 (2)  
+ 9 2006-09-16        1 Saturday, Sep 16 (1)
+10 2006-09-16        2 Saturday, Sep 16 (2)
+# ℹ 52 more rows</code></pre>
+</div>
+</div>
+<p>Next, we will create a variable that identifies the day of the week on which each game was played. This will be useful later, as attendance often varies by day of the week (e.g., weekends vs.&nbsp;weekdays). We do so by <code>dotw</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>bos_2005_2015_fenway <span class="ot">&lt;-</span> bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">dotw =</span> <span class="fu">weekdays</span>(ymd)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we filter to games where the Red Sox played at home. We do so because in our analyses we are taking on the perspective of the firm that manages concessions at Fenway Park, the Red Sox home stadium. Thus, we only care about games where the Red Sox are the home team:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>bos_2005_2015_fenway <span class="ot">&lt;-</span> bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">home_away =</span> h_a) <span class="sc">|&gt;</span>    </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(home_away <span class="sc">==</span> <span class="st">'H'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, we rename the <code>D/N</code> column (which marks day or night games) to a more descriptive <code>day_night</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>bos_2005_2015_fenway <span class="ot">&lt;-</span> bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">day_night =</span> d_n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>At this point, we have a clean, ready-to-analyze dataset of Red Sox home games from 2005–2015, complete with structured dates, weekday labels, and attendance figures. This will serve as the foundation for building and evaluating our prediction models in the next section.</p>
+</section>
+</section>
+<section id="predicting-attendance-at-red-sox-home-games" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="predicting-attendance-at-red-sox-home-games"><span class="header-section-number">12.4</span> Predicting Attendance at Red Sox home games</h2>
+<section id="how-is-red-sox-attendance-data-distributed" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="how-is-red-sox-attendance-data-distributed">How is Red Sox attendance data distributed?</h3>
+<p>Before we build any prediction models, we need to understand the data we’re trying to predict. Let’s start by taking a closer look at attendance at Boston Red Sox home games between 2005 and 2015.</p>
+<p>Attendance captures the number of fans who entered the stadium for each game. This is the outcome we want to predict: how many people will attend a future game, given what we know about its timing, opponent, and other circumstances.</p>
+<p>We begin with some simple summary statistics and a histogram of attendance:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>mean_att <span class="ot">&lt;-</span> <span class="fu">mean</span>(bos_2005_2015_fenway<span class="sc">$</span>attendance, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>median_att <span class="ot">&lt;-</span> <span class="fu">median</span>(bos_2005_2015_fenway<span class="sc">$</span>attendance, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> attendance)) <span class="sc">+</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"darkblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Red Sox Home Game Attendance (2005–2015)"</span>,</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Attendance"</span>,</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> mean_att), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> median_att), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="predictive_analytics_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-time">
+<p>5 min</p>
+</div>
+<p>Using the attendance histogram you just produced, answer the following:</p>
+<ol type="1">
+<li>Where is the center of the distribution (mean/median) and how tight is the spread?</li>
+<li>What do the tails look like, and what does stadium capacity imply for the right tail?<br>
+</li>
+<li>Give a practical “ballpark” forecast range for most games, and note how often very low crowds occur.<br>
+</li>
+<li>State one operational implication for staffing or provisioning.</li>
+</ol>
+</div>
+<div class="solution-header">
+<p>Solution</p>
+</div>
+<div class="solution-content">
+<p>Attendance clusters tightly in the high 30,000s: the mean and median are around 37,000 with a modest spread. The right tail is compressed against capacity (≈38,500), consistent with frequent sellouts, while a longer left tail reflects occasional lower-demand games. Practically, most outcomes fall between about 36,000 and 38,000, with dips below ~33,000 uncommon. For forecasting, the task is to “place” each game within this narrow ~5,000-seat band rather than predict across a wide range—so staffing/provisioning should target that band and plan only modest adjustments for quieter dates.</p>
+</div>
+<p>Our next step will be to explore what factors might drive the variation shown in this histogram: the day of the week, the opponent, whether the game is at night or during the day, weather conditions, or the team’s performance so far in the season. These patterns will provide the building blocks for our first prediction models.</p>
+</section>
+<section id="building-simple-prediction-models" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="building-simple-prediction-models">Building simple prediction models</h3>
+<p>Now that we’ve explored the distribution of attendance, we can start building our first prediction models.</p>
+<p>We’ll begin with a set of univariate models that use attendance in the past to predict attendance in the future. We refer to these as time-series models, since they leverage the temporal ordering of observations (you will remember from prior weeks that we have already covered time-series data in some detail, albeit it in a finance/trading context).</p>
+<p>This is the simplest and most fundamental form of prediction in operations and business analytics. When a manager forecasts next week’s sales or next game’s attendance by “looking at what happened recently,” they are, in effect, applying a basic time series model.</p>
+<p>Our goal here is to predict attendance at each home game <code>t</code> using information from earlier games (<code>t–1</code>, <code>t–2</code>, etc.).</p>
+<p>These models won’t yet use other explanatory variables like weekday or opponent — those come later — but they give us a benchmark for how much can be explained simply by temporal persistence.</p>
+<section id="model-1---persistence-naive-time-series-model" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="model-1---persistence-naive-time-series-model">Model 1 - Persistence (Naive Time Series model)</h4>
+<p>A natural starting point is the assumption that attendance tomorrow will be about the same as it was yesterday. This is known as a persistence or naïve forecast, and it’s the foundation for many time series methods.</p>
+<p>In notation form:</p>
+<p><span class="math display">\[
+\widehat{A}_t = A_{t-1}.
+\]</span> We can compute this in R by lagging the attendance variable:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>bos_2005_2015_fenway <span class="ot">&lt;-</span> bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(ymd) <span class="sc">|&gt;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">att_lag1 =</span> <span class="fu">lag</span>(attendance, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This creates a new variable <code>att_lag1</code> that contains the attendance from the previous game. For the first game in the dataset, this will be <code>NA</code> since there is no prior game.</p>
+<p>Let’s use this lagged attendance as our prediction for the current game, and plot actual vs.&nbsp;predicted attendance:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> att_lag1, <span class="at">y =</span> attendance)) <span class="sc">+</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Attendance at game t–1"</span>,</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Attendance at game t"</span>,</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Boston Red Sox Home Games: 2005–2015"</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="predictive_analytics_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-time">
+<p>8 min</p>
+</div>
+<p>Interpret the scatterplot of actual attendance (y-axis) versus previous-game attendance (x-axis) for Red Sox home games (2005–2015).</p>
+<ol type="1">
+<li>What does a point lying above the 45° dashed line mean? What about below it?<br>
+</li>
+<li>Name two visible patterns that support (or challenge) the idea that attendance moves gradually over time.<br>
+</li>
+<li>Identify any signs of a ceiling or capacity effect and explain how it affects predictions.<br>
+</li>
+<li>Give two situations in which this naïve lag-1 model might make large errors.<br>
+</li>
+<li>From an operations viewpoint, when is this model useful and when is it risky?</li>
+</ol>
+</div>
+<div class="solution-header">
+<p>Solution</p>
+</div>
+<div class="solution-content">
+<ol type="1">
+<li><strong>Relationship to the 45° line</strong>
+<ul>
+<li>Above the line: the model underpredicts (actual attendance &gt; previous-game attendance).<br>
+</li>
+<li>Below the line: the model overpredicts (actual attendance &lt; previous-game attendance).</li>
+</ul></li>
+<li><strong>Evidence of gradual movement</strong>
+<ul>
+<li>Tight clustering near the 45° line indicates strong short-run persistence.<br>
+</li>
+<li>Points after unusually low or high games drift back toward the main cluster (regression toward the mean), not to random locations.</li>
+</ul></li>
+<li><strong>Ceiling/capacity effect</strong>
+<ul>
+<li>Dense mass around ~37–38.5k and little mass to the right suggests a sell-out cap.</li>
+<li>This compresses high predictions and limits upside error; forecasts should be capped at capacity.</li>
+</ul></li>
+<li><strong>When lag-1 misfires</strong>
+<ul>
+<li>Sudden shocks (e.g., rain, weekday afternoon games, or last-minute promotions).<br>
+</li>
+<li>Special opponents/events (rivalry weekends, holidays) that break the recent pattern.</li>
+</ul></li>
+<li><strong>Operational takeaway</strong>
+<ul>
+<li>Useful for very short-horizon staffing because it’s fast and usually close.<br>
+</li>
+<li>Risky when conditions change; pair with forward-looking features (day/night, day of the week, opponent, weather) and judge by MAE/RMSE, not just the plot.</li>
+</ul></li>
+</ol>
+</div>
+</section>
+<section id="model-2---trailing-average-short-memory-smoother" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="model-2---trailing-average-short-memory-smoother">Model 2 - Trailing Average (Short-Memory Smoother)</h4>
+<p>A slightly more sophisticated approach is to use a moving average of the last few games. This smooths out random fluctuations and captures short-term trends.</p>
+<p>If we use the short-term average of the last three games, we can compute it as follows:</p>
+<p><span class="math display">\[
+\widehat{A}_{t} = \frac{1}{3}\left(A_{t-1} + A_{t-2} + A_{t-3}\right)
+\]</span></p>
+<p>This is conceptually similar to a moving average (MA) model in time series analysis — a way to smooth out temporary fluctuations and capture short-run trends. We can compute this in R by averaging attendance over the last three games:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>bos_2005_2015_fenway <span class="ot">&lt;-</span> bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(ymd) <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">att_avg_lag3 =</span> (<span class="fu">lag</span>(attendance) <span class="sc">+</span> <span class="fu">lag</span>(attendance, <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">lag</span>(attendance, <span class="dv">3</span>)) <span class="sc">/</span> <span class="dv">3</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s use this trailing average attendance as our prediction for the current game, and again plot actual vs.&nbsp;predicted attendance:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bos_2005_2015_fenway, <span class="fu">aes</span>(<span class="at">x =</span> att_avg_lag3, <span class="at">y =</span> attendance)) <span class="sc">+</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Three-game trailing average attendance"</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Attendance at time t"</span>,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Boston Red Sox Home Games: 2005–2015"</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="predictive_analytics_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As with our previous model, we again observe that the points form a tight band around the red line, particularly in the 36,000–38,000 range. The plot shows that our moving average model smooths short-term dips and spikes by averaging across recent games. In doing so, it sacrifices responsiveness for stability, producing forecasts that track the general level of demand without overreacting to one unusual game. The downside is lag: if attendance trends upward over several weeks, the model adjusts more slowly than the persistence model.</p>
+</section>
+<section id="model-3---longer-term-average-cumulative-mean-up-to-t-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="model-3---longer-term-average-cumulative-mean-up-to-t-1">Model 3 - Longer-Term Average (Cumulative Mean up to t-1)</h4>
+<p>Our third model uses the historical average attendance up to the previous game. We can formally express this as:</p>
+<p><span class="math display">\[
+\widehat{A}_{t} = \frac{1}{t-1}\sum_{i=1}^{t-1} A_i \quad \text{for } t \ge 2
+\]</span></p>
+<p>This is a slow-moving model that represents the long-run mean — conceptually akin to a constant-level (mean) forecast in time series terms. We can compute this in R by calculating the cumulative mean of attendance up to (but not including) the current game:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>bos_2005_2015_fenway <span class="ot">&lt;-</span> bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">att_historical_avg =</span> <span class="fu">lag</span>(<span class="fu">cummean</span>(attendance)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Again, we can visualize predictions from this historical average model against actual attendance:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bos_2005_2015_fenway, <span class="fu">aes</span>(<span class="at">x =</span> att_historical_avg, <span class="at">y =</span> attendance)) <span class="sc">+</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Historical average attendance (up to t–1)"</span>,</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Attendance at time t"</span>,</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Boston Red Sox Home Games: 2005–2015"</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="predictive_analytics_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-time">
+<p>8 min</p>
+</div>
+<p>Interpret the scatterplot of actual attendance (y-axis) versus the historical average up to t-1 (x-axis) for Red Sox home games (2005–2015). The red dashed line is the 45° “perfect prediction” line.</p>
+<ol type="1">
+<li>Low-actual games (≈30–33k): Where do points sit relative to the 45° line, and what does that imply about prediction error?</li>
+<li>High-actual games (≈38k+): Where do points sit relative to the 45° line, and what does that imply?</li>
+<li>Bias: What overall bias does this model exhibit, and what visual cues in the plot support your claim?</li>
+<li>Operations: What are the operational consequences of this bias for staffing concessions?</li>
+<li>Improving the model: Describe two changes to the approach that could reduce these errors.</li>
+</ol>
+</div>
+<div class="solution-header">
+<p>Solution</p>
+</div>
+<div class="solution-content">
+<p>For low-actual games around 30–33k, points tend to fall below the 45° line, which means the model’s prediction (x-axis) is higher than the realized attendance (y-axis). That is, it overpredicts on quiet nights. For high-actual games around 38k+, points tend to lie above the 45° line, showing the model’s prediction is lower than realized attendance; it underpredicts near sellouts.</p>
+<p>Overall, the model exhibits shrinkage toward the long-run mean (roughly 36–37k). Visually, the cloud is tightly compressed around the midrange, many low-y points fall below the line, many high-y points fall above it, and the relationship appears flatter than the 45° reference—evidence that the model adjusts slowly to real changes.</p>
+<p>Operationally, this bias risks overstaffing when demand is low (wasted labor costs) and understaffing when demand is high (long queues and worse service at precisely the wrong time). To improve, use a shorter-memory signal (e.g., lag-1 or a short moving average, or exponential smoothing) and incorporate forward-looking features such as day/night, day of week, opponent, ticket sales, and weather; also cap forecasts at stadium capacity to respect the ceiling.</p>
+</div>
+</section>
+</section>
+<section id="evaluating-and-comparing-simple-prediction-models" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="evaluating-and-comparing-simple-prediction-models">Evaluating and comparing simple prediction models</h3>
+<p>So far, we’ve relied on scatterplots to judge prediction accuracy — a useful start but subjective. To formally compare these models and see which generate the most accurate predictions, we need numerical error metrics. In this section we’ll compute three such metrics:</p>
+<ul>
+<li>Mean Absolute Error (MAE): average size of prediction errors.</li>
+<li>Root Mean Squared Error (RMSE): emphasizes large errors.</li>
+<li>Mean Absolute Percentage Error (MAPE): average error relative to actual values.</li>
+</ul>
+<p>We will use these MAE, RMSE, and MAPE metrics to compare the three time series models we built earlier: persistence (lag-1), trailing average (lag-3), and historical average (up to t-1).</p>
+<p>This will give us a clear, quantitative sense of which time series approach performs best — and establish a benchmark before we move on to multivariate models that use richer predictors such as weekday, opponent, and time of season.</p>
+<p>For each game, we already have:</p>
+<ul>
+<li>a predicted attendance (from our model), and</li>
+<li>the actual attendance (the observed value).</li>
+</ul>
+<p>The forecast error is simply the difference:</p>
+<p><span class="math display">\[
+e_t \;=\; A_t - \widehat{A}_t
+\]</span> A good model has small forecast errors on average. But because errors can be positive or negative (over- vs.&nbsp;under-prediction), we summarise them using absolute or squared values. The three most common metrics are the Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and Mean Absolute Percentage Error (MAPE).</p>
+<section id="defining-error-metrics" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="defining-error-metrics">Defining error metrics</h4>
+<p>The MAE is the average size of the errors, ignoring their direction:</p>
+<p><span class="math display">\[
+\mathrm{MAE} \;=\; \frac{1}{T}\sum_{t=1}^{T} \lvert e_t \rvert
+\]</span></p>
+<p>It measures the typical “miss” between predicted and actual attendance — in the same units as the variable (e.g., people in attendance). A lower MAE means predictions are closer to reality on average. MAE is intuitive and robust. It weights all errors equally and is easy to explain to managers: “We’re off by about 1,200 fans per game.”</p>
+<p>The RMSE squares errors before averaging, then takes the square root:</p>
+<p><span class="math display">\[
+\mathrm{RMSE} \;=\; \sqrt{\frac{1}{T}\sum_{t=1}^{T} e_t^{\,2}}
+\]</span></p>
+<p>Squaring amplifies large errors, so RMSE penalizes big misses more heavily than MAE. It’s also in the same units as the original data (fans). RMSE is sensitive to outliers and helps identify whether a model sometimes gets things very wrong. In operations, those large misses are costly — a major overstaffing or stockout can hurt service quality — so RMSE is useful when we care about extremes.</p>
+<p>The MAPE expresses errors as a percentage of actual values:</p>
+<p><span class="math display">\[
+\mathrm{MAPE} \;=\; \frac{100}{T}\sum_{t=1}^{T} \left\lvert \frac{e_t}{A_t} \right\rvert
+\]</span></p>
+<p>It allows us to compare performance across contexts with different scales. However, it can become unstable when actual values are very small (denominator near zero). MAPE is great for communicating accuracy in intuitive percentage terms — useful for managers and reports — but must be handled carefully when values approach zero or when outliers distort relative errors.</p>
+</section>
+<section id="computing-error-metrics-in-r" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="computing-error-metrics-in-r">Computing error metrics in R</h4>
+<p>We start by calculating forecast errors and metric values for our simplest model — predicting attendance at game t using the attendance from t–1:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute per-game forecast errors for the lag-1 (persistence) model</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>lag1_model_errors <span class="ot">&lt;-</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep the actual attendance and the lag-1 prediction</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(attendance, att_lag1) <span class="sc">|&gt;</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Construct error diagnostics for each game</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Forecast error: actual minus predicted</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> attendance <span class="sc">-</span> att_lag1,</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Absolute error (for MAE)</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">abs_error =</span> <span class="fu">abs</span>(error),</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Squared error (for RMSE)</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">squared_error =</span> error<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Percentage error (for MAPE), expressed in %</span></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">percentage_error =</span> (error <span class="sc">/</span> attendance) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarise error diagnostics into accuracy metrics</span></span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>lag1_model_metrics <span class="ot">&lt;-</span></span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>  lag1_model_errors <span class="sc">|&gt;</span></span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mean Absolute Error</span></span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAE  =</span> <span class="fu">mean</span>(abs_error, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Root Mean Squared Error</span></span>
+<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">RMSE =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(squared_error, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mean Absolute Percentage Error</span></span>
+<span id="cb43-27"><a href="#cb43-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAPE =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(percentage_error), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb43-28"><a href="#cb43-28" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we compute errors and metric values for the three-game moving average model:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute per-game forecast errors for the 3-game moving average model</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>avg_lag3_model_errors <span class="ot">&lt;-</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep the actual attendance and the 3-game trailing-average prediction</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(attendance, att_avg_lag3) <span class="sc">|&gt;</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Build error diagnostics for each observation</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Forecast error: actual minus predicted</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> attendance <span class="sc">-</span> att_avg_lag3,</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Absolute error (for MAE)</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">abs_error =</span> <span class="fu">abs</span>(error),</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Squared error (for RMSE)</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">squared_error =</span> error<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Percentage error (for MAPE), expressed in %</span></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">percentage_error =</span> (error <span class="sc">/</span> attendance) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarise error diagnostics into accuracy metrics</span></span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>avg_lag3_model_metrics <span class="ot">&lt;-</span></span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>  avg_lag3_model_errors <span class="sc">|&gt;</span></span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mean Absolute Error</span></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAE  =</span> <span class="fu">mean</span>(abs_error, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Root Mean Squared Error</span></span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">RMSE =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(squared_error, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mean Absolute Percentage Error</span></span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAPE =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(percentage_error), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="exercise">
+<div class="exercise-time">
+<p>8 min</p>
+</div>
+<p>Compute forecast errors and accuracy metrics — cumulative historical average model</p>
+<p>Using bos_2005_2015_fenway, which contains attendance and the predictor att_historical_avg (the historical average up to t−1), do the following:</p>
+<ul>
+<li>Create a data frame cumulative_hist_model_errors with the columns: error (actual − predicted), abs_error, squared_error, and percentage_error (in %).</li>
+<li>Summarise these into cumulative_hist_model_metrics containing MAE, RMSE, and MAPE.</li>
+</ul>
+</div>
+<div class="solution-header">
+<p>Solution</p>
+</div>
+<div class="solution-content">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build per-game error diagnostics for the cumulative historical-average model</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>cumulative_hist_model_errors <span class="ot">&lt;-</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep the actual and predicted values</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(attendance, att_historical_avg) <span class="sc">|&gt;</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Construct error columns</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Forecast error: actual minus predicted</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> attendance <span class="sc">-</span> att_historical_avg,</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Absolute error (for MAE)</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">abs_error =</span> <span class="fu">abs</span>(error),</span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Squared error (for RMSE)</span></span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">squared_error =</span> error<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Percentage error (for MAPE), expressed in %</span></span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">percentage_error =</span> (error <span class="sc">/</span> attendance) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarise error diagnostics into accuracy metrics</span></span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a>cumulative_hist_model_metrics <span class="ot">&lt;-</span></span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a>  cumulative_hist_model_errors <span class="sc">|&gt;</span></span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mean Absolute Error</span></span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAE  =</span> <span class="fu">mean</span>(abs_error, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Root Mean Squared Error</span></span>
+<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">RMSE =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(squared_error, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mean Absolute Percentage Error</span></span>
+<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAPE =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(percentage_error), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="comparing-model-performance" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="comparing-model-performance">Comparing model performance</h4>
+<p>We can now combine all metrics into one table and plot them to visually compare performance:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a model label to the Lag(1) metrics</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>lag1_model_metrics <span class="ot">&lt;-</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  lag1_model_metrics <span class="sc">|&gt;</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">'Lag(1)'</span>)</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a model label to the 3-game trailing average metrics</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>avg_lag3_model_metrics <span class="ot">&lt;-</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  avg_lag3_model_metrics <span class="sc">|&gt;</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">'Trailing(3) Ave'</span>)</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a model label to the cumulative-average metrics</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>cumulative_hist_model_metrics <span class="ot">&lt;-</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>  cumulative_hist_model_metrics <span class="sc">|&gt;</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">'Cumulative Ave'</span>)</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Stack all model-level metric tables into a single data frame</span></span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>ts_model_metrics <span class="ot">&lt;-</span></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>  lag1_model_metrics <span class="sc">|&gt;</span></span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(avg_lag3_model_metrics) <span class="sc">|&gt;</span></span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(cumulative_hist_model_metrics)</span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape to long format for plotting (one row per metric per model)</span></span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>ts_metrics_long <span class="ot">&lt;-</span></span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a>  ts_model_metrics <span class="sc">|&gt;</span></span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols      =</span> <span class="sc">-</span>model,</span>
+<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to  =</span> <span class="st">"metric"</span>,</span>
+<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"value"</span></span>
+<span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, we can plot the metrics as bar charts:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize forecast accuracy metrics across models (colorblind-safe palette)</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ts_metrics_long, <span class="fu">aes</span>(<span class="at">x =</span> model, <span class="at">y =</span> value, <span class="at">fill =</span> model)) <span class="sc">+</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Draw a bar for each model’s metric value</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># One panel per metric; allow different y-axis scales</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> metric, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot title and axis labels</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Forecast Accuracy Metrics by Model"</span>,</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Model"</span>,</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Value"</span></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Start from a clean, minimal theme</span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply the Okabe–Ito colorblind-safe palette (from ggokabeito)</span></span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>  ggokabeito<span class="sc">::</span><span class="fu">scale_fill_okabe_ito</span>() <span class="sc">+</span></span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Styling tweaks: remove legend; rotate x labels for readability</span></span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)</span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="predictive_analytics_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The Lag(1) model produces the lowest MAE and RMSE — confirming it’s the best performer of the group. The three-game average performs slightly worse but still far better than random, while the cumulative average performs worst among the structured models, validating our earlier visual impression.</p>
+<p>The pattern is intuitive:</p>
+<ul>
+<li>Attendance at the previous game is highly informative — crowds don’t fluctuate dramatically from one home stand to the next.</li>
+<li>A short moving average smooths noise but reacts slowly to real changes.</li>
+<li>A long-term average loses too much information.</li>
+</ul>
+</section>
+</section>
+<section id="judging-model-performance-against-a-random-baseline" class="level3" data-number="12.4.1">
+<h3 data-number="12.4.1" class="anchored" data-anchor-id="judging-model-performance-against-a-random-baseline"><span class="header-section-number">12.4.1</span> Judging model performance against a random baseline</h3>
+<p>How do we know if our simple time-series models are actually useful? One way to check is to compare them against a model that we don’t expect to be great — for instance, predicting attendance by drawing random numbers from a normal distribution centred around the mean crowd size:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set a fixed RNG seed for reproducible random baseline</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">406</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a random (uninformed) baseline forecast around the historical mean</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>bos_2005_2015_fenway <span class="ot">&lt;-</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Draw one random prediction per game from N(mean, sd)</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">att_rnorm =</span> <span class="fu">rnorm</span>(</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">n</span>(), </span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean =</span> <span class="fu">mean</span>(attendance, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">sd =</span> <span class="fu">sd</span>(attendance, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute per-game error diagnostics for the random baseline</span></span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>rnorm_model_errors <span class="ot">&lt;-</span></span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>  bos_2005_2015_fenway <span class="sc">|&gt;</span></span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep the actual attendance and the random prediction</span></span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(attendance, att_rnorm) <span class="sc">|&gt;</span></span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Build error components</span></span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Forecast error: actual minus predicted</span></span>
+<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> attendance <span class="sc">-</span> att_rnorm,</span>
+<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Absolute error (for MAE)</span></span>
+<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">abs_error =</span> <span class="fu">abs</span>(error),</span>
+<span id="cb48-26"><a href="#cb48-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Squared error (for RMSE)</span></span>
+<span id="cb48-27"><a href="#cb48-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">squared_error =</span> error<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb48-28"><a href="#cb48-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Percentage error (for MAPE), expressed in %</span></span>
+<span id="cb48-29"><a href="#cb48-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">percentage_error =</span> (error <span class="sc">/</span> attendance) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb48-30"><a href="#cb48-30" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb48-31"><a href="#cb48-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-32"><a href="#cb48-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarise the random baseline’s accuracy (MAE, RMSE, MAPE)</span></span>
+<span id="cb48-33"><a href="#cb48-33" aria-hidden="true" tabindex="-1"></a>rnorm_model_metrics <span class="ot">&lt;-</span></span>
+<span id="cb48-34"><a href="#cb48-34" aria-hidden="true" tabindex="-1"></a>  rnorm_model_errors <span class="sc">|&gt;</span></span>
+<span id="cb48-35"><a href="#cb48-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb48-36"><a href="#cb48-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mean Absolute Error</span></span>
+<span id="cb48-37"><a href="#cb48-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAE  =</span> <span class="fu">mean</span>(abs_error, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb48-38"><a href="#cb48-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Root Mean Squared Error</span></span>
+<span id="cb48-39"><a href="#cb48-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">RMSE =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(squared_error, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb48-40"><a href="#cb48-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mean Absolute Percentage Error</span></span>
+<span id="cb48-41"><a href="#cb48-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAPE =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(percentage_error), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb48-42"><a href="#cb48-42" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, let’s again plot the metrics for our models as bar charts, but this time we will include the random baseline:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a label to the random-baseline metrics table</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>rnorm_model_metrics <span class="ot">&lt;-</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  rnorm_model_metrics <span class="sc">|&gt;</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">"Random Normal"</span>)</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Append the random-baseline metrics to the other (time-series) model metrics</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>ts_model_metrics <span class="ot">&lt;-</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>  ts_model_metrics <span class="sc">|&gt;</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(rnorm_model_metrics)</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape to long format for plotting: one row per (model, metric) pair</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>ts_metrics_long <span class="ot">&lt;-</span></span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>  ts_model_metrics <span class="sc">|&gt;</span></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols      =</span> <span class="sc">-</span>model,</span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to  =</span> <span class="st">"metric"</span>,</span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"value"</span></span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot forecast accuracy metrics with a colorblind-safe palette (Okabe–Ito)</span></span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ts_metrics_long, <span class="fu">aes</span>(<span class="at">x =</span> model, <span class="at">y =</span> value, <span class="at">fill =</span> model)) <span class="sc">+</span></span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># One bar per model within each metric facet</span></span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Separate panels for each metric; allow different y-axis scales</span></span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> metric, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Titles and axis labels</span></span>
+<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Forecast Accuracy Metrics by Model"</span>,</span>
+<span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Model"</span>,</span>
+<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Value"</span></span>
+<span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Clean baseline theme</span></span>
+<span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb49-34"><a href="#cb49-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply Okabe–Ito colorblind-safe palette (from ggokabeito)</span></span>
+<span id="cb49-35"><a href="#cb49-35" aria-hidden="true" tabindex="-1"></a>  ggokabeito<span class="sc">::</span><span class="fu">scale_fill_okabe_ito</span>() <span class="sc">+</span></span>
+<span id="cb49-36"><a href="#cb49-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Styling tweaks: hide legend (redundant) and tilt x labels</span></span>
+<span id="cb49-37"><a href="#cb49-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb49-38"><a href="#cb49-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb49-39"><a href="#cb49-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)</span>
+<span id="cb49-40"><a href="#cb49-40" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="predictive_analytics_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This random model provides a baseline — if our supposedly “intelligent” forecasts don’t perform better than random guesses, then we have a problem! Reassuringly, our random predictions yield much higher errors than any of our structured time-series models. This confirms that even simple models like persistence and moving averages capture meaningful patterns in attendance data.</p>
+<section id="but-what-about-practical-considerations" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="but-what-about-practical-considerations">But what about practical considerations?</h4>
+<p>The Lag(1) model provides the best predictive accuracy, but it’s also the least practical for operations planning. Forecasts based purely on the previous game may not give managers enough lead time to hire staff, order supplies, or adjust logistics.</p>
+<p>In practice, firms often need to predict further ahead — a week or a month in advance — and must therefore rely on other variables (e.g., day of week, opponent, ticket sales, promotions, or weather) rather than just the immediate past.</p>
+<p>In this week’s workshop we will turn to building models that incorporate these richer predictors.</p>
+</section>
+</section>
+<section id="summary-and-next-steps" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="summary-and-next-steps">Summary and next steps</h3>
+<p>What did we do?</p>
+<ul>
+<li>We framed attendance prediction as a workforce-planning problem, then built a progression of models.</li>
+<li>We loaded and cleaned Red Sox home-game data (2005–2015), engineered dates/weekday/day-night flags, and explored the distribution under a capacity cap.</li>
+<li>We estimated and evaluated univariate time-series prediction models (lag-1, trailing-3, cumulative mean) and compared these to a random baseline.</li>
+</ul>
+<p>What did we find?</p>
+<ul>
+<li>Among univariate models, lag-1 was the most accurate; the cumulative mean was stable but biased toward the long-run average.</li>
+<li>All models beat random guessing by a wide margin.</li>
+<li>Overall, modest structure that tracks stable seasonality beats heavy flexibility that chases noise.</li>
+</ul>
+<p>How should we act on what we found?</p>
+<ul>
+<li>Use the simplest model that meets accuracy needs for staffing and provisioning, and cap forecasts at stadium capacity.</li>
+<li>For short-horizon operational calls (next game or homestand), a lag-1 is operationally reliable and easy to explain.</li>
+<li>When planning further ahead, prefer models using forward-available variables (day/night, dotw, opponent groups) rather than immediate past attendance alone.</li>
+<li>Always evaluate with time-based backtests and choose based on out-of-sample MAE/RMSE/MAPE, not in-sample R².</li>
+</ul>
+<p>How can we improve the analysis?</p>
+<ul>
+<li>Rely on other variables (e.g., day of week, opponent, ticket sales, promotions, or weather) rather than just the immediate past (i.e., lagged attendance) to form predictions.</li>
+<li>Add richer, forward-looking features: ticket sales/price, promotions, holidays, weather forecasts, team form/injuries, and opponent strength measures; include interaction terms thoughtfully.</li>
+<li>Use regularization (ridge/lasso/elastic net) to shrink noisy factors.</li>
+<li>Explore tree-based models (pruned CART, random forests, gradient boosting).</li>
+<li>Finally, quantify uncertainty with prediction intervals, and translate forecasts to staffing via explicit service targets to make decisions cost-aware.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../advanced_analytics/causal_analytics.html" class="pagination-link" aria-label="Causal Analytics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Causal Analytics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../tutorials/what_is_business_analytics.html" class="pagination-link" aria-label="Tutorial 1: Business Analytics Skills for Inventory Management">
+        <span class="nav-page-text">Tutorial 1: Business Analytics Skills for Inventory Management</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
