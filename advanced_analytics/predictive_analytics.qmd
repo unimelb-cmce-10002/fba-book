@@ -6,9 +6,8 @@
 By the end of this lecture, you should be able to:
 
 * Define demand forecasting for workforce planning and diagram the forecast → headcount → roster workflow, noting cost and service-quality trade-offs under fixed capacity.
-* Summarize and visualize attendance distributions; recognize capacity-driven censoring (sell-outs) and describe implications for feasible forecast ranges.
-* Build baseline predictors (lag-1, trailing-3, cumulative mean) and simple cell-means models (Day/Night; dotw × Day/Night; Opponent) with a time-based train/test split to avoid look-ahead bias.
-* Fit and compare OLS models (factor model, quadratic in game number, high-order polynomial) and explain overfitting vs. generalization.
+* Summarize and visualize attendance distributions; recognize capacity-driven censoring (sellouts) and describe implications for feasible forecast ranges.
+* Fit and evaluate simple time-series prediction models: lag-1, trailing-3, cumulative mean.
 * Evaluate forecasts with MAE, RMSE, and MAPE; benchmark against a random baseline; and translate attendance forecasts into staffing recommendations under capacity constraints.
 :::
 
@@ -21,6 +20,7 @@ library(tidyverse)
 library(lubridate)
 library(slider)
 library(ggokabeito)
+library(janitor)
 ```
 
 ## The Business Challenge
@@ -56,7 +56,7 @@ Their challenge begins with a prediction problem: how many fans will attend each
 In this module, we will focus on this first step: using data to predict game attendance. This exercise illustrates how prediction models help managers transform historical information into operational insight—bridging analytics and real-world decision-making.
 
 
-## The Method: Using base R and the `tidyverse` to Fit and Evaluate Simple But Useful Prediction models {.unnumbered}
+## The Method: Using base R and the `tidyverse` to Fit and Evaluate Simple But Useful Prediction Models {.unnumbered}
 
 > "Even a broken clock is right twice a day." — Proverb
 
@@ -73,7 +73,7 @@ In this module, we will explore several foundational techniques for building and
 
 ## Where we're headed {.unnumbered}
 
-By the end of this week's module, you will be able to take a data set like this:
+By the end of this week's module, you will be able to take a dataset like this:
 
 ```{r}
 
@@ -85,7 +85,7 @@ bref_team_results("BOS", 2015) |>
 
 And use it to fit and evaluate prediction models such as these:
 
-![Comment here...](../figs/forecast_metrics_by_model.png){width=100% fig-align="center"}
+![Don't panic! We will explain what all this means by the end of the lesson.](../figs/forecast_metrics_by_model.png){width=100% fig-align="center"}
 
 ## The Game Plan: What we're aiming for
 
@@ -102,7 +102,7 @@ Sketch of the plan
 - [ ] Define the Business Questions 
 - [ ] Read in and wrangle attendance data
 - [ ] Summarize and describe the data
-- [ ] Use insights from exploratory analysis to fit prediction models and make forecasts: baselines, groups-means, and OLS
+- [ ] Use insights from exploratory analysis to fit prediction models and make forecasts: baselines, group means, and OLS
 - [ ] Evaluate, compare, and select prediction models 
 - [ ] Analyze, Interpret & Communicate: Convert demand forecasts into actionable insights for workforce planning
 
@@ -131,6 +131,9 @@ library(slider)
 
 # Load ggokabeito for a colour-blind-friendly palette (available if you choose to use it)
 library(ggokabeito)
+
+# janitor — simple data cleaning tools (e.g., clean_names()) 
+library(janitor)
 ```
 
 These packages should look familiar to you by now, except for `baseballr`, which is a specialized package for working with baseball data. We will use it to download historical attendance data for Major League Baseball (MLB) games.
@@ -146,7 +149,7 @@ The regular season typically runs from late March or early April to late Septemb
 A standard game is nine innings (extra innings if tied). Stadium capacity varies by venue, so many games near capacity will sell out, compressing the right tail of attendance. “Official attendance” is the figure reported by the club for that game.
 
 **Why this matters for our forecasts**  
-In these notes we focus on regular-season home games for one team. The variables you’ll see—opponent (`Opp`), home/away (`H_A`), day vs night (`D/N`), date/weekday (`dotw`), and attendance—align with operational drivers (for example, weekend nights and rivalry opponents often draw larger crowds). Weather, promotions, and team performance can also shift demand, while stadium capacity imposes a natural upper bound on forecasts.
+In these notes we focus on regular-season home games for one team. The variables you’ll see—opponent (`opp`), home/away (`h_a`), day vs night (`day_night`), date/weekday (`dotw`), and attendance—align with operational drivers (for example, weekend nights and rivalry opponents often draw larger crowds). Weather, promotions, and team performance can also shift demand, while stadium capacity imposes a natural upper bound on forecasts.
 
 **Quick glossary**  
 - Homestand/road trip: Consecutive home/away games.  
@@ -242,7 +245,7 @@ bos_nyy_2000_2002 <-
   bind_rows()
 ```
 
-This produces a tidy data set with both teams, across all selected years, each record tagged with Team and Season:
+This produces a tidy dataset with both teams, across all selected years, each record tagged with Team and Season:
 
 ```{r}
 bos_nyy_2000_2002 |>
@@ -328,7 +331,7 @@ bos_2005_2015_fenway |>
   select(date, ymd)
 ```
 
-We can fix these manually by assigning the correct dates:
+We can fix these programmatically by assigning the correct dates:
 
 ```{r}
 # Parse a clean YYYY-MM-DD date (ymd) from the raw Date + Year fields,
@@ -376,7 +379,7 @@ bos_2005_2015_fenway |>
   select(ymd, game_num, date)
 ```
 
-Next, we will create a variable that identifies the day of the week on which each games was played. This will be useful later, as attendance often varies by day of the week (e.g., weekends vs. weekdays). We do so by `dotw`:
+Next, we will create a variable that identifies the day of the week on which each game was played. This will be useful later, as attendance often varies by day of the week (e.g., weekends vs. weekdays). We do so by `dotw`:
 
 ```{r}
 bos_2005_2015_fenway <- bos_2005_2015_fenway |>
@@ -385,7 +388,7 @@ bos_2005_2015_fenway <- bos_2005_2015_fenway |>
   )
 ```
 
-Next, we filter to games where the Red Sox played at home. We so because in our analyses we are taking on the perspective of the firm that manages concessions at Fenway Park, the Red Sox home stadium. Thus, we only care about games where the Red Sox are the home team:
+Next, we filter to games where the Red Sox played at home. We do so because in our analyses we are taking on the perspective of the firm that manages concessions at Fenway Park, the Red Sox home stadium. Thus, we only care about games where the Red Sox are the home team:
 
 ```{r}
 bos_2005_2015_fenway <- bos_2005_2015_fenway |>
@@ -397,7 +400,7 @@ Finally, we rename the `D/N` column (which marks day or night games) to a more d
 
 ```{r}
 bos_2005_2015_fenway <- bos_2005_2015_fenway |>
-  rename(day_night = 'd_n')
+  rename(day_night = d_n)
 ```
 
 At this point, we have a clean, ready-to-analyze dataset of Red Sox home games from 2005–2015, complete with structured dates, weekday labels, and attendance figures. This will serve as the foundation for building and evaluating our prediction models in the next section.
@@ -422,7 +425,7 @@ We begin with some simple summary statistics and a histogram of attendance:
 mean_att <- mean(bos_2005_2015_fenway$attendance, na.rm = TRUE)
 median_att <- median(bos_2005_2015_fenway$attendance, na.rm = TRUE)
 
-bos_2005_2015_fenway %>%
+bos_2005_2015_fenway |>
   ggplot(aes(x = attendance)) +
   geom_histogram(fill = "darkblue", color = "black", alpha = 0.7, bins = 30) +
   labs(title = "Red Sox Home Game Attendance (2005–2015)",
@@ -440,7 +443,6 @@ bos_2005_2015_fenway %>%
 5 min
 :::
 
-**Prompt**  
 Using the attendance histogram you just produced, answer the following:
 
 1. Where is the center of the distribution (mean/median) and how tight is the spread? 
@@ -455,7 +457,7 @@ Solution
 :::
 
 ::: {.solution-content}
-Attendance clusters tightly in the high 30,000s: the mean and median are around 37,000 with a modest spread. The right tail is compressed against capacity (≈38,500), consistent with frequent sell-outs, while a longer left tail reflects occasional lower-demand games. Practically, most outcomes fall between about 36,000 and 38,000, with dips below ~33,000 uncommon. For forecasting, the task is to “place” each game within this narrow ~5,000-seat band rather than predict across a wide range—so staffing/provisioning should target that band and plan only modest adjustments for quieter dates.
+Attendance clusters tightly in the high 30,000s: the mean and median are around 37,000 with a modest spread. The right tail is compressed against capacity (≈38,500), consistent with frequent sellouts, while a longer left tail reflects occasional lower-demand games. Practically, most outcomes fall between about 36,000 and 38,000, with dips below ~33,000 uncommon. For forecasting, the task is to “place” each game within this narrow ~5,000-seat band rather than predict across a wide range—so staffing/provisioning should target that band and plan only modest adjustments for quieter dates.
 :::
 
 Our next step will be to explore what factors might drive the variation shown in this histogram: the day of the week, the opponent, whether the game is at night or during the day, weather conditions, or the team’s performance so far in the season. These patterns will provide the building blocks for our first prediction models.
@@ -472,7 +474,7 @@ Our goal here is to predict attendance at each home game `t` using information f
 
 These models won’t yet use other explanatory variables like weekday or opponent — those come later — but they give us a benchmark for how much can be explained simply by temporal persistence.
 
-#### Model 1 - Persistence (Naive Time Series model)
+#### Model 1 - Persistence (Naive Time Series model) {.unnumbered}
 
 A natural starting point is the assumption that attendance tomorrow will be about the same as it was yesterday. This is known as a persistence or naïve forecast, and it’s the foundation for many time series methods.
 
@@ -484,8 +486,8 @@ $$
 We can compute this in R by lagging the attendance variable:
 
 ```{r}
-bos_2005_2015_fenway <- bos_2005_2015_fenway %>%
-  arrange(ymd) %>%
+bos_2005_2015_fenway <- bos_2005_2015_fenway |>
+  arrange(ymd) |>
   mutate(att_lag1 = lag(attendance, 1))
 ```
 
@@ -499,7 +501,7 @@ Let's use this lagged attendance as our prediction for the current game, and plo
 #| fig-height: 6
 #| fig-align: center
 
-bos_2005_2015_fenway %>%
+bos_2005_2015_fenway |>
   ggplot(aes(x = att_lag1, y = attendance)) +
     geom_point(color = "darkblue", alpha = 0.3) +
     geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "red") +
@@ -518,8 +520,6 @@ bos_2005_2015_fenway %>%
 :::
 
 Interpret the scatterplot of actual attendance (y-axis) versus previous-game attendance (x-axis) for Red Sox home games (2005–2015).
-
-Answer the prompts:
 
 1. What does a point lying above the 45° dashed line mean? What about below it?  
 2. Name two visible patterns that support (or challenge) the idea that attendance moves gradually over time.  
@@ -553,11 +553,11 @@ Solution
 
 5. **Operational takeaway**  
    - Useful for very short-horizon staffing because it’s fast and usually close.  
-   - Risky when conditions change; pair with forward-looking features (day/night, DOTW, opponent, weather) and judge by MAE/RMSE, not just the plot.
+   - Risky when conditions change; pair with forward-looking features (day/night, day of the week, opponent, weather) and judge by MAE/RMSE, not just the plot.
 
 :::
 
-#### Model 2 - Trailing Average (Short-Memory Smoother)
+#### Model 2 - Trailing Average (Short-Memory Smoother) {.unnumbered}
 
 A slightly more sophisticated approach is to use a moving average of the last few games. This smooths out random fluctuations and captures short-term trends.
 
@@ -570,8 +570,8 @@ $$
 This is conceptually similar to a moving average (MA) model in time series analysis — a way to smooth out temporary fluctuations and capture short-run trends. We can compute this in R by averaging attendance over the last three games:
 
 ```{r}
-bos_2005_2015_fenway <- bos_2005_2015_fenway %>%
-  arrange(ymd) %>%
+bos_2005_2015_fenway <- bos_2005_2015_fenway |>
+  arrange(ymd) |>
   mutate(
     att_avg_lag3 = (lag(attendance) + lag(attendance, 2) + lag(attendance, 3)) / 3
   )
@@ -599,7 +599,7 @@ ggplot(bos_2005_2015_fenway, aes(x = att_avg_lag3, y = attendance)) +
 ```
 As with our previous model, we again observe that the points form a tight band around the red line, particularly in the 36,000–38,000 range. The plot shows that our moving average model smooths short-term dips and spikes by averaging across recent games. In doing so, it sacrifices responsiveness for stability, producing forecasts that track the general level of demand without overreacting to one unusual game. The downside is lag: if attendance trends upward over several weeks, the model adjusts more slowly than the persistence model.
 
-#### Model 3 - Longer-Term Average (Cumulative Mean up to t-1)
+#### Model 3 - Longer-Term Average (Cumulative Mean up to t-1) {.unnumbered}
 
 Our third model uses the historical average attendance up to the previous game. We can formally express this as:
 
@@ -610,7 +610,7 @@ $$
 This is a slow-moving model that represents the long-run mean — conceptually akin to a constant-level (mean) forecast in time series terms. We can compute this in R by calculating the cumulative mean of attendance up to (but not including) the current game:
 
 ```{r}
-bos_2005_2015_fenway <- bos_2005_2015_fenway %>%
+bos_2005_2015_fenway <- bos_2005_2015_fenway |>
   mutate(att_historical_avg = lag(cummean(attendance)))
 ```
 
@@ -633,18 +633,19 @@ ggplot(bos_2005_2015_fenway, aes(x = att_historical_avg, y = attendance)) +
   ) +
     theme_minimal()
 ```
-:: {.exercise}
+
+::: {.exercise}
 ::: {.exercise-time}
 8 min
 :::
 
 Interpret the scatterplot of actual attendance (y-axis) versus the historical average up to t-1 (x-axis) for Red Sox home games (2005–2015). The red dashed line is the 45° “perfect prediction” line.
 
-Q1 — Low-actual games (≈30–33k): Where do points sit relative to the 45° line, and what does that imply about prediction error?
-Q2 — High-actual games (≈38k+): Where do points sit relative to the 45° line, and what does that imply?
-Q3 — Bias: What overall bias does this model exhibit, and what visual cues in the plot support your claim?
-Q4 — Operations: What are the operational consequences of this bias for staffing concessions?
-Q5 — Improving the model: Describe two changes to the approach that could reduce these errors.
+1. Low-actual games (≈30–33k): Where do points sit relative to the 45° line, and what does that imply about prediction error?
+2. High-actual games (≈38k+): Where do points sit relative to the 45° line, and what does that imply?
+3. Bias: What overall bias does this model exhibit, and what visual cues in the plot support your claim?
+4. Operations: What are the operational consequences of this bias for staffing concessions?
+5. Improving the model: Describe two changes to the approach that could reduce these errors.
 
 :::
 
@@ -653,7 +654,7 @@ Solution
 :::
 
 ::: {.solution-content}
-For low-actual games around 30–33k, points tend to fall below the 45° line, which means the model’s prediction (x-axis) is higher than the realized attendance (y-axis). That is, it overpredicts on quiet nights. For high-actual games around 38k+, points tend to lie above the 45° line, showing the model’s prediction is lower than realized attendance; it underpredicts near sell-outs.
+For low-actual games around 30–33k, points tend to fall below the 45° line, which means the model’s prediction (x-axis) is higher than the realized attendance (y-axis). That is, it overpredicts on quiet nights. For high-actual games around 38k+, points tend to lie above the 45° line, showing the model’s prediction is lower than realized attendance; it underpredicts near sellouts.
 
 Overall, the model exhibits shrinkage toward the long-run mean (roughly 36–37k). Visually, the cloud is tightly compressed around the midrange, many low-y points fall below the line, many high-y points fall above it, and the relationship appears flatter than the 45° reference—evidence that the model adjusts slowly to real changes.
 
@@ -686,7 +687,7 @@ e_t \;=\; A_t - \widehat{A}_t
 $$
 A good model has small forecast errors on average. But because errors can be positive or negative (over- vs. under-prediction), we summarise them using absolute or squared values. The three most common metrics are the Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and Mean Absolute Percentage Error (MAPE).
 
-#### Defining error metrics
+#### Defining error metrics {.unnumbered}
 
 The MAE is the average size of the errors, ignoring their direction:
 
@@ -712,16 +713,16 @@ $$
 
 It allows us to compare performance across contexts with different scales. However, it can become unstable when actual values are very small (denominator near zero). MAPE is great for communicating accuracy in intuitive percentage terms — useful for managers and reports — but must be handled carefully when values approach zero or when outliers distort relative errors.
 
-#### Computing error metrics in R
+#### Computing error metrics in R {.unnumbered}
 
 We start by calculating forecast errors and metric values for our simplest model — predicting attendance at game t using the attendance from t–1:
 
 ```{r}
 # Compute per-game forecast errors for the lag-1 (persistence) model
 lag1_model_errors <-
-  bos_2005_2015_fenway %>%
+  bos_2005_2015_fenway |>
   # Keep the actual attendance and the lag-1 prediction
-  select(attendance, att_lag1) %>%
+  select(attendance, att_lag1) |>
   # Construct error diagnostics for each game
   mutate(
     # Forecast error: actual minus predicted
@@ -736,7 +737,7 @@ lag1_model_errors <-
 
 # Summarise error diagnostics into accuracy metrics
 lag1_model_metrics <-
-  lag1_model_errors %>%
+  lag1_model_errors |>
   summarise(
     # Mean Absolute Error
     MAE  = mean(abs_error, na.rm = TRUE),
@@ -752,9 +753,9 @@ Next, we compute errors and metric values for the three-game moving average mode
 ```{r}
 # Compute per-game forecast errors for the 3-game moving average model
 avg_lag3_model_errors <-
-  bos_2005_2015_fenway %>%
+  bos_2005_2015_fenway |>
   # Keep the actual attendance and the 3-game trailing-average prediction
-  select(attendance, att_avg_lag3) %>%
+  select(attendance, att_avg_lag3) |>
   # Build error diagnostics for each observation
   mutate(
     # Forecast error: actual minus predicted
@@ -769,7 +770,7 @@ avg_lag3_model_errors <-
 
 # Summarise error diagnostics into accuracy metrics
 avg_lag3_model_metrics <-
-  avg_lag3_model_errors %>%
+  avg_lag3_model_errors |>
   summarise(
     # Mean Absolute Error
     MAE  = mean(abs_error, na.rm = TRUE),
@@ -789,8 +790,8 @@ Compute forecast errors and accuracy metrics — cumulative historical average m
 
 Using bos_2005_2015_fenway, which contains attendance and the predictor att_historical_avg (the historical average up to t−1), do the following:
 
-- Create a data frame cummulative_hist_model_errors with the columns: error (actual − predicted), abs_error, squared_error, and percentage_error (in %).
-- Summarise these into cummulative_hist_model_metrics containing MAE, RMSE, and MAPE.
+- Create a data frame cumulative_hist_model_errors with the columns: error (actual − predicted), abs_error, squared_error, and percentage_error (in %).
+- Summarise these into cumulative_hist_model_metrics containing MAE, RMSE, and MAPE.
 
 :::
 
@@ -802,10 +803,10 @@ Solution
 
 ```{r}
 # Build per-game error diagnostics for the cumulative historical-average model
-cummulative_hist_model_errors <-
-  bos_2005_2015_fenway %>%
+cumulative_hist_model_errors <-
+  bos_2005_2015_fenway |>
   # Keep the actual and predicted values
-  select(attendance, att_historical_avg) %>%
+  select(attendance, att_historical_avg) |>
   # Construct error columns
   mutate(
     # Forecast error: actual minus predicted
@@ -819,8 +820,8 @@ cummulative_hist_model_errors <-
   )
 
 # Summarise error diagnostics into accuracy metrics
-cummulative_hist_model_metrics <-
-  cummulative_hist_model_errors %>%
+cumulative_hist_model_metrics <-
+  cumulative_hist_model_errors |>
   summarise(
     # Mean Absolute Error
     MAE  = mean(abs_error, na.rm = TRUE),
@@ -833,35 +834,35 @@ cummulative_hist_model_metrics <-
 
 :::
 
-#### Comparing model performance
+#### Comparing model performance {.unnumbered}
 
 We can now combine all metrics into one table and plot them to visually compare performance:
 
 ```{r}
 # Add a model label to the Lag(1) metrics
 lag1_model_metrics <-
-  lag1_model_metrics %>%
+  lag1_model_metrics |>
   mutate(model = 'Lag(1)')
 
 # Add a model label to the 3-game trailing average metrics
 avg_lag3_model_metrics <-
-  avg_lag3_model_metrics %>%
+  avg_lag3_model_metrics |>
   mutate(model = 'Trailing(3) Ave')
 
 # Add a model label to the cumulative-average metrics
-cummulative_hist_model_metrics <-
-  cummulative_hist_model_metrics %>%
+cumulative_hist_model_metrics <-
+  cumulative_hist_model_metrics |>
   mutate(model = 'Cumulative Ave')
 
 # Stack all model-level metric tables into a single data frame
 ts_model_metrics <-
-  lag1_model_metrics %>%
-  bind_rows(avg_lag3_model_metrics) %>%
-  bind_rows(cummulative_hist_model_metrics)
+  lag1_model_metrics |>
+  bind_rows(avg_lag3_model_metrics) |>
+  bind_rows(cumulative_hist_model_metrics)
 
 # Reshape to long format for plotting (one row per metric per model)
 ts_metrics_long <-
-  ts_model_metrics %>%
+  ts_model_metrics |>
   pivot_longer(
     cols      = -model,
     names_to  = "metric",
@@ -908,24 +909,30 @@ The pattern is intuitive:
 - A short moving average smooths noise but reacts slowly to real changes.
 - A long-term average loses too much information.
 
-### Judging model perfromance against a random baseline
+### Judging model performance against a random baseline
 
 How do we know if our simple time-series models are actually useful? One way to check is to compare them against a model that we don't expect to be great — for instance, predicting attendance by drawing random numbers from a normal distribution centred around the mean crowd size:
 
 ```{r}
+# set a fixed RNG seed for reproducible random baseline
+set.seed(406)
+
 # Create a random (uninformed) baseline forecast around the historical mean
 bos_2005_2015_fenway <-
-  bos_2005_2015_fenway %>%
+  bos_2005_2015_fenway |>
   mutate(
-    # Draw one random prediction per game from N(36,500, 2,000^2)
-    att_rnorm = rnorm(n(), mean = 36500, sd = 2000)
+    # Draw one random prediction per game from N(mean, sd)
+    att_rnorm = rnorm(
+        n(), 
+        mean = mean(attendance, na.rm = TRUE), 
+        sd = sd(attendance, na.rm = TRUE))
   )
 
 # Compute per-game error diagnostics for the random baseline
 rnorm_model_errors <-
-  bos_2005_2015_fenway %>%
+  bos_2005_2015_fenway |>
   # Keep the actual attendance and the random prediction
-  select(attendance, att_rnorm) %>%
+  select(attendance, att_rnorm) |>
   # Build error components
   mutate(
     # Forecast error: actual minus predicted
@@ -940,7 +947,7 @@ rnorm_model_errors <-
 
 # Summarise the random baseline’s accuracy (MAE, RMSE, MAPE)
 rnorm_model_metrics <-
-  rnorm_model_errors %>%
+  rnorm_model_errors |>
   summarise(
     # Mean Absolute Error
     MAE  = mean(abs_error, na.rm = TRUE),
@@ -956,17 +963,17 @@ Now, let's again plot the metrics for our models as bar charts, but this time we
 ```{r}
 # Add a label to the random-baseline metrics table
 rnorm_model_metrics <-
-  rnorm_model_metrics %>%
+  rnorm_model_metrics |>
   mutate(model = "Random Normal")
 
 # Append the random-baseline metrics to the other (time-series) model metrics
 ts_model_metrics <-
-  ts_model_metrics %>%
+  ts_model_metrics |>
   bind_rows(rnorm_model_metrics)
 
 # Reshape to long format for plotting: one row per (model, metric) pair
 ts_metrics_long <-
-  ts_model_metrics %>%
+  ts_model_metrics |>
   pivot_longer(
     cols      = -model,
     names_to  = "metric",
@@ -998,7 +1005,7 @@ ggplot(ts_metrics_long, aes(x = model, y = value, fill = model)) +
 
 This random model provides a baseline — if our supposedly “intelligent” forecasts don’t perform better than random guesses, then we have a problem! Reassuringly, our random predictions yield much higher errors than any of our structured time-series models. This confirms that even simple models like persistence and moving averages capture meaningful patterns in attendance data.
 
-#### But what about practical considerations?
+#### But what about practical considerations? {.unnumbered}
 
 The Lag(1) model provides the best predictive accuracy, but it’s also the least practical for operations planning. Forecasts based purely on the previous game may not give managers enough lead time to hire staff, order supplies, or adjust logistics.
 
