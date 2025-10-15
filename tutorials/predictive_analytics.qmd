@@ -1,0 +1,656 @@
+# Tutorial 11: Predictive Analytics for Workforce Planning {.unnumbered}
+
+::: {.callout-tip}
+## Learning Goals {.unnumbered}
+
+By the end of this tutorial, you should be able to:
+
+- Explore how attendance varies with game time (day/night) and opponent using tidy plots.
+- Build time-based train/test splits and create cell-means predictors on the training set.
+- Evaluate forecasts on the test set using MAE, RMSE, MAPE.
+- Fit and compare linear models (Basic OLS, Quadratic in game number, Degree-8 polynomial) and relate fit vs. generalisation.
+- Connect forecast accuracy to operational planning decisions.
+:::
+
+## The Business Challenge
+
+```{r}
+#| warning: false
+#| echo: false
+library(tidyverse)
+library(slider)
+library(ggokabeito)
+```
+
+```{r}
+#| warning: false
+#| eval: true
+#| echo: false
+#| cache: true
+
+# Load the data
+bos_2005_2015_fenway <- 
+  read_csv('../data/mlb_attendance.csv')
+
+```
+
+### Using predictive analytics to navigate demand uncertainty and improve staffing decisions
+
+In operations, managers must match capacity (people, time, equipment) to demand that arrives with uncertainty. Overstaffing raises costs; understaffing creates queues, slower service, and lost revenue. Prediction is the tool that turns historical data into forward-looking staffing guidance.
+
+As in the lecture, our setting is MLB game attendance at Fenway Park, home of the Boston Red Sox. Concession managers need to staff bars and food stands for each Red Sox home game. The core uncertainty is attendance (how many fans show up). Attendance varies systematically with observable game features—e.g., day vs night, day of week, and opponent (rivalry effects)—and is bounded above by a capacity ceiling (sellouts cluster near the right edge of the distribution).
+
+In this setting, the workflow that links demand forecasts to roster works as follows:
+
+1. Forecast demand: Predict game-level attendance using historical patterns (e.g., cell-means or OLS models).
+2. Translate to headcount: Convert predicted attendance into required staff using service rates (e.g., “one staff member can serve ~k customers per hour”).
+3. Build the roster: Schedule staff to shifts ahead of time, subject to capacity and cost constraints.
+
+Getting this workflow right is critical to business success. Accurate, well-calibrated forecasts let you set a baseline headcount and add a buffer sized to typical forecast error (e.g., MAE), striking a balance between cost and service quality.
+
+In this week's workshop, we are going to get a feel for this workflow by tackling the following tasks:
+
+- Exploration: Verify that day/night and opponent relate to attendance (so they’re worth using in models).
+- Time-based splitting: Fit on earlier seasons, evaluate on later seasons to avoid look-ahead bias.
+- Simple predictors: Use cell means (Day/Night; dotw × D/N; Opponent) for transparent, explainable baselines.
+- Linear models: Compare Basic OLS, Quadratic in game number, and a Degree-8 polynomial—see how fit ≠ generalisation.
+- Metrics: Judge models with MAE/RMSE/MAPE on the test set and connect those magnitudes to staffing buffers.
+
+While doing so, we will keep our eye on the big picture: Our goal isn’t a perfect forecast; it’s a useful one—accurate enough, early enough, and explainable enough to make better staffing decisions.
+
+Let's get started!
+
+### Getting set up
+
+First, we need to load our packages:
+
+```{r}
+#| eval: false
+
+library(tidyverse)
+library(scales)
+library(ggokabeito)
+```
+
+Next, we need to load our dataset.
+
+```{r}
+#| eval: false
+
+bos_2005_2015_fenway <- 
+  read_csv('data/mlb_attendance.csv')
+
+```
+
+## Prepare these Exercises before Class 
+
+Prepare these exercises before coming to class. Plan to spend 30 minutes on these exercises.
+
+### Exercise 1: Exploring and predicting from the training set
+
+Past attendance can tell us a great deal about future attendance, but so too can other factors. To begin, we are going to explore how the following relate to attendance:
+
+- Whether a game takes place during the day or evening
+- On which day of the week a game takes place
+- Against whom the Red Sox compete in a game
+
+If these factors explain variation in attendance, then we can use them to predict attendance at future games.
+
+**(a).** Ultimately, we want to fit and evaluate our prediction models on different data sets to avoid overfitting. As such, we should undertake our exploratory analyses on the training set too. 
+
+Complete and run the code below to create a training and test split of the data. Use a time-based split: games from seasons before 2013 should be in the training set, and games from 2013 and later should be in the test set.
+
+```{r}
+#| eval: false
+
+training_sample_2005_2012 <- 
+  bos_2005_2015_fenway |>
+  YOUR_CODE_HERE  
+
+test_sample_2013_2015 <- 
+  bos_2005_2015_fenway |>
+  YOUR_CODE_HERE  
+```
+
+**(b).** Complete and run the code below to produce a bar chart that shows how mean attendance varies across games played during the day and those played during the evening. What does this plot reveal?
+
+```{r}
+#| eval: false
+
+training_sample_2005_2012 |>
+  YOUR_CODE_HERE(day_night) |>
+  YOUR_CODE_HERE(ave_attendance = mean(attendance, na.rm = TRUE), .groups = "drop") |>
+  ggplot(aes(x = day_night, y = ave_attendance, fill = YOUR_CODE_HERE)) +
+  geom_col(width = 0.5) +
+  geom_text(
+    aes(label = round(ave_attendance, 0)),
+    vjust = -0.5, size = 4, color = "black"
+  ) +
+  labs(x = "Game Time", y = "Average Attendance", fill = "Game Time") +
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 5)) +
+  ggokabeito::scale_fill_okabe_ito() +
+  coord_cartesian(ylim = c(30000, 40000)) +
+  theme_minimal() +
+  theme(panel.grid.major.x = element_blank())
+```
+
+**(c).** Let's take these means from our training set and use them to predict attendance in the test set. This gives us a simple prediction model that assigns the average attendance for day games in the training sample to all day games in the test set, and similarly for night games.
+
+Complete and run the code below to join these means to our test sample as predicted attendance values.
+
+```{r}
+#| eval: false
+
+average_attendance_by_daynight <- 
+  training_sample_2005_2012 |>
+  group_by(YOUR_CODE_HERE) |>
+  summarise(ave_attendance = mean(attendance, na.rm = TRUE))
+
+test_sample_2013_2015 <- 
+  test_sample_2013_2015 |>
+  YOUR_CODE_HERE(average_attendance_by_daynight, by = YOUR_CODE_HERE) |>
+  rename(predicted_attendance_daynight = YOUR_CODE_HERE) 
+```
+
+**(d).** Next, let's consider a slightly more complex model where attendance varies as a function of whether a game is played during the day or in the evening AND on which day of the week the game takes place. 
+
+Complete and run the code below to produce a bar chart that shows how mean attendance varies as a function of the interaction between day of the week and time of the day. What does this plot reveal?
+
+```{r}
+#| eval: false
+
+training_sample_2005_2012 |>
+  mutate(dotw = factor(dotw,
+                       levels = c(YOUR_CODE_HERE))) |>  
+  group_by(YOUR_CODE_HERE, YOUR_CODE_HERE) |>
+  summarise(
+    ave_attendance = mean(attendance, na.rm = TRUE), 
+    .groups = "drop"
+  ) |>
+  ggplot(aes(x = YOUR_CODE_HERE, y = YOUR_CODE_HERE, fill = day_night)) +
+  geom_col(position = position_dodge(width = 0.7), width = 0.6) +
+  ggokabeito::scale_fill_okabe_ito(name = "Game Time") +
+  labs(x = "Day of the Week", y = "Average Attendance") +
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 5)) +
+  coord_cartesian(ylim = c(30000, 40000)) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+```
+
+**(e).** Again, let's take these means from our training set and use them to predict attendance in the test set. This gives us a slightly more complex prediction model that assigns the average attendance for each category of game in the training sample (e.g., Saturday night game) to the corresponding category of game in the test set.
+
+Complete and run the code below to join these means to our test sample as predicted attendance values.
+
+```{r}
+#| eval: false
+
+average_attendance_by_dotw_dn <- 
+  training_sample_2005_2012 |>
+  group_by(YOUR_CODE_HERE, YOUR_CODE_HERE) |>
+  summarise(ave_attendance = mean(attendance, na.rm = TRUE),
+            .groups = "drop"
+  )
+
+test_sample_2013_2015 <- 
+  test_sample_2013_2015 |>
+  YOUR_CODE_HERE(average_attendance_by_dotw_dn, 
+                 by = c(YOUR_CODE_HERE, YOUR_CODE_HERE)) |>
+  rename(predicted_attendance_dotw_dn = YOUR_CODE_HERE)
+
+```
+
+**(f).** Next, let's consider a third model where attendance varies as a function of whom the Red Sox compete against in a game. 
+
+Complete and run the code below to produce a bar chart that shows how mean attendance varies as a function of the Red Sox opponents in a game. What does this plot reveal?
+
+```{r}
+#| eval: false
+
+training_sample_2005_2012 |>
+  group_by(YOUR_CODE_HERE) |>
+  summarise(ave_attendance = mean(attendance, na.rm = TRUE), .groups = "drop") |>
+  arrange(desc(ave_attendance)) |>
+  mutate(opp = factor(opp, levels = opp)) |>
+  ggplot(aes(x = opp, y = ave_attendance)) +
+  geom_col(fill = "steelblue", width = 0.5) +
+  labs(x = "Opponent", y = "Average Attendance") +
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 5)) +
+  coord_cartesian(ylim = c(30000, 40000)) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    axis.text.x = element_text(size = 8, angle = 45, hjust = 1)
+  )
+```
+
+**(g).** And for one final time, let's take these means from our training set and use them to predict attendance in the test set. This gives us our third prediction model which assigns the average attendance for each opponent in the training sample to games in the test sample that feature that opponent.
+
+Complete and run the code below to join these means to our test sample as predicted attendance values.
+
+```{r}
+#| eval: false
+
+average_attendance_by_opp <- 
+  training_sample_2005_2012 |>
+  group_by(YOUR_CODE_HERE) |>
+  summarise(ave_attendance = mean(attendance, na.rm = TRUE))
+
+test_sample_2013_2015 <- 
+  test_sample_2013_2015 |>
+  left_join(average_attendance_by_opp, 
+            by = YOUR_CODE_HERE) |>
+  rename(predicted_attendance_opp = YOUR_CODE_HERE)
+```
+
+
+### Exercise 2: Evaluating model performance in the test set
+
+Let's see how the models that we fitted in the previous exercise perform on the test set.
+
+**(a).** First, build the error components for each of the models that we trained in exercise 1. To do so, complete and run the code below:
+
+```{r}
+#| eval: false
+
+# Day/Night
+day_night_model_errors <- 
+  test_sample_2013_2015 |>
+  select(attendance, predicted_attendance_daynight) |>
+  mutate(
+    error            = YOUR_CODE_HERE - YOUR_CODE_HERE,
+    abs_error        = abs(YOUR_CODE_HERE),
+    squared_error    = YOUR_CODE_HERE^2,
+    percentage_error = (YOUR_CODE_HERE / YOUR_CODE_HERE) * 100
+  )
+
+# dotw × D/N
+dotw_dn_model_errors <- 
+  test_sample_2013_2015 |>
+  select(attendance, predicted_attendance_dotw_dn) |>
+  mutate(
+    error            = YOUR_CODE_HERE - YOUR_CODE_HERE,
+    abs_error        = abs(YOUR_CODE_HERE),
+    squared_error    = YOUR_CODE_HERE^2,
+    percentage_error = (YOUR_CODE_HERE / YOUR_CODE_HERE) * 100
+  )
+
+# Opponent
+opp_model_errors <- 
+  test_sample_2013_2015 |>
+  select(attendance, predicted_attendance_opp) |>
+  mutate(
+    error            = YOUR_CODE_HERE - YOUR_CODE_HERE,
+    abs_error        = abs(YOUR_CODE_HERE),
+    squared_error    = YOUR_CODE_HERE^2,
+    percentage_error = (YOUR_CODE_HERE / YOUR_CODE_HERE) * 100
+  )
+```
+
+**(b).** Next, complete and run the code below to calculate the following error metrics for each of the models:
+
+```{r}
+#| eval: false
+
+day_night_model_metrics <- 
+  YOUR_CODE_HERE |>
+  summarise(
+    MAE  = mean(YOUR_CODE_HERE, na.rm = TRUE),
+    RMSE = sqrt(mean(YOUR_CODE_HERE, na.rm = TRUE)),
+    MAPE = mean(abs(YOUR_CODE_HERE), na.rm = TRUE)
+  )
+
+dotw_dn_model_metrics <- 
+  YOUR_CODE_HERE |>
+  summarise(
+    MAE  = mean(YOUR_CODE_HERE, na.rm = TRUE),
+    RMSE = sqrt(mean(YOUR_CODE_HERE, na.rm = TRUE)),
+    MAPE = mean(abs(YOUR_CODE_HERE), na.rm = TRUE)
+  )
+
+opp_model_metrics <- 
+  YOUR_CODE_HERE |>
+  summarise(
+    MAE  = mean(YOUR_CODE_HERE, na.rm = TRUE),
+    RMSE = sqrt(mean(YOUR_CODE_HERE, na.rm = TRUE)),
+    MAPE = mean(abs(YOUR_CODE_HERE), na.rm = TRUE)
+  )
+```
+
+**(c).** What does the code below 'do'? Why do we need to wrangle the metrics into this format? Finally, run the code below.
+
+```{r}
+#| eval: false
+
+day_night_model_metrics <-
+  day_night_model_metrics |>
+  mutate(model = "Day/Night")
+
+dotw_dn_model_metrics <-
+  dotw_dn_model_metrics |>
+  mutate(model = "dotw x D/N")
+
+opp_model_metrics <-
+  opp_model_metrics |>
+  mutate(model = "Opponent")
+
+simple_model_metrics <-
+  day_night_model_metrics |>
+  bind_rows(dotw_dn_model_metrics) |>
+  bind_rows(opp_model_metrics)
+
+simple_metrics_long <-
+  simple_model_metrics |>
+  pivot_longer(
+    cols = -model,
+    names_to = "metric",
+    values_to = "value"
+  )
+
+ggplot(simple_metrics_long, aes(x = model, y = value, fill = model)) +
+  geom_col() +
+  geom_text(aes(label = round(value, 0)), vjust = -0.5, size = 3) +
+  facet_wrap(~ metric, scales = "free_y") +
+  ggokabeito::scale_fill_okabe_ito() +
+  labs(
+    title = "Forecast Accuracy Metrics by Model",
+    x = "Model",
+    y = "Value"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+```
+
+**(d).** Based on the metrics and the plot above, which of the models performed best on the test set? How do these results compare to what you observed in the training set?
+
+## In-Class Exercises
+
+You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.
+
+### Exercise 3: Fitting regression models
+
+We now turn to ordinary least squares regression models that combine multiple predictors to forecast attendance. OLS regression is a powerful and interpretable method that estimates the relationship between a dependent variable (attendance) and one or more independent variables (e.g., day of week, opponent, game time).
+
+**(a).** Let's begin by fitting an OLS model that uses opponent, day/night, and day of week. We will follow the same process as before and fit on the training data. Complete and run the code below to fit this model.
+
+```{r}
+#| eval: false
+
+basic_ols_model <- 
+    lm(YOUR_CODE_HERE ~ YOUR_CODE_HERE + YOUR_CODE_HERE + YOUR_CODE_HERE, 
+       data = YOUR_CODE_HERE
+     )
+
+```
+
+**(b).** Run the code below to view this model's basic statistics. What do you notice about the coefficients for the different predictors? What does the R-squared value tell you about the model's fit?
+
+```{r}
+#| eval: false
+
+summary(basic_ols_model)
+```
+
+**(c).** Alternatively, we can add nonlinearity by including polynomial terms. For instance, we might expect attendance to vary nonlinearly with game number (e.g., early-season games are better attended than late-season games, or vice-versa). 
+
+Run the code below. What does this plot suggest about how attendance varies over the course of the MLB season?
+
+```{r}
+#| eval: false
+
+ggplot(training_sample_2005_2012, aes(x = gm, y = attendance)) +
+  geom_point(alpha = 0.6) +
+  stat_smooth(
+    method  = "lm",
+    formula = y ~ x + I(x^2),
+    color   = "blue",
+    se      = FALSE
+  ) +
+  labs(
+    title = "Quadratic Fit of Attendance by Game Number",
+    x     = "Game Number",
+    y     = "Attendance"
+  ) +
+  theme_minimal()
+```
+
+**(d).** Now, let's fit a polynomial regression model that includes a quadratic term for game number. Complete and run the code below to fit this model.
+
+```{r}
+#| eval: false
+
+non_linear_ols_model <- 
+    lm(YOUR_CODE_HERE ~ YOUR_CODE_HERE + I(YOUR_CODE_HERE^2), 
+       data = YOUR_CODE_HERE
+    )
+```
+
+**(e).** Run the code below to view this model's basic statistics. How do the coefficients for the polynomial terms compare to those in the previous model? What does the R-squared value tell you about this model's fit?
+
+```{r}
+#| eval: false
+
+summary(non_linear_ols_model)
+```
+
+**(f).** Finally, we can fit a highly flexible polynomial model that includes up to an 8th-degree polynomial in game number, along with opponent, day/night, and day of week. This allows us to capture complex seasonal patterns in attendance.
+
+Run the code below. What does this plot suggest about how attendance varies over the course of the MLB season? Why should we be cautious about using such a high-degree polynomial?
+
+```{r}
+#| eval: false
+
+ggplot(training_sample_2005_2012, aes(x = gm, y = attendance)) +
+  geom_point(alpha = 0.6) +
+  stat_smooth(
+    method  = "lm",
+    formula = y ~ x + I(x ^ 2) + I(x ^ 3) + I(x ^ 4) + 
+      I(x ^ 5) + I(x ^ 6) + I(x ^ 7) + I(x ^ 8),
+    color   = "blue",
+    se      = FALSE
+  ) +
+  labs(
+    title = "Degree-8 Polynomial of Attendance by Game Number",
+    x     = "Game Number",
+    y     = "Attendance"
+  ) +
+  theme_minimal()
+```
+
+**(g).** Now, let's fit this high-degree polynomial regression model that also includes opponent, day/night, and day of week. Complete and run the code below to train this model.
+
+```{r}
+#| eval: false
+
+eighth_poly_ols_model <- 
+  lm(YOUR_CODE_HERE ~ opp + day_night + dotw + gm + I(gm^2) + I(gm^3) + 
+     I(gm^4) + I(gm^5) + I(gm^6) + I(gm^7) + I(gm^8), data = YOUR_CODE_HERE
+  )
+```
+
+**(h).** Run the code below to view this model's basic statistics. What does the R-squared value tell you about this model's fit?
+
+```{r}
+#| eval: false
+
+summary(eighth_poly_ols_model)
+```
+
+
+### Exercise 4: Evaluating flexible prediction models and trading off fit vs generalizability
+
+Now that we have fitted our OLS prediction models, let's see how well these models perform out-of-sample.
+
+**(a).** Run the following chunk of code that filters our test sample so that it only includes those levels of categorical variables (e.g., opp) that our models saw in our training sample. Why do we need to do this? What would happen if we did not do this?
+
+```{r}
+#| eval: false
+
+known_opp_levels <- 
+  training_sample_2005_2012 |> 
+  pull(opp) |> 
+  as.factor() |> 
+  levels()
+
+safe_test_sample <- 
+  test_sample_2013_2015 |>
+  filter(opp %in% known_opp_levels)
+```
+
+**(b).** Now, using this `safe_test_sample`, generate out-of-sample predictions for each of our three OLS models. Complete and run the code below to do this.
+
+```{r}
+#| eval: false
+
+safe_test_sample <- 
+  safe_test_sample |>
+  mutate(
+    predicted_attendance_basic_OLS = predict(YOUR_CODE_HERE, newdata = YOUR_CODE_HERE),
+    predicted_attendance_non_linear_OLS  = predict(YOUR_CODE_HERE, newdata = YOUR_CODE_HERE),
+    predicted_attendance_eighth_poly_OLS = predict(YOUR_CODE_HERE, newdata = YOUR_CODE_HERE)
+  )
+```
+
+**(c).** Run the following chunks of code. The first computes the out-of-sample diagnostics for each of our three OLS models. The second plots each of these metrics. Which model performs best out-of-sample? How does this compare to the in-sample performance we saw earlier?
+
+```{r}
+#| eval: false
+
+basic_ols_model_errors <-
+  safe_test_sample |>
+  select(attendance, predicted_attendance_basic_OLS) |>
+  mutate(
+    error            = attendance - predicted_attendance_basic_OLS,
+    abs_error        = abs(error),
+    squared_error    = error ^ 2,
+    percentage_error = (error / attendance) * 100
+  )
+
+basic_ols_model_metrics <-
+  basic_ols_model_errors |>
+  summarise(
+    MAE  = mean(abs_error, na.rm = TRUE),
+    RMSE = sqrt(mean(squared_error, na.rm = TRUE)),
+    MAPE = mean(abs(percentage_error), na.rm = TRUE)
+  )
+
+non_linear_ols_model_errors <-
+  safe_test_sample |>
+  select(attendance, predicted_attendance_non_linear_OLS) |>
+  mutate(
+    error            = attendance - predicted_attendance_non_linear_OLS,
+    abs_error        = abs(error),
+    squared_error    = error ^ 2,
+    percentage_error = (error / attendance) * 100
+  )
+
+non_linear_ols_model_metrics <-
+  non_linear_ols_model_errors |>
+  summarise(
+    MAE  = mean(abs_error, na.rm = TRUE),
+    RMSE = sqrt(mean(squared_error, na.rm = TRUE)),
+    MAPE = mean(abs(percentage_error), na.rm = TRUE)
+  )
+
+eighth_poly_ols_model_errors <-
+  safe_test_sample |>
+  select(attendance, predicted_attendance_eighth_poly_OLS) |>
+  mutate(
+    error            = attendance - predicted_attendance_eighth_poly_OLS,
+    abs_error        = abs(error),
+    squared_error    = error ^ 2,
+    percentage_error = (error / attendance) * 100
+  )
+
+eighth_poly_ols_model_metrics <-
+  eighth_poly_ols_model_errors |>
+  summarise(
+    MAE  = mean(abs_error, na.rm = TRUE),
+    RMSE = sqrt(mean(squared_error, na.rm = TRUE)),
+    MAPE = mean(abs(percentage_error), na.rm = TRUE)
+  )
+```
+
+```{r}
+#| eval: false
+
+basic_ols_model_metrics <-
+  basic_ols_model_metrics |>
+  mutate(model = "Basic OLS")
+
+non_linear_ols_model_metrics <-
+  non_linear_ols_model_metrics |>
+  mutate(model = "Non-Linear OLS")
+
+eighth_poly_ols_model_metrics <-
+  eighth_poly_ols_model_metrics |>
+  mutate(model = "Degree-8 Poly OLS")
+
+richer_model_metrics <-
+  basic_ols_model_metrics |>
+  bind_rows(non_linear_ols_model_metrics) |>
+  bind_rows(eighth_poly_ols_model_metrics)
+
+richer_metrics_long <-
+  richer_model_metrics |>
+  pivot_longer(cols = -model, names_to = "metric", values_to = "value")
+
+ggplot(richer_metrics_long, aes(x = model, y = value, fill = model)) +
+  geom_col() +
+  geom_text(aes(label = round(value, 2)), vjust = -0.5, size = 3) +
+  facet_wrap(~ metric, scales = "free_y") +
+  ggokabeito::scale_fill_okabe_ito() +
+  labs(
+    title = "Forecast Accuracy Metrics by Model",
+    x = "Model",
+    y = "Value"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+```
+
+**(d).** Let's quickly return to our in-sample metrics. Run the following code to combine and plot the in-sample metrics for each of our three OLS models. How do these compare to the out-of-sample metrics we just computed? Do you find this surprising?
+
+```{r}
+#| eval: false
+
+r2_basic <-
+  summary(basic_ols_model)$r.squared
+
+r2_nonlinear <-
+  summary(non_linear_ols_model)$r.squared
+
+r2_eighth_poly <-
+  summary(eighth_poly_ols_model)$r.squared
+
+r2_df <- data.frame(
+  Model = c("Basic OLS", "Nonlinear OLS", "Degree-8 Poly OLS"),
+  R2    = c(r2_basic, r2_nonlinear, r2_eighth_poly)
+)
+
+ggplot(r2_df, aes(x = Model, y = R2, fill = Model)) +
+  geom_col(width = 0.6) +
+  geom_text(aes(label = round(R2, 3)), vjust = -0.5, size = 3) +
+  ggokabeito::scale_fill_okabe_ito() +
+  labs(
+    title = "Comparison of R² Across Models",
+    x     = "Model",
+    y     = "R²"
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    legend.position = "none",
+    axis.text.x     = element_text(angle = 45, hjust = 1),
+    plot.margin     = margin(5, 5, 5, 5)
+  )
+```
+
+
