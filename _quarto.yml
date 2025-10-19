@@ -35,8 +35,9 @@ book:
         - advanced_analytics/descriptive_analytics.qmd
         - advanced_analytics/causal_analytics.qmd
         - advanced_analytics/predictive_analytics.qmd
-    # - part: "Ethics and Privacy"
-    #   chapters:
+    - part: "Ethics in Analytics"
+      chapters:
+        - ethics_privacy/ethics_privacy.qmd
     #     - ethics_privacy/ethics.qmd
     #     #- ethics_privacy/privacy.qmd
     # - part: "Conclusion"
