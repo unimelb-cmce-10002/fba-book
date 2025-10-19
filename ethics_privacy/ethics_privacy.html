@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>13&nbsp; Ethics in Business Analytics – Foundations of Business Analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../tutorials/what_is_business_analytics.html" rel="next">
+<link href="../advanced_analytics/predictive_analytics.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6f77e067621728e8e5d8b75f5607b6c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../solution.js"></script>
+
+
+<link rel="stylesheet" href="../custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ethics_privacy/ethics_privacy.html">Ethics in Analytics</a></li><li class="breadcrumb-item"><a href="../ethics_privacy/ethics_privacy.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Foundations of Business Analytics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What is Business Analytics?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Core Skills of a “Business Scientist”</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foundations/reproducible.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Workflows with R &amp; Posit Cloud</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Getting Our First Insights from Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../insights/data_visualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation for Business Intelligence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../insights/data_manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Wrangling for Business Analytics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../insights/data_tidy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Shaping and Combining Data for Business Analytics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Finding and Storing Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Extracting Deeper Insights from Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/data_variation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variation in Cross-Sectional, Times-Series, and Panel Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive Analytics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/causal_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Causal Analytics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/predictive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-driven Predictions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Ethics in Analytics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ethics_privacy/ethics_privacy.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 1: Business Analytics Skills for Inventory Management</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 2: Core Skills of a Business Scientist &amp; Introduction to Posit Cloud</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_visualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 3: Data Visualisation for Business Intelligence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 4: Data Wrangling for Business Analytics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_tidy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 5: Shaping and Joining Data for Business Analytics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 6: Storing &amp; Retrieving Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 7: Obtaining Macroeconomic Data through FRED</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/data_variation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 8: Develop and Test Stock Trading Strategies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 9: Descriptive Analytics in HRM</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/causal_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 10: Causal Analytics to Improve User Sign Up Experiences</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/predictive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 11: Predictive Analytics for Workforce Planning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-ethics-in-business-analytics" id="toc-what-is-ethics-in-business-analytics" class="nav-link active" data-scroll-target="#what-is-ethics-in-business-analytics"><span class="header-section-number">13.1</span> What is Ethics in Business Analytics?</a></li>
+  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link" data-scroll-target="#the-business-challenge"><span class="header-section-number">13.2</span> The Business Challenge</a></li>
+  <li><a href="#lens-1-privacy" id="toc-lens-1-privacy" class="nav-link" data-scroll-target="#lens-1-privacy"><span class="header-section-number">13.3</span> Lens 1: Privacy</a>
+  <ul class="collapse">
+  <li><a href="#what-is-privacy-in-business-analytics" id="toc-what-is-privacy-in-business-analytics" class="nav-link" data-scroll-target="#what-is-privacy-in-business-analytics">What is Privacy in Business Analytics?</a></li>
+  <li><a href="#consent-legal-ethical" id="toc-consent-legal-ethical" class="nav-link" data-scroll-target="#consent-legal-ethical">Consent — Legal ≠ Ethical</a></li>
+  <li><a href="#privacy-vs-personalisation-helpful-isnt-always-harmless" id="toc-privacy-vs-personalisation-helpful-isnt-always-harmless" class="nav-link" data-scroll-target="#privacy-vs-personalisation-helpful-isnt-always-harmless">Privacy vs Personalisation — Helpful Isn’t Always Harmless</a></li>
+  <li><a href="#dark-patterns-when-design-undermines-choice" id="toc-dark-patterns-when-design-undermines-choice" class="nav-link" data-scroll-target="#dark-patterns-when-design-undermines-choice">Dark Patterns — When Design Undermines Choice</a></li>
+  <li><a href="#anonymisation-isnt-enough" id="toc-anonymisation-isnt-enough" class="nav-link" data-scroll-target="#anonymisation-isnt-enough">Anonymisation Isn’t Enough</a></li>
+  <li><a href="#australian-privacy-regulations" id="toc-australian-privacy-regulations" class="nav-link" data-scroll-target="#australian-privacy-regulations">Australian Privacy Regulations</a></li>
+  </ul></li>
+  <li><a href="#lens-2-bias" id="toc-lens-2-bias" class="nav-link" data-scroll-target="#lens-2-bias"><span class="header-section-number">13.4</span> Lens 2: Bias</a>
+  <ul class="collapse">
+  <li><a href="#what-is-bias-in-analytics" id="toc-what-is-bias-in-analytics" class="nav-link" data-scroll-target="#what-is-bias-in-analytics">What is Bias in Analytics?</a></li>
+  <li><a href="#sources-of-bias-where-it-enters-the-pipeline" id="toc-sources-of-bias-where-it-enters-the-pipeline" class="nav-link" data-scroll-target="#sources-of-bias-where-it-enters-the-pipeline">Sources of Bias: Where It Enters the Pipeline</a></li>
+  <li><a href="#fairness-metrics-how-do-we-measure-fairness" id="toc-fairness-metrics-how-do-we-measure-fairness" class="nav-link" data-scroll-target="#fairness-metrics-how-do-we-measure-fairness">Fairness Metrics: How Do We Measure Fairness?</a></li>
+  </ul></li>
+  <li><a href="#lens-3-accountability" id="toc-lens-3-accountability" class="nav-link" data-scroll-target="#lens-3-accountability"><span class="header-section-number">13.5</span> Lens 3: Accountability</a>
+  <ul class="collapse">
+  <li><a href="#what-is-accountability-in-analytics" id="toc-what-is-accountability-in-analytics" class="nav-link" data-scroll-target="#what-is-accountability-in-analytics">What is Accountability in Analytics?</a></li>
+  <li><a href="#roles-and-responsibilities-whos-accountable-for-what" id="toc-roles-and-responsibilities-whos-accountable-for-what" class="nav-link" data-scroll-target="#roles-and-responsibilities-whos-accountable-for-what">Roles and Responsibilities: Who’s Accountable for What?</a></li>
+  <li><a href="#explainability-vs-transparency" id="toc-explainability-vs-transparency" class="nav-link" data-scroll-target="#explainability-vs-transparency">Explainability vs Transparency</a></li>
+  </ul></li>
+  <li><a href="#lens-4-power" id="toc-lens-4-power" class="nav-link" data-scroll-target="#lens-4-power"><span class="header-section-number">13.6</span> Lens 4: Power</a>
+  <ul class="collapse">
+  <li><a href="#what-is-power-in-business-analytics" id="toc-what-is-power-in-business-analytics" class="nav-link" data-scroll-target="#what-is-power-in-business-analytics">What is Power in Business Analytics?</a></li>
+  <li><a href="#manipulation-trust" id="toc-manipulation-trust" class="nav-link" data-scroll-target="#manipulation-trust">Manipulation &amp; Trust</a></li>
+  </ul></li>
+  <li><a href="#wrap-up-thinking-ethically-in-business-analytics" id="toc-wrap-up-thinking-ethically-in-business-analytics" class="nav-link" data-scroll-target="#wrap-up-thinking-ethically-in-business-analytics"><span class="header-section-number">13.7</span> Wrap Up: Thinking Ethically in Business Analytics</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ethics_privacy/ethics_privacy.html">Ethics in Analytics</a></li><li class="breadcrumb-item"><a href="../ethics_privacy/ethics_privacy.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Learning Goals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>By the end of this chapter, you should be able to:</p>
+<ul>
+<li>TBD</li>
+</ul>
+</div>
+</div>
+<section id="what-is-ethics-in-business-analytics" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="what-is-ethics-in-business-analytics"><span class="header-section-number">13.1</span> What is Ethics in Business Analytics?</h2>
+<p>The business analytics toolkit we have built throughout this book has given us powerful tools to use data to inform business decisions. But with this power comes responsibility. As analysts, we make choices — what to measure, how to model it, and who gets affected by the outcomes.</p>
+<p>Ethics in business analytics is not just about avoiding scandals or complying with the law. It’s about recognising that analytics projects, no matter how well-intentioned, carry the potential to shape real-world outcomes in unintended ways. A system that’s technically correct can still be socially harmful. A model that optimises for efficiency can overlook fairness. A dashboard that helps managers make faster decisions might also expose sensitive information.</p>
+<p>Ethical practice asks us to slow down and consider not just can we build it, but should we? Who benefits? What risks are introduced? It invites us to think beyond technical performance and legal checklists, and to take responsibility for the broader impacts of our work. It helps us build systems that are not only smart and effective, but also worthy of the trust of business stakeholders, consumers and the population at large.</p>
+<p>This starts with asking questions such as:</p>
+<ul>
+<li>Are we using data in ways that respect people’s rights?</li>
+<li>Could our models unintentionally reinforce unfairness?</li>
+<li>Who is accountable when analytics go wrong?</li>
+<li>And who benefits—or loses—when analytics drive decisions?</li>
+</ul>
+<p>Each of these questions tie in to one of four lenses that we will introduce to help us think more clearly about ethics in business analytics:</p>
+<ul>
+<li>Privacy: Are we collecting and using data in a way that respects individual control and confidentiality?</li>
+<li>Bias: Do our models perform fairly across groups, or do they systematically disadvantage some?</li>
+<li>Accountability: Are there clear owners, explainable systems, and paths for recourse when things go wrong?</li>
+<li>Power: Who gains, who bears the risks, and whose voice is heard when analytics inform decisions?</li>
+</ul>
+<p>Together, these lenses sharpen our judgement—so we can spot ethical risks early, explain our decisions clearly, and build systems that earn trust.</p>
+</section>
+<section id="the-business-challenge" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="the-business-challenge"><span class="header-section-number">13.2</span> The Business Challenge</h2>
+<p>Suppose you’ve just joined the product analytics team at LearnLoop, a leading Learning Management System (LMS) used by universities and colleges across Australia.</p>
+<p>One of this year’s flagship projects is the development of an Early Warning System (EWS) to help institutions identify students who may be at risk of falling behind. The product team envisions a predictive model that flags struggling students early enough for instructors or support staff to intervene — ideally lifting retention and pass rates across courses.</p>
+<p>The first prototype uses LMS activity data—logins, assignment submissions, time spent on pages—to estimate disengagement. But the team is now exploring ways to enhance the system’s predictive power by integrating additional datasets from the university’s broader information systems.</p>
+<p>These may include:</p>
+<ul>
+<li>Academic performance history (e.g.&nbsp;GPA, past fails)</li>
+<li>Demographic information (e.g.&nbsp;age, gender, enrolment mode, international status, disability support)</li>
+<li>Course-level risk factors (e.g.&nbsp;high-fail subjects)</li>
+</ul>
+<p>From a modelling perspective, these additions could make the predictions more accurate and more timely. But they also raise new challenges:</p>
+<ul>
+<li>Who gets to decide which variables are “fair game” for use in the predictive model?</li>
+<li>Should students be notified or consulted about these secondary uses of their data?</li>
+<li>How do we avoid reinforcing disadvantage or making assumptions about certain student groups?</li>
+</ul>
+<p>You’ve been asked to help advise on ethical and practical implications of the Early Warning System. To do so, you will need to build an understanding of the four ethical lenses to help you surface different concerns and frame concrete recommendations.</p>
+<div class="exercise">
+<div class="exercise-time">
+<p>10 min</p>
+</div>
+<section id="first-impressions-of-ethical-issues" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="first-impressions-of-ethical-issues">First Impressions of Ethical Issues</h3>
+<p>Before we introduce the four ethical lenses, take a few minutes to jot down your initial reactions to the Early Warning System.</p>
+<p>What ethical or practical concerns come to mind about this system? What changes or safeguards might help? You don’t need to use technical terms — instead write down:</p>
+<ul>
+<li>Two or three concerns you’d want to raise with the team *One suggestion for each concern you list that could make the system fairer, safer, or more transparent</li>
+</ul>
+<p>Revisit your ideas after we explore the four lenses.</p>
+</section>
+</div>
+</section>
+<section id="lens-1-privacy" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="lens-1-privacy"><span class="header-section-number">13.3</span> Lens 1: Privacy</h2>
+<section id="what-is-privacy-in-business-analytics" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="what-is-privacy-in-business-analytics">What is Privacy in Business Analytics?</h3>
+<p>Privacy in business analytics is about more than keeping data secret. At its core, it’s about respecting people’s right to understand and control how information about them is used—not just the information they gave you, but also what you infer about them through analysis.</p>
+<p>This means thinking carefully about what data you collect, why you collect it, how long you keep it, and what kinds of decisions you make using it. Privacy risks arise when this process breaks down—when data collected for one purpose is reused for another, when more is gathered than necessary, or when sensitive predictions are made without transparency or consent.</p>
+<p>Let’s consider LearnLoop’s Early Warning System. A student may expect the platform to record their assignment submissions and logins. But would they expect those behaviours to be used to predict their mental health, engagement, or risk of failure? Would they expect that prediction to be shared with a tutor or administrator? The more data is repurposed without explanation, the more the system begins to feel like surveillance, not support.</p>
+<p>Good privacy practice means making thoughtful, proportionate choices. It means collecting only what’s needed for a clear purpose, limiting access to sensitive information, and designing systems that are transparent about how personal data is used. It also means recognising that privacy isn’t just a legal box to tick—it’s a foundation for building trust with users.</p>
+<p>As you move through this section, you’ll explore the limits of consent, the tension between privacy and personalisation, the impact of manipulative design, and the challenges of protecting identity even when names are removed. Together, these will help you identify and mitigate privacy risks before they cause harm—to individuals or to your organisation’s reputation.</p>
+<div class="exercise">
+<div class="exercise-time">
+<p>5 min</p>
+</div>
+<section id="is-this-a-privacy-risk" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="is-this-a-privacy-risk">Is this a Privacy Risk?</h3>
+<p>Read each short scenario. Decide whether it poses a privacy risk, and briefly explain why.</p>
+<ul>
+<li>A fitness app collects heart rate and step count to give users weekly summaries. It later uses this data to advertise health insurance.</li>
+<li>A university dashboard shows aggregate login data by course to help instructors monitor engagement.</li>
+<li>A retail company uses anonymised purchase history to build product recommendations — but links it back to users via loyalty cards.</li>
+</ul>
+</section>
+</div>
+</section>
+<section id="consent-legal-ethical" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="consent-legal-ethical">Consent — Legal ≠ Ethical</h3>
+<p>In many analytics projects, the question of consent is treated as a formality. If the user accepted the terms and conditions, that’s good enough—right?</p>
+<p>Not quite.</p>
+<p>In practice, most users don’t read privacy policies. Even when they do, the language is often vague, legalistic, or overly broad. While these forms of “notice and consent” might satisfy legal requirements, they rarely reflect meaningful consent—especially when the downstream uses of data are unclear or evolving.</p>
+<p>In the case of LearnLoop, students may have agreed to share their data when they first enrolled or signed up for the LMS. But did that agreement include using their behaviour to make predictions about their academic risk? Did it cover sharing those predictions with academic staff? Even if technically permissible, these secondary uses may breach student expectations—and erode trust.</p>
+<p>Ethical data use asks us to go beyond what users accepted and consider what they understood. Were they given enough context to make an informed choice? Would they be surprised—or upset — if they knew how their data was being used?</p>
+</section>
+<section id="privacy-vs-personalisation-helpful-isnt-always-harmless" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="privacy-vs-personalisation-helpful-isnt-always-harmless">Privacy vs Personalisation — Helpful Isn’t Always Harmless</h3>
+<p>One of the most common justifications for collecting more data is personalisation. “If we understand the user better,” the thinking goes, “we can help them more effectively.”</p>
+<p>In some cases, that’s true. Personalisation can improve relevance, convenience, and outcomes—especially in education. A gentle nudge to a disengaged student might prompt them to re-engage. A dashboard tailored to a student’s progress might help them stay on track.</p>
+<p>But personalisation always comes with a trade-off: to personalise, you must profile. And the more detailed the profiling, the more intimate—and potentially intrusive—the system becomes.</p>
+<p>In the LearnLoop example, the Early Warning System aims to identify students at risk of underperformance or disengagement. From a product perspective, that’s helpful. But from a student’s perspective, being profiled as “at risk” can feel stigmatizing—especially if they never consented to that label, never saw the data behind it, and never had a chance to contest it.</p>
+<p>This is where privacy and personalisation collide. Just because something works doesn’t mean it’s fair. A model that improves outcomes overall may still violate individual expectations or create unintended harm.</p>
+<p>As analysts, our job is not just to maximise predictive accuracy, but to ask:</p>
+<ul>
+<li>Is this level of personalisation proportionate to the benefit?</li>
+<li>Could we achieve the same goal using less data or a simpler approach?</li>
+<li>What does this look and feel like for the person on the receiving end?</li>
+</ul>
+<p>Helpful analytics must also be respectful analytics—especially when they deal with sensitive aspects of people’s lives.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Case: Spotify's Mood Detection Patent">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Case: Spotify’s Mood Detection Patent
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In 2021, Spotify was granted a patent to infer a listener’s <strong>emotional state</strong>, gender, and accent based on voice input and background noise — then use that information to recommend music.</p>
+<p>Spotify argued this could improve personalisation. But critics raised concerns:</p>
+<ul>
+<li>Was it clear to users that their <strong>emotions</strong> were being inferred?</li>
+<li>Could this data be used to target ads—or influence behaviour—beyond music?</li>
+</ul>
+<p>This case shows how quickly <strong>personalisation</strong> can blur into <strong>surveillance</strong>, especially when inferences are made without transparent consent. Even if legal, it raises ethical questions about proportionality and trust.</p>
+</div>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-time">
+<p>7 min</p>
+</div>
+<section id="data-inventory-challenge" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="data-inventory-challenge">Data Inventory Challenge</h3>
+<p>Imagine you’re part of the LearnLoop analytics team designing the Early Warning System. You’re brainstorming all the data sources you could use to improve predictions.</p>
+<p>Here’s a list of potential variables. For each one, decide if it’s:</p>
+<ul>
+<li><strong>Essential</strong> — truly needed for identifying risk and justifiable to collect<br>
+</li>
+<li><strong>Nice to have</strong> — might help, but only if privacy risks are clearly outweighed<br>
+</li>
+<li><strong>Unnecessary</strong> — too invasive, too risky, or not clearly useful</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Your Classification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>LMS login timestamps</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Days since last LMS login</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Assignment submission dates</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Grades on major assignments</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Attendance at tutorials</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Access to course videos</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Library book loans</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Number of help requests via email</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Disability registration status</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Program and year level</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Student’s high school exam score</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Time of day LMS is accessed</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>IP address or geolocation</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Device type (e.g.&nbsp;mobile, desktop)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Demographics (e.g.&nbsp;age, gender, postcode)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Choose one variable where you <strong>drew a hard line</strong> and explain your reasoning. What made it feel justified or unjustified? What privacy concerns tipped the scale?</p>
+</section>
+</div>
+</section>
+<section id="dark-patterns-when-design-undermines-choice" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="dark-patterns-when-design-undermines-choice">Dark Patterns — When Design Undermines Choice</h3>
+<p>Privacy risks don’t just come from the data we collect—they also come from the ways we present choices.</p>
+<p>A dark pattern is a design choice that nudges users toward a particular action—often without their full understanding or consent. These patterns are common in consumer tech: pre-ticked boxes, misleading button labels, confusing opt-outs, or guilt-inducing prompts like “No thanks, I like missing deadlines.”</p>
+<p>But they also show up in analytics-driven systems, often without anyone realising.</p>
+<p>In the LearnLoop context, imagine a student receives an automated message:</p>
+<blockquote class="blockquote">
+<p>“We noticed signs you might be falling behind. Click here to accept academic support.”</p>
+</blockquote>
+<p>That seems helpful. But what if:</p>
+<ul>
+<li>There’s no clear explanation of what “falling behind” means?</li>
+<li>The alert makes the student feel anxious or ashamed, even if they’re doing fine?</li>
+<li>The only button is “Accept Support”—no way to decline, ask for clarification, or see the data behind the alert?</li>
+</ul>
+<p>That’s not transparency. That’s coercion wrapped in helpful language.</p>
+<p>These design choices can undermine autonomy, especially when users are in a vulnerable position—like students navigating high-stakes courses. Even well-intentioned features can cross the line if users don’t feel free to make informed, voluntary choices.</p>
+<p>Ethical analytics doesn’t stop at good predictions. It extends into interface design. It means asking:</p>
+<ul>
+<li>Is the message clear and balanced?</li>
+<li>Are the choices real, or just decorative?</li>
+<li>Could someone feel manipulated by the way we present this information?</li>
+</ul>
+<p>Respect for privacy includes respect for decision-making.</p>
+</section>
+<section id="anonymisation-isnt-enough" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="anonymisation-isnt-enough">Anonymisation Isn’t Enough</h3>
+<p>It’s easy to assume that once data is anonymised, the privacy risk is gone. Remove the names and student IDs, and you’re in the clear—right?</p>
+<p>Not quite.</p>
+<p>Anonymisation is not a magic shield. In many cases, de-identified data can be re-identified—especially when it involves detailed behavioural patterns or is combined with other datasets.</p>
+<p>Think about LearnLoop’s Early Warning System. Even if student names are removed, the model might still use:</p>
+<ul>
+<li>Unique login times (e.g.&nbsp;one student who studies only at 2am)</li>
+<li>Unusual course combinations</li>
+<li>Repeated help-seeking behaviours</li>
+</ul>
+<p>These patterns can act like digital fingerprints. And when LMS data is linked with enrolment records, support service usage, or survey responses, the chance of re-identification increases dramatically.</p>
+<p>This is especially true in small cohorts (e.g.&nbsp;a master’s seminar with 8 students) or when dealing with sensitive student groups (e.g.&nbsp;those registered for disability support or counselling services).</p>
+<p>In analytics, we often treat “de-identified” data as safe—but in practice, privacy risk lives in context, not just columns.</p>
+<p>What matters is not just whether data looks anonymous in a spreadsheet, but whether someone could be reasonably re-identified in the real world.</p>
+<p>That’s why ethical analysts ask:</p>
+<ul>
+<li>Could this data be linked to other sources in ways we didn’t intend?</li>
+<li>Is re-identification possible—even if unlikely?</li>
+<li>Should we treat this data with the same care as fully identified information?</li>
+</ul>
+<p>Anonymisation is one tool in a broader privacy strategy—not an excuse to ignore risk. If a system uses personal behaviour to make decisions, we owe it the same ethical scrutiny, whether or not a name is attached.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Not All Anonymisation Is Equal">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Not All Anonymisation Is Equal
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>There are different ways to “anonymise” data—and some are much safer than others. Here’s a quick guide:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 33%">
+<col style="width: 19%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>What it does</th>
+<th>Is it enough?</th>
+<th>Analogy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Removing names or IDs</td>
+<td>Deletes obvious identifiers (e.g.&nbsp;student ID)</td>
+<td>Not enough on its own</td>
+<td>Like tearing off a name tag but keeping the unique outfit</td>
+</tr>
+<tr class="even">
+<td>Masking rare traits</td>
+<td>Removes or groups rare values (e.g.&nbsp;only showing “age: 18–24”)</td>
+<td>Helps, but not foolproof</td>
+<td>Like blurring a face—still recognisable in small crowds</td>
+</tr>
+<tr class="odd">
+<td>K-anonymity</td>
+<td>Makes each record look like at least several others</td>
+<td>Better for structured data</td>
+<td>Like hiding in a crowd where everyone looks similar</td>
+</tr>
+<tr class="even">
+<td>L-diversity / T-closeness</td>
+<td>Adds protection against guessing sensitive information</td>
+<td>Adds robustness</td>
+<td>Like hiding in a group and making sure no pattern gives you away</td>
+</tr>
+<tr class="odd">
+<td>Differential Privacy</td>
+<td>Adds random noise to protect individual data in aggregate</td>
+<td>Considered the most rigorous option</td>
+<td>Like describing group trends without revealing individuals</td>
+</tr>
+<tr class="even">
+<td>Synthetic data</td>
+<td>Creates fake data that mimics patterns in the original</td>
+<td>Safe when well designed</td>
+<td>Like a training dummy—looks real, but no one gets hurt</td>
+</tr>
+</tbody>
+</table>
+<p>Key lesson: Removing a name isn’t enough. Ethical anonymisation means making sure no one can be picked out, even when datasets are combined or patterns are unusual.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Case: Spotify's Mood Detection Patent">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Case: Spotify’s Mood Detection Patent
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In 2021, Spotify was granted a patent to infer a listener’s <strong>emotional state</strong>, gender, and accent based on voice input and background noise — then use that information to recommend music.</p>
+<p>Spotify argued this could improve personalisation. But critics raised concerns:</p>
+<ul>
+<li>Was it clear to users that their <strong>emotions</strong> were being inferred?</li>
+<li>Could this data be used to target ads—or influence behaviour—beyond music?</li>
+</ul>
+<p>This case shows how quickly <strong>personalisation</strong> can blur into <strong>surveillance</strong>, especially when inferences are made without transparent consent. Even if legal, it raises ethical questions about proportionality and trust.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="australian-privacy-regulations" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="australian-privacy-regulations">Australian Privacy Regulations</h3>
+<p>While ethical design goes beyond the law, it’s important to know what the law does require—especially in Australia, where the handling of personal data is governed by the Privacy Act 1988 and the Australian Privacy Principles (APPs).</p>
+<p>The APPs apply to most organisations handling personal information, including education technology providers and universities. They cover everything from why data is collected, to how it’s stored, to who it can be shared with.</p>
+<p>Here are the most relevant principles for business analytics work:</p>
+<ul>
+<li><p><strong>Transparency and anonymity</strong>: Organisations must have a clear privacy policy and allow anonymous use where possible.</p></li>
+<li><p><strong>Purpose limitation and collection</strong>: Data should only be collected if it’s necessary for a clear business function—and users must be notified.</p></li>
+<li><p><strong>Use and disclosure</strong>: Data can only be used or shared for the purpose it was collected, unless an exception applies.</p></li>
+<li><p><strong>Security and data retention</strong>: Reasonable steps must be taken to protect data, and it should be destroyed or de-identified when no longer needed.</p></li>
+<li><p><strong>Access and correction</strong>: Individuals have the right to access and correct their personal information.</p></li>
+</ul>
+<p>If a serious data breach occurs—such as loss, theft, or unauthorised access—the Notifiable Data Breaches (NDB) Scheme requires organisations to notify affected individuals and report it to the Office of the Australian Information Commissioner (OAIC).</p>
+<p>These laws provide a legal foundation—but they don’t eliminate risk, nor do they tell you how to make good design choices.</p>
+</section>
+</section>
+<section id="lens-2-bias" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="lens-2-bias"><span class="header-section-number">13.4</span> Lens 2: Bias</h2>
+<p>We’ve seen how privacy risks emerge when systems collect too much, use data in unexpected ways, or fail to give people meaningful control. But even when data is collected ethically, another challenge remains: What if the way we use that data leads to unfair outcomes?</p>
+<p>This brings us to the second ethical lens: Bias.</p>
+<section id="what-is-bias-in-analytics" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="what-is-bias-in-analytics">What is Bias in Analytics?</h3>
+<p>Bias in analytics isn’t just a technical issue—it’s a fairness issue. It happens when your analysis produces systematic errors that disproportionately affect certain groups of people.</p>
+<p>In simple terms: if your predictions are consistently less accurate—or more harmful—for one group than another, your system is biased.</p>
+<p>This kind of bias can creep in at any stage of the analytics process:</p>
+<ul>
+<li>You might be working with skewed or incomplete data, where some groups are underrepresented.</li>
+<li>You might be using features that act as proxies for race, gender, or socioeconomic status—even if you never included those variables directly.</li>
+<li>Your outcome variable (or label) might reflect past inequalities—like using historical drop-out data to predict future risk, without asking why certain groups dropped out more.</li>
+</ul>
+<p>And even if your model starts out fair, it can drift over time as real-world patterns change—creating new disparities that weren’t there before.</p>
+<p>Importantly, biased models don’t always look broken. In fact, they often work well on average. But “average accuracy” hides a lot. A model that’s 85% accurate overall might be 95% accurate for domestic students and only 65% for international students. That’s a problem—even if the dashboard says “everything looks good.”</p>
+<p>In business analytics, this matters because biased models lead to unfair outcomes: the wrong people get flagged, the wrong people get missed, and trust breaks down.</p>
+<p>Fairness isn’t just about checking your output—it’s about understanding the structure of your data, the impact of your decisions, and the trade-offs you make when optimising for performance.</p>
+<p>In the LearnLoop case, imagine a model that’s worse at detecting risk for part-time students or students with learning accommodations. Those are the students who most need support—but they’re the ones most likely to be missed. That’s bias in action.</p>
+</section>
+<section id="sources-of-bias-where-it-enters-the-pipeline" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="sources-of-bias-where-it-enters-the-pipeline">Sources of Bias: Where It Enters the Pipeline</h3>
+<p>Bias in analytics doesn’t come from one place. It creeps in gradually—through small decisions about data sources, variables, evaluate the output of our analysis. Often, no single step feels obviously wrong. But when combined, they can produce systematic disadvantages for certain groups.</p>
+<p>Here are four of the most common ways bias enters the analytics pipeline:</p>
+<p><strong>1. In the Data: Who’s Missing?</strong></p>
+<p>If the data we’ve collected underrepresents a group, the model will likely perform worse for them. In the LearnLoop example, imagine your dataset mostly contains full-time students studying business. If part-time students, or students in remote campuses, are rare in the data, the model won’t learn patterns that apply to them. As a result, its predictions may be less accurate—or completely off.</p>
+<p>This is sometimes called representation bias, and it’s especially dangerous when it’s invisible. You can’t fix what you don’t measure.</p>
+<p><strong>2. In the Variables: What Are You Really Measuring?</strong></p>
+<p>Even when so called “protected attributes” (like gender or ethnicity) are excluded, bias can still sneak in through proxy variables.</p>
+<p>For example:</p>
+<ul>
+<li>If you use ZIP code or access to campus Wi-Fi as a feature, you might be indirectly encoding socioeconomic status.</li>
+<li>If your model tracks time of login, it might disadvantage students who work night shifts or share computers at home.</li>
+<li>These features might seem neutral, but they can reflect structural inequalities—baking social disadvantage into a system that’s meant to support learning.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Case: Apple's Credit Card and Gender Bias">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Case: Apple’s Credit Card and Gender Bias
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In 2019, users reported that Apple’s new credit card—launched with Goldman Sachs—was offering <strong>men significantly higher credit limits than women</strong>, even when applying as a married couple filing joint taxes.</p>
+<p>The algorithm didn’t include gender as a variable. But it seemed to use features that <em>acted as proxies</em> for gender—like occupation or income patterns—resulting in indirect discrimination.</p>
+<p>This sparked a public backlash and investigations into algorithmic bias, transparency, and regulatory oversight in financial technology.</p>
+<p><strong>Lesson:</strong> Excluding protected attributes doesn’t eliminate bias if proxy variables still encode structural inequalities.</p>
+</div>
+</div>
+</div>
+<p><strong>3. In the Outcomes: Are Past Outcomes Fair?</strong></p>
+<p>Sometimes the thing you’re modelling is itself biased. This is known as label bias.</p>
+<p>Suppose your analysis for LearnLoop uses past drop-out data. If students from certain backgrounds were less likely to get support—and more likely to drop out—your label reflects that unfairness. The model learns a pattern that treats those students as inherently “risky,” rather than recognising they may have been underserved.</p>
+<p>The danger? You end up reproducing past injustice—but now with a mathematical justification.</p>
+<p><strong>4. Over Time: When Fairness Drifts</strong></p>
+<p>Even if your model is fair when you deploy it, it can become biased later. This is called model drift.</p>
+<p>For instance, if online engagement changes over the semester—or a new cohort of students joins with different habits—the model’s original assumptions may no longer hold. It might start making systematically worse predictions for one group than another, without anyone noticing.</p>
+<p>Unless you monitor performance across groups, bias won’t just persist—it will evolve.</p>
+<p>Together, these sources show that fairness isn’t something you can check once and forget. It has to be designed for, tested, and maintained throughout the analytics lifecycle.</p>
+</section>
+<section id="fairness-metrics-how-do-we-measure-fairness" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fairness-metrics-how-do-we-measure-fairness">Fairness Metrics: How Do We Measure Fairness?</h3>
+<p>Once we suspect our analysis may be biased, the next step is to make that bias visible. But how do you measure fairness?</p>
+<p>The answer depends on what kind of fairness you care about—and there’s no single definition. In practice, we often use group-level comparisons to check whether the model behaves differently for different types of students.</p>
+<p>Here are three common ways fairness is measured in analytics:</p>
+<p><strong>1. Group Parity (or Demographic Parity)</strong></p>
+<blockquote class="blockquote">
+<p>Are people in different groups flagged at the same rate?</p>
+</blockquote>
+<p>In LearnLoop, if 20% of students are flagged as “at risk,” do you see roughly the same percentage across domestic and international students? Or is one group flagged much more often?</p>
+<p>Group parity is simple and intuitive—but it doesn’t tell you whether the predictions are correct, just whether they’re equally distributed.</p>
+<p><strong>2. Error Parity (or Equalised Odds)</strong></p>
+<blockquote class="blockquote">
+<p>Are error rates similar across groups?</p>
+</blockquote>
+<p>There are two main types of error:</p>
+<ul>
+<li>False positives: Students flagged as “at risk” who are actually doing fine</li>
+<li>False negatives: Students not flagged, but actually at risk</li>
+</ul>
+<p>Equalised odds asks whether these errors happen more often for some groups than others. If the model misses 15% of domestic students but 35% of international students, that’s a fairness problem—even if the overall accuracy looks high.</p>
+<p>This is one of the most widely used fairness metrics in practice because it reflects actual outcomes, not just proportions.</p>
+<p><strong>3. Calibration</strong></p>
+<blockquote class="blockquote">
+<p>Do the predicted risk scores mean the same thing for different groups?</p>
+</blockquote>
+<p>If a student is given a risk score of 0.8 (or 80%), does that mean the same thing for a full-time and part-time student? Or is the model systematically over- or underestimating risk for one group?</p>
+<p>Calibration checks whether the risk scores are reliable and comparable across groups—important when scores are used for prioritising interventions or allocating resources.</p>
+<p>So, what is the correct way to measure fairness? That depends on context. Sometimes, fairness metrics trade off against each other. Improving one (like group parity) might make another (like calibration) worse.</p>
+<p>That’s why fairness isn’t just a technical decision—it’s a judgement call, grounded in your values, the business context, and the people affected.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Case: COMPAS and Competing Fairness Metrics">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Case: COMPAS and Competing Fairness Metrics
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In the U.S., courts used a software called COMPAS to predict whether defendants were likely to reoffend.</p>
+<p>A 2016 investigation found:</p>
+<ul>
+<li><strong>Black defendants</strong> were more likely to be falsely flagged as high risk</li>
+<li><strong>White defendants</strong> were more likely to be falsely flagged as low risk</li>
+</ul>
+<p>The company argued that the model was <em>calibrated</em>: among those assigned a score of “7”, the reoffense rate was similar for Black and White defendants.</p>
+<p>But others argued the system violated <em>equalised odds</em>, as error rates differed by race.</p>
+<p>This case showed that <strong>fairness metrics can conflict</strong>, and choosing one involves ethical judgement—not just technical optimisation.</p>
+</div>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-time">
+<p>10 min</p>
+</div>
+<section id="what-kind-of-fairness-matters" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="what-kind-of-fairness-matters">What Kind of Fairness Matters?</h3>
+<p>In the LearnLoop Early Warning System, you’ve been asked to help choose a fairness metric for evaluating the model.</p>
+<p>There are trade-offs.</p>
+<ul>
+<li>If you focus on reducing false negatives, you’ll catch more students who need help—but risk flagging some incorrectly.</li>
+<li>If you focus on reducing false positives, you’ll avoid unnecessary alerts—but might miss students who are quietly struggling.</li>
+</ul>
+<p>Think through the following questions:</p>
+<ul>
+<li>Which type of error should LearnLoop prioritise avoiding—false positives or false negatives?</li>
+<li>Which fairness metric best fits that choice? (Group parity, error parity, calibration?)</li>
+<li>Who might be affected by this decision, and how?</li>
+</ul>
+</section>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="A Simple Bias Audit Workflow">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A Simple Bias Audit Workflow
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You can use this 6-step workflow to audit an analysis for fairness across groups:</p>
+<ul>
+<li><p><strong>Define the decision</strong>: What outcome is the analysis supporting? Who is affected by the predictions?</p></li>
+<li><p><strong>Identify relevant groups</strong>: Which groups might be treated differently—intentionally or not? (e.g.&nbsp;full-time vs part-time, domestic vs international, disability status)</p></li>
+</ul>
+<p><strong>Choose a fairness metric</strong>: What does fairness mean in this context—equal outcomes, equal errors, or consistent scores?</p>
+<p><strong>Slice your model performance</strong>: Break down key metrics (e.g.&nbsp;false positives, accuracy, risk scores) by group.</p>
+<p><strong>Flag gaps and trade-offs</strong>: Where are the biggest disparities? Are they explainable or fixable?</p>
+<p><strong>Propose mitigation and monitoring</strong>: What could reduce harm? Should features be changed? Should the model be retrained? How will fairness be monitored over time?</p>
+</div>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-time">
+<p>10 min</p>
+</div>
+<section id="bias-audit-of-amazons-hiring-algorithm" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="bias-audit-of-amazons-hiring-algorithm">Bias Audit of Amazon’s Hiring Algorithm</h3>
+<p>In 2018, Amazon shut down an internal hiring algorithm that it had trained to rank job applicants for technical roles. The system learned from resumes submitted over a 10-year period—and quickly developed a pattern: it downgraded applicants who attended all-women’s colleges or who had the word “women’s” in their resume.</p>
+<p>Amazon didn’t explicitly include gender in the model—but the system inferred it from patterns in past hiring data. The model reflected historical bias in who got hired—and it learned to replicate it.</p>
+<p>Walk through each of the six steps—from defining the decision to proposing mitigation—and explain how bias emerged, who was affected, and what could have been done differently.</p>
+</section>
+</div>
+<div class="exercise">
+<div class="exercise-time">
+<p>10 min</p>
+</div>
+<section id="bias-risk-assessment-for-learnloop" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="bias-risk-assessment-for-learnloop">Bias Risk Assessment for LearnLoop</h3>
+<p>Use the Bias Audit Workflow to identify and explain potential bias risks in the LearnLoop Early Warning System. Walk through each of the six steps—focusing on how bias might arise, who might be affected, and what design decisions could reduce unfair outcomes.</p>
+<p>Remark: This is a forward-looking audit: your goal is to prevent harm, not evaluate past mistakes.</p>
+</section>
+</div>
+</section>
+</section>
+<section id="lens-3-accountability" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="lens-3-accountability"><span class="header-section-number">13.5</span> Lens 3: Accountability</h2>
+<p>We’ve now seen how data-driven analysis can produce unfair outcomes—even when they’re designed with good intentions. But fairness isn’t the only concern. Even a well-performing model can raise deeper questions about responsibility:</p>
+<ul>
+<li>Who owns the analysis—and who answers for it when something goes wrong?</li>
+<li>Can decisions be explained to the people they affect?</li>
+<li>Do users have any way to contest or appeal those decisions?</li>
+</ul>
+<p>These are questions of accountability—our third ethical lens.</p>
+<section id="what-is-accountability-in-analytics" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="what-is-accountability-in-analytics">What is Accountability in Analytics?</h3>
+<p>In business, accountability means knowing who’s responsible for an outcome—and being able to explain what happened when things go wrong.</p>
+<p>In analytics, that principle gets harder to apply. Analytics are often built by teams, based on messy data, using methods that aren’t fully understood by everyone in the organisation—let alone the people affected by the outcomes.</p>
+<p>But accountability still matters. In fact, as models get more complex and influential, it becomes more important to ask:</p>
+<ul>
+<li>Who is responsible for the design, use, and performance of this system?</li>
+<li>Can the decisions it makes be explained?</li>
+<li>Is there any way for someone affected to challenge or appeal a bad prediction?</li>
+<li>And how will we know if the system is drifting, failing, or being misused?</li>
+</ul>
+<p>Accountability isn’t just about blame—it’s about building trustworthy systems that are answerable to the people they impact.</p>
+<p>These aren’t edge cases. As analytics moves deeper into education, health, and financial decision-making, these questions show up everywhere—from who gets a loan to who gets a welfare audit.</p>
+<div class="exercise">
+<div class="exercise-time">
+<p>10 min</p>
+</div>
+<section id="who-owns-the-learnloop-early-warning-decisions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="who-owns-the-learnloop-early-warning-decisions">Who Owns the LearnLoop Early Warning Decisions?</h3>
+<p>In the LearnLoop system, suppose a student has been flagged as “at risk” and receives academic intervention.</p>
+<ol type="1">
+<li>Who is accountable for this outcome—and what happens next?</li>
+<li>Who owns the decision to intervene?</li>
+<li>If the student disputes the prediction, can anyone explain how it was made?</li>
+<li>Is there a process for reviewing or appealing model decisions?</li>
+<li>Could this happen again without oversight?</li>
+</ol>
+</section>
+</div>
+<p>In the LearnLoop example, imagine a student is flagged by the Early Warning System and receives academic intervention. Who owns that decision? If the student disputes it, can anyone explain how the model worked? Is there a process for reviewing the prediction? Could this happen again without oversight?</p>
+</section>
+<section id="roles-and-responsibilities-whos-accountable-for-what" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="roles-and-responsibilities-whos-accountable-for-what">Roles and Responsibilities: Who’s Accountable for What?</h3>
+<p>Analytics systems don’t run themselves. Behind every model are dozens of small decisions: which data to include, how to handle missing values, what outcome to model, and how results are communicated. But when these decisions lead to a bad outcome—who is responsible?</p>
+<p>In many organisations, accountability becomes blurry. Engineers build the model, product managers define the feature, data analysts evaluate performance, and no one owns the system end to end. That’s how things fall through the cracks.</p>
+<p>To avoid this, it helps to clearly define roles using a simple framework: The RACI Model. RACI stands for:</p>
+<ul>
+<li>Responsible – Who actually builds and runs the system?</li>
+<li>Accountable – Who ultimately owns the outcome and signs off on decisions?</li>
+<li>Consulted – Who needs to be involved in decisions? (e.g.&nbsp;legal, ethics, DPO)</li>
+<li>Informed – Who needs to know what’s happening? (e.g.&nbsp;customer support, comms)</li>
+</ul>
+<p>Clearly assigning these roles helps avoid “no one told me” scenarios. It also creates a record of who approved what—especially important in sensitive areas like education, finance, or health.</p>
+<div class="exercise">
+<div class="exercise-time">
+<p>10 min</p>
+</div>
+<section id="whos-who-in-the-learnloop-early-warning-decisions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="whos-who-in-the-learnloop-early-warning-decisions">Who’s Who in the LearnLoop Early Warning Decisions?</h3>
+<p>LearnLoop is preparing to launch its Early Warning System across multiple university clients. You’ve reviewed the model, and it’s time to define who is responsible for what—before anything goes live.</p>
+<p>Using the RACI framework, assign clear roles to key stakeholders involved in the Early Warning System.</p>
+<p>Which teams, or roles that should be:</p>
+<ul>
+<li>Responsible – Who will build and maintain the system?</li>
+<li>Accountable – Who ultimately signs off on its use?</li>
+<li>Consulted – Who needs to be involved in key decisions?</li>
+<li>Informed – Who needs to be kept in the loop?</li>
+</ul>
+<p><strong>Bonus:</strong> After filling in the table, identify one role where accountability could easily be unclear or contested, and explain how you would make it explicit.</p>
+</section>
+</div>
+</section>
+<section id="explainability-vs-transparency" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="explainability-vs-transparency">Explainability vs Transparency</h3>
+<p>In business analytics, making decisions based on data is only part of the challenge. The other part is being able to explain those decisions—to colleagues, to customers, and to the people affected.</p>
+<p>This is where explainability and transparency come in. They’re related, but not the same.</p>
+<ul>
+<li>Explainability is about making the system’s logic understandable. Can someone make sense of why a particular outcome occurred? Could a staff member or student interpret the result without needing to decode the algorithm?</li>
+<li>Transparency is about access and openness. Can people see what data was used? How the system works? What rules or thresholds were applied?</li>
+</ul>
+<p>You can have one without the other:</p>
+<ul>
+<li>A system might be transparent (open-source code, public documentation) but still hard to explain to the people it affects.</li>
+<li>Or it might be explainable (simple decision rules, easy-to-read dashboards), but not transparent about how data is selected, processed, or weighted.</li>
+</ul>
+<div class="exercise">
+<div class="exercise-time">
+<p>10 min</p>
+</div>
+<section id="can-we-explain-this" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="can-we-explain-this">Can We Explain This?</h3>
+<p>Suppose in LearnLoop’s Early Warning System, a student is flagged as “at risk.” The model used login frequency, assignment history, and course engagement to generate this alert.</p>
+<ol type="1">
+<li>What should students and staff be told about how the flag was generated?<br>
+</li>
+<li>How much detail is enough to build understanding, without overwhelming or confusing people?</li>
+<li>What’s the risk if the explanation is vague or missing?</li>
+</ol>
+<p>Think from the perspective of a student receiving the alert — teaching support staff responsible for acting on it.</p>
+</section>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Target's Pregnancy Prediction Model">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Target’s Pregnancy Prediction Model
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In the early 2010s, the US retailer Target developed a predictive model to identify customers who were likely pregnant—based on subtle changes in their buying habits (like switching to unscented lotion or buying extra vitamins).</p>
+<p>The model was technically accurate, but it raised serious ethical concerns when Target began mailing maternity coupons to these customers—sometimes before their families knew.</p>
+<p>In one widely reported case, a teenager received pregnancy-related ads at home. Her father complained to Target—only to later discover that the prediction was correct.</p>
+<p>What went wrong?</p>
+<ul>
+<li>The model wasn’t explainable to the people affected.</li>
+<li>The use of the prediction wasn’t transparent.</li>
+<li>There was no clear consent, control, or context for how this sensitive inference would be used.</li>
+</ul>
+<p><strong>Lesson:</strong> Being “right” isn’t enough. Analytics systems—especially those making sensitive predictions—must be explainable, context-aware, and designed with care.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="lens-4-power" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="lens-4-power"><span class="header-section-number">13.6</span> Lens 4: Power</h2>
+<p>So far, we’ve focused on the ethics of data collection, model performance, and system responsibility. But there’s one more lens we need to apply—one that zooms out and asks questions not just about how analytics works, but about who it works for.</p>
+<p>Even when systems are private, fair, and accountable, they can still reinforce unequal outcomes—by quietly shifting power away from those being measured, and toward those doing the measuring.</p>
+<p>That’s where the final lens comes in: Power.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Case in Point: Wi-Fi Surveillance at a Student Protest">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Case in Point: Wi-Fi Surveillance at a Student Protest
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>At a major Australian university, students discovered that their movements across campus could be tracked using data from the campus Wi-Fi network.</p>
+<p>The IT system linked device MAC addresses to student login credentials, allowing individuals to be identified and their locations reconstructed over time. Originally, the data was used for network planning and resource optimisation.</p>
+<p>But during a 2019 protest against a new student fees policy, university administrators used the data to estimate how many students attended, and which individuals entered certain buildings.</p>
+<p>No new data was collected—but the purpose changed, and with it, the ethical stakes. Students had not been clearly informed about this possible use. There was no option to opt out.</p>
+<p>The incident sparked criticism from students, media, and privacy experts. Although technically within policy, the system’s use highlighted a deeper issue: analytics systems often concentrate power in ways that are invisible until something goes wrong.</p>
+</div>
+</div>
+</div>
+<section id="what-is-power-in-business-analytics" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="what-is-power-in-business-analytics">What is Power in Business Analytics?</h3>
+<p>Business analytics doesn’t just describe or predict the world — it helps shape decisions. That means it also shapes who gains, who loses, and who gets a say.</p>
+<p>The power to collect, analyse, and act on data is not evenly distributed. Sometimes analytics empowers people — by giving users more control, surfacing new opportunities, or helping managers make fairer decisions.</p>
+<p>But sometimes, it concentrates power — by reinforcing existing hierarchies, disempowering those being monitored, or making decisions without visibility, consent, or recourse.</p>
+<p>Ethical analysis of power asks us to think about:</p>
+<ul>
+<li>Whose outcomes are being optimised?</li>
+<li>Who carries the downside risk if the model is wrong?</li>
+<li>What mechanism gives them a voice?</li>
+</ul>
+<p>These questions help us uncover hidden asymmetries. They encourage us to see analytics not just as a technical system, but as a social one — embedded in organisations, incentives, and real lives.</p>
+<p>Understanding power means we don’t just evaluate outcomes. We also ask: how were they reached, who had input, and who could push back?</p>
+<div class="exercise">
+<div class="exercise-time">
+<p>10 min</p>
+</div>
+<section id="mapping-power-in-learnloop" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="mapping-power-in-learnloop">Mapping Power in LearnLoop</h3>
+<p>In the Early Warning System case, imagine a student is flagged as “at risk” and recommended for an intervention.</p>
+<ol type="1">
+<li>Who makes the decision to act on the flag?</li>
+<li>Who is directly affected by it?</li>
+<li>Who else is indirectly impacted (e.g.&nbsp;advisors, families, future course coordinators)?</li>
+<li>What voice or input does each group identifed in (1) - (3) have?</li>
+<li>Who benefits most if the system works well?</li>
+<li>Who bears the cost if it fails?</li>
+</ol>
+</section>
+</div>
+</section>
+<section id="manipulation-trust" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="manipulation-trust">Manipulation &amp; Trust</h3>
+<p>Analytics don’t just describe what is — they help shape what happens next. The way we present insights or build interventions can influence behaviour, sometimes in ways that feel helpful, and sometimes in ways that feel manipulative.</p>
+<p>These choices matter. A dashboard might nudge students to log in more frequently. But if it flags them as “at risk” without explanation, and pressures them to act, it may trigger anxiety or disengagement. This is what we call coercive design: when systems exploit users’ limited choices, fears, or lack of information to steer outcomes.</p>
+<p>The short-term result? More clicks. The long-term cost? Loss of trust.</p>
+<p>For analytics to be sustainable and credible, people must trust the process — not just the outcome. That means designing analytics and how we use the results to:</p>
+<ul>
+<li>Inform, rather than pressure.</li>
+<li>Respect user autonomy, rather than override it.</li>
+<li>Support agency, especially for vulnerable or lower-power users.</li>
+</ul>
+<p>Trust is a strategic asset. Once lost, it’s hard to recover — and without it, even the smartest model will fail to deliver impact.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Case: TikTok’s For You Algorithm – Helpful or Manipulative?">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Case: TikTok’s For You Algorithm – Helpful or Manipulative?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>TikTok’s “For You” page delivers an endless stream of content tailored to each user. The algorithm learns from every scroll, like, pause, and replay. At first, it feels magical — uncanny in how quickly it “gets you.” But over time, deeper concerns emerge:</p>
+<ul>
+<li>Some users become trapped in feedback loops that reinforce harmful content (e.g.&nbsp;body insecurity, conspiracy theories).</li>
+<li>The platform provides little visibility into why content is shown or how to challenge or reset recommendations.</li>
+<li>User control is minimal — and especially limited for younger or more vulnerable users.</li>
+</ul>
+<p>This raises an ethical question:</p>
+<ul>
+<li>Is the algorithm optimising for user well-being, or just engagement?</li>
+</ul>
+<p>When people can’t understand or influence how they’re being guided, the line between persuasion and coercive design begins to blur.</p>
+<p>At its core, this is a power asymmetry:</p>
+<ul>
+<li>TikTok holds the data, the algorithm, and commercial incentives.</li>
+<li>The user is nudged — subtly and persistently to keep watching more — with little transparency, choice, or voice.</li>
+</ul>
+<p>This example reminds us: trust in analytics systems doesn’t just depend on privacy or accuracy. It depends on agency, voice, and a balance of power between those who build systems and those affected by them.</p>
+</div>
+</div>
+</div>
+<div class="exercise">
+<div class="exercise-time">
+<p>10 min</p>
+</div>
+<section id="trust-agency-and-power-in-learnloop" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="trust-agency-and-power-in-learnloop">Trust, Agency, and Power in LearnLoop</h3>
+<p>Imagine LearnLoop’s Early Warning System starts sending automated notifications to students flagged as “at risk,” suggesting they attend support services.</p>
+<ol type="1">
+<li>What kind of message would encourage students to act — without causing anxiety, shame, or distrust?</li>
+<li>Where is the line between helpful nudges and coercive design?</li>
+<li>What control should students have over how they’re monitored or contacted?</li>
+<li>How could the design be changed to give students more voice and agency?</li>
+</ol>
+</section>
+</div>
+</section>
+</section>
+<section id="wrap-up-thinking-ethically-in-business-analytics" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="wrap-up-thinking-ethically-in-business-analytics"><span class="header-section-number">13.7</span> Wrap Up: Thinking Ethically in Business Analytics</h2>
+<p>Throughout this chapter, we’ve explored how business analytics can shape decisions that affect people’s lives — and why ethical reflection is essential, not optional.</p>
+<p>We introduced four lenses to help guide that reflection:</p>
+<ul>
+<li>Privacy asks whether data is used responsibly and with respect for individual rights.</li>
+<li>Bias prompts us to check who is systematically advantaged or disadvantaged.</li>
+<li>Accountability ensures we know who is responsible, how systems can be explained, and what happens when things go wrong.</li>
+<li>Power reminds us to ask who benefits, who bears risk, and who has a voice.</li>
+</ul>
+<p>Together, these lenses give us the tools to identify hidden risks, weigh trade-offs, and build systems that are not just smart, but justifiable.</p>
+<p>Ethical practice doesn’t mean never using data — it means using it thoughtfully, with clear intent, clear communication, and a commitment to fairness and trust.</p>
+<p>In the end, analytics is not just about what we can build. It’s about what we should build — and for whom.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../advanced_analytics/predictive_analytics.html" class="pagination-link" aria-label="Forming and Evaluating Data-driven Predictions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-driven Predictions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../tutorials/what_is_business_analytics.html" class="pagination-link" aria-label="Tutorial 1: Business Analytics Skills for Inventory Management">
+        <span class="nav-page-text">Tutorial 1: Business Analytics Skills for Inventory Management</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

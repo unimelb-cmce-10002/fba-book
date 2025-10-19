@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,10 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-601ca197ba2484b932d775b6c6a1237a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6f77e067621728e8e5d8b75f5607b6c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -298,12 +298,29 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Tutorials</span></a>
+ <span class="menu-text">Ethics in Analytics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ethics_privacy/ethics_privacy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
@@ -1030,21 +1047,14 @@ Names as Heuristics
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n_customers)) <span class="sc">|&gt;</span> </span>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 27%">
-<col style="width: 17%">
-<col style="width: 20%">
-<col style="width: 18%">
-<col style="width: 17%">
-</colgroup>
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th style="text-align: left;">segment</th>
-<th style="text-align: right;">avg_recency</th>
-<th style="text-align: right;">avg_frequency</th>
-<th style="text-align: right;">avg_monetary</th>
-<th style="text-align: right;">n_customers</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">segment</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">avg_recency</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">avg_frequency</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">avg_monetary</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">n_customers</th>
 </tr>
 </thead>
 <tbody>
@@ -1084,7 +1094,7 @@ Names as Heuristics
 <td style="text-align: right;">2515</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Can’t Lose Them</td>
+<td style="text-align: left;">Can't Lose Them</td>
 <td style="text-align: right;">16.63</td>
 <td style="text-align: right;">2.26</td>
 <td style="text-align: right;">159.09</td>
@@ -1358,7 +1368,7 @@ n-Tiles vs.&nbsp;Scaling
  1     11.8         -0.391 
  2     89           -0.0709
  3    156.           0.209 
- 4    101.          -0.0232
+ 4    100.          -0.0232
  5    386.           1.16  
  6     21.0         -0.353 
  7    265.           0.658 
@@ -1374,29 +1384,16 @@ n-Tiles vs.&nbsp;Scaling
 <p>This is where the <code>recipes</code> package comes in. Recipes let us define a set of preprocessing steps — like scaling — that can be applied consistently across multiple variables. The big advantage is that the recipe keeps track of <em>how</em> the data was transformed, making the process transparent and easy to reproduce.</p>
 <p>We start by using the <code>recipe</code> function to write a set of steps we want to perform:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(recipes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'recipes'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:stringr':
-
-    fixed</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:stats':
-
-    step</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>rfm_rec <span class="ot">&lt;-</span> </span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(<span class="sc">~</span> recency <span class="sc">+</span> frequency <span class="sc">+</span> monetary, </span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> rfm_data) <span class="sc">|&gt;</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(recipes)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>rfm_rec <span class="ot">&lt;-</span> </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(<span class="sc">~</span> recency <span class="sc">+</span> frequency <span class="sc">+</span> monetary, </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> rfm_data) <span class="sc">|&gt;</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here we created a simple preprocessing plan, i.e.&nbsp;a recipe, that tells R which variables to prepare and how. In <code>recipe(~ recency + frequency + monetary, data = rfm)</code>, the tilde, <code>~</code>, is the formula separator: the left side is for something you want to predict (an outcome) and the right side lists the input variables. When clustering, there’s no outcome variable in the data that we are trying to predict — we’re just grouping customers—so we leave the left side empty and list our inputs on the right: recency, frequency, and monetary. We then pipe into the next step <code>step_normalize(all_numeric_predictors())</code> which standardises each of those numeric variables (turn them into z-scores). If we then look at the object:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>rfm_rec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>rfm_rec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
 </div>
@@ -1428,9 +1425,9 @@ Attaching package: 'recipes'</code></pre>
 <p>When we printed <code>rfm_rec</code>, you may have noticed something curious: the data itself wasn’t transformed yet. Instead, R showed us a <strong>blueprint</strong> of what will happen — which variables are included (<code>recency</code>, <code>frequency</code>, <code>monetary</code>), the role they play (all as predictors, since there’s no outcome in clustering), and the step that will be applied (<code>step_normalize()</code>). This design is intentional: a recipe describes the instructions, but it does not execute them right away.</p>
 <p>To actually make the transformations, we need to <strong>prep</strong> the recipe. Think of this as training the recipe on our data, or, more informally, as preparing the ingredients before cooking. For the scaling we want to do, <code>prep()</code> calculates the mean and standard deviation of each variable so that it knows exactly how to convert them into z-scores.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>rfm_prepped <span class="ot">&lt;-</span> <span class="fu">prep</span>(rfm_rec)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>rfm_prepped</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>rfm_prepped <span class="ot">&lt;-</span> <span class="fu">prep</span>(rfm_rec)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>rfm_prepped</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
 </div>
@@ -1471,9 +1468,9 @@ Attaching package: 'recipes'</code></pre>
 <p>The output is still a recipe object, but now it has all the information required to perform the transformation. the output looks similar to the earlier recipe, but with an important difference: it now shows that the <code>step_normalize()</code> step has been trained. Behind the scenes, R has stored the mean and standard deviation of each variable (recency, frequency, and monetary) based on the data we provided. The result is still a recipe object, but now it contains all the information needed to perform the transformation. Intuitively, this is the same as weighing out all the ingredients before you start cooking — everything is ready, but the meal hasn’t been served yet.</p>
 <p>Finally, we use <strong>bake</strong> to apply the recipe to the data. If <code>prep()</code> was about preparing the ingredients, then <code>bake()</code> is the step where we actually cook the dish and put it on the table. <code>bake()</code> takes the prepared recipe and returns a new data frame with the standardized variables ready to use.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>rfm_scaled <span class="ot">&lt;-</span> <span class="fu">bake</span>(rfm_prepped, <span class="at">new_data =</span> <span class="cn">NULL</span>)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rfm_scaled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>rfm_scaled <span class="ot">&lt;-</span> <span class="fu">bake</span>(rfm_prepped, <span class="at">new_data =</span> <span class="cn">NULL</span>)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rfm_scaled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   recency frequency monetary
@@ -1488,17 +1485,17 @@ Attaching package: 'recipes'</code></pre>
 </div>
 <p>By using <code>new_data = NULL</code>, we tell R to apply the recipe to the same data that was used when we prepped it. The result is a data frame where recency, frequency, and monetary have all been transformed into z-scores — each with mean zero and standard deviation one. Let’s check that our scaling worked as intended. If the recipe did its job, each of our variables — <code>recency</code>, <code>frequency</code>, and <code>monetary</code> — should now have a mean of zero and a standard deviation of one.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>rfm_scaled <span class="sc">|&gt;</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">everything</span>(),</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sd =</span> sd)) <span class="sc">|&gt;</span></span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"variable"</span>, <span class="st">".value"</span>),</span>
-<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span></span>
-<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>rfm_scaled <span class="sc">|&gt;</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">everything</span>(),</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sd =</span> sd)) <span class="sc">|&gt;</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"variable"</span>, <span class="st">".value"</span>),</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in
 dplyr 1.1.0.
@@ -1507,12 +1504,12 @@ dplyr 1.1.0.
   always returns an ungrouped data frame and adjust accordingly.</code></pre>
 </div>
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th style="text-align: left;">variable</th>
-<th style="text-align: right;">mean</th>
-<th style="text-align: right;">sd</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">variable</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">sd</th>
 </tr>
 </thead>
 <tbody>
@@ -1580,9 +1577,9 @@ Clustering as a Networking Event for Your Data
 </div>
 <p>Let’s see how this works in practice by running K-means on our CDNOW dataset with (k = 3) clusters.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) </span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>kmeans_3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(rfm_scaled, <span class="at">centers =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) </span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>kmeans_3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(rfm_scaled, <span class="at">centers =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
@@ -1615,7 +1612,7 @@ The Raw K-means Output
 <div class="callout-body-container callout-body">
 <p>If you print the <code>kmeans()</code> result directly, the output can look a little overwhelming:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>kmeans_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>kmeans_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>K-means clustering with 3 clusters of sizes 150, 16287, 7133
 
@@ -2304,14 +2301,12 @@ Available components:
 </div>
 <p>The raw output of the K-means model is not always the easiest to interpret. The numbers are useful, but they don’t give us an immediate feel for how distinct the clusters really are. To help with this, we’ll use the <code>factoextra</code> package. This package provides a set of convenient functions for visualising clustering and dimension-reduction results in R. Here, we’ll use it to create a scatterplot that shows each customer’s cluster membership in a way that’s easy to see at a glance.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_cluster</span>(kmeans_3, <span class="at">data =</span> rfm_scaled,</span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">geom =</span> <span class="st">"point"</span>,</span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">palette =</span> <span class="st">"jco"</span>,</span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_cluster</span>(kmeans_3, <span class="at">data =</span> rfm_scaled,</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">geom =</span> <span class="st">"point"</span>,</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">palette =</span> <span class="st">"jco"</span>,</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2377,12 +2372,12 @@ Principal Component Analysis (PCA) Beyond Cluster Visualisation
 <p>So far, we’ve seen the raw K-means output and a visualization of the clusters. The next step is to bring the cluster assignments back into our dataset so that we can describe and profile each group in business terms.</p>
 <p>We’ll use the <code>broom</code> package, which provides tidy outputs for many modelling functions in R. With <code>augment()</code>, broom takes the original data and adds new columns — here, the most important one is <code>.cluster</code>, which tells us which cluster each customer belongs to.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>rfm_clustered <span class="ot">&lt;-</span> </span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>(kmeans_3, rfm_data) </span>
-<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rfm_clustered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>rfm_clustered <span class="ot">&lt;-</span> </span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>(kmeans_3, rfm_data) </span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rfm_clustered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
   users_id frequency monetary recency r_tile f_tile m_tile .cluster
@@ -2390,7 +2385,7 @@ Principal Component Analysis (PCA) Beyond Cluster Visualisation
 1        1         1     11.8      18      1      1      1 2       
 2        2         2     89        17      1      3      4 2       
 3        3         6    156.        1      5      5      5 3       
-4        4         4    101.        6      4      4      4 3       
+4        4         4    100.        6      4      4      4 3       
 5        5        11    386.        5      4      5      5 3       
 6        6         1     21.0      18      1      1      2 2       </code></pre>
 </div>
@@ -2398,15 +2393,15 @@ Principal Component Analysis (PCA) Beyond Cluster Visualisation
 <p>The new <code>.cluster</code> column shows the cluster assignment for each customer. Now we can summarise the characteristics of each cluster — for example, their average recency, frequency, and monetary value — to see what makes them different.</p>
 <p>With the cluster assignments attached to each customer, we can now summarise the groups. A simple way is to calculate the average recency, frequency, and monetary value for each cluster.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>rfm_clustered <span class="sc">|&gt;</span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">group_by</span>(.cluster) <span class="sc">|&gt;</span></span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarise</span>(</span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">recency  =</span> <span class="fu">mean</span>(recency),</span>
-<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">frequency =</span> <span class="fu">mean</span>(frequency),</span>
-<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">monetary =</span> <span class="fu">mean</span>(monetary),</span>
-<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_customers =</span> <span class="fu">n</span>(),</span>
-<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>rfm_clustered <span class="sc">|&gt;</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">group_by</span>(.cluster) <span class="sc">|&gt;</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarise</span>(</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">recency  =</span> <span class="fu">mean</span>(recency),</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">frequency =</span> <span class="fu">mean</span>(frequency),</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">monetary =</span> <span class="fu">mean</span>(monetary),</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_customers =</span> <span class="fu">n</span>(),</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   .cluster recency frequency monetary n_customers
@@ -2444,15 +2439,15 @@ Comparing K-means Clusters to RFM Segments
 </ul>
 <p>One way too see this in the data is to group by the cluster and take the average tile values:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>rfm_clustered <span class="sc">|&gt;</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">group_by</span>(.cluster) <span class="sc">|&gt;</span></span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarise</span>(</span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_recency_tile  =</span> <span class="fu">mean</span>(r_tile),</span>
-<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_frequency_tile =</span> <span class="fu">mean</span>(f_tile),</span>
-<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_monetary_tile =</span> <span class="fu">mean</span>(m_tile),</span>
-<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_customers =</span> <span class="fu">n</span>(),</span>
-<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>rfm_clustered <span class="sc">|&gt;</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">group_by</span>(.cluster) <span class="sc">|&gt;</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarise</span>(</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_recency_tile  =</span> <span class="fu">mean</span>(r_tile),</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_frequency_tile =</span> <span class="fu">mean</span>(f_tile),</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_monetary_tile =</span> <span class="fu">mean</span>(m_tile),</span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_customers =</span> <span class="fu">n</span>(),</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   .cluster avg_recency_tile avg_frequency_tile avg_monetary_tile n_customers
@@ -2525,11 +2520,11 @@ Why Link Clusters Back to Raw Data?
 <p>To figure out how many clusters make sense, we can’t just look at the data once — we actually need to <strong>run K-means many times with different values of (k)</strong>. For example, we might run it with (k = 2), then with (k = 3), then with (k = 4), and so on. Each time, the algorithm produces clusters, and we can measure how well those clusters “fit” the data. Fitting the data here means spotting where adding more clusters really improves the segmentation — and where it stops adding value. This gives us a more objective basis for choosing the right number of clusters, rather than just picking a number (like 3) without justification.</p>
 <p>To explore different choices of (k), we need to run K-means many times. On a large dataset this can be slow, so a common trick is to work with a <strong>random sample</strong> of customers. This smaller sample still gives us a good sense of the cluster structure while keeping computations fast.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>) <span class="co"># so we sample the same people!</span></span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>rfm_scale_sample <span class="ot">&lt;-</span> </span>
-<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a> rfm_scaled <span class="sc">|&gt;</span></span>
-<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a> <span class="fu">sample_n</span>(<span class="dv">1000</span>)  <span class="co"># take 1,000 random customers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>) <span class="co"># so we sample the same people!</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>rfm_scale_sample <span class="ot">&lt;-</span> </span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a> rfm_scaled <span class="sc">|&gt;</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a> <span class="fu">sample_n</span>(<span class="dv">1000</span>)  <span class="co"># take 1,000 random customers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There isn’t just one way to decide on the “right” number of clusters. In practice, analysts use several different methods to guide the choice of (k). Each method has its own logic, and together they give us a more rounded view.</p>
 <p>In this section we’ll look at three common methods:</p>
@@ -2550,13 +2545,13 @@ Why Link Clusters Back to Raw Data?
 <p>That elbow point suggests a good trade-off: enough clusters to capture the main differences, but not so many that we end up with redundant groups.</p>
 <p>We can implement the Elbow method as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(</span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a> rfm_scale_sample, </span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a> kmeans,</span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a> <span class="at">method =</span> <span class="st">"wss"</span>,   <span class="co"># Within-cluster sum of squares</span></span>
-<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a> <span class="at">k.max =</span> <span class="dv">15</span>,</span>
-<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a> <span class="at">nstart =</span> <span class="dv">5</span></span>
-<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a> rfm_scale_sample, </span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a> kmeans,</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a> <span class="at">method =</span> <span class="st">"wss"</span>,   <span class="co"># Within-cluster sum of squares</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a> <span class="at">k.max =</span> <span class="dv">15</span>,</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a> <span class="at">nstart =</span> <span class="dv">5</span></span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2611,11 +2606,11 @@ There’s No Perfect Elbow
 </ul>
 <p>By averaging these scores across all customers, we get a measure of how well-defined the clusters are overall. The <strong>best number of clusters</strong> is the one that gives the <strong>highest average silhouette score</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(</span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a> rfm_scale_sample, </span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a> kmeans,</span>
-<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a> <span class="at">method =</span> <span class="st">"silhouette"</span></span>
-<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a> rfm_scale_sample, </span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a> kmeans,</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a> <span class="at">method =</span> <span class="st">"silhouette"</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2656,13 +2651,13 @@ Every Customer Needs Their Space
 <li>That means the recommended number of clusters is often smaller than the place where the gap looks biggest in the plot — it prefers the simpler solution unless the bigger one is <strong>clearly better</strong>.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(</span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a> rfm_scale_sample, </span>
-<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a> kmeans,</span>
-<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a> <span class="at">method =</span> <span class="st">"gap_stat"</span>,</span>
-<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a> <span class="at">nstart =</span> <span class="dv">10</span>,</span>
-<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a> <span class="at">iter.max =</span> <span class="dv">50</span></span>
-<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a> rfm_scale_sample, </span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a> kmeans,</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a> <span class="at">method =</span> <span class="st">"gap_stat"</span>,</span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a> <span class="at">nstart =</span> <span class="dv">10</span>,</span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a> <span class="at">iter.max =</span> <span class="dv">50</span></span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2756,15 +2751,15 @@ Mind the Gap
 <div class="solution-content">
 <p><strong>1. Estimate 4 clusters</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>k4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(rfm_scaled, <span class="at">centers =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>k4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(rfm_scaled, <span class="at">centers =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>Attach clusters with <code>augment()</code></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>rfm_clustered4 <span class="ot">&lt;-</span> <span class="fu">augment</span>(k4, rfm_data)</span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rfm_clustered4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>rfm_clustered4 <span class="ot">&lt;-</span> <span class="fu">augment</span>(k4, rfm_data)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rfm_clustered4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
   users_id frequency monetary recency r_tile f_tile m_tile .cluster
@@ -2772,7 +2767,7 @@ Mind the Gap
 1        1         1     11.8      18      1      1      1 2       
 2        2         2     89        17      1      3      4 2       
 3        3         6    156.        1      5      5      5 4       
-4        4         4    101.        6      4      4      4 4       
+4        4         4    100.        6      4      4      4 4       
 5        5        11    386.        5      4      5      5 4       
 6        6         1     21.0      18      1      1      2 2       </code></pre>
 </div>
@@ -2781,15 +2776,15 @@ Mind the Gap
 <li>Summarise clusters</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>rfm_clustered4 <span class="sc">|&gt;</span></span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">group_by</span>(.cluster) <span class="sc">|&gt;</span></span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarise</span>(</span>
-<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">recency  =</span> <span class="fu">mean</span>(recency),</span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">frequency =</span> <span class="fu">mean</span>(frequency),</span>
-<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">monetary =</span> <span class="fu">mean</span>(monetary),</span>
-<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_customers =</span> <span class="fu">n</span>(),</span>
-<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>rfm_clustered4 <span class="sc">|&gt;</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">group_by</span>(.cluster) <span class="sc">|&gt;</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarise</span>(</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">recency  =</span> <span class="fu">mean</span>(recency),</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">frequency =</span> <span class="fu">mean</span>(frequency),</span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">monetary =</span> <span class="fu">mean</span>(monetary),</span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_customers =</span> <span class="fu">n</span>(),</span>
+<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 5
   .cluster recency frequency monetary n_customers

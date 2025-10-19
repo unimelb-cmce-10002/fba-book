@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tutorials/what_is_business_analytics.html" rel="next">
+<link href="../ethics_privacy/ethics_privacy.html" rel="next">
 <link href="../advanced_analytics/causal_analytics.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -73,10 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-601ca197ba2484b932d775b6c6a1237a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6f77e067621728e8e5d8b75f5607b6c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -298,12 +298,29 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Tutorials</span></a>
+ <span class="menu-text">Ethics in Analytics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ethics_privacy/ethics_privacy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
@@ -502,7 +519,7 @@ Learning Goals
 <pre><code>── MLB Team Results data from baseball-reference.com ──────── baseballr 1.6.0 ──</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>ℹ Data updated: 2025-10-11 14:14:25 AEDT</code></pre>
+<pre><code>ℹ Data updated: 2025-10-17 18:11:01 AEDT</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 22
@@ -729,7 +746,7 @@ What does <code>bref_team_results()</code> do under the hood?
 <pre><code>── MLB Team Results data from baseball-reference.com ──────── baseballr 1.6.0 ──</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>ℹ Data updated: 2025-10-11 14:16:00 AEDT</code></pre>
+<pre><code>ℹ Data updated: 2025-10-17 18:11:29 AEDT</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
@@ -835,7 +852,7 @@ $ Year           &lt;int&gt; 2005, 2005, 2005, 2005, 2005, 2005, 2005, 2005, 200
 <pre><code>── MLB Team Results data from baseball-reference.com ──────── baseballr 1.6.0 ──</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>ℹ Data updated: 2025-10-11 14:16:33 AEDT</code></pre>
+<pre><code>ℹ Data updated: 2025-10-17 18:12:02 AEDT</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 44 × 2
@@ -878,7 +895,7 @@ $ Year           &lt;int&gt; 2005, 2005, 2005, 2005, 2005, 2005, 2005, 2005, 200
 <pre><code>── MLB Team Results data from baseball-reference.com ──────── baseballr 1.6.0 ──</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>ℹ Data updated: 2025-10-11 14:16:33 AEDT</code></pre>
+<pre><code>ℹ Data updated: 2025-10-17 18:12:02 AEDT</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 0 × 2
@@ -1941,8 +1958,8 @@ e_t \;=\; A_t - \widehat{A}_t
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tutorials/what_is_business_analytics.html" class="pagination-link" aria-label="Tutorial 1: Business Analytics Skills for Inventory Management">
-        <span class="nav-page-text">Tutorial 1: Business Analytics Skills for Inventory Management</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../ethics_privacy/ethics_privacy.html" class="pagination-link" aria-label="Ethics in Business Analytics">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
