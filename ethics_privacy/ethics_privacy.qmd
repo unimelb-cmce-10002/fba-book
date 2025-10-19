@@ -5,7 +5,10 @@
 
 By the end of this chapter, you should be able to:
 
-- TBD
+- Identify potential privacy risks in analytics projects and propose strategies for respectful, secure data use.
+- Detect sources of bias in the analytics pipeline and evaluate fairness using appropriate metrics.
+- Assess who is responsible for analytic decisions and explain how transparency and oversight can be built into business analytics pipelines.
+- Reflect on how data systems shape power dynamics, and recognise the risks of manipulation, surveillance, and unequal influence.
 :::
 
 ## What is Ethics in Business Analytics?
