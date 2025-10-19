@@ -1,0 +1,855 @@
+# Ethics in Business Analytics
+
+::: {.callout-tip}
+## Learning Goals {.unnumbered}
+
+By the end of this chapter, you should be able to:
+
+- TBD
+:::
+
+## What is Ethics in Business Analytics?
+
+The business analytics toolkit we have built throughout this book has given us powerful tools to use data to inform business decisions.
+But with this power comes responsibility. 
+As analysts, we make choices — what to measure, how to model it, and who gets affected by the outcomes.
+
+Ethics in business analytics is not just about avoiding scandals or complying with the law. 
+It's about recognising that analytics projects, no matter how well-intentioned, carry the potential to shape real-world outcomes in unintended ways. 
+A system that's technically correct can still be socially harmful. 
+A model that optimises for efficiency can overlook fairness. 
+A dashboard that helps managers make faster decisions might also expose sensitive information.
+
+Ethical practice asks us to slow down and consider not just can we build it, but should we? 
+Who benefits?
+What risks are introduced?
+It invites us to think beyond technical performance and legal checklists, and to take responsibility for the broader impacts of our work.
+It helps us build systems that are not only smart and effective, but also worthy of the trust of business stakeholders, consumers and the population at large.
+
+This starts with asking questions such as:
+
+* Are we using data in ways that respect people's rights?
+* Could our models unintentionally reinforce unfairness?
+* Who is accountable when analytics go wrong?
+* And who benefits—or loses—when analytics drive decisions?
+
+Each of these questions tie in to one of four lenses that we will introduce to help us think more clearly about ethics in business analytics:
+
+* Privacy: Are we collecting and using data in a way that respects individual control and confidentiality?
+* Bias: Do our models perform fairly across groups, or do they systematically disadvantage some?
+* Accountability: Are there clear owners, explainable systems, and paths for recourse when things go wrong?
+* Power: Who gains, who bears the risks, and whose voice is heard when analytics inform decisions?
+
+Together, these lenses sharpen our judgement—so we can spot ethical risks early, explain our decisions clearly, and build systems that earn trust.
+
+## The Business Challenge
+
+Suppose you've just joined the product analytics team at LearnLoop, a leading Learning Management System (LMS) used by universities and colleges across Australia.
+
+One of this year's flagship projects is the development of an Early Warning System (EWS) to help institutions identify students who may be at risk of falling behind. 
+The product team envisions a predictive model that flags struggling students early enough for instructors or support staff to intervene — ideally lifting retention and pass rates across courses.
+
+The first prototype uses LMS activity data—logins, assignment submissions, time spent on pages—to estimate disengagement. 
+But the team is now exploring ways to enhance the system's predictive power by integrating additional datasets from the university's broader information systems.
+
+These may include:
+
+* Academic performance history (e.g. GPA, past fails)
+* Demographic information (e.g. age, gender, enrolment mode, international status, disability support)
+* Course-level risk factors (e.g. high-fail subjects)
+
+From a modelling perspective, these additions could make the predictions more accurate and more timely. But they also raise new challenges:
+
+* Who gets to decide which variables are "fair game" for use in the predictive model?
+* Should students be notified or consulted about these secondary uses of their data?
+* How do we avoid reinforcing disadvantage or making assumptions about certain student groups?
+
+You've been asked to help advise on ethical and practical implications of the Early Warning System.
+To do so, you will need to build an understanding of the four ethical lenses to help you surface different concerns and frame concrete recommendations.
+
+::: {.exercise}
+::: {.exercise-time}
+10 min
+:::
+
+### First Impressions of Ethical Issues {.unnumbered}
+
+Before we introduce the four ethical lenses, take a few minutes to jot down your initial reactions to the Early Warning System.
+
+What ethical or practical concerns come to mind about this system? What changes or safeguards might help?
+You don't need to use technical terms — instead write down:
+
+* Two or three concerns you'd want to raise with the team
+*One suggestion for each concern you list that could make the system fairer, safer, or more transparent
+
+Revisit your ideas after we explore the four lenses.
+:::
+
+## Lens 1: Privacy 
+
+### What is Privacy in Business Analytics? {.unnumbered}
+
+Privacy in business analytics is about more than keeping data secret. 
+At its core, it's about respecting people's right to understand and control how information about them is used—not just the information they gave you, but also what you infer about them through analysis.
+
+This means thinking carefully about what data you collect, why you collect it, how long you keep it, and what kinds of decisions you make using it. 
+Privacy risks arise when this process breaks down—when data collected for one purpose is reused for another, when more is gathered than necessary, or when sensitive predictions are made without transparency or consent.
+
+Let's consider LearnLoop's Early Warning System. 
+A student may expect the platform to record their assignment submissions and logins. 
+But would they expect those behaviours to be used to predict their mental health, engagement, or risk of failure? 
+Would they expect that prediction to be shared with a tutor or administrator? 
+The more data is repurposed without explanation, the more the system begins to feel like surveillance, not support.
+
+Good privacy practice means making thoughtful, proportionate choices. 
+It means collecting only what's needed for a clear purpose, limiting access to sensitive information, and designing systems that are transparent about how personal data is used. 
+It also means recognising that privacy isn't just a legal box to tick—it's a foundation for building trust with users.
+
+As you move through this section, you'll explore the limits of consent, the tension between privacy and personalisation, the impact of manipulative design, and the challenges of protecting identity even when names are removed. Together, these will help you identify and mitigate privacy risks before they cause harm—to individuals or to your organisation's reputation.
+
+
+::: {.exercise}
+::: {.exercise-time}
+5 min
+:::
+### Is this a Privacy Risk? {.unnumbered}
+
+Read each short scenario. Decide whether it poses a privacy risk, and briefly explain why.
+
+* A fitness app collects heart rate and step count to give users weekly summaries. It later uses this data to advertise health insurance.
+* A university dashboard shows aggregate login data by course to help instructors monitor engagement.
+* A retail company uses anonymised purchase history to build product recommendations — but links it back to users via loyalty cards.
+:::
+
+
+### Consent — Legal ≠ Ethical {.unnumbered}
+
+In many analytics projects, the question of consent is treated as a formality. 
+If the user accepted the terms and conditions, that's good enough—right?
+
+Not quite.
+
+In practice, most users don't read privacy policies. 
+Even when they do, the language is often vague, legalistic, or overly broad. 
+While these forms of "notice and consent" might satisfy legal requirements, they rarely reflect meaningful consent—especially when the downstream uses of data are unclear or evolving.
+
+In the case of LearnLoop, students may have agreed to share their data when they first enrolled or signed up for the LMS. 
+But did that agreement include using their behaviour to make predictions about their academic risk? 
+Did it cover sharing those predictions with academic staff? 
+Even if technically permissible, these secondary uses may breach student expectations—and erode trust.
+
+Ethical data use asks us to go beyond what users accepted and consider what they understood. 
+Were they given enough context to make an informed choice? Would they be surprised—or upset — if they knew how their data was being used?
+
+### Privacy vs Personalisation — Helpful Isn't Always Harmless {.unnumbered}
+
+One of the most common justifications for collecting more data is personalisation.
+"If we understand the user better," the thinking goes, "we can help them more effectively."
+
+In some cases, that's true. 
+Personalisation can improve relevance, convenience, and outcomes—especially in education. 
+A gentle nudge to a disengaged student might prompt them to re-engage. 
+A dashboard tailored to a student's progress might help them stay on track.
+
+But personalisation always comes with a trade-off: to personalise, you must profile. 
+And the more detailed the profiling, the more intimate—and potentially intrusive—the system becomes.
+
+In the LearnLoop example, the Early Warning System aims to identify students at risk of underperformance or disengagement. 
+From a product perspective, that's helpful. 
+But from a student's perspective, being profiled as "at risk" can feel stigmatizing—especially if they never consented to that label, never saw the data behind it, and never had a chance to contest it.
+
+This is where privacy and personalisation collide. 
+Just because something works doesn't mean it's fair.
+A model that improves outcomes overall may still violate individual expectations or create unintended harm.
+
+As analysts, our job is not just to maximise predictive accuracy, but to ask:
+
+* Is this level of personalisation proportionate to the benefit?
+* Could we achieve the same goal using less data or a simpler approach?
+* What does this look and feel like for the person on the receiving end?
+
+Helpful analytics must also be respectful analytics—especially when they deal with sensitive aspects of people's lives.
+
+::: {.callout-warning title="Case: Spotify's Mood Detection Patent" collapse=true}
+
+In 2021, Spotify was granted a patent to infer a listener’s **emotional state**, gender, and accent based on voice input and background noise — then use that information to recommend music.
+
+Spotify argued this could improve personalisation. But critics raised concerns:
+
+- Was it clear to users that their **emotions** were being inferred?
+- Could this data be used to target ads—or influence behaviour—beyond music?
+
+This case shows how quickly **personalisation** can blur into **surveillance**, especially when inferences are made without transparent consent. Even if legal, it raises ethical questions about proportionality and trust.
+
+:::
+
+::: {.exercise}
+::: {.exercise-time}
+7 min
+:::
+### Data Inventory Challenge {.unnumbered}
+
+Imagine you're part of the LearnLoop analytics team designing the Early Warning System. You're brainstorming all the data sources you could use to improve predictions.
+
+Here's a list of potential variables. For each one, decide if it's:
+
+- **Essential** — truly needed for identifying risk and justifiable to collect  
+- **Nice to have** — might help, but only if privacy risks are clearly outweighed  
+- **Unnecessary** — too invasive, too risky, or not clearly useful  
+
+| Variable | Your Classification |  
+|---------|----------------------|  
+| LMS login timestamps |  
+| Days since last LMS login |  
+| Assignment submission dates |  
+| Grades on major assignments |  
+| Attendance at tutorials |  
+| Access to course videos |  
+| Library book loans |  
+| Number of help requests via email |  
+| Disability registration status |  
+| Program and year level |  
+| Student's high school exam score |  
+| Time of day LMS is accessed |  
+| IP address or geolocation |  
+| Device type (e.g. mobile, desktop) |  
+| Demographics (e.g. age, gender, postcode) |  
+
+
+Choose one variable where you **drew a hard line** and explain your reasoning.
+What made it feel justified or unjustified? What privacy concerns tipped the scale?
+:::
+
+
+### Dark Patterns — When Design Undermines Choice {.unnumbered}
+
+Privacy risks don't just come from the data we collect—they also come from the ways we present choices.
+
+A dark pattern is a design choice that nudges users toward a particular action—often without their full understanding or consent. 
+These patterns are common in consumer tech: pre-ticked boxes, misleading button labels, confusing opt-outs, or guilt-inducing prompts like "No thanks, I like missing deadlines."
+
+But they also show up in analytics-driven systems, often without anyone realising.
+
+In the LearnLoop context, imagine a student receives an automated message:
+
+> "We noticed signs you might be falling behind. Click here to accept academic support."
+
+That seems helpful. But what if:
+
+* There's no clear explanation of what "falling behind" means?
+* The alert makes the student feel anxious or ashamed, even if they're doing fine?
+* The only button is "Accept Support"—no way to decline, ask for clarification, or see the data behind the alert?
+
+That's not transparency. 
+That's coercion wrapped in helpful language.
+
+These design choices can undermine autonomy, especially when users are in a vulnerable position—like students navigating high-stakes courses. 
+Even well-intentioned features can cross the line if users don't feel free to make informed, voluntary choices.
+
+Ethical analytics doesn't stop at good predictions. It extends into interface design. It means asking:
+
+* Is the message clear and balanced?
+* Are the choices real, or just decorative?
+* Could someone feel manipulated by the way we present this information?
+
+Respect for privacy includes respect for decision-making.
+
+### Anonymisation Isn't Enough {.unnumbered}
+
+It's easy to assume that once data is anonymised, the privacy risk is gone.
+Remove the names and student IDs, and you're in the clear—right?
+
+Not quite.
+
+Anonymisation is not a magic shield. 
+In many cases, de-identified data can be re-identified—especially when it involves detailed behavioural patterns or is combined with other datasets.
+
+Think about LearnLoop's Early Warning System. Even if student names are removed, the model might still use:
+
+* Unique login times (e.g. one student who studies only at 2am)
+* Unusual course combinations
+* Repeated help-seeking behaviours
+
+These patterns can act like digital fingerprints. 
+And when LMS data is linked with enrolment records, support service usage, or survey responses, the chance of re-identification increases dramatically.
+
+This is especially true in small cohorts (e.g. a master's seminar with 8 students) or when dealing with sensitive student groups (e.g. those registered for disability support or counselling services).
+
+In analytics, we often treat "de-identified" data as safe—but in practice, privacy risk lives in context, not just columns.
+
+What matters is not just whether data looks anonymous in a spreadsheet, but whether someone could be reasonably re-identified in the real world.
+
+That's why ethical analysts ask:
+
+* Could this data be linked to other sources in ways we didn't intend?
+* Is re-identification possible—even if unlikely?
+* Should we treat this data with the same care as fully identified information?
+
+Anonymisation is one tool in a broader privacy strategy—not an excuse to ignore risk. 
+If a system uses personal behaviour to make decisions, we owe it the same ethical scrutiny, whether or not a name is attached.
+
+::: {.callout-note title="Not All Anonymisation Is Equal" collapse=true}
+
+There are different ways to "anonymise" data—and some are much safer than others. Here's a quick guide:
+
+| Method                     | What it does                                                   | Is it enough?                       | Analogy                                                   |
+|----------------------------|----------------------------------------------------------------|-------------------------------------|------------------------------------------------------------|
+| Removing names or IDs      | Deletes obvious identifiers (e.g. student ID)                  | Not enough on its own               | Like tearing off a name tag but keeping the unique outfit |
+| Masking rare traits        | Removes or groups rare values (e.g. only showing "age: 18–24") | Helps, but not foolproof            | Like blurring a face—still recognisable in small crowds   |
+| K-anonymity                | Makes each record look like at least several others            | Better for structured data          | Like hiding in a crowd where everyone looks similar       |
+| L-diversity / T-closeness  | Adds protection against guessing sensitive information         | Adds robustness                     | Like hiding in a group and making sure no pattern gives you away |
+| Differential Privacy       | Adds random noise to protect individual data in aggregate      | Considered the most rigorous option | Like describing group trends without revealing individuals |
+| Synthetic data             | Creates fake data that mimics patterns in the original         | Safe when well designed             | Like a training dummy—looks real, but no one gets hurt     |
+
+
+Key lesson:
+Removing a name isn't enough. Ethical anonymisation means making sure no one can be picked out, even when datasets are combined or patterns are unusual.
+
+:::
+
+::: {.callout-warning title="Case: Spotify's Mood Detection Patent" collapse=true}
+
+In 2021, Spotify was granted a patent to infer a listener’s **emotional state**, gender, and accent based on voice input and background noise — then use that information to recommend music.
+
+Spotify argued this could improve personalisation. But critics raised concerns:
+
+- Was it clear to users that their **emotions** were being inferred?
+- Could this data be used to target ads—or influence behaviour—beyond music?
+
+This case shows how quickly **personalisation** can blur into **surveillance**, especially when inferences are made without transparent consent. Even if legal, it raises ethical questions about proportionality and trust.
+
+:::
+
+### Australian Privacy Regulations {.unnumbered}
+
+While ethical design goes beyond the law, it's important to know what the law does require—especially in Australia, where the handling of personal data is governed by the Privacy Act 1988 and the Australian Privacy Principles (APPs).
+
+The APPs apply to most organisations handling personal information, including education technology providers and universities. They cover everything from why data is collected, to how it's stored, to who it can be shared with.
+
+Here are the most relevant principles for business analytics work:
+
+* **Transparency and anonymity**: 
+Organisations must have a clear privacy policy and allow anonymous use where possible.
+
+* **Purpose limitation and collection**:
+Data should only be collected if it's necessary for a clear business function—and users must be notified.
+
+* **Use and disclosure**:
+Data can only be used or shared for the purpose it was collected, unless an exception applies.
+
+* **Security and data retention**:
+Reasonable steps must be taken to protect data, and it should be destroyed or de-identified when no longer needed.
+
+* **Access and correction**:
+Individuals have the right to access and correct their personal information.
+
+If a serious data breach occurs—such as loss, theft, or unauthorised access—the Notifiable Data Breaches (NDB) Scheme requires organisations to notify affected individuals and report it to the Office of the Australian Information Commissioner (OAIC).
+
+These laws provide a legal foundation—but they don't eliminate risk, nor do they tell you how to make good design choices.
+
+## Lens 2: Bias 
+
+We've seen how privacy risks emerge when systems collect too much, use data in unexpected ways, or fail to give people meaningful control. But even when data is collected ethically, another challenge remains: What if the way we use that data leads to unfair outcomes?
+
+This brings us to the second ethical lens: Bias.
+
+### What is Bias in Analytics? {.unnumbered}
+
+Bias in analytics isn't just a technical issue—it's a fairness issue. 
+It happens when your analysis produces systematic errors that disproportionately affect certain groups of people.
+
+In simple terms: if your predictions are consistently less accurate—or more harmful—for one group than another, your system is biased.
+
+This kind of bias can creep in at any stage of the analytics process:
+
+* You might be working with skewed or incomplete data, where some groups are underrepresented.
+* You might be using features that act as proxies for race, gender, or socioeconomic status—even if you never included those variables directly.
+* Your outcome variable (or label) might reflect past inequalities—like using historical drop-out data to predict future risk, without asking why certain groups dropped out more.
+
+And even if your model starts out fair, it can drift over time as real-world patterns change—creating new disparities that weren't there before.
+
+Importantly, biased models don't always look broken. 
+In fact, they often work well on average. But "average accuracy" hides a lot. 
+A model that's 85% accurate overall might be 95% accurate for domestic students and only 65% for international students. 
+That's a problem—even if the dashboard says "everything looks good."
+
+In business analytics, this matters because biased models lead to unfair outcomes: the wrong people get flagged, the wrong people get missed, and trust breaks down.
+
+Fairness isn't just about checking your output—it's about understanding the structure of your data, the impact of your decisions, and the trade-offs you make when optimising for performance.
+
+In the LearnLoop case, imagine a model that's worse at detecting risk for part-time students or students with learning accommodations. Those are the students who most need support—but they're the ones most likely to be missed. That's bias in action.
+
+### Sources of Bias: Where It Enters the Pipeline {.unnumbered}
+
+Bias in analytics doesn't come from one place. 
+It creeps in gradually—through small decisions about data sources, variables, evaluate the output of our analysis. 
+Often, no single step feels obviously wrong. 
+But when combined, they can produce systematic disadvantages for certain groups.
+
+Here are four of the most common ways bias enters the analytics pipeline:
+
+**1. In the Data: Who's Missing?**
+
+If the data we've collected underrepresents a group, the model will likely perform worse for them.
+In the LearnLoop example, imagine your dataset mostly contains full-time students studying business. 
+If part-time students, or students in remote campuses, are rare in the data, the model won't learn patterns that apply to them. 
+As a result, its predictions may be less accurate—or completely off.
+
+This is sometimes called representation bias, and it's especially dangerous when it's invisible. You can't fix what you don't measure.
+
+**2. In the Variables: What Are You Really Measuring?**
+
+Even when so called "protected attributes" (like gender or ethnicity) are excluded, bias can still sneak in through proxy variables.
+
+For example:
+
+* If you use ZIP code or access to campus Wi-Fi as a feature, you might be indirectly encoding socioeconomic status.
+* If your model tracks time of login, it might disadvantage students who work night shifts or share computers at home.
+* These features might seem neutral, but they can reflect structural inequalities—baking social disadvantage into a system that's meant to support learning.
+
+
+::: {.callout-note title="Case: Apple's Credit Card and Gender Bias" collapse=true}
+
+In 2019, users reported that Apple’s new credit card—launched with Goldman Sachs—was offering **men significantly higher credit limits than women**, even when applying as a married couple filing joint taxes.
+
+The algorithm didn’t include gender as a variable. But it seemed to use features that *acted as proxies* for gender—like occupation or income patterns—resulting in indirect discrimination.
+
+This sparked a public backlash and investigations into algorithmic bias, transparency, and regulatory oversight in financial technology.
+
+**Lesson:** Excluding protected attributes doesn't eliminate bias if proxy variables still encode structural inequalities.
+:::
+
+
+**3. In the Outcomes: Are Past Outcomes Fair?**
+
+Sometimes the thing you're modelling is itself biased. This is known as label bias.
+
+Suppose your analysis for LearnLoop uses past drop-out data. 
+If students from certain backgrounds were less likely to get support—and more likely to drop out—your label reflects that unfairness.
+The model learns a pattern that treats those students as inherently "risky," rather than recognising they may have been underserved.
+
+The danger? You end up reproducing past injustice—but now with a mathematical justification.
+
+**4. Over Time: When Fairness Drifts**
+
+Even if your model is fair when you deploy it, it can become biased later. This is called model drift.
+
+For instance, if online engagement changes over the semester—or a new cohort of students joins with different habits—the model's original assumptions may no longer hold. 
+It might start making systematically worse predictions for one group than another, without anyone noticing.
+
+Unless you monitor performance across groups, bias won't just persist—it will evolve.
+
+Together, these sources show that fairness isn't something you can check once and forget.
+It has to be designed for, tested, and maintained throughout the analytics lifecycle.
+
+### Fairness Metrics: How Do We Measure Fairness? {.unnumbered}
+
+Once we suspect our analysis may be biased, the next step is to make that bias visible. 
+But how do you measure fairness?
+
+The answer depends on what kind of fairness you care about—and there's no single definition. 
+In practice, we often use group-level comparisons to check whether the model behaves differently for different types of students.
+
+Here are three common ways fairness is measured in analytics:
+
+**1. Group Parity (or Demographic Parity)**
+
+> Are people in different groups flagged at the same rate?
+
+In LearnLoop, if 20% of students are flagged as "at risk," do you see roughly the same percentage across domestic and international students? Or is one group flagged much more often?
+
+Group parity is simple and intuitive—but it doesn't tell you whether the predictions are correct, just whether they're equally distributed.
+
+**2. Error Parity (or Equalised Odds)**
+
+> Are error rates similar across groups?
+
+There are two main types of error:
+
+* False positives: Students flagged as "at risk" who are actually doing fine
+* False negatives: Students not flagged, but actually at risk
+
+Equalised odds asks whether these errors happen more often for some groups than others.
+If the model misses 15% of domestic students but 35% of international students, that's a fairness problem—even if the overall accuracy looks high.
+
+This is one of the most widely used fairness metrics in practice because it reflects actual outcomes, not just proportions.
+
+**3. Calibration**
+
+> Do the predicted risk scores mean the same thing for different groups?
+
+If a student is given a risk score of 0.8 (or 80%), does that mean the same thing for a full-time and part-time student? 
+Or is the model systematically over- or underestimating risk for one group?
+
+Calibration checks whether the risk scores are reliable and comparable across groups—important when scores are used for prioritising interventions or allocating resources.
+
+So, what is the correct way to measure fairness?
+That depends on context.
+Sometimes, fairness metrics trade off against each other.
+Improving one (like group parity) might make another (like calibration) worse.
+
+That's why fairness isn't just a technical decision—it's a judgement call, grounded in your values, the business context, and the people affected.
+
+
+::: {.callout-warning title="Case: COMPAS and Competing Fairness Metrics" collapse=true}
+
+In the U.S., courts used a software called COMPAS to predict whether defendants were likely to reoffend.
+
+A 2016 investigation found:
+
+- **Black defendants** were more likely to be falsely flagged as high risk
+- **White defendants** were more likely to be falsely flagged as low risk
+
+The company argued that the model was *calibrated*: among those assigned a score of “7”, the reoffense rate was similar for Black and White defendants.
+
+But others argued the system violated *equalised odds*, as error rates differed by race.
+
+This case showed that **fairness metrics can conflict**, and choosing one involves ethical judgement—not just technical optimisation.
+
+:::
+
+
+::: {.exercise}
+::: {.exercise-time}
+10 min
+:::
+### What Kind of Fairness Matters? {.unnumbered}
+
+In the LearnLoop Early Warning System, you've been asked to help choose a fairness metric for evaluating the model.
+
+There are trade-offs.
+
+* If you focus on reducing false negatives, you'll catch more students who need help—but risk flagging some incorrectly.
+* If you focus on reducing false positives, you'll avoid unnecessary alerts—but might miss students who are quietly struggling.
+
+Think through the following questions:
+
+* Which type of error should LearnLoop prioritise avoiding—false positives or false negatives?
+* Which fairness metric best fits that choice? (Group parity, error parity, calibration?)
+* Who might be affected by this decision, and how?
+::: 
+
+::: {.callout-tip title="A Simple Bias Audit Workflow" collapse = true}
+
+You can use this 6-step workflow to audit an analysis for fairness across groups:
+
+* **Define the decision**: What outcome is the analysis supporting? Who is affected by the predictions?
+
+* **Identify relevant groups**: 
+Which groups might be treated differently—intentionally or not?
+(e.g. full-time vs part-time, domestic vs international, disability status)
+
+**Choose a fairness metric**: What does fairness mean in this context—equal outcomes, equal errors, or consistent scores?
+
+**Slice your model performance**:  Break down key metrics (e.g. false positives, accuracy, risk scores) by group.
+
+**Flag gaps and trade-offs**: Where are the biggest disparities? Are they explainable or fixable?
+
+**Propose mitigation and monitoring**: What could reduce harm? Should features be changed? Should the model be retrained?
+How will fairness be monitored over time?
+
+:::
+
+::: {.exercise}
+::: {.exercise-time}
+10 min
+:::
+### Bias Audit of Amazon's Hiring Algorithm {.unnumbered}
+
+In 2018, Amazon shut down an internal hiring algorithm that it had trained to rank job applicants for technical roles. 
+The system learned from resumes submitted over a 10-year period—and quickly developed a pattern: it downgraded applicants who attended all-women's colleges or who had the word "women's" in their resume.
+
+Amazon didn't explicitly include gender in the model—but the system inferred it from patterns in past hiring data. 
+The model reflected historical bias in who got hired—and it learned to replicate it.
+
+Walk through each of the six steps—from defining the decision to proposing mitigation—and explain how bias emerged, who was affected, and what could have been done differently.
+::: 
+
+::: {.exercise}
+::: {.exercise-time}
+10 min
+:::
+### Bias Risk Assessment for LearnLoop {.unnumbered}
+
+Use the Bias Audit Workflow to identify and explain potential bias risks in the LearnLoop Early Warning System.
+Walk through each of the six steps—focusing on how bias might arise, who might be affected, and what design decisions could reduce unfair outcomes.
+
+Remark: This is a forward-looking audit: your goal is to prevent harm, not evaluate past mistakes.
+::: 
+
+## Lens 3: Accountability
+
+We've now seen how data-driven analysis can produce unfair outcomes—even when they're designed with good intentions. But fairness isn't the only concern.
+Even a well-performing model can raise deeper questions about responsibility:
+
+* Who owns the analysis—and who answers for it when something goes wrong?
+* Can decisions be explained to the people they affect?
+* Do users have any way to contest or appeal those decisions?
+
+These are questions of accountability—our third ethical lens.
+
+### What is Accountability in Analytics? {.unnumbered}
+
+In business, accountability means knowing who's responsible for an outcome—and being able to explain what happened when things go wrong.
+
+In analytics, that principle gets harder to apply. 
+Analytics are often built by teams, based on messy data, using methods that aren't fully understood by everyone in the organisation—let alone the people affected by the outcomes.
+
+But accountability still matters. In fact, as models get more complex and influential, it becomes more important to ask:
+
+* Who is responsible for the design, use, and performance of this system?
+* Can the decisions it makes be explained?
+* Is there any way for someone affected to challenge or appeal a bad prediction?
+* And how will we know if the system is drifting, failing, or being misused?
+
+Accountability isn't just about blame—it's about building trustworthy systems that are answerable to the people they impact.
+
+These aren't edge cases. As analytics moves deeper into education, health, and financial decision-making, these questions show up everywhere—from who gets a loan to who gets a welfare audit.
+
+::: {.exercise}
+::: {.exercise-time}
+10 min
+:::
+### Who Owns the LearnLoop Early Warning Decisions? {.unnumbered}
+
+In the LearnLoop system, suppose a student has been flagged as "at risk" and receives academic intervention.
+
+1. Who is accountable for this outcome—and what happens next?
+2. Who owns the decision to intervene?
+3. If the student disputes the prediction, can anyone explain how it was made?
+4. Is there a process for reviewing or appealing model decisions?
+5. Could this happen again without oversight?
+::: 
+
+In the LearnLoop example, imagine a student is flagged by the Early Warning System and receives academic intervention. 
+Who owns that decision? If the student disputes it, can anyone explain how the model worked? Is there a process for reviewing the prediction? Could this happen again without oversight?
+
+### Roles and Responsibilities: Who's Accountable for What? {.unnumbered}
+
+Analytics systems don't run themselves. 
+Behind every model are dozens of small decisions: which data to include, how to handle missing values, what outcome to model, and how results are communicated. 
+But when these decisions lead to a bad outcome—who is responsible?
+
+In many organisations, accountability becomes blurry. 
+Engineers build the model, product managers define the feature, data analysts evaluate performance, and no one owns the system end to end. 
+That's how things fall through the cracks.
+
+To avoid this, it helps to clearly define roles using a simple framework: The RACI Model. 
+RACI stands for:
+
+* Responsible – Who actually builds and runs the system?
+* Accountable – Who ultimately owns the outcome and signs off on decisions?
+* Consulted – Who needs to be involved in decisions? (e.g. legal, ethics, DPO)
+* Informed – Who needs to know what's happening? (e.g. customer support, comms)
+
+Clearly assigning these roles helps avoid "no one told me" scenarios. 
+It also creates a record of who approved what—especially important in sensitive areas like education, finance, or health.
+
+::: {.exercise}
+::: {.exercise-time}
+10 min
+:::
+### Who's Who in the LearnLoop Early Warning Decisions? {.unnumbered}
+
+LearnLoop is preparing to launch its Early Warning System across multiple university clients. You've reviewed the model, and it's time to define who is responsible for what—before anything goes live.
+
+Using the RACI framework, assign clear roles to key stakeholders involved in the Early Warning System.
+
+Which teams, or roles that should be:
+
+* Responsible – Who will build and maintain the system?
+* Accountable – Who ultimately signs off on its use?
+* Consulted – Who needs to be involved in key decisions?
+* Informed – Who needs to be kept in the loop?
+
+**Bonus:**
+After filling in the table, identify one role where accountability could easily be unclear or contested, and explain how you would make it explicit.
+::: 
+
+### Explainability vs Transparency {.unnumbered}
+
+In business analytics, making decisions based on data is only part of the challenge. 
+The other part is being able to explain those decisions—to colleagues, to customers, and to the people affected.
+
+This is where explainability and transparency come in. They're related, but not the same.
+
+* Explainability is about making the system's logic understandable. Can someone make sense of why a particular outcome occurred? Could a staff member or student interpret the result without needing to decode the algorithm?
+* Transparency is about access and openness. Can people see what data was used? How the system works? What rules or thresholds were applied?
+
+You can have one without the other:
+
+* A system might be transparent (open-source code, public documentation) but still hard to explain to the people it affects.
+* Or it might be explainable (simple decision rules, easy-to-read dashboards), but not transparent about how data is selected, processed, or weighted.
+
+
+::: {.exercise}
+::: {.exercise-time}
+10 min
+:::
+### Can We Explain This? {.unnumbered}
+
+Suppose in LearnLoop's Early Warning System, a student is flagged as "at risk." The model used login frequency, assignment history, and course engagement to generate this alert.
+
+1. What should students and staff be told about how the flag was generated?\
+2. How much detail is enough to build understanding, without overwhelming or confusing people?
+3. What's the risk if the explanation is vague or missing?
+
+Think from the perspective of a student receiving the alert — teaching support staff responsible for acting on it.
+:::
+
+::: {.callout-warning title="Target's Pregnancy Prediction Model" collapse=true}
+
+In the early 2010s, the US retailer Target developed a predictive model to identify customers who were likely pregnant—based on subtle changes in their buying habits (like switching to unscented lotion or buying extra vitamins).
+
+The model was technically accurate, but it raised serious ethical concerns when Target began mailing maternity coupons to these customers—sometimes before their families knew.
+
+In one widely reported case, a teenager received pregnancy-related ads at home. Her father complained to Target—only to later discover that the prediction was correct.
+
+What went wrong?
+
+* The model wasn't explainable to the people affected.
+* The use of the prediction wasn't transparent.
+* There was no clear consent, control, or context for how this sensitive inference would be used.
+
+**Lesson:**
+Being "right" isn't enough. Analytics systems—especially those making sensitive predictions—must be explainable, context-aware, and designed with care.
+
+:::
+
+## Lens 4: Power
+
+So far, we’ve focused on the ethics of data collection, model performance, and system responsibility. But there’s one more lens we need to apply—one that zooms out and asks questions not just about how analytics works, but about who it works for.
+
+Even when systems are private, fair, and accountable, they can still reinforce unequal outcomes—by quietly shifting power away from those being measured, and toward those doing the measuring.
+
+That’s where the final lens comes in: Power.
+
+::: {.callout-note title="Case in Point: Wi-Fi Surveillance at a Student Protest" collapse=true}
+
+At a major Australian university, students discovered that their movements across campus could be tracked using data from the campus Wi-Fi network.
+
+The IT system linked device MAC addresses to student login credentials, allowing individuals to be identified and their locations reconstructed over time. Originally, the data was used for network planning and resource optimisation.
+
+But during a 2019 protest against a new student fees policy, university administrators used the data to estimate how many students attended, and which individuals entered certain buildings.
+
+No new data was collected—but the purpose changed, and with it, the ethical stakes.
+Students had not been clearly informed about this possible use. There was no option to opt out.
+
+The incident sparked criticism from students, media, and privacy experts. Although technically within policy, the system’s use highlighted a deeper issue: analytics systems often concentrate power in ways that are invisible until something goes wrong.
+
+:::
+
+### What is Power in Business Analytics? {.unnumbered}
+
+Business analytics doesn’t just describe or predict the world — it helps shape decisions.
+That means it also shapes who gains, who loses, and who gets a say.
+
+The power to collect, analyse, and act on data is not evenly distributed.
+Sometimes analytics empowers people — by giving users more control, surfacing new opportunities, or helping managers make fairer decisions.
+
+But sometimes, it concentrates power — by reinforcing existing hierarchies, disempowering those being monitored, or making decisions without visibility, consent, or recourse.
+
+Ethical analysis of power asks us to think about:
+
+* Whose outcomes are being optimised?
+* Who carries the downside risk if the model is wrong?
+* What mechanism gives them a voice?
+
+These questions help us uncover hidden asymmetries.
+They encourage us to see analytics not just as a technical system, but as a social one — embedded in organisations, incentives, and real lives.
+
+Understanding power means we don’t just evaluate outcomes. We also ask: how were they reached, who had input, and who could push back?
+
+::: {.exercise}
+::: {.exercise-time}
+10 min
+:::
+### Mapping Power in LearnLoop {.unnumbered}
+
+In the Early Warning System case, imagine a student is flagged as “at risk” and recommended for an intervention.
+
+1. Who makes the decision to act on the flag?
+2. Who is directly affected by it?
+3. Who else is indirectly impacted (e.g. advisors, families, future course coordinators)?
+4. What voice or input does each group identifed in (1) - (3) have?
+5. Who benefits most if the system works well?
+6. Who bears the cost if it fails?
+:::
+
+### Manipulation & Trust {.unnumbered}
+
+Analytics don’t just describe what is — they help shape what happens next. 
+The way we present insights or build interventions can influence behaviour, sometimes in ways that feel helpful, and sometimes in ways that feel manipulative.
+
+These choices matter. 
+A dashboard might nudge students to log in more frequently. 
+But if it flags them as “at risk” without explanation, and pressures them to act, it may trigger anxiety or disengagement. 
+This is what we call coercive design: when systems exploit users’ limited choices, fears, or lack of information to steer outcomes.
+
+The short-term result? More clicks. The long-term cost? Loss of trust.
+
+For analytics to be sustainable and credible, people must trust the process — not just the outcome. That means designing analytics and how we use the results to:
+
+* Inform, rather than pressure.
+* Respect user autonomy, rather than override it.
+* Support agency, especially for vulnerable or lower-power users.
+
+Trust is a strategic asset. Once lost, it’s hard to recover — and without it, even the smartest model will fail to deliver impact.
+
+::: {.callout-warning title="Case: TikTok’s For You Algorithm – Helpful or Manipulative?" collapse=true}
+
+TikTok’s “For You” page delivers an endless stream of content tailored to each user. 
+The algorithm learns from every scroll, like, pause, and replay. 
+At first, it feels magical — uncanny in how quickly it “gets you.” 
+But over time, deeper concerns emerge:
+
+* Some users become trapped in feedback loops that reinforce harmful content (e.g. body insecurity, conspiracy theories).
+* The platform provides little visibility into why content is shown or how to challenge or reset recommendations.
+* User control is minimal — and especially limited for younger or more vulnerable users.
+
+This raises an ethical question:
+
+* Is the algorithm optimising for user well-being, or just engagement?
+
+When people can’t understand or influence how they’re being guided, the line between persuasion and coercive design begins to blur.
+
+At its core, this is a power asymmetry:
+
+* TikTok holds the data, the algorithm, and commercial incentives.
+* The user is nudged — subtly and persistently to keep watching more — with little transparency, choice, or voice.
+
+This example reminds us: trust in analytics systems doesn’t just depend on privacy or accuracy. It depends on agency, voice, and a balance of power between those who build systems and those affected by them.
+
+:::
+
+::: {.exercise}
+::: {.exercise-time}
+10 min
+:::
+### Trust, Agency, and Power in LearnLoop {.unnumbered}
+
+Imagine LearnLoop’s Early Warning System starts sending automated notifications to students flagged as “at risk,” suggesting they attend support services.
+
+1. What kind of message would encourage students to act — without causing anxiety, shame, or distrust?
+2. Where is the line between helpful nudges and coercive design?
+3. What control should students have over how they’re monitored or contacted?
+4. How could the design be changed to give students more voice and agency?
+:::
+
+## Wrap Up: Thinking Ethically in Business Analytics
+
+Throughout this chapter, we’ve explored how business analytics can shape decisions that affect people’s lives — and why ethical reflection is essential, not optional.
+
+We introduced four lenses to help guide that reflection:
+
+* Privacy asks whether data is used responsibly and with respect for individual rights.
+* Bias prompts us to check who is systematically advantaged or disadvantaged.
+* Accountability ensures we know who is responsible, how systems can be explained, and what happens when things go wrong.
+* Power reminds us to ask who benefits, who bears risk, and who has a voice.
+
+Together, these lenses give us the tools to identify hidden risks, weigh trade-offs, and build systems that are not just smart, but justifiable.
+
+Ethical practice doesn’t mean never using data — it means using it thoughtfully, with clear intent, clear communication, and a commitment to fairness and trust.
+
+In the end, analytics is not just about what we can build.
+It’s about what we should build — and for whom.
