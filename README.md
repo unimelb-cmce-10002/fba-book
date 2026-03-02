@@ -17,13 +17,13 @@ This table aligns the course schedule with the corresponding parts and chapters 
 | 3        | Importing and visualizing data                    | Getting Our First Insights from Data     | `insights/data_visualisation.qmd`     |
 | 4        | Wrangling with data: Essentials                   | Getting Our First Insights from Data     | `insights/data_manipulation.qmd`      |
 | 5        | Wrangling with data: Next Steps                   | Getting Our First Insights from Data     | `insights/data_analysis.qmd`          |
-| 6        | Getting Data                                      | Finding and Storing Data                 | `data_management/data_collection.qmd` |
-| 7        | Storing and Retrieving Data                       | Finding and Storing Data                 | `data_management/data_storage.qmd`    |
-| 8        | Describing and explaining variation in data over time | Extracting Deeper Insights from Data | `advanced_analytics/data_variation.qmd` |
-| 9        | Describing and explaining variation in data across and within groups | Extracting Deeper Insights from Data | `advanced_analytics/descriptive_analytics.qmd` |
-| 10       | Generating Data and Causality                     | Extracting Deeper Insights from Data     | `advanced_analytics/causal_analytics.qmd` |
-| 11       | Forming and Evaluating Predictions                | Extracting Deeper Insights from Data     | `advanced_analytics/predictive_analytics.qmd` |
-| 12       | Ethics, Governance & Analytics & Wrap Up         | Ethics and Privacy                       | `ethics_privacy/ethics.qmd`            |
+| 6        | Describing and explaining variation in data over time | Extracting Deeper Insights from Data | `advanced_analytics/data_variation.qmd` |
+| 7        | Describing and explaining variation in data across and within groups | Extracting Deeper Insights from Data | `advanced_analytics/descriptive_analytics.qmd` |
+| 8       | Generating Data and Causality                     | Extracting Deeper Insights from Data     | `advanced_analytics/causal_analytics.qmd` |
+| 9       | Forming and Evaluating Predictions                | Extracting Deeper Insights from Data     | `advanced_analytics/predictive_analytics.qmd` |
+| 10        | Getting Data                                      | Finding and Storing Data                 | `data_management/data_collection.qmd` |
+| 11        | Storing and Retrieving Data                       | Finding and Storing Data                 | `data_management/data_storage.qmd`    |
+| NA       | Ethics, Governance & Analytics & Wrap Up         | Ethics and Privacy                       | `ethics_privacy/ethics.qmd`            |
 |          |                                                 | Ethics and Privacy                       | `ethics_privacy/privacy.qmd`           |
 |          |                                                 | Conclusion                               | `conclusion/conclusion.qmd`            |
 
