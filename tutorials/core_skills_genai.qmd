@@ -1,0 +1,155 @@
+# Tutorial 1: Core Skills of a Business Scientist in the GenAI Era {.unnumbered}
+
+
+::: {.callout-tip}
+## Learning Goals {.unnumbered}
+
+By the end of this workshop, you should be able to:
+
+- Define key concepts in the Uber surge-pricing case in clear, non-technical language.
+- Formulate a decision-relevant research question that is specific, measurable, and appropriately scoped.
+- Identify the data Uber would need to investigate suspected coordination and distinguish plausible signals from confounds.
+- Propose a first-pass detection idea and explain ways in which the analysis could go wrong .
+- Evaluate how different workflows with GenAIshape the quality and defensibility of your analysis and your ownership of the work.
+:::
+
+## The Business Challenge
+
+Uber is facing a new challenge in cities like Sydney and Melbourne. Some drivers have found a way to game the surge pricing system by temporarily logging off in groups to reduce supply. This triggers a surge in prices—and when they log back in, they benefit from higher fares.
+
+While this behavior doesn’t technically break any rules, it raises serious concerns. Should Uber treat it as clever strategy or as manipulation? Should it intervene—and if so, how? Cracking down too hard could upset drivers and hurt morale. Doing nothing might damage rider trust and public perception.
+
+Uber’s analytics and operations teams need to investigate what’s really going on, what’s driving this behavior, and whether (and how) to respond in a way that balances fairness, incentives, and platform health.
+
+## Prepare these Exercises before Class 
+
+Prepare these exercises before coming to class. Plan to spend 30 minutes on these exercises.
+
+### Exercise 1: Identifying the key concepts
+
+Read this short news story:
+"[Uber drivers creating artificial surge prices](https://www.abc.net.au/news/2025-07-29/uber-drivers-creating-artificial-surge-prices/105582350)" (ABC News, 29 July 2025).
+
+In your own words, define the following key terms or ideas mentioned in the article:
+
+- Surge pricing
+- Algorithmic pricing
+- Platform manipulation
+- Driver incentives
+
+
+::: {.callout-tip}
+You don’t need to provide formal or technical definitions. Focus on explaining each concept in your own words, based on how it was used in the video.
+:::
+
+### Exercise 2: Defining the Problem
+
+Imagine you’re part of Uber’s analytics + operations team investigating this in Sydney and Melbourne.
+
+**Part A** (3–4 sentences): Define the problem for Uber. Your answer must include:
+
+* What’s happening: one sentence describing the suspected behavior in concrete terms.
+* Why it matters: one sentence naming who is affected and what Uber risks (e.g., revenue, trust, retention, regulation).
+* What Uber needs to decide: one sentence stating the decision Uber faces next week (e.g., monitor, redesign surge, enforce rules).
+* How we’d judge success: one sentence naming one measurable indicator that would improve if Uber responds well (e.g., fewer extreme surges, shorter wait times, fewer cancellations, improved rider ratings, stable driver online time).
+
+**Part B** (one sentence): Write one research question to guide analysis.
+Your question should include:
+
+* an outcome (what you will measure),
+* a behavior/exposure (what you think is driving it), and
+* a scope (a location and/or time of day to focus on).
+
+### Exercise 3: Proposing a way forward
+
+Your manager turns to you and says:
+
+> “Where should we start?”
+
+**Part A**: Write **5 bullet points** describing your approach. You must include:
+
+- **one** bullet on what context/institutional detail you’d want to understand,
+- **one** bullet on what data you’d want to find or request,
+- **one** bullet on what analysis or method you’d try first,
+- **one** bullet on what could go wrong / what might mislead you,
+- **one** bullet on how you’d communicate results to a decision-maker.
+
+
+**Part B**: Which TWO of the 8 Business Scientist skills do you anticipate will matter most here, and why?
+
+
+## In-Class Exercises
+
+You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.
+
+In the workshop you will work in groups of 3–4 on the same business problem (Uber surge pricing in Sydney and Melbourne). Your group will work through the in-class exercises.
+
+To help us reflect on how different tools shape analytical thinking, each group will be assigned a different workflow. 
+The goal is to notice how your workflow affects the quality of your reasoning, your confidence, and which Business Scientist skills you use.
+
+**Workflow allocation**
+
+Your tutor will allocate **one** of the following workflows to your group:
+
+* **Search-only**: You can use web search and your pre-class notes, but you must not use GenAI tools.
+* **AI-only** : You must use a GenAI tool of your choice to answer the questions, but your group must not browse the web or consult external sources during the task. In addition, you should not add your own analysis or explanations. Your job is to act like a reporter of the AI’s output:
+  - You may copy/paste and format the AI's output, but you must not change the substance.
+(If something is wrong/unclear, fix it by asking the AI to revise, not by rewriting it yourself.)
+  - You may ask the AI clarifying questions (e.g., “define this term,” “give an example,” “rewrite more clearly,” “list assumptions,” “suggest metrics,” “format as a memo”).
+  - If you need a judgment call, ask the AI to make it and explain its reasons.
+  - If you disagree with the AI, you must resolve it by asking the AI further questions, not by inserting your own reasoning.
+  
+* **Hybrid**: You may use any combination of search, AI, and notes in any way you choose.
+
+At the end of the tutorial, the class will reflect on how different workflows shaped your answers.
+
+### Exercise 4: Choosing the right question to answer
+
+Your group will choose one research question to guide the rest of your work in the session.
+
+* Step 1: Propose four candidate research questions.
+
+* Step 2: Score each question from 0–2 on each criterion below (0 = weak, 1 = okay, 2 = strong).
+  - Useful: Would answering it help Uber decide what to do?
+  - Answerable: Could you imagine what you would measure to answer it?
+  - Specific: Is it narrow enough to be answered in a short investigation?
+
+* Step 3: Choose the highest-scoring question and rewrite it to be as clear as possible.
+
+### Exercise 5: What data do we need, and how could we be misled?
+
+Using the research question your group selected in Exercise 4, your manager asks:
+
+> “What data would we need to answer your question?”
+
+As a group, complete the following.
+
+**Part A: Must-have data**
+List 5–7 data fields you would request or create to answer your question. For each item, add one sentence explaining what it would help you observe or measure.
+
+
+**Part B: What patterns would you expect to see?** 
+List three patterns you’d expect in the data if your hypothesis is correct.
+
+**Part C: What else could explain the same patterns?**
+List two alternative explanations that could produce similar patterns.
+
+### Exercise 6: Next Steps
+
+Using your work from Exercise 5, answer these two questions:
+
+* What is the first pattern you would look for in the data to investigate your question? 
+
+* What are two outcome indicators you would track to answer your research question? For each, add a short reason.
+
+### Exercise 7: Workflow reflection
+
+One of our aims today was to notice how different workflows shape the quality of your work and how much of it you genuinely feel you own.
+
+Before discussing with other groups, reflect on the four lenses below:
+
+* **Speed**: How quickly did you get to your answer? What helped or slowed you down?
+* **Confidence**: How confident were you in what you wrote? What drove that confidence (or lack of it)?
+* **Defensibility**: If someone challenged your work, would you feel able to defend it verbally in a meeting? 
+* **Ownership**: Did the final output feel like your group’s work?
+
