@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; Variation in Cross-Sectional, Times-Series, and Panel Data – Foundations of Business Analytics</title>
+<title>7&nbsp; Variation in Cross-Sectional, Times-Series, and Panel Data – Foundations of Business Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,17 +66,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../advanced_analytics/descriptive_analytics.html" rel="next">
-<link href="../data_management/data_collection.html" rel="prev">
+<link href="../insights/data_tidy.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6f77e067621728e8e5d8b75f5607b6c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e793f7ea19fa229457e8560bce3db5d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -120,7 +121,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -148,7 +149,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../advanced_analytics/data_variation.html">Extracting Deeper Insights from Data</a></li><li class="breadcrumb-item"><a href="../advanced_analytics/data_variation.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variation in Cross-Sectional, Times-Series, and Panel Data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../advanced_analytics/data_variation.html">Extracting Deeper Insights from Data</a></li><li class="breadcrumb-item"><a href="../advanced_analytics/data_variation.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Variation in Cross-Sectional, Times-Series, and Panel Data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -240,7 +241,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Finding and Storing Data</span></a>
+ <span class="menu-text">Extracting Deeper Insights from Data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -248,14 +249,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
+  <a href="../advanced_analytics/data_variation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Variation in Cross-Sectional, Times-Series, and Panel Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></span></a>
+  <a href="../advanced_analytics/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Descriptive Analytics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/causal_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Causal Analytics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/predictive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-driven Predictions</span></span></a>
   </div>
 </li>
       </ul>
@@ -263,7 +276,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Extracting Deeper Insights from Data</span></a>
+ <span class="menu-text">Finding and Storing Data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -271,26 +284,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/data_variation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variation in Cross-Sectional, Times-Series, and Panel Data</span></span></a>
+  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive Analytics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/causal_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Causal Analytics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/predictive_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-driven Predictions</span></span></a>
+  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></span></a>
   </div>
 </li>
       </ul>
@@ -323,68 +324,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 1: Business Analytics Skills for Inventory Management</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 2: Core Skills of a Business Scientist &amp; Introduction to Posit Cloud</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_visualisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 3: Data Visualisation for Business Intelligence</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 4: Data Wrangling for Business Analytics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_tidy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 5: Shaping and Joining Data for Business Analytics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 6: Storing &amp; Retrieving Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 7: Obtaining Macroeconomic Data through FRED</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_variation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 8: Develop and Test Stock Trading Strategies</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 9: Descriptive Analytics in HRM</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/causal_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 10: Causal Analytics to Improve User Sign Up Experiences</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/predictive_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 11: Predictive Analytics for Workforce Planning</span></a>
+  <a href="../tutorials/core_skills_genai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 1: Core Skills of a Business Scientist in the GenAI Era</span></a>
   </div>
 </li>
       </ul>
@@ -399,31 +340,31 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge"><span class="header-section-number">9.1</span> The Business Challenge</a></li>
-  <li><a href="#cross-sectional-data" id="toc-cross-sectional-data" class="nav-link" data-scroll-target="#cross-sectional-data"><span class="header-section-number">9.2</span> Cross-sectional Data</a></li>
-  <li><a href="#time-series-data" id="toc-time-series-data" class="nav-link" data-scroll-target="#time-series-data"><span class="header-section-number">9.3</span> Time-Series Data</a>
+  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge"><span class="header-section-number">7.1</span> The Business Challenge</a></li>
+  <li><a href="#cross-sectional-data" id="toc-cross-sectional-data" class="nav-link" data-scroll-target="#cross-sectional-data"><span class="header-section-number">7.2</span> Cross-sectional Data</a></li>
+  <li><a href="#time-series-data" id="toc-time-series-data" class="nav-link" data-scroll-target="#time-series-data"><span class="header-section-number">7.3</span> Time-Series Data</a>
   <ul class="collapse">
-  <li><a href="#data-wrangling-for-timestamps" id="toc-data-wrangling-for-timestamps" class="nav-link" data-scroll-target="#data-wrangling-for-timestamps"><span class="header-section-number">9.3.1</span> Data Wrangling for Timestamps</a></li>
-  <li><a href="#obtain-stock-price-data-using-quantmod" id="toc-obtain-stock-price-data-using-quantmod" class="nav-link" data-scroll-target="#obtain-stock-price-data-using-quantmod"><span class="header-section-number">9.3.2</span> Obtain Stock Price Data Using <code>quantmod</code></a></li>
-  <li><a href="#from-prices-to-returns" id="toc-from-prices-to-returns" class="nav-link" data-scroll-target="#from-prices-to-returns"><span class="header-section-number">9.3.3</span> From Prices to Returns</a></li>
-  <li><a href="#cumulative-returns" id="toc-cumulative-returns" class="nav-link" data-scroll-target="#cumulative-returns"><span class="header-section-number">9.3.4</span> Cumulative Returns</a></li>
+  <li><a href="#data-wrangling-for-timestamps" id="toc-data-wrangling-for-timestamps" class="nav-link" data-scroll-target="#data-wrangling-for-timestamps"><span class="header-section-number">7.3.1</span> Data Wrangling for Timestamps</a></li>
+  <li><a href="#obtain-stock-price-data-using-quantmod" id="toc-obtain-stock-price-data-using-quantmod" class="nav-link" data-scroll-target="#obtain-stock-price-data-using-quantmod"><span class="header-section-number">7.3.2</span> Obtain Stock Price Data Using <code>quantmod</code></a></li>
+  <li><a href="#from-prices-to-returns" id="toc-from-prices-to-returns" class="nav-link" data-scroll-target="#from-prices-to-returns"><span class="header-section-number">7.3.3</span> From Prices to Returns</a></li>
+  <li><a href="#cumulative-returns" id="toc-cumulative-returns" class="nav-link" data-scroll-target="#cumulative-returns"><span class="header-section-number">7.3.4</span> Cumulative Returns</a></li>
   </ul></li>
-  <li><a href="#panel-data" id="toc-panel-data" class="nav-link" data-scroll-target="#panel-data"><span class="header-section-number">9.4</span> Panel Data</a>
+  <li><a href="#panel-data" id="toc-panel-data" class="nav-link" data-scroll-target="#panel-data"><span class="header-section-number">7.4</span> Panel Data</a>
   <ul class="collapse">
-  <li><a href="#construct-an-investment-portfolio" id="toc-construct-an-investment-portfolio" class="nav-link" data-scroll-target="#construct-an-investment-portfolio"><span class="header-section-number">9.4.1</span> Construct an Investment Portfolio</a></li>
-  <li><a href="#visualize-returns-of-individual-stocks" id="toc-visualize-returns-of-individual-stocks" class="nav-link" data-scroll-target="#visualize-returns-of-individual-stocks"><span class="header-section-number">9.4.2</span> Visualize Returns of Individual Stocks</a></li>
-  <li><a href="#calculate-equal-weighted-portfolio-returns" id="toc-calculate-equal-weighted-portfolio-returns" class="nav-link" data-scroll-target="#calculate-equal-weighted-portfolio-returns"><span class="header-section-number">9.4.3</span> Calculate Equal-Weighted Portfolio Returns</a></li>
+  <li><a href="#construct-an-investment-portfolio" id="toc-construct-an-investment-portfolio" class="nav-link" data-scroll-target="#construct-an-investment-portfolio"><span class="header-section-number">7.4.1</span> Construct an Investment Portfolio</a></li>
+  <li><a href="#visualize-returns-of-individual-stocks" id="toc-visualize-returns-of-individual-stocks" class="nav-link" data-scroll-target="#visualize-returns-of-individual-stocks"><span class="header-section-number">7.4.2</span> Visualize Returns of Individual Stocks</a></li>
+  <li><a href="#calculate-equal-weighted-portfolio-returns" id="toc-calculate-equal-weighted-portfolio-returns" class="nav-link" data-scroll-target="#calculate-equal-weighted-portfolio-returns"><span class="header-section-number">7.4.3</span> Calculate Equal-Weighted Portfolio Returns</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">9.5</span> Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">7.5</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../advanced_analytics/data_variation.html">Extracting Deeper Insights from Data</a></li><li class="breadcrumb-item"><a href="../advanced_analytics/data_variation.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variation in Cross-Sectional, Times-Series, and Panel Data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../advanced_analytics/data_variation.html">Extracting Deeper Insights from Data</a></li><li class="breadcrumb-item"><a href="../advanced_analytics/data_variation.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Variation in Cross-Sectional, Times-Series, and Panel Data</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variation in Cross-Sectional, Times-Series, and Panel Data</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Variation in Cross-Sectional, Times-Series, and Panel Data</span></h1>
 </div>
 
 
@@ -446,7 +387,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Learning Goals
+<span class="screen-reader-only">Tip</span>Learning Goals
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -460,8 +401,8 @@ Learning Goals
 </ul>
 </div>
 </div>
-<section id="the-business-challenge" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="the-business-challenge"><span class="header-section-number">9.1</span> The Business Challenge</h2>
+<section id="the-business-challenge" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="the-business-challenge"><span class="header-section-number">7.1</span> The Business Challenge</h2>
 <p>Financial markets generate an enormous amount of data every second: prices, trading volumes, financial reports, press releases, news headlines, analyst reports, and even tweets. Behind every movement in the stock market lies information waiting to be uncovered.</p>
 <p>In today’s financial market, data-driven investment and trading have become the main stream. Quantitative trading (“quant trading”) is built on the notion that market behavior can be modeled, measured, and predicted using data. Different from trading based on human judgment, quant trading sticks to a way of trading financial assets, such as stocks, currencies, or commodities, using mathematical models and evidence from data analysis, instead of relying purely on human intuition or gut feeling.</p>
 <p>Instead of asking:</p>
@@ -481,15 +422,15 @@ Learning Goals
 </ul>
 <p>When dealing with data in the financial market, recognizing the structure of your data is crucial for selecting the right models and strategies.</p>
 </section>
-<section id="cross-sectional-data" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="cross-sectional-data"><span class="header-section-number">9.2</span> Cross-sectional Data</h2>
+<section id="cross-sectional-data" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="cross-sectional-data"><span class="header-section-number">7.2</span> Cross-sectional Data</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Definition: Cross-Sectional Data
+<span class="screen-reader-only">Note</span>Definition: Cross-Sectional Data
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -503,12 +444,12 @@ Definition: Cross-Sectional Data
 </div>
 <p>In this exercise, we are going to get a sense of <strong>cross-sectional data</strong> by looking at stock trading data of S&amp;P 500 firms as of 31/12/2024:</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="S&amp;P 500">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-S&amp;P 500
+<span class="screen-reader-only">Tip</span>S&amp;P 500
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -523,45 +464,78 @@ S&amp;P 500
 <li>Load the data, <code>sp500_xs.csv</code>, that captures stock prices of S&amp;P 500 firms on 31/12/2024. Take a glimpse of the data. In the dataset, <code>prc</code> is stock price, <code>ret</code> refers to daily stock return, <code>shrout</code> standards for the number of shares outstanding, and <code>vol</code> is the trading volume (the number of shares being traded during that day).</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages for data wrangling and visualization</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages for data wrangling and visualization</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ tidyr   1.3.0     ✔ stringr 1.5.0
-✔ readr   2.1.2     ✔ forcats 0.5.1
-✔ purrr   1.0.1     
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.0     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ lubridate::as.difftime() masks base::as.difftime()
-✖ lubridate::date()        masks base::date()
-✖ dplyr::filter()          masks stats::filter()
-✖ xts::first()             masks dplyr::first()
-✖ lubridate::intersect()   masks base::intersect()
-✖ dplyr::lag()             masks stats::lag()
-✖ xts::last()              masks dplyr::last()
-✖ lubridate::setdiff()     masks base::setdiff()
-✖ lubridate::union()       masks base::union()</code></pre>
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># quantmod is used to get stock price data from Yahoo Finance</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: xts
+Loading required package: zoo
+
+Attaching package: 'zoo'
+
+The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric
+
+
+######################### Warning from 'xts' package ##########################
+#                                                                             #
+# The dplyr lag() function breaks how base R's lag() function is supposed to  #
+# work, which breaks lag(my_xts). Calls to lag(my_xts) that you type or       #
+# source() into this session won't work correctly.                            #
+#                                                                             #
+# Use stats::lag() to make sure you're not using dplyr::lag(), or you can add #
+# conflictRules('dplyr', exclude = 'lag') to your .Rprofile to stop           #
+# dplyr from breaking base R's lag() function.                                #
+#                                                                             #
+# Code in packages is not affected. It's protected by R's namespace mechanism #
+# Set `options(xts.warn_dplyr_breaks_lag = FALSE)` to suppress this warning.  #
+#                                                                             #
+###############################################################################
+
+Attaching package: 'xts'
+
+The following objects are masked from 'package:dplyr':
+
+    first, last
+
+Loading required package: TTR
+Registered S3 method overwritten by 'quantmod':
+  method            from
+  as.zoo.data.frame zoo </code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data into R</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sp500_xs <span class="ot">&lt;-</span> <span class="fu">YOUR_CODE</span>(<span class="st">"../data/sp500_xs.csv"</span>) </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a glimpse </span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>YOUR_CODE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data into R</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sp500_xs <span class="ot">&lt;-</span> <span class="fu">YOUR_CODE</span>(<span class="st">"../data/sp500_xs.csv"</span>) </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a glimpse </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>YOUR_CODE</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="2" type="1">
 <li>Calculate total market capitalization (i.e., value of all shares, calculated as stock price * number of shares). Which are the top 5 companies in terms of total market cap? Do you know these firms?</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>top5 <span class="ot">&lt;-</span> sp500_xs <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(<span class="at">mktcap =</span> YOUR_CODE) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(YOUR_CODE) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(<span class="dv">5</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>top5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>top5 <span class="ot">&lt;-</span> sp500_xs <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(<span class="at">mktcap =</span> YOUR_CODE) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(YOUR_CODE) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(<span class="dv">5</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>top5</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="solution-header">
@@ -572,8 +546,8 @@ S&amp;P 500
 <li></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data into R</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sp500_xs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/sp500_xs.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data into R</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sp500_xs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/sp500_xs.csv"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 503 Columns: 6
 ── Column specification ────────────────────────────────────────────────────────
@@ -584,8 +558,8 @@ dbl (5): stock_id, prc, ret, shrout, vol
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a glimpse </span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sp500_xs <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a glimpse </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sp500_xs <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 503
 Columns: 6
@@ -601,12 +575,12 @@ $ vol      &lt;dbl&gt; 1711372, 5256086, 319141, 645959, 1805810, 533327, 293893
 <li></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>top5 <span class="ot">&lt;-</span> sp500_xs <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">mktcap =</span> prc <span class="sc">*</span> shrout) <span class="sc">%&gt;%</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(mktcap)) <span class="sc">%&gt;%</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">5</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>top5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>top5 <span class="ot">&lt;-</span> sp500_xs <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">mktcap =</span> prc <span class="sc">*</span> shrout) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(mktcap)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">5</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>top5</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 7
   stock_id tic     prc     ret   shrout      vol      mktcap
@@ -620,15 +594,15 @@ $ vol      &lt;dbl&gt; 1711372, 5256086, 319141, 645959, 1805810, 533327, 293893
 </div>
 </div>
 </section>
-<section id="time-series-data" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="time-series-data"><span class="header-section-number">9.3</span> Time-Series Data</h2>
+<section id="time-series-data" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="time-series-data"><span class="header-section-number">7.3</span> Time-Series Data</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Definition: Time-Series Data
+<span class="screen-reader-only">Note</span>Definition: Time-Series Data
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -636,8 +610,8 @@ Definition: Time-Series Data
 </div>
 </div>
 <p>Time-series data varies in an orthogonal dimension compared with cross-sectional data. Instead of taking a snapshot of all stocks on the market, time-series data records the same set of information of a single stock over time. For instance, you may collect daily stock prices of Apple Inc.&nbsp;(ticker: <code>AAPL</code>) over time and evaluate the ups and downs.</p>
-<section id="data-wrangling-for-timestamps" class="level3" data-number="9.3.1">
-<h3 data-number="9.3.1" class="anchored" data-anchor-id="data-wrangling-for-timestamps"><span class="header-section-number">9.3.1</span> Data Wrangling for Timestamps</h3>
+<section id="data-wrangling-for-timestamps" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="data-wrangling-for-timestamps"><span class="header-section-number">7.3.1</span> Data Wrangling for Timestamps</h3>
 <p>Many datasets (especially in finance, business, and analytics) are tied to dates and times (e.g., stock prices, sales transactions, website visits, or macroeconomic indicators).</p>
 <p>However, dates and times are often a tricky component in programming:</p>
 <ul>
@@ -649,8 +623,8 @@ Definition: Time-Series Data
 <p>When we work on financial market data, date and times are extremely important. When we analyze stock prices and financial performance, we would like to have data ordered by date and time. Sometimes, we even need to merge datasets by dates and date ranges.</p>
 <p><code>lubridate</code> is the package in R that offers powerful functions and tools to deal with time stamps and periods. We will be actively using the tools from <code>lubridate</code> throughout this chapter. You may refer to <a href="https://r4ds.hadley.nz/datetimes.html">R4DS</a> for more comprehensive reading of dealing with time stamps and using <code>lubridate</code>.</p>
 </section>
-<section id="obtain-stock-price-data-using-quantmod" class="level3" data-number="9.3.2">
-<h3 data-number="9.3.2" class="anchored" data-anchor-id="obtain-stock-price-data-using-quantmod"><span class="header-section-number">9.3.2</span> Obtain Stock Price Data Using <code>quantmod</code></h3>
+<section id="obtain-stock-price-data-using-quantmod" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="obtain-stock-price-data-using-quantmod"><span class="header-section-number">7.3.2</span> Obtain Stock Price Data Using <code>quantmod</code></h3>
 <p>In R, there is one powerful package that allows us to easily help us acquire financial market data, <code>quantmod</code>. <code>getSymbols()</code> is a powerful function in <code>quantmod</code> that uses the <strong>API</strong> to fetch financial market data from various sources (e.g., Yahoo Finance).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -658,7 +632,7 @@ Definition: Time-Series Data
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-What is <code>quantmod</code>?
+<span class="screen-reader-only">Note</span>What is <code>quantmod</code>?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -669,26 +643,26 @@ What is <code>quantmod</code>?
 <p>We are going to use <code>getSymbols()</code> from <code>quantmod</code> to get a sense of <strong>time-series data</strong> by looking at Apple Inc.&nbsp;(<code>AAPL</code>)’s year-to-date stock prices.</p>
 <p>Load required packages and use <code>getSymbols()</code> to obtain AAPL’s stock prices from 01/01/2025 to now. Check the class of the output. Is the output in the format of tibble?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain AAPL's stock prices</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getSymbols</span>(<span class="st">"AAPL"</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">src =</span> <span class="st">"yahoo"</span>, </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="fu">as.Date</span>(<span class="st">"2025-01-01"</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># to = # If to = is not specified, it fetchs data up till the most recent</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain AAPL's stock prices</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getSymbols</span>(<span class="st">"AAPL"</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">src =</span> <span class="st">"yahoo"</span>, </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="fu">as.Date</span>(<span class="st">"2025-01-01"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># to = # If to = is not specified, it fetchs data up till the most recent</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "AAPL"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(AAPL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(AAPL)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume AAPL.Adjusted
-2025-01-02    248.93    249.10   241.82     243.85    55740700      242.9874
-2025-01-03    243.36    244.18   241.89     243.36    40244100      242.4992
-2025-01-06    244.31    247.33   243.20     245.00    45045600      244.1333
-2025-01-07    242.98    245.55   241.35     242.21    40856000      241.3532
-2025-01-08    241.92    243.71   240.05     242.70    37628900      241.8415
-2025-01-10    240.01    240.16   233.00     236.85    61710900      236.0122</code></pre>
+2025-01-02    248.93    249.10   241.82     243.85    55740700      242.5252
+2025-01-03    243.36    244.18   241.89     243.36    40244100      242.0378
+2025-01-06    244.31    247.33   243.20     245.00    45045600      243.6689
+2025-01-07    242.98    245.55   241.35     242.21    40856000      240.8941
+2025-01-08    241.92    243.71   240.05     242.70    37628900      241.3814
+2025-01-10    240.01    240.16   233.00     236.85    61710900      235.5632</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(AAPL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(AAPL)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "xts" "zoo"</code></pre>
 </div>
@@ -699,7 +673,7 @@ What is <code>quantmod</code>?
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<code>as.Date()</code>
+<span class="screen-reader-only">Note</span><code>as.Date()</code>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -708,12 +682,12 @@ What is <code>quantmod</code>?
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="(Optional) `xts` objects">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-(Optional) <code>xts</code> objects
+<span class="screen-reader-only">Tip</span>(Optional) <code>xts</code> objects
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -737,10 +711,10 @@ What is <code>quantmod</code>?
 </div>
 <p>Convert the output in the <code>xts</code> class to tibble. Look at <code>date</code>, is it a date variable?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert xts objects to tibble</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>aapl_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(AAPL, <span class="at">rownames =</span> <span class="st">"date"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> <span class="fu">sub</span>(<span class="st">"AAPL</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">""</span>, .x))   <span class="co"># remove "AAPL." prefix</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aapl_tbl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert xts objects to tibble</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>aapl_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(AAPL, <span class="at">rownames =</span> <span class="st">"date"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> <span class="fu">sub</span>(<span class="st">"AAPL</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">""</span>, .x))   <span class="co"># remove "AAPL." prefix</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aapl_tbl)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 7
   date        Open  High   Low Close   Volume Adjusted
@@ -749,34 +723,34 @@ What is <code>quantmod</code>?
 2 2025-01-03  243.  244.  242.  243. 40244100     242.
 3 2025-01-06  244.  247.  243.  245  45045600     244.
 4 2025-01-07  243.  246.  241.  242. 40856000     241.
-5 2025-01-08  242.  244.  240.  243. 37628900     242.
+5 2025-01-08  242.  244.  240.  243. 37628900     241.
 6 2025-01-10  240.  240.  233   237. 61710900     236.</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the type</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(aapl_tbl<span class="sc">$</span>date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the type</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(aapl_tbl<span class="sc">$</span>date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "character"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert into dates</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>aapl_tbl <span class="ot">&lt;-</span> aapl_tbl <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date))</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the type again</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(aapl_tbl<span class="sc">$</span>date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert into dates</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>aapl_tbl <span class="ot">&lt;-</span> aapl_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date))</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the type again</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(aapl_tbl<span class="sc">$</span>date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Date"</code></pre>
 </div>
 </div>
 <p>Visualize the price trends using <code>ggplot</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(aapl_tbl, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> Close)) <span class="sc">+</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 months"</span>, <span class="at">date_labels =</span> <span class="st">"%b-%Y"</span>) <span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"AAPL Stock Price (2025)"</span>,</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"Adjusted Close Price ($)"</span>) <span class="sc">+</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(aapl_tbl, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> Close)) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 months"</span>, <span class="at">date_labels =</span> <span class="st">"%b-%Y"</span>) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"AAPL Stock Price (2025)"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"Adjusted Close Price ($)"</span>) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -804,20 +778,20 @@ Important
 <p>You may have seen stock prices being plotted into “candlesticks.” The candlestick chart is way to visualize stock price movements by showing (1) open prices, (2) close prices, (3) highest prices, and (4) lowest prices together in one plot. The candlestick chart offers a neat way to convey rich information in prices.</p>
 <p>Let’s use <code>ggplot()</code> to generate a candlestick chart for the period between 08/09/2025 and 12/09/2025:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>candle_sticks <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(aapl_tbl <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(date<span class="sc">&gt;=</span><span class="fu">as.Date</span>(<span class="st">"2025-09-08"</span>) <span class="sc">&amp;</span> date<span class="sc">&lt;=</span><span class="fu">as.Date</span>(<span class="st">"September 12, 2025"</span>, <span class="at">format =</span> <span class="st">"%B %d, %Y"</span>))</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    , <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">open =</span> Open, <span class="at">high =</span> High, <span class="at">low =</span> Low, <span class="at">close =</span> Close)) <span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  tidyquant<span class="sc">::</span><span class="fu">geom_candlestick</span>() <span class="sc">+</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"AAPL Candlestick Chart"</span>,</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Price"</span>, <span class="at">x =</span> <span class="st">"Date"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>candle_sticks <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(aapl_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(date<span class="sc">&gt;=</span><span class="fu">as.Date</span>(<span class="st">"2025-09-08"</span>) <span class="sc">&amp;</span> date<span class="sc">&lt;=</span><span class="fu">as.Date</span>(<span class="st">"September 12, 2025"</span>, <span class="at">format =</span> <span class="st">"%B %d, %Y"</span>))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    , <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">open =</span> Open, <span class="at">high =</span> High, <span class="at">low =</span> Low, <span class="at">close =</span> Close)) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  tidyquant<span class="sc">::</span><span class="fu">geom_candlestick</span>() <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"AAPL Candlestick Chart"</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Price"</span>, <span class="at">x =</span> <span class="st">"Date"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Candlestick Chart">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Candlestick Chart
+<span class="screen-reader-only">Tip</span>Candlestick Chart
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -830,27 +804,7 @@ Candlestick Chart
 </div>
 <p>Read the candlestick chart of AAPL between 08/09/2025 and 12/09/2025. Given that Apple Inc.&nbsp;announced its new iPhone, Airpods, and Apple Watches on 10/09/2025, how do you think Apple’s investors perceive the new product?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>candle_sticks</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The following aesthetics were dropped during statistical transformation: open,
-high, low, and close.
-ℹ This can happen when ggplot fails to infer the correct grouping structure in
-  the data.
-ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
-  variable into a factor?</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The following aesthetics were dropped during statistical transformation: x,
-open, high, low, and close.
-ℹ This can happen when ggplot fails to infer the correct grouping structure in
-  the data.
-ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
-  variable into a factor?</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using the `size` aesthetic in this geom was deprecated in ggplot2 3.4.0.
-ℹ Please use `linewidth` in the `default_aes` field and elsewhere instead.</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>candle_sticks</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -860,8 +814,8 @@ open, high, low, and close.
 </div>
 </div>
 </section>
-<section id="from-prices-to-returns" class="level3" data-number="9.3.3">
-<h3 data-number="9.3.3" class="anchored" data-anchor-id="from-prices-to-returns"><span class="header-section-number">9.3.3</span> From Prices to Returns</h3>
+<section id="from-prices-to-returns" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="from-prices-to-returns"><span class="header-section-number">7.3.3</span> From Prices to Returns</h3>
 <p>A stock (or share) represents a small piece of ownership in a company. If you buy one share of Apple, you literally own a tiny slice of Apple. As a shareholder, you benefit when the company does well because the value of your share can go up, and you may also receive dividends, which are cash payments companies sometimes give to their owners.</p>
 <p>Stock prices simply how much one share costs in the market. For example, if Apple is trading at $234.07 as of 12/09/2025, that means you would pay $234.07 to own one share or sell a share of Apple at $234.07. Stock prices change constantly throughout the day as investors react to news, company announcements, or broader economic conditions.</p>
 <p>When we look at stocks, we usually care less about the exact price levels but more about how that price changes over time. That is where the concept of a return comes in. A stock’s return tells us the percentage gain or loss over a given period. For example, without considering any dividends, if Apple’s share price rises from $234.07 to $250, the return is about 6.8% ((250.00 - 234.07)/234.07). In simple terms, returns show you how much your money has grown (or shrunk) as a percentage, making them directly comparable across investments in different companies and time periods.</p>
@@ -870,11 +824,11 @@ open, high, low, and close.
 <p>In practice, investors are interested in returns of fixed time periods, such as daily returns, monthly returns, quarterly returns, and annual returns. We use the differences between the closing price at the end of the period and the closing price right before the period to calculate such returns.</p>
 <p>Hence, if we would like to calculate daily returns for AAPL on day <span class="math inline">\(t\)</span>, we are going to first calculate the changes in closing prices from day <span class="math inline">\(t-1\)</span> to <span class="math inline">\(t\)</span> and then scaled by the closing price of day <span class="math inline">\(t-1\)</span> (the base period). To do so, we need to use the <code>lag()</code> operation:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate returns from prices </span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>aapl_return <span class="ot">&lt;-</span> aapl_tbl <span class="sc">%&gt;%</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(date) <span class="sc">%&gt;%</span> <span class="co"># Sort in ascending order to avoid mistakes</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">transmute</span>(date, <span class="at">Price =</span> Adjusted,</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">Return =</span> (Adjusted <span class="sc">-</span> <span class="fu">lag</span>(Adjusted))<span class="sc">/</span><span class="fu">lag</span>(Adjusted)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate returns from prices </span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>aapl_return <span class="ot">&lt;-</span> aapl_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(date) <span class="sc">%&gt;%</span> <span class="co"># Sort in ascending order to avoid mistakes</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">transmute</span>(date, <span class="at">Price =</span> Adjusted,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">Return =</span> (Adjusted <span class="sc">-</span> <span class="fu">lag</span>(Adjusted))<span class="sc">/</span><span class="fu">lag</span>(Adjusted)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -882,7 +836,7 @@ open, high, low, and close.
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Adjusted Stock Prices
+<span class="screen-reader-only">Tip</span>Adjusted Stock Prices
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -910,7 +864,7 @@ Adjusted Stock Prices
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<code>transmute()</code>
+<span class="screen-reader-only">Tip</span><code>transmute()</code>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -918,13 +872,13 @@ Adjusted Stock Prices
 </div>
 </div>
 </section>
-<section id="cumulative-returns" class="level3" data-number="9.3.4">
-<h3 data-number="9.3.4" class="anchored" data-anchor-id="cumulative-returns"><span class="header-section-number">9.3.4</span> Cumulative Returns</h3>
+<section id="cumulative-returns" class="level3" data-number="7.3.4">
+<h3 data-number="7.3.4" class="anchored" data-anchor-id="cumulative-returns"><span class="header-section-number">7.3.4</span> Cumulative Returns</h3>
 <p>As an investor, you may be interested in how much money you are making by buying and holding a stock. We can achieve this goal by either calculating price changes or compounding daily returns. Compounding of returns are more commonly used in portfolio management as it may be difficult to get “prices” for each portfolio. To prepare us to analyze portfolio returns, we are going to get familiar with compounding operations in R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>aapl_cumret <span class="ot">&lt;-</span> aapl_return <span class="sc">%&gt;%</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Return =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(Return), <span class="dv">0</span>, Return)) <span class="sc">%&gt;%</span> <span class="co"># Fill missing as 0</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Cumret =</span> <span class="fu">cumprod</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">coalesce</span>(Return, <span class="dv">0</span>)) <span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>aapl_cumret <span class="ot">&lt;-</span> aapl_return <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Return =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(Return), <span class="dv">0</span>, Return)) <span class="sc">%&gt;%</span> <span class="co"># Fill missing as 0</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Cumret =</span> <span class="fu">cumprod</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">coalesce</span>(Return, <span class="dv">0</span>)) <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -932,7 +886,7 @@ Adjusted Stock Prices
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-How to calculate cumulative (compounded) returns?
+<span class="screen-reader-only">Note</span>How to calculate cumulative (compounded) returns?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -948,13 +902,13 @@ How to calculate cumulative (compounded) returns?
 </div>
 <p>With <code>Cumret</code>, we can visualize the ups and downs of our wealth. Suppose we invest $100 into AAPL at the beginning of 2025, the plot below shows how the $100 evolves throughout the year:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do some transformation to Cumret so that it reflects investment value</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(aapl_cumret, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> <span class="dv">100</span> <span class="sc">*</span> (Cumret <span class="sc">+</span> <span class="dv">1</span>))) <span class="sc">+</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 months"</span>, <span class="at">date_labels =</span> <span class="st">"%b-%Y"</span>) <span class="sc">+</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Value of Investment in AAPL"</span>,</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Value"</span>, <span class="at">x =</span> <span class="st">"Date"</span>) <span class="sc">+</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do some transformation to Cumret so that it reflects investment value</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(aapl_cumret, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> <span class="dv">100</span> <span class="sc">*</span> (Cumret <span class="sc">+</span> <span class="dv">1</span>))) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 months"</span>, <span class="at">date_labels =</span> <span class="st">"%b-%Y"</span>) <span class="sc">+</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Value of Investment in AAPL"</span>,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Value"</span>, <span class="at">x =</span> <span class="st">"Date"</span>) <span class="sc">+</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -978,15 +932,15 @@ Note
 </div>
 </section>
 </section>
-<section id="panel-data" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="panel-data"><span class="header-section-number">9.4</span> Panel Data</h2>
+<section id="panel-data" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="panel-data"><span class="header-section-number">7.4</span> Panel Data</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Definition: Cross-Sectional Data
+<span class="screen-reader-only">Note</span>Definition: Cross-Sectional Data
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -995,7 +949,7 @@ Definition: Cross-Sectional Data
 </div>
 <p>Most of time, the data available to us comes as <strong>panel data</strong>. Panel data has two (orthogonal) dimensions, entity and time. Below is an example of panel data where rows represents each entity and columns represents time points.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>panel <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'../data/panel_example.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>panel <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'../data/panel_example.csv'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 10 Columns: 6
 ── Column specification ────────────────────────────────────────────────────────
@@ -1005,7 +959,7 @@ dbl (6): id, Year1, Year2, Year3, Year4, Year5
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>panel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>panel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 6
       id  Year1 Year2  Year3  Year4  Year5
@@ -1024,15 +978,15 @@ dbl (6): id, Year1, Year2, Year3, Year4, Year5
 </div>
 <p>In practice, such data is often stored into the “long form” rather than the “short form”:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the data as long table</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>panel_long <span class="ot">&lt;-</span> panel <span class="sc">%&gt;%</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"Year"</span>),   <span class="co"># columns to reshape</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"Year"</span>,            <span class="co"># new column for year labels</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"Value"</span>           <span class="co"># new column for values</span></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>panel_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the data as long table</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>panel_long <span class="ot">&lt;-</span> panel <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"Year"</span>),   <span class="co"># columns to reshape</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"Year"</span>,            <span class="co"># new column for year labels</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"Value"</span>           <span class="co"># new column for values</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>panel_long</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 50 × 3
       id Year   Value
@@ -1053,12 +1007,12 @@ dbl (6): id, Year1, Year2, Year3, Year4, Year5
 <p>The strength of panel data is that it lets us study both differences across firms and changes within firms over time in the same framework. This opens the door to much more powerful analysis. For example, we could ask: “Do firms with higher profitability earn higher future returns?” By using panel data, we can track the same firm’s financial ratios and returns over time while also comparing across many firms at once. This dual perspective helps us avoid misleading results that might come from only looking at a single snapshot or only tracking one company.</p>
 <p>Panel data is especially important because it allows us compare one observation with other observations at the same time point or with itself in the past. Such features of panel data help us draw more reliable conclusions and inferences from data.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="(Optional) Fixed Effects">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-(Optional) Fixed Effects
+<span class="screen-reader-only">Tip</span>(Optional) Fixed Effects
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1083,68 +1037,68 @@ dbl (6): id, Year1, Year2, Year3, Year4, Year5
 </div>
 </div>
 </div>
-<section id="construct-an-investment-portfolio" class="level3" data-number="9.4.1">
-<h3 data-number="9.4.1" class="anchored" data-anchor-id="construct-an-investment-portfolio"><span class="header-section-number">9.4.1</span> Construct an Investment Portfolio</h3>
+<section id="construct-an-investment-portfolio" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="construct-an-investment-portfolio"><span class="header-section-number">7.4.1</span> Construct an Investment Portfolio</h3>
 <blockquote class="blockquote">
 <p>Do not put all your eggs in one basket!</p>
 </blockquote>
 <p>In practice, quantitative hedge funds and traders rarely put all their money into just one stock. Instead, they spread their investments across many different stocks, creating what we call a portfolio. By looking at these portfolios, we can see two kinds of variation: cross-sectional variation, which tells us how different firms perform on the same day, and time-series variation, which tracks how a single firm’s performance changes from day to day. The job of a quant trader is to analyze both types of variation and find patterns that can guide trading decisions. In this lecture, we are going to step into their shoes and explore real data to see how this works.</p>
 <p>We have obtained a list of stocks that ranks top 10 in terms of market cap in our earlier exercises. Now, we will use <code>getSymbols()</code> to retrieve their stock prices and combine all these data as a panel. Note that you are not required (but highly recommended) to fully understand the block of code below.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the List of Tickers</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>ticker_list <span class="ot">&lt;-</span> top5<span class="sc">$</span>tic</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get prices for all stocks on the list</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">getSymbols</span>(ticker_list, <span class="at">from =</span> <span class="st">"2025-01-01"</span>, <span class="at">auto.assign =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the List of Tickers</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>ticker_list <span class="ot">&lt;-</span> top5<span class="sc">$</span>tic</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get prices for all stocks on the list</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">getSymbols</span>(ticker_list, <span class="at">from =</span> <span class="st">"2025-01-01"</span>, <span class="at">auto.assign =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "MSFT" "AAPL" "AMZN" "NVDA" "META"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grab all output objects into a list</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>prices_list <span class="ot">&lt;-</span> <span class="fu">mget</span>(ticker_list, <span class="at">inherits =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert a list of xts objects into a tibble</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>all_stocks <span class="ot">&lt;-</span> <span class="fu">imap_dfr</span>(</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  prices_list,</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> {</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    xt  <span class="ot">&lt;-</span> .x</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    tic <span class="ot">&lt;-</span> .y</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    df  <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">data.frame</span>(<span class="at">date =</span> <span class="fu">index</span>(xt), <span class="fu">coredata</span>(xt)))</span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Strip any "AAPL." / "MSFT." etc. prefix from all price columns</span></span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(df) <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^.*</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">""</span>, <span class="fu">names</span>(df))</span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span></span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">ticker =</span> tic) <span class="sc">%&gt;%</span></span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(date, ticker, Open, High, Low, Close, Volume, Adjusted)</span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grab all output objects into a list</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>prices_list <span class="ot">&lt;-</span> <span class="fu">mget</span>(ticker_list, <span class="at">inherits =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert a list of xts objects into a tibble</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>all_stocks <span class="ot">&lt;-</span> <span class="fu">imap_dfr</span>(</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  prices_list,</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> {</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    xt  <span class="ot">&lt;-</span> .x</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    tic <span class="ot">&lt;-</span> .y</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>    df  <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">data.frame</span>(<span class="at">date =</span> <span class="fu">index</span>(xt), <span class="fu">coredata</span>(xt)))</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Strip any "AAPL." / "MSFT." etc. prefix from all price columns</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(df) <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^.*</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">""</span>, <span class="fu">names</span>(df))</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">ticker =</span> tic) <span class="sc">%&gt;%</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(date, ticker, Open, High, Low, Close, Volume, Adjusted)</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="visualize-returns-of-individual-stocks" class="level3" data-number="9.4.2">
-<h3 data-number="9.4.2" class="anchored" data-anchor-id="visualize-returns-of-individual-stocks"><span class="header-section-number">9.4.2</span> Visualize Returns of Individual Stocks</h3>
+<section id="visualize-returns-of-individual-stocks" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="visualize-returns-of-individual-stocks"><span class="header-section-number">7.4.2</span> Visualize Returns of Individual Stocks</h3>
 <p>Now, we are going to visualize the ups and downs of the five stocks in our portfolio since 01/01/2025. As you can see from the data, the price levels of stocks vary significantly across different firms. In order to make them comparable, a better option is to calculate cumulative returns and make a plot with five stocks sharing the same starting point. To do this task, we can replicate what we have done for AAPL to other stocks:</p>
 <p>For each stock (i.e., <code>group_by(ticker)</code>), calculate daily returns and then compound returns up to each date:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate cumulative returns</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>all_stocks <span class="ot">&lt;-</span> all_stocks <span class="sc">%&gt;%</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ticker) <span class="sc">%&gt;%</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date, <span class="at">.by_group =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Return   =</span> Adjusted <span class="sc">/</span> <span class="fu">lag</span>(Adjusted) <span class="sc">-</span> <span class="dv">1</span>,</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Cumret =</span> <span class="fu">cumprod</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">coalesce</span>(Return, <span class="dv">0</span>)) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate cumulative returns</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>all_stocks <span class="ot">&lt;-</span> all_stocks <span class="sc">%&gt;%</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ticker) <span class="sc">%&gt;%</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date, <span class="at">.by_group =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Return   =</span> Adjusted <span class="sc">/</span> <span class="fu">lag</span>(Adjusted) <span class="sc">-</span> <span class="dv">1</span>,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Cumret =</span> <span class="fu">cumprod</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">coalesce</span>(Return, <span class="dv">0</span>)) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Similar to what we have done for AAPL, assume that we invest 100 dollars into each stock, plot the value of investment for each stock since 01/01/2025:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(all_stocks, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> <span class="dv">100</span> <span class="sc">*</span> (Cumret <span class="sc">+</span> <span class="dv">1</span>), <span class="at">color =</span> ticker)) <span class="sc">+</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Value of Investment since 2025-01-01"</span>,</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Date"</span>,</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Value of Investment"</span>,</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">"Ticker"</span></span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 months"</span>, <span class="at">date_labels =</span> <span class="st">"%b-%Y"</span>) <span class="sc">+</span></span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(all_stocks, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> <span class="dv">100</span> <span class="sc">*</span> (Cumret <span class="sc">+</span> <span class="dv">1</span>), <span class="at">color =</span> ticker)) <span class="sc">+</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Value of Investment since 2025-01-01"</span>,</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Value of Investment"</span>,</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">"Ticker"</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 months"</span>, <span class="at">date_labels =</span> <span class="st">"%b-%Y"</span>) <span class="sc">+</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ℹ Please use `linewidth` instead.</code></pre>
@@ -1158,34 +1112,34 @@ dbl (6): id, Year1, Year2, Year3, Year4, Year5
 </div>
 </div>
 </section>
-<section id="calculate-equal-weighted-portfolio-returns" class="level3" data-number="9.4.3">
-<h3 data-number="9.4.3" class="anchored" data-anchor-id="calculate-equal-weighted-portfolio-returns"><span class="header-section-number">9.4.3</span> Calculate Equal-Weighted Portfolio Returns</h3>
+<section id="calculate-equal-weighted-portfolio-returns" class="level3" data-number="7.4.3">
+<h3 data-number="7.4.3" class="anchored" data-anchor-id="calculate-equal-weighted-portfolio-returns"><span class="header-section-number">7.4.3</span> Calculate Equal-Weighted Portfolio Returns</h3>
 <p>Quant trading always invests in multiple stocks and construct a portfolio to manage all investment targets. When constructing portfolios, a fund can invest in constituent stocks equally. For example, if you have five stocks in your portfolio, you put 20% of your wealth in each of them. Such portfolios are called as <strong>equal-weighted portfolios</strong>.</p>
 <p>In some cases, we do not want to evenly split our money among serveral stocks. We may want to invest a big more on certain stocks based on our assessment or statistical analyses. One common practice of quant investment is to construct <strong>value-weighted portfolios</strong> based on market capitalization. Also, you may place larger weights on Nvidia (NVDA) and Microsoft (MSFT) because you expect that the positive (or even overly positive) sentiments for AI may push stock prices of these stocks even higher.</p>
 <p>Here, we can use <code>dplyr</code> to easily summarize <code>portfolio_returns</code> at the portfolio level and calculate returns for such equal-weighted portfolio:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Equal weighted portfolio</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>pf_ew <span class="ot">&lt;-</span> all_stocks <span class="sc">%&gt;%</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ew_ret =</span> <span class="fu">mean</span>(Return, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)   <span class="co"># equal weight = simple average</span></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date) <span class="sc">%&gt;%</span></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ew_cumret =</span> <span class="fu">cumprod</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">coalesce</span>(ew_ret, <span class="dv">0</span>)) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot returns of equal-weighted portfolio over time</span></span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pf_ew, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> ew_cumret)) <span class="sc">+</span></span>
-<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Equal-Weighted Portfolio Cumulative Return"</span>,</span>
-<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"Cumulative Return"</span></span>
-<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span> </span>
-<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 months"</span>, <span class="at">date_labels =</span> <span class="st">"%b-%Y"</span>) <span class="sc">+</span></span>
-<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Equal weighted portfolio</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>pf_ew <span class="ot">&lt;-</span> all_stocks <span class="sc">%&gt;%</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ew_ret =</span> <span class="fu">mean</span>(Return, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)   <span class="co"># equal weight = simple average</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date) <span class="sc">%&gt;%</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ew_cumret =</span> <span class="fu">cumprod</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">coalesce</span>(ew_ret, <span class="dv">0</span>)) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot returns of equal-weighted portfolio over time</span></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pf_ew, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> ew_cumret)) <span class="sc">+</span></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Equal-Weighted Portfolio Cumulative Return"</span>,</span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"Cumulative Return"</span></span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span> </span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 months"</span>, <span class="at">date_labels =</span> <span class="st">"%b-%Y"</span>) <span class="sc">+</span></span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1209,34 +1163,38 @@ dbl (6): id, Year1, Year2, Year3, Year4, Year5
 </div>
 <div class="solution-content">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>all_stocks_vw <span class="ot">&lt;-</span> all_stocks <span class="sc">%&gt;%</span> </span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(top5 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">ticker =</span> tic, mktcap), </span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">by =</span> <span class="st">'ticker'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>all_stocks_vw <span class="ot">&lt;-</span> all_stocks <span class="sc">%&gt;%</span> </span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(top5 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">ticker =</span> tic, mktcap), </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">by =</span> <span class="st">'ticker'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>pf_vw <span class="ot">&lt;-</span> all_stocks_vw <span class="sc">%&gt;%</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">vw_ret       =</span> <span class="fu">weighted.mean</span>(Return, mktcap, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(date) <span class="sc">%&gt;%</span></span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">vw_cumret =</span> <span class="fu">cumprod</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">coalesce</span>(vw_ret, <span class="dv">0</span>)) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>pf_vw <span class="ot">&lt;-</span> all_stocks_vw <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">vw_ret       =</span> <span class="fu">weighted.mean</span>(Return, mktcap, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(date) <span class="sc">%&gt;%</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">vw_cumret =</span> <span class="fu">cumprod</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">coalesce</span>(vw_ret, <span class="dv">0</span>)) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot returns of equal-weighted portfolio over time</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> pf_ew, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> ew_cumret, <span class="at">color =</span> <span class="st">"Equal-Weighted"</span>), <span class="at">linewidth =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> pf_vw, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> vw_cumret, <span class="at">color =</span> <span class="st">"Value-Weighted"</span>), <span class="at">linewidth =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Portfolio Cumulative Return"</span>,</span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"Cumulative Return (%)"</span>,</span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">colar =</span> <span class="st">"Portfolio Types"</span></span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot returns of equal-weighted portfolio over time</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> pf_ew, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> ew_cumret, <span class="at">color =</span> <span class="st">"Equal-Weighted"</span>), <span class="at">linewidth =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> pf_vw, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> vw_cumret, <span class="at">color =</span> <span class="st">"Value-Weighted"</span>), <span class="at">linewidth =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Portfolio Cumulative Return"</span>,</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"Cumulative Return (%)"</span>,</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">colar =</span> <span class="st">"Portfolio Types"</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Ignoring unknown labels:
+• colar : "Portfolio Types"</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1248,8 +1206,8 @@ dbl (6): id, Year1, Year2, Year3, Year4, Year5
 </div>
 </section>
 </section>
-<section id="conclusion" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">9.5</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">7.5</span> Conclusion</h2>
 <p>In this lecture, you learned how data structure shapes the questions you can ask and the tools you should use:</p>
 <ul>
 <li><p>Cross-sectional data compares entities at one time (e.g., S&amp;P 500 firms on 31/12/2024).</p></li>
@@ -1318,13 +1276,14 @@ dbl (6): id, Year1, Year2, Year3, Year4, Year5
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1668,13 +1627,13 @@ dbl (6): id, Year1, Year2, Year3, Year4, Year5
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../data_management/data_collection.html" class="pagination-link" aria-label="Collected Structured and Unstructured Data">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></span>
+      <a href="../insights/data_tidy.html" class="pagination-link" aria-label="Shaping and Combining Data for Business Analytics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Shaping and Combining Data for Business Analytics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../advanced_analytics/descriptive_analytics.html" class="pagination-link" aria-label="Descriptive Analytics">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive Analytics</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Descriptive Analytics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

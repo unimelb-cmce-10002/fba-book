@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Causal Analytics – Foundations of Business Analytics</title>
+<title>9&nbsp; Causal Analytics – Foundations of Business Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../advanced_analytics/descriptive_analytics.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6f77e067621728e8e5d8b75f5607b6c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e793f7ea19fa229457e8560bce3db5d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -120,7 +121,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -148,7 +149,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../advanced_analytics/data_variation.html">Extracting Deeper Insights from Data</a></li><li class="breadcrumb-item"><a href="../advanced_analytics/causal_analytics.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Causal Analytics</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../advanced_analytics/data_variation.html">Extracting Deeper Insights from Data</a></li><li class="breadcrumb-item"><a href="../advanced_analytics/causal_analytics.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Causal Analytics</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -240,7 +241,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Finding and Storing Data</span></a>
+ <span class="menu-text">Extracting Deeper Insights from Data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -248,14 +249,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
+  <a href="../advanced_analytics/data_variation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Variation in Cross-Sectional, Times-Series, and Panel Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></span></a>
+  <a href="../advanced_analytics/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Descriptive Analytics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/causal_analytics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Causal Analytics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/predictive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-driven Predictions</span></span></a>
   </div>
 </li>
       </ul>
@@ -263,7 +276,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Extracting Deeper Insights from Data</span></a>
+ <span class="menu-text">Finding and Storing Data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -271,26 +284,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/data_variation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variation in Cross-Sectional, Times-Series, and Panel Data</span></span></a>
+  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive Analytics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/causal_analytics.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Causal Analytics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/predictive_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-driven Predictions</span></span></a>
+  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></span></a>
   </div>
 </li>
       </ul>
@@ -323,68 +324,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 1: Business Analytics Skills for Inventory Management</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 2: Core Skills of a Business Scientist &amp; Introduction to Posit Cloud</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_visualisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 3: Data Visualisation for Business Intelligence</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 4: Data Wrangling for Business Analytics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_tidy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 5: Shaping and Joining Data for Business Analytics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 6: Storing &amp; Retrieving Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 7: Obtaining Macroeconomic Data through FRED</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_variation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 8: Develop and Test Stock Trading Strategies</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 9: Descriptive Analytics in HRM</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/causal_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 10: Causal Analytics to Improve User Sign Up Experiences</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/predictive_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 11: Predictive Analytics for Workforce Planning</span></a>
+  <a href="../tutorials/core_skills_genai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 1: Core Skills of a Business Scientist in the GenAI Era</span></a>
   </div>
 </li>
       </ul>
@@ -399,16 +340,16 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-causal-analytics" id="toc-what-is-causal-analytics" class="nav-link active" data-scroll-target="#what-is-causal-analytics"><span class="header-section-number">11.1</span> What is Causal Analytics?</a></li>
-  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link" data-scroll-target="#the-business-challenge"><span class="header-section-number">11.2</span> The Business Challenge</a></li>
-  <li><a href="#a-first-approach-comparing-before-and-after-a-change" id="toc-a-first-approach-comparing-before-and-after-a-change" class="nav-link" data-scroll-target="#a-first-approach-comparing-before-and-after-a-change"><span class="header-section-number">11.3</span> A First Approach: Comparing Before and After a Change</a></li>
-  <li><a href="#thinking-in-counterfactuals-potential-outcomes" id="toc-thinking-in-counterfactuals-potential-outcomes" class="nav-link" data-scroll-target="#thinking-in-counterfactuals-potential-outcomes"><span class="header-section-number">11.4</span> Thinking in Counterfactuals &amp; Potential Outcomes</a>
+  <li><a href="#what-is-causal-analytics" id="toc-what-is-causal-analytics" class="nav-link active" data-scroll-target="#what-is-causal-analytics"><span class="header-section-number">9.1</span> What is Causal Analytics?</a></li>
+  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link" data-scroll-target="#the-business-challenge"><span class="header-section-number">9.2</span> The Business Challenge</a></li>
+  <li><a href="#a-first-approach-comparing-before-and-after-a-change" id="toc-a-first-approach-comparing-before-and-after-a-change" class="nav-link" data-scroll-target="#a-first-approach-comparing-before-and-after-a-change"><span class="header-section-number">9.3</span> A First Approach: Comparing Before and After a Change</a></li>
+  <li><a href="#thinking-in-counterfactuals-potential-outcomes" id="toc-thinking-in-counterfactuals-potential-outcomes" class="nav-link" data-scroll-target="#thinking-in-counterfactuals-potential-outcomes"><span class="header-section-number">9.4</span> Thinking in Counterfactuals &amp; Potential Outcomes</a>
   <ul class="collapse">
   <li><a href="#the-fundamental-problem-of-causal-inference" id="toc-the-fundamental-problem-of-causal-inference" class="nav-link" data-scroll-target="#the-fundamental-problem-of-causal-inference">The Fundamental Problem of Causal Inference</a></li>
   <li><a href="#moving-from-individuals-to-groups" id="toc-moving-from-individuals-to-groups" class="nav-link" data-scroll-target="#moving-from-individuals-to-groups">Moving from Individuals to Groups</a></li>
   </ul></li>
-  <li><a href="#approach-1---model-based-inference" id="toc-approach-1---model-based-inference" class="nav-link" data-scroll-target="#approach-1---model-based-inference"><span class="header-section-number">11.5</span> Approach 1 - Model-Based Inference</a></li>
-  <li><a href="#approach-2-design-based-inference" id="toc-approach-2-design-based-inference" class="nav-link" data-scroll-target="#approach-2-design-based-inference"><span class="header-section-number">11.6</span> Approach 2 – Design-Based Inference</a>
+  <li><a href="#approach-1---model-based-inference" id="toc-approach-1---model-based-inference" class="nav-link" data-scroll-target="#approach-1---model-based-inference"><span class="header-section-number">9.5</span> Approach 1 - Model-Based Inference</a></li>
+  <li><a href="#approach-2-design-based-inference" id="toc-approach-2-design-based-inference" class="nav-link" data-scroll-target="#approach-2-design-based-inference"><span class="header-section-number">9.6</span> Approach 2 – Design-Based Inference</a>
   <ul class="collapse">
   <li><a href="#using-randomization-to-create-comparability" id="toc-using-randomization-to-create-comparability" class="nav-link" data-scroll-target="#using-randomization-to-create-comparability">Using Randomization to Create Comparability</a></li>
   <li><a href="#from-randomization-to-causal-effects" id="toc-from-randomization-to-causal-effects" class="nav-link" data-scroll-target="#from-randomization-to-causal-effects">From Randomization to Causal Effects</a></li>
@@ -416,7 +357,7 @@ window.Quarto = {
   <li><a href="#is-this-a-big-effect" id="toc-is-this-a-big-effect" class="nav-link" data-scroll-target="#is-this-a-big-effect">Is This a Big Effect?</a></li>
   <li><a href="#assumptions-of-design-based-inference" id="toc-assumptions-of-design-based-inference" class="nav-link" data-scroll-target="#assumptions-of-design-based-inference">Assumptions of Design-Based Inference</a></li>
   </ul></li>
-  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="header-section-number">11.7</span> Putting It All Together</a>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="header-section-number">9.7</span> Putting It All Together</a>
   <ul class="collapse">
   <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead">Looking Ahead</a></li>
   </ul></li>
@@ -426,9 +367,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../advanced_analytics/data_variation.html">Extracting Deeper Insights from Data</a></li><li class="breadcrumb-item"><a href="../advanced_analytics/causal_analytics.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Causal Analytics</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../advanced_analytics/data_variation.html">Extracting Deeper Insights from Data</a></li><li class="breadcrumb-item"><a href="../advanced_analytics/causal_analytics.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Causal Analytics</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Causal Analytics</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Causal Analytics</span></h1>
 </div>
 
 
@@ -451,7 +392,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Learning Goals
+<span class="screen-reader-only">Tip</span>Learning Goals
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -465,25 +406,25 @@ Learning Goals
 </ul>
 </div>
 </div>
-<section id="what-is-causal-analytics" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="what-is-causal-analytics"><span class="header-section-number">11.1</span> What is Causal Analytics?</h2>
+<section id="what-is-causal-analytics" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="what-is-causal-analytics"><span class="header-section-number">9.1</span> What is Causal Analytics?</h2>
 <p>Many of the most important questions in business are not about what has happened, or even what will happen, but about what will change if we act differently. If we lower a monthly subscription price, will sign-ups increase? If we redesign our warehouse layout, will delivery times improve? If we introduce a new training program, will employee performance rise? If we change our supplier contracts, will costs go down? These are <strong>causal questions</strong>—they ask whether changing one thing actually causes a change in another.</p>
 <p><strong>Causal analytics</strong> is the process of using data to make credible claims about cause and effect. It is not enough to observe that sales rise when advertising rises, because both may be driven by a third factor like seasonality. Instead, we want to know: did advertising itself cause sales to rise?</p>
 <p>Businesses care about causality because managers rarely control outcomes directly. They make <strong>decisions</strong>—to set a price, run an ad, or add a new feature. Each decision can be thought of as an <strong>intervention</strong>. Causal analytics helps estimate what outcomes would have looked like <em>with</em> and <em>without</em> that intervention, answering the “what if” questions at the heart of business decision-making.</p>
 <p>At the heart of every causal question there is a <strong>counterfactual</strong> built in: what would have happened otherwise? If a company lowers its subscription price, what would sign-ups have been if the price had stayed the same? If a retailer invests in new training, what would employee performance have looked like without it? The challenge is that we never observe both worlds for the same customer, store, or firm.</p>
 <p>Causal analytics is about finding credible ways to approximate those missing counterfactuals. Sometimes we can try to do this with assumptions about how the world works. As we’ll see below, this is a worthwhile but often difficult way to make causal claims. An alternative approach is to design our research in ways that create cleaner comparisons. To see how each of these options play out in practice, let’s turn to an example.</p>
 </section>
-<section id="the-business-challenge" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="the-business-challenge"><span class="header-section-number">11.2</span> The Business Challenge</h2>
+<section id="the-business-challenge" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="the-business-challenge"><span class="header-section-number">9.2</span> The Business Challenge</h2>
 <p>DonorsChoose is a U.S.-based non-profit platform that connects teachers with regular people who want to support classrooms. A teacher might post a project such as “new art supplies for my class” or “science kits for an after-school program,” and donors can choose which projects to fund. Over the years, millions of small donations have helped fund everything from books to laptops.</p>
 <p>For DonorsChoose, raising money is only part of the story. Just as important is raising awareness. If a donor tells others about their gift, it can spark a chain reaction: friends may click through, learn about the project, and decide to donate themselves. This is a form of **online word-of-mouth (WoM)*. Unlike face-to-face word-of-mouth, it often happens through a quick post on Facebook, Twitter, or email after making a donation.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-What is Word-of-Mouth?
+<span class="screen-reader-only">Note</span>What is Word-of-Mouth?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -519,8 +460,8 @@ In general, we as business analysts, separate word of mouth into offline and onl
 <p>How would you go about answering this question? Explain why you think your approach would work.</p>
 </div>
 </section>
-<section id="a-first-approach-comparing-before-and-after-a-change" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="a-first-approach-comparing-before-and-after-a-change"><span class="header-section-number">11.3</span> A First Approach: Comparing Before and After a Change</h2>
+<section id="a-first-approach-comparing-before-and-after-a-change" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="a-first-approach-comparing-before-and-after-a-change"><span class="header-section-number">9.3</span> A First Approach: Comparing Before and After a Change</h2>
 <p>Imagine DonorsChoose rolls out the new message in <strong>September</strong>, replacing the old version used in <strong>August</strong>. After the switch, the share rate rises from 14% to 15%:</p>
 <table class="caption-top table">
 <colgroup>
@@ -580,8 +521,8 @@ In general, we as business analysts, separate word of mouth into offline and onl
 <p>These are strong assumptions and usually unverifiable in real settings.</p>
 <p>This is why before and after comparisons can mislead us: they mix the effect of the new message with all the other things that changed at the same time. To get closer to the truth, we need better ways of making comparisons. Sometimes that means using what we already know about how the world works. Other times it means setting up the situation so that groups are directly comparable. In the next section, we’ll see how to think about this more clearly using the idea of <strong>counterfactuals</strong>.</p>
 </section>
-<section id="thinking-in-counterfactuals-potential-outcomes" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="thinking-in-counterfactuals-potential-outcomes"><span class="header-section-number">11.4</span> Thinking in Counterfactuals &amp; Potential Outcomes</h2>
+<section id="thinking-in-counterfactuals-potential-outcomes" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="thinking-in-counterfactuals-potential-outcomes"><span class="header-section-number">9.4</span> Thinking in Counterfactuals &amp; Potential Outcomes</h2>
 <p>As we’ve already discussed, every causal question has a hidden <strong>“what if”</strong> built into it.</p>
 <ul>
 <li>If a donor saw the new message, what would have happened if they had seen the old one instead?<br>
@@ -622,7 +563,7 @@ Y_i(1) - Y_i(0)
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Why the Before/After Comparison Fails
+<span class="screen-reader-only">Warning</span>Why the Before/After Comparison Fails
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -667,8 +608,8 @@ E[Y(1) - Y(0)] = E[Y(1)] - E[Y(0)].
 <p>So the math itself is not the problem — it’s the data we feed into it. That’s why <strong>research design</strong> — how we create the groups for comparison — is so important. Let’s explore two approaches.</p>
 </section>
 </section>
-<section id="approach-1---model-based-inference" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="approach-1---model-based-inference"><span class="header-section-number">11.5</span> Approach 1 - Model-Based Inference</h2>
+<section id="approach-1---model-based-inference" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="approach-1---model-based-inference"><span class="header-section-number">9.5</span> Approach 1 - Model-Based Inference</h2>
 <p>So how can we make groups comparable? One option is to use what we already know — or think we know — about how the world works to adjust our comparisons. We will call this approach <strong>model-based inference</strong>. In model-based inference, we build a model that explains how outcomes are generated and use that model to correct for differences between groups. If our assumptions about the model are right, our comparison becomes more meaningful. If they’re wrong, the model can mislead us just as easily as the data.</p>
 <p>To see how this works, let’s abstract away from the DonorsChoose business problem and start with a fictious example where we are in control of how the data are generated. Imagine we’re studying a very simple artificial economy where earn an income. To be precise, the economy will follow the following 6 rules:</p>
 <ol type="1">
@@ -685,7 +626,7 @@ E[Y(1) - Y(0)] = E[Y(1)] - E[Y(0)].
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Normal vs.&nbsp;Log-Normal Incomes
+<span class="screen-reader-only">Warning</span>Normal vs.&nbsp;Log-Normal Incomes
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -696,7 +637,7 @@ Normal vs.&nbsp;Log-Normal Incomes
 </div>
 <p>To see this economy in action, let’s generate data for 5,000 people living in it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -710,11 +651,21 @@ Normal vs.&nbsp;Log-Normal Incomes
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                .<span class="dv">2</span><span class="sc">*</span>college <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">5000</span>) <span class="sc">+</span> <span class="dv">5</span> </span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>           )</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sim)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
-<pre><code>Rows: 5000 Columns: 3
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.0     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
+Rows: 5000 Columns: 3
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
 chr (1): hair
@@ -727,7 +678,7 @@ lgl (1): college
 </div>
 <p>We want to use this data to estimate the causal effect of having brown hair on income. According to the rules above, we should see a difference of 10%. Let’s look at the distribution of income between the two hair colors:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sim <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sim <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> log_income, <span class="at">fill =</span> hair)) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  ggokabeito<span class="sc">::</span><span class="fu">scale_fill_okabe_ito</span>() <span class="sc">+</span> </span>
@@ -737,7 +688,7 @@ lgl (1): college
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Hair color"</span>,</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Income distributions by hair color"</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -748,10 +699,10 @@ lgl (1): college
 </div>
 <p>The figure above doesn’t suggest a 10% difference in income between hair colors, as the density plots are almost perfectly overlapping. What if we tease out the mean difference in the data by comparing mean income of brown haired people to non-brown haired people? Computing difference in log income will give us a percentage difference:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sim <span class="sc">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sim <span class="sc">|&gt;</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(hair) <span class="sc">|&gt;</span> </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean_income =</span> <span class="fu">mean</span>(log_income)) <span class="sc">|&gt;</span> </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct_diff =</span> <span class="fu">round</span>(mean_income <span class="sc">-</span> <span class="fu">lag</span>(mean_income), <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct_diff =</span> <span class="fu">round</span>(mean_income <span class="sc">-</span> <span class="fu">lag</span>(mean_income), <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
   hair        mean_income pct_diff
@@ -765,11 +716,11 @@ lgl (1): college
 <p>This is a classic example of <strong>omitted variable bias</strong>: a hidden factor (education) is correlated with both the treatment (hair color) and the outcome (income), distorting the relationship we observe in the data. The question is whether we can make assumptions or use what we know about the economy to find the right comparisons.</p>
 <p>Among college graduates, nobody is dyeing their hair — people either have naturally brown hair or they don’t. That means within this group, hair color isn’t tangled up with other factors like education or hair-dyeing choices. The only reason we might see income differences is because brown hair itself gives an income boost in our simulated economy. So, let’s focus only on <strong>college graduates</strong> and re-run our summary statistics:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sim <span class="sc">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sim <span class="sc">|&gt;</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(college <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(hair) <span class="sc">|&gt;</span> </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean_income =</span> <span class="fu">mean</span>(log_income)) <span class="sc">|&gt;</span> </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct_diff =</span> <span class="fu">round</span>(mean_income <span class="sc">-</span> <span class="fu">lag</span>(mean_income), <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct_diff =</span> <span class="fu">round</span>(mean_income <span class="sc">-</span> <span class="fu">lag</span>(mean_income), <span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
   hair        mean_income pct_diff
@@ -788,7 +739,7 @@ lgl (1): college
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Where Do Assumptions Come From?
+<span class="screen-reader-only">Note</span>Where Do Assumptions Come From?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -798,17 +749,17 @@ That’s why model-based inference always carries some risk: our conclusions are
 </div>
 </div>
 </section>
-<section id="approach-2-design-based-inference" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="approach-2-design-based-inference"><span class="header-section-number">11.6</span> Approach 2 – Design-Based Inference</h2>
+<section id="approach-2-design-based-inference" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="approach-2-design-based-inference"><span class="header-section-number">9.6</span> Approach 2 – Design-Based Inference</h2>
 <p>We almost never know the full story behind how data are generated. We can make educated guesses — and build models and assumptions to adjust for what we <em>think</em> matters — but those models are only as good as the assumptions behind them. A missing variable or a small misspecification can quietly undo our hard work and lead to incorrect conclusions.</p>
 <p>Design-based inference takes a different route. Instead of leaning on assumptions about how the world behaves, it looks to <strong>the way data were collected</strong> — i.e.&nbsp;the <em>design</em> — to provide the basis for causal analysis. We’re going to focus on situations where the design of the data collection is intentional and controlled by the analyst. In particular, we will focus on cases where the intervention we want to understand is <strong>assigned deliberately — by the analyst or the platform — through an experiment.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Beyond Experiments: When the 'World' Does the Randomization for Us">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Beyond Experiments: When the ‘World’ Does the Randomization for Us
+<span class="screen-reader-only">Tip</span>Beyond Experiments: When the ‘World’ Does the Randomization for Us
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -829,7 +780,7 @@ Beyond Experiments: When the ‘World’ Does the Randomization for Us
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../figs/random_allocation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="518"></p>
+<p><img src="../figs/random_allocation.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
@@ -896,10 +847,10 @@ Beyond Experiments: When the ‘World’ Does the Randomization for Us
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>donors_choose <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>donors_choose <span class="ot">&lt;-</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_csv</span>(<span class="st">"data/donors_choose.csv"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(donors_choose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(donors_choose)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In the data we see that we have the following information for each <code>user_id</code>:</p>
 <ul>
@@ -910,11 +861,11 @@ Beyond Experiments: When the ‘World’ Does the Randomization for Us
 </ul>
 <p>We can observe whether difference messaging led to (a) more users sharing, and (b) more recruitment of new donors by comparing means across conditions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>donors_choose <span class="sc">|&gt;</span>  </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>donors_choose <span class="sc">|&gt;</span>  </span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(condition) <span class="sc">|&gt;</span> </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">click =</span> <span class="fu">round</span>(<span class="fu">mean</span>(clickthrough), <span class="dv">3</span>),</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">recruit =</span> <span class="fu">round</span>(<span class="fu">mean</span>(recruited), <span class="dv">3</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>              )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>              )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
   condition click recruit
@@ -943,13 +894,13 @@ So for every 100 people who would normally click “Share,” about five more di
 For a single sentence of text, that’s already impressive.</p>
 <p>Another way to judge whether an effect is big or small is to compare it to the <strong>overall variation</strong> in the data — how much people naturally differ in their behavior. The standard deviation measures that variation. If the treatment effect is large compared to the standard deviation, it means the intervention shifts behavior by a noticeable amount relative to how spread out the outcomes are. If it’s small compared to that variation, it means the change is subtle — most of the differences we see across people still come from their individual tendencies, not the treatment itself:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>donors_choose <span class="sc">|&gt;</span>  </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>donors_choose <span class="sc">|&gt;</span>  </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(condition) <span class="sc">|&gt;</span> </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">click =</span> <span class="fu">round</span>(<span class="fu">mean</span>(clickthrough), <span class="dv">3</span>),</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">recruit =</span> <span class="fu">round</span>(<span class="fu">mean</span>(recruited), <span class="dv">3</span>),</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">click_sd =</span> <span class="fu">round</span>(<span class="fu">sd</span>(clickthrough), <span class="dv">3</span>),</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">recruit_sd =</span> <span class="fu">round</span>(<span class="fu">sd</span>(recruited), <span class="dv">3</span>),</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>              )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>              )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   condition click recruit click_sd recruit_sd
@@ -964,12 +915,12 @@ Real-world behavior is noisy — people differ widely in how often they click, s
 That means even small shifts in the average outcome are hard to achieve.<br>
 In large-scale digital experiments, effects in the range of <strong>0.01 to 0.05 standard deviations</strong> are common, and often considered meaningful because they influence key business metrics such as engagement, conversion, or revenue at massive scale.</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="But What About Statistical Testing?">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-But What About Statistical Testing?
+<span class="screen-reader-only">Warning</span>But What About Statistical Testing?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1029,7 +980,7 @@ The “treatment” should mean the same thing for everyone — the same message
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-When Random Assignment Isn’t Perfect
+<span class="screen-reader-only">Warning</span>When Random Assignment Isn’t Perfect
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1041,8 +992,8 @@ When Random Assignment Isn’t Perfect
 </section>
 </section>
 </section>
-<section id="putting-it-all-together" class="level2" data-number="11.7">
-<h2 data-number="11.7" class="anchored" data-anchor-id="putting-it-all-together"><span class="header-section-number">11.7</span> Putting It All Together</h2>
+<section id="putting-it-all-together" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="putting-it-all-together"><span class="header-section-number">9.7</span> Putting It All Together</h2>
 <p>Causal analytics is about using data to answer “what if” questions — what would have happened if we had acted differently? Because we can never observe both worlds at once, we use strategies to approximate the missing counterfactual.</p>
 <p>There are two main ways to do this:</p>
 <ul>
@@ -1112,13 +1063,14 @@ Both perspectives are essential for data-driven decision-making, and together th
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1463,12 +1415,12 @@ Both perspectives are essential for data-driven decision-making, and together th
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../advanced_analytics/descriptive_analytics.html" class="pagination-link" aria-label="Descriptive Analytics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive Analytics</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Descriptive Analytics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../advanced_analytics/predictive_analytics.html" class="pagination-link" aria-label="Forming and Evaluating Data-driven Predictions">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-driven Predictions</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-driven Predictions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
