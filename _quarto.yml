@@ -25,16 +25,16 @@ book:
         - insights/data_visualisation.qmd
         - insights/data_manipulation.qmd
         - insights/data_tidy.qmd
-    - part: "Finding and Storing Data"
-      chapters:
-        - data_management/data_storage.qmd
-        - data_management/data_collection.qmd
     - part: "Extracting Deeper Insights from Data"
       chapters:
         - advanced_analytics/data_variation.qmd
         - advanced_analytics/descriptive_analytics.qmd
         - advanced_analytics/causal_analytics.qmd
         - advanced_analytics/predictive_analytics.qmd
+    - part: "Finding and Storing Data"
+      chapters:
+        - data_management/data_storage.qmd
+        - data_management/data_collection.qmd
     - part: "Ethics in Analytics"
       chapters:
         - ethics_privacy/ethics_privacy.qmd
@@ -47,17 +47,18 @@ book:
     - part: "Tutorials"
       number-depth: 0  # Restart numbering
       chapters:
-        - tutorials/what_is_business_analytics.qmd
-        - tutorials/how_to_do_business_analytics.qmd
-        - tutorials/data_visualisation.qmd
-        - tutorials/data_wrangling.qmd
-        - tutorials/data_tidy.qmd
-        - tutorials/data_storage.qmd
-        - tutorials/data_collection.qmd
-        - tutorials/data_variation.qmd
-        - tutorials/descriptive_analytics.qmd
-        - tutorials/causal_analytics.qmd
-        - tutorials/predictive_analytics.qmd
+        - tutorials/core_skills_genai.qmd
+        # - tutorials/what_is_business_analytics.qmd
+        # - tutorials/how_to_do_business_analytics.qmd
+        # - tutorials/data_visualisation.qmd
+        # - tutorials/data_wrangling.qmd
+        # - tutorials/data_tidy.qmd
+        # - tutorials/data_storage.qmd
+        # - tutorials/data_collection.qmd
+        # - tutorials/data_variation.qmd
+        # - tutorials/descriptive_analytics.qmd
+        # - tutorials/causal_analytics.qmd
+        # - tutorials/predictive_analytics.qmd
   # appendices:
     # - appendices/installation.qmd
 
