@@ -783,14 +783,16 @@ If the recipe did its job, each of our variables — `recency`, `frequency`, and
 ```{r}
 rfm_scaled |>
   summarise(
-    across(everything(),
-        list(mean = mean, sd = sd)) |>
+    across(
+      everything(),
+      list(mean = mean, sd = sd)
+    )
+  ) |>
   pivot_longer(
     cols = everything(),
     names_to = c("variable", ".value"),
     names_sep = "_"
-    )
-  ) |> 
+  ) |>
   kableExtra::kable(digits = 2)
 ```
 
