@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Tutorial 1: Core Skills of a Business Scientist in the GenAI Era – Foundations of Business Analytics</title>
+<title>Tutorial 2: From Data to a Managerial Briefing with R and Quarto – Foundations of Business Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tutorials/intro_r_quarto.html" rel="next">
-<link href="../ethics_privacy/ethics_privacy.html" rel="prev">
+<link href="../tutorials/core_skills_genai.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -85,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/core_skills_genai.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/core_skills_genai.html">Tutorial 1: Core Skills of a Business Scientist in the GenAI Era</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/core_skills_genai.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/intro_r_quarto.html">Tutorial 2: From Data to a Managerial Briefing with R and Quarto</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -260,13 +294,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/core_skills_genai.html" class="sidebar-item-text sidebar-link active">
+  <a href="../tutorials/core_skills_genai.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorial 1: Core Skills of a Business Scientist in the GenAI Era</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/intro_r_quarto.html" class="sidebar-item-text sidebar-link">
+  <a href="../tutorials/intro_r_quarto.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Tutorial 2: From Data to a Managerial Briefing with R and Quarto</span></a>
   </div>
 </li>
@@ -285,16 +319,19 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge">The Business Challenge</a></li>
   <li><a href="#prepare-these-exercises-before-class" id="toc-prepare-these-exercises-before-class" class="nav-link" data-scroll-target="#prepare-these-exercises-before-class">Prepare these Exercises before Class</a>
   <ul class="collapse">
-  <li><a href="#exercise-1-identifying-the-key-concepts" id="toc-exercise-1-identifying-the-key-concepts" class="nav-link" data-scroll-target="#exercise-1-identifying-the-key-concepts">Exercise 1: Identifying the key concepts</a></li>
-  <li><a href="#exercise-2-defining-the-problem" id="toc-exercise-2-defining-the-problem" class="nav-link" data-scroll-target="#exercise-2-defining-the-problem">Exercise 2: Defining the Problem</a></li>
-  <li><a href="#exercise-3-proposing-a-way-forward" id="toc-exercise-3-proposing-a-way-forward" class="nav-link" data-scroll-target="#exercise-3-proposing-a-way-forward">Exercise 3: Proposing a way forward</a></li>
+  <li><a href="#exercise-1-approaches-to-inventory-planning" id="toc-exercise-1-approaches-to-inventory-planning" class="nav-link" data-scroll-target="#exercise-1-approaches-to-inventory-planning">Exercise 1: Approaches to Inventory Planning</a></li>
+  <li><a href="#exercise-2-a-first-peek-at-some-data" id="toc-exercise-2-a-first-peek-at-some-data" class="nav-link" data-scroll-target="#exercise-2-a-first-peek-at-some-data">Exercise 2: A First Peek at Some Data</a></li>
+  <li><a href="#exercise-3-getting-set-up-in-posit-cloud" id="toc-exercise-3-getting-set-up-in-posit-cloud" class="nav-link" data-scroll-target="#exercise-3-getting-set-up-in-posit-cloud">Exercise 3: Getting Set Up in Posit Cloud</a></li>
+  <li><a href="#exercise-4-r-quarto-vocabulary-check" id="toc-exercise-4-r-quarto-vocabulary-check" class="nav-link" data-scroll-target="#exercise-4-r-quarto-vocabulary-check">Exercise 4: R + Quarto Vocabulary Check</a></li>
   </ul></li>
   <li><a href="#in-class-exercises" id="toc-in-class-exercises" class="nav-link" data-scroll-target="#in-class-exercises">In-Class Exercises</a>
   <ul class="collapse">
-  <li><a href="#exercise-4-choosing-the-right-question-to-answer" id="toc-exercise-4-choosing-the-right-question-to-answer" class="nav-link" data-scroll-target="#exercise-4-choosing-the-right-question-to-answer">Exercise 4: Choosing the right question to answer</a></li>
-  <li><a href="#exercise-5-what-data-do-we-need-and-how-could-we-be-misled" id="toc-exercise-5-what-data-do-we-need-and-how-could-we-be-misled" class="nav-link" data-scroll-target="#exercise-5-what-data-do-we-need-and-how-could-we-be-misled">Exercise 5: What data do we need, and how could we be misled?</a></li>
-  <li><a href="#exercise-6-next-steps" id="toc-exercise-6-next-steps" class="nav-link" data-scroll-target="#exercise-6-next-steps">Exercise 6: Next Steps</a></li>
-  <li><a href="#exercise-7-workflow-reflection" id="toc-exercise-7-workflow-reflection" class="nav-link" data-scroll-target="#exercise-7-workflow-reflection">Exercise 7: Workflow reflection</a></li>
+  <li><a href="#exercise-5-quick-recap-of-preparation-work" id="toc-exercise-5-quick-recap-of-preparation-work" class="nav-link" data-scroll-target="#exercise-5-quick-recap-of-preparation-work">Exercise 5: Quick Recap of Preparation Work</a></li>
+  <li><a href="#exercise-6-loading-and-inspecting-some-data" id="toc-exercise-6-loading-and-inspecting-some-data" class="nav-link" data-scroll-target="#exercise-6-loading-and-inspecting-some-data">Exercise 6: Loading and Inspecting Some Data</a></li>
+  <li><a href="#exercise-7-first-steps-working-with-data" id="toc-exercise-7-first-steps-working-with-data" class="nav-link" data-scroll-target="#exercise-7-first-steps-working-with-data">Exercise 7: First Steps Working with Data</a></li>
+  <li><a href="#exercise-8-turning-numbers-into-a-story-before-we-recommend-anything" id="toc-exercise-8-turning-numbers-into-a-story-before-we-recommend-anything" class="nav-link" data-scroll-target="#exercise-8-turning-numbers-into-a-story-before-we-recommend-anything">Exercise 8: Turning Numbers into a Story (Before We Recommend Anything)</a></li>
+  <li><a href="#exercise-9-planning-for-this-years-holiday-season" id="toc-exercise-9-planning-for-this-years-holiday-season" class="nav-link" data-scroll-target="#exercise-9-planning-for-this-years-holiday-season">Exercise 9: Planning for This Year’s Holiday Season</a></li>
+  <li><a href="#exercise-10-render-your-document" id="toc-exercise-10-render-your-document" class="nav-link" data-scroll-target="#exercise-10-render-your-document">Exercise 10: Render Your Document</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -302,9 +339,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/core_skills_genai.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/core_skills_genai.html">Tutorial 1: Core Skills of a Business Scientist in the GenAI Era</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/core_skills_genai.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/intro_r_quarto.html">Tutorial 2: From Data to a Managerial Briefing with R and Quarto</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Tutorial 1: Core Skills of a Business Scientist in the GenAI Era</h1>
+<h1 class="title">Tutorial 2: From Data to a Managerial Briefing with R and Quarto</h1>
 </div>
 
 
@@ -331,145 +368,437 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>By the end of this workshop, you should be able to:</p>
+<p>By the end of this tutorial, you should be able to:</p>
 <ul>
-<li>Define key concepts in the Uber surge-pricing case in clear, non-technical language.</li>
-<li>Formulate a decision-relevant research question that is specific, measurable, and appropriately scoped.</li>
-<li>Identify the data Uber would need to investigate suspected coordination and distinguish plausible signals from confounds.</li>
-<li>Propose a first-pass detection idea and explain ways in which the analysis could go wrong .</li>
-<li>Evaluate how different workflows with GenAIshape the quality and defensibility of your analysis and your ownership of the work.</li>
+<li>Explain what <strong>Quarto</strong> is and why analysts use it</li>
+<li>Run R code inside a <code>.qmd</code> file and <strong>render</strong> a report</li>
+<li>Load a small dataset and compute a few <strong>inventory KPIs</strong></li>
+<li>Produce a simple table and a basic plot</li>
+<li>Write a manager-friendly recommendation that separates <strong>facts vs interpretation vs decision</strong></li>
 </ul>
 </div>
 </div>
 <section id="the-business-challenge" class="level2">
 <h2 class="anchored" data-anchor-id="the-business-challenge">The Business Challenge</h2>
-<p>Uber is facing a new challenge in cities like Sydney and Melbourne. Some drivers have found a way to game the surge pricing system by temporarily logging off in groups to reduce supply. This triggers a surge in prices—and when they log back in, they benefit from higher fares.</p>
-<p>While this behavior doesn’t technically break any rules, it raises serious concerns. Should Uber treat it as clever strategy or as manipulation? Should it intervene—and if so, how? Cracking down too hard could upset drivers and hurt morale. Doing nothing might damage rider trust and public perception.</p>
-<p>Uber’s analytics and operations teams need to investigate what’s really going on, what’s driving this behavior, and whether (and how) to respond in a way that balances fairness, incentives, and platform health.</p>
+<p>David Jones sells a wide range of seasonal products, including fashion items that see strong swings in demand around holidays like Christmas.</p>
+<p>Inventory decisions are especially challenging for seasonal products because:</p>
+<ul>
+<li>Demand can spike unpredictably</li>
+<li>Promotions and discounts influence customer behaviour</li>
+<li>Regional preferences can differ</li>
+<li>Suppliers need advance notice to adjust deliveries</li>
+</ul>
+<p>Right now, David Jones is using a fixed restocking rule:</p>
+<blockquote class="blockquote">
+<p>Every week, <strong>100 units</strong> are delivered to each region, no matter what.</p>
+</blockquote>
+<p>But with the holiday season approaching, this rigid approach might not be enough.</p>
+<p><strong>Management wants a one-page briefing outlining whether they should adapt their restocking rule.</strong></p>
+<p>Your task is to review last year’s data and advise David Jones on how to improve inventory decisions.</p>
 </section>
 <section id="prepare-these-exercises-before-class" class="level2">
 <h2 class="anchored" data-anchor-id="prepare-these-exercises-before-class">Prepare these Exercises before Class</h2>
-<p>Prepare these exercises before coming to class. Plan to spend 30 minutes on these exercises.</p>
-<section id="exercise-1-identifying-the-key-concepts" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1-identifying-the-key-concepts">Exercise 1: Identifying the key concepts</h3>
-<p>Read this short news story: “<a href="https://www.abc.net.au/news/2025-07-29/uber-drivers-creating-artificial-surge-prices/105582350">Uber drivers creating artificial surge prices</a>” (ABC News, 29 July 2025).</p>
-<p>In your own words, define the following key terms or ideas mentioned in the article:</p>
-<ul>
-<li>Surge pricing</li>
-<li>Algorithmic pricing</li>
-<li>Platform manipulation</li>
-<li>Driver incentives</li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You don’t need to provide formal or technical definitions. Focus on explaining each concept in your own words, based on how it was used in the video.</p>
-</div>
-</div>
+<p>Prepare these exercises before coming to class. Plan to spend 45 minutes on these exercises.</p>
+<section id="exercise-1-approaches-to-inventory-planning" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1-approaches-to-inventory-planning">Exercise 1: Approaches to Inventory Planning</h3>
+<p>Read the article, “<a href="https://hbr.org/2023/09/a-new-approach-to-production-and-inventory-planning">A New Approach to Production and Inventory Planning</a>,” and answer the following questions in 2–3 sentences:</p>
+<p><strong>(a)</strong> Define the term “inventory management”. What makes inventory management complicated for seasonal products? <strong>(b)</strong> What is one key challenge businesses face in managing inventory today? <strong>(c)</strong> How could this apply to a retailer like David Jones, especially during busy seasons like Christmas?</p>
 </section>
-<section id="exercise-2-defining-the-problem" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2-defining-the-problem">Exercise 2: Defining the Problem</h3>
-<p>Imagine you’re part of Uber’s analytics + operations team investigating this in Sydney and Melbourne.</p>
-<p><strong>Part A</strong> (3–4 sentences): Define the problem for Uber. Your answer must include:</p>
-<ul>
-<li>What’s happening: one sentence describing the suspected behavior in concrete terms.</li>
-<li>Why it matters: one sentence naming who is affected and what Uber risks (e.g., revenue, trust, retention, regulation).</li>
-<li>What Uber needs to decide: one sentence stating the decision Uber faces next week (e.g., monitor, redesign surge, enforce rules).</li>
-<li>How we’d judge success: one sentence naming one measurable indicator that would improve if Uber responds well (e.g., fewer extreme surges, shorter wait times, fewer cancellations, improved rider ratings, stable driver online time).</li>
-</ul>
-<p><strong>Part B</strong> (one sentence): Write one research question to guide analysis. Your question should include:</p>
-<ul>
-<li>an outcome (what you will measure),</li>
-<li>a behavior/exposure (what you think is driving it), and</li>
-<li>a scope (a location and/or time of day to focus on).</li>
-</ul>
-</section>
-<section id="exercise-3-proposing-a-way-forward" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-3-proposing-a-way-forward">Exercise 3: Proposing a way forward</h3>
-<p>Your manager turns to you and says:</p>
+<section id="exercise-2-a-first-peek-at-some-data" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-a-first-peek-at-some-data">Exercise 2: A First Peek at Some Data</h3>
+<p>David Jones now wants to use <strong>last year’s data</strong> to improve inventory decisions for the upcoming holiday season.</p>
+<p>The data you have to work from are provided below:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 9%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 10%">
+<col style="width: 14%">
+<col style="width: 10%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Week Commencing</th>
+<th>Region</th>
+<th>Starting Inventory</th>
+<th>Units Delivered</th>
+<th>Units Sold</th>
+<th>Ending Inventory</th>
+<th>Price (AUD)</th>
+<th>Promotion (Y/N)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>25 Nov</td>
+<td>Sydney</td>
+<td>500</td>
+<td>100</td>
+<td>100</td>
+<td>500</td>
+<td>50</td>
+<td>N</td>
+</tr>
+<tr class="even">
+<td>25 Nov</td>
+<td>Melbourne</td>
+<td>500</td>
+<td>100</td>
+<td>150</td>
+<td>450</td>
+<td>50</td>
+<td>N</td>
+</tr>
+<tr class="odd">
+<td>2 Dec</td>
+<td>Sydney</td>
+<td>500</td>
+<td>100</td>
+<td>180</td>
+<td>420</td>
+<td>45</td>
+<td>Y</td>
+</tr>
+<tr class="even">
+<td>2 Dec</td>
+<td>Melbourne</td>
+<td>450</td>
+<td>100</td>
+<td>220</td>
+<td>330</td>
+<td>45</td>
+<td>Y</td>
+</tr>
+<tr class="odd">
+<td>9 Dec</td>
+<td>Sydney</td>
+<td>420</td>
+<td>100</td>
+<td>150</td>
+<td>370</td>
+<td>45</td>
+<td>Y</td>
+</tr>
+<tr class="even">
+<td>9 Dec</td>
+<td>Melbourne</td>
+<td>330</td>
+<td>100</td>
+<td>100</td>
+<td>330</td>
+<td>45</td>
+<td>Y</td>
+</tr>
+<tr class="odd">
+<td>16 Dec</td>
+<td>Sydney</td>
+<td>370</td>
+<td>100</td>
+<td>400</td>
+<td>70</td>
+<td>40</td>
+<td>Y (Christmas)</td>
+</tr>
+<tr class="even">
+<td>16 Dec</td>
+<td>Melbourne</td>
+<td>330</td>
+<td>100</td>
+<td>400</td>
+<td>30</td>
+<td>40</td>
+<td>Y (Christmas)</td>
+</tr>
+<tr class="odd">
+<td>23 Dec</td>
+<td>Sydney</td>
+<td>70</td>
+<td>100</td>
+<td>120</td>
+<td>50</td>
+<td>50</td>
+<td>N</td>
+</tr>
+<tr class="even">
+<td>23 Dec</td>
+<td>Melbourne</td>
+<td>30</td>
+<td>100</td>
+<td>150</td>
+<td>-20 (backorder)</td>
+<td>50</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<p>Before analysts run any code, they ask a simple question:</p>
 <blockquote class="blockquote">
-<p>“Where should we start?”</p>
+<p><strong>Can we trust this dataset enough to make a decision?</strong></p>
 </blockquote>
-<p><strong>Part A</strong>: Write <strong>5 bullet points</strong> describing your approach. You must include:</p>
+<p>Look at the David Jones data above and answer the questions below.</p>
+<p><strong>(a)</strong> Identify <strong>5 potential issues</strong> in the table. For each issue, classify it as:</p>
 <ul>
-<li><strong>one</strong> bullet on what context/institutional detail you’d want to understand,</li>
-<li><strong>one</strong> bullet on what data you’d want to find or request,</li>
-<li><strong>one</strong> bullet on what analysis or method you’d try first,</li>
-<li><strong>one</strong> bullet on what could go wrong / what might mislead you,</li>
-<li><strong>one</strong> bullet on how you’d communicate results to a decision-maker.</li>
+<li><strong>1. Will break analysis/code</strong>: formatting and/or type problems</li>
+<li><strong>2. Unclear meaning</strong>: we need a formal definition from the business</li>
+<li><strong>3. Decision risk</strong>: could bias conclusions or lead to a bad recommendation</li>
 </ul>
-<p><strong>Part B</strong>: Which TWO of the 8 Business Scientist skills do you anticipate will matter most here, and why?</p>
+<p>Fill in this template:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Issue you noticed</th>
+<th>Category (1/2/3)</th>
+<th>Why it matters (1 sentence)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>(b)</strong> Write one question you would email to the data owner today that would most improve your confidence in using the data to make a recommendation.</p>
+</section>
+<section id="exercise-3-getting-set-up-in-posit-cloud" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3-getting-set-up-in-posit-cloud">Exercise 3: Getting Set Up in Posit Cloud</h3>
+<p>Before we proceed, we need everyone working in the same environment. Complete the following steps:</p>
+<p><strong>Step 1</strong>: Log in to Posit Cloud</p>
+<ul>
+<li>Go to the Posit Cloud workspace link provided on the LMS.</li>
+<li>Log in using your University account.</li>
+</ul>
+<p><strong>Step 2</strong>: Make your own copy of the workshop project</p>
+<ul>
+<li>Locate the workshop project in Posit Cloud.</li>
+<li>Click Make a Copy to create your own version.</li>
+</ul>
+<p><strong>Step 3</strong>: Open the Quarto file</p>
+<ul>
+<li>In the Files pane, locate the workshop Quarto document: <code>tutorial_02_inventory.qmd</code>.</li>
+<li>Click it to open it in the editor.</li>
+</ul>
+<p><strong>Step 4</strong>: Render the document</p>
+<ul>
+<li>Find the Render button (top of the editor).</li>
+<li>Click Render.</li>
+</ul>
+<p>If everything is set up correctly, a new tab should appear in your browser with the rendered content.</p>
+</section>
+<section id="exercise-4-r-quarto-vocabulary-check" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4-r-quarto-vocabulary-check">Exercise 4: R + Quarto Vocabulary Check</h3>
+<p>Answer each in <strong>one short sentence</strong>.</p>
+<p><strong>(a)</strong> What does <code>&lt;-</code> do in R?</p>
+<p><strong>(b)</strong> What is a <strong>data frame</strong>. What does a row represent in our David Jones data?</p>
+<p><strong>(c)</strong> What is a <strong>function</strong> in R? Explain using <code>read_csv()</code> as an example.</p>
+<p><strong>(d)</strong> What is a <strong>code chunk</strong> in a Quarto <code>.qmd</code> file?</p>
+<p><strong>(e)</strong> What does <strong>Render</strong> do in Quarto?</p>
+<p><strong>(f)</strong> What is a <strong>package</strong> in R? Explain using <code>readr</code> as an example, including how to load the package into your R session.</p>
 </section>
 </section>
 <section id="in-class-exercises" class="level2">
 <h2 class="anchored" data-anchor-id="in-class-exercises">In-Class Exercises</h2>
 <p>You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.</p>
-<p>In the workshop you will work in groups of 3–4 on the same business problem (Uber surge pricing in Sydney and Melbourne). Your group will work through the in-class exercises.</p>
-<p>To help us reflect on how different tools shape analytical thinking, each group will be assigned a different workflow. The goal is to notice how your workflow affects the quality of your reasoning, your confidence, and which Business Scientist skills you use.</p>
-<p><strong>Workflow allocation</strong></p>
-<p>Your tutor will allocate <strong>one</strong> of the following workflows to your group:</p>
+<section id="exercise-5-quick-recap-of-preparation-work" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-5-quick-recap-of-preparation-work">Exercise 5: Quick Recap of Preparation Work</h3>
+<p>With your group answer the following questions:</p>
+<p><strong>(a)</strong> In one sentence, what is the core trade-off in inventory management for a retailer like David Jones?</p>
+<p><strong>(b)</strong> What are the two biggest issues with the dataset presented in Exercise 2? Justify your choices.</p>
+</section>
+<section id="exercise-6-loading-and-inspecting-some-data" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-6-loading-and-inspecting-some-data">Exercise 6: Loading and Inspecting Some Data</h3>
+<p><strong>(a)</strong> Open the Posit Cloud Workspace for this workshop.</p>
+<p><strong>(b)</strong> Load the dataset by running this line of code:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>inventory <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/inventory.csv"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>(c)</strong> We want to explain the code in (b) is doing, line by line.</p>
 <ul>
-<li><strong>Search-only</strong>: You can use web search and your pre-class notes, but you must not use GenAI tools.</li>
-<li><strong>AI-only</strong> : You must use a GenAI tool of your choice to answer the questions, but your group must not browse the web or consult external sources during the task. In addition, you should not add your own analysis or explanations. Your job is to act like a reporter of the AI’s output:
-<ul>
-<li>You may copy/paste and format the AI’s output, but you must not change the substance. (If something is wrong/unclear, fix it by asking the AI to revise, not by rewriting it yourself.)</li>
-<li>You may ask the AI clarifying questions (e.g., “define this term,” “give an example,” “rewrite more clearly,” “list assumptions,” “suggest metrics,” “format as a memo”).</li>
-<li>If you need a judgment call, ask the AI to make it and explain its reasons.</li>
-<li>If you disagree with the AI, you must resolve it by asking the AI further questions, not by inserting your own reasoning.</li>
-</ul></li>
-<li><strong>Hybrid</strong>: You may use any combination of search, AI, and notes in any way you choose.</li>
+<li>What does <code>```{r}</code> mean in Quarto?</li>
+<li>What does <code>#| eval: false</code> do?</li>
+<li>Do you need to change the <code>#| eval: false</code> setting to run the code when you render the file?</li>
+<li>What does <code>library(readr)</code> do?</li>
+<li>Explain what the assignment operator <code>&lt;-</code>?, does.</li>
+<li>Is <code>read_csv()</code> a function or a variable?</li>
+<li>What does <code>"data/inventory.csv"</code> refer to?</li>
 </ul>
-<p>At the end of the tutorial, the class will reflect on how different workflows shaped your answers.</p>
-<section id="exercise-4-choosing-the-right-question-to-answer" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-4-choosing-the-right-question-to-answer">Exercise 4: Choosing the right question to answer</h3>
-<p>Your group will choose one research question to guide the rest of your work in the session.</p>
+<p><strong>(d)</strong> Run each of the following commands, and explain the output to your group:</p>
 <ul>
-<li><p>Step 1: Propose four candidate research questions.</p></li>
-<li><p>Step 2: Score each question from 0–2 on each criterion below (0 = weak, 1 = okay, 2 = strong).</p>
-<ul>
-<li>Useful: Would answering it help Uber decide what to do?</li>
-<li>Answerable: Could you imagine what you would measure to answer it?</li>
-<li>Specific: Is it narrow enough to be answered in a short investigation?</li>
-</ul></li>
-<li><p>Step 3: Choose the highest-scoring question and rewrite it to be as clear as possible.</p></li>
+<li><code>class(inventory)</code></li>
+<li><code>names(inventory)</code></li>
+<li><code>head(inventory)</code></li>
+<li><code>nrow(inventory)</code></li>
+<li><code>ncol(inventory)</code></li>
 </ul>
 </section>
-<section id="exercise-5-what-data-do-we-need-and-how-could-we-be-misled" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-5-what-data-do-we-need-and-how-could-we-be-misled">Exercise 5: What data do we need, and how could we be misled?</h3>
-<p>Using the research question your group selected in Exercise 4, your manager asks:</p>
+<section id="exercise-7-first-steps-working-with-data" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-7-first-steps-working-with-data">Exercise 7: First Steps Working with Data</h3>
+<p>Let’s compute two manager-relevant variables:</p>
+<ol type="1">
+<li><strong>Revenue by region</strong>, and</li>
+<li><strong>Inventory risk</strong> (how low inventory gets).</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="What R commands will I need?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>What R commands will I need?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We will use the following R commands in this exercise:</p>
+<ul>
+<li>column access with <code>$</code></li>
+<li>logical filtering with <code>==</code></li>
+<li>multiplication with (<code>*</code>)</li>
+<li>Summing rows of data with <code>sum()</code></li>
+<li>Finding matches with <code>any()</code></li>
+</ul>
+</div>
+</div>
+<p><strong>(a)</strong> Create a new column called <code>revenue</code> that equals <code>units_sold</code> times <code>unit_price</code> by running the code below. Explain what the code is doing.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create revenue using simple arithmetic</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>inventory<span class="sc">$</span>revenue <span class="ot">&lt;-</span> inventory<span class="sc">$</span>units_sold <span class="sc">*</span> inventory<span class="sc">$</span>unit_price</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>(b)</strong> Run the code below to compute total revenue for both Sydney and Melbourne. Explain what step 1, step 2 and step 3 are doing.</p>
+<div class="callout callout-style-default callout-caution callout-titled" title="What does `sum()` do?">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>What does <code>sum()</code> do?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Use the help operator <code>?</code> followed by the name of the function you want to use to learn more about it:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>?sum</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>On the lower right hand side of your RStudio work space the documentation that explains the function’s use will appear. Read it to learn more!</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># STEP 1: EXPLAIN WHAT IS HAPPENING</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>syd_data <span class="ot">&lt;-</span> inventory[inventory<span class="sc">$</span>region <span class="sc">==</span> <span class="st">"Sydney"</span>, ]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mel_data <span class="ot">&lt;-</span> inventory[inventory<span class="sc">$</span>region <span class="sc">==</span> <span class="st">"Melbourne"</span>, ]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># STEP 2: EXPLAIN WHAT IS HAPPENING</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>rev_syd  <span class="ot">&lt;-</span> <span class="fu">sum</span>(syd_data<span class="sc">$</span>revenue)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>rev_melb <span class="ot">&lt;-</span> <span class="fu">sum</span>(mel_data<span class="sc">$</span>revenue)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># STEP 3: EXPLAIN WHAT IS HAPPENING</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>rev_syd</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>rev_melb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>(c)</strong> A backorder occurs when <code>ending_inventory</code> is negative.</p>
+<ol type="1">
+<li>Does <em>any</em> row have <code>ending_inventory &lt; 0</code>?</li>
+<li>If yes, display those rows.</li>
+</ol>
+<p>Run the code below and explain the steps.</p>
+<div class="callout callout-style-default callout-caution callout-titled" title="What does `any()` do?">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>What does <code>any()</code> do?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Use the help operator <code>?</code> followed by the name of the function you want to use to learn more about it:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>?any</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>On the lower right hand side of your RStudio work space the documentation that explains the function’s use will appear. Read it to learn more!</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># STEP 1: EXPLAIN WHAT IS HAPPENING </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>any_backorders <span class="ot">&lt;-</span> <span class="fu">any</span>(inventory<span class="sc">$</span>ending_inventory <span class="sc">&lt;</span> <span class="dv">0</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># STEP 2: EXPLAIN WHAT IS HAPPENING </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>any_backorders</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># STEP 3: EXPLAIN WHAT IS HAPPENING </span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>backorder_rows <span class="ot">&lt;-</span> inventory[inventory<span class="sc">$</span>ending_inventory <span class="sc">&lt;</span> <span class="dv">0</span>, ]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># STEP 4: EXPLAIN WHAT IS HAPPENING </span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>backorder_rows</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="exercise-8-turning-numbers-into-a-story-before-we-recommend-anything" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-8-turning-numbers-into-a-story-before-we-recommend-anything">Exercise 8: Turning Numbers into a Story (Before We Recommend Anything)</h3>
+<p>You’ve just computed a few KPIs in R (revenue, units sold, minimum ending inventory, and whether backorders occurred).</p>
+<p>Before we jump to “what should David Jones order?”, we need to answer a more basic question:</p>
 <blockquote class="blockquote">
-<p>“What data would we need to answer your question?”</p>
+<p><strong>What do the numbers actually tell us — and what do they <em>not</em> tell us?</strong></p>
 </blockquote>
-<p>As a group, complete the following.</p>
-<p><strong>Part A: Must-have data</strong> List 5–7 data fields you would request or create to answer your question. For each item, add one sentence explaining what it would help you observe or measure.</p>
-<p><strong>Part B: What patterns would you expect to see?</strong> List three patterns you’d expect in the data if your hypothesis is correct.</p>
-<p><strong>Part C: What else could explain the same patterns?</strong> List two alternative explanations that could produce similar patterns.</p>
+<p><strong>(a)</strong> What are the <strong>two most important facts</strong> you learned from your KPIs?</p>
+<p>Write them as two short bullet points (each should reference a KPI you computed).</p>
+<p><strong>(b)</strong> Based on those facts, what is your group’s best guess about what will happen next week if David Jones keeps doing the same thing?</p>
+<p><strong>(c)</strong> What is one caveat you would tell management about your answer to (b)?</p>
 </section>
-<section id="exercise-6-next-steps" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-6-next-steps">Exercise 6: Next Steps</h3>
-<p>Using your work from Exercise 5, answer these two questions:</p>
-<ul>
-<li><p>What is the first pattern you would look for in the data to investigate your question?</p></li>
-<li><p>What are two outcome indicators you would track to answer your research question? For each, add a short reason.</p></li>
-</ul>
+<section id="exercise-9-planning-for-this-years-holiday-season" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-9-planning-for-this-years-holiday-season">Exercise 9: Planning for This Year’s Holiday Season</h3>
+<p>David Jones’ supplier is asking you to confirm delivery quantities <strong>now</strong>, so they can prepare for the season ahead.</p>
+<p><strong>(a)</strong> How many units should you order for Sydney and Melbourne for the first week of the holiday season?</p>
+<p><strong>(b)</strong> Justify your decision based on last year’s patterns and your reasoning. Consider factors like demand trends, regional differences, price effects, and promotion timing.</p>
+<p><strong>(c)</strong> Suppose the supplier has limited capacity and can only supply 200 units total for the first week. How would you allocate this stock between Sydney and Melbourne? What are the risks of your choice?</p>
 </section>
-<section id="exercise-7-workflow-reflection" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-7-workflow-reflection">Exercise 7: Workflow reflection</h3>
-<p>One of our aims today was to notice how different workflows shape the quality of your work and how much of it you genuinely feel you own.</p>
-<p>Before discussing with other groups, reflect on the four lenses below:</p>
+<section id="exercise-10-render-your-document" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-10-render-your-document">Exercise 10: Render Your Document</h3>
+<p>Now render your Quarto document so that your work appears in a single report.</p>
+<p><strong>(a)</strong> Click <strong>Render</strong> in your <code>.qmd</code> file.</p>
+<p><strong>(b)</strong> Check that your rendered document includes:</p>
 <ul>
-<li><strong>Speed</strong>: How quickly did you get to your answer? What helped or slowed you down?</li>
-<li><strong>Confidence</strong>: How confident were you in what you wrote? What drove that confidence (or lack of it)?</li>
-<li><strong>Defensibility</strong>: If someone challenged your work, would you feel able to defend it verbally in a meeting?</li>
-<li><strong>Ownership</strong>: Did the final output feel like your group’s work?</li>
+<li>your answers to the interpretation questions,</li>
+<li>the code and output from your R exercises,</li>
+<li>and your recommendation for David Jones.</li>
 </ul>
+<p><strong>(c)</strong> If your document does not render, identify the error message and work with your group to fix it.</p>
+<p><strong>(d)</strong> What is one advantage of having your analysis and your written interpretation in the same document?</p>
 
 
 </section>
@@ -878,14 +1207,11 @@ Tip
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../ethics_privacy/ethics_privacy.html" class="pagination-link" aria-label="Ethics in Business Analytics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></span>
+      <a href="../tutorials/core_skills_genai.html" class="pagination-link" aria-label="Tutorial 1: Core Skills of a Business Scientist in the GenAI Era">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tutorial 1: Core Skills of a Business Scientist in the GenAI Era</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tutorials/intro_r_quarto.html" class="pagination-link" aria-label="Tutorial 2: From Data to a Managerial Briefing with R and Quarto">
-        <span class="nav-page-text">Tutorial 2: From Data to a Managerial Briefing with R and Quarto</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
