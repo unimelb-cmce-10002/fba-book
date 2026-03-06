@@ -48,6 +48,7 @@ book:
       number-depth: 0  # Restart numbering
       chapters:
         - tutorials/core_skills_genai.qmd
+        - tutorials/intro_r_quarto.qmd
         # - tutorials/what_is_business_analytics.qmd
         # - tutorials/how_to_do_business_analytics.qmd
         # - tutorials/data_visualisation.qmd

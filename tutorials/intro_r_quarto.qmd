@@ -1,0 +1,315 @@
+# Tutorial 2: From Data to a Managerial Briefing with R and Quarto {.unnumbered} 
+
+::: {.callout-tip}
+## Learning Goals {.unnumbered}
+
+By the end of this tutorial, you should be able to:
+
+- Explain what **Quarto** is and why analysts use it
+- Run R code inside a `.qmd` file and **render** a report
+- Load a small dataset and compute a few **inventory KPIs**
+- Produce a simple table and a basic plot
+- Write a manager-friendly recommendation that separates **facts vs interpretation vs decision**
+:::
+
+## The Business Challenge
+
+David Jones sells a wide range of seasonal products, including fashion items that see strong swings in demand around holidays like Christmas.
+
+Inventory decisions are especially challenging for seasonal products because:
+
+- Demand can spike unpredictably
+- Promotions and discounts influence customer behaviour
+- Regional preferences can differ
+- Suppliers need advance notice to adjust deliveries
+
+Right now, David Jones is using a fixed restocking rule:
+
+> Every week, **100 units** are delivered to each region, no matter what.
+
+But with the holiday season approaching, this rigid approach might not be enough.
+
+**Management wants a one-page briefing outlining whether they should adapt their restocking rule.**
+
+Your task is to review last year's data and advise David Jones on how to improve inventory decisions.
+
+## Prepare these Exercises before Class 
+
+Prepare these exercises before coming to class. Plan to spend 45 minutes on these exercises.
+
+### Exercise 1: Approaches to Inventory Planning 
+
+Read the article, "[A New Approach to Production and Inventory Planning](https://hbr.org/2023/09/a-new-approach-to-production-and-inventory-planning)," and answer the following questions in  2–3 sentences:
+
+**(a)** Define the term "inventory management". What makes inventory management complicated for seasonal products?
+**(b)** What is one key challenge businesses face in managing inventory today?
+**(c)** How could this apply to a retailer like David Jones, especially during busy seasons like Christmas?
+
+### Exercise 2: A First Peek at Some Data
+
+David Jones now wants to use **last year's data** to improve inventory decisions for the upcoming holiday season.
+
+The data you have to work from are provided below:
+
+| Week Commencing | Region    | Starting Inventory | Units Delivered | Units Sold | Ending Inventory | Price (AUD) | Promotion (Y/N) |
+|-----------------|-----------|------------------|----------------|------------|-----------------|-------------|----------------|
+| 25 Nov          | Sydney    | 500              | 100            | 100        | 500             | 50          | N              |
+| 25 Nov          | Melbourne | 500              | 100            | 150        | 450             | 50          | N              |
+| 2 Dec           | Sydney    | 500              | 100            | 180        | 420             | 45          | Y              |
+| 2 Dec           | Melbourne | 450              | 100            | 220        | 330             | 45          | Y              |
+| 9 Dec           | Sydney    | 420              | 100            | 150        | 370             | 45          | Y              |
+| 9 Dec           | Melbourne | 330              | 100            | 100        | 330             | 45          | Y              |
+| 16 Dec          | Sydney    | 370              | 100            | 400        | 70              | 40          | Y (Christmas)  |
+| 16 Dec          | Melbourne | 330              | 100            | 400        | 30              | 40          | Y (Christmas)  |
+| 23 Dec          | Sydney    | 70               | 100            | 120        | 50              | 50          | N              |
+| 23 Dec          | Melbourne | 30               | 100            | 150        | -20 (backorder) | 50          | N              |
+
+Before analysts run any code, they ask a simple question:
+
+> **Can we trust this dataset enough to make a decision?**
+
+Look at the David Jones data above and answer the questions below.
+
+**(a)** Identify **5 potential issues** in the table. For each issue, classify it as:
+
+* **1. Will break analysis/code**: formatting and/or type problems 
+* **2. Unclear meaning**: we need a formal definition from the business
+* **3. Decision risk**: could bias conclusions or lead to a bad recommendation
+
+Fill in this template:
+
+| Issue you noticed | Category (1/2/3) | Why it matters (1 sentence) |
+| ----------------- | ---------------- | --------------------------- |
+|                   |                  |                             |
+|                   |                  |                             |
+|                   |                  |                             |
+|                   |                  |                             |
+|                   |                  |                             |
+|                   |                  |                             |
+
+**(b)** Write one question you would email to the data owner today that would most improve your confidence in using the data to make a recommendation.
+
+### Exercise 3: Getting Set Up in Posit Cloud
+
+Before we proceed, we need everyone working in the same environment. Complete the following steps:
+
+**Step 1**: Log in to Posit Cloud
+
+* Go to the Posit Cloud workspace link provided on the LMS.
+* Log in using your University account.
+
+**Step 2**: Make your own copy of the workshop project
+
+- Locate the workshop project in Posit Cloud.
+- Click Make a Copy to create your own version.
+
+**Step 3**: Open the Quarto file
+
+- In the Files pane, locate the workshop Quarto document: `tutorial_02_inventory.qmd`.
+- Click it to open it in the editor.
+
+**Step 4**: Render the document
+
+* Find the Render button (top of the editor).
+* Click Render.
+
+If everything is set up correctly, a new tab should appear in your browser with the rendered content.
+
+### Exercise 4: R + Quarto Vocabulary Check
+
+Answer each in **one short sentence**.
+
+**(a)** What does `<-` do in R?
+
+**(b)** What is a **data frame**. What does a row represent in our David Jones data?
+
+**(c)** What is a **function** in R? Explain using `read_csv()` as an example.
+
+**(d)** What is a **code chunk** in a Quarto `.qmd` file?
+
+**(e)** What does **Render** do in Quarto?
+
+**(f)** What is a **package** in R? Explain using `readr` as an example, including how to load the package into your R session. 
+
+
+## In-Class Exercises
+
+You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.
+
+### Exercise 5: Quick Recap of Preparation Work
+
+With your group answer the following questions:
+
+**(a)** In one sentence, what is the core trade-off in inventory management for a retailer like David Jones?
+
+**(b)** What are the two biggest issues with the dataset presented in Exercise 2? Justify your choices.
+
+### Exercise 6: Loading and Inspecting Some Data
+
+**(a)** Open the Posit Cloud Workspace for this workshop.
+
+**(b)** Load the dataset by running this line of code:
+
+```{r}
+#| eval: false
+library(readr)
+
+inventory <- read_csv("data/inventory.csv") 
+```
+
+**(c)** We want to explain the code in (b) is doing, line by line.
+
+* What does ` ```{r} ` mean in Quarto?
+* What does `#| eval: false` do? 
+* Do you need to change the `#| eval: false` setting to run the code when you render the file?
+* What does `library(readr)` do?
+* Explain what the assignment operator `<-`?, does.
+* Is `read_csv()` a function or a variable?
+* What does `"data/inventory.csv"` refer to?
+
+**(d)**  Run each of the following commands, and explain the output to your group:
+
+* `class(inventory)`
+* `names(inventory)`
+* `head(inventory)`
+* `nrow(inventory)`
+* `ncol(inventory)`
+
+### Exercise 7: First Steps Working with Data
+
+Let's compute two manager-relevant variables:
+
+1. **Revenue by region**, and
+2. **Inventory risk** (how low inventory gets).
+
+::: {.callout-tip title = "What R commands will I need?"}
+
+We will use the following R commands in this exercise:
+
+* column access with `$`
+* logical filtering with `==`
+* multiplication with (`*`)
+* Summing rows of data with `sum()`
+* Finding matches with `any()`
+
+:::
+
+**(a)** Create a new column called `revenue` that equals `units_sold` times  `unit_price` by running the code below. Explain what the code is doing.
+
+```{r}
+#| eval: false
+
+# Create revenue using simple arithmetic
+inventory$revenue <- inventory$units_sold * inventory$unit_price
+```
+
+**(b)** Run the code below to compute total revenue for both Sydney and Melbourne. Explain what step 1, step 2 and step 3 are doing.
+
+::: {.callout-caution title = "What does `sum()` do?" collapse = "true"}
+
+Use the help operator `?` followed by the name of the function you want to use to learn more about it: 
+
+```{r}
+#| eval: false
+
+?sum
+```
+
+On the lower right hand side of your RStudio work space the documentation that explains the function's use will appear. Read it to learn more!
+
+:::
+
+```{r}
+#| eval: false
+
+# STEP 1: EXPLAIN WHAT IS HAPPENING
+syd_data <- inventory[inventory$region == "Sydney", ]
+mel_data <- inventory[inventory$region == "Melbourne", ]
+
+# STEP 2: EXPLAIN WHAT IS HAPPENING
+rev_syd  <- sum(syd_data$revenue)
+rev_melb <- sum(mel_data$revenue)
+
+# STEP 3: EXPLAIN WHAT IS HAPPENING
+rev_syd
+rev_melb
+```
+
+**(c)** A backorder occurs when `ending_inventory` is negative.
+
+1. Does *any* row have `ending_inventory < 0`?
+2. If yes, display those rows.
+
+Run the code below and explain the steps.
+
+::: {.callout-caution title = "What does `any()` do?" collapse = "true"}
+
+Use the help operator `?` followed by the name of the function you want to use to learn more about it: 
+
+```{r}
+#| eval: false
+
+?any
+```
+
+On the lower right hand side of your RStudio work space the documentation that explains the function's use will appear. Read it to learn more!
+
+:::
+
+```{r}
+#| eval: false
+
+# STEP 1: EXPLAIN WHAT IS HAPPENING 
+any_backorders <- any(inventory$ending_inventory < 0)
+
+# STEP 2: EXPLAIN WHAT IS HAPPENING 
+any_backorders
+
+# STEP 3: EXPLAIN WHAT IS HAPPENING 
+backorder_rows <- inventory[inventory$ending_inventory < 0, ]
+
+# STEP 4: EXPLAIN WHAT IS HAPPENING 
+backorder_rows
+```
+
+### Exercise 8: Turning Numbers into a Story (Before We Recommend Anything)
+
+You've just computed a few KPIs in R (revenue, units sold, minimum ending inventory, and whether backorders occurred).
+
+Before we jump to "what should David Jones order?", we need to answer a more basic question:
+
+> **What do the numbers actually tell us — and what do they *not* tell us?**
+
+**(a)** What are the **two most important facts** you learned from your KPIs?  
+
+Write them as two short bullet points (each should reference a KPI you computed).
+
+**(b)** Based on those facts, what is your group's best guess about what will happen next week if David Jones keeps doing the same thing?
+
+**(c)** What is one caveat you would tell management about your answer to (b)?
+
+### Exercise 9: Planning for This Year's Holiday Season
+
+David Jones’ supplier is asking you to confirm delivery quantities **now**, so they can prepare for the season ahead.
+
+**(a)** How many units should you order for Sydney and Melbourne for the first week of the holiday season?
+
+**(b)** Justify your decision based on last year's patterns and your reasoning. Consider factors like demand trends, regional differences, price effects, and promotion timing.
+
+**(c)** Suppose the supplier has limited capacity and can only supply 200 units total for the first week.  How would you allocate this stock between Sydney and Melbourne? What are the risks of your choice?
+
+### Exercise 10: Render Your Document
+
+Now render your Quarto document so that your work appears in a single report.
+
+**(a)** Click **Render** in your `.qmd` file.
+
+**(b)** Check that your rendered document includes:
+
+* your answers to the interpretation questions,
+* the code and output from your R exercises,
+* and your recommendation for David Jones.
+
+**(c)** If your document does not render, identify the error message and work with your group to fix it.
+
+**(d)** What is one advantage of having your analysis and your written interpretation in the same document?
