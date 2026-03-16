@@ -6,7 +6,7 @@
 By the end of this tutorial, you should be able to:
 
 * Explain how different `ggplot2` visualization techniques reveal patterns in the Melbourne housing market that would be difficult to see in tables or raw numbers.
-* Use `ggplot2` to create bar plots, histograms, and scatterplots that analyze relationships between property prices, location, and dwelling types.
+* Use `ggplot2` to create histograms, and scatterplots that analyze relationships between property prices, location, and dwelling types.
 * Apply transformations such as log scales, proportions, and faceting to improve the interpretability of price distributions and spatial trends.
 * Customize `ggplot2` plots using themes, color palettes, and annotations to enhance clarity and storytelling.
 * Evaluate and compare visualization approaches, identifying which effectively communicate insights about housing price trends and spatial patterns.
@@ -22,14 +22,27 @@ library(tidyverse)  # for plotting, includes ggplot
 library(patchwork)  # for combining multiple plots into subfigures
 library(scales)     # for formatting axis scales
 library(ggokabeito) # color blind friendly color palette -- this course's default
-library(ggthemes)   # some extra styling & themes to explore
 ```
 
 ```{r}
 #| warning: false
+#| eval: true
 #| echo: false
+#| cache: true
+
+# Create data/ directory if it doesn't exist
+if (!dir.exists("data")) {
+  dir.create("data")
+}
+# Define URL and destination file path
+url <- "https://github.com/unimelb-cmce-10002/fba-book/raw/refs/heads/main/data/melbourne_housing.csv"
+destfile <- "data/melbourne_housing.csv"
+# Download the file if it doesn't already exist
+if (!file.exists(destfile)) {
+  download.file(url, destfile, mode = "wb")
+}
 # Load the data
-housing <- read_csv("../data/melbourne_housing.csv")
+housing <- read_csv(destfile)
 ```
 
 ### The Topic: Understanding Melbourne’s Housing Market {.unnumbered}
@@ -54,7 +67,7 @@ From this:
 
 ```{r}
 #| echo: false 
-housing |>  
+housing %>%
     select(type, address, postcode, price, distance, regionname) %>%
     head(10)
 ```
@@ -67,99 +80,93 @@ to this:
 #| fig-align: "center"
 #| echo: false
 
-## FINAL Histogram
-price_hist <-
-    housing |> 
-    ggplot(aes(x = price, fill = type)) +
-  # Show proportions instead of raw counts (within each facet)
-  geom_histogram(
-    aes(y = after_stat(count) / 
-             tapply(after_stat(count), after_stat(PANEL), sum)[after_stat(PANEL)]),
-    bins = 50
-  ) +
-  # Log-scale the x-axis to handle price skew
-  scale_x_continuous(
-    trans = "log10",
-    labels = scales::dollar
-  ) +
-  # Format y-axis as percentages
-  scale_y_continuous(
-    labels = scales::label_percent()
-  ) +
-  # Add labels and title
-  labs(
-    x = "Price", 
-    y = "Share of Listings", 
-    title = "Prices by Dwelling Type"
-  ) +
-  # Create separate plots for each dwelling type
-  facet_wrap(~type) +
-  # Rotate x-axis labels for readability
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
-  # Use colorblind-friendly fill palette
-  scale_fill_okabe_ito() +
-  # Center the title
-  theme(
-    plot.title = element_text(hjust = 0.5)
-  )
+price_hist <- 
+    ggplot(housing,
+           aes(x = price, fill = type)
+           ) +
+    geom_histogram(
+        bins = 50
+    ) +
+    # Log-scale the x-axis to handle price skew
+    scale_x_continuous(
+        trans = "log10",
+        labels = scales::dollar
+    ) +
+    # Add labels and title
+    labs(
+        x = "Price", 
+        y = "Number of Listings", 
+        title = "Prices by Dwelling Type"
+    ) +
+    # Create separate plots for each dwelling type
+    facet_wrap(~type) +
+    # remove grey background
+    theme_bw() +
+    # Rotate x-axis labels for readability
+    theme(axis.text.x = element_text(angle = 55, hjust = 1)) +
+    # Use colorblind-friendly fill palette
+    scale_fill_okabe_ito() +
+    # Center the title
+    theme(
+        plot.title = element_text(hjust = 0.5)
+    )
 
-price_dist <-
-  housing |> 
-  filter(type == "House") |> 
-  ggplot(aes(x = distance, y = price)) +
-  # Scatter plot with reduced alpha to handle overplotting
-  geom_point(alpha = 0.05, color = palette_okabe_ito()[2]) +
-  # Polynomial fit to capture curvature (not just a straight line)
-  geom_smooth(
-    method = "lm",
-    formula = y ~ poly(x, 2),   # Allow one bend in the trend line
-    se = FALSE,
-    color = palette_okabe_ito()[6],
-    linewidth = 1
-  ) +
-  # Format y-axis as dollars
-  scale_y_continuous(labels = scales::dollar) +
-  # Add labels and center the title
-  labs(
-    x = "Distance to CBD (km)",
-    y = "Price",
-    title = "House Price vs. Distance"
-  ) +
-  theme(
-    plot.title = element_text(hjust = 0.5)
-  )
+scttr <-
+    ggplot(housing,
+           aes(x = distance, y = price)
+           ) +
+     # Scatter plot with reduced alpha to handle overplotting
+    geom_point(alpha = 0.05, color = "grey") +
+    # Polynomial fit to capture curvature (not just a straight line)
+    geom_smooth(
+        method = "lm",
+        se = FALSE,
+        color = "coral",
+        linewidth = 1
+    ) +
+    # Format y-axis as dollars
+    scale_y_continuous(labels = scales::dollar) +
+    # Add labels and center the title
+    labs(
+        x = "Distance to CBD (km)",
+        y = "Price",
+        title = "Dwelling Price vs. Distance"
+    ) +
+    theme(
+        plot.title = element_text(hjust = 0.5)
+    ) + 
+    theme_bw() +
+    theme(legend.position = "none")
 
-# region update only houses
 region_bar <- 
-  housing |> 
-  # 1. Filter to only include "House" listings
-  filter(type == "House") |> 
-  # 2. Create the plot
-  ggplot(
-    # 2a. Reorder the region names based on frequency
-    aes(x = fct_infreq(regionname))
-  ) +
-  # 3. Plot bar heights as proportions, not raw counts
-  geom_bar(
-    aes(y = after_stat(count) / sum(after_stat(count))),
-    fill = palette_okabe_ito()[2]
-  ) +
-  # 4. Add informative axis labels and a title
-  labs(
-    x = "Region", 
-    y = "Frequency",  # Note: this is technically a proportion, not % format
-    title = "Number of Listings by Region"
-  ) +
+    # 2. Create the plot
+    ggplot(housing,
+        # 2a. Reorder the region names based on frequency
+        aes(x = fct_infreq(regionname))
+    ) +
+    # 3. Plot bar heights as proportions, not raw counts
+    geom_bar(
+      # THIS BIT IS HARD
+      # YOU CAN NOT USE IT AND KEEP Y AXIS AS COUNTS
+        aes(y = after_stat(count) / sum(after_stat(count))),
+        fill = "grey"
+    ) +
+    # 4. Add informative axis labels and a title
+    labs(
+        x = "Region", 
+        y = "Frequency",  # Note: this is technically a proportion, not % format
+        title = "Number of Listings by Region"
+    ) +
   # 5. Tweak the theme for better readability and presentation
-  theme(
-    axis.text.x = element_text(angle = 25, hjust = 1),  # Rotate x labels
-    plot.title = element_text(hjust = 0.5)              # Center the title
-  )
+    scale_y_continuous(labels = scales::percent)  + 
+    theme_bw() +
+    theme(
+        axis.text.x = element_text(angle = 25, hjust = 1),  # Rotate x labels
+        plot.title = element_text(hjust = 0.5)              # Center the title
+    )
 
 # Bringing together 
-price_hist /    (region_bar | price_dist) + 
-    plot_layout(guides = "collect") & 
-    theme(legend.position = "bottom")
+price_hist /    (region_bar | scttr)  & theme(legend.position = "none")
 
 ```
 
@@ -173,7 +180,6 @@ library(tidyverse)  # for plotting, includes ggplot
 library(patchwork)  # for combining multiple plots into subfigures
 library(scales)     # for formatting axis scales
 library(ggokabeito) # color blind friendly color palette -- this course's default
-library(ggthemes)   # some extra styling & themes to explore
 ```
 
 ### Loading the Data in R {.unnumbered}
@@ -193,70 +199,42 @@ housing <-
 
 Prepare these exercises before coming to class. Plan to spend 45 minutes on these exercises.
 
-::: {.callout-important title = "Switch on the `eval` flag when you want to evaluate code!"}
+::: {.callout-important title = "Switch the `eval` flag to TRUE when you want to evaluate code!"}
 In the R code chunks below we have provided starter code for you to work from.
 We have set the key `eval` to the value `false` so that they are not run because they have syntax such as `YOUR_VALUE_HERE` which would generate errors.
 
-Switch the `eval` value to `true` when you want the R code within a chunk to be run when you compile your document.
+Switch the `eval` value to `TRUE` when you want the R code within a chunk to be run when you compile your document.
 :::
 
-### Exercise 1: Plotting Number of Listings by Region
+### Exercise 1: Understanding `ggplot2` Syntax
 
-By the end of this exercise, your plot should look similar to this one:
+Consider the code below:
 
 ```{r}
-#| fig-width: 5
-#| fig-height: 5
-#| fig-align: "center"
-#| echo: false
+#| eval: false
 
 ggplot(housing, 
        aes(x = regionname)
        ) +
-    geom_bar() +
-    labs(x = "Region", 
-         y = "Frequency", 
-         title = "Number of Listings by Region"
-         ) +
-    theme(
-        axis.text.x = element_text(angle = 25, hjust = 1),
-    )
+  geom_bar() +
+  labs(
+    x = "Region",
+    y = "Count",
+    title = "Number of Listings by Region"
+  )
 ```
 
-**(a).** If you were a real estate investor or city planner, why would knowing the number of listings by region be valuable? What decisions could be influenced by this visualization?
+**(a)** What does `ggplot(housing, aes(x = regionname))` do?
 
-**(b).** Use the starter code below to create a first version of the bar plot. Replace `YOUR_VARIABLE_NAME` with the appropriate variable name from the dataset.
+**(b)** What is the role of `aes(x = regionname)` in this code?
 
-:::{.callout-tip title="What is a Bar Plot?" collapse = "true"}
-A **bar plot** is a graphical representation of categorical data, where each category is represented by a bar whose height reflects its frequency or proportion. It is commonly used to compare counts across different groups, making it easy to identify the most and least common categories in a dataset. In business and research, bar plots help visualize trends, distributions, and key differences in data at a glance.
-:::
+**(c)** What does `geom_bar()` add to the plot?
 
-```{r}
-#| eval: false
-ggplot(housing, 
-       aes(x = YOUR_VARIABLE_NAME)
-       ) +
-    geom_bar()
-```
+**(d)** What does `labs()` do?
 
-**(c).** Extend the plot above by adding labels to the x-axis, y-axis, and title. Use the `labs()` function to add these labels. The code below also rotates the axis labels by 25 degrees to improve readability.
+**(e)** In this code, what does the `+` operator do?
 
-```{r}
-#| eval: false
-ggplot(housing, 
-       aes(x = YOUR_VARIABLE_NAME)
-       ) +
-    geom_bar() +
-    labs(x = "YOUR_X_AXIS_LABEL", 
-         y = "YOUR_Y_AXIS_LABEL", 
-         title = "YOUR_TITLE"
-         ) +
-    theme(
-        axis.text.x = element_text(angle = 25, hjust = 1),
-    )
-```
-
-**(d).** What patterns do you notice in the number of listings? Are certain regions overrepresented or underrepresented? How might this affect housing supply and pricing? 
+**(f)** Run the code above to produce the bar plot.
 
 ### Exercise 2: Visualizing the distribution of Prices by Dwelling Type
 
@@ -268,26 +246,18 @@ By the end of this exercise, your plot should look similar to this one:
 #| fig-align: "center"
 #| echo: false
 
-housing |> 
-    ggplot(aes(x = price, 
-               fill = type)
+housing |>
+    ggplot(aes(x = price)
            ) +
     geom_histogram(bins = 50) +
-    # Natural log scale for x-axis with meaningful breaks
-    scale_x_continuous(
-        labels = scales::dollar,
-    ) +
     labs(x = "Price", 
          y = "Density within Type", 
          title = "Prices by Dwelling Type"
          ) + 
-    theme(
-        axis.text.x = element_text(angle = 55, hjust = 1),
-    ) +
     facet_wrap(~ type)
 ```
 
-**(a).** Why is a histogram useful for understanding price distributions? What insights can we gain from plotting price distributions separately for each dwelling type?
+**(a)** Why is a histogram useful for understanding price distributions? What insights can we gain from plotting price distributions separately for each dwelling type?
 
 :::{.callout-tip title="What is a Histogram?" collapse=true}
 A **histogram** is a visualization that represents the **distribution of numerical data** by dividing values into bins and counting the number of observations in each bin. Unlike a bar plot, which displays **categorical data**, a histogram is used for **continuous variables** like price, age, or distance.
@@ -295,7 +265,7 @@ A **histogram** is a visualization that represents the **distribution of numeric
 Histograms help identify **patterns** in data, such as **skewness, outliers, and central tendencies**, making them a crucial tool for understanding how values are distributed in a dataset.
 :::
 
-**(b).** Use the starter code below to create a basic histogram of house prices. Replace `YOUR_VARIABLE_NAME` with the correct variable.
+**(b)** Use the starter code below to create a basic histogram of house prices. Replace `YOUR_VARIABLE_NAME` with the correct variable.
 
 ```{r}
 #| eval: false
@@ -305,7 +275,7 @@ ggplot(housing,
     geom_histogram(bins = 50)
 ```
 
-**(c).** Extend the plot above by adding labels to the x-axis, y-axis, and title using the labs() function.
+**(c)** Extend the plot above by adding labels to the x-axis, y-axis, and title using the `labs()` function.
 
 ```{r}
 #| eval: false
@@ -319,7 +289,7 @@ ggplot(housing,
          )
 ```
 
-**(d).** Modify the x-axis so that prices are displayed in dollar format by adding `scale_x_continuous(labels = scales::dollar).` We have rotated the axis labels to make the numbers easier to read.
+**(d)** Modify the plot so that you create separate histograms for each dwelling type by adding the `facet_wrap(~type)` layer to the plot
 
 ```{r}
 #| eval: false
@@ -328,38 +298,14 @@ ggplot(housing,
        aes(x = price)
        ) +
     geom_histogram(bins = 50) +
-    YOUR_CODE_HERE +
     labs(x = "YOUR_X_AXIS_LABEL", 
          y = "YOUR_Y_AXIS_LABEL", 
          title = "YOUR_TITLE"
-         ) +
-    theme(
-        axis.text.x = element_text(angle = 55, hjust = 1),
-    )
-```
-
-**(e).** Add `fill = type` inside `aes()` to color the histogram by dwelling type and then create subplots by dwelling type.
-
-```{r}
-#| eval: false
-ggplot(housing, 
-       aes(x = price, 
-           YOUR_CODE_HERE
-           )
-       ) +
-    geom_histogram(bins = 50) +
-    YOUR_CODE_HERE +
-    labs(x = "YOUR_X_AXIS_LABEL", 
-         y = "YOUR_Y_AXIS_LABEL", 
-         title = "YOUR_TITLE"
-         ) +
-    theme(
-        axis.text.x = element_text(angle = 55, hjust = 1),
-    ) +
+         ) 
     YOUR_CODE_HERE
 ```
 
-**(f).** What does the histogram tell you about price differences between dwelling types?
+**(e)** What does the histogram tell you about price differences between dwelling types?
 
 ### Exercise 3: The Price - Distance Relationship
 
@@ -378,15 +324,14 @@ ggplot(housing,
                 se = FALSE, 
                 linewidth = 1
                 ) +
-    scale_y_continuous(labels = scales::dollar) +
     labs(x = "Distance to CBD (km)", 
          y = "Price", 
-         title = "House Price vs. Distance"
+         title = "Dwelling Price vs. Distance"
          )
 ```
-**(a).** Why might we expect a relationship between price and distance to the CBD?
+**(a)** Why might we expect a relationship between price and distance to the CBD?
 
-**(b).** Use the starter code below to build a scatter plot of **price vs. distance**, replacing `YOUR_VARIABLE_NAME` with the correct column names.
+**(b)** Use the starter code below to build a scatter plot of **price vs. distance**, replacing `YOUR_VARIABLE_NAME` with the correct column names.
 
 ::: {.callout-tip title="What is a Scatter Plot?" collapse=true}
 A **scatter plot** is used to visualize the relationship between two continuous variables by plotting individual data points. Each dot represents one observation, helping identify **patterns, clusters, and trends**. In this case, it allows us to explore how **house prices change with distance**.
@@ -400,7 +345,7 @@ ggplot(housing,
     geom_point()
 ```
 
-**(c).** Since we have a large number of data points, many overlap, making it difficult to distinguish individual observations. Modify the `geom_point()` function to reduce over-plotting by adjusting the `alpha` value. Experiment with different values (e.g., 0.1, 0.05, 0.01) and describe how each affects the visualization.
+**(c)** Since we have a large number of data points, many overlap, making it difficult to distinguish individual observations. Modify the `geom_point()` function to reduce over-plotting by adjusting the `alpha` value. Experiment with different values (e.g., 0.1, 0.05, 0.01) and describe how each affects the visualization.
 
 ```{r}
 #| eval: false
@@ -410,7 +355,7 @@ ggplot(housing,
     geom_point(alpha = YOUR_NUMBER)
 ```
 
-**(d).** We can better understand the relationship by adding a statistical transformation to the plot. Complete the `geom_smooth()` function call to overlay a straight line over the data. The `se = FALSE` argument removes the confidence interval around the line.
+**(d)** We can better understand the relationship by adding a statistical transformation to the plot. Add a fitted line using `geom_smooth(method = "lm", se = FALSE)`.
 
 ```{r}
 #| eval: false
@@ -419,11 +364,10 @@ ggplot(housing,
            y = YOUR_VARIABLE_NAME)
        ) +
     geom_point(alpha = YOUR_NUMBER) +
-    geom_smooth(method = YOUR_METHOD, 
-                se = FALSE)
+    YOUR_CODE_HERE
 ```
 
-**(e).** Finally, add labels to the x-axis, y-axis, and title using the `labs()` function. Adjust the x- and y-axis scales as you deem appropriate.
+**(e)** Finally, add labels to the x-axis, y-axis, and title using the `labs()` function. Adjust the x- and y-axis scales as you deem appropriate.
 
 ```{r}
 #| eval: false
@@ -431,30 +375,20 @@ ggplot(housing,
        aes(x = YOUR_VARIABLE_NAME, y = YOUR_VARIABLE_NAME)
        ) +
     geom_point(alpha = YOUR_NUMBER) +
-    geom_smooth(method = YOUR_METHOD, 
-                se = FALSE) +
-    scale_y_continuous(YOUR_CODE) +
+    YOUR_CODE_HERE +
     labs(x = "YOUR_LABEL", 
          y = "YOUR_LABEL", 
          title = "YOUR_TITLE"
          )
 ```
 
-**(f).** What does the scatter plot reveal about the relationship between house prices and distance to the CBD? How does the line help interpret this relationship?
+**(f)** What does the scatter plot reveal about the relationship between house prices and distance to the CBD? How does the line help interpret this relationship?
 
 ## In-Class Exercises
 
 You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.
 
-### Exercise 4: Improving the Listings by Region Plot
-
-**(a).** Together with your peers, propose three changes you want to make to the plot in Exercise 1. Discuss the rationale behind each change and how it might improve the visualization.
-
-**(b).** Work with your tutor to create an agreed upon list of changes to make to the plot. What steps do you need to take to make these improvements?
-
-**(c).** Implement the changes suggested in the R code.
-
-### Exercise 5: Improving the Price Distribution Plot
+### Exercise 4: Improving the Price Distribution Plot
 
 **(a).** Together with your peers, propose three changes you want to make to the plot in Exercise 2. Discuss the rationale behind each change and how it might improve the visualization.
 
@@ -462,24 +396,34 @@ You will discuss these exercises in class with your peers in small groups and wi
 
 **(c).** Implement the changes suggested in the R code.
 
-### Exercise 6: Improving the Price-Distance Relationship Plot
 
-**(a).** Together with your peers, propose three changes you want to make to the plot in Exercise 3. Discuss the rationale behind each change and how it might improve the visualization.
+### Exercise 5: Improving the Price-Distance Relationship Plot
+
+**(a).** Together with your peers, propose two changes you want to make to the plot in Exercise 3. Discuss the rationale behind each change and how it might improve the visualization.
 
 **(b).** Work with your tutor to create an agreed upon list of changes to make to the plot. What steps do you need to take to make these improvements?
 
-**(c).** Implement the changes suggested in R.
+**(c).** Implement the changes suggested in the R.
+
+
+### Exercise 6 [Optional, if time]: Improving the Listings by Region Plot
+
+**(a).** Together with your peers, propose two changes you want to make to the plot in Exercise 1. Discuss the rationale behind each change and how it might improve the visualization.
+
+**(b).** Work with your tutor to create an agreed upon list of changes to make to the plot. What steps do you need to take to make these improvements?
+
+**(c).** Implement the changes suggested in the R.
+
 
 ### Exercise 7: Putting the plots together
 
-**(a).** Use the code below to combine the plots for the three exercises above. Replace `PLOT_ONE`, `PLOT_TWO`, and `PLOT_THREE` with the plots you created in Exercises 5, 6, and 7.
+**(a).** Use the code below to combine the plots from the exercises above. Replace `PLOT_ONE`, `PLOT_TWO`, and `PLOT_THREE` with the plots you created in Exercises 4, 5, and 6.
 
 ```{r}
 #| eval: false
 PLOT_ONE /    
-    (PLOT_TWO | PLOT_THREE) + 
-    plot_layout(guides = "collect") & 
-    theme(legend.position = "bottom")
+    (PLOT_TWO | PLOT_THREE) & 
+    theme(legend.position = "none")
 ```
 
 **(b).** Save this combined plot as a PDF file using the `ggsave()` function. You can specify the file name and dimensions using the `filename` and `width` and `height` arguments.
@@ -489,6 +433,7 @@ PLOT_ONE /
 ggsave("YOUR_FILE_NAME", width = 12, height = 8)
 ```
 
+
 ### Exercise 8: Synthesizing the Findings
 
 If you were presenting these results in a business meeting, how would you explain the key takeaways? Structure your summary to include:
@@ -496,3 +441,4 @@ If you were presenting these results in a business meeting, how would you explai
 * What you analyzed (data, variables)
 * What you found (key insights from the visualizations)
 * What decisions could be made based on this information?
+

@@ -42,7 +42,9 @@ Prepare these exercises before coming to class. Plan to spend 45 minutes on thes
 Read the article, "[A New Approach to Production and Inventory Planning](https://hbr.org/2023/09/a-new-approach-to-production-and-inventory-planning)," and answer the following questions in  2–3 sentences:
 
 **(a)** Define the term "inventory management". What makes inventory management complicated for seasonal products?
+
 **(b)** What is one key challenge businesses face in managing inventory today?
+
 **(c)** How could this apply to a retailer like David Jones, especially during busy seasons like Christmas?
 
 ### Exercise 2: A First Peek at Some Data
