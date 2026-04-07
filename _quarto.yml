@@ -53,7 +53,7 @@ book:
         # - tutorials/how_to_do_business_analytics.qmd
         - tutorials/data_visualisation.qmd
         - tutorials/data_wrangling.qmd
-        # - tutorials/data_tidy.qmd
+        - tutorials/data_tidy.qmd
         # - tutorials/data_storage.qmd
         # - tutorials/data_collection.qmd
         # - tutorials/data_variation.qmd
