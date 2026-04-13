@@ -54,12 +54,13 @@ book:
         - tutorials/data_visualisation.qmd
         - tutorials/data_wrangling.qmd
         - tutorials/data_tidy.qmd
-        # - tutorials/data_storage.qmd
-        # - tutorials/data_collection.qmd
         # - tutorials/data_variation.qmd
         # - tutorials/descriptive_analytics.qmd
         # - tutorials/causal_analytics.qmd
         # - tutorials/predictive_analytics.qmd
+        # - tutorials/data_storage.qmd
+        # - tutorials/data_collection.qmd
+        # - tutorials/data_variation.qmd
   # appendices:
     # - appendices/installation.qmd
 
