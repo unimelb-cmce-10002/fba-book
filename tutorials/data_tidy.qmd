@@ -403,7 +403,7 @@ What goes wrong here, and why?
 
 To do that, we first need to add industry codes to `asx_with_pe`.
 
-Complete the code below to join `subindustry_first`, which you created in Exercise 2, onto `asx_with_pe` using `gvkey`.
+Complete the code below to join `firm_info`, which you created in Exercise 2, onto `asx_with_pe` using `gvkey`.
 
 ```{r}
 #| eval: false
