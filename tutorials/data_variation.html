@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Tutorial 8: Develop and Test Stock Trading Strategies – Foundations of Business Analytics</title>
+<title>Tutorial 6: Using Variation in Data to Tell a Story – Foundations of Business Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tutorials/descriptive_analytics.html" rel="next">
-<link href="../tutorials/data_collection.html" rel="prev">
+<link href="../tutorials/data_tidy.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -74,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-e793f7ea19fa229457e8560bce3db5d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -107,35 +106,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <script src="../solution.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../custom.css">
 </head>
@@ -149,7 +119,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/what_is_business_analytics.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/data_variation.html">Tutorial 8: Develop and Test Stock Trading Strategies</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/core_skills_genai.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/data_variation.html">Tutorial 6: Using Variation in Data to Tell a Story</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -162,9 +132,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Foundations of Business Analytics</a> 
     </div>
@@ -243,7 +211,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Finding and Storing Data</span></a>
+ <span class="menu-text">Extracting Deeper Insights from Data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -251,14 +219,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
+  <a href="../advanced_analytics/data_variation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Variation in Cross-Sectional, Times-Series, and Panel Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></span></a>
+  <a href="../advanced_analytics/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Descriptive Analytics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/causal_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Causal Analytics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/predictive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-driven Predictions</span></span></a>
   </div>
 </li>
       </ul>
@@ -266,7 +246,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Extracting Deeper Insights from Data</span></a>
+ <span class="menu-text">Finding and Storing Data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -274,26 +254,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/data_variation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variation in Cross-Sectional, Times-Series, and Panel Data</span></span></a>
+  <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive Analytics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/causal_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Causal Analytics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../advanced_analytics/predictive_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-driven Predictions</span></span></a>
+  <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Collected Structured and Unstructured Data</span></span></a>
   </div>
 </li>
       </ul>
@@ -326,14 +294,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/what_is_business_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 1: Business Analytics Skills for Inventory Management</span></a>
+  <a href="../tutorials/core_skills_genai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 1: Core Skills of a Business Scientist in the GenAI Era</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/how_to_do_business_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 2: Core Skills of a Business Scientist &amp; Introduction to Posit Cloud</span></a>
+  <a href="../tutorials/intro_r_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 2: From Data to a Managerial Briefing with R and Quarto</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -356,38 +324,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 6: Storing &amp; Retrieving Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/data_collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 7: Obtaining Macroeconomic Data through FRED</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../tutorials/data_variation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Tutorial 8: Develop and Test Stock Trading Strategies</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/descriptive_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 9: Descriptive Analytics in HRM</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/causal_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 10: Causal Analytics to Improve User Sign Up Experiences</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/predictive_analytics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutorial 11: Predictive Analytics for Workforce Planning</span></a>
+ <span class="menu-text">Tutorial 6: Using Variation in Data to Tell a Story</span></a>
   </div>
 </li>
       </ul>
@@ -402,17 +340,23 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge">The Business Challenge</a></li>
+  <li><a href="#the-policy-challenge" id="toc-the-policy-challenge" class="nav-link active" data-scroll-target="#the-policy-challenge">The Policy Challenge</a>
+  <ul class="collapse">
+  <li><a href="#r-packages-for-today" id="toc-r-packages-for-today" class="nav-link" data-scroll-target="#r-packages-for-today">R packages for today</a></li>
+  </ul></li>
   <li><a href="#prepare-these-exercises-before-class" id="toc-prepare-these-exercises-before-class" class="nav-link" data-scroll-target="#prepare-these-exercises-before-class">Prepare these Exercises before Class</a>
   <ul class="collapse">
-  <li><a href="#exercise-1-play-with-financial-data" id="toc-exercise-1-play-with-financial-data" class="nav-link" data-scroll-target="#exercise-1-play-with-financial-data">Exercise 1: Play with Financial Data</a></li>
-  <li><a href="#exercise-2-stock-prices-and-returns" id="toc-exercise-2-stock-prices-and-returns" class="nav-link" data-scroll-target="#exercise-2-stock-prices-and-returns">Exercise 2: Stock Prices and Returns</a></li>
+  <li><a href="#exercise-1-recognising-different-kinds-of-data" id="toc-exercise-1-recognising-different-kinds-of-data" class="nav-link" data-scroll-target="#exercise-1-recognising-different-kinds-of-data">Exercise 1: Recognising Different Kinds of Data</a></li>
+  <li><a href="#exercise-2-using-variation-in-data-to-tell-a-story" id="toc-exercise-2-using-variation-in-data-to-tell-a-story" class="nav-link" data-scroll-target="#exercise-2-using-variation-in-data-to-tell-a-story">Exercise 2: Using Variation in Data to Tell a Story</a></li>
+  <li><a href="#exercise-3-inspecting-the-structure-of-the-data" id="toc-exercise-3-inspecting-the-structure-of-the-data" class="nav-link" data-scroll-target="#exercise-3-inspecting-the-structure-of-the-data">Exercise 3: Inspecting the Structure of the Data</a></li>
+  <li><a href="#exercise-4-proposing-a-question" id="toc-exercise-4-proposing-a-question" class="nav-link" data-scroll-target="#exercise-4-proposing-a-question">Exercise 4: Proposing a Question</a></li>
   </ul></li>
   <li><a href="#in-class-exercises" id="toc-in-class-exercises" class="nav-link" data-scroll-target="#in-class-exercises">In-Class Exercises</a>
   <ul class="collapse">
-  <li><a href="#exercise-3-making-money-from-historical-stock-trading-data" id="toc-exercise-3-making-money-from-historical-stock-trading-data" class="nav-link" data-scroll-target="#exercise-3-making-money-from-historical-stock-trading-data">Exercise 3: Making Money from Historical Stock Trading Data?</a></li>
-  <li><a href="#exercise-4-trade-on-financial-statement-information" id="toc-exercise-4-trade-on-financial-statement-information" class="nav-link" data-scroll-target="#exercise-4-trade-on-financial-statement-information">Exercise 4: Trade on Financial Statement Information</a></li>
-  <li><a href="#final-remarks" id="toc-final-remarks" class="nav-link" data-scroll-target="#final-remarks">Final Remarks</a></li>
+  <li><a href="#exercise-5-framing-your-groups-analysis" id="toc-exercise-5-framing-your-groups-analysis" class="nav-link" data-scroll-target="#exercise-5-framing-your-groups-analysis">Exercise 5: Framing Your Group’s Analysis</a></li>
+  <li><a href="#exercise-6-build-your-analysis-dataset" id="toc-exercise-6-build-your-analysis-dataset" class="nav-link" data-scroll-target="#exercise-6-build-your-analysis-dataset">Exercise 6: Build Your Analysis Dataset</a></li>
+  <li><a href="#exercise-7-producing-evidence-that-answers-your-question" id="toc-exercise-7-producing-evidence-that-answers-your-question" class="nav-link" data-scroll-target="#exercise-7-producing-evidence-that-answers-your-question">Exercise 7: Producing Evidence that Answers Your Question</a></li>
+  <li><a href="#exercise-8-writing-up-your-findings" id="toc-exercise-8-writing-up-your-findings" class="nav-link" data-scroll-target="#exercise-8-writing-up-your-findings">Exercise 8: Writing Up Your Findings</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -420,9 +364,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/what_is_business_analytics.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/data_variation.html">Tutorial 8: Develop and Test Stock Trading Strategies</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/core_skills_genai.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/data_variation.html">Tutorial 6: Using Variation in Data to Tell a Story</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Tutorial 8: Develop and Test Stock Trading Strategies</h1>
+<h1 class="title">Tutorial 6: Using Variation in Data to Tell a Story</h1>
 </div>
 
 
@@ -451,553 +395,384 @@ window.Quarto = {
 <div class="callout-body-container callout-body">
 <p>By the end of this tutorial, you should be able to:</p>
 <ul>
-<li>Understand the concepts and workflows of quant trading strategy development and backtests.</li>
-<li>Learn how to deal with financial market data (stock returns and firms’ financial statement data).</li>
-<li>Execute data wrangling on dates and joins by date ranges.</li>
-<li>Be aware of the alignment of dates and time stamps in backtesting to avoid look-ahead bias.</li>
-<li>Apply basic backtesting procedures to evaluate trading signals and performance of trading strategies.</li>
+<li>Identify whether a dataset contains cross-sectional, time series, or panel variation</li>
+<li>Diagnose whether a dataset is tidy and explain how its structure affects analysis</li>
+<li>Tidy and join multiple country-level datasets to build a usable country-year analysis dataset</li>
+<li>Formulate and scope a question that can be answered with the available data</li>
+<li>Create a clear graph or table that helps communicate a relationship in the data</li>
+<li>Write a short, non-technical brief that explains what the data show and why it matters for policy</li>
 </ul>
 </div>
 </div>
-<section id="the-business-challenge" class="level2">
-<h2 class="anchored" data-anchor-id="the-business-challenge">The Business Challenge</h2>
-<p>Quantitative trading, or quant trading, is an investment approach that relies on data, statistics, and computer power instead of intuition or “gut feeling.” It has become one of the most important and pervasive forces in global financial markets, with many stock trades driven by quantitative strategies rather than human stock pickers. Instead of relying on subjective judgment or qualitative analysis on individual firms, quant traders design strategies based on patterns observed in financial or market data, test those strategies using historical data (a process called back-testing), and use them to guide real investment decisions. This data-driven approach is used not only by hedge funds, but also by pension funds and ETFs that we may be investing in every day.</p>
-<p>When you hear “quant trading,” you might imagine complicated math formulas, high-speed computers, and algorithms buying and selling stocks in milliseconds. That is partly true, whereas not all quant trading is alike. Some strategies are actually quite simple and use information you have already seen in accounting or finance classes.</p>
-<p><strong>Foundamental-based quant trading</strong> is a genre of quant investment that builds trading strategies based on fundamentals (i.e., numbers that describe a company’s financial status and performance). This type of strategies are widely adopted, especially among institutions that trade at a lower frequency and prefer fewer adjustments to portfolios. The inputs of such strategies are often from financial statements, such as:</p>
-<ul>
-<li>Profitability: gross profits, operating profits, net income, etc.</li>
-<li>Growth: sales growth, asset growth</li>
-<li>Financial ratios: market-to-book ratio, P/E ratio, etc.</li>
-</ul>
-<p>Suppose you are an quant trader working for FBE Investment Group. You are targeting U.S. S&amp;P 500 firms and have a total asset under management (AUM) of $1,000,000 as of today. You are going to develop and backtest trading strategies using real data from the market.</p>
+<section id="the-policy-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="the-policy-challenge">The Policy Challenge</h2>
+<p>An international policy think tank is preparing a briefing on how countries change as they develop. Some policymakers are interested in whether rising incomes are closely tied to longer lives. Others want to know whether higher incomes are associated with greater urbanisation and the pressures that come with it, such as demand for housing, transport, and public services.</p>
+<p>Your team has been given a set of messy country-level datasets, but the files are spread across multiple tables and are not yet ready for analysis. Your task is to work out what kind of variation the data contain, turn them into a usable dataset, and produce clear evidence that can support a short policy brief.</p>
+<section id="r-packages-for-today" class="level3">
+<h3 class="anchored" data-anchor-id="r-packages-for-today">R packages for today</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.0     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggokabeito)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
 </section>
 <section id="prepare-these-exercises-before-class" class="level2">
 <h2 class="anchored" data-anchor-id="prepare-these-exercises-before-class">Prepare these Exercises before Class</h2>
-<p>Prepare these exercises before coming to class. Plan to spend 30 minutes on these exercises.</p>
-<section id="exercise-1-play-with-financial-data" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1-play-with-financial-data">Exercise 1: Play with Financial Data</h3>
-<p>In the data file, <code>financials.csv</code> contains basic financial statement data for a list of firms. Below are brief definitions of each variable:</p>
+<p>Prepare these exercises before coming to class. Plan to spend 40 minutes on these exercises.</p>
+<section id="exercise-1-recognising-different-kinds-of-data" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1-recognising-different-kinds-of-data">Exercise 1: Recognising Different Kinds of Data</h3>
+<p>Data can vary across people, firms, products, places, and time. Before we start working with this week’s datasets, it is useful to step back and think about the kinds of variation different datasets contain.</p>
+<p><strong>(a)</strong> Look back at the datasets in the table below from earlier in the course. For each one:</p>
 <ul>
-<li><code>tic</code>: Stock ticker, the symbol used for trading their stocks on the market</li>
-<li><code>gvkey</code>: Global Company Key used in database to uniquely identify each firm</li>
-<li><code>datadate</code>: Fiscal quarter end dates for each fiscal quarter</li>
-<li><code>fyear</code>: Fiscal year</li>
-<li><code>fqtr</code>: Fiscal quarter (1, 2, 3, or 4)</li>
-<li><code>report_date</code>: The dates when quarterly financial reports are issued (NOTE: financial information is not known or available to the public before this date)</li>
-<li><code>sale</code>: Sales revenue</li>
-<li><code>cogs</code>: Costs of goods sold</li>
-<li><code>xsga</code>: Selling, general, and administration (SG&amp;A) expenses</li>
-<li><code>ni</code>: Net income</li>
-<li><code>at</code>: Total assets</li>
-<li><code>lt</code>: Total Liabilities</li>
-<li><code>seq</code>: Shareholders’ equity</li>
-<li><code>ceq</code>: Common equity</li>
-<li><code>pstk</code>: Preferred stock</li>
+<li>classify the dataset as <strong>cross-sectional</strong>, <strong>time series</strong>, or <strong>panel</strong></li>
+<li>describe what <strong>one row</strong> represents</li>
+<li>identify the <strong>cross-sectional unit</strong> where relevant</li>
+<li>identify the <strong>time unit</strong> where relevant</li>
 </ul>
-<section id="a-fiscal-quarter-ends-and-reporting-dates" class="level4">
-<h4 class="anchored" data-anchor-id="a-fiscal-quarter-ends-and-reporting-dates">(a) Fiscal Quarter Ends and Reporting Dates</h4>
-<p>Financial reports are not immediately available to the public when a fiscal year/quarter ends. Instead, it takes time for companies to gather relevant information and prepare their financial reports. As a result, the actual dates when financial reports are available to investors and stakeholders, <code>report_date</code>, is different from fiscal quarter end dates, <code>datadate</code>.</p>
-<p>(a1) In the dataset <code>financials</code>, keep the data for all fiscal quarters ends after 2019-01-01, use data wrangling tools to calculate the number of days between fiscal quarter ends (<code>datadate</code>) and reporting dates (<code>report_date</code>).</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages before you go</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork) <span class="co"># Combine multiple plots</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data into R</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>financials <span class="ot">&lt;-</span> <span class="fu">YOUR_CODE</span>(<span class="st">"../data/financials.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert dates in the &lt;date&gt; format</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>financials_q1 <span class="ot">&lt;-</span> financials <span class="sc">%&gt;%</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">datadate =</span> <span class="fu">YOUR_CODE</span>(datadate),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">report_date =</span> <span class="fu">YOUR_CODE</span>(report_date),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">num_lags =</span> report_date <span class="sc">-</span> datadate</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(YOUR_CODE <span class="sc">&gt;=</span> <span class="dv">2019</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(num_lags))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>(a2) Get descriptive statistics for your variable <code>num_lags</code>. Create a histogram showing the distribution of the number of days between fiscal quarter ends and reporting dates.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate histogram</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>YOUR_CODE <span class="sc">+</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Number of Lagged Days"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"# of firms"</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>(a3) What factors will affect the number of lagged days between fiscal quarter ends and reporting dates?</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Where it appeared in the course</th>
+<th>Data type</th>
+<th>What does one row represent?</th>
+<th>Cross-sectional unit</th>
+<th>Time unit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cookie Cats</td>
+<td>Week 2 Lecture</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Dominick Beer Sales</td>
+<td>Week 3 Lecture</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Melbourne Housing</td>
+<td>Week 4 Tutorial</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ASX 200 Firm Financials</td>
+<td>Week 4 Lecture</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>(b)</strong> In your own words, explain the difference between the following three types of data:</p>
+<ol type="1">
+<li><strong>Cross-sectional data</strong></li>
+<li><strong>Time series data</strong></li>
+<li><strong>Panel data</strong></li>
+</ol>
 </section>
-<section id="b-financial-numbers-and-ratios" class="level4">
-<h4 class="anchored" data-anchor-id="b-financial-numbers-and-ratios">(b) Financial Numbers and Ratios</h4>
-<p>You may have already learned from your accounting and finance subjects about some simple financial numbers and ratios. In this exercise, we are going to calculate some of them using real data from financial statements.</p>
-<p>(b1) Create a histogram showing the distribution of <strong>total assets</strong> in the sample after 2019-01-01. How does it look like?</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate histogram</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>YOUR_CODE <span class="sc">+</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Total Assets"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"# of firms"</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>(b2) Take natural logarithmic transformation (<span class="math inline">\(log()\)</span>) over <strong>total assets</strong>, and redo the histogram. Does it look similar to the one in (b1)?</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Log tranformation</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>financials_q1 <span class="ot">&lt;-</span> financials_q1 <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(<span class="at">log_at =</span> <span class="fu">log</span>(at)) </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot log-transformed total assets</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>YOUR_CODE <span class="sc">+</span> </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Total Assets"</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"# of firms"</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
+<section id="exercise-2-using-variation-in-data-to-tell-a-story" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-using-variation-in-data-to-tell-a-story">Exercise 2: Using Variation in Data to Tell a Story</h3>
+<p>Watch the Gapminder video available <a href="https://www.gapminder.org/videos/how-does-income-relate-to-life-expectancy/">here</a> and answer the following questions:</p>
+<ul>
+<li>What relationship the visualisation is trying to show?</li>
+<li>What makes the plot effective?</li>
+<li>What is one thing that could be improved in the plot they use?</li>
+</ul>
+</section>
+<section id="exercise-3-inspecting-the-structure-of-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3-inspecting-the-structure-of-the-data">Exercise 3: Inspecting the Structure of the Data</h3>
+<p>In class, you will work with several small datasets based on Gapminder-style country data. Before you start working with them, it is useful to inspect how each file is structured.</p>
+<p><strong>(a)</strong> Open each of the following files from the <code>data</code> folder:</p>
+<ul>
+<li><code>gdp.csv</code></li>
+<li><code>urban.csv</code></li>
+<li><code>pop.csv</code></li>
+<li><code>country_to_continent.csv</code></li>
+</ul>
+<p>For each dataset, complete the table below.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 27%">
+<col style="width: 14%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>What does one row represent?</th>
+<th>Tidy or untidy?</th>
+<th>What is the main structural issue?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>gdp.csv</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>urban.csv</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>pop.csv</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>country_to_continent.csv</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Logarithmic Transformation
+<span class="screen-reader-only">Note</span>Hint
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>As we can see in the first plot of total assets, the distribution of total assets looks odd. Most firms concentrates near the left of the histogram, while several giant firms are on the far right. In data analyses, such distribution may not be ideal because:</p>
+<p>When describing the main structural issue, be as specific as you can. For example, think about whether a variable is stored in the column names, or whether values that belong in one column have been spread across many columns.</p>
+</div>
+</div>
+<p><strong>(b)</strong> Using what you observed in part (a), explain whether <code>gdp.csv</code>, <code>urban.csv</code>, and <code>pop.csv</code> contain cross-sectional variation, time variation, or both.</p>
+<p>Then explain how the current layout of the files hides or reveals that structure.</p>
+</section>
+<section id="exercise-4-proposing-a-question" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4-proposing-a-question">Exercise 4: Proposing a Question</h3>
+<p>You have now inspected the datasets and thought about the kind of variation they contain.</p>
+<p><strong>(a)</strong> Write <strong>one question</strong> that you think could be answered using the datasets in this week’s <code>data</code> folder. Your question should be specific enough that it could be explored using a table or visualisation.</p>
+<p><strong>(b)</strong> For the question you wrote in part (a), answer the following using dot points:</p>
 <ul>
-<li>Make it difficult for us to visualize the distribution in a meaningful way</li>
-<li>May introduce problems to statistical procedures</li>
+<li>Is it <strong>descriptive</strong>, <strong>predictive</strong>, or <strong>causal</strong>?</li>
+<li>Why does it belong to that category?</li>
+<li>Which dataset(s) or variable(s) would you need?</li>
 </ul>
-<p>One immediate remedy (recall Tutorial 7) would be dropping all the outliers on the right. However, this may not be ideal if we are analyzing financial market. “Outlier firms” are actually giants in the economy and deserves more attention (e.g., JP Morgan, Bank of America, and HSBC in the data).</p>
-<p>Hence, we consider another remedy: using logarithmic transformation to make the distribution more consistent to “normal distribution” (in the bell shape). This is a standard procedure when dealing with variables such as total assets and market capitalization.</p>
-</div>
-</div>
-<p>(b3) Obtain net income numbers and return-on-asset (ROA) for sample companies. When we compare profitability across companies, should we focus on net income or ROA? Why?</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span><code>summary()</code>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>summary()</code> is a function that tabulates descriptive statistics of variables (including mean, median, standard deviation, values at different percentiles).</p>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Log tranformation</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>financials_q1 <span class="ot">&lt;-</span> financials_q1 <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(<span class="at">roa =</span> ni<span class="sc">/</span>at)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get summary statistics for net income and ROA (mean, median, standard deviation, etc.)</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">YOUR_CODE</span>(financials_q1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(roa, ni))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="c-reporting-lags-and-firm-characteristics" class="level4">
-<h4 class="anchored" data-anchor-id="c-reporting-lags-and-firm-characteristics">(c) Reporting Lags and Firm Characteristics</h4>
-<p>Reporting lags matter for quant traders. As information is not immediately available after fiscal quarter/year ends, quant traders always mark the release dates of financial reports so that they incorporate new information into their models in a timely fashion. Hence, understanding the reporting lags offers additional information to quant traders.</p>
-<p>Using log-transformed total assets and ROA calculated in part (b), create two scattered plots with linear line fitting all the points. Do you observe any relation between firm size (or profitability)?</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> YOUR_CODE <span class="sc">+</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Log(Total Assets)"</span>, <span class="at">y =</span> <span class="st">"Number of Lagged Days"</span>) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> YOUR_CODE <span class="sc">+</span> </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"ROA"</span>, <span class="at">y =</span> <span class="st">"Number of Lagged Days"</span>) <span class="sc">+</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">/</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your answer here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-</section>
-<section id="exercise-2-stock-prices-and-returns" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2-stock-prices-and-returns">Exercise 2: Stock Prices and Returns</h3>
-<p>Standard &amp; Poor’s 500 (S&amp;P 500) is one of the most important index in the global financial market. It tracks the stock performance of the 500 leading companies listed on U.S. stock exchanges. You will be working on developing trading strategies using constituent stocks within S&amp;P 500. As a starting point, you are going to do some data wrangling work over the provided dataset <code>sp500_panel.csv</code>. The variables are defined as follows:</p>
+<p><strong>(c)</strong> Explain how you would scope the analysis:</p>
 <ul>
-<li><code>gvkey</code>: Global Company Key.</li>
-<li><code>tic</code>: Stock ticker, the symbol used for trading their stocks on the market.</li>
-<li><code>date</code>: The last trading day of a month.</li>
-<li><code>prc</code>: Closing prices (already adjusted for dividends payout, stock splits, etc.) at the end of the month.</li>
-<li><code>ret</code>: Stock returns from the beginning to the end of a month.</li>
-<li><code>shrout</code>: The number of shares (in 1000s) outstanding at the end of a month.</li>
+<li>Which countries or regions might you include?</li>
+<li>Which years might you include?</li>
+<li>What kind of variation would you be using: cross-sectional variation, time variation, or both?</li>
+<li>Why do these choices make sense for your question?</li>
 </ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages before you go</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data into R</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> YOUR_CODE</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<section id="a-date-variables" class="level4">
-<h4 class="anchored" data-anchor-id="a-date-variables">(a) Date Variables</h4>
-<p>To prepare for our in-class exercise on backtesting trading strategies, we need to do some work to get our date variables ready so that we are able to merge stock prices and returns with financial ratios. When dealing with stock (as well as other financial assets) trading data, we need to be mindful the difference between trading days and calendar days. As there is no trading on weekends and holidays, you will see dates missing when you look at daily trading data. Also, the month/year ends in trading data may not be the last day of a month/year.</p>
-<p>The <code>date</code> column in the data refers to the last trading day of the month rather than the last calendar day. For example, the last trading day of August 2025 is <code>29/08/2025</code> because the last two days were a weekend. Such incidence may introduce inconsistency in date variables and prevent us from merging data by dates. One common practice is to push the date to the last calendar day (i.e., push <code>29/08/2025</code> to <code>31/08/2025</code>).</p>
-<p>Think about how to use <code>lubridate</code> to achieve this goal. Note that there are multiple ways of doing this task - be creative!</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are multiple ways of pushing the last trading day to last calendar day</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (not just the two methods below)</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     Note that you can always convert dates to </span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     year, month, day components and start from there</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>sp500_q2 <span class="ot">&lt;-</span> YOUR_CODE</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="b-variable-calculation" class="level4">
-<h4 class="anchored" data-anchor-id="b-variable-calculation">(b) Variable calculation</h4>
-<p>In the second part, you are going to calculate the following variables using stock price and return data of S&amp;P 500 stocks:</p>
-<ul>
-<li>Market capitalization (<code>mktcap</code>): the market value of all shares, calculated as stock prices multiplied by the number of shares outstanding on the market.</li>
-<li>Returns of the past month (<code>ret_past1</code>) and the next month (<code>ret_next1</code>).</li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Tips
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Use tickers (<code>tic</code>) rather than <code>gvkey</code> to group stocks in this case. This is because one company may issue more than one stocks (of different classes). Trading data of different classes of stocks can be different. However, using <code>tic</code> may not be always correct because firms may change their tickers in some scenarios.</p>
-<p>In practice, we will use alternative IDs for stocks so that each stock is uniquely identified (e.g., <code>PERMNO</code> in the CRSP Database).</p>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Market cap</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sp500_q2 <span class="ot">&lt;-</span> YOUR_CODE</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Return of past month and the next month</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>sp500_q2 <span class="ot">&lt;-</span> sp500_q2 <span class="sc">%&gt;%</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(tic) <span class="sc">%&gt;%</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(date, <span class="at">.by_group =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">ret_past1 =</span> <span class="fu">YOUR_CODE</span>(ret, <span class="dv">1</span>),</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">ret_next1 =</span> <span class="fu">YOUR_CODE</span>(ret, <span class="dv">1</span>)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="c-rolling-window-cumulative-returns" class="level4">
-<h4 class="anchored" data-anchor-id="c-rolling-window-cumulative-returns">(c) Rolling-Window Cumulative Returns</h4>
-<p>When analyzing financial market data (as well as other time series data), it is common that we conduct rolling-window calculation. For example, we may calculate the moving average of prices and use it as trading signals. For example, one famous example in stock trading is called “golden cross” (may not be valid though… you can verify it with your data)</p>
-<blockquote class="blockquote">
-<p>“Golden Cross” in the stock market: when short-term moving average line (e.g., MA of five days) cross long-term moving average line (e.g., MA of 60 days), stock prices tend to move up further.</p>
-</blockquote>
-<p>For each month in the data, we are going to use R to calculate cumulative returns of this stock in past 12 months but exclude the most recent month. Specifically, for a given month <span class="math inline">\(t\)</span>, we are going to calculate the cumulative returns from the beginning of month <span class="math inline">\(t-12\)</span> to the end of month <span class="math inline">\(t-2\)</span>. We are going to use <code>roll_prod</code> from <code>slider</code> to do this particular task. You may search for <code>slider</code> online to understand how we set up the function (optional).</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Necessary package for rolling</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(slider)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>roll_prod <span class="ot">&lt;-</span> </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(x, n) <span class="fu">exp</span>(<span class="fu">slide_dbl</span>(<span class="fu">log1p</span>(x), </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    sum, <span class="at">.before =</span> n <span class="sc">-</span> <span class="dv">1</span>, <span class="at">.complete =</span> <span class="cn">TRUE</span>)) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Rolling calculation (using `roll_prod`)</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>sp500_q2 <span class="ot">&lt;-</span> sp500_q2 <span class="sc">%&gt;%</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(tic, date) <span class="sc">%&gt;%</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(tic) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">ret_past12 =</span> <span class="fu">roll_prod</span>(<span class="fu">lag</span>(ret, <span class="dv">2</span>), <span class="dv">11</span>)</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your answer here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
 </section>
 </section>
 <section id="in-class-exercises" class="level2">
 <h2 class="anchored" data-anchor-id="in-class-exercises">In-Class Exercises</h2>
 <p>You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.</p>
-<section id="exercise-3-making-money-from-historical-stock-trading-data" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-3-making-money-from-historical-stock-trading-data">Exercise 3: Making Money from Historical Stock Trading Data?</h3>
-<p>Many investors are trading on historical data of stock performance. Some investors prefer to trade on smaller stocks because they feel these stocks are more profitable that the larger stocks. Some investors focus on analyzing price trends and decide their trading strategies based on recent price trends:</p>
+<section id="exercise-5-framing-your-groups-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-5-framing-your-groups-analysis">Exercise 5: Framing Your Group’s Analysis</h3>
+<p>Your tutor will assign your group one of the following questions:</p>
 <ul>
-<li>Momentum strategy: buy (sell) stocks when their returns in the recent months were high (low)</li>
-<li>Reversal strategy: buy (sell) stocks when their returns in the recent months were low (high)</li>
+<li>How does life expectancy relate to GDP per capita?</li>
+<li>How does urbanisation relate to GDP per capita?</li>
 </ul>
-<p>With monthly stock return data of S&amp;P 500 firms, your team is considering testing these strategies based on historical stock trading data.</p>
-<p>Below is the roadmap for a typical backtesting, and you will follow the procedure to do yours.</p>
-<ol type="1">
-<li><p>Select and construct a signal</p>
+<p>As a group, complete the tasks below before you begin wrangling and analysing the data.</p>
+<p><strong>(a)</strong> Write down the question your group was allocated.</p>
+<p><strong>(b)</strong> Using dot points, answer the following:</p>
 <ul>
-<li>A signal in quant trading is a variable or a firm/stock characteristic that you would like to evaluate its relation with future stock returns</li>
-<li>In this case, your signal will be “returns in the recent months.”</li>
-</ul></li>
-<li><p>Rank stocks into groups based on the signal</p>
-<ul>
-<li>Rank stocks in your pool for <strong>each trading period</strong> (each month for this exercise).</li>
-<li>If the signal is working, you may expect the signal is either positively or negatively associated with <strong>future stock returns</strong>.</li>
-</ul></li>
-<li><p>Evaluate performance by group</p></li>
-</ol>
-<ul>
-<li><p>Instead of looking at individual stocks, we rank stocks into groups so that the random errors are cancelled out</p></li>
-<li><p>Here is the detailed procedure:</p>
-<ul>
-<li>At the end of each month <span class="math inline">\(t\)</span>, we rank stocks into 5 groups based on <strong>the most recently available value</strong> of the selected signal.</li>
-<li>We calculate the mean of <code>ret_next1</code> (month <span class="math inline">\(t+1\)</span>’s (next month’s) return) for each group</li>
-<li>If the signal works, we would see the group with the largest values for the signal outperforms or underperforms the group with the smallest values.</li>
-</ul></li>
+<li>Is this best treated as a <strong>descriptive</strong>, <strong>predictive</strong>, or <strong>causal</strong> question with the data available in class?</li>
+<li>Why?</li>
 </ul>
-<section id="a-get-your-data-ready-directly-from-exercise-2-pre-class" class="level4">
-<h4 class="anchored" data-anchor-id="a-get-your-data-ready-directly-from-exercise-2-pre-class">(a) Get your data ready (directly from Exercise 2 (pre-class))</h4>
-<p>Directly use your data from Exercise 2. You should already have returns in the past and the next months, as well as rolling-window past 12-month returns</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the data as a new object for this question:</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>sp500_q3 <span class="ot">&lt;-</span> sp500_q2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<p><strong>(c)</strong> Using dot points, answer the following:</p>
+<ul>
+<li>Which countries or regions will you include?</li>
+<li>Which years will you include?</li>
+<li>Will you use <strong>cross-sectional variation</strong>, <strong>time variation</strong>, or <strong>both</strong>?</li>
+<li>Why is this a sensible scope for today’s class?</li>
+</ul>
 </section>
-<section id="b-small-vs.-large" class="level4">
-<h4 class="anchored" data-anchor-id="b-small-vs.-large">(b) Small vs.&nbsp;Large</h4>
-<p>To test if small firms outperform large firms in stock performance, we use their market capitalization to measure their size.</p>
-<p>(b1) At the end of each month <span class="math inline">\(t\)</span>, we use end-of-month market cap (publicly available information) as the trading signal. For each month, we rank all stocks by market cap and sort them into five groups (1 = smallest, 5 = largest).</p>
+<section id="exercise-6-build-your-analysis-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-6-build-your-analysis-dataset">Exercise 6: Build Your Analysis Dataset</h3>
+<p>Work with your group to build the dataset you need to answer your allocated question. You should decide for yourselves how to prepare the data for analysis.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Depending on your question, you may need to think about some of the following:</p>
+<ul>
+<li>which files you need to load</li>
+<li>whether any datasets need tidying before they can be analysed</li>
+<li>whether any datasets need to be joined together</li>
+<li>whether you want to focus on particular countries, regions, or years</li>
+<li>whether there are missing values that affect the years or observations you can analyse</li>
+<li>what one row in your final analysis dataset should represent</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Programming with Variable Names
+<span class="screen-reader-only">Tip</span>Hint: Reshaping year columns
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Sometimes you may want to write your program in a more generic form so that it can be easily altered to do similar tasks. For example, the backtesting program is basically the same no matter which signal you are testing. Hence, it would save us some time if we create a more generic program.</p>
-<p>In the code, we first assign the column name of the signal (<code>"mktcap"</code>) in this case to an object <code>signal</code>. Note that <code>signal</code> is now a string value. Next, when we use <code>dplyr</code> in data wrangling, we can directly use the object <code>signal</code> in the code. To avoid confusion, we need to use <code>!!sym()</code> to wrap <code>signal</code>. <code>sym()</code> converts the string value (“mktcap”) into a signal, and <code>!!</code> unquotes it so <code>dplyr</code> understands it as a column rather than a string value.</p>
-</div>
-</div>
+<p>Some of the datasets store the <strong>year inside the column names</strong> rather than in a separate column. In cases like this, <code>pivot_longer()</code> can help you move from a wide format to a tidy format.</p>
+<p>For example, if your GDP dataset has columns such as <code>gdp_pcap_pp_1960</code>, <code>gdp_pcap_pp_1961</code>, and so on, you could reshape it like this:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Small vs. Large</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Step 1: Select and Construct a Signal </span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">##### Assign the variable name of the trading signal to an object</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>signal <span class="ot">&lt;-</span> <span class="st">"mktcap"</span> </span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> sp500_q3</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Step 2: Rank stocks into groups based on the signal at the end of each month</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>rank_stock <span class="ot">&lt;-</span> raw_data <span class="sc">%&gt;%</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make sure the signal is missing and finite</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">is.finite</span>(<span class="sc">!!</span><span class="fu">sym</span>(signal)) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="sc">!!</span><span class="fu">sym</span>(signal))) <span class="sc">%&gt;%</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># ntile() sort a column and divide into ordered groups</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="fu">ntile</span>(<span class="sc">!!</span><span class="fu">sym</span>(signal), <span class="dv">5</span>) <span class="co"># 5-largest, 1-smallest</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gdp <span class="ot">&lt;-</span> gdp <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"gdp_pcap_pp_"</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_pattern =</span> <span class="st">"gdp_pcap_pp_(</span><span class="sc">\\</span><span class="st">d{4})$"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"gdp_pcap_pp"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>(b2) Once we have all stocks sorted for <em>each</em> month, we can proceed with aggregating stocks by group for each month and calculate the average return in month <span class="math inline">\(t+1\)</span> for each group formed at the end month <span class="math inline">\(t\)</span>.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate at the group and month level</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>agg_to_group <span class="ot">&lt;-</span> rank_stock <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(date, group) <span class="sc">%&gt;%</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(<span class="at">group_ret =</span> <span class="fu">mean</span>(ret_next1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(date, group)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>(b3) To make things easier for us to visualize return patterns for each group over time using <code>ggplot()</code>, we prefer to have the returns of each group stored as a single column:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make it wide (need to load tidyr)</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>agg_to_group_wide <span class="ot">&lt;-</span> agg_to_group <span class="sc">%&gt;%</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(<span class="at">names_from =</span> group, </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> <span class="st">`</span><span class="at">group_ret</span><span class="st">`</span>, </span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_prefix =</span> <span class="st">"Group"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>(b4) Now, we are ready to evaluate the performance of each group over time and see if it is more profitable to buy small-size or large-size stocks:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Evaluate performance</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Calculate cumulative returns</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>group_return <span class="ot">&lt;-</span> agg_to_group_wide <span class="sc">%&gt;%</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(date) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(Group1)) <span class="sc">%&gt;%</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(date) <span class="sc">%&gt;%</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">across</span>(<span class="st">`</span><span class="at">Group1</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">Group5</span><span class="st">`</span>, <span class="sc">~</span> (<span class="fu">cumprod</span>(<span class="dv">1</span> <span class="sc">+</span> .x) <span class="sc">-</span> <span class="dv">1</span>), </span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">.names =</span> <span class="st">"{col}"</span>)</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Visualize the pattern</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(group_return) <span class="sc">+</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> Group1 <span class="sc">*</span> <span class="dv">100</span>, <span class="at">color =</span> <span class="st">"Group 1"</span>)) <span class="sc">+</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> Group5 <span class="sc">*</span> <span class="dv">100</span>, <span class="at">color =</span> <span class="st">"Group 5"</span>)) <span class="sc">+</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"Returns (%)"</span>) <span class="sc">+</span> </span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>(b5) In addition to the returns, risk is another important consideration in stock investment. You may want to take a look at the standard deviation of returns that each group earns over time. One useful metrics is to scale the average return of each group with the standard deviation (similar to the idea of Sharpe Ratio). We are going to walk back to <code>agg_to_group</code> to do this task:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Consider risk</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>agg_to_group <span class="sc">%&gt;%</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(group) <span class="sc">%&gt;%</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean_ret =</span> <span class="fu">mean</span>(group_ret, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">sd_ret =</span> <span class="fu">sd</span>(group_ret, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">ratio =</span> mean_ret<span class="sc">/</span>sd_ret</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>(b6) Based on your analyses, would you think small firms or large firms to be more favorable investment targets? Why or Why not? Would you think the results from your backtesting apply to the future?</p>
-</section>
-<section id="c-momentum-and-reversal-strategy" class="level4">
-<h4 class="anchored" data-anchor-id="c-momentum-and-reversal-strategy">(c) Momentum and Reversal Strategy</h4>
-<p>Now, we can reuse the program that we built for testing “small vs.&nbsp;large” strategy. As we have endeavored to make the program more generic. We only need to change the variable names for the trading signal at the very beginning.</p>
-<p>(c1) Use S&amp;P 500 data to evaluate if momentum and reversal strategy works (you may look at both short-term and medium-term returns (i.e., past 1-month and 12-month returns))</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Momentum &amp; Reversal</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="do">##### Assign the variable name of the trading signal to an object</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>signal <span class="ot">&lt;-</span> YOUR_CODE</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> YOUR_CODE </span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="do">### Copy your code from part (b) below</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>COPY YOUR CODE HERE<span class="sc">!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>(c2) Do momentum and reversal strategies work in S&amp;P 500 during the sample period (2019 - 2024)? Discuss about why (or why don’t) such strategy work.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your answer here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-</section>
-<section id="exercise-4-trade-on-financial-statement-information" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-4-trade-on-financial-statement-information">Exercise 4: Trade on Financial Statement Information</h3>
-<p>In the last exercise, we are going to take a step further by bringing in financial statement numbers and ratios in our quantitative trading strategies.</p>
-<p>Financial statements and reports provides useful information for us to assess firms’ operating performance and financial health and predict the value of a stock in the future. Such metrics are important factors that may affect stock prices. For example, if we observe that a firm’s profitability is deteriorating, it may signal that the firm may create less value for its shareholders, which may result in a decline in stock prices.</p>
-<p>As a quant trader, you want to exploit such information to invest your money into firms that are more likely to deliver good performance and higher stock returns. As a required step for your strategy design, you are required to conduct backtests to evaluate the performance of your strategy using historical data.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages and data</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load stock return file from Q2</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>sp500_q4 <span class="ot">&lt;-</span> sp500_q2</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Load financial data from CSV</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>financials <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/financials.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<section id="a-calculate-the-signal-from-financial-data" class="level4">
-<h4 class="anchored" data-anchor-id="a-calculate-the-signal-from-financial-data">(a) Calculate the signal from financial data</h4>
-<p>(a1) Inspect all the date variables in <code>financials</code>: are they stored in the <code>&lt;date&gt;</code> format? If not, convert them into <code>&lt;date&gt;</code> formatted variable.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check date variable</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">YOUR_CODE</span>(YOUR_CODE) </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">YOUR_CODE</span>(YOUR_CODE)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Date format conversion? Assign the data you would like to work on further as</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># "financials_q4"</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>financials_q4 <span class="ot">&lt;-</span> financials <span class="sc">%&gt;%</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    YOUR_CODE</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>(a2) Since we have already obtained the template for backtesting in Q3, we are going to construct several signals and evaluate them in the next steps at a time.</p>
+<p>Here is what each part is doing:</p>
 <ul>
-<li>Gross profitability: (sale - cogs)/at</li>
-<li>Operating profitability: (sale - cogs - xsga)/at</li>
-<li>Sales growth (YoY)</li>
+<li><code>cols = starts_with("gdp_pcap_pp_")</code> selects the year columns you want to reshape</li>
+<li><code>names_to = "year"</code> creates a new column called <code>year</code></li>
+<li><code>names_pattern = "gdp_pcap_pp_(\\d{4})$"</code> extracts the 4-digit year from the original column names</li>
+<li><code>values_to = "gdp_pcap_pp"</code> puts the GDP values into a single column</li>
 </ul>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
+<p>After this step, the dataset will be much closer to tidy form, where each row can represent one <strong>country-year</strong> observation.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-7-producing-evidence-that-answers-your-question" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-7-producing-evidence-that-answers-your-question">Exercise 7: Producing Evidence that Answers Your Question</h3>
+<p>Using the dataset your group prepared in Exercise 6, produce <strong>one or two graphs or tables</strong> that help answer your allocated question.</p>
+<p>Your output should match the scope your group chose in Exercise 5.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+<span class="screen-reader-only">Note</span>What should a good output make clear?
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Why do we scale profits by total assets? What if we do not?</p>
+<p>Your graph or table should be clear enough that another group could understand:</p>
+<ul>
+<li>what variables you are showing</li>
+<li>what subset of the data you chose to use</li>
+<li>what pattern or relationship the output is meant to highlight</li>
+</ul>
 </div>
 </div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Signal construction</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>financials_q4 <span class="ot">&lt;-</span> financials_q4 <span class="sc">%&gt;%</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(gvkey) <span class="sc">%&gt;%</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(YOUR_CODE, <span class="at">.by_group =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">YOUR_CODE</span>(</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">gp =</span> (sale <span class="sc">-</span> cogs)<span class="sc">/</span>at,</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">op =</span> (sale <span class="sc">-</span> cogs <span class="sc">-</span> xsga)<span class="sc">/</span>at,</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">sales_growth =</span> YOUR_CODE</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Presentation reminders
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If you create a graph, make sure it has informative axis labels and a clear title. If you create a table, make sure it has clear column names and is easy to interpret.</p>
+</div>
+</div>
 </div>
 </section>
-<section id="b-align-the-dates" class="level4">
-<h4 class="anchored" data-anchor-id="b-align-the-dates">(b) Align the Dates</h4>
-<p>The major challenge here is to merge financial statement data into the S&amp;P 500 stock return data we have worked on in Exercises 2 and 3. For your trading strategy, you rank firms at the end of each month <span class="math inline">\(t\)</span> and evalute the performance of each ranked group for the next month <span class="math inline">\(t+1\)</span>. However, financial statements and reports are not release at the end of each month nor at the monthly frequency. As a result, we are not able to join <code>financials_q4</code> and <code>sp500_q4</code> directly by dates and firm IDs.</p>
-<p>For quant traders, you always want to incorporate most up-to-date information when you are adjusting your portfolios and investments. Hence, at the end of each month, you would like to rank firms based on the <strong>most recently released</strong> financial statement data. We are going to stick to this rule and figure out how to merge our dataset.</p>
-<p><strong>Joining by date range</strong>. It is not uncommon that we are going to do joins by date ranges. For example, we may need to merge Data A with Data B so that the dates in Data A falls in between two different date columns in Data B. In this case, we are doing something similar:</p>
-<ul>
-<li>We would like to use <code>sp500_q4</code> as the base dataset and do a <code>inner_join</code> with <code>financials_q4</code>.</li>
-<li>We are doing exact match for <code>gvkey</code> in our joining process, but range matches for date variables.</li>
-<li>For each stock-month observation, we would like to match it with the most recently available financial data in <code>financials_q4</code></li>
-<li>In other words, for each month-end <code>date</code> in <code>sp500_q4</code>, we select the <code>report_date</code> from <code>financials_q4</code> that is the most recent date right before (and closest to) that month-end.</li>
-</ul>
-<p>Below is the program we are going to execute. Please finish the missing part.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge financials to stock return data</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> sp500_q4 <span class="sc">%&gt;%</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">inner_join</span>(financials_q4, <span class="fu">join_by</span>(gvkey, date <span class="sc">&gt;</span> report_date)) <span class="sc">%&gt;%</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Select the most recent one from all dates merged with a month end </span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(gvkey, date) <span class="sc">%&gt;%</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice_max</span>(report_date, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(gvkey, date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="exercise-8-writing-up-your-findings" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-8-writing-up-your-findings">Exercise 8: Writing Up Your Findings</h3>
+<p>Use <strong>one graph or table</strong> from Exercise 7 and write a short executive brief for an international policy think tank.</p>
+<p>Your brief should explain your group’s question, summarise the main pattern you found, and explain why it matters.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-</section>
-<section id="c-evaluate-performance-of-your-strategies" class="level4">
-<h4 class="anchored" data-anchor-id="c-evaluate-performance-of-your-strategies">(c) Evaluate performance of your strategies</h4>
-<p>Use the backtesting template, evaluate the performance for (1) Operating Profitability and (2) Sales Growth.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>FILL IN THIS CHUNK BY YOURSELF</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Instructions
 </div>
-<ol start="3" type="a">
-<li>Discuss with your classmate:</li>
-</ol>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ul>
-<li>Are these trading strategy feasible in reality?</li>
-<li>Are you convinced by the results of your analyses? Why?</li>
-<li>Are we ready to put the strategies in use now? Is there anything that may affect the effectiveness of the strategies?</li>
+<li><strong>Length:</strong> about 400 words</li>
+<li><strong>Exhibit:</strong> 1 table or figure</li>
+<li>Write for a non-technical audience</li>
+<li>Use full sentences in dot points</li>
+<li>Do not include code</li>
+<li>Do not do any new analysis in this section. Use the evidence you already produced.</li>
+<li>For writing style, refer to the <strong>“Write Like an Amazonian”</strong> document on Canvas.</li>
 </ul>
-<p><em>Write your answer here</em></p>
+<section id="format" class="level3">
+<h3 class="anchored" data-anchor-id="format">Format</h3>
+<p>Use the format below:</p>
+<p><strong>Executive Summary</strong></p>
+<p>Write 3 to 4 sentences summarising:</p>
+<ul>
+<li>the question</li>
+<li>the main finding</li>
+<li>why it matters</li>
+</ul>
+<p><strong>Key Insights</strong></p>
+<p>Write up to 3 dot points explaining what the data show.</p>
+<p><strong>Policy Implications</strong></p>
+<p>Write up to 3 dot points explaining why the findings matter for policymakers or policy organisations.</p>
+<p><strong>Recommended Actions</strong></p>
+<p>Write up to 3 dot points suggesting clear next steps or actions.</p>
 </section>
-</section>
-<section id="final-remarks" class="level3">
-<h3 class="anchored" data-anchor-id="final-remarks">Final Remarks</h3>
-<p>In Exercises 3 and 4, you may have already obtained significant returns from your trading strategies (more than 100% for some groups). Are you going to dive directly into the market and implement your strategies right away?</p>
-<blockquote class="blockquote">
-<p>Waiiiiit a SECOND!</p>
-</blockquote>
-<p>We have to make a disclaimer that</p>
-<blockquote class="blockquote">
-<p>The information and data results of this exercise materials is ONLY for the purposes of teaching and learning of CMCE10002: Foundations of Business Analytics at the University of Melbourne. All information within this document does not constitute investment recommendations or financial advice of any forms.</p>
-</blockquote>
-<p>The work you have just done is a great start while still far away from real quant trading. Here are a few things:</p>
-<ul>
-<li><p>We do not use raw returns to evaluate the performance of trading strategies, instead, we focus on “excess returns” (exceeding certain benchmarks).</p></li>
-<li><p>We have not simulated any trading activities in our backtesting. It is not guaranteed that we are always able to buy/sell the stocks at the end of the month (depending on the market conditions and whether we have a counterparty). Also, trading costs are not accounted for in our backtests (which can be huge in some scenarios).</p></li>
-<li><p>We have not separate out the part of the return we are gaining for taking additional risk (i.e., in an unrealized world, we may not be so lucky…).</p></li>
-</ul>
-<p>Also, there are many things you need to learn before you are able to independently design and test trading strategies:</p>
-<ul>
-<li><p>Knowledge of financial markets, investment phylosophy and experience, accounting and finance theories</p></li>
-<li><p>Advanced mathematical tools and statistics</p></li>
-<li><p>Techniques for optimization and simulation</p></li>
-</ul>
-<p>That said, if you have worked through this tutorial, you deserve to applaud yourself for the progress made. Keep going if this is the path you want to pursue.</p>
+</div>
+</div>
+</div>
 
 
 </section>
@@ -1406,14 +1181,11 @@ Important
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tutorials/data_collection.html" class="pagination-link" aria-label="Tutorial 7: Obtaining Macroeconomic Data through FRED">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tutorial 7: Obtaining Macroeconomic Data through FRED</span>
+      <a href="../tutorials/data_tidy.html" class="pagination-link" aria-label="Tutorial 5: Shaping and Joining Data for Business Analytics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tutorial 5: Shaping and Joining Data for Business Analytics</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tutorials/descriptive_analytics.html" class="pagination-link" aria-label="Tutorial 9: Descriptive Analytics in HRM">
-        <span class="nav-page-text">Tutorial 9: Descriptive Analytics in HRM</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
