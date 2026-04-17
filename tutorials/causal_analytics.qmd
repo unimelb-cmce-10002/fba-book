@@ -98,7 +98,7 @@ treatment <-
 #| eval: false
 demogs <- 
     demogs |>
-    YOURCODE
+    YOURCODE()
 
 ```
 
@@ -108,13 +108,13 @@ demogs <-
 #| eval: false
 # how values in variation?
 demogs |> 
-    YOURCODE
+    YOURCODE()
 
 # Perform any required operations to remove rows
 # from the data
 demogs <-
     demogs |> 
-    YOURCODE
+    YOURCODE()
 ```
 
 **(d)** In a well-designed experiment, each variation should include comparable types of users. How does connect back to the idea of random assignment?
@@ -162,7 +162,7 @@ glimpse(YOURCODE)
 #| eval: false
 weblog_clean <- 
     weblog |> 
-    YOURCODE
+    YOURCODE()
 ```
 
 **(d)** Merge the cleaned web log data with the dataset that contains information on which clients are assigned to each treatment. Drop any observations that are not assigned to either "Test" or "Control".
@@ -171,8 +171,8 @@ weblog_clean <-
 #| eval: false
 weblog_clean <- 
     weblog_clean |> 
-    YOUR_CODE |> 
-    YOUR_CODE
+    YOUR_CODE() |> 
+    YOUR_CODE()
 ```
 
 ### Exercise 5: Measuring Funnel Completion
@@ -202,7 +202,7 @@ completion_by_visitor <-
 #| eval: false
 completion_summary <- 
     YOUR_CODE |>
-    YOUR_CODE |>
+    YOUR_CODE() |>
     summarise(
         completes = YOUR_CODE,
         total     = YOUR_CODE,
@@ -217,7 +217,7 @@ completion_summary <-
 ```{r}
 #| eval: false
 completion_summary |> 
-    YOUR_CODE +
+    YOUR_CODE() +
     YOUR_CODE +
     geom_text(aes(label = round(pct, 1)), vjust = -0.5) +
     labs(
@@ -267,7 +267,7 @@ diff_rate <- completion_diff |> pull(diff_pct_points) / 100
 # compute Control group’s SD
 control_sd <- 
     completion_by_visitor |> 
-    YOUR_CODE|> 
+    YOUR_CODE()|> 
     YOUR_CODE(sd_rate = YOUR_CODE) |> 
     pull(sd_rate)
 
@@ -339,6 +339,5 @@ How are these different from overall completion rates?
 Describe two or three possible ways (e.g., visual summaries or simple metrics) without writing any code.
 
 **(d)** What kinds of business questions could mid-funnel analysis help answer that top-line completion rates cannot?
-
 
 

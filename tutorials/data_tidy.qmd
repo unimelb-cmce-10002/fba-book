@@ -318,7 +318,7 @@ Complete the code below.
 asx_prices_tidy |>
     filter(eps > -5) |>
     # create a scatterplot with EPS on the x-axis and price on the y-axis
-    YOUR_CODE +
+    YOUR_CODE() +
     # add points
     YOUR_CODE +
     # add a fitted straight line
@@ -429,7 +429,7 @@ What new information does this join add?
 #| eval: false
 industry_year_summary <-
     asx_analysis |>
-    YOUR_CODE
+    YOUR_CODE()
 ```
 
 **(c)** Why do we need to group by both **subindustry** and **year** here, rather than just one of them?
@@ -448,7 +448,7 @@ industry_year_summary <-
 ```{r}
 #| eval: false
 industry_year_summary |> 
-    YOUR_CODE
+    YOUR_CODE()
 ```
 
 **(e)** What do you notice in the plot?
