@@ -39,7 +39,7 @@ The challenge is that we never observe both worlds for the same customer, store,
 Causal analytics is about finding credible ways to approximate those missing counterfactuals. 
 Sometimes we can try to do this with assumptions about how the world works. 
 As we'll see below, this is a worthwhile but often difficult way to make causal claims. An alternative approach is to design our research in ways that create cleaner comparisons. 
-To see how each of these options play out in practice, let's turn to an example.  
+To see how each of these options plays out in practice, let's turn to an example.  
 
 ## The Business Challenge 
 
@@ -56,7 +56,7 @@ Unlike face-to-face word-of-mouth, it often happens through a quick post on Face
 
 **Word-of-mouth (WoM)** is when customers or supporters voluntarily share information, opinions, or experiences about a product, service, or cause with others. 
 Because it comes from trusted peers rather than the organization itself, WoM can be especially influential.  
-In general, we as business analysts, separate word of mouth into offline and online:
+In general, business analysts separate word of mouth into offline and online:
 
 * **Offline word-of-mouth** happens when people talk in person — for example, a parent telling another at school pick-up about a great new teacher resource.  
 * **Online word-of-mouth** happens through digital channels — for example, posting on Instagram about a donation, or forwarding a project link by email.  
@@ -226,7 +226,7 @@ $$
 \text{SATE} = \bar{Y}(1) - \bar{Y}(0),
 $$  
 
-where $\bar{Y}(0)$ is the average sharing rate among donors who actually saw the new message, and $\bar{Y}(0)$ is the average sharing rate among donors who saw the old one.  This is known as the **Sample Average Treatment Effect** or, more simply as the  **difference in means estimator**.
+where $\bar{Y}(1)$ is the average sharing rate among donors who actually saw the new message, and $\bar{Y}(0)$ is the average sharing rate among donors who saw the old one. This is known as the **Sample Average Treatment Effect** or, more simply, the **difference in means estimator**.
 
 So does that mean we can just take the difference in sample means and be done? 
 Not quite. 
@@ -248,7 +248,7 @@ We will call this approach **model-based inference**.
 In model-based inference, we build a model that explains how outcomes are generated and use that model to correct for differences between groups. 
 If our assumptions about the model are right, our comparison becomes more meaningful. If they're wrong, the model can mislead us just as easily as the data. 
 
-To see how this works, let's abstract away from the DonorsChoose business problem and start with a fictious example where we are in control of how the data are generated. 
+To see how this works, let's abstract away from the DonorsChoose business problem and start with a fictitious example where we are in control of how the data are generated. 
 Imagine we're studying a very simple artificial economy where people earn an income.
 To be precise, the economy will follow the following 6 rules:
 
@@ -300,7 +300,7 @@ library(tidyverse)
 sim <- read_csv("../data/brown_hair_example.csv")
 ```
 
-We want to use this data to estimate the causal effect of having brown hair on income.
+We want to use these data to estimate the causal effect of having brown hair on income.
 According to the rules above, we should see a difference of 10%.
 Let's look at the distribution of income between the two hair colors:
 
@@ -319,8 +319,8 @@ sim %>%
 ```
 
 The figure above doesn't suggest a 10% difference in income between hair colors, as the density plots are almost perfectly overlapping. 
-What if we tease out the mean difference in the data by comparing mean income of brown haired people to non-brown haired people?
-Computing difference in log income will give us a percentage difference:
+What if we tease out the mean difference in the data by comparing the mean income of brown-haired people to non-brown-haired people?
+Computing the difference in log income will give us a percentage difference:
 
 ```{r}
 sim |> 
@@ -333,13 +333,13 @@ Here we see the difference in incomes in the data is two percent.
 That's a far cry from the 10% we know it is in the data.
 Why do we see the discrepancy?
 Because our comparison is **confounded** — we're not comparing the right groups.
-That might feel like an incorrect statement because we are comparing across hair colors which is what we wanted to do
+That might feel like an odd statement because we are comparing across hair colors, which is what we wanted to do.
 
 Remember that some people who aren't naturally brown-haired chose to **dye** their hair, and those individuals are also less likely to have a college degree. As a result, the group we observe as "brown-haired" contains more people without college degrees than the group we observe as "not brown-haired." 
 Since education has a strong positive effect on income, this imbalance pulls the average income of the brown-haired group downward, making the true 10% income boost look much smaller.  
 
 This is a classic example of **omitted variable bias**: a hidden factor (education) is correlated with both the treatment (hair color) and the outcome (income), distorting the relationship we observe in the data.
-The question is whether we can make assumptions or use what we know about the economy to find the appropriate comparisons and so **recover** from the data the causal effect of brown hair on income.
+The question is whether we can make assumptions or use what we know about the economy to find the appropriate comparisons and **recover** the causal effect of brown hair on income from the data.
 
 Among college graduates, nobody is dyeing their hair — people either have naturally brown hair or they don't.
 That means within this group, hair color isn't tangled up with other factors like education or hair-dyeing choices. 
@@ -355,7 +355,7 @@ sim |>
 ```
 
 Now we see a mean difference of 12.2%.
-This is effect size in the direction we expect and much closer to the 10% that we know is true. The difference between 12.2% and 10% is due to randomness.
+This effect size is in the direction we expect and much closer to the 10% that we know is true. The difference between 12.2% and 10% is due to randomness.
 
 What we just did is an example of **model-based inference** in action.
 We used our understanding of how this economy works — that education affects income and that dyeing only happens among people without degrees — to decide how to make a fair comparison.
@@ -378,7 +378,7 @@ In our simulated economy, we didn't have to *guess* which factors mattered — w
 That means our assumption about the model (that income depends on education and hair color, and that dyeing only happens for non-graduates) came from **knowledge**, not belief.
 
 In the real world, we rarely get that luxury.
-Business Analysts must rely on theory, prior evidence, or domain expertise to decide which variables to include and what relationships to assume.
+Business analysts must rely on theory, prior evidence, or domain expertise to decide which variables to include and what relationships to assume.
 That's why model-based inference always carries some risk: our conclusions are only as good as the model we choose.
 :::
 
@@ -390,7 +390,7 @@ A missing variable or a small misspecification can quietly undo our hard work an
 
 Design-based inference takes a different route. 
 Instead of leaning on assumptions about how the world behaves, it looks to **the way data were generated and collected** — i.e. the *design* — to provide the basis for causal analysis. 
-We're going to focus on situations where the design of the data collection is intentional and the data generating process is controlled by the analyst. 
+We're going to focus on situations where the design of the data collection is intentional and the data-generating process is controlled by the analyst. 
 In particular, we will focus on cases where the intervention we want to understand is **assigned deliberately — by the analyst or the platform — through an experiment.**
 
 ::: {.callout-tip title="Beyond Experiments: When the 'World' Does the Randomization for Us" collapse=true}
@@ -411,7 +411,7 @@ You'll encounter them later in your studies, when we look at how to draw causal 
 The key idea behind design-based inference is that we can *create* fair comparisons through how we generate and collect data.
 Randomization is the simplest and most powerful way to do that.
 
-When we **randomly assign** individuals to receive an intervention — each person has the same chance of ending up in either group.
+When we **randomly assign** individuals to receive an intervention, each person has the same chance of ending up in either group.
 That means any pre-existing differences, which previously caused us difficulty, are spread out evenly *on average* across both groups.
 
 Let's visualize that.
@@ -433,7 +433,7 @@ So when we compare the average outcomes of these two groups, we can attribute an
 
 In practice, this doesn't mean the groups will be *perfectly* identical.
 With small samples, chance differences can still appear.
-That's why we will ideally want to compare the characteristics of the treatment and control groups and verify that any differences in composition are just random noise.
+That's why we ideally want to compare the characteristics of the treatment and control groups and verify that any differences in composition are just random noise.
 This check is often called **balance testing**.
 
 ### From Randomization to Causal Effects {.unnumbered}
@@ -505,7 +505,7 @@ In the data we see that we have the following information for each `user_id`:
 * Whether the user shared the message, `clickthrough`
 * Whether the user's sharing led to new donors being recruited, `recruited`
 
-By comparing means across conditions, we can observe whether difference in messaging led to (a) more users sharing, and (b) more recruitment of new donors:
+By comparing means across conditions, we can observe whether the difference in messaging led to (a) more users sharing, and (b) more recruitment of new donors:
 
 ```{r}
 donors_choose |>  
@@ -568,7 +568,7 @@ That means even small shifts in the average outcome are hard to achieve.
 In large-scale digital experiments, effects in the range of **0.01 to 0.05 standard deviations** are common, and often considered meaningful because they influence key business metrics such as engagement, conversion, or revenue at massive scale. 
 
 ::: {.callout-warning title="But What About Statistical Testing?" collapse = true}
-In this chapter, we've focused on understanding **what the causal effect means** and **how to interpret its size**, not on formal statistical testing which you may already be familiar with.
+In this chapter, we've focused on understanding **what the causal effect means** and **how to interpret its size**, not on formal statistical testing, which you may already be familiar with.
 In practice, we would often use tools such as *t-tests* or *confidence intervals* to assess whether an observed effect is likely to have arisen by chance. 
 Those techniques are important, but they belong in your toolkit once you've taken a **Statistics 101-style course** and feel comfortable with sampling variation and uncertainty.
 
@@ -584,7 +584,7 @@ The key question at this stage isn't "is it significant?" but "is it meaningful?
 Let's think of another way to establish whether the campaign was effective:
 
 1. What is the percentage increase in `recruit` due to the change in message?
-2. What is the median amount donated for a user in the control condition? Use the `donated` column
+2. What is the median amount donated for a user in the control condition? Use the `donated` column.
 3. Assuming everyone who is recruited donates a similar amount to the control group users, how much extra revenue is generated from the additional recruited users?
 :::
 
@@ -607,7 +607,6 @@ Randomization should create two groups that are alike in every way except for th
   People (or platforms) should actually receive the condition they were assigned to.
   If some donors in the treatment group never see the new message, or if some control donors accidentally do, the comparison between treatment and control becomes blurred.
   The randomization still defines who *was offered* treatment, but not necessarily who *received* it — a common real-world issue known as **non-compliance**.
-
 
 When these hold, any difference in outcomes between groups can be attributed to the treatment itself — *the groups are comparable by design.*
 
