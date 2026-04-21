@@ -204,7 +204,7 @@ rec <-
 
 ```{r}
 #| eval: false
-df_scaled_5 <- 
+df_scaled <- 
   rec |>
   YOUR_CODE() |>
   YOUR_CODE(new_data = NULL)
