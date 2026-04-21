@@ -274,7 +274,7 @@ To see this economy in action, let's generate data for 5,000 people living in it
 
 ```{r}
 #| echo: true
-#| eval: false
+#| eval: true
 library(tidyverse)
 
 set.seed(42)
@@ -289,12 +289,13 @@ sim <-
                 .2*college + rnorm(5000) + 5 
            )
     
+
 glimpse(sim)
 ```
 
 ```{r}
 #| echo: false
-#| eval: true
+#| eval: false
 library(tidyverse)
 
 sim <- read_csv("../data/brown_hair_example.csv")
@@ -305,7 +306,7 @@ According to the rules above, we should see a difference of 10%.
 Let's look at the distribution of income between the two hair colors:
 
 ```{r}
-sim %>%
+sim |>
   ggplot(aes(x = log_income, fill = hair)) +
   geom_density(alpha = 0.4) +
   ggokabeito::scale_fill_okabe_ito() + 
