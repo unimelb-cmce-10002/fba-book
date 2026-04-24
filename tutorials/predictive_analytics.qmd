@@ -105,11 +105,11 @@ Complete and run the code below to create a training and test split of the data.
 
 training_sample_2005_2012 <- 
   bos_2005_2015_fenway |>
-  YOUR_CODE_HERE  
+  YOUR_CODE_HERE()  
 
 test_sample_2013_2015 <- 
   bos_2005_2015_fenway |>
-  YOUR_CODE_HERE  
+  YOUR_CODE_HERE()  
 ```
 
 **(b).** Complete and run the code below to produce a bar chart that shows how mean attendance varies across games played during the day and those played during the evening. What does this plot reveal?
@@ -652,5 +652,4 @@ ggplot(r2_df, aes(x = Model, y = R2, fill = Model)) +
     plot.margin     = margin(5, 5, 5, 5)
   )
 ```
-
 

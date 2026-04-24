@@ -491,7 +491,7 @@ raw_data <- YOUR_CODE
 
 ### Copy your code from part (b) below
 
-COPY YOUR CODE HERE!
+# COPY YOUR CODE HERE!
 
 ```
 
@@ -610,7 +610,7 @@ Use the backtesting template, evaluate the performance for (1) Operating Profita
 #| eval: false
 #| warning: false
 
-FILL IN THIS CHUNK BY YOURSELF
+# FILL IN THIS CHUNK BY YOURSELF
 
 ```
 

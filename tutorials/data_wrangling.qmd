@@ -278,7 +278,7 @@ firm_strategy_check <-
 ```{r}
 #| eval: false
 firm_strategy_check |>
-  YOUR_CODE
+  YOUR_CODE()
 ```
 
 **(c).** Why might it be useful to create a smaller checking dataset instead of inspecting the full `firm_strategy` dataset?
@@ -367,8 +367,8 @@ industry_summary |>
 ```{r}
 #| eval: false
 industry_summary |>
-    YOUR_CODE |>
-    YOUR_CODE
+    YOUR_CODE() |>
+    YOUR_CODE()
 ```
 
 **(e).** Compare the two rankings. How do these industry-level patterns comapre to what you saw earlier in Exercise 5, where different kinds of firms appeared in the high-margin and high-turnover tables?
@@ -440,4 +440,3 @@ industry_summary |>
 ```
 
 **(e).** What does the line suggest about the relationship between average profit margin and average asset turnover across industries?
-

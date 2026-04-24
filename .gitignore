@@ -19,3 +19,9 @@
 .DS_Store
 
 **/*.quarto_ipynb
+
+# Local Codex state files
+.codex-state/
+AGENT_INSTRUCTIONS.md
+CONSTRAINTS.md
+PROGRESS.md
