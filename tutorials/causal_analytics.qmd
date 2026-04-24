@@ -61,6 +61,10 @@ library(vtable)      # balance table
 
 The data comes in multiple files that we will load as we need them.
 
+## Prepare these Exercises before Class 
+
+Prepare these exercises before coming to class. Plan to spend 45 minutes on these exercises.
+
 ### Exercise 1: Understanding the Business Context to See Why We Use Experiments to Test
 
 Before analysing the data, take a step back and think about the business motivation behind this experiment.
@@ -209,6 +213,10 @@ weblog_clean <-
 ```
 
 Why do we restrict the dataset to users with valid treatment assignments before analysing behaviour?
+
+## In-Class Exercises
+
+You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.
 
 ### Exercise 4: Measuring Funnel Completion
 
