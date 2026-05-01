@@ -51,7 +51,7 @@ Accurate forecasts reduce labor costs by avoiding overstaffing, prevent service 
 
 To see these ideas in action, we turn to an example from professional sports. Stadium operators must staff concession stands that sell food and beverages during baseball games. If they schedule too few employees, service slows and queues lengthen; too many, and labor costs surge.
 
-Their challenge begins with a prediction problem: how many fans will attend each game? Attendance depends on many factors—day of the week, weather, opponent quality, promotional events, and more. Once attendance is forecasted, managers can estimate how many customers will visit concession stands per hour and allocate staff accordingly.
+Their challenge begins with a prediction problem: how many fans will attend each game? Attendance depends on many factors—day of the week, weather, opponent quality, promotional events, and more. Once attendance is forecast, managers can estimate how many customers will visit concession stands per hour and allocate staff accordingly.
 
 In this module, we will focus on this first step: using data to predict game attendance. This exercise illustrates how prediction models help managers transform historical information into operational insight—bridging analytics and real-world decision-making.
 
@@ -102,7 +102,7 @@ Sketch of the plan
 - [ ] Define the Business Questions 
 - [ ] Read in and wrangle attendance data
 - [ ] Summarize and describe the data
-- [ ] Use insights from exploratory analysis to fit prediction models and make forecasts: baselines, group means, and OLS
+- [ ] Use insights from exploratory analysis to fit prediction models and make forecasts: lagged values, trailing averages, and cumulative averages
 - [ ] Evaluate, compare, and select prediction models 
 - [ ] Analyze, Interpret & Communicate: Convert demand forecasts into actionable insights for workforce planning
 
@@ -161,7 +161,7 @@ In these notes we focus on regular-season home games for one team. The variables
 
 ### Loading the MLB attendance data{.unnumbered}
 
-The `baseballr` package provides convenient access to baseball statistics and schedules through a set of functions that scrape and clean publicly available data from Baseball-Reference.com
+The `baseballr` package provides convenient access to baseball statistics and schedules through a set of functions that scrape and clean publicly available data from Baseball-Reference.com.
 
 A simple example is `bref_team_results()`, a function which retrieves all games played by a given MLB team during a particular season. For instance, the code below pulls the 2015 game results for the Boston Red Sox:
 
@@ -171,7 +171,7 @@ glimpse(bref_team_results("BOS", 2015))
 
 ```
 
-When run, this command returns a tidy data frame where each row corresponds to a single game (we have 162 rows, corresponding to the 81 home games and 81 away games that the Red Sox played in the 2015 regular season). You’ll see variables such as date, opponent, home/away indicator, runs scored and allowed, win–loss record attendance, and more.
+When run, this command returns a tidy data frame where each row corresponds to a single game (we have 162 rows, corresponding to the 81 home games and 81 away games that the Red Sox played in the 2015 regular season). You’ll see variables such as date, opponent, home/away indicator, runs scored and allowed, win–loss record, attendance, and more.
 
 ::: {.callout-tip title="What does `bref_team_results()` do under the hood?" collapse="true"}
 `bref_team_results()` is a lightweight wrapper around a web-scraping workflow that pulls MLB game results from Baseball-Reference and returns a tidy data frame ready for analysis. Behind the scenes, it:
@@ -208,10 +208,12 @@ years <- 2000:2002
 bos_2000_2002 <-
   lapply(years, function(y) {
     # Fetch game-level results for the specified team and year
-    bref_team_results(Tm = teams, year = y)
+    bref_team_results(Tm = teams, year = y) |>
+      mutate(across(everything(), as.character))
   }) |>
   # Stack the list of season data frames row-wise
-  bind_rows()
+  bind_rows() |>
+  readr::type_convert()
 ```
 
 The `bind_rows()` function from `dplyr` stacks the results into a single data frame with all three seasons combined.
@@ -231,7 +233,8 @@ bos_nyy_2000_2002 <-
   lapply(teams, function(team) {
     lapply(years, function(year) {
       # Pull the season’s results for this team
-      df <- bref_team_results(Tm = team, year = year)
+      df <- bref_team_results(Tm = team, year = year) |>
+        mutate(across(everything(), as.character))
       # Annotate with team and season for clarity after binding
       df$Team   <- team
       df$Season <- year
@@ -242,7 +245,8 @@ bos_nyy_2000_2002 <-
       bind_rows()
   }) |>
   # Combine both teams into one data frame
-  bind_rows()
+  bind_rows() |>
+  readr::type_convert()
 ```
 
 This produces a tidy dataset with both teams, across all selected years, each record tagged with Team and Season:
@@ -253,7 +257,7 @@ bos_nyy_2000_2002 |>
     rename(Games = n) 
 ```
 
-Note in some seasons there are fewer than 162 games due to cancellations due to poor weather, labor disputes, and other factors.
+Note that some seasons have fewer than 162 games because of cancellations caused by poor weather, labor disputes, and other factors.
 
 ::: {.exercise}
 ::: {.exercise-time}
@@ -283,9 +287,11 @@ years <- 2005:2015
 bos_2005_2015 <-
   lapply(years, function(y) {
     # Game-level results for BOS in season y
-    bref_team_results(Tm = teams, year = y)
+    bref_team_results(Tm = teams, year = y) |>
+      mutate(across(everything(), as.character))
   }) |>
-  dplyr::bind_rows()
+  dplyr::bind_rows() |>
+  readr::type_convert()
 
 # Inspect structure (variables, types, examples)
 glimpse(bos_2005_2015)
@@ -379,7 +385,7 @@ bos_2005_2015_fenway |>
   select(ymd, game_num, date)
 ```
 
-Next, we will create a variable that identifies the day of the week on which each game was played. This will be useful later, as attendance often varies by day of the week (e.g., weekends vs. weekdays). We do so by `dotw`:
+Next, we will create a variable that identifies the day of the week on which each game was played. This will be useful later, as attendance often varies by day of the week (e.g., weekends vs. weekdays). We call this variable `dotw`:
 
 ```{r}
 bos_2005_2015_fenway <- bos_2005_2015_fenway |>
@@ -392,7 +398,7 @@ Next, we filter to games where the Red Sox played at home. We do so because in o
 
 ```{r}
 bos_2005_2015_fenway <- bos_2005_2015_fenway |>
-  rename(home_away = h_a) |>    
+  rename(home_away = h_a) |>
   filter(home_away == 'H')
 ```
 
@@ -406,7 +412,7 @@ bos_2005_2015_fenway <- bos_2005_2015_fenway |>
 At this point, we have a clean, ready-to-analyze dataset of Red Sox home games from 2005–2015, complete with structured dates, weekday labels, and attendance figures. This will serve as the foundation for building and evaluating our prediction models in the next section.
 
 
-## Predicting Attendance at Red Sox home games
+## Predicting Attendance at Red Sox Home Games
 
 ### How is Red Sox attendance data distributed? {.unnumbered}
 
@@ -460,13 +466,13 @@ Solution
 Attendance clusters tightly in the high 30,000s: the mean and median are around 37,000 with a modest spread. The right tail is compressed against capacity (≈38,500), consistent with frequent sellouts, while a longer left tail reflects occasional lower-demand games. Practically, most outcomes fall between about 36,000 and 38,000, with dips below ~33,000 uncommon. For forecasting, the task is to “place” each game within this narrow ~5,000-seat band rather than predict across a wide range—so staffing/provisioning should target that band and plan only modest adjustments for quieter dates.
 :::
 
-Our next step will be to explore what factors might drive the variation shown in this histogram: the day of the week, the opponent, whether the game is at night or during the day, weather conditions, or the team’s performance so far in the season. These patterns will provide the building blocks for our first prediction models.
+Our next step will be to explore what factors might drive the variation shown in this histogram.
 
 ### Building simple prediction models {.unnumbered}
 
 Now that we’ve explored the distribution of attendance, we can start building our first prediction models.
 
-We’ll begin with a set of univariate models that use attendance in the past to predict attendance in the future. We refer to these as time-series models, since they leverage the temporal ordering of observations (you will remember from prior weeks that we have already covered time-series data in some detail, albeit it in a finance/trading context).
+We’ll begin with a set of univariate models that use attendance in the past to predict attendance in the future. We refer to these as time-series models, since they leverage the temporal ordering of observations (you will remember from prior weeks that we have already covered time-series data in some detail, albeit in a finance/trading context).
 
 This is the simplest and most fundamental form of prediction in operations and business analytics. When a manager forecasts next week’s sales or next game’s attendance by “looking at what happened recently,” they are, in effect, applying a basic time series model.
 
@@ -474,9 +480,9 @@ Our goal here is to predict attendance at each home game `t` using information f
 
 These models won’t yet use other explanatory variables like weekday or opponent — those come later — but they give us a benchmark for how much can be explained simply by temporal persistence.
 
-#### Model 1 - Persistence (Naive Time Series model) {.unnumbered}
+#### Model 1 - Persistence (Naïve Time-Series Model) {.unnumbered}
 
-A natural starting point is the assumption that attendance tomorrow will be about the same as it was yesterday. This is known as a persistence or naïve forecast, and it’s the foundation for many time series methods.
+A natural starting point is the assumption that attendance at a game will be roughly the same as attendance at the previous game. This is known as a persistence forecast or naïve forecast, and it’s the foundation for many time-series methods.
 
 In notation form:
 
@@ -486,7 +492,8 @@ $$
 We can compute this in R by lagging the attendance variable:
 
 ```{r}
-bos_2005_2015_fenway <- bos_2005_2015_fenway |>
+bos_2005_2015_fenway <-
+  bos_2005_2015_fenway |>
   arrange(ymd) |>
   mutate(att_lag1 = lag(attendance, 1))
 ```
@@ -570,7 +577,8 @@ $$
 This is conceptually similar to a moving average (MA) model in time series analysis — a way to smooth out temporary fluctuations and capture short-run trends. We can compute this in R by averaging attendance over the last three games:
 
 ```{r}
-bos_2005_2015_fenway <- bos_2005_2015_fenway |>
+bos_2005_2015_fenway <-
+  bos_2005_2015_fenway |>
   arrange(ymd) |>
   mutate(
     att_avg_lag3 = (lag(attendance) + lag(attendance, 2) + lag(attendance, 3)) / 3
@@ -585,7 +593,8 @@ Let's use this trailing average attendance as our prediction for the current gam
 #| fig-height: 6
 #| fig-align: center
 
-ggplot(bos_2005_2015_fenway, aes(x = att_avg_lag3, y = attendance)) +
+ggplot(bos_2005_2015_fenway,
+  aes(x = att_avg_lag3, y = attendance)) +
   geom_point(color = "darkblue", alpha = 0.3) +
   geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "red") +
   labs(
@@ -610,7 +619,8 @@ $$
 This is a slow-moving model that represents the long-run mean — conceptually akin to a constant-level (mean) forecast in time series terms. We can compute this in R by calculating the cumulative mean of attendance up to (but not including) the current game:
 
 ```{r}
-bos_2005_2015_fenway <- bos_2005_2015_fenway |>
+bos_2005_2015_fenway <-
+  bos_2005_2015_fenway |>
   mutate(att_historical_avg = lag(cummean(attendance)))
 ```
 
@@ -654,11 +664,11 @@ Solution
 :::
 
 ::: {.solution-content}
-For low-actual games around 30–33k, points tend to fall below the 45° line, which means the model’s prediction (x-axis) is higher than the realized attendance (y-axis). That is, it overpredicts on quiet nights. For high-actual games around 38k+, points tend to lie above the 45° line, showing the model’s prediction is lower than realized attendance; it underpredicts near sellouts.
+For low-actual games around 30–33k, points fall below the 45° line, which means the model’s prediction (x-axis) is higher than the realized attendance (y-axis). That is, it overpredicts on quiet nights. For high-actual games around 38k+, points tend to lie above the 45° line, showing the model’s prediction is lower than realized attendance; it underpredicts near sellouts.
 
 Overall, the model exhibits shrinkage toward the long-run mean (roughly 36–37k). Visually, the cloud is tightly compressed around the midrange, many low-y points fall below the line, many high-y points fall above it, and the relationship appears flatter than the 45° reference—evidence that the model adjusts slowly to real changes.
 
-Operationally, this bias risks overstaffing when demand is low (wasted labor costs) and understaffing when demand is high (long queues and worse service at precisely the wrong time). To improve, use a shorter-memory signal (e.g., lag-1 or a short moving average, or exponential smoothing) and incorporate forward-looking features such as day/night, day of week, opponent, ticket sales, and weather; also cap forecasts at stadium capacity to respect the ceiling. 
+Operationally, this bias risks overstaffing when demand is low (wasted labor costs) and understaffing when demand is high (long queues and worse service at precisely the wrong time). To improve, use a shorter-memory signal (e.g., lag-1 or a short moving average, or exponential smoothing) and incorporate forward-looking features such as day/night, day of week, opponent, ticket sales, and weather; also cap forecasts at stadium capacity to respect the ceiling.
 
 :::
 
@@ -1007,11 +1017,11 @@ This random model provides a baseline — if our supposedly “intelligent” fo
 
 #### But what about practical considerations? {.unnumbered}
 
-The Lag(1) model provides the best predictive accuracy, but it’s also the least practical for operations planning. Forecasts based purely on the previous game may not give managers enough lead time to hire staff, order supplies, or adjust logistics.
+The Lag(1) model provides the most accurate predictions, but it is not likely to be practical for operations planning. Forecasts based purely on the previous game may not give managers enough lead time to hire staff, order supplies, or adjust logistics.
 
-In practice, firms often need to predict further ahead — a week or a month in advance — and must therefore rely on other variables (e.g., day of week, opponent, ticket sales, promotions, or weather) rather than just the immediate past. 
+In practice, firms often need to predict further ahead — a week or a month in advance — and must therefore rely on other variables (e.g., day of week, opponent, ticket sales, promotions, or weather) rather than just the immediate past.
 
-In this week's workshop we will turn to building models that incorporate these richer predictors.
+In this week's workshop we will turn to building models that incorporate these rich, forward-looking predictors.
 
 ### Summary and next steps {.unnumbered}
 
@@ -1025,7 +1035,7 @@ What did we find?
 
 - Among univariate models, lag-1 was the most accurate; the cumulative mean was stable but biased toward the long-run average. 
 - All models beat random guessing by a wide margin.
-- Overall, modest structure that tracks stable seasonality beats heavy flexibility that chases noise.
+- Overall, modest structure that tracks stable temporal patterns beats heavy flexibility that chases noise.
 
 How should we act on what we found?
 
