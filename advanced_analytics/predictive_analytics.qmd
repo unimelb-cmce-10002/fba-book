@@ -1,4 +1,4 @@
-# Forming and Evaluating Data-driven Predictions
+# Forming and Evaluating Data-Driven Predictions
 
 ::: {.callout-tip}
 ## Learning Goals {.unnumbered}
@@ -24,6 +24,7 @@ library(janitor)
 ```
 
 ## The Business Challenge
+
 ### The Topic: Demand Forecasting for Workforce Planning {.unnumbered}
 
 In business operations, few challenges are as universal—or as consequential—as predicting future demand. Firms must constantly anticipate what customers will want, when they will want it, and in what quantity. This process, known as demand forecasting, underpins nearly every operational decision: how much to produce, how many staff to schedule, how much inventory to hold, and how to allocate logistics and supply-chain resources.
@@ -45,11 +46,11 @@ Effective staffing requires integrating forecasts into workflow systems. A typic
 2. Translate demand into headcount (e.g., each agent handles 20 calls per hour, so 13 agents are required).
 3. Build the roster by assigning staff to shifts in advance.
 
-Accurate forecasts reduce labor costs by avoiding overstaffing, prevent service bottlenecks by avoiding understaffing, and ultimately improve both customer and employee satisfaction.
+Accurate forecasts reduce labour costs by avoiding overstaffing, prevent service bottlenecks by avoiding understaffing, and ultimately improve both customer and employee satisfaction.
 
 ## The Setting: Attendance at Major League Baseball Games {.unnumbered}
 
-To see these ideas in action, we turn to an example from professional sports. Stadium operators must staff concession stands that sell food and beverages during baseball games. If they schedule too few employees, service slows and queues lengthen; too many, and labor costs surge.
+To see these ideas in action, we turn to an example from professional sports. Stadium operators must staff concession stands that sell food and beverages during baseball games. If they schedule too few employees, service slows and queues lengthen; too many, and labour costs surge.
 
 Their challenge begins with a prediction problem: how many fans will attend each game? Attendance depends on many factors—day of the week, weather, opponent quality, promotional events, and more. Once attendance is forecast, managers can estimate how many customers will visit concession stands per hour and allocate staff accordingly.
 
@@ -71,15 +72,15 @@ No method is perfect: every forecast must contend with noise, unexpected shocks,
 In this module, we will explore several foundational techniques for building and evaluating prediction models using base R and the `tidyverse`. 
 
 
-## Where we're headed {.unnumbered}
+## Where We're Headed {.unnumbered}
 
 By the end of this week's module, you will be able to take a dataset like this:
 
 ```{r}
 
 bref_team_results("BOS", 2015) |>
-    select(Attendance, everything()) |>
-    head(10)
+  select(Attendance, everything()) |>
+  head(10)
 
 ```
 
@@ -87,7 +88,7 @@ And use it to fit and evaluate prediction models such as these:
 
 ![Don't panic! We will explain what all this means by the end of the lesson.](../figs/forecast_metrics_by_model.png){width=100% fig-align="center"}
 
-## The Game Plan: What we're aiming for
+## The Game Plan: What We're Aiming For
 
 Recall our general business analytics workflow:
 
@@ -97,7 +98,7 @@ Recall our general business analytics workflow:
 4. Analyze and Interpret Findings  
 5. Communicate Insights and Recommendations
 
-Sketch of the plan
+Sketch of the plan:
 
 - [ ] Define the Business Questions 
 - [ ] Read in and wrangle attendance data
@@ -110,7 +111,7 @@ Let’s get started!
 
 ## Loading and understanding the data
 
-### R packages for today{.unnumbered}
+### R packages for today {.unnumbered}
 
 To begin, we need to load the packages that we will use for this chapter:
 
@@ -132,7 +133,7 @@ library(slider)
 # Load ggokabeito for a colour-blind-friendly palette (available if you choose to use it)
 library(ggokabeito)
 
-# janitor — simple data cleaning tools (e.g., clean_names()) 
+# janitor — simple data cleaning tools (e.g., clean_names())
 library(janitor)
 ```
 
@@ -159,11 +160,11 @@ In these notes we focus on regular-season home games for one team. The variables
 :::
 
 
-### Loading the MLB attendance data{.unnumbered}
+### Loading the MLB attendance data {.unnumbered}
 
 The `baseballr` package provides convenient access to baseball statistics and schedules through a set of functions that scrape and clean publicly available data from Baseball-Reference.com.
 
-A simple example is `bref_team_results()`, a function which retrieves all games played by a given MLB team during a particular season. For instance, the code below pulls the 2015 game results for the Boston Red Sox:
+A simple example is `bref_team_results()`, a function that retrieves all games played by a given MLB team during a particular season. For instance, the code below pulls the 2015 game results for the Boston Red Sox:
 
 ```{r}
 
@@ -253,11 +254,11 @@ This produces a tidy dataset with both teams, across all selected years, each re
 
 ```{r}
 bos_nyy_2000_2002 |>
-    count(Team, Season) |>
-    rename(Games = n) 
+  count(Team, Season) |>
+  rename(Games = n)
 ```
 
-Note that some seasons have fewer than 162 games because of cancellations caused by poor weather, labor disputes, and other factors.
+Note that some seasons have fewer than 162 games because of cancellations caused by poor weather, labour disputes, and other factors.
 
 ::: {.exercise}
 ::: {.exercise-time}
@@ -301,7 +302,7 @@ nrow(bos_2005_2015)
 ```
 :::
 
-### Wrangling the MLB attendance data{.unnumbered}
+### Wrangling the MLB attendance data {.unnumbered}
 
 Before modeling, we need to tidy up a few fields.
 
@@ -329,7 +330,7 @@ bos_2005_2015_fenway <-
   )
 ```
 
-A few date strings failed to parse—often corresponding to double-header games (two games played on the same day). We can inspect them directly:
+A few date strings failed to parse—often corresponding to doubleheader games (two games played on the same day). We can inspect them directly:
 
 ```{r}
 bos_2005_2015_fenway |>
@@ -341,13 +342,13 @@ We can fix these programmatically by assigning the correct dates:
 
 ```{r}
 # Parse a clean YYYY-MM-DD date (ymd) from the raw Date + Year fields,
-# handling double-header annotations like "(1)" / "(2)" and extra whitespace.
+# handling doubleheader annotations like "(1)" / "(2)" and extra whitespace.
 bos_2005_2015_fenway <-
   bos_2005_2015_fenway |>
   mutate(
     ymd = date |>
       str_remove(".*, ") |>            # drop weekday and trailing comma (e.g., "Sunday, ")
-      str_remove("\\s*\\(\\d+\\)") |>  # remove "(1)" or "(2)" from double headers
+      str_remove("\\s*\\(\\d+\\)") |>  # remove "(1)" or "(2)" from doubleheaders
       str_trim() |>                    # trim any leading/trailing whitespace
       paste(year) |>                   # append the year to get "Apr 3 2010"
       mdy()                            # parse "Mon Day Year" to Date
@@ -362,7 +363,7 @@ bos_2005_2015_fenway |>
   select(date, ymd)
 ```
 
-For those double headers, we also want to flag them explicitly.
+For those doubleheaders, we also want to flag them explicitly.
 
 ```{r}
 # Within each calendar date (ymd), tag double-headers and label game order
@@ -377,7 +378,7 @@ bos_2005_2015_fenway <-
 
 ```
 
-Now, let's check for these double headers:
+Now, let's check for these doubleheaders:
 
 ```{r}
 bos_2005_2015_fenway |>
@@ -474,13 +475,13 @@ Now that we’ve explored the distribution of attendance, we can start building 
 
 We’ll begin with a set of univariate models that use attendance in the past to predict attendance in the future. We refer to these as time-series models, since they leverage the temporal ordering of observations (you will remember from prior weeks that we have already covered time-series data in some detail, albeit in a finance/trading context).
 
-This is the simplest and most fundamental form of prediction in operations and business analytics. When a manager forecasts next week’s sales or next game’s attendance by “looking at what happened recently,” they are, in effect, applying a basic time series model.
+This is the simplest and most fundamental form of prediction in operations and business analytics. When a manager forecasts next week’s sales or next game’s attendance by “looking at what happened recently,” they are, in effect, applying a basic time-series model.
 
 Our goal here is to predict attendance at each home game `t` using information from earlier games (`t–1`, `t–2`, etc.).
 
 These models won’t yet use other explanatory variables like weekday or opponent — those come later — but they give us a benchmark for how much can be explained simply by temporal persistence.
 
-#### Model 1 - Persistence (Naïve Time-Series Model) {.unnumbered}
+#### Model 1: Persistence (Naïve Time-Series Model) {.unnumbered}
 
 A natural starting point is the assumption that attendance at a game will be roughly the same as attendance at the previous game. This is known as a persistence forecast or naïve forecast, and it’s the foundation for many time-series methods.
 
@@ -564,7 +565,7 @@ Solution
 
 :::
 
-#### Model 2 - Trailing Average (Short-Memory Smoother) {.unnumbered}
+#### Model 2: Trailing Average (Short-Memory Smoother) {.unnumbered}
 
 A slightly more sophisticated approach is to use a moving average of the last few games. This smooths out random fluctuations and captures short-term trends.
 
@@ -608,7 +609,7 @@ ggplot(bos_2005_2015_fenway,
 ```
 As with our previous model, we again observe that the points form a tight band around the red line, particularly in the 36,000–38,000 range. The plot shows that our moving average model smooths short-term dips and spikes by averaging across recent games. In doing so, it sacrifices responsiveness for stability, producing forecasts that track the general level of demand without overreacting to one unusual game. The downside is lag: if attendance trends upward over several weeks, the model adjusts more slowly than the persistence model.
 
-#### Model 3 - Longer-Term Average (Cumulative Mean up to t-1) {.unnumbered}
+#### Model 3: Longer-Term Average (Cumulative Mean up to t-1) {.unnumbered}
 
 Our third model uses the historical average attendance up to the previous game. We can formally express this as:
 
@@ -668,7 +669,7 @@ For low-actual games around 30–33k, points fall below the 45° line, which mea
 
 Overall, the model exhibits shrinkage toward the long-run mean (roughly 36–37k). Visually, the cloud is tightly compressed around the midrange, many low-y points fall below the line, many high-y points fall above it, and the relationship appears flatter than the 45° reference—evidence that the model adjusts slowly to real changes.
 
-Operationally, this bias risks overstaffing when demand is low (wasted labor costs) and understaffing when demand is high (long queues and worse service at precisely the wrong time). To improve, use a shorter-memory signal (e.g., lag-1 or a short moving average, or exponential smoothing) and incorporate forward-looking features such as day/night, day of week, opponent, ticket sales, and weather; also cap forecasts at stadium capacity to respect the ceiling.
+Operationally, this bias risks overstaffing when demand is low (wasted labour costs) and understaffing when demand is high (long queues and worse service at precisely the wrong time). To improve, use a shorter-memory signal (e.g., lag-1 or a short moving average, or exponential smoothing) and incorporate forward-looking features such as day/night, day of week, opponent, ticket sales, and weather; also cap forecasts at stadium capacity to respect the ceiling.
 
 :::
 
@@ -915,7 +916,7 @@ The Lag(1) model produces the lowest MAE and RMSE — confirming it’s the best
 
 The pattern is intuitive:
 
-- Attendance at the previous game is highly informative — crowds don’t fluctuate dramatically from one home stand to the next.
+- Attendance at the previous game is highly informative — crowds don’t fluctuate dramatically from one homestand to the next.
 - A short moving average smooths noise but reacts slowly to real changes.
 - A long-term average loses too much information.
 

@@ -7,8 +7,8 @@ By the end of this tutorial, you should be able to:
 
 - Explore how attendance varies with game time (day/night) and opponent using tidy plots.
 - Build time-based train/test splits and create cell-means predictors on the training set.
-- Evaluate forecasts on the test set using MAE, RMSE, MAPE.
-- Fit and compare regression models (Basic OLS, Quadratic in game number, Degree-8 polynomial) and relate fit vs. generalisation.
+- Evaluate forecasts on the test set using MAE, RMSE, and MAPE.
+- Fit and compare regression models (Basic OLS, Quadratic in game number, Degree-8 polynomial) and relate fit to generalisation.
 - Connect forecast accuracy to operational planning decisions.
 :::
 
@@ -40,7 +40,7 @@ In operations, managers must match capacity (people, time, equipment) to demand 
 
 As in the lecture, our setting is MLB game attendance at Fenway Park, home of the Boston Red Sox. Concession managers need to staff bars and food stands for each Red Sox home game. The core uncertainty is attendance (how many fans show up). Attendance varies systematically with observable game features—e.g., day vs night, day of week, and opponent (rivalry effects)—and is bounded above by a capacity ceiling (sellouts cluster near the right edge of the distribution).
 
-In this setting, the workflow that links demand forecasts to roster works as follows:
+In this setting, the workflow that links demand forecasts to rostering works as follows:
 
 1. Forecast demand: Predict game-level attendance using historical patterns (e.g., cell-means or OLS models).
 2. Translate to headcount: Convert predicted attendance into required staff using service rates (e.g., “one staff member can serve ~k customers per hour”).
@@ -86,7 +86,7 @@ bos_2005_2015_fenway <-
 
 Prepare these exercises before coming to class. Plan to spend 30 minutes on these exercises.
 
-### Exercise 1: Building advance predictors from the training set
+### Exercise 1: Building predictors available in advance from the training set
 
 In the lecture, the lag-1 model performed well because recent attendance is informative. But it is not always useful for workforce planning: concession managers often need to roster staff before the previous game has been played. In this tutorial we therefore focus on predictors that are known before the game:
 
@@ -146,7 +146,7 @@ training_sample_2005_2012 |>
   theme(panel.grid.major.x = element_blank())
 ```
 
-**(c).** Now inspect two richer versions of the same idea: attendance across the different day of week-game time combinations, and attendance across the different opponents. Run the code below.
+**(c).** Now inspect two richer versions of the same idea: attendance across the different day-of-week/game-time combinations, and attendance across the different opponents. Run the code below.
 
 ```{r}
 #| eval: false
@@ -252,13 +252,9 @@ test_sample_2013_2015 <-
 
 **(e).** Each model uses information available before the game. Before calculating formal error metrics, which one do you expect to perform best on the test set, and why? In your answer, distinguish between a feature that looks useful in the training data and a model that is likely to generalise well to future games.
 
-```{r}
-# Write your answer here
-```
+### Exercise 2: Evaluating predictors available in advance in the test set
 
-### Exercise 2: Evaluating advance predictors in the test set
-
-The lecture introduced MAE, RMSE, and MAPE. Rather than rebuild the same error pipeline three separate times, we will use one tidy workflow to compare all three advance-predictor models from Exercise 1.
+The lecture introduced MAE, RMSE, and MAPE. Rather than rebuild the same error pipeline three separate times, we will use one tidy workflow to compare all three models with predictors available in advance from Exercise 1.
 
 **(a).** Run the code below to put the three prediction columns into a long format. Before doing so complete the missing lines that calculate forecast errors.
 
@@ -349,17 +345,13 @@ ggplot(simple_metrics_long, aes(x = model, y = value, fill = model)) +
 - whether the model is simple enough to explain
 - whether the accuracy differences are large enough to matter operationally
 
-```{r}
-# Write your answer here
-```
-
 ## In-Class Exercises
 
-You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.
+You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above; you will get the most value from the class if you have completed those above before coming to class.
 
 ### Exercise 3: Fitting regression models
 
-Exercises 1 and 2 used simple cell-means models: each forecast came from the average attendance for one group of games. We now turn to ordinary least squares (OLS) regression, which among other things lets us combine multiple predictors in a single model.
+Exercises 1 and 2 used simple cell-means models: each forecast came from the average attendance for one group of games. We now turn to ordinary least squares (OLS) regression, which, among other things, lets us combine multiple predictors in a single model.
 
 The aim is not to find the most complicated model possible. The aim is to ask whether a richer model improves the forecast enough to justify the extra complexity for staffing decisions.
 
@@ -473,10 +465,6 @@ ols_fit_summary
 
 Which model fits the training data best? Why is this not enough to choose the forecasting model? In your answer, consider fit, complexity, and operational usefulness.
 
-```{r}
-# Write your answer here
-```
-
 ### Exercise 4: Evaluating regression models
 
 Now that we have fitted our OLS models, we need to test whether the extra complexity actually improves forecasts for future games. This mirrors Exercise 2: train on earlier seasons, evaluate on later seasons, and choose based on usefulness for staffing rather than in-sample fit alone.
@@ -543,7 +531,7 @@ ols_model_errors <-
 
 What does this code do? Why is each row now a model-game combination rather than just a game? Why do we create `abs_error`, `squared_error`, and `percentage_error`?
 
-**(c).** Now use `ols_model_errors` to create `ols_model_metrics`, a table like the one below. Your output should show the values for each cell - e.g., each model's MAE, RMSE, etc.
+**(c).** Now use `ols_model_errors` to create `ols_model_metrics`, a table like the one below. Your output should show the values for each cell, e.g., each model's MAE, RMSE, etc.
 
 | model | MAE | RMSE | MAPE |
 |---|---:|---:|---:|
@@ -563,10 +551,6 @@ Write the code to produce this table:
 **(d).** Interpret the table from part (c).
 
 Which OLS model performs best out of sample? Why doesn't this match the ranking by training-set R-squared from Exercise 3?
-
-```{r}
-# Write your answer here
-```
 
 ### Exercise 5: Choosing and using a staffing forecast
 
@@ -800,7 +784,3 @@ In your answer, consider:
 - what the manager should monitor over time
 - what changes might make the model stale
 - how a major change in the environment could affect forecast accuracy
-
-```{r}
-# Write your answer here
-```
