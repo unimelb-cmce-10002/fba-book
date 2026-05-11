@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Foundations of Business Analytics">
 
-<title>14&nbsp; Tutorial 10: Storing &amp; Retrieving Data – Foundations of Business Analytics</title>
+<title>Tutorial 10: Storing &amp; Retrieving Data – Foundations of Business Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -119,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/core_skills_genai.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/data_storage.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tutorial 10: Storing &amp; Retrieving Data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/core_skills_genai.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/data_storage.html">Tutorial 10: Storing &amp; Retrieving Data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -349,7 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/data_storage.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tutorial 10: Storing &amp; Retrieving Data</span></span></a>
+ <span class="menu-text">Tutorial 10: Storing &amp; Retrieving Data</span></a>
   </div>
 </li>
       </ul>
@@ -364,19 +363,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-business-challenge-identifying-shill-bidding" id="toc-the-business-challenge-identifying-shill-bidding" class="nav-link active" data-scroll-target="#the-business-challenge-identifying-shill-bidding"><span class="header-section-number">14.1</span> The Business Challenge: Identifying Shill Bidding</a></li>
-  <li><a href="#the-data-auction-bids-and-devices" id="toc-the-data-auction-bids-and-devices" class="nav-link" data-scroll-target="#the-data-auction-bids-and-devices"><span class="header-section-number">14.2</span> The Data: Auction Bids and Devices</a></li>
-  <li><a href="#the-method-wrangling-data-across-backends" id="toc-the-method-wrangling-data-across-backends" class="nav-link" data-scroll-target="#the-method-wrangling-data-across-backends"><span class="header-section-number">14.3</span> The Method: Wrangling Data Across Backends</a></li>
-  <li><a href="#prepare-these-exercises-before-class" id="toc-prepare-these-exercises-before-class" class="nav-link" data-scroll-target="#prepare-these-exercises-before-class"><span class="header-section-number">14.4</span> Prepare these Exercises before Class</a>
+  <li><a href="#the-business-challenge-identifying-shill-bidding" id="toc-the-business-challenge-identifying-shill-bidding" class="nav-link active" data-scroll-target="#the-business-challenge-identifying-shill-bidding">The Business Challenge: Identifying Shill Bidding</a></li>
+  <li><a href="#the-data-auction-bids-and-devices" id="toc-the-data-auction-bids-and-devices" class="nav-link" data-scroll-target="#the-data-auction-bids-and-devices">The Data: Auction Bids and Devices</a></li>
+  <li><a href="#the-method-wrangling-data-across-backends" id="toc-the-method-wrangling-data-across-backends" class="nav-link" data-scroll-target="#the-method-wrangling-data-across-backends">The Method: Wrangling Data Across Backends</a></li>
+  <li><a href="#prepare-these-exercises-before-class" id="toc-prepare-these-exercises-before-class" class="nav-link" data-scroll-target="#prepare-these-exercises-before-class">Prepare these Exercises before Class</a>
   <ul class="collapse">
-  <li><a href="#exercise-1-auction-results-baseline" id="toc-exercise-1-auction-results-baseline" class="nav-link" data-scroll-target="#exercise-1-auction-results-baseline"><span class="header-section-number">14.4.1</span> Exercise 1: Auction Results Baseline</a></li>
-  <li><a href="#exercise-2-digging-deeper-into-user-behaviour" id="toc-exercise-2-digging-deeper-into-user-behaviour" class="nav-link" data-scroll-target="#exercise-2-digging-deeper-into-user-behaviour"><span class="header-section-number">14.4.2</span> Exercise 2: Digging Deeper into User Behaviour</a></li>
+  <li><a href="#exercise-1-auction-results-baseline" id="toc-exercise-1-auction-results-baseline" class="nav-link" data-scroll-target="#exercise-1-auction-results-baseline">Exercise 1: Auction Results Baseline</a></li>
+  <li><a href="#exercise-2-digging-deeper-into-user-behaviour" id="toc-exercise-2-digging-deeper-into-user-behaviour" class="nav-link" data-scroll-target="#exercise-2-digging-deeper-into-user-behaviour">Exercise 2: Digging Deeper into User Behaviour</a></li>
   </ul></li>
-  <li><a href="#in-class-exercises" id="toc-in-class-exercises" class="nav-link" data-scroll-target="#in-class-exercises"><span class="header-section-number">14.5</span> In-Class Exercises</a>
+  <li><a href="#in-class-exercises" id="toc-in-class-exercises" class="nav-link" data-scroll-target="#in-class-exercises">In-Class Exercises</a>
   <ul class="collapse">
-  <li><a href="#exercise-3-opening-the-auction-database" id="toc-exercise-3-opening-the-auction-database" class="nav-link" data-scroll-target="#exercise-3-opening-the-auction-database"><span class="header-section-number">14.5.1</span> Exercise 3: Opening the auction database</a></li>
-  <li><a href="#exercise-4-measuring-bidder-seller-concentration" id="toc-exercise-4-measuring-bidder-seller-concentration" class="nav-link" data-scroll-target="#exercise-4-measuring-bidder-seller-concentration"><span class="header-section-number">14.5.2</span> Exercise 4: Measuring bidder-seller concentration</a></li>
-  <li><a href="#exercise-5-combining-concentration-with-win-rates" id="toc-exercise-5-combining-concentration-with-win-rates" class="nav-link" data-scroll-target="#exercise-5-combining-concentration-with-win-rates"><span class="header-section-number">14.5.3</span> Exercise 5: Combining concentration with win rates</a></li>
+  <li><a href="#exercise-3-opening-the-auction-database" id="toc-exercise-3-opening-the-auction-database" class="nav-link" data-scroll-target="#exercise-3-opening-the-auction-database">Exercise 3: Opening the auction database</a></li>
+  <li><a href="#exercise-4-measuring-bidder-seller-concentration" id="toc-exercise-4-measuring-bidder-seller-concentration" class="nav-link" data-scroll-target="#exercise-4-measuring-bidder-seller-concentration">Exercise 4: Measuring bidder-seller concentration</a></li>
+  <li><a href="#exercise-5-combining-concentration-with-win-rates" id="toc-exercise-5-combining-concentration-with-win-rates" class="nav-link" data-scroll-target="#exercise-5-combining-concentration-with-win-rates">Exercise 5: Combining concentration with win rates</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -384,28 +383,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/core_skills_genai.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/data_storage.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tutorial 10: Storing &amp; Retrieving Data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/core_skills_genai.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/data_storage.html">Tutorial 10: Storing &amp; Retrieving Data</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tutorial 10: Storing &amp; Retrieving Data</span></h1>
+<h1 class="title">Tutorial 10: Storing &amp; Retrieving Data</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Foundations of Business Analytics </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">May, 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -432,8 +419,8 @@ Learning Goals
 </ul>
 </div>
 </div>
-<section id="the-business-challenge-identifying-shill-bidding" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="the-business-challenge-identifying-shill-bidding"><span class="header-section-number">14.1</span> The Business Challenge: Identifying Shill Bidding</h2>
+<section id="the-business-challenge-identifying-shill-bidding" class="level2">
+<h2 class="anchored" data-anchor-id="the-business-challenge-identifying-shill-bidding">The Business Challenge: Identifying Shill Bidding</h2>
 <p>Online auctions are big business. Platforms like eBay, Yahoo! Auctions, and specialist marketplaces connect millions of buyers and sellers every day. But with opportunity comes risk: not every bidder is playing fair.</p>
 <p>One form of fraud is called <strong>shill bidding</strong>. This happens when sellers (or their associates) secretly bid on their own items. The goal isn’t to win the auction, but to drive up the price and trick genuine buyers into paying more than they otherwise would. Shill bidders might:</p>
 <ul>
@@ -454,8 +441,8 @@ Learning Goals
 <li>Interpret these patterns in business terms: would a manager at the auction platform be worried?</li>
 </ol>
 </section>
-<section id="the-data-auction-bids-and-devices" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="the-data-auction-bids-and-devices"><span class="header-section-number">14.2</span> The Data: Auction Bids and Devices</h2>
+<section id="the-data-auction-bids-and-devices" class="level2">
+<h2 class="anchored" data-anchor-id="the-data-auction-bids-and-devices">The Data: Auction Bids and Devices</h2>
 <p>We’ll be working with synthetic data that simulates an online auction platform. It comes in a few different formats:</p>
 <ul>
 <li>CSV / DuckDB: structured data on auctions, bidders, bid amounts, and timestamps.</li>
@@ -463,8 +450,8 @@ Learning Goals
 </ul>
 <p>Together, these files let us see not just who is bidding and how much, but also how they are bidding, which can be a clue for spotting suspicious behaviour.</p>
 </section>
-<section id="the-method-wrangling-data-across-backends" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="the-method-wrangling-data-across-backends"><span class="header-section-number">14.3</span> The Method: Wrangling Data Across Backends</h2>
+<section id="the-method-wrangling-data-across-backends" class="level2">
+<h2 class="anchored" data-anchor-id="the-method-wrangling-data-across-backends">The Method: Wrangling Data Across Backends</h2>
 <p>In this tutorial, the focus isn’t just on wrangling data. It is on seeing how the same tidyverse tools work across different backends. We’ll be using:</p>
 <ul>
 <li><code>dplyr</code>: to filter, group, summarise, and join data.</li>
@@ -485,11 +472,11 @@ Learning Goals
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(duckdb) <span class="co"># for working with duckdb databases</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="prepare-these-exercises-before-class" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="prepare-these-exercises-before-class"><span class="header-section-number">14.4</span> Prepare these Exercises before Class</h2>
+<section id="prepare-these-exercises-before-class" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-these-exercises-before-class">Prepare these Exercises before Class</h2>
 <p>Prepare these exercises before coming to class. Plan to spend 30 minutes on these exercises.</p>
-<section id="exercise-1-auction-results-baseline" class="level3" data-number="14.4.1">
-<h3 data-number="14.4.1" class="anchored" data-anchor-id="exercise-1-auction-results-baseline"><span class="header-section-number">14.4.1</span> Exercise 1: Auction Results Baseline</h3>
+<section id="exercise-1-auction-results-baseline" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1-auction-results-baseline">Exercise 1: Auction Results Baseline</h3>
 <p><strong>(a)</strong>. Read the CSV file located at <code>data/auction_results.csv</code> and examine its structure by completing the code below:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
@@ -545,8 +532,8 @@ Learning Goals
 </div>
 <p><strong>(f)</strong>. Based on the seller profiles in (e), are there any patterns suggestive of shill bidding? What further information would you need to confirm any suspicion?</p>
 </section>
-<section id="exercise-2-digging-deeper-into-user-behaviour" class="level3" data-number="14.4.2">
-<h3 data-number="14.4.2" class="anchored" data-anchor-id="exercise-2-digging-deeper-into-user-behaviour"><span class="header-section-number">14.4.2</span> Exercise 2: Digging Deeper into User Behaviour</h3>
+<section id="exercise-2-digging-deeper-into-user-behaviour" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-digging-deeper-into-user-behaviour">Exercise 2: Digging Deeper into User Behaviour</h3>
 <p>In Exercise 1, we built a market baseline from auction outcomes: prices, bid counts, and seller summaries. That showed us where to look, but not how those outcomes happened. Next, we’ll bring in behavioural telemetry from a JSON file (devices/sessions). Using <code>dplyr</code>/<code>tidyr</code> verbs, we’ll flatten the nested JSON and link it to our auctions so we can ask: who was active, on which devices, and how activity clustered around particular sellers.</p>
 <p><strong>(a)</strong>. An example record in the JSON file <code>data/bids.jsonl</code> is as follows:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
@@ -682,11 +669,11 @@ Tip
 </div>
 </section>
 </section>
-<section id="in-class-exercises" class="level2" data-number="14.5">
-<h2 data-number="14.5" class="anchored" data-anchor-id="in-class-exercises"><span class="header-section-number">14.5</span> In-Class Exercises</h2>
+<section id="in-class-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-exercises">In-Class Exercises</h2>
 <p>You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above. You will get the most value from the class if you have completed those above before coming to class.</p>
-<section id="exercise-3-opening-the-auction-database" class="level3" data-number="14.5.1">
-<h3 data-number="14.5.1" class="anchored" data-anchor-id="exercise-3-opening-the-auction-database"><span class="header-section-number">14.5.1</span> Exercise 3: Opening the auction database</h3>
+<section id="exercise-3-opening-the-auction-database" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3-opening-the-auction-database">Exercise 3: Opening the auction database</h3>
 <p>So far, we have worked with an auction-level CSV file and bid-level JSON Lines data. Those files are useful, but they each give us only one view of the platform.</p>
 <p>The database gives us several linked tables: bids, auctions, items, users, and orders. This lets us ask relational questions, such as which bidder appears in which seller’s auctions, without loading every table into memory at once. In this exercise, the goal is to orient yourself to the database and create a bidder-level activity summary that we will reuse in the next exercises.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -753,8 +740,8 @@ Quarto gotcha: close your DuckDB connection before you Render
 </div>
 <p><strong>(e)</strong>. Inspect <code>bidder_activity</code>. Why is high activity useful as a starting point for review, and why is it not enough to suggest shill bidding on its own?</p>
 </section>
-<section id="exercise-4-measuring-bidder-seller-concentration" class="level3" data-number="14.5.2">
-<h3 data-number="14.5.2" class="anchored" data-anchor-id="exercise-4-measuring-bidder-seller-concentration"><span class="header-section-number">14.5.2</span> Exercise 4: Measuring bidder-seller concentration</h3>
+<section id="exercise-4-measuring-bidder-seller-concentration" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4-measuring-bidder-seller-concentration">Exercise 4: Measuring bidder-seller concentration</h3>
 <p>Activity tells us who bids a lot, but it does not tell us whether a bidder repeatedly supports the same seller. For shill-bidding review, that relationship matters: a bidder who focuses heavily on one seller’s auctions may be more interesting than an equally active bidder who spreads bids across many sellers.</p>
 <p>In this exercise, we will link bid events to sellers and compute each bidder’s highest seller concentration: the share of that bidder’s bids that go to their top seller.</p>
 <p><strong>(a)</strong>. A colleague suggests counting how often the same bidder bids against the same seller and across how many auctions. Why might these metrics be useful for identifying possible shill bidding behaviour? What innocent explanation could produce the same pattern?</p>
@@ -799,8 +786,8 @@ Quarto gotcha: close your DuckDB connection before you Render
 <p><strong>(d)</strong>. Inspect <code>concentration</code>. Do any concentration ratios appear high enough to review? Identify a small set of bidders whose behaviour you would explore more closely, and explain your decision rule.</p>
 <p><strong>(e)</strong>. Why might a possible shill bidder’s share of bids to one seller be an intermediate value, such as 20-30 percent, rather than above 50 percent?</p>
 </section>
-<section id="exercise-5-combining-concentration-with-win-rates" class="level3" data-number="14.5.3">
-<h3 data-number="14.5.3" class="anchored" data-anchor-id="exercise-5-combining-concentration-with-win-rates"><span class="header-section-number">14.5.3</span> Exercise 5: Combining concentration with win rates</h3>
+<section id="exercise-5-combining-concentration-with-win-rates" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-5-combining-concentration-with-win-rates">Exercise 5: Combining concentration with win rates</h3>
 <p>Concentration is useful, but it is still incomplete. A genuine buyer may focus on one seller because they like that seller’s products. A possible shill bidder is more concerning when they appear often in a seller’s auctions but rarely win. That pattern is consistent with pushing prices up while avoiding the final purchase.</p>
 <p>In this exercise, we will compute bidder win rates, combine them with seller concentration, and use the result to identify review candidates.</p>
 <p><strong>(a)</strong>. Explain why win rate adds useful context to the concentration metric. Why should win rate be calculated using distinct auctions rather than raw bid rows?</p>
