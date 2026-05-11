@@ -1,9 +1,4 @@
----
-title: 'Tutorial 10: Storing & Retrieving Data'
-author: Foundations of Business Analytics
-date: today
-date-format: "MMMM, YYYY"
----
+# Tutorial 10: Storing & Retrieving Data {.unnumbered}
 
 ::: {.callout-tip}
 ## Learning Goals {.unnumbered}
