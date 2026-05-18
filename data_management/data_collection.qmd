@@ -1,5 +1,5 @@
 ---
-title: "Collected Structured and Unstructured Data"
+title: "Collecting Structured and Unstructured Data"
 execute:
   eval: true
 ---
