@@ -12,8 +12,6 @@ By the end of this lecture, you should be able to:
 -   Distinguish structured, semi-structured, and unstructured data
 -   Explain intuitively the differences between user interface and application program interface (API)
 -   List the advantages of APIs as a means to collect data and apply use APIs to acquire data
--   Know the basic procedures of website scraping 
--   Understand the ethics of web scraping
 
 :::
 
@@ -203,7 +201,7 @@ We store our base URL as an object because we will repeatedly point our API to i
 
 ## Request weekly top tracks
 
-Let's actually ask a server for some data. To do so, we make an API request. As you will see, this is a programmatic approach, which is fundamentally different from downloading a CSV, for example:
+Let's actually ask a server for some data. To do so, we make an API request:
 
 ```{r}
 response <-
@@ -216,6 +214,8 @@ response <-
   )
 ```
 
+As you see, this is a programmatic approach, which is fundamentally different from, for example, downloading and reading in a CSV.
+
 Let's unpack our request - it has a clear structure:
 
  - We are sending a GET request: "Please send some data."
@@ -224,8 +224,6 @@ Let's unpack our request - it has a clear structure:
  - The request generates a response, which we store as an object.
 
 The response is an object - but not one we have seen before.
-
- - It isn't a dataframe yet; it isn't a table yet; it isn't cleaned data yet.
 
 So, what is this response we get back? Let's inspect it:
 
@@ -249,10 +247,9 @@ And, what does this response contain?
 headers(response)
 ```
 
-We get more than the data we are after - we also get metadata, which is information about our request and the data it returns:
+We get more than the data we are after - we also get metadata, which is information about our request and the data it returns (i.e., information on  the server, content type, encoding, etc).
 
- - server, content type, encoding, etc.;
- - the response object is like an envelope, while the body is the letter inside. The metadata are information written on the envelope.
+The following may be a helpful way to think about APIs: the response object is like an envelope, while the body is the letter inside. The metadata are information written on the envelope.
 
 But we don't yet have a dataset - we have a response object from the server that we need to operate on.
 
