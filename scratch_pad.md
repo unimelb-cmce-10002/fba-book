@@ -1,0 +1,1 @@
+Now, lightly proof read the text that accompanies the code. Keep this very minimal. Make sure sentences are complete, the same for lists. Check for typos. Clean up the grammar. But do not make substance changes to the content. Just polish and flesh out if vague or partial.
