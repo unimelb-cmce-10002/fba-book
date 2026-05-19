@@ -59,7 +59,7 @@ book:
         - tutorials/causal_analytics.qmd
         - tutorials/predictive_analytics.qmd
         - tutorials/data_storage.qmd
-        # - tutorials/data_collection.qmd
+        - tutorials/data_collection.qmd
         # - tutorials/data_variation.qmd
   # appendices:
     # - appendices/installation.qmd
