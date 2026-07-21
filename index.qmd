@@ -72,13 +72,17 @@ Lachlan has spent the last decade introducing computing and data science skills 
 Prior to joining University of Melbourne, Lachlan has worked at Tilburg University and the University of Chicago Booth School of Business. 
 Lachlan earned his PhD in Economics from the University of Zurich.
 
-**Patrick** Ferguson is a Senior Lecturer in the Accounting Group at the University of Melbourne and a Research Affiliate at the Laboratory for Innovation Science at Harvard University. 
+**Patrick Ferguson** is a Senior Lecturer in the Accounting Group at the University of Melbourne. 
 In his research, Patrick uses observational data and field experiments to study how organizations measure, reward, and report on worker performance. 
 He is also interested in contest design and sports economics.
 He received a PhD in Business Administration from Harvard University.
 
 **Junhao Liu** is a Senior Lecturer in the Accounting Group at the University of Melbourne.
 Junhao's research interests broadly pertain to archival research in financial accounting, and he is particularly interested in accounting intangibles, financial reporting and disclosure, financial analysts, and valuation.
-Junhao obtained my Ph.D. degree in accounting from Rotman School of Management at University of Toronto.
+Junhao obtained a Ph.D. degree in accounting from Rotman School of Management at University of Toronto.
+
+**Karlo Doroc** is a Senior Lecturer in the Business Analytics Group at the University of Melbourne.
+In his research, Karlo uses experiments to study how the structure of task environments and the cognitive capacities of individuals affect people's ability to solve problems and make good decisions.
+Karlo earned his PhD in Decision, Risk, and Financial Sciences at the University of Melbourne's Centre for Brain, Mind and Markets.
 
 <!-- ## Acknowledgements {.unnumbered} -->

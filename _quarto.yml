@@ -11,6 +11,7 @@ book:
     - "Lachlan Deer"
     - "Patrick Ferguson"
     - "Junhao Liu"
+    - "Karlo Doroc"
   date: last-modified
   # cover-image: figs/fba_sticker.jpg
   chapters:
@@ -48,18 +49,18 @@ book:
       number-depth: 0  # Restart numbering
       chapters:
         - tutorials/core_skills_genai.qmd
-        - tutorials/intro_r_quarto.qmd
+        # - tutorials/intro_r_quarto.qmd
         # - tutorials/what_is_business_analytics.qmd
         # - tutorials/how_to_do_business_analytics.qmd
-        - tutorials/data_visualisation.qmd
-        - tutorials/data_wrangling.qmd
-        - tutorials/data_tidy.qmd
-        - tutorials/data_variation.qmd
-        - tutorials/descriptive_analytics.qmd
-        - tutorials/causal_analytics.qmd
-        - tutorials/predictive_analytics.qmd
-        - tutorials/data_storage.qmd
-        - tutorials/data_collection.qmd
+        # - tutorials/data_visualisation.qmd
+        # - tutorials/data_wrangling.qmd
+        # - tutorials/data_tidy.qmd
+        # - tutorials/data_variation.qmd
+        # - tutorials/descriptive_analytics.qmd
+        # - tutorials/causal_analytics.qmd
+        # - tutorials/predictive_analytics.qmd
+        # - tutorials/data_storage.qmd
+        # - tutorials/data_collection.qmd
         # - tutorials/data_variation.qmd
   # appendices:
     # - appendices/installation.qmd
