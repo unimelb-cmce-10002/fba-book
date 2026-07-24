@@ -1,6 +1,5 @@
 # Tutorial 1: Core Skills of a Business Scientist in the GenAI Era {.unnumbered}
 
-
 ::: {.callout-tip}
 ## Learning Goals {.unnumbered}
 
@@ -9,8 +8,8 @@ By the end of this workshop, you should be able to:
 - Define key concepts in the Uber surge-pricing case in clear, non-technical language.
 - Formulate a decision-relevant research question that is specific, measurable, and appropriately scoped.
 - Identify the data Uber would need to investigate suspected coordination and distinguish plausible signals from confounds.
-- Propose a first-pass detection idea and explain ways in which the analysis could go wrong .
-- Evaluate how different workflows with GenAIshape the quality and defensibility of your analysis and your ownership of the work.
+- Propose a first-pass detection idea and explain ways in which the analysis could go wrong.
+- Evaluate how different workflows with GenAI shape the quality and defensibility of your analysis and your ownership of the work.
 :::
 
 ## The Business Challenge
@@ -37,9 +36,8 @@ In your own words, define the following key terms or ideas mentioned in the arti
 - Platform manipulation
 - Driver incentives
 
-
 ::: {.callout-tip}
-You don’t need to provide formal or technical definitions. Focus on explaining each concept in your own words, based on how it was used in the video.
+You don’t need to provide formal or technical definitions. Focus on explaining each concept in your own words, based on how it was used in the article.
 :::
 
 ### Exercise 2: Defining the Problem
@@ -74,13 +72,11 @@ Your manager turns to you and says:
 - **one** bullet on what could go wrong / what might mislead you,
 - **one** bullet on how you’d communicate results to a decision-maker.
 
-
 **Part B**: Which TWO of the 8 Business Scientist skills do you anticipate will matter most here, and why?
-
 
 ## In-Class Exercises
 
-You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.
+You will discuss these exercises in class with your peers in small groups and with your tutor. Because these exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.
 
 In the workshop you will work in groups of 3–4 on the same business problem (Uber surge pricing in Sydney and Melbourne). Your group will work through the in-class exercises.
 
@@ -126,7 +122,6 @@ As a group, complete the following.
 
 **Part A: Must-have data**
 List 5–7 data fields you would request or create to answer your question. For each item, add one sentence explaining what it would help you observe or measure.
-
 
 **Part B: What patterns would you expect to see?** 
 List three patterns you’d expect in the data if your hypothesis is correct.
