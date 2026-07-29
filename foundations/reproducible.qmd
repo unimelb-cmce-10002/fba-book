@@ -86,7 +86,7 @@ You may be asked verify your account via your email. Do this verification step i
 ![Main Page](../figs/foundations/reproducible/posit_main.png){fig-align="center" width="85%" fig-alt="Main Page For Posit Cloud Workspaces"}
 
 4. **Access the Course Workspace**. 
-From the left panel, click on the subject's shared workspace, ‘CMCE10002 – 2025 Semester 2.'
+From the left panel, click on the subject's shared workspace.
 
 ![Foundations of Business Analytics Workspace](../figs/foundations/reproducible/posit_fba_workspace.png){fig-align="center" width="85%" fig-alt="Main Page For Posit Cloud Workspaces"}
 
@@ -340,7 +340,7 @@ Try using it as you type to save time!
 
 ### Another Example: The AFL Ladder {.unnumbered}
 
-Let's imagine you're looking at a simplified version of the AFL ladder in 2025. Suppose these four teams have the following points:
+Let's imagine you're looking at a simplified version of the AFL ladder. Suppose these four teams have the following points:
 
 - Collingwood Magpies: 60
 - Adelaide Crows: 60
