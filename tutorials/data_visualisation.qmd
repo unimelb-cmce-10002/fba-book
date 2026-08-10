@@ -1,4 +1,5 @@
-# Tutorial 3: Data Visualisation for Business Intelligence {.unnumbered}
+---
+---
 
 ::: {.callout-tip}
 ## Learning Goals {.unnumbered}
@@ -17,6 +18,7 @@ By the end of this tutorial, you should be able to:
 
 ```{r}
 #| warning: false
+#| eval: true
 #| echo: false
 library(tidyverse)  # for plotting, includes ggplot
 library(patchwork)  # for combining multiple plots into subfigures
@@ -45,11 +47,17 @@ if (!file.exists(destfile)) {
 housing <- read_csv(destfile)
 ```
 
-### The Topic: Understanding Melbourne’s Housing Market {.unnumbered}
+### The Topic: Briefing the Sales Team at Ferg and Deer Property Advisory {.unnumbered}
 
-Melbourne’s real estate market is one of the most dynamic in Australia. Property prices are influenced by several factors, including location, dwelling type, and proximity to the Central Business District (CBD). Buyers, sellers, and policymakers constantly analyze housing trends to make informed decisions. Understanding these trends is crucial in a $2 trillion+ housing market, where even small fluctuations in pricing expectations can have significant financial impacts.
+You are a junior analyst on the Market Intelligence team at Ferg and Deer Property Advisory, a real estate advisory firm operating across Melbourne. Melbourne's real estate market is one of the most dynamic in Australia, and even small shifts in pricing expectations matter in a $2 trillion+ market. Ahead of next quarter's sales push, the Head of Residential Sales has asked your team for a one-page visual briefing: something an agent can glance at before a client meeting, and something an investor can use to sanity-check their assumptions.
 
-A key question we will explore is: How do property prices vary by region, dwelling type, and location? By analyzing real estate data, we can identify patterns that help explain the drivers of Melbourne’s housing prices and their implications for different stakeholders in the market.
+She has three specific questions, and wants one chart to answer each:
+
+1. **Where is market activity concentrated?** Which regions have the most listings? This could inform where the sales team should direct their focus.
+2. **What do prices look like across property types?** How do Houses, Townhouses, and Units compare, and what does that imply about who can afford what?
+3. **Does location explain the price differences?** How does proximity to the CBD affect property prices?
+
+Over this tutorial, you'll build one chart to answer each question, polish each one so it's ready to put in front of the Head of Residential Sales, and then assemble all three into the single one-page briefing she asked for.
 
 ### The Data: The Melbourne Housing Market Dataset {.unnumbered}
 
@@ -66,7 +74,9 @@ Just a few lines of R code transform numbers to data visualizations.
 From this:
 
 ```{r}
-#| echo: false 
+#| eval: true
+#| echo: false
+
 housing %>%
     select(type, address, postcode, price, distance, regionname) %>%
     head(10)
@@ -75,12 +85,13 @@ housing %>%
 to this:
 
 ```{r}
+#| eval: true
 #| fig-width: 7
 #| fig-height: 7
 #| fig-align: "center"
 #| echo: false
 
-price_hist <- 
+price_hist <-
     ggplot(housing,
            aes(x = price, fill = type)
            ) +
@@ -165,10 +176,12 @@ region_bar <-
         plot.title = element_text(hjust = 0.5)              # Center the title
     )
 
-# Bringing together 
+# Bringing together
 price_hist /    (region_bar | scttr)  & theme(legend.position = "none")
 
 ```
+
+This is the finished one-pager you're building towards: one panel for each of the Head of Residential Sales's three questions, assembled into a single briefing.
 
 ## Loading the Data
 
@@ -208,6 +221,8 @@ Switch the `eval` value to `TRUE` when you want the R code within a chunk to be 
 
 ### Exercise 1: Understanding `ggplot2` Syntax
 
+This first panel will answer the Head of Residential Sales's question of where market activity is concentrated. Before you build it, let's make sure you're comfortable with the `ggplot2` syntax you'll be using throughout this tutorial.
+
 Consider the code below:
 
 ```{r}
@@ -237,6 +252,8 @@ ggplot(housing,
 **(f)** Run the code above to produce the bar plot.
 
 ### Exercise 2: Visualizing the distribution of Prices by Dwelling Type
+
+This is the second panel for the briefing: it answers the Head of Residential Sales's question of what prices look like across property types.
 
 By the end of this exercise, your plot should look similar to this one:
 
@@ -308,6 +325,8 @@ ggplot(housing,
 **(e)** What does the histogram tell you about price differences between dwelling types?
 
 ### Exercise 3: The Price - Distance Relationship
+
+This is the third and final panel: it tackles the Head of Residential Sales's last question, whether distance from the CBD explains the price differences you're seeing.
 
 By the end of this exercise, your plot should look similar to this one:
 
@@ -396,6 +415,7 @@ You will discuss these exercises in class with your peers in small groups and wi
 
 **(c).** Implement the changes suggested in the R code.
 
+**(d)** What's the key takeaway from this panel? In a sentence or two, what does it tell the Head of Residential Sales about pricing across dwelling types?
 
 ### Exercise 5: Improving the Price-Distance Relationship Plot
 
@@ -404,6 +424,8 @@ You will discuss these exercises in class with your peers in small groups and wi
 **(b).** Work with your tutor to create an agreed upon list of changes to make to the plot. What steps do you need to take to make these improvements?
 
 **(c).** Implement the changes suggested in the R.
+
+**(d)** What's the key takeaway from this panel? In a sentence or two, what does it tell the Head of Residential Sales about the relationship between price and distance to the CBD?
 
 
 ### Exercise 6 [Optional, if time]: Improving the Listings by Region Plot
@@ -414,6 +436,7 @@ You will discuss these exercises in class with your peers in small groups and wi
 
 **(c).** Implement the changes suggested in the R.
 
+**(d)** What's the key takeaway from this panel? In a sentence or two, what does it tell the Head of Residential Sales about where listing activity is concentrated?
 
 ### Exercise 7: Putting the plots together
 
@@ -433,12 +456,9 @@ PLOT_ONE /
 ggsave("YOUR_FILE_NAME", width = 12, height = 8)
 ```
 
+### Exercise 8: A hallway conversation with the Head of
 
-### Exercise 8: Synthesizing the Findings
+You only have ten seconds with the Head of Residential Sales before she moves to her next meeting. You can show her exactly **one** of your three panels.
 
-If you were presenting these results in a business meeting, how would you explain the key takeaways? Structure your summary to include:
-
-* What you analyzed (data, variables)
-* What you found (key insights from the visualizations)
-* What decisions could be made based on this information?
+Which panel do you choose, and in one sentence, what do you say about it? Be ready to defend your choice.
 
