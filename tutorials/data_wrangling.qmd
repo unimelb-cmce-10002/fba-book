@@ -133,6 +133,8 @@ Before we start coding, it helps to know what each verb is designed to do.
 6. Set up the data so that each industry is analysed separately
 7. Calculate the average ROIC for each industry
 
+*Write your answer here*
+
 ### Exercise 2: Understanding the Pipe Operator, `|>`
 
 In this exercise, we use two animals — a lion and a giraffe — to explore how the pipe operator, `|>`, works.
@@ -164,7 +166,6 @@ roar(lift_head(stand_up(lion), angle = 30), volume = 10)
 This version is shorter, but it can be harder to read because we have to work from the inside out.
 
 Which function runs first in this version?
-
 
 **(c).** The pipe operator lets us write the same sequence in the order the actions happen.
 
@@ -212,6 +213,8 @@ Write this sequence in the three ways shown above.
 
 **(f).** In one sentence, explain how the pipe helps us write code in an **“and then”** way.
 
+*Write your answer here*
+
 ### Exercise 3: Create the Analysis Dataset
 
 In the rest of this tutorial, we will work with a dataset called `firm_strategy`.
@@ -251,6 +254,8 @@ firm_strategy <-
 
 **(d).** In one sentence, explain why we use `filter()` before `mutate()` in our solution to (c).
 
+*Write your answer here*
+
 ### Exercise 4: Create a Smaller Checking Dataset
 
 We have now created a new dataset called `firm_strategy`.
@@ -278,12 +283,28 @@ firm_strategy_check <-
 ```{r}
 #| eval: false
 firm_strategy_check |>
-  YOUR_CODE()
+  YOUR_CODE
 ```
 
 **(c).** Why might it be useful to create a smaller checking dataset instead of inspecting the full `firm_strategy` dataset?
 
 **(d).** Looking at a few rows is a useful first step, but it might not scale well to a large dataset where we compute hundreds of variables. What might be a more scalable next step if you wanted to check whether `profit_margin` and `asset_turnover` look reasonable across all firms?
+
+```{r}
+#| eval: false
+#| include: false
+
+library(tidyverse)
+unprepared = T
+if(unprepared){
+  firm_strategy <- 
+    read_csv("data/firm_strategy.csv")
+}
+```
+
+```{r}
+# Write your answer here
+```
 
 ## In-Class Exercises
 
@@ -307,6 +328,7 @@ Your table should include:
 
 ```{r}
 #| eval: false
+
 firm_strategy |>
     slice_max(YOUR_CODE_HERE) |>
     select(YOUR_VARIABLES_HERE)
@@ -326,6 +348,8 @@ firm_strategy |>
 * Do the same firms appear in both tables?
 * What kinds of industries seem more common in each table?
 * What does this suggest about different ways firms generate profits?
+
+*Write your answer here*
 
 ### Exercise 6: Comparing Industries Using Average Values
 
@@ -367,8 +391,8 @@ industry_summary |>
 ```{r}
 #| eval: false
 industry_summary |>
-    YOUR_CODE() |>
-    YOUR_CODE()
+    YOUR_CODE |>
+    YOUR_CODE
 ```
 
 **(e).** Compare the two rankings. How do these industry-level patterns comapre to what you saw earlier in Exercise 5, where different kinds of firms appeared in the high-margin and high-turnover tables?
@@ -380,11 +404,13 @@ industry_summary |>
 * a **high** standard deviation in `profit_margin`?
 * a **low** standard deviation in `profit_margin`?
 
+*Write your answer here*
+
 ### Exercise 7: Summarising the Findings for Executives
 
 Imagine you work at a large consulting company that is preparing an annual report on the financial results of Australian firms.
 
-Your team has been asked to analyse how large Australian listed firms generate strong results across different industries. As part of this project, you need to present an interim result to the executives overseeing the report.
+Your team has been asked to analyse how large Australian listed firms generate strong results, with a strong focus on differences across industries. As part of this project, you need to present an interim result to the executives overseeing the report.
 
 Write 3–4 sentences that could appear in the interim report's executive summary.
 
@@ -395,6 +421,8 @@ Your summary should answer the following:
 3. What is the main business lessons one should take from these results?
 
 Write for a non-technical audience and focus on the business meaning of the results.
+
+*Write your answer here*
 
 ### Exercise 8 [Optional]: Visualising the Profit Margin – Asset Turnover Relationship
 
@@ -440,3 +468,4 @@ industry_summary |>
 ```
 
 **(e).** What does the line suggest about the relationship between average profit margin and average asset turnover across industries?
+
