@@ -300,29 +300,13 @@ This is not what we wanted.
 Here the 5th quantile represents customers who on average interacted with the company approximately 17 months ago, the longest of all the quantiles.
 We wanted the 5th quantile to represent most recent, and the 1st quantile to be the longest. 
 We'll need to reverse that ranking.
-Reversing the ranking is unfortunately a bit more complex than we'd want. 
-
-How can we flip the numbers around?
-
-* If a customer in tile 1 they should be in 5.
-* If a customer in tile 5 they should be in 1.
-* A customer in tile 3 should stay 3.
-
-Mathematically, we can do this by subtracting the tile number from the maximum, and then adding 1 back:
-
-
-$$
-\text{new tile} = (\text{max tile value})−(\text{old tile value})+1
-$$
-
-This simple formula inverts the direction of the recency scores while keeping them within the same 1–5 scale.
-Let's implement it:
+Luckily that is easy -- we can sort in reverse order using the `-` operator inside the `ntile()` function:
 
 ```{r}
 rfm_data <-
   rfm_data |>
   mutate(
-    r_tile   = max(r_tile) - r_tile + 1,    # invert → 5 (recent) … 1 (stale)
+    r_tile   = ntile(-recency, 5)
   )
 
 # Check the direction now: higher r_tile should mean more recent (lower recency)
