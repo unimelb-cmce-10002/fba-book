@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Storing and Using Existing Data – Foundations of Business Analytics</title>
+<title>11&nbsp; Storing and Using Existing Data – Foundations of Business Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../data_management/data_collection.html" rel="next">
-<link href="../advanced_analytics/causal_analytics.html" rel="prev">
+<link href="../advanced_analytics/predictive_analytics.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data_management/data_storage.html">Finding and Storing Data</a></li><li class="breadcrumb-item"><a href="../data_management/data_storage.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data_management/data_storage.html">Finding and Storing Data</a></li><li class="breadcrumb-item"><a href="../data_management/data_storage.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -236,6 +236,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Causal Analytics</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/predictive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-Driven Predictions</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -250,13 +256,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Collecting Structured and Unstructured Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Collecting Structured and Unstructured Data</span></span></a>
   </div>
 </li>
       </ul>
@@ -273,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ethics_privacy/ethics_privacy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></span></a>
   </div>
 </li>
       </ul>
@@ -341,41 +347,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge"><span class="header-section-number">10.1</span> The Business Challenge</a>
+  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge"><span class="header-section-number">11.1</span> The Business Challenge</a>
   <ul class="collapse">
   <li><a href="#about-the-data" id="toc-about-the-data" class="nav-link" data-scroll-target="#about-the-data">About the Data</a></li>
   </ul></li>
-  <li><a href="#spreadsheets-excel-friends" id="toc-spreadsheets-excel-friends" class="nav-link" data-scroll-target="#spreadsheets-excel-friends"><span class="header-section-number">10.2</span> Spreadsheets (Excel &amp; Friends)</a>
+  <li><a href="#spreadsheets-excel-friends" id="toc-spreadsheets-excel-friends" class="nav-link" data-scroll-target="#spreadsheets-excel-friends"><span class="header-section-number">11.2</span> Spreadsheets (Excel &amp; Friends)</a>
   <ul class="collapse">
   <li><a href="#reading-spreadsheets-in-r" id="toc-reading-spreadsheets-in-r" class="nav-link" data-scroll-target="#reading-spreadsheets-in-r">Reading Spreadsheets in R</a></li>
   <li><a href="#issues-with-spreadsheets" id="toc-issues-with-spreadsheets" class="nav-link" data-scroll-target="#issues-with-spreadsheets">Issues with Spreadsheets</a></li>
   <li><a href="#writing-to-excel" id="toc-writing-to-excel" class="nav-link" data-scroll-target="#writing-to-excel">Writing to Excel</a></li>
   </ul></li>
-  <li><a href="#flat-files-csv-tsv-and-other-delimited-files" id="toc-flat-files-csv-tsv-and-other-delimited-files" class="nav-link" data-scroll-target="#flat-files-csv-tsv-and-other-delimited-files"><span class="header-section-number">10.3</span> Flat Files (CSV, TSV and other delimited files)</a>
+  <li><a href="#flat-files-csv-tsv-and-other-delimited-files" id="toc-flat-files-csv-tsv-and-other-delimited-files" class="nav-link" data-scroll-target="#flat-files-csv-tsv-and-other-delimited-files"><span class="header-section-number">11.3</span> Flat Files (CSV, TSV and other delimited files)</a>
   <ul class="collapse">
-  <li><a href="#reading-flat-files-in-r" id="toc-reading-flat-files-in-r" class="nav-link" data-scroll-target="#reading-flat-files-in-r"><span class="header-section-number">10.3.1</span> Reading Flat Files in R</a></li>
-  <li><a href="#writing-to-a-file" id="toc-writing-to-a-file" class="nav-link" data-scroll-target="#writing-to-a-file"><span class="header-section-number">10.3.2</span> Writing to a file</a></li>
+  <li><a href="#reading-flat-files-in-r" id="toc-reading-flat-files-in-r" class="nav-link" data-scroll-target="#reading-flat-files-in-r"><span class="header-section-number">11.3.1</span> Reading Flat Files in R</a></li>
+  <li><a href="#writing-to-a-file" id="toc-writing-to-a-file" class="nav-link" data-scroll-target="#writing-to-a-file"><span class="header-section-number">11.3.2</span> Writing to a file</a></li>
   </ul></li>
-  <li><a href="#json-files-when-rectangular-data-might-not-be-enough" id="toc-json-files-when-rectangular-data-might-not-be-enough" class="nav-link" data-scroll-target="#json-files-when-rectangular-data-might-not-be-enough"><span class="header-section-number">10.4</span> JSON Files: When rectangular data might not be enough</a>
+  <li><a href="#json-files-when-rectangular-data-might-not-be-enough" id="toc-json-files-when-rectangular-data-might-not-be-enough" class="nav-link" data-scroll-target="#json-files-when-rectangular-data-might-not-be-enough"><span class="header-section-number">11.4</span> JSON Files: When rectangular data might not be enough</a>
   <ul class="collapse">
   <li><a href="#working-with-nested-json-auction-data-in-r" id="toc-working-with-nested-json-auction-data-in-r" class="nav-link" data-scroll-target="#working-with-nested-json-auction-data-in-r">Working with Nested JSON Auction Data in R</a></li>
   </ul></li>
-  <li><a href="#databases-with-duckdb" id="toc-databases-with-duckdb" class="nav-link" data-scroll-target="#databases-with-duckdb"><span class="header-section-number">10.5</span> Databases with DuckDB</a>
+  <li><a href="#databases-with-duckdb" id="toc-databases-with-duckdb" class="nav-link" data-scroll-target="#databases-with-duckdb"><span class="header-section-number">11.5</span> Databases with DuckDB</a>
   <ul class="collapse">
   <li><a href="#connecting-to-a-database" id="toc-connecting-to-a-database" class="nav-link" data-scroll-target="#connecting-to-a-database">Connecting to a database</a></li>
   <li><a href="#dbplyr-dplyr-for-databases" id="toc-dbplyr-dplyr-for-databases" class="nav-link" data-scroll-target="#dbplyr-dplyr-for-databases"><code>dbplyr</code>: <code>dplyr</code> for databases</a></li>
-  <li><a href="#working-with-the-auctions-database" id="toc-working-with-the-auctions-database" class="nav-link" data-scroll-target="#working-with-the-auctions-database"><span class="header-section-number">10.5.1</span> Working with the Auctions database</a></li>
+  <li><a href="#working-with-the-auctions-database" id="toc-working-with-the-auctions-database" class="nav-link" data-scroll-target="#working-with-the-auctions-database"><span class="header-section-number">11.5.1</span> Working with the Auctions database</a></li>
   </ul></li>
-  <li><a href="#wrap-up-which-format-would-you-use" id="toc-wrap-up-which-format-would-you-use" class="nav-link" data-scroll-target="#wrap-up-which-format-would-you-use"><span class="header-section-number">10.6</span> Wrap-up: Which Format Would You Use?</a></li>
+  <li><a href="#wrap-up-which-format-would-you-use" id="toc-wrap-up-which-format-would-you-use" class="nav-link" data-scroll-target="#wrap-up-which-format-would-you-use"><span class="header-section-number">11.6</span> Wrap-up: Which Format Would You Use?</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data_management/data_storage.html">Finding and Storing Data</a></li><li class="breadcrumb-item"><a href="../data_management/data_storage.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data_management/data_storage.html">Finding and Storing Data</a></li><li class="breadcrumb-item"><a href="../data_management/data_storage.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></h1>
 </div>
 
 
@@ -413,8 +419,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </div>
 </div>
-<section id="the-business-challenge" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="the-business-challenge"><span class="header-section-number">10.1</span> The Business Challenge</h2>
+<section id="the-business-challenge" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="the-business-challenge"><span class="header-section-number">11.1</span> The Business Challenge</h2>
 <p>Online marketplaces like eBay host millions of auctions each year, connecting buyers and sellers across countless product categories. Behind the scenes, this generates complex, nested, and high-volume data. For a business analyst, turning this raw data into useful insights—and storing it in a way that’s efficient, accessible, and reusable—is a foundational challenge.</p>
 <p>Suppose you’ve just joined the data team at this fast-growing online marketplace. Right now, every team — from marketing to data engineering and customer support — is handling auction data in different ways: some use Excel sheets, others parse logs from an API that stores information in a format called JSON, and data engineers keep things in a database (but no one else knows how to read them!).</p>
 <p>This chaos is slowing everyone down. Your first task as a new analyst is to propose a better data storage solution that balances usability, scalability, and efficiency for teams across the business.</p>
@@ -456,8 +462,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="spreadsheets-excel-friends" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="spreadsheets-excel-friends"><span class="header-section-number">10.2</span> Spreadsheets (Excel &amp; Friends)</h2>
+<section id="spreadsheets-excel-friends" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="spreadsheets-excel-friends"><span class="header-section-number">11.2</span> Spreadsheets (Excel &amp; Friends)</h2>
 <p>For many of us, spreadsheets like Microsoft Excel or Google Sheets are the default way we have worked with data until starting our business analytics journey.</p>
 <section id="reading-spreadsheets-in-r" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="reading-spreadsheets-in-r">Reading Spreadsheets in R</h3>
@@ -469,7 +475,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <img src="../figs/data-management/ebay_auctions_excel.png" class="quarto-figure quarto-figure-center figure-img" style="width:100.0%;height:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-auctions-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.1: Auctions Data in Excel Format
+Figure&nbsp;11.1: Auctions Data in Excel Format
 </figcaption>
 </figure>
 </div>
@@ -610,8 +616,8 @@ Figure&nbsp;10.1: Auctions Data in Excel Format
 </div>
 </section>
 </section>
-<section id="flat-files-csv-tsv-and-other-delimited-files" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="flat-files-csv-tsv-and-other-delimited-files"><span class="header-section-number">10.3</span> Flat Files (CSV, TSV and other delimited files)</h2>
+<section id="flat-files-csv-tsv-and-other-delimited-files" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="flat-files-csv-tsv-and-other-delimited-files"><span class="header-section-number">11.3</span> Flat Files (CSV, TSV and other delimited files)</h2>
 <p>When we need to store and share structured data reliably, especially in a way that can be reproduced by code, an alternative format often works better: flat files. Flat files look similar to spreadsheets on the surface—just rows and columns of data—but under the hood they behave very differently. A flat file is stored as plain text. Each line represents a row of data, and the values are separated by a special character like a comma or tab. There are no formulas, no styling, no hidden or merged cells - just the raw information. There is another difference compared to Spreadsheets like Excel, flat files store each data set as a separate file, so there is no concept of multiple sheets if information stored in the same file.</p>
 <p>One of the most common flat file types is the CSV, which stands for Comma-Separated Values. You have already encountered files with a .csv extension in the earlier chapter in this book, all the data we have worked with so far has been stored as CSV files.</p>
 <p>For our auction example this means there are 3 CSV files, one each for <code>auctions</code>, <code>bids</code> and <code>sellers</code></p>
@@ -634,8 +640,8 @@ Figure&nbsp;10.1: Auctions Data in Excel Format
 </div>
 </div>
 </div>
-<section id="reading-flat-files-in-r" class="level3" data-number="10.3.1">
-<h3 data-number="10.3.1" class="anchored" data-anchor-id="reading-flat-files-in-r"><span class="header-section-number">10.3.1</span> Reading Flat Files in R</h3>
+<section id="reading-flat-files-in-r" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="reading-flat-files-in-r"><span class="header-section-number">11.3.1</span> Reading Flat Files in R</h3>
 <p>In R, we can use the <code>readr</code> package to import flat files quickly and reliably. We can read this file into R using <code>read_csv()</code>. The first argument is the most important: the path to the file. You can think about the path as the address of the file: the file is called <code>bids.csv</code> and it lives in the <code>data</code> folder.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
@@ -683,8 +689,8 @@ dttm (1): bid_time
 </div>
 </div>
 </section>
-<section id="writing-to-a-file" class="level3" data-number="10.3.2">
-<h3 data-number="10.3.2" class="anchored" data-anchor-id="writing-to-a-file"><span class="header-section-number">10.3.2</span> Writing to a file</h3>
+<section id="writing-to-a-file" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="writing-to-a-file"><span class="header-section-number">11.3.2</span> Writing to a file</h3>
 <p><code>readr</code> also comes with functions for writing data back to disk: <code>write_csv()</code> and <code>write_delim()</code>. The most important arguments to these functions are the data frame we want to save and the location where we want to save the file. Suppose we want to take the bids from <code>AUC0001</code> and save them in a CSV file <code>bids_auc0001.csv</code> located in the data directory:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>auctions_filtered <span class="ot">&lt;-</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    bids <span class="sc">|&gt;</span> </span>
@@ -693,8 +699,8 @@ dttm (1): bid_time
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(auctions_filtered, <span class="st">"data/bids_auc0001.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="json-files-when-rectangular-data-might-not-be-enough" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="json-files-when-rectangular-data-might-not-be-enough"><span class="header-section-number">10.4</span> JSON Files: When rectangular data might not be enough</h2>
+<section id="json-files-when-rectangular-data-might-not-be-enough" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="json-files-when-rectangular-data-might-not-be-enough"><span class="header-section-number">11.4</span> JSON Files: When rectangular data might not be enough</h2>
 <p>Flat files are great when every observation fits neatly into one row. But sometimes our dataset comes with a sort of hierarchy, its mini-datasets nested inside a larger dataset. In our <code>bids</code> data, for example, one could imagine rather than having each row of data being one bid from one auction, and storing the <code>item_id</code> in each row along with the bid information, we could think about storing the set of bids for each auction as a mini-dataset attached to each item ID.</p>
 <p>To handle these cases, we can use nested data formats — and one of the most popular is JSON. JSON (JavaScript Object Notation) is a format designed to store structured data. It can be especially useful when one record contains multiple layers of information—for example, an auction that has several bids attached to it as we have here.</p>
 <p>Unlike flat files, JSON allows us to store all related data in one object, without repeating fields. It’s human-readable, flexible, and widely used in real-world business data systems.</p>
@@ -837,8 +843,8 @@ dttm (1): bid_time
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(auctions_tbl)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="step-4-rectangling-non-rectangular-data" class="level4" data-number="10.4.0.1">
-<h4 data-number="10.4.0.1" class="anchored" data-anchor-id="step-4-rectangling-non-rectangular-data"><span class="header-section-number">10.4.0.1</span> Step 4: Rectangling non-rectangular data</h4>
+<section id="step-4-rectangling-non-rectangular-data" class="level4" data-number="11.4.0.1">
+<h4 data-number="11.4.0.1" class="anchored" data-anchor-id="step-4-rectangling-non-rectangular-data"><span class="header-section-number">11.4.0.1</span> Step 4: Rectangling non-rectangular data</h4>
 <p>Now our task is to enagage in “data rectangling”: taking data that is fundamentally hierarchical, or tree-like, and converting it into a rectangular data frame made up of rows and columns. To start rectangling the data, we want to take the top level keys from our JSON data and convert them to columns of data. We make this conversion by unnesting the lists we have stored in the <code>record</code> column, and making our data <em>wider</em>, thus the function we want to use is <code>unnest_wider()</code>. This process of removing hierarchy is also known as flattening the data. Let’s do it:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>auctions_tbl <span class="ot">&lt;-</span> </span>
@@ -942,8 +948,8 @@ dttm (1): bid_time
 </section>
 </section>
 </section>
-<section id="databases-with-duckdb" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="databases-with-duckdb"><span class="header-section-number">10.5</span> Databases with DuckDB</h2>
+<section id="databases-with-duckdb" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="databases-with-duckdb"><span class="header-section-number">11.5</span> Databases with DuckDB</h2>
 <p>A huge amount of business data lives in databases, so it’s important that you know how to access it. The reason lots of business data lives inside of a database, is that databases are efficient at storing the data and there is a widely used language, known as SQL (Structured Query Language), for performing data wrangling on databases. Luckily for us, our knowlegde of R and the tidyverse in particular, means we have most of tools we need to work with data that lives in pre-existing databases. This is because the packages within the tidyverse know how to translate and run <code>dplyr</code> commands on a database. This means that once we know how to connect to a database, we can apply the knowledge from previous chapters to extract insights with relative ease.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
@@ -1063,8 +1069,8 @@ dttm (1): bid_time
 <p>Typically, you’ll use <code>dbplyr</code> to select the data you want from the database, performing basic filtering and aggregation using the translations described below. Then, once you’re ready to analyse the data with functions that are unique to R, you’ll <code>collect()</code> the data to get an in-memory tibble, and (possibly) continue your work with pure R code.</p>
 <p>To see this in action, let’s wrangle the data in the database to produce a table very similar to the one we produced by flattening the JSON data.</p>
 </section>
-<section id="working-with-the-auctions-database" class="level3" data-number="10.5.1">
-<h3 data-number="10.5.1" class="anchored" data-anchor-id="working-with-the-auctions-database"><span class="header-section-number">10.5.1</span> Working with the Auctions database</h3>
+<section id="working-with-the-auctions-database" class="level3" data-number="11.5.1">
+<h3 data-number="11.5.1" class="anchored" data-anchor-id="working-with-the-auctions-database"><span class="header-section-number">11.5.1</span> Working with the Auctions database</h3>
 <p>To start to aggregate our data into one table, we can join the data in the <code>auctions</code> table to the seller information in <code>sellers</code>. We will do this using a <code>left_join()</code>. First let’s look at each of the datasets structures to find a common variable to join on:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl</span>(con, <span class="st">"auctions"</span>) <span class="sc">|&gt;</span> </span>
@@ -1094,8 +1100,8 @@ dttm (1): bid_time
 <p>Which has the same rows and columns as the rectangled data from the JSON file.</p>
 </section>
 </section>
-<section id="wrap-up-which-format-would-you-use" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="wrap-up-which-format-would-you-use"><span class="header-section-number">10.6</span> Wrap-up: Which Format Would You Use?</h2>
+<section id="wrap-up-which-format-would-you-use" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="wrap-up-which-format-would-you-use"><span class="header-section-number">11.6</span> Wrap-up: Which Format Would You Use?</h2>
 <p>Now that we’ve seen four alternative data storage formats:</p>
 <ol type="1">
 <li>Spreadsheets</li>
@@ -1512,13 +1518,13 @@ dttm (1): bid_time
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../advanced_analytics/causal_analytics.html" class="pagination-link" aria-label="Causal Analytics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Causal Analytics</span></span>
+      <a href="../advanced_analytics/predictive_analytics.html" class="pagination-link" aria-label="Forming and Evaluating Data-Driven Predictions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-Driven Predictions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../data_management/data_collection.html" class="pagination-link" aria-label="Collecting Structured and Unstructured Data">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Collecting Structured and Unstructured Data</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Collecting Structured and Unstructured Data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Collecting Structured and Unstructured Data – Foundations of Business Analytics</title>
+<title>12&nbsp; Collecting Structured and Unstructured Data – Foundations of Business Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data_management/data_storage.html">Finding and Storing Data</a></li><li class="breadcrumb-item"><a href="../data_management/data_collection.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Collecting Structured and Unstructured Data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data_management/data_storage.html">Finding and Storing Data</a></li><li class="breadcrumb-item"><a href="../data_management/data_collection.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Collecting Structured and Unstructured Data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -236,6 +236,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Causal Analytics</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../advanced_analytics/predictive_analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Forming and Evaluating Data-Driven Predictions</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -250,13 +256,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../data_management/data_storage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../data_management/data_collection.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Collecting Structured and Unstructured Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Collecting Structured and Unstructured Data</span></span></a>
   </div>
 </li>
       </ul>
@@ -273,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ethics_privacy/ethics_privacy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></span></a>
   </div>
 </li>
       </ul>
@@ -341,34 +347,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge"><span class="header-section-number">11.1</span> The Business Challenge</a></li>
-  <li><a href="#structured-semi-structured-and-unstructured-data" id="toc-structured-semi-structured-and-unstructured-data" class="nav-link" data-scroll-target="#structured-semi-structured-and-unstructured-data"><span class="header-section-number">11.2</span> Structured, Semi-structured, and Unstructured Data</a>
+  <li><a href="#the-business-challenge" id="toc-the-business-challenge" class="nav-link active" data-scroll-target="#the-business-challenge"><span class="header-section-number">12.1</span> The Business Challenge</a></li>
+  <li><a href="#structured-semi-structured-and-unstructured-data" id="toc-structured-semi-structured-and-unstructured-data" class="nav-link" data-scroll-target="#structured-semi-structured-and-unstructured-data"><span class="header-section-number">12.2</span> Structured, Semi-structured, and Unstructured Data</a>
   <ul class="collapse">
   <li><a href="#structured-data" id="toc-structured-data" class="nav-link" data-scroll-target="#structured-data">Structured Data</a></li>
   <li><a href="#unstructured-data" id="toc-unstructured-data" class="nav-link" data-scroll-target="#unstructured-data">Unstructured Data</a></li>
   <li><a href="#semi-structured-data" id="toc-semi-structured-data" class="nav-link" data-scroll-target="#semi-structured-data">Semi-Structured Data</a></li>
   </ul></li>
-  <li><a href="#getting-data-using-application-program-interface-api" id="toc-getting-data-using-application-program-interface-api" class="nav-link" data-scroll-target="#getting-data-using-application-program-interface-api"><span class="header-section-number">11.3</span> Getting Data Using Application Program Interface (API)</a>
+  <li><a href="#getting-data-using-application-program-interface-api" id="toc-getting-data-using-application-program-interface-api" class="nav-link" data-scroll-target="#getting-data-using-application-program-interface-api"><span class="header-section-number">12.3</span> Getting Data Using Application Program Interface (API)</a>
   <ul class="collapse">
   <li><a href="#definitions-of-api" id="toc-definitions-of-api" class="nav-link" data-scroll-target="#definitions-of-api">Definitions of API</a></li>
   <li><a href="#advantages-of-apis" id="toc-advantages-of-apis" class="nav-link" data-scroll-target="#advantages-of-apis">Advantages of APIs</a></li>
   <li><a href="#workflow-of-using-apis-to-acquire-data" id="toc-workflow-of-using-apis-to-acquire-data" class="nav-link" data-scroll-target="#workflow-of-using-apis-to-acquire-data">Workflow of Using APIs to Acquire Data</a></li>
   </ul></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">11.4</span> Setup</a></li>
-  <li><a href="#request-weekly-top-tracks" id="toc-request-weekly-top-tracks" class="nav-link" data-scroll-target="#request-weekly-top-tracks"><span class="header-section-number">11.5</span> Request weekly top tracks</a></li>
-  <li><a href="#inspect-the-json-response" id="toc-inspect-the-json-response" class="nav-link" data-scroll-target="#inspect-the-json-response"><span class="header-section-number">11.6</span> Inspect the JSON response</a></li>
-  <li><a href="#rectangle-the-top-tracks" id="toc-rectangle-the-top-tracks" class="nav-link" data-scroll-target="#rectangle-the-top-tracks"><span class="header-section-number">11.7</span> Rectangle the top tracks</a></li>
-  <li><a href="#apis-as-interactive-programmable-data-systems" id="toc-apis-as-interactive-programmable-data-systems" class="nav-link" data-scroll-target="#apis-as-interactive-programmable-data-systems"><span class="header-section-number">11.8</span> APIs as interactive programmable data systems</a></li>
-  <li><a href="#where-to-from-here" id="toc-where-to-from-here" class="nav-link" data-scroll-target="#where-to-from-here"><span class="header-section-number">11.9</span> Where to from here?</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">12.4</span> Setup</a></li>
+  <li><a href="#request-weekly-top-tracks" id="toc-request-weekly-top-tracks" class="nav-link" data-scroll-target="#request-weekly-top-tracks"><span class="header-section-number">12.5</span> Request weekly top tracks</a></li>
+  <li><a href="#inspect-the-json-response" id="toc-inspect-the-json-response" class="nav-link" data-scroll-target="#inspect-the-json-response"><span class="header-section-number">12.6</span> Inspect the JSON response</a></li>
+  <li><a href="#rectangle-the-top-tracks" id="toc-rectangle-the-top-tracks" class="nav-link" data-scroll-target="#rectangle-the-top-tracks"><span class="header-section-number">12.7</span> Rectangle the top tracks</a></li>
+  <li><a href="#apis-as-interactive-programmable-data-systems" id="toc-apis-as-interactive-programmable-data-systems" class="nav-link" data-scroll-target="#apis-as-interactive-programmable-data-systems"><span class="header-section-number">12.8</span> APIs as interactive programmable data systems</a></li>
+  <li><a href="#where-to-from-here" id="toc-where-to-from-here" class="nav-link" data-scroll-target="#where-to-from-here"><span class="header-section-number">12.9</span> Where to from here?</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data_management/data_storage.html">Finding and Storing Data</a></li><li class="breadcrumb-item"><a href="../data_management/data_collection.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Collecting Structured and Unstructured Data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../data_management/data_storage.html">Finding and Storing Data</a></li><li class="breadcrumb-item"><a href="../data_management/data_collection.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Collecting Structured and Unstructured Data</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Collecting Structured and Unstructured Data</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Collecting Structured and Unstructured Data</span></h1>
 </div>
 
 
@@ -403,14 +409,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </div>
 </div>
-<section id="the-business-challenge" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="the-business-challenge"><span class="header-section-number">11.1</span> The Business Challenge</h2>
+<section id="the-business-challenge" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="the-business-challenge"><span class="header-section-number">12.1</span> The Business Challenge</h2>
 <p>Data is often called the “new oil” of the digital economy. Yet, just as not all oil flows neatly through pipelines, not all data comes in ready-to-use formats. Some data is nicely organized in databases, spreadsheets, or CSV files, while other data appears in messy, irregular, or unconventional formats.</p>
 <p>So far in this subject, we have mainly worked with structured data. In practice, however, such well-organized data is something of a luxury. It is costly to collect, standardize, and store, and organizations often invest heavily in information systems just to maintain it. At the same time, vast amounts of potentially valuable data exist outside these traditional formats.</p>
 <p>In this chapter, we will explore structured, semi-structured, and unstructured data. You will learn the defining characteristics of each category, why they matter for business analytics, and how analysts can collect and make use of data from different sources.</p>
 </section>
-<section id="structured-semi-structured-and-unstructured-data" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="structured-semi-structured-and-unstructured-data"><span class="header-section-number">11.2</span> Structured, Semi-structured, and Unstructured Data</h2>
+<section id="structured-semi-structured-and-unstructured-data" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="structured-semi-structured-and-unstructured-data"><span class="header-section-number">12.2</span> Structured, Semi-structured, and Unstructured Data</h2>
 <p>Just as crude oil must be refined before it becomes useful, raw data only generates value when it can be systematically collected, processed, and analyzed. Depending on how well-defined its format is, data is typically classified into three broad categories:</p>
 <ul>
 <li>Structured data</li>
@@ -554,8 +560,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="getting-data-using-application-program-interface-api" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="getting-data-using-application-program-interface-api"><span class="header-section-number">11.3</span> Getting Data Using Application Program Interface (API)</h2>
+<section id="getting-data-using-application-program-interface-api" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="getting-data-using-application-program-interface-api"><span class="header-section-number">12.3</span> Getting Data Using Application Program Interface (API)</h2>
 <p>In library, we may not always be able to go and look for the books directly - especially when some books may be stored in the staff-only area or difficult to find. In such cases, we can submit requests to a librarian, and the librarian gets the books for us from the shelves.</p>
 <p>This process is a nice analogy to what happens when we acquire data via application program interface (API):</p>
 <ul>
@@ -613,8 +619,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 </section>
-<section id="setup" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="setup"><span class="header-section-number">11.4</span> Setup</h2>
+<section id="setup" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="setup"><span class="header-section-number">12.4</span> Setup</h2>
 <p>Every day we interact with systems that exchange data automatically: Spotify, banking apps, weather services, maps, financial platforms, and AI systems.</p>
 <p>Most of these systems communicate through APIs. Websites are usually designed for humans who want to gather information; APIs are designed for software systems that gather information. In other words, APIs are standardized machine interfaces for structured data exchange.</p>
 <p>APIs usually return structured transport data, not analysis-ready tables. After we have called an API, we need to do the following to the response we receive:</p>
@@ -648,8 +654,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>httr</code> helps us communicate with APIs.</p>
 <p>We store our base URL as an object because we will repeatedly point our API to it, plus some extension depending on the specific data we are after.</p>
 </section>
-<section id="request-weekly-top-tracks" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="request-weekly-top-tracks"><span class="header-section-number">11.5</span> Request weekly top tracks</h2>
+<section id="request-weekly-top-tracks" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="request-weekly-top-tracks"><span class="header-section-number">12.5</span> Request weekly top tracks</h2>
 <p>Let’s actually ask a server for some data. To do so, we make an API request:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span></span>
@@ -713,8 +719,8 @@ attr(,"class")
 <p>The following may be a helpful way to think about APIs: the response object is like an envelope, while the body is the letter inside. The metadata are information written on the envelope.</p>
 <p>But we don’t yet have a dataset - we have a response object from the server that we need to operate on.</p>
 </section>
-<section id="inspect-the-json-response" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="inspect-the-json-response"><span class="header-section-number">11.6</span> Inspect the JSON response</h2>
+<section id="inspect-the-json-response" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="inspect-the-json-response"><span class="header-section-number">12.6</span> Inspect the JSON response</h2>
 <p>We need to first extract the body of this response as text - i.e., the JSON text that contains the music data. For our purposes, we can leave the rest behind because we don’t need the metadata, headers, status code, etc.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>json_text <span class="ot">&lt;-</span></span>
@@ -783,8 +789,8 @@ $plays
 </div>
 <p>Now we are drilling into the actual records returned by the API. One track is itself a structured object - it contains multiple pieces of information that we need to pull out and place down columns.</p>
 </section>
-<section id="rectangle-the-top-tracks" class="level2" data-number="11.7">
-<h2 data-number="11.7" class="anchored" data-anchor-id="rectangle-the-top-tracks"><span class="header-section-number">11.7</span> Rectangle the top tracks</h2>
+<section id="rectangle-the-top-tracks" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="rectangle-the-top-tracks"><span class="header-section-number">12.7</span> Rectangle the top tracks</h2>
 <p>Before we can unnest our data, we need to wrap it in a tibble. If we skip this, our R functions for unnesting can’t operate on the data:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>top_tracks_tbl <span class="ot">&lt;-</span></span>
@@ -864,8 +870,8 @@ $plays
 </div>
 <p>This is a big deal: we have transformed hierarchical transport-oriented data into rectangular analytical data.</p>
 </section>
-<section id="apis-as-interactive-programmable-data-systems" class="level2" data-number="11.8">
-<h2 data-number="11.8" class="anchored" data-anchor-id="apis-as-interactive-programmable-data-systems"><span class="header-section-number">11.8</span> APIs as interactive programmable data systems</h2>
+<section id="apis-as-interactive-programmable-data-systems" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="apis-as-interactive-programmable-data-systems"><span class="header-section-number">12.8</span> APIs as interactive programmable data systems</h2>
 <p>Up to now, you’ve made one request, inspected one response, parsed one JSON structure, and rectangled one dataset. But to really see the power of APIs, you need to observe how the request itself is flexible and programmable.</p>
 <p>We can use different endpoints to return different kinds of data. We can use different parameter values to change the ‘window’ of data we return. All while still using the same workflow pattern that we employed above.</p>
 <p>To see this, let’s first vary the query parameters. Before we looked at top tracks for one weekly window. Now, let’s ask for a window starting in an earlier year:</p>
@@ -982,8 +988,8 @@ $plays
 </div>
 <p>A different endpoint has returned a different data set - but our workflow remained stable.</p>
 </section>
-<section id="where-to-from-here" class="level2" data-number="11.9">
-<h2 data-number="11.9" class="anchored" data-anchor-id="where-to-from-here"><span class="header-section-number">11.9</span> Where to from here?</h2>
+<section id="where-to-from-here" class="level2" data-number="12.9">
+<h2 data-number="12.9" class="anchored" data-anchor-id="where-to-from-here"><span class="header-section-number">12.9</span> Where to from here?</h2>
 <p>Today we looked under the hood of how modern systems exchange structured data. The key lesson was not this specific music API, but the broader workflow:</p>
 <p>API request → response object → JSON text → R list → rectangular table → examination.</p>
 <p>We saw that APIs typically return structured transport data rather than analysis-ready datasets, which is why analysts must inspect the response, parse JSON into R objects, locate the relevant records, and rectangle nested structures into tabular form.</p>
@@ -1397,12 +1403,12 @@ $plays
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../data_management/data_storage.html" class="pagination-link" aria-label="Storing and Using Existing Data">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Storing and Using Existing Data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../ethics_privacy/ethics_privacy.html" class="pagination-link" aria-label="Ethics in Business Analytics">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ethics in Business Analytics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
