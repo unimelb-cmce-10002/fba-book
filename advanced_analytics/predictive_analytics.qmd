@@ -5,18 +5,12 @@
 
 By the end of this chapter, you should be able to:
 
-::: {.callout-tip}
-## Learning Goals {.unnumbered}
-
-By the end of this chapter, you should be able to:
-
 - Explain what makes a business problem a prediction problem and identify what information is available when a prediction is made.
 - Construct simple prediction rules using recent historical outcomes and groups of similar observations.
 - Distinguish between training data and test data, and explain why both are needed.
 - Evaluate and compare prediction rules using MAE, RMSE, and MAPE, with attention to the business decision being supported.
 - Explain the general workflow of predictive analysis
 
-:::
 :::
 
 ## The Business Challenge
