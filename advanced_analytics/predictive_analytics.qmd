@@ -3,1052 +3,754 @@
 ::: {.callout-tip}
 ## Learning Goals {.unnumbered}
 
-By the end of this lecture, you should be able to:
+By the end of this chapter, you should be able to:
 
-* Define demand forecasting for workforce planning and diagram the forecast → headcount → roster workflow, noting cost and service-quality trade-offs under fixed capacity.
-* Summarize and visualize attendance distributions; recognize capacity-driven censoring (sellouts) and describe implications for feasible forecast ranges.
-* Fit and evaluate simple time-series prediction models: lag-1, trailing-3, cumulative mean.
-* Evaluate forecasts with MAE, RMSE, and MAPE; benchmark against a random baseline; and translate attendance forecasts into staffing recommendations under capacity constraints.
+::: {.callout-tip}
+## Learning Goals {.unnumbered}
+
+By the end of this chapter, you should be able to:
+
+- Explain what makes a business problem a prediction problem and identify what information is available when a prediction is made.
+- Construct simple prediction rules using recent historical outcomes and groups of similar observations.
+- Distinguish between training data and test data, and explain why both are needed.
+- Evaluate and compare prediction rules using MAE, RMSE, and MAPE, with attention to the business decision being supported.
+- Explain the general workflow of predictive analysis
+
 :::
-
-```{r}
-#| warning: false
-#| echo: false
-
-library(baseballr)
-library(tidyverse)
-library(lubridate)
-library(slider)
-library(ggokabeito)
-library(janitor)
-```
+:::
 
 ## The Business Challenge
 
 ### The Topic: Demand Forecasting for Workforce Planning {.unnumbered}
 
-In business operations, few challenges are as universal—or as consequential—as predicting future demand. Firms must constantly anticipate what customers will want, when they will want it, and in what quantity. This process, known as demand forecasting, underpins nearly every operational decision: how much to produce, how many staff to schedule, how much inventory to hold, and how to allocate logistics and supply-chain resources.
+Many business decisions must be made before demand is known. Retailers decide how much stock to order, call centres decide how many staff to schedule, and restaurants decide how many employees to roster before customers arrive. Too many resources increase costs, while too few can lead to shortages, long queues, or poor service. Managers therefore need an estimate of future demand before making these decisions.
 
-At its core, demand forecasting is about aligning resources with expected demand. A grocery store that overestimates weekend beer sales ties up capital in unsold stock; one that underestimates risks empty shelves and disappointed customers. A furniture manufacturer that anticipates a surge in orders during a Black Friday promotion can avoid delivery delays only if it has already ordered enough raw materials and secured machine time. In both cases, the crux of the problem is the same: demand is uncertain, while capacity is fixed in the short run. Too much capacity is costly; too little undermines service and revenue.
+In this chapter, we focus on one part of this problem: **using historical data to predict future demand**.
 
-The same principle applies to workforce planning. Managers need to ensure that the right number of employees are on hand at the right times. Forecasting workforce requirements—whether for the next hour, shift, or day—enables firms to staff efficiently without compromising service quality.
+### The Setting: Attendance at Major League Baseball Games {.unnumbered}
 
-Consider a few examples:
+Our setting is Major League Baseball (MLB), a professional baseball league in the United States and Canada. Each team plays some games in its own stadium. Before a home game, stadium managers need to decide how many staff to roster and how much food and drink to prepare. These decisions depend partly on how many people will attend.
 
-- Call centres forecast the number of inbound calls each hour to schedule agents appropriately.
-- Retail stores predict foot traffic to determine how many cashiers and floor staff to roster.
-- Hospitals anticipate patient admissions to allocate nurses across wards.
-- Manufacturers plan shift work based on expected production targets.
+Attendance is not known before the game takes place, but managers do have historical information. They know how many people attended previous home games, which opposing team will be visiting, and how attendance has varied across opponents.
 
-Effective staffing requires integrating forecasts into workflow systems. A typical process might look like this:
+Our task is:
 
-1. Forecast demand (e.g., 2,000 inbound calls next Monday).
-2. Translate demand into headcount (e.g., each agent handles 20 calls per hour, so 13 agents are required).
-3. Build the roster by assigning staff to shifts in advance.
+> **How can we use historical attendance data to predict attendance at a future home game?**
 
-Accurate forecasts reduce labour costs by avoiding overstaffing, prevent service bottlenecks by avoiding understaffing, and ultimately improve both customer and employee satisfaction.
+We will focus on forming and evaluating the attendance prediction. Turning that prediction into staffing and purchasing decisions is a separate problem.
 
-## The Setting: Attendance at Major League Baseball Games {.unnumbered}
+### What Makes This a Prediction Problem? {.unnumbered}
 
-To see these ideas in action, we turn to an example from professional sports. Stadium operators must staff concession stands that sell food and beverages during baseball games. If they schedule too few employees, service slows and queues lengthen; too many, and labour costs surge.
+A prediction problem has two parts:
 
-Their challenge begins with a prediction problem: how many fans will attend each game? Attendance depends on many factors—day of the week, weather, opponent quality, promotional events, and more. Once attendance is forecast, managers can estimate how many customers will visit concession stands per hour and allocate staff accordingly.
+1. an outcome that we do not yet know; and
+2. information that is available when we make the prediction.
 
-In this module, we will focus on this first step: using data to predict game attendance. This exercise illustrates how prediction models help managers transform historical information into operational insight—bridging analytics and real-world decision-making.
+Here, the unknown outcome is attendance at a future home game, while historical attendance provides information that we can use to predict it. Timing matters: we can only use information that is known when the prediction is made. For example, we know which opponent will visit before the game takes place, but we do not know how many people will attend until the game occurs.
 
+This gives us a rule that we will use throughout the chapter:
 
-## The Method: Using base R and the `tidyverse` to Fit and Evaluate Simple But Useful Prediction Models {.unnumbered}
+> **When predicting an outcome, we can use only information that was available before that outcome occurred.**
 
-> "Even a broken clock is right twice a day." — Proverb
+When predicting attendance at an upcoming game, for example, we can use attendance from earlier games. We cannot use attendance from that game or from games that take place later. This rule will determine how we construct our prediction rules.
 
-Forecasting is a data-driven activity that draws on different analytical tools:
+::: {.callout-note}
+## Prediction is not explanation
 
-- Time-series models analyze patterns in past demand—such as trends, cycles, or seasonality—using techniques like historical averages, moving averages, or lagged values.
-- Multivariate models incorporate other explanatory factors, such as weather, prices, promotions, or events, using regression-based approaches.
-- Machine-learning models capture complex, nonlinear relationships across many predictors using methods such as tree-based ensembles, regularization, and neural networks.
+Our goal in this chapter is to **predict** attendance, not to explain why attendance changes.
 
-No method is perfect: every forecast must contend with noise, unexpected shocks, and changing environments. The art of forecasting lies in using data to reduce uncertainty—not eliminate it entirely.
+Suppose games against a particular opponent tend to have higher attendance. That pattern may help us predict attendance at a future game against the same opponent. It does not, by itself, show that playing that opponent causes attendance to increase.
 
-In this module, we will explore several foundational techniques for building and evaluating prediction models using base R and the `tidyverse`. 
+For prediction, our question is narrower: **does this information help us predict future attendance more accurately?**
+:::
 
+## Loading the Data
 
-## Where We're Headed {.unnumbered}
+### R Packages for Today {.unnumbered}
 
-By the end of this week's module, you will be able to take a dataset like this:
+We begin by loading the R packages used in this chapter.
 
 ```{r}
-
-bref_team_results("BOS", 2015) |>
-  select(Attendance, everything()) |>
-  head(10)
-
-```
-
-And use it to fit and evaluate prediction models such as these:
-
-![Don't panic! We will explain what all this means by the end of the lesson.](../figs/forecast_metrics_by_model.png){width=100% fig-align="center"}
-
-## The Game Plan: What We're Aiming For
-
-Recall our general business analytics workflow:
-
-1. Define the Business Question(s) & Plan Outputs  
-2. Acquire and Prepare Data  
-3. Explore and Visualize Patterns  
-4. Analyze and Interpret Findings  
-5. Communicate Insights and Recommendations
-
-Sketch of the plan:
-
-- [ ] Define the Business Questions 
-- [ ] Read in and wrangle attendance data
-- [ ] Summarize and describe the data
-- [ ] Use insights from exploratory analysis to fit prediction models and make forecasts: lagged values, trailing averages, and cumulative averages
-- [ ] Evaluate, compare, and select prediction models 
-- [ ] Analyze, Interpret & Communicate: Convert demand forecasts into actionable insights for workforce planning
-
-Let’s get started!
-
-## Loading and understanding the data
-
-### R packages for today {.unnumbered}
-
-To begin, we need to load the packages that we will use for this chapter:
-
-```{r}
-#| eval: false
-
-# baseballr — download MLB schedules/results/attendance (e.g., bref_team_results) from Baseball-Reference, etc.
-library(baseballr)
-
-# tidyverse — core data wrangling & visualization (dplyr, ggplot2, tidyr, readr, purrr, stringr, tibble, forcats)
+#| message: false
 library(tidyverse)
-
-# lubridate — parse and manipulate dates/times (e.g., mdy(), weekdays())
+library(scales)
 library(lubridate)
-
-# slider — tidy-style rolling/moving window calculations (e.g., sliding means)
-library(slider)
-
-# Load ggokabeito for a colour-blind-friendly palette (available if you choose to use it)
-library(ggokabeito)
-
-# janitor — simple data cleaning tools (e.g., clean_names())
-library(janitor)
+library(yardstick)
 ```
 
-These packages should look familiar to you by now, except for `baseballr`, which is a specialized package for working with baseball data. We will use it to download historical attendance data for Major League Baseball (MLB) games.
+We have used the first three packages before. The `yardstick` package provides functions for evaluating predictions. We will use it later when we compare our prediction rules.
 
-::: {.callout-tip title="A quick primer on Major League Baseball (MLB)" collapse="true"}
-**What is MLB?**  
-Major League Baseball (MLB) is the top professional baseball league in the U.S. and Canada, with 30 teams split into two leagues (American and National), each with East/Central/West divisions.
+### Loading the Cubs Attendance Data {.unnumbered}
 
-**When is the season?**  
-The regular season typically runs from late March or early April to late September or early October. Each team plays 162 games (about 81 home and 81 away), with occasional off days, a mid-July All-Star break, and some doubleheaders (two games in one day) to make up postponements. The postseason follows in October (Wild Card, Division Series, League Championship Series, World Series).
-
-**Game and attendance basics**  
-A standard game is nine innings (extra innings if tied). Stadium capacity varies by venue, so many games near capacity will sell out, compressing the right tail of attendance. “Official attendance” is the figure reported by the club for that game.
-
-**Why this matters for our forecasts**  
-In these notes we focus on regular-season home games for one team. The variables you’ll see—opponent (`opp`), home/away (`h_a`), day vs night (`day_night`), date/weekday (`dotw`), and attendance—align with operational drivers (for example, weekend nights and rivalry opponents often draw larger crowds). Weather, promotions, and team performance can also shift demand, while stadium capacity imposes a natural upper bound on forecasts.
-
-**Quick glossary**  
-- Homestand/road trip: Consecutive home/away games.  
-- Series: A set of games vs the same opponent (often 2–4 games).  
-- Doubleheader: Two games on the same date; often labeled “(1)” and “(2)”.  
-- Sell-out: Attendance at or near stadium capacity.
-:::
-
-
-### Loading the MLB attendance data {.unnumbered}
-
-The `baseballr` package provides convenient access to baseball statistics and schedules through a set of functions that scrape and clean publicly available data from Baseball-Reference.com.
-
-A simple example is `bref_team_results()`, a function that retrieves all games played by a given MLB team during a particular season. For instance, the code below pulls the 2015 game results for the Boston Red Sox:
+Our data contain Chicago Cubs home games from 2022 to 2025. We load the data from `data/cubs_attendance.csv` and store them as `cubs_attendance`.
 
 ```{r}
-
-glimpse(bref_team_results("BOS", 2015))
-
-```
-
-When run, this command returns a tidy data frame where each row corresponds to a single game (we have 162 rows, corresponding to the 81 home games and 81 away games that the Red Sox played in the 2015 regular season). You’ll see variables such as date, opponent, home/away indicator, runs scored and allowed, win–loss record, attendance, and more.
-
-::: {.callout-tip title="What does `bref_team_results()` do under the hood?" collapse="true"}
-`bref_team_results()` is a lightweight wrapper around a web-scraping workflow that pulls MLB game results from Baseball-Reference and returns a tidy data frame ready for analysis. Behind the scenes, it:
-
-1. Takes a team abbreviation and season year as inputs.  
-2. Builds the corresponding Baseball-Reference URL for that team and season.  
-3. Scrapes the HTML table containing game-level results.  
-4. Parses and cleans the table into a structured R data frame.  
-5. Returns the cleaned dataset.
-
-To inspect the function’s source in R:
-
-```{r}
-#| eval: false
-
-View(bref_team_results)
-```
-
-This reveals the underlying R code, which uses packages like `rvest` for web scraping and `dplyr` for data manipulation. The function abstracts away these details, letting you easily retrieve team results with a simple function call.
-
-:::
-
-
-Often, we want to analyze more than one season—or compare multiple teams. To do this efficiently, we can use `lapply()`, which as the name suggests applies a function to each element in a list or vector and returns a list of results.
-
-For example, to combine Red Sox results from 2000–2002:
-
-```{r}
-# Choose the team and the range of seasons to download
-teams <- "BOS"
-years <- 2000:2002
-
-# Download game results for each season and bind them into one data frame
-bos_2000_2002 <-
-  lapply(years, function(y) {
-    # Fetch game-level results for the specified team and year
-    bref_team_results(Tm = teams, year = y) |>
-      mutate(across(everything(), as.character))
-  }) |>
-  # Stack the list of season data frames row-wise
-  bind_rows() |>
-  readr::type_convert()
-```
-
-The `bind_rows()` function from `dplyr` stacks the results into a single data frame with all three seasons combined.
-
-If we want both the Boston Red Sox and the New York Yankees over that same period, we can nest `lapply()` calls—one over teams, another over years:
-
-```{r}
-# Choose the teams and the range of seasons to download
-teams <- c("BOS", "NYY")
-years <- 2000:2002
-
-# For each team and season:
-#  - fetch game-level results
-#  - add team/season identifiers
-#  - bind rows within each team, then across teams
-bos_nyy_2000_2002 <-
-  lapply(teams, function(team) {
-    lapply(years, function(year) {
-      # Pull the season’s results for this team
-      df <- bref_team_results(Tm = team, year = year) |>
-        mutate(across(everything(), as.character))
-      # Annotate with team and season for clarity after binding
-      df$Team   <- team
-      df$Season <- year
-      # Return the annotated data frame
-      return(df)
-    }) |>
-      # Combine all seasons for this team
-      bind_rows()
-  }) |>
-  # Combine both teams into one data frame
-  bind_rows() |>
-  readr::type_convert()
-```
-
-This produces a tidy dataset with both teams, across all selected years, each record tagged with Team and Season:
-
-```{r}
-bos_nyy_2000_2002 |>
-  count(Team, Season) |>
-  rename(Games = n)
-```
-
-Note that some seasons have fewer than 162 games because of cancellations caused by poor weather, labour disputes, and other factors.
-
-::: {.exercise}
-::: {.exercise-time}
-10 min
-:::
-
-You’ll build the in-sample dataset for our prediction task: Boston Red Sox games from 2005–2015, then inspect its structure.
-
-**Tasks**
-1. Use `bref_team_results()` and `lapply()` to download Red Sox game results for each season from 2005 to 2015.  
-2. Stack the season data frames into one object named `bos_2005_2015`.  
-3. Print the structure with `glimpse()` and verify the row count (should be **1,782**). 
-
-:::
-
-::: {.solution-header}
-Solution
-:::
-
-::: {.solution-content}
-```{r}
-# Team and seasons to download
-teams <- "BOS"
-years <- 2005:2015
-
-# Download each season and bind into one data frame
-bos_2005_2015 <-
-  lapply(years, function(y) {
-    # Game-level results for BOS in season y
-    bref_team_results(Tm = teams, year = y) |>
-      mutate(across(everything(), as.character))
-  }) |>
-  dplyr::bind_rows() |>
-  readr::type_convert()
-
-# Inspect structure (variables, types, examples)
-glimpse(bos_2005_2015)
-
-# Verify total rows (expected: 1,782)
-nrow(bos_2005_2015)
-```
-:::
-
-### Wrangling the MLB attendance data {.unnumbered}
-
-Before modeling, we need to tidy up a few fields.
-
-First, let's clean up our variable names:
-
-```{r}
-bos_2005_2015 <- bos_2005_2015 |>
+#| echo: false
+#| eval: true
+cubs_attendance <-
+  read_csv("../data/cubs_attendance.csv") |> 
   janitor::clean_names()
 ```
 
-
-Next, we need to reformat the dates. Currently, game dates are stored as character strings like `"Sunday, Apr 3"`. We’ll convert these into proper date values `(YYYY-MM-DD)` using functions from the `lubridate` and `stringr` packages:
-
 ```{r}
-#| warning: false
-
-# Create a parsed date (ymd) from the raw Date string and Year
-# - str_remove(".*, ") drops the weekday and trailing comma (e.g., "Sunday, ")
-# - paste0(..., " ", Year) appends the year to the month/day (e.g., "Apr 3 2010")
-# - mdy() parses "Mon Day Year" into a proper Date
-bos_2005_2015_fenway <-
-  bos_2005_2015 |>
-  mutate(
-    ymd = mdy(paste0(str_remove(date, ".*, "), " ", year))
-  )
+#| echo: true
+#| eval: false
+cubs_attendance <-
+  read_csv("data/cubs_attendance.csv") |> 
+  janitor::clean_names()
 ```
 
-A few date strings failed to parse—often corresponding to doubleheader games (two games played on the same day). We can inspect them directly:
+We inspect the data using `glimpse()`.
 
 ```{r}
-bos_2005_2015_fenway |>
-  filter(is.na(ymd)) |>
-  select(date, ymd)
+glimpse(cubs_attendance)
 ```
 
-We can fix these programmatically by assigning the correct dates:
+Each row represents one Cubs home game. The data include the date, opposing team (`opp`), whether the game was played during the day or at night (`d_n`), attendance, and the season (`year`), along with other information about the game.
+
+We also count how many home games appear in each season.
 
 ```{r}
-# Parse a clean YYYY-MM-DD date (ymd) from the raw Date + Year fields,
-# handling doubleheader annotations like "(1)" / "(2)" and extra whitespace.
-bos_2005_2015_fenway <-
-  bos_2005_2015_fenway |>
-  mutate(
-    ymd = date |>
-      str_remove(".*, ") |>            # drop weekday and trailing comma (e.g., "Sunday, ")
-      str_remove("\\s*\\(\\d+\\)") |>  # remove "(1)" or "(2)" from doubleheaders
-      str_trim() |>                    # trim any leading/trailing whitespace
-      paste(year) |>                   # append the year to get "Apr 3 2010"
-      mdy()                            # parse "Mon Day Year" to Date
-  )
+cubs_attendance |>
+  count(year, name = "home_games")
 ```
 
-Now, all dates should be valid (i.e., we should have no more `NA`s in `ymd`):
+## Understanding the Outcome We Want to Predict
+
+### How Is Home-Game Attendance Distributed? {.unnumbered}
+
+Before constructing prediction rules, we first look at the outcome we want to predict: attendance at Chicago Cubs home games.
+
+We start with the 2022 and 2023 seasons and compare their attendance distributions.
 
 ```{r}
-bos_2005_2015_fenway |>
-  filter(is.na(ymd)) |>
-  select(date, ymd)
-```
-
-For those doubleheaders, we also want to flag them explicitly.
-
-```{r}
-# Within each calendar date (ymd), tag double-headers and label game order
-bos_2005_2015_fenway <-
-  bos_2005_2015_fenway |>
-  dplyr::group_by(ymd) |>
-  dplyr::mutate(
-    game_num         = dplyr::row_number(),  # sequence games on the same date: 1, 2, ...
-    is_double_header = dplyr::n() > 1        # TRUE if more than one game on that date
-  ) |>
-  dplyr::ungroup()
-
-```
-
-Now, let's check for these doubleheaders:
-
-```{r}
-bos_2005_2015_fenway |>
-  filter(is_double_header) |>
-  select(ymd, game_num, date)
-```
-
-Next, we will create a variable that identifies the day of the week on which each game was played. This will be useful later, as attendance often varies by day of the week (e.g., weekends vs. weekdays). We call this variable `dotw`:
-
-```{r}
-bos_2005_2015_fenway <- bos_2005_2015_fenway |>
-  mutate(
-    dotw = weekdays(ymd)
-  )
-```
-
-Next, we filter to games where the Red Sox played at home. We do so because in our analyses we are taking on the perspective of the firm that manages concessions at Fenway Park, the Red Sox home stadium. Thus, we only care about games where the Red Sox are the home team:
-
-```{r}
-bos_2005_2015_fenway <- bos_2005_2015_fenway |>
-  rename(home_away = h_a) |>
-  filter(home_away == 'H')
-```
-
-Finally, we rename the `D/N` column (which marks day or night games) to a more descriptive `day_night`: 
-
-```{r}
-bos_2005_2015_fenway <- bos_2005_2015_fenway |>
-  rename(day_night = d_n)
-```
-
-At this point, we have a clean, ready-to-analyze dataset of Red Sox home games from 2005–2015, complete with structured dates, weekday labels, and attendance figures. This will serve as the foundation for building and evaluating our prediction models in the next section.
-
-
-## Predicting Attendance at Red Sox Home Games
-
-### How is Red Sox attendance data distributed? {.unnumbered}
-
-Before we build any prediction models, we need to understand the data we’re trying to predict. Let’s start by taking a closer look at attendance at Boston Red Sox home games between 2005 and 2015.
-
-Attendance captures the number of fans who entered the stadium for each game. This is the outcome we want to predict: how many people will attend a future game, given what we know about its timing, opponent, and other circumstances.
-
-We begin with some simple summary statistics and a histogram of attendance:
-
-```{r}
-#| warning: false
-#| fig-width: 8
-#| fig-height: 6
-#| fig-align: center
-
-mean_att <- mean(bos_2005_2015_fenway$attendance, na.rm = TRUE)
-median_att <- median(bos_2005_2015_fenway$attendance, na.rm = TRUE)
-
-bos_2005_2015_fenway |>
+cubs_attendance |>
+  filter(year %in% c(2022, 2023)) |>
   ggplot(aes(x = attendance)) +
-  geom_histogram(fill = "darkblue", color = "black", alpha = 0.7, bins = 30) +
-  labs(title = "Red Sox Home Game Attendance (2005–2015)",
-       x = "Attendance",
-       y = "Frequency") +
-  theme_minimal() +
-  geom_vline(aes(xintercept = mean_att), color = "red", linetype = "dashed", size = 1) +
-  geom_vline(aes(xintercept = median_att), color = "red", linetype = "solid", size = 1)
-
-
+  geom_histogram(binwidth = 2500) +
+  facet_wrap(~ year) +
+  scale_x_continuous(labels = scales::comma) +
+  labs(
+    title = "Chicago Cubs Home-Game Attendance",
+    x = "Attendance",
+    y = "Number of games"
+  ) +
+  theme_minimal()
 ```
+
+The two seasons cover a similar overall range, from roughly the mid-20,000s to around 40,000 attendees, but the distributions differ within that range. Attendance in 2022 is more concentrated around 30,000–35,000, while 2023 has more games spread across the upper part of the distribution.
+
+Attendance also varies substantially from game to game within each season. This gives us something to predict. Rather than using the same attendance forecast for every game, we can ask whether information from previous games helps us anticipate which games will have higher or lower attendance.
+
+The upper end of both distributions also stops at around the same level. This reflects a feature of the setting: stadium attendance cannot exceed the number of people the stadium can hold.
 
 ::: {.exercise}
 ::: {.exercise-time}
 5 min
 :::
+Using the two histograms:
 
-Using the attendance histogram you just produced, answer the following:
-
-1. Where is the center of the distribution (mean/median) and how tight is the spread? 
-2. What do the tails look like, and what does stadium capacity imply for the right tail?  
-3. Give a practical “ballpark” forecast range for most games, and note how often very low crowds occur.  
-4. State one operational implication for staffing or provisioning.
+1. What range of attendance is common across the two seasons?
+2. How does the shape of the attendance distribution differ between 2022 and 2023?
+3. What do you notice about the upper end of the distributions?
+4. Why does the variation across games give us a reason to build prediction rules?
 
 :::
 
-::: {.solution-header}
-Solution
-:::
+Comparing the two histograms lets us see whether attendance falls within a similar range across seasons and whether the overall shape of the distribution changes much from one year to the next.
 
-::: {.solution-content}
-Attendance clusters tightly in the high 30,000s: the mean and median are around 37,000 with a modest spread. The right tail is compressed against capacity (≈38,500), consistent with frequent sellouts, while a longer left tail reflects occasional lower-demand games. Practically, most outcomes fall between about 36,000 and 38,000, with dips below ~33,000 uncommon. For forecasting, the task is to “place” each game within this narrow ~5,000-seat band rather than predict across a wide range—so staffing/provisioning should target that band and plan only modest adjustments for quieter dates.
-:::
+Attendance also varies from game to game within each season. If that variation can be predicted using information from earlier games or other game characteristics, then a single forecast for every game can be improved upon.
 
-Our next step will be to explore what factors might drive the variation shown in this histogram.
+Attendance has a natural upper bound: a stadium can hold only a fixed number of people. We should therefore also look for signs that attendance becomes compressed near its upper end.
 
-### Building simple prediction models {.unnumbered}
+## Training Data and Test Data
 
-Now that we’ve explored the distribution of attendance, we can start building our first prediction models.
+### Why Do We Need Separate Training and Test Data? {.unnumbered}
 
-We’ll begin with a set of univariate models that use attendance in the past to predict attendance in the future. We refer to these as time-series models, since they leverage the temporal ordering of observations (you will remember from prior weeks that we have already covered time-series data in some detail, albeit in a finance/trading context).
+Suppose we want to predict attendance at future Cubs games. We might try several prediction rules, compare how well they work on the historical games, and keep the rule that performs best. If we then use those same historical games to report how accurate our chosen rule is, we have a problem: the historical outcomes helped us decide which rule to keep. The selected rule may therefore look especially good on those particular games, even if it does not perform as well on new games.
 
-This is the simplest and most fundamental form of prediction in operations and business analytics. When a manager forecasts next week’s sales or next game’s attendance by “looking at what happened recently,” they are, in effect, applying a basic time-series model.
+What we really want to know is whether the rule can predict observations that played no role in choosing it. To answer that question, we divide the data into two parts. The **training data** are the observations we use to develop, compare, and choose prediction rules. The **test data** are observations kept separate during model development and used only at the end to evaluate how well the chosen rules perform on new data.
 
-Our goal here is to predict attendance at each home game `t` using information from earlier games (`t–1`, `t–2`, etc.).
+For this chapter, we use:
 
-These models won’t yet use other explanatory variables like weekday or opponent — those come later — but they give us a benchmark for how much can be explained simply by temporal persistence.
+- **Training data:** Cubs home games from 2022–2024
+- **Test data:** Cubs home games from 2025
 
-#### Model 1: Persistence (Naïve Time-Series Model) {.unnumbered}
-
-A natural starting point is the assumption that attendance at a game will be roughly the same as attendance at the previous game. This is known as a persistence forecast or naïve forecast, and it’s the foundation for many time-series methods.
-
-In notation form:
-
-$$
-\widehat{A}_t = A_{t-1}.
-$$
-We can compute this in R by lagging the attendance variable:
+The logic is simple: use the earlier seasons to develop the prediction rules, then evaluate those rules on a later season that played no role in choosing them.
 
 ```{r}
-bos_2005_2015_fenway <-
-  bos_2005_2015_fenway |>
-  arrange(ymd) |>
-  mutate(att_lag1 = lag(attendance, 1))
+cubs_train <-
+  cubs_attendance |>
+  filter(year <= 2024)
+
+cubs_test <-
+  cubs_attendance |>
+  filter(year == 2025)
 ```
 
-This creates a new variable `att_lag1` that contains the attendance from the previous game. For the first game in the dataset, this will be `NA` since there is no prior game.
-
-Let's use this lagged attendance as our prediction for the current game, and plot actual vs. predicted attendance:
+We can check how many games are available in each dataset.
 
 ```{r}
-#| warning: false
-#| fig-width: 8
-#| fig-height: 6
-#| fig-align: center
-
-bos_2005_2015_fenway |>
-  ggplot(aes(x = att_lag1, y = attendance)) +
-    geom_point(color = "darkblue", alpha = 0.3) +
-    geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "red") +
-    labs(
-       x = "Attendance at game t–1",
-       y = "Attendance at game t",
-       title = "Boston Red Sox Home Games: 2005–2015"
-    ) +
-    theme_minimal()
-
+nrow(cubs_train)
+nrow(cubs_test)
 ```
 
-::: {.exercise}
-::: {.exercise-time}
-8 min
+For now, we work only with `cubs_train`. We will use those games to build and compare several candidate prediction rules. We will return to `cubs_test` only after those rules have been developed, so the 2025 games can show how well the rules perform on data that played no role in selecting them.
+
+::: {.callout-warning}
+## A Simplified Test-Set Design
+
+In this chapter, we keep the 2025 test data completely separate from the 2022–2024 training data.
+
+A more realistic forecasting system might update predictions during 2025 as new game outcomes become available. For example, attendance at an early-season game could be used when predicting a later game.
+
+We will not do that here. Keeping the training period fixed makes the training/test distinction easier to see and avoids complicating the code further. 
 :::
 
-Interpret the scatterplot of actual attendance (y-axis) versus previous-game attendance (x-axis) for Red Sox home games (2005–2015).
+## Forming Simple Predictions
 
-1. What does a point lying above the 45° dashed line mean? What about below it?  
-2. Name two visible patterns that support (or challenge) the idea that attendance moves gradually over time.  
-3. Identify any signs of a ceiling or capacity effect and explain how it affects predictions.  
-4. Give two situations in which this naïve lag-1 model might make large errors.  
-5. From an operations viewpoint, when is this model useful and when is it risky?
+### Starting Simple: Use the Previous Home Game {.unnumbered}
 
-:::
+We begin with a simple prediction rule: predict attendance at the next Cubs home game using attendance at the previous home game in the same season. The idea is that recent attendance may contain useful information about near-term demand. If the previous home game drew 35,000 people, our prediction for the next home game is 35,000.
 
-::: {.solution-header}
-Solution
-:::
-
-::: {.solution-content}
-
-1. **Relationship to the 45° line**  
-   - Above the line: the model underpredicts (actual attendance > previous-game attendance).  
-   - Below the line: the model overpredicts (actual attendance < previous-game attendance).
-
-2. **Evidence of gradual movement**  
-   - Tight clustering near the 45° line indicates strong short-run persistence.  
-   - Points after unusually low or high games drift back toward the main cluster (regression toward the mean), not to random locations.
-
-3. **Ceiling/capacity effect**  
-   - Dense mass around ~37–38.5k and little mass to the right suggests a sell-out cap.
-   - This compresses high predictions and limits upside error; forecasts should be capped at capacity.
-
-4. **When lag-1 misfires**  
-   - Sudden shocks (e.g., rain, weekday afternoon games, or last-minute promotions).  
-   - Special opponents/events (rivalry weekends, holidays) that break the recent pattern.
-
-5. **Operational takeaway**  
-   - Useful for very short-horizon staffing because it’s fast and usually close.  
-   - Risky when conditions change; pair with forward-looking features (day/night, day of the week, opponent, weather) and judge by MAE/RMSE, not just the plot.
-
-:::
-
-#### Model 2: Trailing Average (Short-Memory Smoother) {.unnumbered}
-
-A slightly more sophisticated approach is to use a moving average of the last few games. This smooths out random fluctuations and captures short-term trends.
-
-If we use the short-term average of the last three games, we can compute it as follows:
+For game \(t\), this rule is:
 
 $$
-\widehat{A}_{t} = \frac{1}{3}\left(A_{t-1} + A_{t-2} + A_{t-3}\right)
+\widehat{A}_t = A_{t-1}
 $$
 
-This is conceptually similar to a moving average (MA) model in time series analysis — a way to smooth out temporary fluctuations and capture short-run trends. We can compute this in R by averaging attendance over the last three games:
+where \(A_t\) is attendance at game \(t\) and \(\widehat{A}_t\) is our prediction for that game.
+
+We can construct this prediction with `lag()`. We first order games within each season, then create a new variable containing attendance at the previous home game.
 
 ```{r}
-bos_2005_2015_fenway <-
-  bos_2005_2015_fenway |>
-  arrange(ymd) |>
+cubs_train <-
+  cubs_train |>
+  arrange(year, gm) |>
+  group_by(year) |>
   mutate(
-    att_avg_lag3 = (lag(attendance) + lag(attendance, 2) + lag(attendance, 3)) / 3
-  )
+    pred_lag1 = lag(attendance, 1)
+  ) |>
+  ungroup()
 ```
 
-Let's use this trailing average attendance as our prediction for the current game, and again plot actual vs. predicted attendance:
+Because we calculate the lag separately within each season, the first home game of each year has no previous home game to use. Its `pred_lag1` value is therefore `NA`. This is not an error: the information required by the prediction rule is not yet available.
+
+### What About Two Games Ago? {.unnumbered}
+
+Recent information may be useful, but we do not yet know how quickly that information becomes less helpful. A second prediction rule uses attendance from two home games earlier:
+
+$$
+\widehat{A}_t = A_{t-2}
+$$
+
+We add this prediction using a two-game lag.
 
 ```{r}
-#| warning: false
-#| fig-width: 8
-#| fig-height: 6
-#| fig-align: center
-
-ggplot(bos_2005_2015_fenway,
-  aes(x = att_avg_lag3, y = attendance)) +
-  geom_point(color = "darkblue", alpha = 0.3) +
-  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "red") +
-  labs(
-    x = "Three-game trailing average attendance",
-    y = "Attendance at time t",
-    title = "Boston Red Sox Home Games: 2005–2015"
-  ) +
-  theme_minimal()
-
-
-```
-As with our previous model, we again observe that the points form a tight band around the red line, particularly in the 36,000–38,000 range. The plot shows that our moving average model smooths short-term dips and spikes by averaging across recent games. In doing so, it sacrifices responsiveness for stability, producing forecasts that track the general level of demand without overreacting to one unusual game. The downside is lag: if attendance trends upward over several weeks, the model adjusts more slowly than the persistence model.
-
-#### Model 3: Longer-Term Average (Cumulative Mean up to t-1) {.unnumbered}
-
-Our third model uses the historical average attendance up to the previous game. We can formally express this as:
-
-$$
-\widehat{A}_{t} = \frac{1}{t-1}\sum_{i=1}^{t-1} A_i \quad \text{for } t \ge 2
-$$
-
-This is a slow-moving model that represents the long-run mean — conceptually akin to a constant-level (mean) forecast in time series terms. We can compute this in R by calculating the cumulative mean of attendance up to (but not including) the current game:
-
-```{r}
-bos_2005_2015_fenway <-
-  bos_2005_2015_fenway |>
-  mutate(att_historical_avg = lag(cummean(attendance)))
-```
-
-Again, we can visualize predictions from this historical average model against actual attendance:
-
-
-```{r}
-#| warning: false
-#| fig-width: 8
-#| fig-height: 6
-#| fig-align: center
-
-ggplot(bos_2005_2015_fenway, aes(x = att_historical_avg, y = attendance)) +
-  geom_point(color = "darkblue", alpha = 0.3) +
-  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "red") +
-  labs(
-    x = "Historical average attendance (up to t–1)",
-    y = "Attendance at time t",
-    title = "Boston Red Sox Home Games: 2005–2015"
-  ) +
-    theme_minimal()
-```
-
-::: {.exercise}
-::: {.exercise-time}
-8 min
-:::
-
-Interpret the scatterplot of actual attendance (y-axis) versus the historical average up to t-1 (x-axis) for Red Sox home games (2005–2015). The red dashed line is the 45° “perfect prediction” line.
-
-1. Low-actual games (≈30–33k): Where do points sit relative to the 45° line, and what does that imply about prediction error?
-2. High-actual games (≈38k+): Where do points sit relative to the 45° line, and what does that imply?
-3. Bias: What overall bias does this model exhibit, and what visual cues in the plot support your claim?
-4. Operations: What are the operational consequences of this bias for staffing concessions?
-5. Improving the model: Describe two changes to the approach that could reduce these errors.
-
-:::
-
-::: {.solution-header}
-Solution
-:::
-
-::: {.solution-content}
-For low-actual games around 30–33k, points fall below the 45° line, which means the model’s prediction (x-axis) is higher than the realized attendance (y-axis). That is, it overpredicts on quiet nights. For high-actual games around 38k+, points tend to lie above the 45° line, showing the model’s prediction is lower than realized attendance; it underpredicts near sellouts.
-
-Overall, the model exhibits shrinkage toward the long-run mean (roughly 36–37k). Visually, the cloud is tightly compressed around the midrange, many low-y points fall below the line, many high-y points fall above it, and the relationship appears flatter than the 45° reference—evidence that the model adjusts slowly to real changes.
-
-Operationally, this bias risks overstaffing when demand is low (wasted labour costs) and understaffing when demand is high (long queues and worse service at precisely the wrong time). To improve, use a shorter-memory signal (e.g., lag-1 or a short moving average, or exponential smoothing) and incorporate forward-looking features such as day/night, day of week, opponent, ticket sales, and weather; also cap forecasts at stadium capacity to respect the ceiling.
-
-:::
-
-
-### Evaluating and comparing simple prediction models {.unnumbered}
-
-So far, we’ve relied on scatterplots to judge prediction accuracy — a useful start but subjective. To formally compare these models and see which generate the most accurate predictions, we need numerical error metrics. In this section we'll compute three such metrics:
-
-- Mean Absolute Error (MAE): average size of prediction errors.
-- Root Mean Squared Error (RMSE): emphasizes large errors.
-- Mean Absolute Percentage Error (MAPE): average error relative to actual values.
-
-We will use these MAE, RMSE, and MAPE metrics to compare the three time series models we built earlier: persistence (lag-1), trailing average (lag-3), and historical average (up to t-1).
-
-This will give us a clear, quantitative sense of which time series approach performs best — and establish a benchmark before we move on to multivariate models that use richer predictors such as weekday, opponent, and time of season.
-
-For each game, we already have:
-
-- a predicted attendance (from our model), and
-- the actual attendance (the observed value).
-
-The forecast error is simply the difference:
-
-$$
-e_t \;=\; A_t - \widehat{A}_t
-$$
-A good model has small forecast errors on average. But because errors can be positive or negative (over- vs. under-prediction), we summarise them using absolute or squared values. The three most common metrics are the Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and Mean Absolute Percentage Error (MAPE).
-
-#### Defining error metrics {.unnumbered}
-
-The MAE is the average size of the errors, ignoring their direction:
-
-$$
-\mathrm{MAE} \;=\; \frac{1}{T}\sum_{t=1}^{T} \lvert e_t \rvert
-$$
-
-It measures the typical “miss” between predicted and actual attendance — in the same units as the variable (e.g., people in attendance). A lower MAE means predictions are closer to reality on average. MAE is intuitive and robust. It weights all errors equally and is easy to explain to managers: “We’re off by about 1,200 fans per game.”
-
-The RMSE squares errors before averaging, then takes the square root:
-
-$$
-\mathrm{RMSE} \;=\; \sqrt{\frac{1}{T}\sum_{t=1}^{T} e_t^{\,2}}
-$$
-
-Squaring amplifies large errors, so RMSE penalizes big misses more heavily than MAE. It’s also in the same units as the original data (fans). RMSE is sensitive to outliers and helps identify whether a model sometimes gets things very wrong. In operations, those large misses are costly — a major overstaffing or stockout can hurt service quality — so RMSE is useful when we care about extremes.
-
-The MAPE expresses errors as a percentage of actual values:
-
-$$
-\mathrm{MAPE} \;=\; \frac{100}{T}\sum_{t=1}^{T} \left\lvert \frac{e_t}{A_t} \right\rvert
-$$
-
-It allows us to compare performance across contexts with different scales. However, it can become unstable when actual values are very small (denominator near zero). MAPE is great for communicating accuracy in intuitive percentage terms — useful for managers and reports — but must be handled carefully when values approach zero or when outliers distort relative errors.
-
-#### Computing error metrics in R {.unnumbered}
-
-We start by calculating forecast errors and metric values for our simplest model — predicting attendance at game t using the attendance from t–1:
-
-```{r}
-# Compute per-game forecast errors for the lag-1 (persistence) model
-lag1_model_errors <-
-  bos_2005_2015_fenway |>
-  # Keep the actual attendance and the lag-1 prediction
-  select(attendance, att_lag1) |>
-  # Construct error diagnostics for each game
+cubs_train <-
+  cubs_train |>
+  arrange(year, gm) |>
+  group_by(year) |>
   mutate(
-    # Forecast error: actual minus predicted
-    error = attendance - att_lag1,
-    # Absolute error (for MAE)
-    abs_error = abs(error),
-    # Squared error (for RMSE)
-    squared_error = error^2,
-    # Percentage error (for MAPE), expressed in %
-    percentage_error = (error / attendance) * 100
-  )
-
-# Summarise error diagnostics into accuracy metrics
-lag1_model_metrics <-
-  lag1_model_errors |>
-  summarise(
-    # Mean Absolute Error
-    MAE  = mean(abs_error, na.rm = TRUE),
-    # Root Mean Squared Error
-    RMSE = sqrt(mean(squared_error, na.rm = TRUE)),
-    # Mean Absolute Percentage Error
-    MAPE = mean(abs(percentage_error), na.rm = TRUE)
-  )
+    pred_lag2 = lag(attendance, 2)
+  ) |>
+  ungroup()
 ```
 
-Next, we compute errors and metric values for the three-game moving average model:
+Now the first two home games of each season have no `pred_lag2` value. Again, this follows directly from the rule: before the third home game, there is no attendance observation from two home games earlier.
+
+We can inspect the actual attendance and both predictions side by side.
 
 ```{r}
-# Compute per-game forecast errors for the 3-game moving average model
-avg_lag3_model_errors <-
-  bos_2005_2015_fenway |>
-  # Keep the actual attendance and the 3-game trailing-average prediction
-  select(attendance, att_avg_lag3) |>
-  # Build error diagnostics for each observation
+cubs_train |>
+  select(year, gm, date, attendance, pred_lag1, pred_lag2) |>
+  slice_head(n = 10)
+```
+
+At this point, we have two plausible prediction rules. Looking at the predicted values alone does not tell us which rule performs better. To compare them, we need to measure how far each prediction is from the attendance that actually occurred.
+
+## Evaluating Predictions During Model Development
+
+### Predictions Are Not Enough {.unnumbered}
+
+We now have two ways to predict attendance: use the previous home game or use the home game two games earlier. Looking at the predicted values alone does not tell us which rule works better. We need to compare each prediction with the attendance that actually occurred.
+
+For game \(t\), define the prediction error as:
+
+$$
+e_t = A_t - \widehat{A}_t
+$$
+
+where \(A_t\) is actual attendance and \(\widehat{A}_t\) is predicted attendance. A positive error means the prediction was too low, while a negative error means it was too high. An error of zero would be a perfect prediction.
+
+We can inspect a few errors from our two lagged prediction rules.
+
+```{r}
+cubs_train |>
+  select(year, gm, attendance, pred_lag1, pred_lag2) |>
+  filter(!is.na(pred_lag1), !is.na(pred_lag2)) |>
   mutate(
-    # Forecast error: actual minus predicted
-    error = attendance - att_avg_lag3,
-    # Absolute error (for MAE)
-    abs_error = abs(error),
-    # Squared error (for RMSE)
-    squared_error = error^2,
-    # Percentage error (for MAPE), expressed in %
-    percentage_error = (error / attendance) * 100
-  )
-
-# Summarise error diagnostics into accuracy metrics
-avg_lag3_model_metrics <-
-  avg_lag3_model_errors |>
-  summarise(
-    # Mean Absolute Error
-    MAE  = mean(abs_error, na.rm = TRUE),
-    # Root Mean Squared Error
-    RMSE = sqrt(mean(squared_error, na.rm = TRUE)),
-    # Mean Absolute Percentage Error
-    MAPE = mean(abs(percentage_error), na.rm = TRUE)
-  )
+    error_lag1 = attendance - pred_lag1,
+    error_lag2 = attendance - pred_lag2
+  ) |>
+  slice_head(n = 10)
 ```
 
-::: {.exercise}
-::: {.exercise-time}
-8 min
+Individual errors are useful, but we need a summary measure to compare prediction rules across many games. Different measures answer slightly different questions, so we will use three.
+
+The **Mean Absolute Error (MAE)** measures the average size of the prediction errors, ignoring whether the prediction was too high or too low:
+
+$$
+\mathrm{MAE}
+=
+\frac{1}{T}
+\sum_{t=1}^{T}
+|e_t|
+$$
+
+Because MAE is measured in the same units as attendance, it has a direct interpretation. An MAE of 2,000 means that predictions miss actual attendance by 2,000 people on average.
+
+The **Root Mean Squared Error (RMSE)** gives more weight to large prediction errors:
+
+$$
+\mathrm{RMSE}
+=
+\sqrt{
+\frac{1}{T}
+\sum_{t=1}^{T}
+e_t^2
+}
+$$
+
+RMSE is also measured in people. Compared with MAE, it increases more when a prediction rule makes a few large mistakes.
+
+The **Mean Absolute Percentage Error (MAPE)** measures the size of each error relative to actual attendance:
+
+$$
+\mathrm{MAPE}
+=
+\frac{100}{T}
+\sum_{t=1}^{T}
+\left|
+\frac{e_t}{A_t}
+\right|
+$$
+
+MAPE expresses prediction errors as percentages. This can make performance easier to compare across outcomes measured on different scales. In our attendance data, actual attendance is always well above zero, so the denominator does not create a problem.
+
+::: {.callout-note}
+## Training Performance Is Not Final Test Performance
+
+We are calculating these metrics using the training data because they help us develop and compare candidate prediction rules. They do not tell us how well the rules will perform on the 2025 test data.
+
+We will use the test data only after we have finished developing our candidate rules.
 :::
 
-Compute forecast errors and accuracy metrics — cumulative historical average model
+### Comparing Lag 1 and Lag 2 {.unnumbered}
 
-Using bos_2005_2015_fenway, which contains attendance and the predictor att_historical_avg (the historical average up to t−1), do the following:
+For a fair comparison, both rules should be evaluated on the same games. Because lag 2 has no prediction for the first two home games of each season, we keep only games for which both lagged predictions are available.
 
-- Create a data frame cumulative_hist_model_errors with the columns: error (actual − predicted), abs_error, squared_error, and percentage_error (in %).
-- Summarise these into cumulative_hist_model_metrics containing MAE, RMSE, and MAPE.
-
-:::
-
-::: {.solution-header}
-Solution
-:::
-
-::: {.solution-content}
+We first reshape the two prediction columns into a format where each row contains one actual attendance value and one prediction.
 
 ```{r}
-# Build per-game error diagnostics for the cumulative historical-average model
-cumulative_hist_model_errors <-
-  bos_2005_2015_fenway |>
-  # Keep the actual and predicted values
-  select(attendance, att_historical_avg) |>
-  # Construct error columns
-  mutate(
-    # Forecast error: actual minus predicted
-    error = attendance - att_historical_avg,
-    # Absolute error (for MAE)
-    abs_error = abs(error),
-    # Squared error (for RMSE)
-    squared_error = error^2,
-    # Percentage error (for MAPE), expressed in %
-    percentage_error = (error / attendance) * 100
-  )
-
-# Summarise error diagnostics into accuracy metrics
-cumulative_hist_model_metrics <-
-  cumulative_hist_model_errors |>
-  summarise(
-    # Mean Absolute Error
-    MAE  = mean(abs_error, na.rm = TRUE),
-    # Root Mean Squared Error
-    RMSE = sqrt(mean(squared_error, na.rm = TRUE)),
-    # Mean Absolute Percentage Error
-    MAPE = mean(abs(percentage_error), na.rm = TRUE)
-  )
-```
-
-:::
-
-#### Comparing model performance {.unnumbered}
-
-We can now combine all metrics into one table and plot them to visually compare performance:
-
-```{r}
-# Add a model label to the Lag(1) metrics
-lag1_model_metrics <-
-  lag1_model_metrics |>
-  mutate(model = 'Lag(1)')
-
-# Add a model label to the 3-game trailing average metrics
-avg_lag3_model_metrics <-
-  avg_lag3_model_metrics |>
-  mutate(model = 'Trailing(3) Ave')
-
-# Add a model label to the cumulative-average metrics
-cumulative_hist_model_metrics <-
-  cumulative_hist_model_metrics |>
-  mutate(model = 'Cumulative Ave')
-
-# Stack all model-level metric tables into a single data frame
-ts_model_metrics <-
-  lag1_model_metrics |>
-  bind_rows(avg_lag3_model_metrics) |>
-  bind_rows(cumulative_hist_model_metrics)
-
-# Reshape to long format for plotting (one row per metric per model)
-ts_metrics_long <-
-  ts_model_metrics |>
+training_predictions <-
+  cubs_train |>
+  filter(
+    !is.na(pred_lag1),
+    !is.na(pred_lag2)
+  ) |>
+  select(attendance, pred_lag1, pred_lag2) |>
   pivot_longer(
-    cols      = -model,
-    names_to  = "metric",
-    values_to = "value"
+    cols = starts_with("pred_"),
+    names_to = "model",
+    values_to = ".pred"
   )
+
+head(training_predictions)
 ```
 
-Now, we can plot the metrics as bar charts:
+We can now use functions from `yardstick` to calculate MAE, RMSE, and MAPE for each rule.
 
 ```{r}
-#| warning: false
-#| fig-width: 8
-#| fig-height: 6
-#| fig-align: center
-
-# Visualize forecast accuracy metrics across models (colorblind-safe palette)
-ggplot(ts_metrics_long, aes(x = model, y = value, fill = model)) +
-  # Draw a bar for each model’s metric value
-  geom_col() +
-  # One panel per metric; allow different y-axis scales
-  facet_wrap(~ metric, scales = "free_y") +
-  # Plot title and axis labels
-  labs(
-    title = "Forecast Accuracy Metrics by Model",
-    x = "Model",
-    y = "Value"
-  ) +
-  # Start from a clean, minimal theme
-  theme_minimal() +
-  # Apply the Okabe–Ito colorblind-safe palette (from ggokabeito)
-  ggokabeito::scale_fill_okabe_ito() +
-  # Styling tweaks: remove legend; rotate x labels for readability
-  theme(
-    legend.position = "none",
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  )
-```
-
-The Lag(1) model produces the lowest MAE and RMSE — confirming it’s the best performer of the group. The three-game average performs slightly worse but still far better than random, while the cumulative average performs worst among the structured models, validating our earlier visual impression.
-
-The pattern is intuitive:
-
-- Attendance at the previous game is highly informative — crowds don’t fluctuate dramatically from one homestand to the next.
-- A short moving average smooths noise but reacts slowly to real changes.
-- A long-term average loses too much information.
-
-### Judging model performance against a random baseline
-
-How do we know if our simple time-series models are actually useful? One way to check is to compare them against a model that we don't expect to be great — for instance, predicting attendance by drawing random numbers from a normal distribution centred around the mean crowd size:
-
-```{r}
-# set a fixed RNG seed for reproducible random baseline
-set.seed(406)
-
-# Create a random (uninformed) baseline forecast around the historical mean
-bos_2005_2015_fenway <-
-  bos_2005_2015_fenway |>
-  mutate(
-    # Draw one random prediction per game from N(mean, sd)
-    att_rnorm = rnorm(
-        n(), 
-        mean = mean(attendance, na.rm = TRUE), 
-        sd = sd(attendance, na.rm = TRUE))
-  )
-
-# Compute per-game error diagnostics for the random baseline
-rnorm_model_errors <-
-  bos_2005_2015_fenway |>
-  # Keep the actual attendance and the random prediction
-  select(attendance, att_rnorm) |>
-  # Build error components
-  mutate(
-    # Forecast error: actual minus predicted
-    error = attendance - att_rnorm,
-    # Absolute error (for MAE)
-    abs_error = abs(error),
-    # Squared error (for RMSE)
-    squared_error = error^2,
-    # Percentage error (for MAPE), expressed in %
-    percentage_error = (error / attendance) * 100
-  )
-
-# Summarise the random baseline’s accuracy (MAE, RMSE, MAPE)
-rnorm_model_metrics <-
-  rnorm_model_errors |>
+training_metrics <-
+  training_predictions |>
+  group_by(model) |>
   summarise(
-    # Mean Absolute Error
-    MAE  = mean(abs_error, na.rm = TRUE),
-    # Root Mean Squared Error
-    RMSE = sqrt(mean(squared_error, na.rm = TRUE)),
-    # Mean Absolute Percentage Error
-    MAPE = mean(abs(percentage_error), na.rm = TRUE)
+    mae = mae_vec(attendance, .pred),
+    rmse = rmse_vec(attendance, .pred),
+    mape = mape_vec(attendance, .pred)
   )
+
+training_metrics
 ```
 
-Now, let's again plot the metrics for our models as bar charts, but this time we will include the random baseline:
+For all three metrics, lower values indicate predictions that are closer to the actual attendance. 
+Lag 1 performs better on all three metrics. Its MAE is about 3,209 fans, compared with 3,955 for lag 2, so using the previous home game reduces the typical prediction error by about 750 fans, or 19%. Lag 1 also has a lower RMSE (4,183 versus 5,068) and MAPE (9.6% versus 11.8%). Within the training data, attendance at the most recent home game therefore provides a better prediction than attendance two home games earlier.
+
+
+Now that we have a way to compare candidate prediction rules, we can ask whether other ways of using historical attendance produce better predictions.
+
+## Combining Recent Information
+
+### A Two-Game Trailing Mean {.unnumbered}
+
+So far, each prediction has used attendance from a single earlier home game. We can also combine information from several recent games into one prediction. One simple approach is to average attendance from the previous two home games.
+
+For game \(t\), the two-game trailing mean is:
+
+$$
+\widehat{A}_t
+=
+\frac{A_{t-1} + A_{t-2}}{2}
+$$
+
+This rule gives equal weight to the previous two home games. If those games drew 32,000 and 36,000 people, the prediction for the next home game would be 34,000.
+
+We construct this prediction within each season:
 
 ```{r}
-# Add a label to the random-baseline metrics table
-rnorm_model_metrics <-
-  rnorm_model_metrics |>
-  mutate(model = "Random Normal")
+cubs_train <-
+  cubs_train |>
+  arrange(year, gm) |>
+  group_by(year) |>
+  mutate(
+    pred_trailing2 =
+      (lag(attendance, 1) + lag(attendance, 2)) / 2
+  ) |>
+  ungroup()
 
-# Append the random-baseline metrics to the other (time-series) model metrics
-ts_model_metrics <-
-  ts_model_metrics |>
-  bind_rows(rnorm_model_metrics)
+cubs_train |> 
+  select(gm, date, attendance, pred_trailing2)
+```
 
-# Reshape to long format for plotting: one row per (model, metric) pair
-ts_metrics_long <-
-  ts_model_metrics |>
+The first two home games of each season have no `pred_trailing2` value because the rule requires attendance from two earlier home games.
+
+### Comparing Recent-History Prediction Rules {.unnumbered}
+
+We now have three ways to use recent attendance:
+
+- `pred_lag1` uses the previous home game;
+- `pred_lag2` uses the home game two games earlier;
+- `pred_trailing2` averages the previous two home games.
+
+The third rule introduces a new idea: a prediction can combine information from multiple historical observations rather than rely on a single one.
+
+To compare the three rules fairly, we evaluate them on the same games. Since both `pred_lag2` and `pred_trailing2` are unavailable for the first two home games of each season, we keep only games for which all three predictions are available.
+
+```{r}
+recent_history_predictions <-
+  cubs_train |>
+  filter(
+    !is.na(pred_lag1),
+    !is.na(pred_lag2),
+    !is.na(pred_trailing2)
+  ) |>
+  select(
+    attendance,
+    pred_lag1,
+    pred_lag2,
+    pred_trailing2
+  ) |>
   pivot_longer(
-    cols      = -model,
-    names_to  = "metric",
-    values_to = "value"
-  )
-
-# Plot forecast accuracy metrics with a colorblind-safe palette (Okabe–Ito)
-ggplot(ts_metrics_long, aes(x = model, y = value, fill = model)) +
-  # One bar per model within each metric facet
-  geom_col() +
-  # Separate panels for each metric; allow different y-axis scales
-  facet_wrap(~ metric, scales = "free_y") +
-  # Titles and axis labels
-  labs(
-    title = "Forecast Accuracy Metrics by Model",
-    x = "Model",
-    y = "Value"
-  ) +
-  # Clean baseline theme
-  theme_minimal() +
-  # Apply Okabe–Ito colorblind-safe palette (from ggokabeito)
-  ggokabeito::scale_fill_okabe_ito() +
-  # Styling tweaks: hide legend (redundant) and tilt x labels
-  theme(
-    legend.position = "none",
-    axis.text.x = element_text(angle = 45, hjust = 1)
+    cols = starts_with("pred_"),
+    names_to = "model",
+    values_to = ".pred"
   )
 ```
 
-This random model provides a baseline — if our supposedly “intelligent” forecasts don’t perform better than random guesses, then we have a problem! Reassuringly, our random predictions yield much higher errors than any of our structured time-series models. This confirms that even simple models like persistence and moving averages capture meaningful patterns in attendance data.
+We then calculate the same three error metrics as before.
 
-#### But what about practical considerations? {.unnumbered}
+```{r}
+recent_history_metrics <-
+  recent_history_predictions |>
+  group_by(model) |>
+  summarise(
+    mae = mae_vec(attendance, .pred),
+    rmse = rmse_vec(attendance, .pred),
+    mape = mape_vec(attendance, .pred)
+  )
 
-The Lag(1) model provides the most accurate predictions, but it is not likely to be practical for operations planning. Forecasts based purely on the previous game may not give managers enough lead time to hire staff, order supplies, or adjust logistics.
+recent_history_metrics
+```
 
-In practice, firms often need to predict further ahead — a week or a month in advance — and must therefore rely on other variables (e.g., day of week, opponent, ticket sales, promotions, or weather) rather than just the immediate past.
+The two-game trailing mean performs almost identically to lag 1 on MAE and MAPE, but has a slightly lower RMSE. This suggests that combining multiple recent games can be useful because it makes the prediction less sensitive to any one unusually high or low attendance outcome. At the same time, the gains are modest: using more historical observations does not automatically improve prediction. 
 
-In this week's workshop we will turn to building models that incorporate these rich, forward-looking predictors.
+## Using More Relevant Historical Games
 
-### Summary and next steps {.unnumbered}
+### Predicting Attendance by Opponent {.unnumbered}
 
-What did we do?
+So far, we have chosen historical games because they happened recently. Another possibility is to use past games that are similar to the game we want to predict. One feature we know before a game is the opposing team.
 
-- We framed attendance prediction as a workforce-planning problem, then built a progression of models. 
-- We loaded and cleaned Red Sox home-game data (2005–2015), engineered dates/weekday/day-night flags, and explored the distribution under a capacity cap. 
-- We estimated and evaluated univariate time-series prediction models (lag-1, trailing-3, cumulative mean) and compared these to a random baseline.
+Suppose we want to predict attendance for a 2024 home game against Milwaukee. Rather than use attendance from the most recent Cubs home game, we could look at Cubs home games against Milwaukee in 2023 and use their average attendance. The prediction rule is then: **for each opponent, predict attendance using the average attendance from games against that opponent in the previous season**.
 
-What did we find?
+We can first construct these opponent averages for 2023.
 
-- Among univariate models, lag-1 was the most accurate; the cumulative mean was stable but biased toward the long-run average. 
-- All models beat random guessing by a wide margin.
-- Overall, modest structure that tracks stable temporal patterns beats heavy flexibility that chases noise.
+```{r}
+opp_means_2023 <-
+  cubs_train |>
+  filter(year == 2023) |>
+  group_by(opp) |>
+  summarise(
+    pred_opp_1yr = mean(attendance, na.rm = TRUE),
+    .groups = "drop"
+  )
+```
 
-How should we act on what we found?
+We then attach the appropriate opponent average to each 2024 game.
 
-- Use the simplest model that meets accuracy needs for staffing and provisioning, and cap forecasts at stadium capacity. 
-- For short-horizon operational calls (next game or homestand), a lag-1 is operationally reliable and easy to explain. 
-- When planning further ahead, prefer models using forward-available variables (day/night, dotw, opponent groups) rather than immediate past attendance alone. 
-- Always evaluate with time-based backtests and choose based on out-of-sample MAE/RMSE/MAPE, not in-sample R².
+```{r}
+opp_predictions_2024 <-
+  cubs_train |>
+  filter(year == 2024) |>
+  left_join(
+    opp_means_2023,
+    by = "opp"
+  )
+```
 
-How can we improve the analysis?
+Games against the same opponent receive the same prediction because the rule uses the same historical group to predict each of them. If an opponent did not appear in the historical data used by the rule, the prediction will be `NA`.
 
-- Rely on other variables (e.g., day of week, opponent, ticket sales, promotions, or weather) rather than just the immediate past (i.e., lagged attendance) to form predictions.
-- Add richer, forward-looking features: ticket sales/price, promotions, holidays, weather forecasts, team form/injuries, and opponent strength measures; include interaction terms thoughtfully. 
-- Use regularization (ridge/lasso/elastic net) to shrink noisy factors.
-- Explore tree-based models (pruned CART, random forests, gradient boosting). 
-- Finally, quantify uncertainty with prediction intervals, and translate forecasts to staffing via explicit service targets to make decisions cost-aware.
+### Reusing the Same Prediction Logic {.unnumbered}
+
+We may also want to use more than one previous season. For example, we could predict 2024 attendance using average attendance against each opponent across both 2022 and 2023. The steps are almost identical: choose the historical years, calculate an average for each opponent, and join those averages to the games we want to predict.
+
+When the same analytical steps need to be repeated with different inputs, a function can help us avoid rewriting the same code. The function below takes three inputs: the data, the year we want to predict, and the number of previous years to use.
+
+```{r}
+predict_by_opponent <- function(data, target_year, years_back) {
+
+  opponent_means <-
+    data |>
+    filter(
+      year >= target_year - years_back,
+      year < target_year
+    ) |>
+    group_by(opp) |>
+    summarise(
+      .pred = mean(attendance, na.rm = TRUE),
+      .groups = "drop"
+    )
+
+  data |>
+    filter(year == target_year) |>
+    left_join(
+      opponent_means,
+      by = "opp"
+    )
+}
+```
+
+The function does the same two things we did manually above. First, it calculates average attendance by opponent over the requested historical window. Second, it joins those averages to the games in the target year.
+
+We can now create a one-year and a two-year opponent prediction for 2024 by changing only `years_back`.
+
+```{r}
+opp_1yr_2024 <-
+  predict_by_opponent(
+    data = cubs_train,
+    target_year = 2024,
+    years_back = 1
+  ) |>
+  rename(pred_opp_1yr = .pred)
+
+opp_2yr_2024 <-
+  predict_by_opponent(
+    data = cubs_train,
+    target_year = 2024,
+    years_back = 2
+  ) |>
+  rename(pred_opp_2yr = .pred)
+```
+
+The one-year rule uses only 2023 games to predict 2024. The two-year rule uses games from 2022 and 2023. Combining two seasons gives each opponent mean more historical observations, which may make the prediction less sensitive to an unusual game. The trade-off is that some of those observations are older and may be less representative of current attendance.
+
+::: {.exercise}
+::: {.exercise-time}
+5 min
+:::
+Consider the two opponent-based prediction rules.
+
+1. What historical games are used when `target_year = 2024` and `years_back = 1`?
+2. What changes when `years_back = 2`?
+3. Why might using two years produce a more stable prediction?
+4. Why might using older games make the prediction less useful?
+
+:::
+
+## Comparing Candidate Prediction Rules
+
+### Evaluating the Rules on the Training Data {.unnumbered}
+
+We now have five candidate prediction rules. Three use recent attendance (`pred_lag1`, `pred_lag2`, and `pred_trailing2`), while two use average attendance against the same opponent (`pred_opp_1yr` and `pred_opp_2yr`).
+
+Before moving to the 2025 test data, we compare all five rules on 2024 games. We use 2024 because every rule can be constructed using information from earlier games or earlier seasons. This lets us compare the rules on a common year while still treating the exercise as part of model development.
+
+We already created each prediction in the previous sections, so we do not need to run the models again. We can bring the predictions together in one data frame.
+
+```{r}
+candidate_predictions_2024 <-
+  cubs_train |>
+  filter(year == 2024) |>
+  select(
+    year,
+    gm,
+    date,
+    opp,
+    attendance,
+    pred_lag1,
+    pred_lag2,
+    pred_trailing2
+  ) |>
+  left_join(
+    opp_1yr_2024 |>
+      select(year, gm, pred_opp_1yr),
+    by = c("year", "gm")
+  ) |>
+  left_join(
+    opp_2yr_2024 |>
+      select(year, gm, pred_opp_2yr),
+    by = c("year", "gm")
+  )
+```
+
+For a fair comparison, every rule should be evaluated on the same games. We therefore keep only games for which all five predictions are available, then reshape the data so that each row contains one actual attendance value and one prediction.
+
+```{r}
+candidate_predictions_long <-
+  candidate_predictions_2024 |>
+  drop_na(starts_with("pred_")) |>
+  pivot_longer(
+    cols = starts_with("pred_"),
+    names_to = "model",
+    values_to = ".pred"
+  )
+```
+
+We can now calculate MAE, RMSE, and MAPE for each rule using the same workflow as before.
+
+```{r}
+candidate_metrics <-
+  candidate_predictions_long |>
+  group_by(model) |>
+  summarise(
+    mae = mae_vec(attendance, .pred),
+    rmse = rmse_vec(attendance, .pred),
+    mape = mape_vec(attendance, .pred)
+  )
+
+candidate_metrics
+```
+
+On the 2024 training data, the two-game trailing mean performs best overall. It has the lowest MAE (2,669), RMSE (3,774), and MAPE (7.57%). Lag 1 is the next-best rule, while lag 2 performs worse on all three metrics. The opponent-based rules perform worse than the recent-history rules, and using two years of opponent history performs worse than using only the previous year. In this training sample, then, recent attendance appears more useful than opponent-specific history. These results help us identify promising rules, but they are still based on the data used during model development.
+
+## Evaluating Predictions on Unseen Data
+
+### Moving from Training to Test Data {.unnumbered}
+
+So far, we used the training data to compare the candidate rules and learn which ones looked promising, so strong performance on those same games may not carry over to a new season.
+The 2025 test data give us a fresh comparison. These games played no role in developing or selecting the candidate rules. We can therefore use them to ask whether the patterns that looked useful during training also produce accurate predictions for new games.
+
+### Applying the Recent-History Rules to 2025 {.unnumbered}
+
+For the lag-based rules, earlier 2025 games can be used to predict later 2025 games. Once a game has occurred, its attendance is known and is therefore available when predicting the next game. What we cannot use is attendance from the game being predicted or from any game that takes place later.
+
+We apply the same three recent-history rules to the 2025 games.
+
+```{r}
+cubs_test_predictions <-
+  cubs_test |>
+  arrange(gm) |>
+  mutate(
+    pred_lag1 = lag(attendance, 1),
+    pred_lag2 = lag(attendance, 2),
+    pred_trailing2 =
+      (lag(attendance, 1) + lag(attendance, 2)) / 2
+  )
+```
+
+As before, the first game has no lag-1 prediction, while the first two games have no lag-2 or trailing-2 prediction.
+
+### Applying the Opponent Rules to 2025 {.unnumbered}
+
+The opponent-based rules use historical averages calculated from seasons before the year being predicted. We use the function from the previous section to create one-year and two-year opponent predictions for 2025.
+
+```{r}
+opp_1yr_2025 <-
+  predict_by_opponent(
+    data = cubs_attendance,
+    target_year = 2025,
+    years_back = 1
+  ) |>
+  rename(pred_opp_1yr = .pred)
+
+opp_2yr_2025 <-
+  predict_by_opponent(
+    data = cubs_attendance,
+    target_year = 2025,
+    years_back = 2
+  ) |>
+  rename(pred_opp_2yr = .pred)
+```
+
+The one-year rule uses 2024 attendance against each opponent. The two-year rule uses 2023 and 2024. Unlike the lagged rules, these opponent averages are not updated using 2025 attendance.
+
+We now bring all five predictions together.
+
+```{r}
+test_predictions_2025 <-
+  cubs_test_predictions |>
+  left_join(
+    opp_1yr_2025 |>
+      select(year, gm, pred_opp_1yr),
+    by = c("year", "gm")
+  ) |>
+  left_join(
+    opp_2yr_2025 |>
+      select(year, gm, pred_opp_2yr),
+    by = c("year", "gm")
+  )
+```
+
+### Comparing Test-Set Performance {.unnumbered}
+
+For a fair comparison, we again evaluate every rule on the same games. We keep only games for which all five predictions are available, reshape the predictions into long format, and calculate the same three error metrics.
+
+```{r}
+test_predictions_long <-
+  test_predictions_2025 |>
+  drop_na(starts_with("pred_")) |>
+  pivot_longer(
+    cols = starts_with("pred_"),
+    names_to = "model",
+    values_to = ".pred"
+  )
+
+test_metrics <-
+  test_predictions_long |>
+  group_by(model) |>
+  summarise(
+    mae = mae_vec(attendance, .pred),
+    rmse = rmse_vec(attendance, .pred),
+    mape = mape_vec(attendance, .pred)
+  )
+
+test_metrics
+```
+
+### Which Prediction Rule Is Best? {.unnumbered}
+
+There is no single prediction rule that performs best on every metric. Lag 1 has the lowest MAE (2,681) and MAPE (7.43%), while the one-year opponent model has the lowest RMSE (3,565). The two-game trailing mean is also competitive, but it is no longer the best-performing rule on the test data.
+
+Which result matters most depends on the business decision. In our setting, MAE is a natural primary measure because it tells us the typical prediction error in number of attendees — the same quantity that drives staffing and supply decisions. By that measure, lag 1 performs best: its predictions miss actual attendance by about 2,681 people on average.
+
+RMSE is also useful because it places more weight on unusually large prediction errors. If large mistakes are especially costly — for example, because severe understaffing creates long queues or shortages — the one-year opponent model may be more attractive because it has the lowest RMSE. MAPE gives a useful percentage interpretation, but adds less here because attendance is measured on a similar scale across games.
+
+The test results also change what we learned during model development. On the 2024 training data, the two-game trailing mean performed best on all three metrics. In 2025, the ranking depends on how prediction error is measured. This is why we needed the test data: the patterns that look strongest during model development do not always remain strongest when applied to new observations.
+
+## Summary
+
+In this chapter, we treated stadium attendance as a prediction problem. We used historical games to construct several prediction rules, including lags, an average of recent games, and averages based on the opposing team. We compared those rules during model development and then evaluated them on a later season that played no role in choosing them.
+
+The results highlighted several lessons. Recent information can be useful, but combining more observations does not automatically improve prediction. Historical observations can also be selected because they are similar to the case we want to predict, not just because they are recent. Training performance helps us compare candidate rules, but test performance tells us whether those patterns continue to hold for new observations. We also saw that there may be no single best rule across every error metric, so the choice of metric should reflect the business decision the prediction will support.
+
+The specific prediction rules in this chapter are simple, but the logic is general. In later courses or applications, you may encounter methods that combine many variables and capture patterns that cannot be summarized well by a few lags, averages, or group means. The machinery may become more complicated, but the core workflow remains the same: define the outcome, use only information available when the prediction is made, develop candidate rules using historical data, and evaluate them on observations that played no role in choosing those rules.
