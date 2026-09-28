@@ -1,786 +1,498 @@
-# Tutorial 9: Predictive Analytics for Workforce Planning {.unnumbered}
+# Tutorial 9: Predicting Baseball Game Attendance {.unnumbered}
 
 ::: {.callout-tip}
 ## Learning Goals {.unnumbered}
 
 By the end of this tutorial, you should be able to:
 
-- Explore how attendance varies with game time (day/night) and opponent using tidy plots.
-- Build time-based train/test splits and create cell-means predictors on the training set.
-- Evaluate forecasts on the test set using MAE, RMSE, and MAPE.
-- Fit and compare regression models (Basic OLS, Quadratic in game number, Degree-8 polynomial) and relate fit to generalisation.
-- Connect forecast accuracy to operational planning decisions.
+* Construct simple attendance prediction rules using historical information such as recent games and groups of similar games.
+* Apply prediction rules developed on training data to new test observations without using future information.
+* Evaluate prediction performance using MAE, RMSE, and MAPE.
+* Compare alternative prediction models using a common test sample and appropriate data reshaping.
+* Explain how different prediction rules define which historical observations are most informative.
+* Justify a model recommendation using out-of-sample evidence and communicate the result in a short analytics memo.
 :::
 
 ## The Business Challenge
 
-```{r}
-#| warning: false
-#| echo: false
-library(tidyverse)
-library(slider)
-library(ggokabeito)
-```
+In the lecture, you completed an internship with the **Chicago Cubs**, where you helped the team predict attendance at future home games. You learned that even simple prediction rules can be useful when they use information that is available before a game takes place.
+
+Your work with the Cubs was a success. Their cross-town rivals, the **Chicago White Sox**, have now hired you to help with the same problem.
+
+Like the Cubs, the White Sox need to make decisions before each home game. How many staff should be rostered? How much food and merchandise should be available? How busy should the team expect the stadium to be? Better predictions of attendance can help the White Sox prepare for these decisions.
+
+You already know that there are different ways we might use past games to predict attendance at a future game. For example, we could use attendance at recent games, or look at attendance for similar types of games.
+
+The challenge is deciding which information produces useful predictions for games we have not yet observed.
+
+### Your task
+
+Your task is to develop and evaluate several simple approaches for predicting attendance at Chicago White Sox home games.
+
+You will:
+
+1. use historical White Sox games to build prediction rules;
+2. consider different ways of deciding which past games are most useful for predicting a future game;
+3. compare how well different approaches predict attendance; and
+4. communicate what you learn in a short **analytics memo** for the White Sox Business Analytics Team.
+
+### Loading Packages and Data
+
+We begin by loading the packages we will use in this tutorial.
 
 ```{r}
-#| warning: false
-#| eval: true
-#| echo: false
-#| cache: true
-
-# Load the data
-bos_2005_2015_fenway <- 
-  read_csv('../data/mlb_attendance.csv')
-
-```
-
-### Using predictive analytics to navigate demand uncertainty and improve staffing decisions
-
-In operations, managers must match capacity (people, time, equipment) to demand that arrives with uncertainty. Overstaffing raises costs; understaffing creates queues, slower service, and lost revenue. Prediction is the tool that turns historical data into forward-looking staffing guidance.
-
-As in the lecture, our setting is MLB game attendance at Fenway Park, home of the Boston Red Sox. Concession managers need to staff bars and food stands for each Red Sox home game. The core uncertainty is attendance (how many fans show up). Attendance varies systematically with observable game features—e.g., day vs night, day of week, and opponent (rivalry effects)—and is bounded above by a capacity ceiling (sellouts cluster near the right edge of the distribution).
-
-In this setting, the workflow that links demand forecasts to rostering works as follows:
-
-1. Forecast demand: Predict game-level attendance using historical patterns (e.g., cell-means or OLS models).
-2. Translate to headcount: Convert predicted attendance into required staff using service rates (e.g., “one staff member can serve ~k customers per hour”).
-3. Build the roster: Schedule staff to shifts ahead of time, subject to capacity and cost constraints.
-
-Getting this workflow right is critical to business success. Accurate, well-calibrated forecasts let you set a baseline headcount and add a buffer sized to typical forecast error (e.g., MAE), striking a balance between cost and service quality.
-
-In this week's workshop, we are going to get a feel for this workflow by tackling the following tasks:
-
-- Exploration: Verify that day/night and opponent relate to attendance (so they’re worth using in models).
-- Time-based splitting: Fit on earlier seasons, evaluate on later seasons to avoid look-ahead bias.
-- Simple predictors: Use cell means (Day/Night; dotw × D/N; Opponent) for transparent, explainable baselines.
-- Linear models: Compare Basic OLS, Quadratic in game number, and a Degree-8 polynomial—see how fit ≠ generalisation.
-- Metrics: Judge models with MAE/RMSE/MAPE on the test set and connect those magnitudes to staffing buffers.
-
-While doing so, we will keep our eye on the big picture: Our goal isn’t a perfect forecast; it’s a useful one—accurate enough, early enough, and explainable enough to make better staffing decisions.
-
-Let's get started!
-
-### Getting set up
-
-First, we need to load our packages:
-
-```{r}
-#| eval: false
-
-library(tidyverse)
-library(scales)
-library(ggokabeito)
-```
-
-Next, we need to load our dataset.
-
-```{r}
-#| eval: false
-
-bos_2005_2015_fenway <- 
-  read_csv('data/mlb_attendance.csv')
-
-```
-
-## Prepare these Exercises before Class
-
-Prepare these exercises before coming to class. Plan to spend 30 minutes on these exercises.
-
-### Exercise 1: Building predictors available in advance from the training set
-
-In the lecture, the lag-1 model performed well because recent attendance is informative. But it is not always useful for workforce planning: concession managers often need to roster staff before the previous game has been played. In this tutorial we therefore focus on predictors that are known before the game:
-
-- whether the game is during the day or evening
-- the day of the week
-- the opponent
-
-Our goal is to use the training data to decide whether these forward-looking features contain useful predictive signal, then turn them into simple test-set forecasts.
-
-::: {.callout-note title="Why split into training and test data?" collapse="true"}
-**Overfitting** happens when a model learns patterns that are too specific to the data used to build it. In practice, this means the model is fitting idiosyncratic variation in the training data rather than meaningful structure. Idiosyncratic variation is not systematic, so we should not expect it to reoccur in future games in the same way. The model may therefore look accurate on familiar data, but perform poorly when asked to predict new games.
-
-A training/test split helps us check for this. We build the model using the **training set**, then evaluate it on a separate **test set** that was not used to calculate the model. If the model works well on the test set, we have better evidence that it has learned a useful pattern rather than memorised noise.
-
-Because this is a forecasting problem, we split by time: earlier seasons are used for training, and later seasons are held out for testing. This mirrors how managers would actually use the model: learn from the past, then forecast future games.
-:::
-
-**(a).** Create a time-based training and test split. Use games from seasons before 2013 as the training set, and games from 2013 onward as the test set.
-
-```{r}
-#| eval: false
-
-training_sample_2005_2012 <- 
-  bos_2005_2015_fenway |>
-  YOUR_CODE_HERE  
-
-test_sample_2013_2015 <- 
-  bos_2005_2015_fenway |>
-  YOUR_CODE_HERE  
-```
-
-Why is a time-based split more realistic than randomly splitting games for this forecasting problem?
-
-**(b).** Start with the simplest forward-looking feature: whether the game is played during the day or at night. Complete and run the code below, then describe the size and direction of the difference in attendance across day vs night games.
-
-```{r}
-#| eval: false
-
-training_sample_2005_2012 |>
-  YOUR_CODE_HERE(day_night) |>
-  YOUR_CODE_HERE(
-    ave_attendance = mean(attendance, na.rm = TRUE), 
-    n_games = n(),
-    .groups = "drop"
-  ) |>
-  ggplot(aes(x = day_night, y = ave_attendance, fill = day_night)) +
-  geom_col(width = 0.5) +
-  geom_text(
-    aes(label = round(ave_attendance, 0)),
-    vjust = -0.5, size = 4, color = "black"
-  ) +
-  labs(x = "Game Time", y = "Average Attendance", fill = "Game Time") +
-  scale_y_continuous(breaks = scales::pretty_breaks(n = 5)) +
-  ggokabeito::scale_fill_okabe_ito() +
-  coord_cartesian(ylim = c(30000, 40000)) +
-  theme_minimal() +
-  theme(panel.grid.major.x = element_blank())
-```
-
-**(c).** Now inspect two richer versions of the same idea: attendance across the different day-of-week/game-time combinations, and attendance across the different opponents. Run the code below.
-
-```{r}
-#| eval: false
-
-training_sample_2005_2012 |>
-  mutate(
-    dotw = factor(
-      dotw,
-      levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
-    )
-  ) |>
-  group_by(dotw, day_night) |>
-  summarise(
-    ave_attendance = mean(attendance, na.rm = TRUE),
-    n_games = n(),
-    .groups = "drop"
-  ) |>
-  ggplot(aes(x = dotw, y = ave_attendance, fill = day_night)) +
-  geom_col(position = position_dodge(width = 0.7), width = 0.6) +
-  ggokabeito::scale_fill_okabe_ito(name = "Game Time") +
-  labs(x = "Day of the Week", y = "Average Attendance") +
-  scale_y_continuous(breaks = scales::pretty_breaks(n = 5)) +
-  coord_cartesian(ylim = c(30000, 40000)) +
-  theme_minimal() +
-  theme(
-    panel.grid.major.x = element_blank(),
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  )
-
-training_sample_2005_2012 |>
-  group_by(opp) |>
-  summarise(
-    ave_attendance = mean(attendance, na.rm = TRUE),
-    n_games = n(),
-    .groups = "drop"
-  ) |>
-  arrange(desc(ave_attendance)) |>
-  mutate(opp = factor(opp, levels = opp)) |>
-  ggplot(aes(x = opp, y = ave_attendance)) +
-  geom_col(fill = "steelblue", width = 0.5) +
-  labs(x = "Opponent", y = "Average Attendance") +
-  scale_y_continuous(breaks = scales::pretty_breaks(n = 5)) +
-  coord_cartesian(ylim = c(30000, 40000)) +
-  theme_minimal() +
-  theme(
-    panel.grid.major.x = element_blank(),
-    axis.text.x = element_text(size = 8, angle = 45, hjust = 1)
-  )
-```
-
-Briefly answer the following:
-
-- Which feature appears most useful for forecasting attendance?
-- Which feature would be easiest to explain to a concessions manager?
-- Which feature is most likely to be noisy because it creates small groups?
-
-**(d).** Build three cell-means models from the training set, then join those training means to the test set as predictions. 
-
-::: {.callout-note title="What is a cell-means model?" collapse="true"}
-A cell-means model predicts using the average outcome within a group, or "cell", in the training data. For example, a day/night cell-means model calculates the average training-set attendance for day games and the average training-set attendance for night games. It then uses those averages as predictions for future day and night games.
-
-This kind of model is simple and explainable: "games like this usually draw about this many fans." The tradeoff is that more detailed (i.e., narrower) cells can become noisy.
-:::
-
-Complete the missing pieces in the code below to fit these cell-means models.
-
-```{r}
-#| eval: false
-
-average_attendance_by_daynight <- 
-  training_sample_2005_2012 |>
-  group_by(YOUR_CODE_HERE) |>
-  summarise(
-    ave_attendance = mean(attendance, na.rm = TRUE),
-    .groups = "drop"
-  )
-
-average_attendance_by_dotw_dn <- 
-  training_sample_2005_2012 |>
-  group_by(YOUR_CODE_HERE, YOUR_CODE_HERE) |>
-  summarise(
-    ave_attendance = mean(attendance, na.rm = TRUE),
-    .groups = "drop"
-  )
-
-average_attendance_by_opp <- 
-  training_sample_2005_2012 |>
-  group_by(YOUR_CODE_HERE) |>
-  summarise(
-    ave_attendance = mean(attendance, na.rm = TRUE),
-    .groups = "drop"
-  )
-
-test_sample_2013_2015 <- 
-  test_sample_2013_2015 |>
-  left_join(average_attendance_by_daynight, by = YOUR_CODE_HERE) |>
-  rename(predicted_attendance_daynight = ave_attendance) |>
-  left_join(average_attendance_by_dotw_dn, by = c(YOUR_CODE_HERE, YOUR_CODE_HERE)) |>
-  rename(predicted_attendance_dotw_dn = ave_attendance) |>
-  left_join(average_attendance_by_opp, by = YOUR_CODE_HERE) |>
-  rename(predicted_attendance_opp = ave_attendance)
-```
-
-**(e).** Each model uses information available before the game. Before calculating formal error metrics, which one do you expect to perform best on the test set, and why? In your answer, distinguish between a feature that looks useful in the training data and a model that is likely to generalise well to future games.
-
-### Exercise 2: Evaluating predictors available in advance in the test set
-
-The lecture introduced MAE, RMSE, and MAPE. Rather than rebuild the same error pipeline three separate times, we will use one tidy workflow to compare all three models with predictors available in advance from Exercise 1.
-
-**(a).** Run the code below to put the three prediction columns into a long format. Before doing so complete the missing lines that calculate forecast errors.
-
-```{r}
-#| eval: false
-
-simple_model_errors <- 
-  test_sample_2013_2015 |>
-  select(
-    attendance,
-    predicted_attendance_daynight,
-    predicted_attendance_dotw_dn,
-    predicted_attendance_opp
-  ) |>
-  pivot_longer(
-    cols = starts_with("predicted_attendance_"),
-    names_to = "model",
-    values_to = "predicted_attendance"
-  ) |>
-  mutate(
-    model = recode(
-      model,
-      predicted_attendance_daynight = "Day/Night",
-      predicted_attendance_dotw_dn = "Day of week x Day/Night",
-      predicted_attendance_opp = "Opponent"
-    ),
-    error            = YOUR_CODE_HERE - YOUR_CODE_HERE,
-    abs_error        = abs(YOUR_CODE_HERE),
-    squared_error    = YOUR_CODE_HERE ^ 2,
-    percentage_error = (YOUR_CODE_HERE / YOUR_CODE_HERE) * 100
-  )
-```
-
-What does `pivot_longer()` do here, and why is it helpful when we want to compare several models?
-
-**(b).** Complete and run the code below to calculate MAE, RMSE, and MAPE for each model.
-
-```{r}
-#| eval: false
-
-simple_model_metrics <- 
-  simple_model_errors |>
-  group_by(model) |>
-  summarise(
-    MAE  = mean(YOUR_CODE_HERE, na.rm = TRUE),
-    RMSE = sqrt(mean(YOUR_CODE_HERE, na.rm = TRUE)),
-    MAPE = mean(abs(YOUR_CODE_HERE), na.rm = TRUE),
-    .groups = "drop"
-  )
-```
-
-Which metric is most directly useful for setting a staffing buffer? Which metric is most sensitive to occasional large misses?
-
-**(c).** Run the code below to plot the metrics.
-
-```{r}
-#| eval: false
-
-simple_metrics_long <-
-  simple_model_metrics |>
-  pivot_longer(
-    cols = c(MAE, RMSE, MAPE),
-    names_to = "metric",
-    values_to = "value"
-  )
-
-ggplot(simple_metrics_long, aes(x = model, y = value, fill = model)) +
-  geom_col() +
-  geom_text(aes(label = round(value, 0)), vjust = -0.5, size = 3) +
-  facet_wrap(~ metric, scales = "free_y") +
-  ggokabeito::scale_fill_okabe_ito() +
-  labs(
-    title = "Forecast Accuracy Metrics by Model",
-    x = "Model",
-    y = "Value"
-  ) +
-  theme_minimal() +
-  theme(
-    legend.position = "none",
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  )
-```
-
-**(d).** Based on the table and plot, choose one model for a concessions staffing manager. In your answer, consider:
-
-- test-set accuracy
-- whether the predictor is available early enough for rostering
-- whether the model is simple enough to explain
-- whether the accuracy differences are large enough to matter operationally
-
-## In-Class Exercises
-
-You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above; you will get the most value from the class if you have completed those above before coming to class.
-
-### Exercise 3: Fitting regression models
-
-Exercises 1 and 2 used simple cell-means models: each forecast came from the average attendance for one group of games. We now turn to ordinary least squares (OLS) regression, which, among other things, lets us combine multiple predictors in a single model.
-
-The aim is not to find the most complicated model possible. The aim is to ask whether a richer model improves the forecast enough to justify the extra complexity for staffing decisions.
-
-::: {.callout-note title="What is OLS regression?" collapse="true"}
-Ordinary least squares (OLS) regression is a way to model the relationship between an outcome we want to predict and one or more predictors. Here, the outcome is attendance, and the predictors might include opponent, game time, day of week, or game number.
-
-OLS works by choosing the line, curve, or set of group differences that makes the model's prediction errors as small as possible in the training data. More precisely, it chooses the coefficients that minimise the sum of squared errors: the squared differences between the actual attendance values and the model's fitted values.
-
-For example, a simple regression might estimate how attendance changes between day and night games. A richer regression can combine several predictors at once, such as opponent, day/night, and day of week. When a predictor is categorical, such as opponent, OLS compares each category to a reference category.
-
-In this tutorial, we use OLS as a forecasting tool. We fit the model on earlier seasons, use it to predict attendance in later seasons, and then evaluate whether those predictions are accurate enough and explainable enough to support staffing decisions.
-:::
-
-**(a).** Fit an OLS model that uses the same forward-available predictors we studied earlier: opponent, day/night, and day of week. Complete and run the code below.
-
-```{r}
-#| eval: false
-
-basic_ols_model <- 
-  lm(YOUR_CODE_HERE ~ YOUR_CODE_HERE + YOUR_CODE_HERE + YOUR_CODE_HERE, 
-     data = YOUR_CODE_HERE                                               
-  )
-```
-
-**(b).** Run the code below to view the model summary.
-
-```{r}
-#| eval: false
-
-summary(basic_ols_model)
-```
-
-Discuss with your group:
-
-- Which predictors appear to have the largest associations with attendance?
-- What does the R-squared value tell us about in-sample fit?
-- Why should we avoid choosing the model on R-squared alone?
-
-**(c).** The basic OLS model combines categorical predictors. We can also ask whether attendance changes systematically over the course of the season. Run the two plots below to compare a simple quadratic curve with a more flexible degree-8 curve.
-
-```{r}
-#| eval: false
-
-ggplot(training_sample_2005_2012, aes(x = gm, y = attendance)) +
-  geom_point(alpha = 0.6) +
-  stat_smooth(
-    method  = "lm",
-    formula = y ~ x + I(x^2),
-    color   = "blue",
-    se      = FALSE
-  ) +
-  labs(
-    title = "Quadratic Fit of Attendance by Game Number",
-    x     = "Game Number",
-    y     = "Attendance"
-  ) +
-  theme_minimal()
-
-ggplot(training_sample_2005_2012, aes(x = gm, y = attendance)) +
-  geom_point(alpha = 0.6) +
-  stat_smooth(
-    method  = "lm",
-    formula = y ~ x + I(x ^ 2) + I(x ^ 3) + I(x ^ 4) + 
-      I(x ^ 5) + I(x ^ 6) + I(x ^ 7) + I(x ^ 8),
-    color   = "blue",
-    se      = FALSE
-  ) +
-  labs(
-    title = "Degree-8 Polynomial of Attendance by Game Number",
-    x     = "Game Number",
-    y     = "Attendance"
-  ) +
-  theme_minimal()
-```
-
-Which curve looks more likely to generalise to future games, and why?
-
-**(d).** Let's formally model the plots above. Run the code below to fit two additional OLS specifications: a simple quadratic model using game number, and a more flexible specification that combines opponent, day/night, day of week, and a degree-8 polynomial in game number.
-
-```{r}
-#| eval: false
-
-non_linear_ols_model <- 
-  lm(attendance ~ gm + I(gm^2), 
-     data = training_sample_2005_2012
-  )
-
-eighth_poly_ols_model <- 
-  lm(attendance ~ opp + day_night + dotw + gm + I(gm^2) + 
-     I(gm^3) + I(gm^4) + I(gm^5) + I(gm^6) + I(gm^7) + I(gm^8),
-     data = training_sample_2005_2012
-  )
-```
-
-**(e).** Complete and run the code below to compare in-sample R-squared across the three OLS specifications.
-
-```{r}
-#| eval: false
-
-ols_fit_summary <- tibble(
-  model = c("Basic OLS", "Quadratic game number", "Degree-8 polynomial OLS"),
-  r_squared = c(
-    summary(YOUR_CODE_HERE)$r.squared,
-    summary(YOUR_CODE_HERE)$r.squared,
-    summary(YOUR_CODE_HERE)$r.squared
-  )
-)
-
-ols_fit_summary
-```
-
-Which model fits the training data best? Why is this not enough to choose the forecasting model? In your answer, consider fit, complexity, and operational usefulness.
-
-### Exercise 4: Evaluating regression models
-
-Now that we have fitted our OLS models, we need to test whether the extra complexity actually improves forecasts for future games. This mirrors Exercise 2: train on earlier seasons, evaluate on later seasons, and choose based on usefulness for staffing rather than in-sample fit alone.
-
-**(a).** Complete and run the setup code below. It creates a test sample that contains only opponent levels observed in the training data, then generates test-set predictions from the three OLS models.
-
-```{r}
-#| eval: false
-
-known_opp_levels <- 
-  training_sample_2005_2012 |> 
-  pull(opp) |> 
-  unique()
-
-safe_test_sample <- 
-  test_sample_2013_2015 |>
-  filter(opp %in% known_opp_levels)
-
-safe_test_sample <-
-  safe_test_sample |>
-  mutate(
-    predicted_attendance_basic_OLS =
-      predict(YOUR_CODE_HERE, newdata = safe_test_sample),
-    predicted_attendance_non_linear_OLS =
-      predict(YOUR_CODE_HERE, newdata = safe_test_sample),
-    predicted_attendance_eighth_poly_OLS =
-      predict(YOUR_CODE_HERE, newdata = safe_test_sample)
-  )
-```
-
-Why do we need to handle opponent levels carefully before using `predict()` on the test set? What would happen if we didn't first trim our test sample in this way?
-
-**(b).** Run the code below, then inspect the resulting `ols_model_errors` data frame.
-
-```{r}
-#| eval: false
-
-ols_model_errors <- 
-  safe_test_sample |>
-  select(
-    attendance,
-    predicted_attendance_basic_OLS,
-    predicted_attendance_non_linear_OLS,
-    predicted_attendance_eighth_poly_OLS
-  ) |>
-  pivot_longer(
-    cols = starts_with("predicted_attendance_"),
-    names_to = "model",
-    values_to = "predicted_attendance"
-  ) |>
-  mutate(
-    model = recode(
-      model,
-      predicted_attendance_basic_OLS = "Basic OLS",
-      predicted_attendance_non_linear_OLS = "Quadratic game number",
-      predicted_attendance_eighth_poly_OLS = "Degree-8 polynomial OLS"
-    ),
-    error            = attendance - predicted_attendance,
-    abs_error        = abs(error),
-    squared_error    = error ^ 2,
-    percentage_error = (error / attendance) * 100
-  )
-```
-
-What does this code do? Why is each row now a model-game combination rather than just a game? Why do we create `abs_error`, `squared_error`, and `percentage_error`?
-
-**(c).** Now use `ols_model_errors` to create `ols_model_metrics`, a table like the one below. Your output should show the values for each cell, e.g., each model's MAE, RMSE, etc.
-
-| model | MAE | RMSE | MAPE |
-|---|---:|---:|---:|
-| Quadratic game number |  |  |  |
-| Degree-8 polynomial OLS |  |  |  |
-| Basic OLS |  |  |  |
-
-Write the code to produce this table:
-
-```{r}
-#| eval: false
-
-# Write your answer here
-
-```
-
-**(d).** Interpret the table from part (c).
-
-Which OLS model performs best out of sample? Why doesn't this match the ranking by training-set R-squared from Exercise 3?
-
-### Exercise 5: Choosing and using a staffing forecast
-
-The final decision is not just "which OLS model won?" We also have the simple cell-means models from Exercise 2. Before comparing them, we need to check that the models were evaluated on the same games.
-
-**(a).** In Exercise 2, the simple cell-means models were evaluated on `test_sample_2013_2015`. In Exercise 4, the OLS models were evaluated on `safe_test_sample`.
-
-Run the code below to compare the two samples.
-
-```{r}
-#| eval: false
-
-tibble(
-  sample = c("Full test sample", "OLS-safe test sample"),
-  n_games = c(
-    nrow(test_sample_2013_2015),
-    nrow(safe_test_sample)
-  )
-)
-
-test_sample_2013_2015 |>
-  filter(!(opp %in% known_opp_levels)) |>
-  count(opp, sort = TRUE)
-```
-
-What is the sample mismatch?
-
-**(b).** The table below fixes the sample mismatch from part (a). It compares the best simple cell-means model with the best OLS model, using only the same OLS-safe test rows.
-
-```{r}
-#| echo: false
 #| message: false
 #| warning: false
 
-training_sample_2005_2012 <- 
-  bos_2005_2015_fenway |>
-  filter(year < 2013)
+library(tidyverse)
+library(yardstick)
+```
 
-test_sample_2013_2015 <- 
-  bos_2005_2015_fenway |>
-  filter(year >= 2013)
+Next, we load the White Sox attendance data.
 
-average_attendance_by_daynight <- 
-  training_sample_2005_2012 |>
-  group_by(day_night) |>
-  summarise(
-    ave_attendance = mean(attendance, na.rm = TRUE),
-    .groups = "drop"
+```{r}
+#| eval: true
+#| echo: false
+chw_attend <- read_csv("../data/whitesox_attendance.csv") 
+```
+
+```{r}
+#| eval: false
+#| echo: true
+chw_attend <- read_csv("data/whitesox_attendance.csv") 
+```
+
+Each row of the dataset represents a Chicago White Sox home game. The dataset contains information about the game that we might use to make predictions, together with the number of fans who attended.
+
+Before continuing, take a moment to inspect the data.
+
+```{r}
+glimpse(chw_attend)
+```
+
+## Prepare these Exercises before Class 
+
+Prepare these exercises before coming to class. Plan to spend 45 minutes on these exercises.
+
+### Exercise 1: Creating Training and Test Data
+
+#### (a) Training and test data
+
+We will split `chw_attend` into two datasets:
+
+- **Training data:** games from 2022 to 2024.
+- **Test data:** games from 2025.
+
+Create two objects called `chw_train` and `chw_test` using `filter()`.
+
+```{r}
+#| eval: FALSE
+chw_train <-
+  chw_attend |>
+  # YOUR CODE HERE
+
+chw_test <-
+  chw_attend |>
+  # YOUR CODE HERE
+```
+
+#### (b) Checking the split
+
+Use `count()` to check which seasons appear in `chw_train` and `chw_test`.
+
+```{r}
+#| eval: FALSE
+
+# YOUR CODE HERE
+```
+
+#### (c) Why keep the test data separate?
+
+Why is it useful to keep the 2025 games separate until we have finished developing our prediction approaches?
+
+
+### Exercise 2: Predicting Attendance Using the Previous Game
+
+One simple way to predict attendance at a future game is to use attendance at a recent game. We will start with a **lag-1 model**: our prediction for each game is the attendance at the White Sox's previous home game.
+
+#### (a) Create lag-1 predictions
+
+Starting with `chw_train`, create a lag-1 prediction of attendance for each game.
+
+Your code should:
+
+- group games by season;
+- arrange games in chronological order;
+- create `pred_lag1`, containing attendance at the previous game;
+- ungroup the data; and
+- keep only `gm`, `year`, `attend`, and `pred_lag1`.
+
+Store the result in `chw_train_pred`.
+
+```{r}
+#| eval: FALSE
+chw_train_pred <-
+  YOUR_CODE_HERE |>
+  select(gm, year, attend, pred_lag1)
+```
+
+#### (b) Why do we group by season?
+
+Suppose we instead arranged **all** games from 2022 to 2024 chronologically and then used `lag(attend)` without first grouping by season.
+
+What would the lag-1 prediction be for the **first game of the 2024 season**? Why would that not be a sensible prediction for our model?
+
+#### (c) What happens to the first game?
+
+Inspect the first few games from each season in `chw_train_pred`.
+
+Why is `pred_lag1` missing for the first game of each season? Is this what you would expect given how we have defined the model?
+
+#### (d) Evaluate the lag-1 model
+
+We will use **MAE**, **RMSE**, and **MAPE** to evaluate attendance predictions. Create a metric set containing these three measures and store it as `attendance_metrics`.
+
+Then use `attendance_metrics()` to evaluate the lag-1 model on the training data.
+
+```{r}
+#| eval: FALSE
+
+attendance_metrics <- YOUR_CODE_HERE
+
+chw_train_pred |>
+  attendance_metrics(
+    truth = YOUR_CODE_HERE,
+    estimate = YOUR_CODE_HERE
   )
+```
 
-average_attendance_by_dotw_dn <- 
-  training_sample_2005_2012 |>
-  group_by(dotw, day_night) |>
-  summarise(
-    ave_attendance = mean(attendance, na.rm = TRUE),
-    .groups = "drop"
+### Exercise 3: Predicting Attendance Using the Opponent
+
+Our lag-1 model uses **when a game occurs** to decide which past game should inform our prediction. Another approach is to look for past games that are similar in some other way.
+
+One potentially useful characteristic is the **opponent**. Some visiting teams may consistently attract larger crowds than others.
+
+For each opponent, we will use their average attendance in **2023** as our prediction for games against that opponent.
+
+#### (a) Calculate average attendance by opponent
+
+Using `chw_train`, keep only games from 2023. Then:
+
+- group the data by `opp`;
+- calculate mean `attendance` for each opponent; and
+- store the mean in a variable called `pred_opp`.
+
+Store the resulting table as `attendance_by_opp`.
+
+```{r}
+#| eval: false
+attendance_by_opp <-
+  YOUR_CODE_HERE
+```
+
+#### (b) Create predictions for the training data
+
+We now have one predicted attendance value for each opponent.
+
+Use a `left_join()` to add `pred_opp` to `chw_train`. Store the result as `chw_train_pred_opp`.
+
+```{r}
+#| eval: false
+chw_train_pred_opp <-
+  YOUR_CODE_HERE |>
+  select(gm, year, opp, attendance, pred_opp)
+```
+
+Why do we use `left_join()` with `chw_train` on the left-hand side?
+
+#### (c) Evaluate the opponent model
+
+Use `attendance_metrics()` to evaluate the opponent model on the training data.
+
+```{r}
+#| eval: false
+chw_train_pred_opp |>
+  attendance_metrics(
+    truth = YOUR_CODE_HERE,
+    estimate = YOUR_CODE_HERE
   )
+```
 
-average_attendance_by_opp <- 
-  training_sample_2005_2012 |>
-  group_by(opp) |>
-  summarise(
-    ave_attendance = mean(attendance, na.rm = TRUE),
-    .groups = "drop"
-  )
+```{r}
+# Write your answer here
+```
 
-test_sample_2013_2015 <- 
-  test_sample_2013_2015 |>
-  left_join(average_attendance_by_daynight, by = "day_night") |>
-  rename(predicted_attendance_daynight = ave_attendance) |>
-  left_join(average_attendance_by_dotw_dn, by = c("dotw", "day_night")) |>
-  rename(predicted_attendance_dotw_dn = ave_attendance) |>
-  left_join(average_attendance_by_opp, by = "opp") |>
-  rename(predicted_attendance_opp = ave_attendance)
+## In-Class Exercises
 
-basic_ols_model <- 
-  lm(attendance ~ opp + day_night + dotw,
-     data = training_sample_2005_2012
-  )
+You will discuss these exercises in class with your peers in small groups and with your tutor. These exercises build from the exercises you have prepared above, you will get the most value from the class if you have completed those above before coming to class.
 
-non_linear_ols_model <- 
-  lm(attendance ~ gm + I(gm^2), 
-     data = training_sample_2005_2012
-  )
+### Exercise 4: What Have We Learned So Far?
 
-eighth_poly_ols_model <- 
-  lm(attendance ~ opp + day_night + dotw + gm + I(gm^2) + 
-     I(gm^3) + I(gm^4) + I(gm^5) + I(gm^6) + I(gm^7) + I(gm^8),
-     data = training_sample_2005_2012
-  )
+Before developing any new prediction approaches, return to the model-performance results you calculated in the pre-class exercises for the **lag-1 model** and the **opponent model**.
 
-known_opp_levels <- 
-  training_sample_2005_2012 |> 
-  pull(opp) |> 
-  unique()
+#### (a) Comparing the models
 
-safe_test_sample <- 
-  test_sample_2013_2015 |>
-  filter(opp %in% known_opp_levels)
+Compare the training-data performance of the two models using the MAE, RMSE, and MAPE values you obtained.
+Does either model perform better across **all three** metrics? What do the results tell you about their relative performance on the training data?
 
-safe_test_sample <- 
-  safe_test_sample |>
-  mutate(
-    predicted_attendance_basic_OLS =
-      predict(basic_ols_model, newdata = safe_test_sample),
-    predicted_attendance_non_linear_OLS =
-      predict(non_linear_ols_model, newdata = safe_test_sample),
-    predicted_attendance_eighth_poly_OLS =
-      predict(eighth_poly_ols_model, newdata = safe_test_sample)
-  )
+#### (b) Can we choose a model yet?
 
-comparable_simple_model_metrics <- 
-  safe_test_sample |>
-  select(
-    attendance,
-    predicted_attendance_daynight,
-    predicted_attendance_dotw_dn,
-    predicted_attendance_opp
-  ) |>
-  pivot_longer(
-    cols = starts_with("predicted_attendance_"),
-    names_to = "model",
-    values_to = "predicted_attendance"
-  ) |>
-  mutate(
-    model = recode(
-      model,
-      predicted_attendance_daynight = "Day/Night",
-      predicted_attendance_dotw_dn = "Day of week x Day/Night",
-      predicted_attendance_opp = "Opponent"
-    ),
-    error            = attendance - predicted_attendance,
-    abs_error        = abs(error),
-    squared_error    = error ^ 2,
-    percentage_error = (error / attendance) * 100
-  ) |>
-  group_by(model) |>
-  summarise(
-    MAE  = mean(abs_error, na.rm = TRUE),
-    RMSE = sqrt(mean(squared_error, na.rm = TRUE)),
-    MAPE = mean(abs(percentage_error), na.rm = TRUE),
-    .groups = "drop"
-  )
+Suppose the White Sox ask you which of these two models they should use to predict attendance at future games.
+Can we use the results above to determine which model will make better predictions for future games? Explain why or why not.
 
-ols_model_metrics <- 
-  safe_test_sample |>
-  select(
-    attendance,
-    predicted_attendance_basic_OLS,
-    predicted_attendance_non_linear_OLS,
-    predicted_attendance_eighth_poly_OLS
-  ) |>
-  pivot_longer(
-    cols = starts_with("predicted_attendance_"),
-    names_to = "model",
-    values_to = "predicted_attendance"
-  ) |>
-  mutate(
-    model = recode(
-      model,
-      predicted_attendance_basic_OLS = "Basic OLS",
-      predicted_attendance_non_linear_OLS = "Quadratic game number",
-      predicted_attendance_eighth_poly_OLS = "Degree-8 polynomial OLS"
-    ),
-    error            = attendance - predicted_attendance,
-    abs_error        = abs(error),
-    squared_error    = error ^ 2,
-    percentage_error = (error / attendance) * 100
-  ) |>
-  group_by(model) |>
-  summarise(
-    MAE  = mean(abs_error, na.rm = TRUE),
-    RMSE = sqrt(mean(squared_error, na.rm = TRUE)),
-    MAPE = mean(abs(percentage_error), na.rm = TRUE),
-    .groups = "drop"
-  )
+### Exercise 5: Developing Another Time-Based Model
 
-best_simple_model <-
-  comparable_simple_model_metrics |>
-  arrange(MAE) |>
-  slice(1) |>
-  mutate(model_family = "Cell-means")
+The lag-1 model assumes that the **most recent game** is the most useful past game for predicting attendance at the next game. But this is only one way to use the timing of past games.
 
-best_ols_model <-
-  ols_model_metrics |>
-  arrange(MAE) |>
-  slice(1) |>
-  mutate(model_family = "OLS")
+Your task is to develop a **different time-based prediction rule** using the training data.
 
-best_model_comparison <-
-  best_simple_model |>
-  bind_rows(best_ols_model) |>
-  select(model_family, model, MAE, RMSE, MAPE)
+#### (a) Propose a prediction rule
 
-best_model_comparison_display <-
-  best_model_comparison |>
-  transmute(
-    `Model family` = model_family,
-    `Best model in family` = model,
-    `MAE (fans)` = format(round(MAE, 1), nsmall = 1),
-    `RMSE (fans)` = format(round(RMSE, 1), nsmall = 1),
-    `MAPE (%)` = format(round(MAPE, 1), nsmall = 1)
-  )
+Propose a prediction rule that uses attendance at previous games to predict attendance at the current game.
 
-knitr::kable(
-  best_model_comparison_display,
-  caption = "Best cell-means model versus best OLS model on the same OLS-safe test rows"
+Your rule should use only information that would have been available **before the game you are predicting**.
+
+#### (b) Defend your choice
+
+Explain why you think your proposed rule could produce sensible predictions of White Sox attendance. What information from recent attendance does your rule capture, and why might that be useful?
+
+#### (c) Create your predictions
+
+Implement your prediction rule using `chw_train`.
+
+Store your predictions in a new column. Give the column a short, descriptive name that makes it clear which model it belongs to.
+
+Remember to:
+
+- calculate predictions separately within each season;
+- arrange games in chronological order before using information from previous games; and
+- `ungroup()` once you have finished any grouped calculations.
+
+```{r}
+#| eval: false
+
+YOUR_CODE_HERE
+```
+
+#### (d) Evaluate your model
+
+Use `attendance_metrics()` to evaluate your new model on the training data.
+
+```{r}
+#| eval: false
+
+YOUR_CODE_HERE
+```
+
+Compare these results with the training performance of the lag-1 model.
+
+Does your new model improve on the lag-1 model for any of the three metrics? Does it perform worse on any?
+
+### Exercise 6: Finding More Similar Games
+
+The models we have developed so far make different choices about which previous games should inform a prediction. For example, lag-1 assumes that the **most recent game** is the most useful comparison.
+
+But the most recent game is not necessarily the **most similar game**.
+
+#### (a) Which games are most useful?
+
+Suppose you need to predict attendance for an upcoming White Sox home game.
+Propose a prediction rule that uses attendance from past games you think are particularly useful comparisons.
+
+You can use any combination of the ideas you have seen so far. For example, you might:
+
+- define groups of similar games and use their average attendance;
+- use `lag()` to find a relevant previous game; or
+- combine grouping and lagging so that the previous observation comes from a particular type of game.
+
+Describe your prediction rule in words before writing any code.
+
+#### (b) Defend your choice
+
+Explain why the past games selected by your rule should be useful for predicting attendance at the upcoming game.
+
+In particular, discuss:
+
+1. What makes these games similar to the game you are trying to predict?
+2. What information might your rule capture that the models from the previous exercises miss?
+
+#### (c) Create your predictions
+
+Implement your prediction rule using `chw_train`.
+
+Depending on your idea, you may need to use some combination of:
+
+- `mutate()` to create useful variables;
+- `group_by()` and `summarise()` to calculate averages for similar games;
+- `left_join()` to attach those averages to games;
+- `arrange()` and `lag()` to use a relevant previous observation.
+
+```{r}
+#| eval: false
+
+chw_train_pred_new <-
+  YOUR_CODE_HERE
+```
+
+#### (d) Evaluate your prediction rule
+
+Use `attendance_metrics` to evaluate your new rule on the training data.
+
+```{r}
+#| eval: false
+
+attendance_metrics(
+  chw_train_pred_new,
+  truth = YOUR_CODE_HERE,
+  estimate = YOUR_CODE_HERE
 )
 ```
 
-What does this table compare? Why is this comparison fair, while a direct comparison between `simple_model_metrics` from Exercise 2 and `ols_model_metrics` from Exercise 4 was not fair?
+### Exercise 7: How Well Do Our Models Predict New Games?
 
-**(c).** Interpret the table in part (b).
+We developed our prediction rules using the training data. Now we can see how well they predict **new games**.
 
-Which model has the lower MAE on the same test rows? Is the difference large enough to matter for a concessions staffing decision? Would RMSE or MAPE change your conclusion?
+#### (a)
 
-**(d).** Recommend a model and explain how the manager should use it.
+Apply the prediction rules you developed in the previous exercises to the 2025 test data. Do not use 2025 attendance to construct or update your prediction rules.
 
-In your answer, include:
+Store the predictions together with actual attendance in `chw_test_preds`.
 
-- which model you choose
-- the evidence from the same-sample metrics
-- why the extra complexity is or is not worth it
-- how the forecast becomes a baseline roster
-- how MAE would be used as a staffing buffer and monitored over time
+```{r}
+#| eval: false
 
-**(e).** A good working model still needs maintenance. Explain when and why the manager should update or replace the model.
+chw_test_preds <-
+  chw_test |> 
+  YOUR_CODE_HERE
+```
 
-In your answer, consider:
+#### (b) Compare the same games
 
-- what the manager should monitor over time
-- what changes might make the model stale
-- how a major change in the environment could affect forecast accuracy
+Create `chw_test_complete` by keeping only games for which all of the models you want to compare have predictions. Why does evaluating the models on the **same games** make the comparison fairer?
+
+```{r}
+#| eval: false
+
+chw_test_complete <-
+  chw_test_preds |>
+  filter(
+    YOUR_CODE_HERE
+  )
+```
+
+#### (c) Reshape the predictions
+
+Each model is currently stored in a different prediction column. Explain why this **wide format would lead us to repeat very similar code** when evaluating several models.
+
+#### (d)
+
+Rather than keeping the predictions in wide format, reshape them into long format.
+
+Use `pivot_longer()` to create a `model` column and a `.pred` column.
+
+```{r}
+#| eval: false
+
+chw_test_long <-
+  chw_test_complete |>
+  pivot_longer(
+    cols = YOUR_CODE_HERE,
+    names_to = YOUR_CODE_HERE,
+    values_to = YOUR_CODE_HERE
+  )
+```
+
+#### (e) Evaluate the models
+
+Calculate MAE, RMSE, and MAPE for each model.
+
+```{r}
+#| eval: false
+
+test_metrics <-
+  chw_test_long |>
+  YOUR_CODE_HERE |>
+  attendance_metrics(
+    truth = YOUR_CODE_HERE,
+    estimate = YOUR_CODE_HERE
+  )
+
+test_metrics
+```
+
+#### (f) Make the results easier to compare
+
+Use `pivot_wider()` to reshape the data once more to create one row per model, with separate columns for MAE, RMSE, and MAPE.
+
+```{r}
+#| eval: false
+
+test_metrics_wide <-
+  test_metrics |>
+  select(model, .metric, .estimate) |>
+  pivot_wider(
+    names_from = YOUR_CODE_HERE,
+    values_from = YOUR_CODE_HERE
+  )
+
+test_metrics_wide
+```
+
+#### (g) 
+
+Which is the best prediction model? Explain your reasoning.
+
+### Exercise 8: Communicating Your Results in an Analytics Team Memo
+
+You have now developed and evaluated several ways to predict White Sox home-game attendance.
+
+Your task is to write a short memo for an **analytics team meeting**. The goal is to help the team decide which prediction approach should be used as a starting point for forecasting attendance at future games.
+
+::: {.callout-tip collapse=true}
+
+## Writing Hints
+
+* Use the **"Write Like an Amazonian"** tips to guide your writing.
+* A strong memo should **compare the prediction approaches**, not just describe the model you prefer.
+* Focus on the **analytical takeaway**: what did the different prediction rules capture, and which ideas generalised to new games?
+* Use the **test-set results** as your main evidence when comparing predictive performance.
+* Keep the writing clear and direct. Do not simply restate the code you ran.
+
+:::
+
+::: {.callout-note collapse=true}
+
+## Suggested Memo Structure
+
+Use the outline below and provide **2–3 bullet points under each subheading**.
+
+**Problem Statement**  
+*(1 short paragraph summarising why the White Sox want to predict attendance and what business decisions these forecasts could support)*
+
+**Approaches Compared**
+
+* Briefly describe the prediction approaches you explored
+* Explain what historical information each approach uses
+
+**Recommended Approach**
+
+* Which prediction model would you recommend the analytics team use as a starting point?
+* What evidence supports your recommendation?
+
+**What We Learned About Attendance**
+
+* What kinds of historical games appeared to be most useful for predicting attendance?
+* Did the models reveal anything about whether recent games, opponents, or other similarities matter?
+
+**Proposed Implications**
+
+* How could the recommended predictions help with staffing, food and merchandise planning, or stadium operations?
+* How should the team interpret the size of the prediction errors when using the model?
+
+**Limitations & Next Steps**
+
+* What are the main limitations of the prediction approach?
+* What additional information or model improvements would you want the team to explore next?
+
+:::
+
