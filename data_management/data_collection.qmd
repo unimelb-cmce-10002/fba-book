@@ -9,9 +9,11 @@ execute:
 
 By the end of this lecture, you should be able to:
 
--   Distinguish structured, semi-structured, and unstructured data
--   Explain intuitively the differences between user interface and application program interface (API)
--   List the advantages of APIs as a means to collect data and apply use APIs to acquire data
+- Explain how an API differs from accessing data through a webpage.
+- Construct and send an API request in R using `httr2`.
+- Extract structured data from an API response and convert it into a dataframe.
+- Create a reusable function that retrieves data for different input values.
+- Apply iteration with `for` loops, `map()`, `expand_grid()`, and `map2()` to collect and combine data across many requests.
 
 :::
 
@@ -29,7 +31,7 @@ The website **Music to Scrape**, [https://music-to-scrape.org/](https://music-to
 #| out-width: "85%"
 #| fig-align: center
 
-knitr::include_graphics("figs/musictoscrape_chart.png")
+knitr::include_graphics("../figs/musictoscrape_chart.png")
 ```
 
 ::: {.callout-warning collapse=TRUE}
@@ -91,7 +93,7 @@ When we open the documentation, we can see that the API provides several endpoin
 #| out-width: "90%"
 #| fig-align: center
 
-knitr::include_graphics("figs/musictoscrape_api_docs.png")
+knitr::include_graphics("../figs/musictoscrape_api_docs.png")
 ```
 
 The documentation tells us how this endpoint is organised. It gives us the path used to request the top-tracks data and shows the parameters that we can supply with the request. For oour task, the important parameters are relate to the dates we are interested in, `year` and `week`, and the number of tracks we want returned, `limit`. 
@@ -140,7 +142,7 @@ This time we do not see a webpage like the chart page we saw above. Instead, the
 #| out-width: "150%"
 #| fig-align: center
 
-knitr::include_graphics("figs/musictoscrape_api_response.png")
+knitr::include_graphics("../figs/musictoscrape_api_response.png")
 ```
 
 This is useful for checking our understanding of the documentation. We asked for one weekly chart and received structured information about that chart. But copying API URLs into a browser does not solve our original problem: we eventually want R to make these requests for many different weeks and years. We therefore need to construct the same request in R.
