@@ -1,5 +1,5 @@
 ---
-title: "Collecting Structured and Unstructured Data"
+title: "Collecting Data the Internet with APIs"
 execute:
   eval: true
 ---
@@ -17,416 +17,760 @@ By the end of this lecture, you should be able to:
 
 ## The Business Challenge
 
-Data is often called the “new oil” of the digital economy. Yet, just as not all oil flows neatly through pipelines, not all data comes in ready-to-use formats. Some data is nicely organized in databases, spreadsheets, or CSV files, while other data appears in messy, irregular, or unconventional formats.
+Suppose we work for a record label and want to understand how songs and artists perform in the weekly charts. Looking at the chart for one week can tell us what is popular at that moment, but many questions about performance require a longer view. A song that appears for only one week may have experienced a brief burst of attention, while a song that appears repeatedly may have remained popular for much longer. Similarly, an artist may enter the chart once or appear repeatedly across different songs and different points in time. If we want to distinguish these patterns, we need to look beyond a single weekly chart.
 
-So far in this subject, we have mainly worked with structured data. In practice, however, such well-organized data is something of a luxury. It is costly to collect, standardize, and store, and organizations often invest heavily in information systems just to maintain it. At the same time, vast amounts of potentially valuable data exist outside these traditional formats.
+The website **Music to Scrape**, [https://music-to-scrape.org/](https://music-to-scrape.org/), publishes a chart of its most popular tracks for each week. The page below, for example, shows the chart for one week. For each track, we can see information such as the song name, the artist, and the number of plays. If our question were simply *Which songs were popular this week?*, we could answer it by reading this page.
 
-In this chapter, we will explore structured, semi-structured, and unstructured data. You will learn the defining characteristics of each category, why they matter for business analytics, and how analysts can collect and make use of data from different sources.
-
-## Structured, Semi-structured, and Unstructured Data
-
-Just as crude oil must be refined before it becomes useful, raw data only generates value when it can be systematically collected, processed, and analyzed. Depending on how well-defined its format is, data is typically classified into three broad categories:
-
--   Structured data
--   Unstructured data
--   Semi-structured data
-
-### Structured Data {.unnumbered}
-
-**Structured data**, as the name suggests, refers to highly organized data that follows a predefined schema. It is stored in formats such as relational databases, spreadsheets, and CSV files, where every piece of data is clearly defined and fits into a particular row and column. Most data that we have worked with so far in this subject belongs to this category.
-
-A well-defined structure for data often consists of:
-
--   Rows (Records, Observations): Each row corresponds to one unique instance of the entity being described (e.g., a single customer, a single sales transaction).
-
--   Columns (Fields, Variables): Columns represent attributes or characteristics of the entity (e.g., customer age, transaction amount).
-
--   Tables: Data is organized into tables that can be linked to each other through shared variables or keys (e.g., linking different customer data using customer ID).
-
-Because of their consistency, structured datasets can be easily managed and analyzed with tools like SQL, R’s Tidyverse, or Python’s Pandas. These tools allow us to perform operations easily on structured data by doing filtering, grouping, aggregating, merging, and reshaping data efficiently. 
-
-::: callout-note
-## Examples
-
--   Banking transaction records (date, amount, sender, recipient)
-
--   Inventory databases (product ID, stock quantity, unit price)
-
--   Employee HR records (employee ID, salary, department)
-:::
-
-Structured data’s strength lies in its precision and reliability. However, it is also limited in scope and volume. Many real-world data and information, such as consumer opinions, video content, or machine logs, cannot be easily captured in neat rows and columns.
-
-### Unstructured Data {.unnumbered}
-
-In reality, structured data represents only a small fraction of all data. As predicted by International Data Corporation (IDC) and Seagate, the global data endowment will continue growing exponentially and reach 163 zettabytes (i.e., 1 trillion gigabytes) by the end of 2025, and among all data, more than 80% is unstructured.
-
-**Unstructured data**, in stark contrast to structured data, lacks a fixed or consistent schema. It is generated in diverse formats and is often messy, irregular, or context-dependent. Broadly speaking, all information that we generate, unless it comes with predefined structures, belongs to unstructured data. Unlike structured data, it cannot be easily represented in tables of rows and columns.
-
-::: callout-note
-## Examples
-
--   Textual data: emails, chat messages, social media posts, product reviews.
--   Multimedia data: images, audios, videos, surveillance cameras recordings, readings/images from medical devices.
-:::
-
-Unstructured data is pervasive because much of the information we generate in daily life does not naturally follow a rigid, tabular structure. It posits significant challenges in collecting and processing data:
-
--   Lack of standardization.
-    -   Unstructured data is in very different categories. Even within the same category, unstructured data may be recorded in different formats.
-    -   Computers and programs cannot easily tackle data without standardized formats and patterns,
--   Volume and variety
-    -   The scale of unstructured data is massive: billions of social media posts per day, countless images and videos uploaded online, etc.
-    -   The variety of formats requires specialized tools for each type (e.g., natural language processing for text, computer vision for images).
--   Collection challenges
-    -   Unstructured data is often dispersed across platforms and devices. Collecting it may involve:
-        -   Massive manual work (i.e., human labelling of data, CAPTCHA)
-        -   Web scraping (can be technically challenging and sometimes legally restricted)
-        -   Large storage infrastructures (extremly costly)
--   Processing requirements
-    -   Before analysis, unstructured data usually must undergo heavy preprocessing and transformation (e.g., machine learning algorithms and AI):
-        -   Text: tokenization, stop-word removal, stemming, sentiment analysis (note that Google BERT and GPT have largely facilitated the processing of texts and natural language)
-        -   Images: resizing, labeling, feature extraction
-        -   Audio: noise reduction, speech-to-text transcription
-
-### Semi-Structured Data {.unnumbered}
-
-Between these two extremes is **semi-structured data**. Different from structured data, semi-structured data does not fit neatly into tables, but it still carries markers or tags that provide some structure. Compared with purely unstructured data, semi-structured data has a flexible but interpretable format.
-
-::: callout-note
-## Examples
-
--   JSON file (as we discussed in the previous week).
--   HTML documents: HTML tags (`<div>`, `<h1>`, `<p>`) give structures, but the actual text and images inside the tags are unstructured.
--   Emails: contain structured fields (sender, recipient, timestamp, subject) but also unstructured free-form text in the body.
--   Chat logs: often include metadata (user ID, time) plus free text content.
-:::
-
-::: {.callout-tip title="Summary" collapse="true"}
--   Structured data is easy to store, query, and analyze, but costly to maintain and often limited in scope.
-
--   Unstructured data is abundant and rich but difficult to process without specialized tools.
-
--   Semi-structured data sits in the middle: it provides some structure but still requires significant preprocessing before analysis.
-:::
-
-::: callout-tip
-## Remark
-For structured data, we have databases to manage them and apply to them relatively standardized data wrangling tools (e.g., `dplyr`). However, we do not have such luxury for less structured data. The ways of collecting and using less structured data usually vary across different cases. Do not be panic if the methods that we use in our examples do not work in a different case. What matters to us is to get familiar with the workflow.
-:::
-
-## Getting Data Using Application Program Interface (API)
-
-In library, we may not always be able to go and look for the books directly - especially when some books may be stored in the staff-only area or difficult to find. In such cases, we can submit requests to a librarian, and the librarian gets the books for us from the shelves.
-
-This process is a nice analogy to what happens when we acquire data via application program interface (API):
-
--   You are a data user
--   The librarian is the API
--   The staff-only area is the internal system or database you don't have access to
--   The request for a book is the message your program sends to the API
--   The book the librarian brings back is the data or service the API provides
-
-### Definitions of API {.unnumbered}
-
-Technically speaking, **Application program interface (API)** builds a "connection" between computer and computer programs and specifies a standard set of rules or procedures that an application program will do. This is in contrast to **user interfaces (UI)** where users directly interact with computers or programs.
-
-::: callout-note
-## Example: Uber's Usage of Google Map API
-
-We use web-based Google Map or Google Map App to search for locations and navigate to places we want to go. In such scenarios, we, as human users, are directly interact with the user interface (UI) of Google Map to acquire data and information.
-
-As a giant in ride-share and door-to-door delivery services, Uber uses Google Map to obtain data and information that they need for their apps (e.g., map, address information, routes, estimated time of arrival, etc.). In contrast to our usage of Google Map, Uber gets access to Google Map data by using programs to interact with Google Map's application program interface (API). This allows Uber to get real-time data from Google Map and use such data in real time. We cannot imagine Uber would be able to kick start its business without the Google Map API.
-
-Of course, the access to Google Map via API is not free. Uber pays millions to Google in order to use their services.
-
-![](../figs/data_collection/uber_google_api.png)
-:::
-
-### Advantages of APIs {.unnumbered}
-
-Nowadays, many data providers set up APIs as a preferred way to provide data to data users, and there are several advantages of doing so:
-
--   **Controlled Access.** APIs allow data providers to share only selected data or functions, rather than giving users full access to internal systems and data servers. This helps protect sensitive data and system integrity.
--   **Standardization.** By providing a standardized way to access data, APIs reduce the need to handle custom requests or build separate solutions for each user, thus reducing the costs.
--   **Innovation and Ecosystem Growth.** APIs allow third-party developers to build new apps or services that enhance the value of data (e.g., Google Maps used in ride-sharing apps).
--   **Usage Tracking and Monetization.** APIs make it easy to monitor who is using the data and how often. This opens up possibilities for charging based on usage or offering premium tiers.
-
-### Workflow of Using APIs to Acquire Data {.unnumbered}
-
-Most APIs are user-friendly because the rules and protocols of data acquisition have already been set up by data providers. Although every API may differ significantly from the other in many ways. Standard workflow still applies to the usage of APIs.
-
-We are going to use the "Music to Scrape" website (https://music-to-scrape.org/) to walk through the usage of APIs.
-
-#### Read User Manuals {.unnumbered}
-
-APIs are structured differently for different functions and needs. In practice, every API may have its own predefined functions and specific requirements for inputs and outputs. Therefore, it is rather important to carefully read through API user manuals before starting using it. Additionally, data providers often provide detailed user manuals and sample program for their APIs. As a user, it would be useful to go through these materials (if available).
-
-#### Obtaining API Key {.unnumbered}
-
-In many cases, the access to APIs is limited - you need to get an **API key** so that you can use the API. We can think API key as the log-in credentials for programs. Data providers can use API keys to track the download and the usage of data and prevent unwarranted access to their data.
-
-For the simple website we are working on, there is no need to obtain an API key. In the workshop, we are going to apply for a free API key from the **Federal Reserve Economic Data (FRED)**.
-
-
-#### Using APIs {.unnumbered}
-
-## Setup
-
-Every day we interact with systems that exchange data automatically: Spotify, banking apps, weather services, maps, financial platforms, and AI systems.
-
-Most of these systems communicate through APIs. Websites are usually designed for humans who want to gather information; APIs are designed for software systems that gather information. In other words, APIs are standardized machine interfaces for structured data exchange.
-
-APIs usually return structured transport data, not analysis-ready tables. After we have called an API, we need to do the following to the response we receive:
-
- - parse it as a JSON response;
- - nest it as an R list;
- - rectangle it as an R table;
- - clean it as a tidy table;
- - store it as a database table.
-
-Before we start working with today's API, we need to get set up:
 
 ```{r}
-library(httr)
-library(jsonlite)
-library(tidyverse)
+#| label: fig-music-to-scrape-chart
+#| fig-cap: "Music to Scrape Top 15 weekly chart."
+#| echo: false
+#| out-width: "85%"
+#| fig-align: center
 
-api_url <- "https://api.music-to-scrape.org"
+knitr::include_graphics("figs/musictoscrape_chart.png")
 ```
 
-`httr` helps us communicate with APIs.
+::: {.callout-warning collapse=TRUE}
+### A note on Music to Scrape {.unnumbered}
 
-We store our base URL as an object because we will repeatedly point our API to it, plus some extension depending on the specific data we are after.
+**Music to Scrape is a mock platform created for teaching.** It is designed to behave like a real music-streaming service might, including providing weekly charts through a website and an API.
 
-## Request weekly top tracks
+We use it here because it gives us a stable, reproducible environment for learning how APIs work. Real services such as Spotify can require authentication, change their API rules, restrict access to particular data, or introduce rate limits that would distract from the main ideas in this chapter.
 
-Let's actually ask a server for some data. To do so, we make an API request:
+The workflow we learn here is designed to transfer to real APIs: understand how a request is structured, send it from R, inspect the response, and repeat the process to build the data we need.
+:::
+
+**Our task is larger**. We want to study the weekly charts over **five years, from 2022 to 2026**. In particular, we want to know **which songs appeared in the charts for the most weeks** and **which artists accumulated the most chart appearances** over that period. Answering these questions requires us to collect the chart for every week in those five years—around 260 weekly charts—and combine the results into one dataset. The information we need already exists on Music to Scrape, but it is currently spread across many separate weekly views rather than stored in one data set.
+
+One option would be to collect those data manually. We could open the page for Week 1 of 2022, copy the chart into a spreadsheet, move to Week 2, and continue until we reached the end of 2026. But this would mean performing essentially the same task hundreds of times. It would also be difficult to reproduce: if we later wanted to update the analysis, correct a mistake, or collect a different set of weeks, we would have to repeat much of that work. The problem is therefore not that the data are unavailable. The problem is finding a systematic way to retrieve them.
+
+Music to Scrape provides another route through an **application programming interface**, or **API**. An API provides a way for one piece of software to communicate with another. In our case, rather than using the website as a person would—choosing a week, opening the corresponding page, and reading the chart—we can write R code that asks Music to Scrape for the chart for a particular week and year. The website and the API are therefore two interfaces to the same system: one is designed primarily for people to browse, while the other allows code to request data in a structured form.
+
+An API will not automatically give us the five-year dataset we want. We still need to tell Music to Scrape what data to return, understand the response, and repeat the request for the weeks and years we need. We will therefore begin with the smallest version of the problem: requesting the chart for one week. Once we can do that, we can turn the request into a reusable piece of code and scale from one weekly chart to the full five-year dataset.
+
+### Libraries we need for our task {.unnumbered}
+
+We will use two packages in this chapter.
+
+```{r}
+library(httr2)
+library(tidyverse)
+```
+
+`tidyverse` gives us the familiar tools we will use to organise and analyse the data once it is in R.
+`httr2` gives us the tools we need to build an API request, i.e. ask for data from a website, send it to another system, and work with the response that comes back. 
+httr2 gives us the tools we need to build an API request: in other words, to tell another system what data we want, send that request over the web, and work with the response that comes back. It lets us specify things such as which part of an API we want to access and any details the API needs in order to answer our request. We will use `httr2` to request weekly chart data from Music to Scrape and bring the returned data into R.
+
+## Accessing Data from the Web
+
+When data are available online, there are two common ways that code can retrieve them: through an application programming interface, or API, and through web scraping. Both approaches can move data from the web into R, but they access those data in different ways. In this chapter, we will work with an API. Web scraping is another useful approach, but it is outside the scope of this subject.
+
+An API is a way for a website provider to make data available directly to other programs. Instead of opening a webpage and reading the information displayed there, our code can ask for a particular set of data. The API then returns that information in a structured format that another program can work with, such as JSON. For Music to Scrape, this means that we can ask for the chart for a particular week and year and receive the corresponding chart data directly in R.
+
+Web scraping takes a different route. When we visit a website in a browser, the page combines the information we care about with everything needed to display it, such as headings, links, buttons, tables, and other page elements. A web scraper downloads that webpage and then identifies and extracts the values we want from it. This approach can be useful when information is visible on a website but there is no suitable API that provides direct access to the data.
+
+The difference is therefore about how our code gets the data. With web scraping, our code works with the same webpage that a person would view and extracts values from that page. With an API, the website provider has created a separate interface for code to request data. Rather than returning a webpage designed for display, the API returns structured information, often as JSON, that our code can process directly.
+
+## Building an API Request
+
+Our next task is to learn how to ask an API for one specific chart. We will start with requesting the musci chart for a given week, Week 42 of 2023. 
+Once we can retrieve one weekly chart, we can use the same structure later when we build our five-year dataset.
+
+### Start with the documentation {.unnumbered}
+
+We do not need to guess how to ask an API for data. APIs normally come with documentation that describes the data we can request and the information we need to provide. For Music to Scrape, we can start with the [API documentation](https://api.music-to-scrape.org/docs).
+
+When we open the documentation, we can see that the API provides several endpoints. An endpoint corresponds to a particular type of information or task that the API makes available. Because we want the weekly chart, we are interested in the endpoint for top tracks.
+
+```{r}
+#| label: fig-music-to-scrape-docs
+#| fig-cap: "The Music to Scrape API documentation, the top-tracks endpoint"
+#| echo: false
+#| out-width: "90%"
+#| fig-align: center
+
+knitr::include_graphics("figs/musictoscrape_api_docs.png")
+```
+
+The documentation tells us how this endpoint is organised. It gives us the path used to request the top-tracks data and shows the parameters that we can supply with the request. For oour task, the important parameters are relate to the dates we are interested in, `year` and `week`, and the number of tracks we want returned, `limit`. 
+
+::: {.callout-note}
+### The documentation is the source of truth {.unnumbered}
+
+Different APIs organise their requests in different ways. Parameter names such as `week` and `year` are not universal API commands: they are the names chosen by Music to Scrape. When working with another API, we would read that API's documentation to learn which endpoints and parameters it provides.
+:::
+
+### From the documentation to a URL {.unnumbered}
+
+Suppose we want the top 100 tracks from Week 42 of 2023. Following the structure in the documentation gives us the following URL:
+
+```text
+https://api.music-to-scrape.org/charts/top-tracks?week=42&year=2023&limit=100
+```
+
+There are three parts of this URL that matter for us:
+
+| Part | In our request | What it does |
+|---|---|---|
+| Base URL | `https://api.music-to-scrape.org` | Identifies the API we are sending the request to. |
+| Endpoint | `/charts/top-tracks` | Identifies the type of data we want. |
+| Parameters | `week=42&year=2023&limit=100` | Provide the details of this particular request. |
+
+The base URL stays the same as we move around this API. The endpoint tells Music to Scrape that we want top-track chart data. The parameters then narrow that request: we want Week 42, from 2023, with up to 100 tracks returned.
+
+You may have noticed two pieces of punctuation in the URL. The `?` marks the beginning of the query parameters, while `&` separates one parameter from the next. 
+
+### See what the API returns {.unnumbered}
+
+Before writing any R code, we can paste the URL directly into a web browser:
+
+```text
+https://api.music-to-scrape.org/charts/top-tracks?week=42&year=2023&limit=100
+```
+
+This time we do not see a webpage like the chart page we saw above. Instead, the browser displays structured data returned by the API. Music to Scrape returns its response as JSON, a format we have already encountered.
+
+
+```{r}
+#| label: fig-music-to-scrape-api-response
+#| fig-cap: "JSON returned by the Music to Scrape API for Week 42 of 2023."
+#| echo: false
+#| out-width: "150%"
+#| fig-align: center
+
+knitr::include_graphics("figs/musictoscrape_api_response.png")
+```
+
+This is useful for checking our understanding of the documentation. We asked for one weekly chart and received structured information about that chart. But copying API URLs into a browser does not solve our original problem: we eventually want R to make these requests for many different weeks and years. We therefore need to construct the same request in R.
+
+### Build the request in R {.unnumbered}
+
+The `httr2` package lets us construct an API request one piece at a time. We begin with the base URL:
+
+```{r}
+request("https://api.music-to-scrape.org")
+```
+
+`request()` creates a request object. At this point, R knows which API we intend to contact, but we have not yet told it which data we want.
+
+We can add the endpoint with `req_url_path_append()`:
+
+```{r}
+request("https://api.music-to-scrape.org") |>
+  req_url_path_append(
+    "charts",
+    "top-tracks"
+  )
+```
+
+This adds `/charts/top-tracks` to the base URL. Notice that we provide each part of the path separately. `httr2` takes care of placing the `/` characters in the right locations.
+
+Next, we add the parameters that describe the weekly chart we want:
+
+```{r}
+request("https://api.music-to-scrape.org") |>
+  req_url_path_append(
+    "charts",
+    "top-tracks"
+  ) |>
+  req_url_query(
+    week = 42,
+    year = 2023,
+    limit = 100
+  )
+```
+
+`req_url_query()` adds the query parameters to the request. The names and values match what we learned from the documentation: `week = 42`, `year = 2023`, and `limit = 100`. `httr2` converts these into the `?week=42&year=2023&limit=100` part of the URL for us.
+
+At this stage, we have described the request we want to make, but we have still not contacted Music to Scrape. This separation is useful: we can build and inspect a request before deciding to send it.
+
+::: {.callout-important}
+### Building a request is not the same as sending it {.unnumbered}
+
+The functions `request()`, `req_url_path_append()`, and `req_url_query()` describe the request. They do not retrieve any data.
+
+The request is sent only when we call `req_perform()`.
+:::
+
+### Send the request {.unnumbered}
+
+We can now send the completed request with `req_perform()` and save the result:
 
 ```{r}
 response <-
-  GET(
-    url = paste0(api_url, "/charts/top-tracks"),
-    query = list(
-      unixtimestamp = as.integer(as.POSIXct("2026-05-01", tz = "UTC")),
-      limit = 5
-    )
-  )
-```
-
-As you see, this is a programmatic approach, which is fundamentally different from, for example, downloading and reading in a CSV.
-
-Let's unpack our request - it has a clear structure:
-
- - We are sending a GET request: "Please send some data."
- - The URL identifies the endpoint: "Get the data from here."
- - The parameters refine the request: "Get these bits of the data."
- - The request generates a response, which we store as an object.
-
-The response is an object - but not one we have seen before.
-
-So, what is this response we get back? Let's inspect it:
-
-```{r}
-status_code(response)
-```
-
-Servers communicate back whether requests succeed or fail. Code `200` is good; codes such as `404` or `500` are bad.
-
-What is the format of our successful response?
-
-```{r}
-http_type(response)
-```
-
-We get back a structured format that we are now familiar with, JSON.
-
-And, what does this response contain?
-
-```{r}
-headers(response)
-```
-
-We get more than the data we are after - we also get metadata, which is information about our request and the data it returns (i.e., information on  the server, content type, encoding, etc).
-
-The following may be a helpful way to think about APIs: the response object is like an envelope, while the body is the letter inside. The metadata are information written on the envelope.
-
-But we don't yet have a dataset - we have a response object from the server that we need to operate on.
-
-## Inspect the JSON response
-
-We need to first extract the body of this response as text - i.e., the JSON text that contains the music data. For our purposes, we can leave the rest behind because we don't need the metadata, headers, status code, etc.
-
-```{r}
-json_text <-
-  content(
-    response,
-    as = "text",
-    encoding = "UTF-8"
-  )
-```
-
-Let's now inspect the structure text to ensure we have raw JSON:
-
-```{r}
-substr(json_text, 1, 500)
-```
-
-This is just like the JSON file we used last week: braces, brackets, keys, values, and nesting. The main difference is that our text is reading from left to right, rather than top to bottom.
-
-But this is not yet a table that we can analyse. We ultimately need to move from this hierarchical structure to a rectangular one.
-
-So, first we must manually parse the JSON:
-
-```{r}
-top_tracks_list <-
-  fromJSON(
-    json_text,
-    simplifyVector = FALSE
-  )
-```
-
-Here we have taken the raw JSON text and turned it into a nested R list, which we should inspect:
-
-```{r}
-typeof(top_tracks_list)
-```
-
-We've confirmed our parsed JSON is a nested list in R. Let's then look at the top-level components of this object to better understand what we have:
-
-```{r}
-names(top_tracks_list)
-str(top_tracks_list, max.level = 2)
-```
-
-`chart` is a list of five lists, where each of these lists is a track. Let's look at the first of these:
-
-```{r}
-top_tracks_list$chart[[1]]
-```
-
-Now we are drilling into the actual records returned by the API. One track is itself a structured object - it contains multiple pieces of information that we need to pull out and place down columns.
-
-## Rectangle the top tracks
-
-Before we can unnest our data, we need to wrap it in a tibble. If we skip this, our R functions for unnesting can't operate on the data:
-
-```{r}
-top_tracks_tbl <-
-  tibble(record = top_tracks_list$chart)
-```
-
-We've taken the list of records and placed each record into one row of a tibble with a single column, `record`:
-
-```{r}
-top_tracks_tbl
-```
-
-We aren't quite done yet, because each record is still nested. But this is straightforward to address:
-
-```{r}
-top_tracks_raw <-
-  top_tracks_tbl |>
-  unnest_wider(record)
-```
-
-unnest_wider() takes the named elements inside each nested record and expands them into columns:
-
-```{r}
-head(top_tracks_raw)
-```
-
-This looks familiar - we now have rectangular data: familiar columns, familiar rows, and familiar values, all where we want them to be so that we can analyze them.
-
-Let's do some light analysis to see how regular tidyverse workflows now work naturally:
-
-```{r}
-top_tracks_raw |>
-  count(artist, sort = TRUE)
-```
-
-```{r}
-top_tracks_raw |>
-  slice_max(order_by = plays)
-```
-
-```{r}
-top_tracks_raw |>
-  summarise(
-    sum_plays = sum(plays)
-  )
-```
-
-This is a big deal: we have transformed hierarchical transport-oriented data into rectangular analytical data.
-
-## APIs as interactive programmable data systems
-
-Up to now, you've made one request, inspected one response, parsed one JSON structure, and rectangled one dataset. But to really see the power of APIs, you need to observe how the request itself is flexible and programmable.
-
-We can use different endpoints to return different kinds of data. We can use different parameter values to change the 'window' of data we return. All while still using the same workflow pattern that we employed above.
-
-To see this, let's first vary the query parameters. Before we looked at top tracks for one weekly window. Now, let's ask for a window starting in an earlier year:
-
-```{r}
-response_week_1 <-
-  GET(
-    url = paste0(api_url, "/charts/top-tracks"),
-    query = list(
-      unixtimestamp = as.integer(as.POSIXct("2025-01-01", tz = "UTC")),
-      limit = 5
-    )
-  )
-
-tracks_week_1_list <-
-
-  content(
-    response_week_1,
-    as = "text",
-    encoding = "UTF-8"
+  request("https://api.music-to-scrape.org") |>
+  req_url_path_append(
+    "charts",
+    "top-tracks"
   ) |>
-  fromJSON(simplifyVector = FALSE)
-
-tracks_week_1_list$chart
+  req_url_query(
+    week = 42,
+    year = 2023,
+    limit = 100
+  ) |>
+  req_perform()
 ```
 
-While we observe the same structure, we have different observations. APIs provide standardized structures across many requests.
-
-We can also vary the endpoint. Instead of top tracks, we can ask for top artists.
+The object called `response` contains what Music to Scrape sent back after receiving our request. We can inspect it:
 
 ```{r}
-response_artists <-
-  GET(
-    url = paste0(api_url, "/charts/top-artists")
-  )
-
-top_artists_list <-
-  content(
-    response_artists,
-    as = "text",
-    encoding = "UTF-8"
-  ) |>
-  fromJSON(simplifyVector = FALSE)
-
-top_artists_tbl <-
-  tibble(record = top_artists_list$chart)
-
-top_artists_raw <-
-  top_artists_tbl |>
-  unnest_wider(record)
-
-head(top_artists_raw)
+response
 ```
 
-A different endpoint has returned a different data set - but our workflow remained stable.
+The important distinction is between the request and the response. The request describes what we are asking Music to Scrape for. `req_perform()` sends that request, and Music to Scrape sends a response back to R.
 
-## Where to from here?
+## From API response to Rectangular Data
 
-Today we looked under the hood of how modern systems exchange structured data. The key lesson was not this specific music API, but the broader workflow:
+We have sent our first request to Music to Scrape and saved what came back as `response`. Before we turn those results into a dataframe, it is useful to understand what an API sends back and how R stores it.
 
-API request → response object → JSON text → R list → rectangular table → examination.
+An API response contains more than the data we asked for. It also contains information about the exchange itself, including whether the request succeeded and what kind of content was returned. The chart data we ultimately want are stored in the response body, but we can begin by inspecting the response as a whole:
 
-We saw that APIs typically return structured transport data rather than analysis-ready datasets, which is why analysts must inspect the response, parse JSON into R objects, locate the relevant records, and rectangle nested structures into tabular form.
+```{r}
+response
+```
 
-We also saw that APIs are designed to be flexible and reusable. Endpoints define the type of resource we want, while query parameters refine the request and change the returned data. The important skill is therefore not memorizing functions or endpoints, but learning how to inspect unfamiliar structured data and progressively transform it into analytical form.
+Among the information printed by `httr2` is a three-digit status code. A status code is the server's short way of reporting what happened when it received our request. For this request, the status is `200`, which tells us that Music to Scrape successfully processed the request and returned a response.
 
-This is exactly the workflow we will use in the FRED tutorial when working with live macroeconomic data.
+::: {.callout-note}
+### Reading status codes {.unnumbered}
+
+You do not need to memorise a long list of HTTP status codes. It is more useful to recognise the broad pattern:
+
+- codes in the `200`s indicate that the request succeeded;
+- codes in the `400`s indicate a problem with the request, such as asking for something that does not exist or supplying information the API cannot accept;
+- codes in the `500`s indicate that something went wrong on the server receiving the request.
+
+If an API request does not behave as expected, the status code is often one of the first things worth checking.
+:::
+
+A successful status code tells us that the exchange worked, but it is not the chart data themselves. Those data are stored in the response body. Music to Scrape returns that body as JSON, so we can use `resp_body_json()` to convert it into R objects:
+
+```{r}
+tracks_raw <-
+  response |>
+  resp_body_json()
+```
+
+We have worked with JSON in an earlier chapter. JSON can contain several pieces of information nested inside one another. We should first inspect its structure.
+
+A simple place to start is with the names of the top-level components:
+
+```{r}
+names(tracks_raw)
+```
+
+For this response, the weekly chart is stored in the `chart` component. We can inspect that part directly:
+
+```{r}
+head(tracks_raw$chart, 5)
+```
+
+This is the part of the response that contains the individual tracks we asked for. Each track includes information such as its name, artist, and number of plays. The API has therefore returned the observations we need, but they are still stored as R objects created from the JSON response rather than as the dataframe we normally use for analysis.
+
+We can turn those track records into a dataframe with `bind_rows()` and then keep the variables we need:
+
+```{r}
+tracks <-
+  tracks_raw$chart |>
+  bind_rows() |>
+  select(
+    name,
+    artist,
+    plays
+  )
+```
+
+Now we can inspect the result:
+
+```{r}
+head(tracks)
+```
+
+At this point, the API-specific part of this request is finished. We started with an `httr2` response, extracted its JSON body, identified the part containing the chart, and turned those records into a dataframe. From here, `tracks` is an ordinary R dataframe that we can manipulate with the same tidyverse tools we have used throughout the subject.
+
+This dataframe contains only one weekly chart, while our we want charts from 2022 through 2026. The next step is to package the request into a function so that the week and year can change while the rest of the workflow stays the same.
+
+## Making the Request Reusable
+
+Suppose we want to move from Week 42 of 2023 to Week 43 of 2023. The base URL, endpoint, and `limit = 100` all stay the same; only `week` changes. If we later move to another year, then `year` changes as well.
+
+A function gives us a way to name a set of instructions that we want to reuse while allowing those inputs to change. Before writing one, it helps to be clear about what should go in and what should come out.
+
+For this task, we want to give the function two pieces of information: a week and a year. In return, we want one tidy dataframe containing that weekly chart. Each row should represent one track, with columns for the track name, artist, number of plays, week, and year.
+
+```text
+week + year -> one weekly chart dataframe
+```
+
+So if we run `get_top_tracks(week = 42, year = 2023)`, we want the function to return the Week 42, 2023 chart. If we run `get_top_tracks(week = 43, year = 2023)`, we want the same steps to run again for Week 43.
+
+### Decide what belongs inside the function {.unnumbered}
+
+The easiest way to build the function is to start from code that already works and ask two questions:
+
+1. Which parts stay the same every time?
+2. Which parts need to change?
+
+For our request, the base URL stays the same, the endpoint stays the same, and `limit = 100` stays the same. We also want to extract the `chart` component, combine the track records, and keep the same variables each time. In other words, most of the code from the previous section can be reused exactly as it is.
+
+The parts that need to change are the values we previously wrote directly into `week = 42` and `year = 2023`. Instead of fixing those values in the code, we replace them with the input names `week` and `year`. That is the main change that turns our one-off workflow into a reusable function.
+
+### Build the function {.unnumbered}
+
+We can now package the workflow into a function called `get_top_tracks()`:
+
+```{r}
+get_top_tracks <- function(week, year) {
+
+  tracks_raw <-
+    request("https://api.music-to-scrape.org") |>
+    req_url_path_append(
+      "charts",
+      "top-tracks"
+    ) |>
+    req_url_query(
+      week = week,
+      year = year,
+      limit = 100
+    ) |>
+    req_perform() |>
+    resp_body_json()
+
+  tracks_raw$chart |>
+    bind_rows() |>
+    select(
+      name,
+      artist,
+      plays
+    ) |>
+    mutate(
+      week = week,
+      year = year
+    )
+}
+```
+
+The first line is worth reading slowly: {.unnumbered}
+
+```r
+get_top_tracks <- function(week, year) {
+```
+
+`get_top_tracks` is the name we are giving the function. The names inside `function()` are the inputs that can change. Everything inside `{}` is the set of instructions that R will run when we call the function.
+
+For example, when we run:
+
+```r
+get_top_tracks(
+  week = 42,
+  year = 2023
+)
+```
+
+R uses `42` wherever `week` appears inside the function and `2023` wherever `year` appears. Naming the arguments makes that mapping explicit. The rest of the code runs exactly as written.
+
+The last part of the function creates the dataframe we want to keep. Because that is the final expression inside the function, that dataframe is what `get_top_tracks()` returns to us. The result has one row per track and keeps the variables we need for the later analysis.
+
+The final `mutate()` also records which weekly chart each row came from:
+
+```r
+mutate(
+  week = week,
+  year = year
+)
+```
+
+Here the same names appear on both sides of `=` but they are doing different jobs. The names on the left, `week` and `year`, are the new columns we are creating. The names on the right refer to the values supplied to the function. If we call `get_top_tracks(week = 42, year = 2023)`, every returned row will therefore record `week = 42` and `year = 2023`. That information will matter once we combine many weekly charts.
+
+### Use the function for different weeks {.unnumbered}
+
+Once the function is defined, retrieving a weekly chart becomes much simpler:
+
+```{r}
+get_top_tracks(
+  week = 42,
+  year = 2023
+)
+```
+
+To request the following week, we only change the first input:
+
+```{r}
+get_top_tracks(
+  week = 43,
+  year = 2023
+)
+```
+
+And then again for Week 44:
+
+```{r}
+get_top_tracks(
+  week = 44,
+  year = 2023
+)
+```
+
+These three calls all run the same workflow: build the request, send it, extract the JSON response, turn the chart into a dataframe, and record the week and year. We only change the input values.
+
+::: {.callout-note}
+### Functions need the inputs they were defined to use {.unnumbered}
+
+We defined `get_top_tracks()` with two inputs: `week` and `year`. If we run:
+
+```{r}
+#| eval: FALSE 
+get_top_tracks(
+  week = 20
+)
+```
+
+R does not know which year we want and will return an error. Supplying both inputs makes the request unambiguous:
+
+```{r}
+get_top_tracks(
+  week = 20,
+  year = 2023
+)
+```
+:::
+
+### From reuse to repetition {.unnumbered}
+
+For three weeks, calling the function manually is easy enough. But our goal is not to collect three weekly charts. Even if we considered only one year, we would need to retrieve the chart for every week:
+
+```{r}
+get_top_tracks(
+  week = 1,
+  year = 2023
+)
+get_top_tracks(
+  week = 2,
+  year = 2023
+)
+get_top_tracks(
+  week = 3,
+  year = 2023
+)
+# ...
+get_top_tracks(
+  week = 52,
+  year = 2023
+)
+```
+
+Writing 52 separate function calls would work, but it would be repetitive. In the next section, we will look at two ways to express that repeated work.
+
+## Repeating a Task with Iteration
+
+What we want R to do is: take the same function and repeat it for every week from 1 to 52. This idea is called iteration. Iteration means performing the same task repeatedly while changing one or more inputs each time. There are two ways we could write code to get R to iteratively get the top charts for us. We explore each below.
+
+### A `for` loop {.unnumbered}
+
+A `for` loop is one way to write an iterative task in R. We first create the collection of values we want to work through:
+
+```{r}
+weeks_to_collect <- 1:52
+```
+
+`weeks_to_collect` now contains the numbers 1 through 52. These are the values we want R to use, one at a time, as the `week` input to `get_top_tracks()`.
+
+The basic structure of our loop is:
+
+```{r}
+for (iWeek in weeks_to_collect) {
+  # code to repeat
+}
+```
+
+There are two different roles here, and keeping them separate makes the loop easier to read. `weeks_to_collect` is the full set of weeks we want. `iWeek` is the iterator: the temporary value R is working with right now.
+
+Think of R moving through `weeks_to_collect` from left to right. On the first pass, `iWeek = 1`, so the code inside `{}` runs for Week 1. Then `iWeek = 2`, so the same code runs for Week 2. R keeps going in this way until it reaches Week 52.
+
+Before we involve the API, we can make that process visible:
+
+```{r}
+for (iWeek in weeks_to_collect) {
+  print(iWeek)
+}
+```
+
+This loop does not collect any chart data. Its only job is to show us what is being passed through the iterator. On each pass, R assigns the current value from `weeks_to_collect` to `iWeek`, then `print(iWeek)` displays that value.
+
+We can now use the same iterator as the input to our function:
+
+```{r}
+#| cache: true
+
+for (iWeek in weeks_to_collect) {
+  get_top_tracks(
+    week = iWeek,
+    year = 2023
+  )
+}
+```
+
+`get_top_tracks()` still retrieves one weekly chart. The loop's job is simply to change the value supplied to `week` and run that function again.
+
+There is one more problem to solve. We do not only want R to run the 52 requests; we also want to keep the 52 dataframes that come back. At this stage, those results are still separate dataframes, so we need an object that can hold them together before we combine them later. A list is useful for this because each element of a list can store one dataframe.
+
+```{r}
+#| cache: true
+
+weeks_to_collect <- 1:52
+results <- list()
+
+for (iWeek in weeks_to_collect) {
+  results[[iWeek]] <-
+    get_top_tracks(
+      week = iWeek,
+      year = 2023
+    )
+}
+```
+
+Before the loop starts, `results <- list()` creates an empty list. Each time the loop runs, the dataframe returned by `get_top_tracks()` is placed into that list. The expression `results[[iWeek]]` tells R which position to use. When `iWeek = 42`, for example, the Week 42 dataframe is stored in position 42.
+
+After the loop finishes, `results` contains one dataframe for each week we collected. We can inspect one of those weekly dataframes directly:
+
+```{r}
+results[[42]]
+```
+
+This gives us the Week 42 chart. The loop has therefore done the same work we would otherwise have written manually 52 times.
+
+For analysis, however, we usually want one dataframe rather than a list of separate weekly dataframes. We can combine them with `list_rbind()`:
+
+```{r}
+tracks_2023 <-
+  results |>
+  list_rbind()
+
+head(tracks_2023)
+```
+
+`list_rbind()` stacks the weekly dataframes on top of one another. Because `get_top_tracks()` already added `week` and `year`, those columns tell us which weekly chart each row came from after everything has been combined.
+
+### The same task with `map()` {.unnumbered}
+
+A `for` loop is useful because we can see every part of the process: take one value, run the code, save the result, then move to the next value. However, we can write the same job more compactly with `map()`.
+
+We can write the same workflow described above more compactly as:
+
+```{r}
+#| cache: true
+tracks_2023 <-
+  map(
+    weeks_to_collect,
+    get_top_tracks,
+    year = 2023
+  ) |>
+  list_rbind()
+
+head(tracks_2023)
+```
+
+Here, `weeks_to_collect` again supplies the weeks we want to work through. `get_top_tracks` is the function we want to run for each one. The year does not change, so we give `map()` `year = 2023` once and keep it fixed across all 52 calls.
+
+There is one important detail to understand here: which input to `get_top_tracks()` is changing? Recall how we defined the function:
+
+```r
+get_top_tracks <- function(week, year) {
+```
+
+The changing values come from `weeks_to_collect`. In this call to `map()`, those values are used for `week`, while `year = 2023` is supplied separately and stays fixed.
+
+So this:
+
+```r
+map(
+  weeks_to_collect,
+  get_top_tracks,
+  year = 2023
+)
+```
+
+is doing the same kind of work as writing:
+
+```r
+get_top_tracks(
+  week = 1,
+  year = 2023
+)
+
+get_top_tracks(
+  week = 2,
+  year = 2023
+)
+
+get_top_tracks(
+  week = 3,
+  year = 2023
+)
+
+# ...and so on through Week 52
+```
+
+
+::: {.callout-note}
+### Which argument changes? {.unnumbered}
+
+A useful rule to remember is that the values in the first input to `map()` are passed to the first argument of the function you are mapping. Named arguments that follow, such as `year = 2023`, stay fixed.
+
+Because `get_top_tracks()` was defined as `function(week, year)`, the changing values go into `week`.
+:::
+
+Each returned dataframe is collected into a list, and `list_rbind()` immediately stacks those results into the single dataframe `tracks_2023`.
+
+The `for` loop spells out the repeated steps, the storage of results, and the final combination. `map()` expresses the same workflow more compactly. Both are doing the same underlying job: applying one function repeatedly across a collection of input values.
+
+
+## Varying More Than One Input
+
+So far, our iterative workflow has changed one input at a time. We used `weeks_to_collect` to vary `week`, while keeping `year = 2023` fixed. That was enough to collect one full year of weekly charts.
+But, we want charts from several years, so both `week` and `year` need to change. 
+
+Suppose we want Weeks 42, 43, and 44 from both 2023 and 2024. The requests we need are:
+
+```text
+Week 42, 2023
+Week 42, 2024
+Week 43, 2023
+Week 43, 2024
+Week 44, 2023
+Week 44, 2024
+```
+
+We could write those six combinations by hand, but R can construct them for us.
+
+### Build the combinations with `expand_grid()`  {.unnumbered}
+
+The function `expand_grid()` creates every combination of the values we give it. We can use it to create the week-year combinations we want:
+
+```{r}
+week_years <-
+  expand_grid(
+    week = 42:44,
+    year = 2023:2024
+  )
+```
+
+If we inspect `week_years`, we get a small dataframe with two columns:
+
+```{r}
+week_years
+```
+
+Each row represents one combination of `week` and `year`. In this example, there are three possible weeks and two possible years, so `expand_grid()` creates six rows in total. Because we listed `week` first, the weeks change more slowly while the years change within each week.
+
+The first row represents Week 42 of 2023, the second Week 42 of 2024, the third Week 43 of 2023, and so on. In other words, `week_years` is now a dataframe that describes the requests we want to make.
+
+### Use `map2()` when two inputs change  {.unnumbered}
+
+`expand_grid()` has solved the first problem: it has created the week-year pairs we want. We now need to run `get_top_tracks()` once for each of those pairs.
+
+With `map()`, we supplied one collection of changing values because only `week` was changing. Here, both `week` and `year` change together, so we need a tool that can move through two collections at the same time. That is what `map2()` does:
+
+```{r}
+#| cache: true
+results <-
+  map2(
+    week_years$week,
+    week_years$year,
+    get_top_tracks
+  )
+```
+
+`map2()` works through two vectors in parallel. It takes the first week and the first year and uses them together in one function call. Then it takes the second week and the second year, then the third pair, and so on.
+
+Recall that our function was defined as:
+
+```r
+get_top_tracks <- function(week, year) {
+```
+
+That ordering matters. The first vector supplied to `map2()`, `week_years$week`, feeds the `week` argument. The second vector, `week_years$year`, feeds the `year` argument.
+
+We can think of the first few calls as:
+
+```r
+get_top_tracks(
+  week = 42,
+  year = 2023
+)
+
+get_top_tracks(
+  week = 42,
+  year = 2024
+)
+
+get_top_tracks(
+  week = 43,
+  year = 2023
+)
+
+# ...and so on
+```
+
+`map2()` performs those calls for us and stores each returned dataframe in a list called `results`.
+
+A useful way to read the code is:
+
+> Move through `week_years$week` and `week_years$year` together, and run `get_top_tracks()` once for each matching pair of values.
+
+### Combine the results  {.unnumbered}
+
+Just as before, the result of `map2()` is a list containing one dataframe for each function call. We can combine those dataframes with `list_rbind()`:
+
+```{r}
+tracks <-
+  results |>
+  list_rbind()
+
+glimpse(tracks)
+```
+
+We now have one dataframe containing all six weekly charts in our small example. Because `get_top_tracks()` already adds `week` and `year`, every row still records which weekly chart it came from.
+
+### Scale up the same workflow {.unnumbered}
+
+Once the small example is clear, scaling up does not require a new idea. We only change the values supplied to `expand_grid()`:
+
+```{r}
+week_years <-
+  expand_grid(
+    week = 1:52,
+    year = 2022:2026
+  )
+```
+
+This creates every combination of 52 weeks and five years, giving us the full set of week-year requests.
+
+We can then use exactly the same `map2()` workflow:
+
+```{r}
+#| cache: true
+
+tracks <-
+  map2(
+    week_years$week,
+    week_years$year,
+    get_top_tracks
+  ) |>
+  list_rbind()
+
+glimpse(tracks)
+```
+
+## Conclusion
+
+We began with a simple problem: Music to Scrape showed us one weekly chart at a time, but our business question required data across many weeks and years. The challenge was not finding one chart. It was building a systematic way to collect the same type of data repeatedly.
+
+We solved that problem in stages. We used the API documentation to work out how to request one weekly chart, then used `httr2` to build and send that request from R. From the response, we extracted the JSON body and turned the chart data into a dataframe.
+
+Once one request worked, we made the workflow reusable by wrapping it inside `get_top_tracks()`, with `week` and `year` as inputs. We then used iteration to repeat that same task across many weeks, first with a `for` loop and then with `map()`. Finally, when both `week` and `year` needed to vary, we used `expand_grid()` and `map2()` to scale the same logic across the full set of requests.
+The result is one dataframe containing weekly chart data from 2022 to 2026.
+
+The broader lesson extends beyond music charts. Many APIs make data available one request at a time. Once we understand how to make one request correctly, functions and iteration let us turn that single request into a reproducible workflow for collecting many related observations.
