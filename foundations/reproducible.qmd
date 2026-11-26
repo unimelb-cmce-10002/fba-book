@@ -343,7 +343,7 @@ Try using it as you type to save time!
 Let's imagine you're looking at a simplified version of the AFL ladder. Suppose these four teams have the following points:
 
 - Collingwood Magpies: 60
-- Adelaide Crows: 60
+- Adelaide Crows: 46
 - Brisbane Lions: 58
 - Western Bulldogs: 48
 
@@ -972,7 +972,7 @@ Sometimes things break because R is treating your data differently than you expe
 Try this:
 
 ```r
-type(data_set$column)
+typeof(data_set$column)
 ```
 
 This tells you if it's a number, character, factor, etc. 
